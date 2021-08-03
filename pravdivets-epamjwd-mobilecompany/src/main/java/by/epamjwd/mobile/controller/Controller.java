@@ -19,6 +19,8 @@ public class Controller extends HttpServlet {
 	public Controller() {
 	}
 
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		process(request, response);
@@ -31,15 +33,16 @@ public class Controller extends HttpServlet {
 
 	private void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String news = request.getParameter("news");
 
-		if ("provide_news".equals(news)) {
-			SQLNewsDAO newsMaker = new SQLNewsDAO();
-			List<NewsArticle> list = newsMaker.getAllNews();
-
-			request.setAttribute("news", list);
-			request.getRequestDispatcher("TagTest.jsp").forward(request, response);
+		String command = request.getParameter("command");
+		
+		if ("main".equals(command)){
+			NewsProvider newsProvider = new NewsProvider();
+								
+			newsProvider.provideNews(request, response, "main.jsp");
 		}
+		
+		
 
 	}
 
