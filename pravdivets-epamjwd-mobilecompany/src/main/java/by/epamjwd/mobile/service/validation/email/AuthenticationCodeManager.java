@@ -14,70 +14,59 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
 
-
 public class AuthenticationCodeManager {
 
-        final static int CODE_MIN_VALUE = 1000;
-        final static int CODE_MAX_VALUE = 9999;
+	final static int CODE_MIN_VALUE = 1000;
+	final static int CODE_MAX_VALUE = 9999;
 
-        private final static Logger LOGGER = LogManager.getLogger();
-        
-        
-        public void sendAuthenticationCodeByEmail(String usersEmail, String authenticationCode) {
-        	
-        	EmailResourceManager emailResourceManager = EmailResourceManager.getInstance();
+	private final static Logger LOGGER = LogManager.getLogger();
 
-        	String host = emailResourceManager.getValue(EmailParameter.EMAIL_HOST);
-        	String port = emailResourceManager.getValue(EmailParameter.EMAIL_PORT);
-        	String auth = emailResourceManager.getValue(EmailParameter.EMAIL_AUTH);
-        	String tls  = emailResourceManager.getValue(EmailParameter.EMAIL_TLS);
-        	
-            Properties prop = new Properties();
-            prop.put("mail.smtp.host", host);
-            prop.put("mail.smtp.port", port);
-            prop.put("mail.smtp.auth", auth);
-            prop.put("mail.smtp.starttls.enable", tls); 
+	public void sendAuthenticationCodeByEmail(String usersEmail, String authenticationCode) {
 
-            
-            String emailFrom = emailResourceManager.getValue(EmailParameter.EMAIL_EMAIL_FROM);
-            String password  = emailResourceManager.getValue(EmailParameter.EMAIL_PASSWORD);
-                    
-            Session session = Session.getInstance(prop,
-                    new Authenticator() {
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(emailFrom, password);
-                        }
-                    });
+		EmailResourceManager emailResourceManager = EmailResourceManager.getInstance();
 
-            try {
+		String host = emailResourceManager.getValue(EmailParameter.EMAIL_HOST);
+		String port = emailResourceManager.getValue(EmailParameter.EMAIL_PORT);
+		String auth = emailResourceManager.getValue(EmailParameter.EMAIL_AUTH);
+		String tls = emailResourceManager.getValue(EmailParameter.EMAIL_TLS);
 
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(emailFrom));
-                message.setRecipients(
-                        Message.RecipientType.TO,
-                        InternetAddress.parse(usersEmail)
-                );
-                message.setSubject("mobile - access code");
-                message.setText(authenticationCode);
+		Properties prop = new Properties();
+		prop.put("mail.smtp.host", host);
+		prop.put("mail.smtp.port", port);
+		prop.put("mail.smtp.auth", auth);
+		prop.put("mail.smtp.starttls.enable", tls);
 
-                Transport.send(message);
+		String emailFrom = emailResourceManager.getValue(EmailParameter.EMAIL_EMAIL_FROM);
+		String password = emailResourceManager.getValue(EmailParameter.EMAIL_PASSWORD);
 
-                System.out.println("Done");
+		Session session = Session.getInstance(prop, new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(emailFrom, password);
+			}
+		});
 
-            } catch (MessagingException e) {
-               LOGGER.error("Error while sending an authentication code to " + usersEmail + e);
-            }
-        }
+		try {
 
-        public String generateAuthenticationCode() {
-        	String authenticationCode = "";
-        	
-        	Integer codeInt = (int)(Math.random()*(CODE_MAX_VALUE - CODE_MIN_VALUE + 1) + CODE_MIN_VALUE);
-        	
-        	authenticationCode = codeInt.toString();
-        	return authenticationCode;
-        }
-        
-    }
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(emailFrom));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usersEmail));
+			message.setSubject("mobile - access code");
+			message.setText(authenticationCode);
 
+			Transport.send(message);
 
+		} catch (MessagingException e) {
+			LOGGER.error("Error while sending an authentication code to " + usersEmail + e);
+		}
+	}
+
+	public String generateAuthenticationCode() {
+		String authenticationCode = "";
+
+		Integer codeInt = (int) (Math.random() * (CODE_MAX_VALUE - CODE_MIN_VALUE + 1) + CODE_MIN_VALUE);
+
+		authenticationCode = codeInt.toString();
+		return authenticationCode;
+	}
+
+}
