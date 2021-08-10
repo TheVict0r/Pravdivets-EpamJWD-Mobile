@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.connectionpool;
+package by.epamjwd.mobile.dao.connectionpool;
 
 import java.util.ResourceBundle;
 

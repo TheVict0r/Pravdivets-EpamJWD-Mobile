@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.connectionpool;
+package by.epamjwd.mobile.dao.connectionpool;
 
 public final class DBParameter {
 	private DBParameter() {

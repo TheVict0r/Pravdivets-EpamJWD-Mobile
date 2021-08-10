@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.connectionpool.exception;
+package by.epamjwd.mobile.dao.connectionpool.exception;
 
 public class ConnectionPoolException extends Exception {
 	private static final long serialVersionUID = 1L;

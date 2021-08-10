@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.connectionpool;
+package by.epamjwd.mobile.dao.connectionpool;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -27,7 +27,7 @@ import java.util.concurrent.Executor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.connectionpool.exception.ConnectionPoolException;
+import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 
 

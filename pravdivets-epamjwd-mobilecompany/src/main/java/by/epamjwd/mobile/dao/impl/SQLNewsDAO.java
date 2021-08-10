@@ -11,9 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.NewsArticle;
-import by.epamjwd.mobile.connectionpool.ConnectionPool;
-import by.epamjwd.mobile.connectionpool.exception.ConnectionPoolException;
 import by.epamjwd.mobile.dao.NewsDAO;
+import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
+import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 public class SQLNewsDAO implements NewsDAO{
 

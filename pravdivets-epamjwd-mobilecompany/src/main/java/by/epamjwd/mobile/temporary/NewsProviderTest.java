@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller;
+package by.epamjwd.mobile.temporary;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import by.epamjwd.mobile.bean.NewsArticle;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAO;
 
-public class NewsProvider {
+public class NewsProviderTest {
 
 	public void provideNews(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
