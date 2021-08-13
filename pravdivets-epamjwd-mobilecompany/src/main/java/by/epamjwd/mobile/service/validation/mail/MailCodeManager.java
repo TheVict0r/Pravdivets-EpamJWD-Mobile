@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.service.validation.email;
+package by.epamjwd.mobile.service.validation.mail;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -14,21 +14,21 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Properties;
 
-public class AuthenticationCodeManager {
+public class MailCodeManager {
 
 	final static int CODE_MIN_VALUE = 1000;
 	final static int CODE_MAX_VALUE = 9999;
 
 	private final static Logger LOGGER = LogManager.getLogger();
 
-	public void sendAuthenticationCodeByEmail(String usersEmail, String authenticationCode) {
+	public void sendAuthenticationCodeByEmail(String usersMail, String authenticationCode) {
 
-		EmailResourceManager emailResourceManager = EmailResourceManager.getInstance();
+		MailResourceManager emailResourceManager = MailResourceManager.getInstance();
 
-		String host = emailResourceManager.getValue(EmailParameter.EMAIL_HOST);
-		String port = emailResourceManager.getValue(EmailParameter.EMAIL_PORT);
-		String auth = emailResourceManager.getValue(EmailParameter.EMAIL_AUTH);
-		String tls = emailResourceManager.getValue(EmailParameter.EMAIL_TLS);
+		String host = emailResourceManager.getValue(MailParameter.MAIL_HOST);
+		String port = emailResourceManager.getValue(MailParameter.MAIL_PORT);
+		String auth = emailResourceManager.getValue(MailParameter.MAIL_AUTH);
+		String tls = emailResourceManager.getValue(MailParameter.MAIL_TLS);
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", host);
@@ -36,8 +36,8 @@ public class AuthenticationCodeManager {
 		prop.put("mail.smtp.auth", auth);
 		prop.put("mail.smtp.starttls.enable", tls);
 
-		String emailFrom = emailResourceManager.getValue(EmailParameter.EMAIL_EMAIL_FROM);
-		String password = emailResourceManager.getValue(EmailParameter.EMAIL_PASSWORD);
+		String emailFrom = emailResourceManager.getValue(MailParameter.MAIL_FROM);
+		String password = emailResourceManager.getValue(MailParameter.MAIL_PASSWORD);
 
 		Session session = Session.getInstance(prop, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -49,14 +49,14 @@ public class AuthenticationCodeManager {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(emailFrom));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usersEmail));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usersMail));
 			message.setSubject("mobile - access code");
 			message.setText(authenticationCode);
 
 			Transport.send(message);
 
 		} catch (MessagingException e) {
-			LOGGER.error("Error while sending an authentication code to " + usersEmail + e);
+			LOGGER.error("Error while sending an authentication code to " + usersMail + e);
 		}
 	}
 
