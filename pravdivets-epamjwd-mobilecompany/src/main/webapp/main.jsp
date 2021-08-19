@@ -21,55 +21,97 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 
-		<div class="container bg-light text-dark">
-		
-			<h1>MAIN.JSP</h1>
+	<div class="container bg-light text-dark">
+
+		<div class="container text-center">
+			<h3>MAIN.JSP</h3>
 			<h1>Наши новости</h1>
 			<br>
+		</div>
 
-			<h4>${news[0].title}</h4>
-			<em> ${news[0].date}</em><br />
-			<p>
-				<em><strong> ${news[0].lead} </strong></em>
-			</p>
-			<p>${news[0].text}</p>
-			<br/>
-			
-			<h4>${news[1].title}</h4>
-			<em> ${news[1].date}</em><br />
-			<p>
-				<em><strong> ${news[1].lead} </strong></em>
-			</p>
-			<p>${news[1].text}</p>
-			<br/>
-			
-			<h4>${news[2].title}</h4>
-			<em> ${news[2].date}</em><br />
-			<p>
-				<em><strong> ${news[2].lead} </strong></em>
-			</p>
-			<p>${news[2].text}</p>
+		<div class="row">
+			<div class="col-sm-4">
+				<h4>${news[0].title}</h4>
+				<strong><em> ${news[0].date}</em></strong><br />
+				<p>
+					 ${news[0].lead}
+					 <br/>
+					<a href="#" class="card-link">Подробнее</a> 
+				</p>
+				
+				<!--p>${news[0].text}</p-->
+				<br />
+			</div>
 
-
-			<form action="controller" method="GET">
-				<input type="hidden" name="news" value="provide_news" /> <br /> <input
-					type="submit" value="Все новости" name="read"
-					class="btn btn-outline-primary" />
-			</form>
-
-			<br/>
-
-
+			<div class="col-sm-4">
+				<h4>${news[1].title}</h4>
+				<strong><em> ${news[1].date}</em></strong><br />
+				<p>
+					 ${news[1].lead}
+					 <br/>
+					<a href="#" class="card-link">Подробнее</a> 
+				</p>
+				<br />
+			</div>
+			<div class="col-sm-4">
+				<h4>${news[2].title}</h4>
+				<strong><em> ${news[2].date}</em></strong><br />
+				<p>
+					 ${news[2].lead}
+					 <br/>
+					<a href="#" class="card-link">Подробнее</a> 
+				</p>
+			</div>
+			<div class="col-sm-4">
+				<h4>${news[3].title}</h4>
+				<strong><em> ${news[3].date}</em></strong><br />
+				<p>
+					 ${news[3].lead}
+					 <br/>
+					<a href="#" class="card-link">Подробнее</a> 
+				</p>
+				</div>
+			<div class="col-sm-4">
+				<h4>${news[4].title}</h4>
+				<strong><em> ${news[4].date}</em></strong><br />
+				<p>
+					 ${news[4].lead}
+					 <br/>
+					<a href="#" class="card-link">Подробнее</a> 
+				</p>
+				</div>
+			<div class="col-sm-4">
+				<h4>${news[5].title}</h4>
+				<strong><em> ${news[5].date}</em></strong><br />
+				<p>
+					 ${news[5].lead}
+					 <br/>
+					<a href="#" class="card-link">Read more</a> 
+				</p>
+				</div>
 		</div>
 
 
-<jsp:include page="footer.jsp" />
-		<!-- bootstrap -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"></script>
+		<form class=" d-grid gap-2 col-4 mx-auto" action="controller" method="GET">
+			<input type="hidden" name="news" value="provide_news" /> <br /> <input
+				type="submit" value="Все новости" name="read"
+				class="btn btn-outline-primary " />
+				
+		</form>
+
+		<br />
+
+
+	</div>
+
+
+	<jsp:include page="footer.jsp" />
+	<!-- bootstrap -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 </body>
 </html>
