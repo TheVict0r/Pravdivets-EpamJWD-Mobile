@@ -19,8 +19,11 @@ public class SQLNewsDAO implements NewsDAO{
 
 	private final static Logger LOGGER = LogManager.getLogger(SQLNewsDAO.class);
 
-	final String SELECT_ALL_FROM_NEWS = "SELECT * FROM NEWS ORDER BY id DESC";
-	final String SELECT_LAST_THREE_ARTICLES_FROM_NEWS = "SELECT * FROM news ORDER BY id DESC LIMIT 3";
+	public final static String BASE_NAME = "db";
+	//CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
+	
+	public final static String SELECT_ALL_FROM_NEWS = "SELECT * FROM NEWS ORDER BY id DESC";
+	public final static String SELECT_LAST_THREE_ARTICLES_FROM_NEWS = "SELECT * FROM news ORDER BY id DESC LIMIT 3";
 
 	public List<NewsArticle> getAllNews() {
 		return getNewsBunch(SELECT_ALL_FROM_NEWS);
@@ -42,7 +45,7 @@ public class SQLNewsDAO implements NewsDAO{
 
 		try {
 			pool = ConnectionPool.getInstance();
-			pool.initPoolData();
+			pool.initPoolData(BASE_NAME);
 			connection = pool.takeConnection();
 			statement = connection.createStatement();
 			newsResultSet = statement.executeQuery(request);

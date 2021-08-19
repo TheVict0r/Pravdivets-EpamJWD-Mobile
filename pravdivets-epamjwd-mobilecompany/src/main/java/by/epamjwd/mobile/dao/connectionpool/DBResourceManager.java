@@ -5,12 +5,15 @@ import java.util.ResourceBundle;
 public class DBResourceManager {
 	
 	private final static DBResourceManager instance = new DBResourceManager();
-
+	private ResourceBundle bundle;	
+	
 	public static DBResourceManager getInstance() {
 		return instance;
 	}
 	
-	private ResourceBundle bundle = ResourceBundle.getBundle("db");
+	public void initBundle(String baseName) {
+		bundle = ResourceBundle.getBundle(baseName);
+	}
 	
 	public String getValue(String key) {
 		return bundle.getString(key);

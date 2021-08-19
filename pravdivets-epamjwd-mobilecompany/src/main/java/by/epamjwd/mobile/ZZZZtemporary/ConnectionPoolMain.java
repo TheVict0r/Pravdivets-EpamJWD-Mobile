@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.temporary;
+package by.epamjwd.mobile.ZZZZtemporary;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,6 +13,7 @@ import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 public class ConnectionPoolMain {
 
+	public final static String BASE_NAME = "db";
 	public static final String SELECT_FROM_REGIONS = "SELECT * FROM REGIONS";
 	public static final String SELECT_FROM_NEWS = "SELECT * FROM NEWS";
 	static Logger logger = LogManager.getLogger(ConnectionPool.class);
@@ -31,7 +32,7 @@ public class ConnectionPoolMain {
 		ResultSet resultSet = null;
 		try {
 			pool = ConnectionPool.getInstance();
-			pool.initPoolData();
+			pool.initPoolData(BASE_NAME);
 			connection = pool.takeConnection();
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(sqlRequest);
@@ -47,6 +48,7 @@ public class ConnectionPoolMain {
 			//e.printStackTrace();
 			logger.error("SQLException in ConnectionPool", e);
 		} catch (NullPointerException e) {
+			
 			//e.printStackTrace();
 			logger.error("NullPointerException in ConnectionPool", e);
 		} finally {

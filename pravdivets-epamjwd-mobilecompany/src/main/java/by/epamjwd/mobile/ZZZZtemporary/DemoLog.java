@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.temporary;
+package by.epamjwd.mobile.ZZZZtemporary;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

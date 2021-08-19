@@ -21,7 +21,7 @@ public class MailCodeManager {
 
 	private final static Logger LOGGER = LogManager.getLogger();
 
-	public void sendAuthenticationCodeByEmail(String usersMail, String authenticationCode) {
+	public void sendAuthenticationCodeByMail(String usersMail, String authenticationCode) {
 
 		MailResourceManager emailResourceManager = MailResourceManager.getInstance();
 

@@ -10,7 +10,9 @@ public class MailResourceManager {
 		return instance;
 	}
 	
-	private ResourceBundle bundle = ResourceBundle.getBundle("email");
+	private ResourceBundle bundle = ResourceBundle.getBundle("mail");
+	//HARDCODE
+	
 	
 	public String getValue(String key) {
 		return bundle.getString(key);

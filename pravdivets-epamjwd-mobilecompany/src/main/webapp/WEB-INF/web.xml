@@ -14,5 +14,9 @@
     <servlet-name>Controller</servlet-name>
     <url-pattern>/controller</url-pattern>
   </servlet-mapping-->
+
+	<listener>
+		<listener-class>by.epamjwd.mobile.controller.listener.AppContextListener</listener-class>
+	</listener>
   
 </web-app>

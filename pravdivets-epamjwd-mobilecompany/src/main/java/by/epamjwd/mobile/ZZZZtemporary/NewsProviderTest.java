@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.temporary;
+package by.epamjwd.mobile.ZZZZtemporary;
 
 import java.io.IOException;
 import java.util.List;

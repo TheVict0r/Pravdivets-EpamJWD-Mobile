@@ -1,5 +1,6 @@
 package by.epamjwd.mobile.dao.connectionpool;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.sql.Blob;
 import java.sql.CallableStatement;
@@ -33,6 +34,8 @@ import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 public final class ConnectionPool {
 
+	//public final static String BASE_NAME = "db";
+	
 	private BlockingQueue<Connection> connectionQueue;
 	private BlockingQueue<Connection> givenAwayConQueue;
 	
@@ -46,24 +49,26 @@ public final class ConnectionPool {
 	int poolSize;
 
 	private ConnectionPool() {
-		//Locale.setDefault(Locale.ENGLISH);
-		DBResourceManager dbResourseManager = DBResourceManager.getInstance();
-		
-		this.driverName = dbResourseManager.getValue(DBParameter.DB_DRIVER);
-		this.url = dbResourseManager.getValue(DBParameter.DB_URL);
-		this.user = dbResourseManager.getValue(DBParameter.DB_USER);
-		this.password = dbResourseManager.getValue(DBParameter.DB_PASSWORD);
-
-		try {
-			this.poolSize = Integer.parseInt(dbResourseManager.getValue(DBParameter.DB_POLL_SIZE));
-		} catch (NumberFormatException e) {
-			poolSize = 42;
-		}
 
 	}
 
-	public void initPoolData() {
+	public void initPoolData(String baseName) {
 		
+		DBResourceManager dbResourseManager = DBResourceManager.getInstance();
+		
+		dbResourseManager.initBundle(baseName);
+		
+		driverName = dbResourseManager.getValue(DBParameter.DB_DRIVER);
+		url = dbResourseManager.getValue(DBParameter.DB_URL);
+		user = dbResourseManager.getValue(DBParameter.DB_USER);
+		password = dbResourseManager.getValue(DBParameter.DB_PASSWORD);
+		
+		try {
+			poolSize = Integer.parseInt(dbResourseManager.getValue(DBParameter.DB_POLL_SIZE));
+		} catch (NumberFormatException e) {
+			poolSize = 8;
+		}
+
 		Locale.setDefault(Locale.ENGLISH);
 		
 		try {
@@ -80,7 +85,7 @@ public final class ConnectionPool {
 			LOGGER.error("SQLException in ConnectionPool", e);
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("Can't find database driver class", e);
-		}
+					}
 	}
 		
 	private static class PoolHolder{

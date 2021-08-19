@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import by.epamjwd.mobile.ZZZZtemporary.NewsProviderTest;
 import by.epamjwd.mobile.bean.NewsArticle;
 import by.epamjwd.mobile.controller.path.command.Command;
 import by.epamjwd.mobile.controller.path.command.CommandProvider;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAO;
-import by.epamjwd.mobile.temporary.NewsProviderTest;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
