@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.path.command;
+package by.epamjwd.mobile.controller.command;
 
 import java.io.IOException;
 

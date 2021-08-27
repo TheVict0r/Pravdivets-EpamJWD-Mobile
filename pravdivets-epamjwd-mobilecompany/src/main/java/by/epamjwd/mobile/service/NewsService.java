@@ -1,10 +1,10 @@
-package by.epamjwd.mobile.dao;
+package by.epamjwd.mobile.service;
 
 import java.util.List;
 
 import by.epamjwd.mobile.bean.NewsArticle;
 
-public interface NewsDAO {
+public interface NewsService {
 
 	public List<NewsArticle> getAllNews();
 	
@@ -12,6 +12,6 @@ public interface NewsDAO {
 	//НАДО ли 3? лучше по количеству статей
 	
 	public NewsArticle getArticleByID(int id);
-
+	
 	
 }

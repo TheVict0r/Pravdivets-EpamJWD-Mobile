@@ -6,13 +6,14 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-<title>Untitled</title>
+	
+<title>mobile</title>
 </head>
 
 <body>
 	<nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
 		<div class="container">
-			<a class="navbar-brand" href="#"><strong>mobile</strong></a>
+			<a class="navbar-brand" href="controller?command=provide_news&path=main"><strong>mobile</strong></a>
 			<button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="navbar-nav me-auto">

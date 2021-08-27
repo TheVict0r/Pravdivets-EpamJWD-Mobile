@@ -38,10 +38,10 @@
 				<p>
 					 ${news[0].lead}
 					 <br/>
-					<a href="#" class="card-link">Подробнее</a> 
+					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[0].id}&path=article" class="card-link">Подробнее</a>
+					
 				</p>
 				
-				<!--p>${news[0].text}</p-->
 				<br />
 			</div>
 
@@ -51,7 +51,7 @@
 				<p>
 					 ${news[1].lead}
 					 <br/>
-					<a href="#" class="card-link">Подробнее</a> 
+					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[1].id}&path=article" class="card-link">Подробнее</a>
 				</p>
 				<br />
 			</div>
@@ -61,7 +61,7 @@
 				<p>
 					 ${news[2].lead}
 					 <br/>
-					<a href="#" class="card-link">Подробнее</a> 
+					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[2].id}&path=article" class="card-link">Подробнее</a>
 				</p>
 			</div>
 			<div class="col-sm-4">
@@ -70,7 +70,7 @@
 				<p>
 					 ${news[3].lead}
 					 <br/>
-					<a href="#" class="card-link">Подробнее</a> 
+					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[3].id}&path=article" class="card-link">Подробнее</a>
 				</p>
 				</div>
 			<div class="col-sm-4">
@@ -79,7 +79,7 @@
 				<p>
 					 ${news[4].lead}
 					 <br/>
-					<a href="#" class="card-link">Подробнее</a> 
+					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[4].id}&path=article" class="card-link">Подробнее</a>
 				</p>
 				</div>
 			<div class="col-sm-4">
@@ -88,20 +88,20 @@
 				<p>
 					 ${news[5].lead}
 					 <br/>
-					<a href="#" class="card-link">Read more</a> 
+					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[5].id}&path=article" class="card-link">Read more</a>
 				</p>
 				</div>
 		</div>
 
 
 		<form class=" d-grid gap-2 col-4 mx-auto" action="controller" method="GET">
-			<input type="hidden" name="news" value="provide_news" /> <br /> <input
-				type="submit" value="Все новости" name="read"
+			<input type="hidden" name="news" value="provide_news" /> <br /> 
+			<input type="submit" value="Все новости" name="read"
 				class="btn btn-outline-primary " />
 				
 		</form>
 
-		<br />
+		<br/>
 
 
 	</div>

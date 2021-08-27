@@ -9,7 +9,8 @@ public class PathProvider {
 
 	public PathProvider() {
 		
-		repository.put("main", "main.jsp");
+		repository.put("main", "WEB-INF/jsp/main.jsp");
+		repository.put("article", "WEB-INF/jsp/article.jsp");
 	}
 	
 	public String getPath(String page) {
@@ -18,7 +19,7 @@ public class PathProvider {
 		path = repository.get(page);
 		
 		if(path==null) {
-			path = "error.jsp";
+			path = "jsp/error.jsp";
 		}
 		
 		return path;
