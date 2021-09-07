@@ -23,23 +23,8 @@
 
 	<jsp:include page="components/header.jsp" />
 
-	<div class="container bg-light text-dark">
+<h1>Consultant.jsp</h1>
 
-		<h4>${article.title}</h4>
-		<strong><em> ${article.date}</em></strong> <br /> <br />
-		<p>${article.text}</p>
-		<br />
-
-		<form class=" d-grid gap-2 col-2 mx-left" action="controller"
-			method="GET">
-			<input type="hidden" name="command" value="provide_news" /> <br />
-			<input type="hidden" name="path" value="main" /> <br /> <input
-				type="submit" value="Назад" name="read"
-				class="btn btn-outline-primary " />
-		</form>
-	</div>
-
-	<br />
 	<jsp:include page="components/footer.jsp" />
 	<!-- bootstrap -->
 	<script

@@ -8,16 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.controller.command.Command;
 
-public class AuthorizationCommand implements Command {
+
+public class LoginCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String user = request.getParameter("user");
-		String password = request.getParameter("password");
-		//CHANGE to char array - security
-
+		//CHECK is it necessary to have this command
 	}
 
-	
-	
 }

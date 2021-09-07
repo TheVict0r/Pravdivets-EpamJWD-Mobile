@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.AuthorizationCommand;
 import by.epamjwd.mobile.controller.command.impl.FullArticleCommand;
+import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ProfileEditorCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideNewsCommand;
@@ -26,6 +27,7 @@ public class CommandProvider {
 		repository.put(CommandName.PROVIDE_NEWS, new ProvideNewsCommand());
 		repository.put(CommandName.FULL_ARTICLE, new FullArticleCommand());
 		repository.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
+		repository.put(CommandName.LOGIN, new LoginCommand());
 	}
 
 	

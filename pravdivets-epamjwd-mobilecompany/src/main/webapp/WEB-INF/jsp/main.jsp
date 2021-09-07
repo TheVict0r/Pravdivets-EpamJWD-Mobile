@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<jsp:include page="header.jsp" />
+	<jsp:include page="components/header.jsp" />
 
 	<div class="container bg-light text-dark">
 
@@ -107,7 +107,7 @@
 	</div>
 
 
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="components/footer.jsp" />
 	<!-- bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

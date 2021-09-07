@@ -26,7 +26,7 @@
 						style="font-size: 15px;">калькулятор тарифов</a></li>
 					
 					<div class="text-end">
-					</ul><span class="navbar actions"> <a class="login btn btn-outline-primary me-2" href="#">Вход</a>
+					</ul><span class="navbar actions"> <a class="login btn btn-outline-primary me-2" href="${pageContext.request.contextPath}/controller?command=login&path=login">Вход</a>
 					<a class="btn btn-primary" role="button" href="#">Регистрация</a></span>
 					</div>
 			</div>
