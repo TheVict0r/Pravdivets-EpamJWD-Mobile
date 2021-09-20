@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<html lang="en">
+	pageEncoding="UTF-8"%>
 
-<head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-	
-<title>mobile</title>
-</head>
-
-<body>
-	<nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+<header id="header">
+	<nav
+		class="navbar navbar-light navbar-expand-md navigation-clean-button">
 		<div class="container">
-			<a class="navbar-brand" href="controller?command=provide_news&path=main"><strong>mobile</strong></a>
-			<button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+			<a class="navbar-brand"
+				href="controller?command=provide_news&path=main"><strong>mobile</strong></a>
+			<button data-bs-toggle="collapse" data-bs-target="#navcol-1"
+				class="navbar-toggler">
+				<span class="visually-hidden">Toggle navigation</span><span
+					class="navbar-toggler-icon"></span>
+			</button>
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"></li>
@@ -24,14 +21,15 @@
 						style="font-size: 15px;">услуги</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						style="font-size: 15px;">калькулятор тарифов</a></li>
-					
-					<div class="text-end">
-					</ul><span class="navbar actions"> <a class="login btn btn-outline-primary me-2" href="${pageContext.request.contextPath}/controller?command=login&path=login">Вход</a>
-					<a class="btn btn-primary" role="button" href="#">Регистрация</a></span>
-					</div>
+				</ul>
+				<div class="text-end">
+					<span class="navbar actions"> <a
+						class="login btn btn-outline-primary me-2"
+						href="${pageContext.request.contextPath}/controller?command=login&path=login">Вход</a>
+						<a class="btn btn-primary" role="button" href="#">Регистрация</a></span>
+				</div>
 			</div>
 		</div>
-	</nav>
-</body>
 
-</html>
+	</nav>
+</header>

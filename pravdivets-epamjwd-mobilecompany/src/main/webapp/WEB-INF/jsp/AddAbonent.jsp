@@ -26,20 +26,38 @@
 
 	<div class="container">
 		<div class="row justify-content-center">
-			<h3>Вход</h3>
-			<form method="post" action=/controller?command=authorization>
+			<h3>Новый абонент</h3>
+			<form method="post" action=/controller?command=add-abonent>
 				<table>
 					<tr>
-						<td>Login / Phone number:</td>
-						<td><input type="text" name="user" required></td>
+						<td>Фамилия:</td>
+						<td><input type="text" name="last-name" required></td>
 					</tr>
 					<tr>
-						<td>Password:</td>
-						<td><input type="text" name="password" required></td>
+						<td>Имя:</td>
+						<td><input type="text" name="first-name" required></td>
+					</tr>
+					<tr>
+						<td>Отчество:</td>
+						<td><input type="text" name="middle-name" required></td>
+					</tr>
+					<tr>
+						<td>Серия и номер паспорта:</td>
+						<td><input type="text" name="passport-number" required></td>
+					</tr>
+					<tr>
+					<tr>
+						<td>Домашний адрес:</td>
+						<td><input type="text" name="home-address" required></td>
+					</tr>
+					<tr>
+					<tr>
+						<td>e-mail:</td>
+						<td><input type="text" name="email" required></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Вход"></td>
+						<td><input type="submit" value="Добавить"></td>
 					</tr>
 				</table>
 			</form>
@@ -47,7 +65,7 @@
 	</div>
 	</br>
 	</br>
-	<jsp:include page="components/footer.jsp" />
+	<jsp:include page="components/footer.jsp"/>
 	<!-- bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
