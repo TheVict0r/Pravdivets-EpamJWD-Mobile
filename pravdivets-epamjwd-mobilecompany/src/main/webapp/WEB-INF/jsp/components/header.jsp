@@ -15,10 +15,13 @@
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						style="font-size: 15px;">тарифы</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_news&path=all_news"
+						style="font-size: 15px;">новости</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						style="font-size: 15px;">услуги</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						style="font-size: 15px;">тарифы</a></li>
+
 					<li class="nav-item"><a class="nav-link" href="#"
 						style="font-size: 15px;">калькулятор тарифов</a></li>
 				</ul>

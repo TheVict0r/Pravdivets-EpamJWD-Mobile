@@ -16,38 +16,32 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-
 <title>mobile</title>
 </head>
-<body>
-
+<body class="d-flex flex-column min-vh-100">
 	<jsp:include page="components/header.jsp" />
 
-
-	<div class=" d-grid gap-2 col-4 mx-auto">
-		<div class="row justify-content-center">
-			<h3>Вход</h3>
-			<form method="post" action=/controller?command=authorization>
-				<table>
-					<tr>
-						<td>Login / Phone number:</td>
-						<td><input type="text" name="user" required></td>
-					</tr>
-					<tr>
-						<td>Password:</td>
-						<td><input type="text" name="password" required></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="submit" value="Вход"></td>
-					</tr>
-				</table>
-			</form>
-		</div>
+	<div class="container text-center bg-light text-dark ">
+		<h1>Новости</h1><br/>
 	</div>
-	</br>
-	</br>
+	
+	<div class="container bg-light text-dark ">	
+			<c:forEach var="article" items="${news}">
+				<div class=" mx-auto col-sm-8">
+					<h5>${article.title}</h5>
+					<em> ${article.date}</em> <br />
+					<p>
+						${article.lead} <br /> <a
+							href="${pageContext.request.contextPath}/controller?command=full_article&id=${article.id}&path=article"
+							class="card-link">Подробнее</a>
+					</p>
+				</div><br/>
+			</c:forEach>
+			
+	</div><br/>
+	
 	<jsp:include page="components/footer.jsp" />
+	
 	<!-- bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

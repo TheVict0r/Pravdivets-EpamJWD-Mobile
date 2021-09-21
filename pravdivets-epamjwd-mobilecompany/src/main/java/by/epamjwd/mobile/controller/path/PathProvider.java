@@ -11,6 +11,7 @@ public class PathProvider {
 		
 		repository.put("main", "WEB-INF/jsp/main.jsp");
 		repository.put("article", "WEB-INF/jsp/article.jsp");
+		repository.put("all_news", "WEB-INF/jsp/allnews.jsp");
 		repository.put("login", "WEB-INF/jsp/login.jsp");
 		repository.put("abonent", "WEB-INF/jsp/abonent.jsp");
 		repository.put("consultant", "WEB-INF/jsp/consultant.jsp");
