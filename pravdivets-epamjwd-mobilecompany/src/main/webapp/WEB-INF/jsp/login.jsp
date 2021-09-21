@@ -9,24 +9,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-
 
 <title>mobile</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
 
 
-	<div class=" d-grid gap-2 col-4 mx-auto">
-		<div class="row justify-content-center">
-			<h3>Вход</h3>
+	<div class="row align-content-center mx-auto flex-grow-1">
+		<h3>Вход</h3>
 			<form method="post" action=/controller?command=authorization>
 				<table>
 					<tr>
@@ -44,9 +36,8 @@
 				</table>
 			</form>
 		</div>
-	</div>
-	</br>
-	</br>
+	
+	
 	<jsp:include page="components/footer.jsp" />
 	<!-- bootstrap -->
 	<script

@@ -9,17 +9,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-
-
 <title>mobile</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
 
@@ -28,12 +20,14 @@
 		<div class="col-sm" id="promo">
 			<img src="pic/performance.jpg" class="img-fluid" alt="mobile">
 		</div>
+		
+		
 
 		<div class="row">
 		<div class="container">
 		<h2>Новости</h2>
 		</div>
-			<c:forEach var="article" items="${news}" begin="0" end="2">
+			<c:forEach var="article" items="${requestScope.news}" begin="0" end="2">
 				<div class="col-sm-4">
 					<h5>${article.title}</h5>
 					<em> ${article.date}</em><br />
