@@ -33,8 +33,8 @@
 		<form class=" d-grid gap-2 col-2 mx-left" action="controller"
 			method="GET">
 			<input type="hidden" name="command" value="provide_news" /> <br />
-			<input type="hidden" name="path" value="main" /> <br /> <input
-				type="submit" value="Назад" name="read"
+			<input type="hidden" name="path" value="main" /> <br /> 
+			<input type="submit" value="Назад" name="read"
 				class="btn btn-outline-primary " />
 		</form>
 	</div>

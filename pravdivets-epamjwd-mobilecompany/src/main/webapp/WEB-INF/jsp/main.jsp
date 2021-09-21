@@ -32,65 +32,18 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-4">
-				<h4>${news[0].title}</h4>
-				<strong><em> ${news[0].date}</em></strong><br />
-				<p>
-					 ${news[0].lead}
-					 <br/>
-					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[0].id}&path=article" class="card-link">Подробнее</a>
-					
-				</p>
-				
-				<br />
-			</div>
-
-			<div class="col-sm-4">
-				<h4>${news[1].title}</h4>
-				<strong><em> ${news[1].date}</em></strong><br />
-				<p>
-					 ${news[1].lead}
-					 <br/>
-					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[1].id}&path=article" class="card-link">Подробнее</a>
-				</p>
-				<br />
-			</div>
-			<div class="col-sm-4">
-				<h4>${news[2].title}</h4>
-				<strong><em> ${news[2].date}</em></strong><br />
-				<p>
-					 ${news[2].lead}
-					 <br/>
-					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[2].id}&path=article" class="card-link">Подробнее</a>
-				</p>
-			</div>
-			<div class="col-sm-4">
-				<h4>${news[3].title}</h4>
-				<strong><em> ${news[3].date}</em></strong><br />
-				<p>
-					 ${news[3].lead}
-					 <br/>
-					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[3].id}&path=article" class="card-link">Подробнее</a>
-				</p>
+			<c:forEach var="article" items="${news}" begin="0" end="2">
+				<div class="col-sm-4">
+					<h4>${article.title}</h4>
+					<strong><em> ${article.date}</em></strong> <br />
+					<p>
+						${article.lead} <br /> <a
+							href="${pageContext.request.contextPath}/controller?command=full_article&id=${article.id}&path=article"
+							class="card-link">Подробнее</a>
+					</p>
+					<br />
 				</div>
-			<div class="col-sm-4">
-				<h4>${news[4].title}</h4>
-				<strong><em> ${news[4].date}</em></strong><br />
-				<p>
-					 ${news[4].lead}
-					 <br/>
-					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[4].id}&path=article" class="card-link">Подробнее</a>
-				</p>
-				</div>
-			<div class="col-sm-4">
-				<h4>${news[5].title}</h4>
-				<strong><em> ${news[5].date}</em></strong><br />
-				<p>
-					 ${news[5].lead}
-					 <br/>
-					<a href="${pageContext.request.contextPath}/controller?command=full_article&id=${news[5].id}&path=article" class="card-link">Read more</a>
-				</p>
-				</div>
+			</c:forEach>
 		</div>
 
 
