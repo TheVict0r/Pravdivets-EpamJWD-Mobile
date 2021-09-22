@@ -12,7 +12,6 @@
 <title>mobile</title>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
-	
 	<jsp:include page="components/header.jsp" />
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1">
 			<h4>${requestScope.article.title}</h4><br/><br/>
@@ -22,11 +21,5 @@
 
 	<br />
 	<jsp:include page="components/footer.jsp" />
-	
-	<!-- bootstrap -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
 </body>
 </html>
