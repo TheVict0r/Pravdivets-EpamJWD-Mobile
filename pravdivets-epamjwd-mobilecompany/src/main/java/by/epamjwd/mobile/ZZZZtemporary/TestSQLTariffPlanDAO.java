@@ -7,7 +7,8 @@ public class TestSQLTariffPlanDAO {
 
 		SQLTariffPlanDAO tPDao = new SQLTariffPlanDAO();
 		
-		System.out.println(tPDao.getAllTariffPlans());
+		//System.out.println(tPDao.getAllTariffPlans());
+		System.out.println(tPDao.getTariffPlanByID(2));
 		
 		
 		

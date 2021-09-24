@@ -22,30 +22,66 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 	public final static String BASE_NAME = "db";
 	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
 
-	public final static String SELECT_ALL_TARIFF_PLANS = "SELECT Tariff_Plans.id, Tariff_Plans.name, Tariff_Plans.regular_payment, Tariff_Plans.description, Service_Names.name, Services.service_names_id, Services.tarif FROM Tariff_Plans INNER JOIN Services ON Tariff_Plans.id = Services.tariff_plans_id INNER JOIN Service_Names ON Services.service_names_id = Service_Names.id";
-	public final static String SELECT_TARIFF_PLAN_BY_ID = "SELECT Tariff_Plans.id, Tariff_Plans.name, Tariff_Plans.regular_payment, Tariff_Plans.description, Service_Names.name, Services.tarif FROM Tariff_Plans INNER JOIN Services ON Tariff_Plans.id = Services.tariff_plans_id INNER JOIN Service_Names ON Services.service_names_id = Service_Names.id WHERE id = ?";
-
+	public final static String SELECT_ALL_TARIFF_PLANS = "SELECT Tariff_Plans.id, Tariff_Plans.name, Tariff_Plans.regular_payment, Tariff_Plans.description, Services.service_names_id, Services.tarif FROM Tariff_Plans INNER JOIN Services ON Tariff_Plans.id = Services.tariff_plans_id INNER JOIN Service_Names ON Services.service_names_id = Service_Names.id";
 	
 	@Override
 	public List<TariffPlan> getAllTariffPlans() {
-		List<TariffPlan> allTariffPlans;
+		List<TariffPlan> all;
 		ConnectionPool pool = null;
 		Connection connection = null;
 		Statement statement = null;
-		ResultSet tariffPlanResultSet = null;
+		ResultSet resultSet = null;
 
-		allTariffPlans = new ArrayList<>();
+		all = new ArrayList<>();
 
 		try {
 			pool = ConnectionPool.getInstance();
 			pool.initPoolData(BASE_NAME);
 			connection = pool.takeConnection();
 			statement = connection.createStatement();
-			tariffPlanResultSet = statement.executeQuery(SELECT_ALL_TARIFF_PLANS);
-			while (tariffPlanResultSet.next()) {
-				TariffPlan tariffPlan = new TariffPlan();
-				fillInTariffPlans(tariffPlan, tariffPlanResultSet);
-				allTariffPlans.add(tariffPlan);
+			resultSet = statement.executeQuery(SELECT_ALL_TARIFF_PLANS);
+			int idOld = 0;
+			TariffPlan tariffPlan = null;
+			while (resultSet.next()) {
+				int idNew = resultSet.getInt("id");
+				if (idNew != idOld) {
+					tariffPlan = new TariffPlan();
+					tariffPlan.setId(resultSet.getInt("id"));
+					tariffPlan.setName(resultSet.getString("name"));
+					tariffPlan.setRegularPayment(resultSet.getString("regular_payment"));
+					tariffPlan.setDescription(resultSet.getString("description"));
+					idOld = idNew;
+				} else {
+					int serviceId = resultSet.getInt("service_names_id");
+					int tarifValue = resultSet.getInt("tarif");
+
+					switch (serviceId) {
+					case 1:
+						tariffPlan.setPriceWithinNetwork(tarifValue);
+						break;
+					case 2:
+						tariffPlan.setPriceOtherNetworks(tarifValue);
+						break;
+					case 3:
+						tariffPlan.setPriceAbroad(tarifValue);
+						break;
+					case 4:
+						tariffPlan.setPriceVideocall(tarifValue);
+						break;
+					case 5:
+						tariffPlan.setPriceSMS(tarifValue);
+						break;
+					case 6:
+						tariffPlan.setPriceMMS(tarifValue);
+						break;
+					case 7:
+						tariffPlan.setPriceInternet(tarifValue);
+						all.add(tariffPlan);
+						break;
+					default:
+						LOGGER.error("Unexpected tarif ID value: " + serviceId);
+					}
+				}
 			}
 			// check exception messages
 		} catch (ConnectionPoolException e) {
@@ -57,44 +93,26 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 		} finally {
 			pool.dispose();
 		}
-		return allTariffPlans;
+		return all;
 	}
 
 	@Override
 	public TariffPlan getTariffPlanByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	private void fillInTariffPlans(TariffPlan tariffPlan, ResultSet tariffPlanResultSet){
 		
-		try {
-			tariffPlan.setId(tariffPlanResultSet.getInt("id"));
-			tariffPlan.setName(tariffPlanResultSet.getString("name"));
-			tariffPlan.setRegularPayment(tariffPlanResultSet.getString("regular_payment"));
-			tariffPlan.setDescription(tariffPlanResultSet.getString("description"));
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		List<TariffPlan> all = getAllTariffPlans();
+		TariffPlan result = null;
+		
+		for(TariffPlan tariffPlan : all) {
+			if(tariffPlan.getId() == id) {
+				result = tariffPlan;
+			}
 		}
-		
-		
-//		
-//		.name, Tariff_Plans., Tariff_Plans., Service_Names.name, Services.tarif FROM Tariff_Plans INNER JOIN Services ON Tariff_Plans.id = Services.tariff_plans_id INNER JOIN Service_Names ON Services.service_names_id = Service_Names.id
-//		
-//		private int priceWithinNetwork;
-//		private int priceOtherNetworks;
-//		private int priceAbroad;
-//		private int priceVideocall;
-//		private int priceSMS;
-//		private int priceMMS;
-//		private int priceInternet;
-		
-		
+		return result;
+	}
+
+	
 		
 	}
 	
 	
-}
+
