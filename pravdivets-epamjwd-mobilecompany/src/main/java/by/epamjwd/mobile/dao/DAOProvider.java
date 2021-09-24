@@ -4,6 +4,7 @@ import by.epamjwd.mobile.dao.impl.SQLAbonentDAO;
 import by.epamjwd.mobile.dao.impl.SQLAdminDAO;
 import by.epamjwd.mobile.dao.impl.SQLConsultantDAO;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAO;
+import by.epamjwd.mobile.dao.impl.SQLTariffPlanDAO;
 import by.epamjwd.mobile.dao.impl.SQLUserDAO;
 
 public class DAOProvider {
@@ -13,6 +14,7 @@ public class DAOProvider {
 	private ConsultantDAO consultantDAO = new SQLConsultantDAO();
 	private NewsDAO newsDao             = new SQLNewsDAO();
 	private UserDAO userDAO             = new SQLUserDAO();
+	private TariffPlanDAO tariffPlanDAO             = new SQLTariffPlanDAO();
 	
 	private DAOProvider() {
 		
@@ -65,6 +67,15 @@ public class DAOProvider {
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
+
+	public TariffPlanDAO getTariffPlanDAO() {
+		return tariffPlanDAO;
+	}
+
+	public void setTariffPlanDAO(TariffPlanDAO tariffPlanDAO) {
+		this.tariffPlanDAO = tariffPlanDAO;
+	}
+
 
 	
 	

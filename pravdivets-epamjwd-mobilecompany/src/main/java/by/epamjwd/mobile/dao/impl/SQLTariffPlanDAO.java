@@ -42,77 +42,89 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 			resultSet = statement.executeQuery(SELECT_ALL_TARIFF_PLANS);
 			int idOld = 0;
 			TariffPlan tariffPlan = null;
+			
 			while (resultSet.next()) {
 				int idNew = resultSet.getInt("id");
 				if (idNew != idOld) {
+					if (tariffPlan != null) {
+						all.add(tariffPlan);
+					}
 					tariffPlan = new TariffPlan();
 					tariffPlan.setId(resultSet.getInt("id"));
 					tariffPlan.setName(resultSet.getString("name"));
 					tariffPlan.setRegularPayment(resultSet.getString("regular_payment"));
 					tariffPlan.setDescription(resultSet.getString("description"));
+
+					fillTariffPlanServices(tariffPlan, resultSet);
+
 					idOld = idNew;
 				} else {
-					int serviceId = resultSet.getInt("service_names_id");
-					int tarifValue = resultSet.getInt("tarif");
-
-					switch (serviceId) {
-					case 1:
-						tariffPlan.setPriceWithinNetwork(tarifValue);
-						break;
-					case 2:
-						tariffPlan.setPriceOtherNetworks(tarifValue);
-						break;
-					case 3:
-						tariffPlan.setPriceAbroad(tarifValue);
-						break;
-					case 4:
-						tariffPlan.setPriceVideocall(tarifValue);
-						break;
-					case 5:
-						tariffPlan.setPriceSMS(tarifValue);
-						break;
-					case 6:
-						tariffPlan.setPriceMMS(tarifValue);
-						break;
-					case 7:
-						tariffPlan.setPriceInternet(tarifValue);
-						all.add(tariffPlan);
-						break;
-					default:
-						LOGGER.error("Unexpected tarif ID value: " + serviceId);
-					}
+					fillTariffPlanServices(tariffPlan, resultSet);
 				}
 			}
+
+			all.add(tariffPlan);
 			// check exception messages
 		} catch (ConnectionPoolException e) {
 			LOGGER.error("ConnectionPoolException in ConnectionPool", e);
-		} catch (SQLException e) {
-			LOGGER.error("SQLException in ConnectionPool", e);
 		} catch (NullPointerException e) {
 			LOGGER.error("NullPointerException in ConnectionPool", e);
+		} catch (SQLException e) {
+			LOGGER.error("SQLException in ConnectionPool", e);
 		} finally {
 			pool.dispose();
 		}
+
 		return all;
 	}
 
 	@Override
 	public TariffPlan getTariffPlanByID(int id) {
-		
-		List<TariffPlan> all = getAllTariffPlans();
+		List<TariffPlan> allTariffPlans = getAllTariffPlans();
 		TariffPlan result = null;
-		
-		for(TariffPlan tariffPlan : all) {
-			if(tariffPlan.getId() == id) {
+		for (TariffPlan tariffPlan : allTariffPlans) {
+			if (tariffPlan.getId() == id) {
 				result = tariffPlan;
 			}
 		}
 		return result;
 	}
 
-	
-		
-	}
-	
-	
+	private void fillTariffPlanServices(TariffPlan tariffPlan, ResultSet resultSet) {
+		int serviceId = 0;
+		int tarifValue = 0;
+		try {
+			serviceId = resultSet.getInt("service_names_id");
+			tarifValue = resultSet.getInt("tarif");
+		} catch (SQLException e) {
+			LOGGER.error("SQLException in ConnectionPool", e);
+		}
 
+		switch (serviceId) {
+		case 1:
+			tariffPlan.setPriceWithinNetwork(tarifValue);
+			break;
+		case 2:
+			tariffPlan.setPriceOtherNetworks(tarifValue);
+			break;
+		case 3:
+			tariffPlan.setPriceAbroad(tarifValue);
+			break;
+		case 4:
+			tariffPlan.setPriceVideocall(tarifValue);
+			break;
+		case 5:
+			tariffPlan.setPriceSMS(tarifValue);
+			break;
+		case 6:
+			tariffPlan.setPriceMMS(tarifValue);
+			break;
+		case 7:
+			tariffPlan.setPriceInternet(tarifValue);
+			break;
+		default:
+			LOGGER.error("Unexpected tarif service ID value: " + serviceId);
+		}
+	}
+
+}

@@ -4,6 +4,7 @@ import by.epamjwd.mobile.service.impl.AbonentServiceImpl;
 import by.epamjwd.mobile.service.impl.AdminServiceImpl;
 import by.epamjwd.mobile.service.impl.ConsultantServiceImpl;
 import by.epamjwd.mobile.service.impl.NewsServiceImpl;
+import by.epamjwd.mobile.service.impl.TariffPlanServiceImpl;
 import by.epamjwd.mobile.service.impl.UserServiceImpl;
 
 public class ServiceProvider {
@@ -12,6 +13,7 @@ public class ServiceProvider {
 	private AdminService adminService           = new AdminServiceImpl();
 	private ConsultantService consultantService = new ConsultantServiceImpl();
 	private NewsService newsService             = new NewsServiceImpl();
+	private TariffPlanService tariffPlanService = new TariffPlanServiceImpl();
 	private UserService userService             = new UserServiceImpl();
 
 	private ServiceProvider() {
@@ -66,4 +68,13 @@ public class ServiceProvider {
 		this.userService = userService;
 	}
 
+	public TariffPlanService getTariffPlanService() {
+		return tariffPlanService;
+	}
+
+	public void setTariffPlanService(TariffPlanService tariffPlanService) {
+		this.tariffPlanService = tariffPlanService;
+	}
+
+	
 }

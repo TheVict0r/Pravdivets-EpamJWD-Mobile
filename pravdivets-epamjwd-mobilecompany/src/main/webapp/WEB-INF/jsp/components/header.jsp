@@ -26,7 +26,7 @@
 						style="font-size: 15px;">новости</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						style="font-size: 15px;">услуги</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_all_plans&path=all_plans"
 						style="font-size: 15px;">тарифы</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="#"

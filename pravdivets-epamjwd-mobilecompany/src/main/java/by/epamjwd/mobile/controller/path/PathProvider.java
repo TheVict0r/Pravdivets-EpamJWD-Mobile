@@ -16,6 +16,7 @@ public class PathProvider {
 		repository.put("abonent", "WEB-INF/jsp/abonent.jsp");
 		repository.put("consultant", "WEB-INF/jsp/consultant.jsp");
 		repository.put("admin", "WEB-INF/jsp/admin.jsp");
+		repository.put("all_plans", "WEB-INF/jsp/allplans.jsp");
 	}
 	
 	public String getPath(String page) {

@@ -6,5 +6,6 @@ public enum CommandName {
 	EDIT_PROFILE,
 	PROVIDE_NEWS,
 	FULL_ARTICLE,
-	LOGIN;
+	LOGIN,
+	PROVIDE_ALL_PLANS;
 }
