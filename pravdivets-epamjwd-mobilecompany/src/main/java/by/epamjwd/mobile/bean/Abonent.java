@@ -17,7 +17,7 @@ public class Abonent implements Serializable{
 	private String passportNumber;
 	
 	private String email;
-	private Region region;
+	private String region;
 	private String homeAddress;
 	
 	private int contractNumber;
@@ -27,7 +27,7 @@ public class Abonent implements Serializable{
 	private int checkingAccountAmount;
 	
 	private int phoneNumber;
-	private TariffPlan tariffPlan;
+	private String tariffPlan;
 	private AbonentStatus status;
 	
 	public Abonent() {
@@ -35,9 +35,9 @@ public class Abonent implements Serializable{
 	}
 	
 	public Abonent(int id, String login, String password, String firstName, String middleName, String lastName,
-			String passportNumber, String email, Region region, String homeAddress, int contractNumber,
+			String passportNumber, String email, String region, String homeAddress, int contractNumber,
 			Date contractDate, int checkingAccountNumber, int checkingAccountAmount, int phoneNumber,
-			TariffPlan tariffPlan, AbonentStatus status) {
+			String tariffPlan, AbonentStatus status) {
 		
 		this.id = id;
 		this.login = login;
@@ -122,11 +122,11 @@ public class Abonent implements Serializable{
 		this.email = email;
 	}
 
-	public Region getRegion() {
+	public String getRegion() {
 		return region;
 	}
 
-	public void setRegion(Region region) {
+	public void setRegion(String region) {
 		this.region = region;
 	}
 
@@ -178,11 +178,11 @@ public class Abonent implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public TariffPlan getTariffPlan() {
+	public String getTariffPlan() {
 		return tariffPlan;
 	}
 
-	public void setTarifPlan(TariffPlan tariffPlan) {
+	public void setTarifPlan(String tariffPlan) {
 		this.tariffPlan = tariffPlan;
 	}
 
@@ -297,12 +297,28 @@ public class Abonent implements Serializable{
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + " [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
-				+ ", middleName=" + middleName + ", lastName=" + lastName + ", passportNumber=" + passportNumber
-				+ ", email=" + email + ", region=" + region + ", homeAddress=" + homeAddress + ", contractNumber="
-				+ contractNumber + ", contractDate=" + contractDate + ", checkingAccountNumber=" + checkingAccountNumber
-				+ ", checkingAccountAmount=" + checkingAccountAmount + ", phoneNumber=" + phoneNumber + ", tariffPlan="
-				+ tariffPlan + ", status=" + status + "]";
+		
+		return new StringBuilder(getClass().getSimpleName())
+                .append("[")
+                .append("ID=").append(id)
+                .append(", login=").append(login)
+                .append(", password=").append(password)
+                .append(", firstName=").append(firstName)
+                .append(", middleName=").append(middleName)
+                .append(", lastName=").append(lastName)
+                .append(", passportNumber=").append(passportNumber)
+                .append(", email=").append(email)
+                .append(", region=").append(region)
+                .append(", homeAddress=").append(homeAddress)
+                .append(", contractNumber=").append(contractNumber)
+                .append(", contractDate=").append(contractDate)
+                .append(", checkingAccountNumber=").append(checkingAccountNumber)
+                .append(", checkingAccountAmount=").append(checkingAccountAmount)
+                .append(", phoneNumber=").append(phoneNumber)
+                .append(", tariffPlan=").append(tariffPlan)
+                .append(", status=").append(status)
+                .append("]")
+                .toString();
 	}
 
 }

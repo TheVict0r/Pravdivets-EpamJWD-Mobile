@@ -13,13 +13,18 @@
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
+
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1">
-			<h4>${requestScope.article.title}</h4><br/><br/>
-			<em> ${requestScope.article.date}</em>
-			<p>${requestScope.article.text}</p>
+
+		<div class="col-sm" id="promo">
+			<img src="pic/article.jpg" class="img-fluid" alt="mobile">
 		</div>
 
-	<br />
+		<h4>${requestScope.article.title}</h4>
+		<em> ${requestScope.article.date}</em>
+		<p>${requestScope.article.text}</p>
+	</div>
+	<br/>
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

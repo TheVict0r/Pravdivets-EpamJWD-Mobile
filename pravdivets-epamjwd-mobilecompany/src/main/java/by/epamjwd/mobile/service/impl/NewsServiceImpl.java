@@ -19,12 +19,6 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public List<NewsArticle> getLastThreeArticles() {
-		List<NewsArticle> result = newsDao.getLastThreeArticles();
-		return result;
-	}
-
-	@Override
 	public NewsArticle getArticleByID(int id) {
 		NewsArticle result = newsDao.getArticleByID(id);
 		return result;

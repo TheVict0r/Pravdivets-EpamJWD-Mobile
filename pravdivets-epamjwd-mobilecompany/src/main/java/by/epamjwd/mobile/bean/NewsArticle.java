@@ -23,7 +23,9 @@ public class NewsArticle implements Serializable {
 	private String lead;
 	private String text;
 	
-	public NewsArticle() {}
+	public NewsArticle() {
+		
+	}
 
 	public NewsArticle(int id, Date date, String title, String lead, String text) {
 		super();
@@ -141,8 +143,15 @@ public class NewsArticle implements Serializable {
 	
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + "[id=" + id + ", date=" + formatter.format(date) + ", title=" + title + ", lead=" + lead + ", text=" + text
-				+ "]";
+		return new StringBuilder(getClass().getSimpleName())
+                .append("[")
+                .append("ID=").append(id)
+                .append(", Date=").append(formatter.format(date))
+                .append(", Title=").append(title)
+                .append(", Lead=").append(lead)
+                .append(", Text=").append(text)
+                .append("]")
+                .toString();
 	}
 
 

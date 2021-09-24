@@ -24,17 +24,41 @@ public class SQLNewsDAO implements NewsDAO {
 	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
 
 	public final static String SELECT_ALL_FROM_NEWS = "SELECT * FROM NEWS ORDER BY id DESC";
-	public final static String SELECT_LAST_THREE_ARTICLES_FROM_NEWS = "SELECT * FROM news ORDER BY id DESC LIMIT 3";
 	public final static String SELECT_ARTICLE_FROM_NEWS_BY_ID = "SELECT * FROM news WHERE id = ?";
 
 	@Override
 	public List<NewsArticle> getAllNews() {
-		return getNewsBunch(SELECT_ALL_FROM_NEWS);
-	}
+		
+		List<NewsArticle> allNews;
+		ConnectionPool pool = null;
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet newsResultSet = null;
 
-	@Override
-	public List<NewsArticle> getLastThreeArticles() {
-		return getNewsBunch(SELECT_LAST_THREE_ARTICLES_FROM_NEWS);
+		allNews = new ArrayList<>();
+
+		try {
+			pool = ConnectionPool.getInstance();
+			pool.initPoolData(BASE_NAME);
+			connection = pool.takeConnection();
+			statement = connection.createStatement();
+			newsResultSet = statement.executeQuery(SELECT_ALL_FROM_NEWS);
+			while (newsResultSet.next()) {
+				NewsArticle article = new NewsArticle();
+				fillInArticle(article, newsResultSet);
+				allNews.add(article);
+			}
+			// check exception messages
+		} catch (ConnectionPoolException e) {
+			LOGGER.error("ConnectionPoolException in ConnectionPool", e);
+		} catch (SQLException e) {
+			LOGGER.error("SQLException in ConnectionPool", e);
+		} catch (NullPointerException e) {
+			LOGGER.error("NullPointerException in ConnectionPool", e);
+		} finally {
+			pool.dispose();
+		}
+		return allNews;
 	}
 
 	@Override
@@ -68,42 +92,6 @@ public class SQLNewsDAO implements NewsDAO {
 			pool.dispose();
 		}
 		return article;
-	}
-
-	private List<NewsArticle> getNewsBunch(String request) {
-
-		List<NewsArticle> allNews;
-		ConnectionPool pool = null;
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet newsResultSet = null;
-
-		allNews = new ArrayList<>();
-
-		try {
-			pool = ConnectionPool.getInstance();
-			pool.initPoolData(BASE_NAME);
-			connection = pool.takeConnection();
-			statement = connection.createStatement();
-			newsResultSet = statement.executeQuery(request);
-			while (newsResultSet.next()) {
-				NewsArticle article = new NewsArticle();
-				fillInArticle(article, newsResultSet);
-				allNews.add(article);
-			}
-
-			// check exception messages
-		} catch (ConnectionPoolException e) {
-			LOGGER.error("ConnectionPoolException in ConnectionPool", e);
-		} catch (SQLException e) {
-			LOGGER.error("SQLException in ConnectionPool", e);
-		} catch (NullPointerException e) {
-			LOGGER.error("NullPointerException in ConnectionPool", e);
-		} finally {
-			pool.dispose();
-		}
-
-		return allNews;
 	}
 
 	private void fillInArticle(NewsArticle article, ResultSet newsResultSet) {
