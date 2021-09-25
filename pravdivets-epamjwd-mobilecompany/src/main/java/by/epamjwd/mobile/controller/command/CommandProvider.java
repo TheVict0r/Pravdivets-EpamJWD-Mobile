@@ -8,7 +8,9 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.AuthorizationCommand;
 import by.epamjwd.mobile.controller.command.impl.FullArticleCommand;
+import by.epamjwd.mobile.controller.command.impl.FullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
+import by.epamjwd.mobile.controller.command.impl.MainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ProfileEditorCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideAllPlansCommand;
@@ -23,6 +25,7 @@ public class CommandProvider {
 	private final Map<CommandName, Command> repository = new HashMap<>();
 
 	public CommandProvider() {
+		repository.put(CommandName.MAIN_PAGE, new MainPageCommand());
 		repository.put(CommandName.AUTHORIZATION, new AuthorizationCommand());
 		repository.put(CommandName.EDIT_PROFILE, new ProfileEditorCommand());
 		repository.put(CommandName.PROVIDE_NEWS, new ProvideNewsCommand());
@@ -30,6 +33,7 @@ public class CommandProvider {
 		repository.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
 		repository.put(CommandName.LOGIN, new LoginCommand());
 		repository.put(CommandName.PROVIDE_ALL_PLANS, new ProvideAllPlansCommand());
+		repository.put(CommandName.FULL_PLAN, new FullPlanCommand());
 	}
 
 	

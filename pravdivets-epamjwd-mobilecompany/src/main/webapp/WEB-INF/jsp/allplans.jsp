@@ -31,15 +31,14 @@
 		<div class="row">
 			<div class="col-md-12 col-xl-10 mx-auto">
 				<h1 class="text-center">We have a plan for everyone</h1>
-				<p class="lead text-center mb-4">Whether you're a business or an
-					individual, 14-day trial no credit card required.</p>
+				<p class="lead text-center mb-4">Whether you're a business or an individual, 14-day trial no credit card required.</p>
 
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="monthly">
 						<div class="row py-5">
 
 
-							<c:forEach var="plan" items="${requestScope.all_tariffs}">
+							<c:forEach var="plan" items="${requestScope.all_plans}">
 
 								<div class="col-sm-4 mb-3 mb-md-0">
 									<div class="card text-center h-100">
@@ -65,7 +64,7 @@
 												<li class="mb-2"> <b> ${plan.priceMMS/100} руб. </b> - за 1 MMS</li>
 											</ul>
 											<div class="mt-auto">
-												<a href="#" class="btn btn-lg btn-outline-primary">Подробнее</a>
+												<a href="${pageContext.request.contextPath}/controller?command=full_plan&id=${plan.id}&path=plan" class="btn btn-lg btn-outline-primary">Подробнее</a>
 											</div>
 										</div>
 									</div>

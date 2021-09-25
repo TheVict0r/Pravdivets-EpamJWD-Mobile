@@ -20,14 +20,45 @@
 		<div class="col-sm" id="promo">
 			<img src="pic/performance.jpg" class="img-fluid" alt="mobile">
 		</div>
-		
-		
 
 		<div class="row">
-		<div class="container">
-		<h2>Новости</h2>
+			
+		<h1 class="text-center">Тарифы</h1>
+			<c:forEach var="plan" items="${requestScope.all_plans}">
+
+				<div class="col-sm-4 mb-3 mb-md-0">
+					<div class="card text-center h-100">
+						<div class="card-body d-flex flex-column">
+							<div class="mb-4">
+								<h3>${plan.name}</h3>
+								<span class="display-4">${plan.regularPayment/100}</span> </br> <span
+									class="display-6">руб/мес</span>
+								<p class="lead text-center mb-4">абонентская плата</p>
+							</div>
+
+							<div class="mb-4">
+								<p class="lead text-center mb-4">${plan.description}</p>
+							</div>
+							<div class="mt-auto">
+								<a
+									href="${pageContext.request.contextPath}/controller?command=full_plan&id=${plan.id}&path=plan"
+									class="btn btn-lg btn-outline-primary">Подробнее</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</c:forEach>
+
+
 		</div>
-			<c:forEach var="article" items="${requestScope.news}" begin="0" end="2">
+
+
+		<div class="row">
+			
+			<h1 class="text-center">Новости</h1>
+			<c:forEach var="article" items="${requestScope.news}" begin="0"
+				end="2">
 				<div class="col-sm-4">
 					<h5>${article.title}</h5>
 					<em> ${article.date}</em><br />
@@ -40,12 +71,12 @@
 			</c:forEach>
 		</div>
 		<form class=" d-grid gap-2 col-4" action="controller" method="GET">
-			<input type="hidden" name="command" value="provide_news" />  
-			<input type="hidden" name="path" value="all_news" /> 
-			<input type="submit" value="Все новости" class="btn btn-outline-primary " />
+			<input type="hidden" name="command" value="provide_news" /> <input
+				type="hidden" name="path" value="all_news" /> <input type="submit"
+				value="Все новости" class="btn btn-outline-primary " />
 		</form>
 	</div>
-	<br/>
+	<br />
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>
