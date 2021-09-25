@@ -50,7 +50,6 @@
 
 			</c:forEach>
 
-
 		</div>
 
 
