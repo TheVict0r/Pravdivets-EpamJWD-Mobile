@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.controller.command.impl.AuthorizationCommand;
+import by.epamjwd.mobile.controller.command.impl.AuthenticationCommand;
 import by.epamjwd.mobile.controller.command.impl.FullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.FullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
@@ -26,7 +26,7 @@ public class CommandProvider {
 
 	public CommandProvider() {
 		repository.put(CommandName.MAIN_PAGE, new MainPageCommand());
-		repository.put(CommandName.AUTHORIZATION, new AuthorizationCommand());
+		repository.put(CommandName.AUTHENTICATION, new AuthenticationCommand());
 		repository.put(CommandName.EDIT_PROFILE, new ProfileEditorCommand());
 		repository.put(CommandName.PROVIDE_NEWS, new ProvideNewsCommand());
 		repository.put(CommandName.FULL_ARTICLE, new FullArticleCommand());

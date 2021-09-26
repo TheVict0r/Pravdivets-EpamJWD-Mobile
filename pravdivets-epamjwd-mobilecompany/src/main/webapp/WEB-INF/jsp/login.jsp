@@ -19,11 +19,11 @@
 
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<h3>Вход</h3>
-			<form method="post" action=/controller?command=authorization>
+			<form method="POST" action="controller?command=authentication">
 				<table>
 					<tr>
-						<td>Login / Phone number:</td>
-						<td><input type="text" name="user" required></td>
+						<td>Phone number:</td>
+						<td><input type="text" name="phone" required></td>
 					</tr>
 					<tr>
 						<td>Password:</td>
