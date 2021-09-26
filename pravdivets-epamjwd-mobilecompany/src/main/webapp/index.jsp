@@ -10,6 +10,6 @@
 </head>
 
 <body>
-	<c:redirect url="controller?command=main_page&path=main" />
+	<c:redirect url="controller?command=main_page" />
 </body>
 </html>

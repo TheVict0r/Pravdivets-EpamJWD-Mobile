@@ -24,7 +24,7 @@ public class AuthenticationCommand implements Command {
 		System.out.println(password);
 
 		//TEMPORARY ROUTING
-		Routing result = new Routing(PathRepository.MAIN, RoutingMethod.FORWARD);
+		Routing result = new Routing(PathRepository.MAIN_REDIRECT, RoutingMethod.REDIRECT);
 		return result;
 
 		

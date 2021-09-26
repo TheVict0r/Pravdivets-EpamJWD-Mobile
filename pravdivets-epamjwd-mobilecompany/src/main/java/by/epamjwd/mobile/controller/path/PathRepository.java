@@ -9,6 +9,7 @@ package by.epamjwd.mobile.controller.path;
 public class PathRepository {
 
 	public static final String MAIN = "WEB-INF/jsp/main.jsp";
+	public static final String MAIN_REDIRECT = "/controller?command=main_page";
 	public static final String ARTICLE = "WEB-INF/jsp/article.jsp";
 	public static final String ALL_NEWS = "WEB-INF/jsp/allnews.jsp";
 	public static final String LOGIN = "WEB-INF/jsp/login.jsp";
