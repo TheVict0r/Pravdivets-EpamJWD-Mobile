@@ -12,7 +12,7 @@
 	<nav
 		class="navbar navbar-light navbar-expand-md navigation-clean-button">
 		<div class="container">
-			<a class="navbar-brand"
+			<a class="navbar-brand text-primary fs-1"
 				href="controller?command=main_page&path=main"><strong>mobile</strong></a>
 			<button data-bs-toggle="collapse" data-bs-target="#navcol-1"
 				class="navbar-toggler">

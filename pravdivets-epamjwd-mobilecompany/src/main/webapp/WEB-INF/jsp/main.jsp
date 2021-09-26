@@ -1,29 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>mobile</title>
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
-
+<body class="d-flex flex-column min-vh-100 bg-light text-dark">
 	<jsp:include page="components/header.jsp" />
+	
 
-	<div class="container bg-light text-dark">
-
+	<div class="container d-grid gap-4">
 		<div class="col-sm" id="promo">
 			<img src="pic/performance.jpg" class="img-fluid" alt="mobile">
 		</div>
-
+		</div>
+		
+	<div class="container col-md-10 col-xl-9 mx-auto d-grid gap-4">
+		
 		<div class="row">
-			
-		<h1 class="text-center">Тарифы</h1>
+			<h1 class="h3 mb-3 text-center text-primary">mobile - максимум возможностей!</h1>
+			<h1 class="text-center">Тарифы</h1>
 			<c:forEach var="plan" items="${requestScope.all_plans}">
 
 				<div class="col-sm-4 mb-3 mb-md-0">
@@ -31,8 +30,8 @@
 						<div class="card-body d-flex flex-column">
 							<div class="mb-4">
 								<h3>${plan.name}</h3>
-								<span class="display-4">${plan.regularPayment/100}</span> </br> <span
-									class="display-6">руб/мес</span>
+								<span class="display-4">${plan.regularPayment/100}</span> <br />
+								<span class="display-6">руб/мес</span>
 								<p class="lead text-center mb-4">абонентская плата</p>
 							</div>
 
@@ -47,14 +46,9 @@
 						</div>
 					</div>
 				</div>
-
 			</c:forEach>
-
 		</div>
-
-
 		<div class="row">
-			
 			<h1 class="text-center">Новости</h1>
 			<c:forEach var="article" items="${requestScope.news}" begin="0"
 				end="2">
