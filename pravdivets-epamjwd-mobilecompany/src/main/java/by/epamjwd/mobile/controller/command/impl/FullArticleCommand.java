@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.bean.NewsArticle;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.path.Action;
+import by.epamjwd.mobile.controller.path.RoutingMethod;
 import by.epamjwd.mobile.controller.path.PathRepository;
 import by.epamjwd.mobile.controller.path.Routing;
 import by.epamjwd.mobile.service.NewsService;
@@ -26,7 +26,7 @@ public class FullArticleCommand implements Command {
 
 		request.setAttribute("article", article);
 
-		Routing result = new Routing(PathRepository.ARTICLE, Action.FORWARD);
+		Routing result = new Routing(PathRepository.ARTICLE, RoutingMethod.FORWARD);
 		return result;
 	}
 

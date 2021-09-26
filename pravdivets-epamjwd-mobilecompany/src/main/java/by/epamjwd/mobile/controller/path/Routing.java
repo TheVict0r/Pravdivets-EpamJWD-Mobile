@@ -13,19 +13,19 @@ public class Routing {
 	/**
      * Type of action. Either forwarding or redirection.
      */
-	private final Action action;
+	private final RoutingMethod routingMethod;
 
-	public Routing(String path, Action action) {
+	public Routing(String path, RoutingMethod routingMethod) {
 		this.path = path;
-		this.action = action;
+		this.routingMethod = routingMethod;
 	}
 
 	public String getPath() {
 		return path;
 	}
 
-	public Action getAction() {
-		return action;
+	public RoutingMethod getRoutingMethod() {
+		return routingMethod;
 	}
 	
 	

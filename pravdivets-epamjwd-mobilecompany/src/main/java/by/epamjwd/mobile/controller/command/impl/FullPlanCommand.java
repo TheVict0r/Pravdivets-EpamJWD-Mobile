@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.bean.TariffPlan;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.path.Action;
+import by.epamjwd.mobile.controller.path.RoutingMethod;
 import by.epamjwd.mobile.controller.path.PathRepository;
 import by.epamjwd.mobile.controller.path.Routing;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -23,7 +23,7 @@ public class FullPlanCommand implements Command {
 		
 		request.setAttribute("plan", plan);
 		
-		Routing result = new Routing(PathRepository.PLAN, Action.FORWARD);
+		Routing result = new Routing(PathRepository.PLAN, RoutingMethod.FORWARD);
 		return result;
 	}
 
