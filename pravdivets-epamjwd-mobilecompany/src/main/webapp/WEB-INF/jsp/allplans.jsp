@@ -18,12 +18,6 @@
 		<img src="pic/article.jpg" class="img-fluid" alt="mobile">
 	</div>
 
-
-
-	<!--div class="container text-dark mx-auto col-sm-8"-->
-
-
-
 	<div class="container p-0">
 
 		<h1 class="h3 mb-3 text-center">Plans &amp; Pricing</h1>
@@ -64,7 +58,7 @@
 												<li class="mb-2"> <b> ${plan.priceMMS/100} руб. </b> - за 1 MMS</li>
 											</ul>
 											<div class="mt-auto">
-												<a href="${pageContext.request.contextPath}/controller?command=full_plan&id=${plan.id}&path=plan" class="btn btn-lg btn-outline-primary">Подробнее</a>
+												<a href="${pageContext.request.contextPath}/controller?command=full_plan&id=${plan.id}" class="btn btn-lg btn-outline-primary">Подробнее</a>
 											</div>
 										</div>
 									</div>

@@ -1,21 +1,20 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.bean.NewsArticle;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.dao.impl.SQLNewsDAO;
+import by.epamjwd.mobile.controller.path.Action;
+import by.epamjwd.mobile.controller.path.PathRepository;
+import by.epamjwd.mobile.controller.path.Routing;
 import by.epamjwd.mobile.service.NewsService;
 import by.epamjwd.mobile.service.ServiceProvider;
 
 public class FullArticleCommand implements Command {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public Routing execute(HttpServletRequest request, HttpServletResponse response){
 
 		ServiceProvider provider = ServiceProvider.getInstance();
 		NewsService newsService = provider.getNewsService();
@@ -27,6 +26,8 @@ public class FullArticleCommand implements Command {
 
 		request.setAttribute("article", article);
 
+		Routing result = new Routing(PathRepository.ARTICLE, Action.FORWARD);
+		return result;
 	}
 
 }

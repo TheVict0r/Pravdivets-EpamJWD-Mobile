@@ -40,7 +40,7 @@
 							</div>
 							<div class="mt-auto">
 								<a
-									href="${pageContext.request.contextPath}/controller?command=full_plan&id=${plan.id}&path=plan"
+									href="${pageContext.request.contextPath}/controller?command=full_plan&id=${plan.id}"
 									class="btn btn-lg btn-outline-primary">Подробнее</a>
 							</div>
 						</div>
@@ -57,7 +57,7 @@
 					<em> ${article.date}</em><br />
 					<p>
 						${article.lead} <br /> <a
-							href="${pageContext.request.contextPath}/controller?command=full_article&id=${article.id}&path=article"
+							href="${pageContext.request.contextPath}/controller?command=full_article&id=${article.id}"
 							class="card-link">Подробнее</a>
 					</p>
 				</div>

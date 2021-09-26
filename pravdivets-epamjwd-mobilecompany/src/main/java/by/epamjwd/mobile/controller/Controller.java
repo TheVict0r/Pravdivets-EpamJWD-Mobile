@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.CommandProvider;
-import by.epamjwd.mobile.controller.path.PathProvider;
+import by.epamjwd.mobile.controller.path.PathRepository;
+import by.epamjwd.mobile.controller.path.Routing;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
@@ -35,17 +36,24 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 
 		String commandName = request.getParameter("command");
-		
+
 		CommandProvider commandProvider = new CommandProvider();
 		Command command = commandProvider.getCommand(commandName);
-		
-		command.execute(request, response);
-		
-		String path = request.getParameter("path");
-		PathProvider pathProvider = new PathProvider();
-		String realPath = pathProvider.getPath(path);
-		
-		request.getRequestDispatcher(realPath).forward(request, response);
-		
+
+		Routing routing = command.execute(request, response);
+
+		String path = routing.getPath();
+		String action = routing.getAction().toString();
+
+		switch (action) {
+		case "FORWARD":
+			request.getRequestDispatcher(path).forward(request, response);
+			break;
+		case "REDIRECT":
+			response.sendRedirect(request.getContextPath() + path);
+			break;
+        default:
+            request.getRequestDispatcher(PathRepository.ERROR_404).forward(request, response);
+		}
 	}
 }

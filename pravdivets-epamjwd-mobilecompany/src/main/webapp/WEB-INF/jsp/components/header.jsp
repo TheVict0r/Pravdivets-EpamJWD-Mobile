@@ -13,7 +13,7 @@
 		class="navbar navbar-light navbar-expand-md navigation-clean-button">
 		<div class="container">
 			<a class="navbar-brand text-primary fs-1"
-				href="controller?command=main_page&path=main"><strong>mobile</strong></a>
+				href="controller?command=main_page"><strong>mobile</strong></a>
 			<button data-bs-toggle="collapse" data-bs-target="#navcol-1"
 				class="navbar-toggler">
 				<span class="visually-hidden">Toggle navigation</span><span
@@ -22,11 +22,11 @@
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_news&path=all_news"
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_news"
 						style="font-size: 15px;">новости</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						style="font-size: 15px;">услуги</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_all_plans&path=all_plans"
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_all_plans"
 						style="font-size: 15px;">тарифы</a></li>
 
 					<li class="nav-item"><a class="nav-link" href="#"
@@ -35,7 +35,7 @@
 				<div class="text-end">
 					<span class="navbar actions"> <a
 						class="login btn btn-outline-primary me-2"
-						href="${pageContext.request.contextPath}/controller?command=login&path=login">Вход</a>
+						href="${pageContext.request.contextPath}/controller?command=login">Вход</a>
 						<a class="btn btn-primary" role="button" href="#">Регистрация</a></span>
 				</div>
 			</div>
