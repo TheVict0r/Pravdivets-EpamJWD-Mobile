@@ -2,13 +2,10 @@ package by.epamjwd.mobile.controller;
 
 public class RouteHelper {
 
-	
-	
 	/**
      * Path to resulting resource.
      */
     private final String path;
-	
 	
 	/**
      * Type of action. Either forwarding or redirection.

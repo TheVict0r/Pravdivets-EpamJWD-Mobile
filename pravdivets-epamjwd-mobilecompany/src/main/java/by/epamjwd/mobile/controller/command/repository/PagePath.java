@@ -1,9 +1,7 @@
 package by.epamjwd.mobile.controller.command.repository;
 
 /**
- * 
  * Paths to jsp-pages
- *
  */
 
 public class PagePath {
@@ -20,8 +18,4 @@ public class PagePath {
 	public static final String PLAN = "WEB-INF/jsp/plan.jsp";
 	public static final String ERROR_404 = "WEB-INF/jsp/error404.jsp";
 
-	private PagePath(){
-		
-	}
-	
 }
