@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.CommandProvider;
-import by.epamjwd.mobile.controller.path.RoutingMethod;
-import by.epamjwd.mobile.controller.path.PathRepository;
-import by.epamjwd.mobile.controller.path.Routing;
+import by.epamjwd.mobile.controller.command.repository.PagePath;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
@@ -40,12 +38,12 @@ public class Controller extends HttpServlet {
 		CommandProvider commandProvider = new CommandProvider();
 		Command command = commandProvider.getCommand(commandName);
 
-		Routing routing = command.execute(request, response);
+		RouteHelper routeHelper = command.execute(request, response);
 
-		String path = routing.getPath();
-		RoutingMethod routingMethod = routing.getRoutingMethod();
+		String path = routeHelper.getPath();
+		RouteMethod routeMethod = routeHelper.getRouteMethod();
 
-		switch (routingMethod) {
+		switch (routeMethod) {
 		case FORWARD:
 			request.getRequestDispatcher(path).forward(request, response);
 			break;
@@ -53,7 +51,7 @@ public class Controller extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + path);
 			break;
         default:
-            request.getRequestDispatcher(PathRepository.ERROR_404).forward(request, response);
+            request.getRequestDispatcher(PagePath.ERROR_404).forward(request, response);
 		}
 	}
 }

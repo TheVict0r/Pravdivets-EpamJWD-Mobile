@@ -5,16 +5,16 @@ import java.util.List;
 import by.epamjwd.mobile.bean.TariffPlan;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.TariffPlanDAO;
-import by.epamjwd.mobile.service.TariffPlanService;
+import by.epamjwd.mobile.service.PlanService;
 
-public class TariffPlanServiceImpl implements TariffPlanService{
+public class TariffPlanServiceImpl implements PlanService{
 
 	DAOProvider provider = DAOProvider.getInstance();
 	TariffPlanDAO tariffsDao = provider.getTariffPlanDAO();
 	
 	
 	@Override
-	public List<TariffPlan> getAllTariffPlans() {
+	public List<TariffPlan> getAllPlans() {
 		return tariffsDao.getAllTariffPlans();
 	}
 

@@ -6,24 +6,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.bean.TariffPlan;
+import by.epamjwd.mobile.controller.RouteHelper;
+import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.path.RoutingMethod;
-import by.epamjwd.mobile.controller.path.PathRepository;
-import by.epamjwd.mobile.controller.path.Routing;
+import by.epamjwd.mobile.controller.command.repository.AttributeName;
+import by.epamjwd.mobile.controller.command.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
-import by.epamjwd.mobile.service.TariffPlanService;
+import by.epamjwd.mobile.service.PlanService;
 
 public class ProvideAllPlansCommand implements Command {
 
 	@Override
-	public Routing execute(HttpServletRequest request, HttpServletResponse response) {
+	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
-		TariffPlanService tariffPlanService = provider.getTariffPlanService();
-		List<TariffPlan> allTariffPlans =  tariffPlanService.getAllTariffPlans();
+		PlanService planService = provider.getPlanService();
+		List<TariffPlan> allPlans =  planService.getAllPlans();
 		
-		request.setAttribute("all_plans", allTariffPlans);
+		request.setAttribute(AttributeName.ALL_PLANS, allPlans);
 		
-		Routing result = new Routing(PathRepository.ALL_PLANS, RoutingMethod.FORWARD);
+		RouteHelper result = new RouteHelper(PagePath.ALL_PLANS, RouteMethod.FORWARD);
 		return result;
 	}
 

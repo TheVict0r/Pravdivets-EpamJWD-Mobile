@@ -13,7 +13,7 @@ public class ServiceProvider {
 	private AdminService adminService           = new AdminServiceImpl();
 	private ConsultantService consultantService = new ConsultantServiceImpl();
 	private NewsService newsService             = new NewsServiceImpl();
-	private TariffPlanService tariffPlanService = new TariffPlanServiceImpl();
+	private PlanService tariffPlanService = new TariffPlanServiceImpl();
 	private UserService userService             = new UserServiceImpl();
 
 	private ServiceProvider() {
@@ -68,11 +68,11 @@ public class ServiceProvider {
 		this.userService = userService;
 	}
 
-	public TariffPlanService getTariffPlanService() {
+	public PlanService getPlanService() {
 		return tariffPlanService;
 	}
 
-	public void setTariffPlanService(TariffPlanService tariffPlanService) {
+	public void setTariffPlanService(PlanService tariffPlanService) {
 		this.tariffPlanService = tariffPlanService;
 	}
 

@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.path;
+package by.epamjwd.mobile.controller.command.repository;
 
 /**
  * 
@@ -6,7 +6,7 @@ package by.epamjwd.mobile.controller.path;
  *
  */
 
-public class PathRepository {
+public class PagePath {
 
 	public static final String MAIN = "WEB-INF/jsp/main.jsp";
 	public static final String MAIN_REDIRECT = "/controller?command=main_page";
@@ -20,7 +20,7 @@ public class PathRepository {
 	public static final String PLAN = "WEB-INF/jsp/plan.jsp";
 	public static final String ERROR_404 = "WEB-INF/jsp/error404.jsp";
 
-	private PathRepository(){
+	private PagePath(){
 		
 	}
 	

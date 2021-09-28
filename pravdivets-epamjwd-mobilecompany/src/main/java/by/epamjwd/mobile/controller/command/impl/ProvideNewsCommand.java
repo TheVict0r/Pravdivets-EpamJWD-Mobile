@@ -6,10 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.controller.RouteHelper;
+import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.path.RoutingMethod;
-import by.epamjwd.mobile.controller.path.PathRepository;
-import by.epamjwd.mobile.controller.path.Routing;
+import by.epamjwd.mobile.controller.command.repository.AttributeName;
+import by.epamjwd.mobile.controller.command.repository.PagePath;
 import by.epamjwd.mobile.service.NewsService;
 import by.epamjwd.mobile.service.ServiceProvider;
 
@@ -17,16 +18,16 @@ import by.epamjwd.mobile.service.ServiceProvider;
 public class ProvideNewsCommand implements Command {
 
 	@Override
-	public Routing execute(HttpServletRequest request, HttpServletResponse response){
+	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response){
 		
 		ServiceProvider provider = ServiceProvider.getInstance();
 		NewsService newsService = provider.getNewsService();
 		
-		List<NewsArticle> list = newsService.getAllNews();
+		List<NewsArticle> newsList = newsService.getAllNews();
 
-		request.setAttribute("news", list);
+		request.setAttribute(AttributeName.NEWS, newsList);
 	
-		Routing result = new Routing(PathRepository.ALL_NEWS, RoutingMethod.FORWARD);
+		RouteHelper result = new RouteHelper(PagePath.ALL_NEWS, RouteMethod.FORWARD);
 		return result;
 
 		
