@@ -14,7 +14,7 @@ public class DAOProvider {
 	private ConsultantDAO consultantDAO = new SQLConsultantDAO();
 	private NewsDAO newsDao             = new SQLNewsDAO();
 	private UserDAO userDAO             = new SQLUserDAO();
-	private TariffPlanDAO tariffPlanDAO             = new SQLTariffPlanDAO();
+	private TariffPlanDAO tariffPlanDAO = new SQLTariffPlanDAO();
 	
 	private DAOProvider() {
 		

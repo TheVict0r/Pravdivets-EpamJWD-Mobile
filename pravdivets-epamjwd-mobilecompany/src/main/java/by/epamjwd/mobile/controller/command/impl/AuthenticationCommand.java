@@ -7,12 +7,14 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.repository.PagePath;
 import by.epamjwd.mobile.controller.command.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.UserService;
 
 public class AuthenticationCommand implements Command {
 
@@ -25,13 +27,15 @@ public class AuthenticationCommand implements Command {
 		char[] password = request.getParameter(ParameterName.PASSWORD).toCharArray();
 		
 		ServiceProvider provider = ServiceProvider.getInstance();
-
+		UserService userService = provider.getUserService();
+		User user = userService.getUserByEmail(login);
 
 		System.out.println(login);
 		System.out.println("e-mail - " + isEmail(login));
 		System.out.println("PhoneNumber - " + isPhoneNumber(login));
 
-		
+		System.out.println("USER - " + user);
+		System.out.println("role - " + user.getRole());
 		
 		
 		//TEMPORARY ROUTING
