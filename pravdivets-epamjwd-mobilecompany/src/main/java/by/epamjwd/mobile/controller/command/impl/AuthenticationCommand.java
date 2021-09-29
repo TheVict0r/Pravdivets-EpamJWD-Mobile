@@ -35,7 +35,7 @@ public class AuthenticationCommand implements Command {
 		System.out.println("PhoneNumber - " + isPhoneNumber(login));
 
 		System.out.println("USER - " + user);
-		System.out.println("role - " + user.getRole());
+		//System.out.println("role - " + user.getRole());
 		
 		
 		//TEMPORARY ROUTING

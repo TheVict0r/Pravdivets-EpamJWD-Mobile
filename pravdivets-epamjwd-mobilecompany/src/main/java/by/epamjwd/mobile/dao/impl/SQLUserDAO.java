@@ -23,7 +23,7 @@ public class SQLUserDAO implements UserDAO{
 	public final static String BASE_NAME = "db";
 	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
 
-	public final static String GET_USER_BY_EMAIL = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role, Regions.region FROM Users INNER JOIN Roles ON Users.role_id_role = Roles.id_role INNER JOIN Regions ON Users.region_id_region = Regions.id_region WHERE Users.email = ?";
+	public final static String GET_USER_BY_EMAIL = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role, Regions.region FROM Users INNER JOIN Roles ON Users.role_id = Roles.id INNER JOIN Regions ON Users.region_id = Regions.id WHERE Users.email = ?";
 	
 	@Override
 	public boolean authorization(String login, String passwordHash) {
