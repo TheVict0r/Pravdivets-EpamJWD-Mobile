@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.TariffPlan;
+import by.epamjwd.mobile.controller.command.repository.DBColumnName;
 import by.epamjwd.mobile.dao.TariffPlanDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
@@ -22,7 +23,7 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 	public final static String BASE_NAME = "db";
 	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
 
-	public final static String SELECT_ALL_TARIFF_PLANS = "SELECT Tariff_Plans.id, Tariff_Plans.name, Tariff_Plans.regular_payment, Tariff_Plans.description, Services.service_names_id, Services.tarif FROM Tariff_Plans INNER JOIN Services ON Tariff_Plans.id = Services.tariff_plans_id INNER JOIN Service_Names ON Services.service_names_id = Service_Names.id";
+	public final static String SELECT_ALL_TARIFF_PLANS = "SELECT * FROM Tariff_Plans";
 	
 	@Override
 	public List<TariffPlan> getAllTariffPlans() {
@@ -40,30 +41,12 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 			connection = pool.takeConnection();
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(SELECT_ALL_TARIFF_PLANS);
-			int idOld = 0;
-			TariffPlan tariffPlan = null;
 			
 			while (resultSet.next()) {
-				int idNew = resultSet.getInt("id");
-				if (idNew != idOld) {
-					if (tariffPlan != null) {
-						all.add(tariffPlan);
-					}
-					tariffPlan = new TariffPlan();
-					tariffPlan.setId(resultSet.getInt("id"));
-					tariffPlan.setName(resultSet.getString("name"));
-					tariffPlan.setRegularPayment(resultSet.getString("regular_payment"));
-					tariffPlan.setDescription(resultSet.getString("description"));
-
-					fillTariffPlanServices(tariffPlan, resultSet);
-
-					idOld = idNew;
-				} else {
-					fillTariffPlanServices(tariffPlan, resultSet);
-				}
+				TariffPlan tariffPlan = new TariffPlan();
+				fillTariffPlan(tariffPlan, resultSet);
+				all.add(tariffPlan);
 			}
-
-			all.add(tariffPlan);
 			// check exception messages
 		} catch (ConnectionPoolException e) {
 			LOGGER.error("ConnectionPoolException in ConnectionPool", e);
@@ -90,40 +73,23 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 		return result;
 	}
 
-	private void fillTariffPlanServices(TariffPlan tariffPlan, ResultSet resultSet) {
-		int serviceId = 0;
-		int tarifValue = 0;
+	
+	
+	private void fillTariffPlan(TariffPlan tariffPlan, ResultSet resultSet) {
 		try {
-			serviceId = resultSet.getInt("service_names_id");
-			tarifValue = resultSet.getInt("tarif");
+			tariffPlan.setId(resultSet.getInt(DBColumnName.TARIFF_PLANS_ID));
+			tariffPlan.setName(resultSet.getString(DBColumnName.TARIFF_PLANS_NAME));
+			tariffPlan.setRegularPayment(resultSet.getInt(DBColumnName.TARIFF_PLANS_REGULAR_PAYMENT));
+			tariffPlan.setPriceWithinNetwork(resultSet.getInt(DBColumnName.TARIFF_PLANS_WITHIN_NETWORK));
+			tariffPlan.setPriceOtherNetworks(resultSet.getInt(DBColumnName.TARIFF_PLANS_OTHER_NETWORKS));
+			tariffPlan.setPriceAbroad(resultSet.getInt(DBColumnName.TARIFF_PLANS_ABROAD));
+			tariffPlan.setPriceVideocall(resultSet.getInt(DBColumnName.TARIFF_PLANS_VIDEOCALL));
+			tariffPlan.setPriceSMS(resultSet.getInt(DBColumnName.TARIFF_PLANS_SMS));
+			tariffPlan.setPriceMMS(resultSet.getInt(DBColumnName.TARIFF_PLANS_MMS));
+			tariffPlan.setPriceInternet(resultSet.getInt(DBColumnName.TARIFF_PLANS_INTERNET));
+			tariffPlan.setDescription(resultSet.getString(DBColumnName.TARIFF_PLANS_DESCRIPTION));
 		} catch (SQLException e) {
-			LOGGER.error("SQLException in ConnectionPool", e);
-		}
-
-		switch (serviceId) {
-		case 1:
-			tariffPlan.setPriceWithinNetwork(tarifValue);
-			break;
-		case 2:
-			tariffPlan.setPriceOtherNetworks(tarifValue);
-			break;
-		case 3:
-			tariffPlan.setPriceAbroad(tarifValue);
-			break;
-		case 4:
-			tariffPlan.setPriceVideocall(tarifValue);
-			break;
-		case 5:
-			tariffPlan.setPriceSMS(tarifValue);
-			break;
-		case 6:
-			tariffPlan.setPriceMMS(tarifValue);
-			break;
-		case 7:
-			tariffPlan.setPriceInternet(tarifValue);
-			break;
-		default:
-			LOGGER.error("Unexpected tarif service ID value: " + serviceId);
+			LOGGER.error("SQLException while filling in the TariffPlan bean", e);
 		}
 	}
 

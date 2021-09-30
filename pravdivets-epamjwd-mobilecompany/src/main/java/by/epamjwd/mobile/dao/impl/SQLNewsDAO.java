@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.controller.command.repository.DBColumnName;
 import by.epamjwd.mobile.dao.NewsDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
@@ -74,7 +75,7 @@ public class SQLNewsDAO implements NewsDAO {
 			pool.initPoolData(BASE_NAME);
 			connection = pool.takeConnection();
 			statement = connection.prepareStatement(SELECT_ARTICLE_FROM_NEWS_BY_ID);
-			statement.setInt(1, id);
+			statement.setObject(1, id);
 
 			newsResultSet = statement.executeQuery();
 
@@ -96,11 +97,11 @@ public class SQLNewsDAO implements NewsDAO {
 
 	private void fillInArticle(NewsArticle article, ResultSet newsResultSet) {
 		try {
-			article.setId(newsResultSet.getInt(1));
-			article.setDate(newsResultSet.getDate(2));
-			article.setTitle(newsResultSet.getString(3));
-			article.setLead(newsResultSet.getString(4));
-			article.setText(newsResultSet.getString(5));
+			article.setId(newsResultSet.getInt(DBColumnName.NEWS_ID));
+			article.setDate(newsResultSet.getDate(DBColumnName.NEWS_DATE));
+			article.setTitle(newsResultSet.getString(DBColumnName.NEWS_TITLE));
+			article.setLead(newsResultSet.getString(DBColumnName.NEWS_LEAD));
+			article.setText(newsResultSet.getString(DBColumnName.NEWS_TEXT));
 		} catch (SQLException e) {
 			LOGGER.error("SQLException while filling in the article bean", e);
 		}

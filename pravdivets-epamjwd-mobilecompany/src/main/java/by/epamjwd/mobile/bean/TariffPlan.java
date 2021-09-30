@@ -8,7 +8,7 @@ public class TariffPlan implements Serializable{
 	
 	private int id;
 	private String name;
-	private String regularPayment;
+	private int regularPayment;
 	private String description;
 	private int priceWithinNetwork;
 	private int priceOtherNetworks;
@@ -22,7 +22,7 @@ public class TariffPlan implements Serializable{
 		
 	}
 
-	public TariffPlan(int id, String name, String regularPayment, String description, int priceWithinNetwork,
+	public TariffPlan(int id, String name, int regularPayment, String description, int priceWithinNetwork,
 			int priceOtherNetworks, int priceAbroad, int priceVideocall, int priceSMS, int priceMMS,
 			int priceInternet) {
 		super();
@@ -55,11 +55,11 @@ public class TariffPlan implements Serializable{
 		this.name = name;
 	}
 
-	public String getRegularPayment() {
+	public int getRegularPayment() {
 		return regularPayment;
 	}
 
-	public void setRegularPayment(String regularPayment) {
+	public void setRegularPayment(int regularPayment) {
 		this.regularPayment = regularPayment;
 	}
 
@@ -141,7 +141,7 @@ public class TariffPlan implements Serializable{
 		result = prime * result + priceSMS;
 		result = prime * result + priceVideocall;
 		result = prime * result + priceWithinNetwork;
-		result = prime * result + ((regularPayment == null) ? 0 : regularPayment.hashCode());
+		result = prime * result + regularPayment;
 		return result;
 	}
 
@@ -180,10 +180,7 @@ public class TariffPlan implements Serializable{
 			return false;
 		if (priceWithinNetwork != other.priceWithinNetwork)
 			return false;
-		if (regularPayment == null) {
-			if (other.regularPayment != null)
-				return false;
-		} else if (!regularPayment.equals(other.regularPayment))
+		if (regularPayment != other.regularPayment)
 			return false;
 		return true;
 	}

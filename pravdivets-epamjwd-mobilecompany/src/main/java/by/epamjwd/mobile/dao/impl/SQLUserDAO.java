@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.bean.Abonent;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
+import by.epamjwd.mobile.controller.command.repository.DBColumnName;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
@@ -89,11 +90,15 @@ public class SQLUserDAO implements UserDAO{
 			statement.setString(1, email);
 			userResultSet = statement.executeQuery();
 			while (userResultSet.next()) {
-				user = new User(userResultSet.getInt("ID"), userResultSet.getString("password"), 
-						userResultSet.getString("first_name"), userResultSet.getString("middle_name"), 
-						userResultSet.getString("last_name"), userResultSet.getString("email"), 
-						Role.valueOf(userResultSet.getString("role").toUpperCase()), 
-						userResultSet.getString("region"));
+				user = new User(
+						userResultSet.getInt   (DBColumnName.USERS_ID), 
+						userResultSet.getString(DBColumnName.USERS_PASSWORD), 
+						userResultSet.getString(DBColumnName.USERS_FIRST_NAME), 
+						userResultSet.getString(DBColumnName.USERS_MIDDLE_NAME), 
+						userResultSet.getString(DBColumnName.USERS_LAST_NAME), 
+						userResultSet.getString(DBColumnName.USERS_EMAIL), 
+		   Role.valueOf(userResultSet.getString(DBColumnName.ROLES_ROLE).toUpperCase()), 
+						userResultSet.getString(DBColumnName.REGIONS_REGION));
 			}
 			// check exception messages
 		} catch (ConnectionPoolException e) {
