@@ -97,8 +97,7 @@ public class SQLUserDAO implements UserDAO{
 						userResultSet.getString(DBColumnName.USERS_MIDDLE_NAME), 
 						userResultSet.getString(DBColumnName.USERS_LAST_NAME), 
 						userResultSet.getString(DBColumnName.USERS_EMAIL), 
-		   Role.valueOf(userResultSet.getString(DBColumnName.ROLES_ROLE).toUpperCase()), 
-						userResultSet.getString(DBColumnName.REGIONS_REGION));
+		   Role.valueOf(userResultSet.getString(DBColumnName.ROLES_ROLE).toUpperCase())); 
 			}
 			// check exception messages
 		} catch (ConnectionPoolException e) {

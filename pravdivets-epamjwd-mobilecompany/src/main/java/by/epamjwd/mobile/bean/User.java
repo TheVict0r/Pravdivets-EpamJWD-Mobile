@@ -12,13 +12,12 @@ public class User implements Serializable{
 	private String lastName;
 	private String email;
 	private Role role;
-	private String region;
 
 	public User() {
 	}
 
-	public User(int id, String password, String firstName, String middleName, String lastName, String email, Role role,
-			String region) {
+	public User(int id, String password, String firstName, String middleName, 
+			String lastName, String email, Role role) {
 		this.id = id;
 		this.password = password;
 		this.firstName = firstName;
@@ -26,7 +25,6 @@ public class User implements Serializable{
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
-		this.region = region;
 	}
 
 	public int getId() {
@@ -85,17 +83,6 @@ public class User implements Serializable{
 		this.role = role;
 	}
 
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
-	}
-
-
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,7 +93,6 @@ public class User implements Serializable{
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((region == null) ? 0 : region.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
@@ -147,11 +133,6 @@ public class User implements Serializable{
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (region == null) {
-			if (other.region != null)
-				return false;
-		} else if (!region.equals(other.region))
-			return false;
 		if (role != other.role)
 			return false;
 		return true;
@@ -169,7 +150,6 @@ public class User implements Serializable{
                 .append(", lastName=").append(lastName)
                 .append(", email=").append(email)
                 .append(", role=").append(role)
-                .append(", region=").append(region)
                 .append("]")
                 .toString();
 	}
