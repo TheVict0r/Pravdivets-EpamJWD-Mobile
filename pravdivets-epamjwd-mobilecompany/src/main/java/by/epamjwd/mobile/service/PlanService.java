@@ -1,9 +1,9 @@
 package by.epamjwd.mobile.service;
 
 import java.util.List;
-import by.epamjwd.mobile.bean.TariffPlan;
+import by.epamjwd.mobile.bean.Plan;
 
 public interface PlanService {
-	public List<TariffPlan> getAllPlans();
-	public TariffPlan getTariffPlanByID(int id);
+	public List<Plan> getAllPlans();
+	public Plan getTariffPlanByID(int id);
 }

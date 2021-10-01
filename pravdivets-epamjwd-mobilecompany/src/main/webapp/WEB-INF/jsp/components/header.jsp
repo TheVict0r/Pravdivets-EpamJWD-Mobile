@@ -28,7 +28,7 @@
 						style="font-size: 15px;">тарифы</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						style="font-size: 15px;">калькулятор тарифов</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_all_services"
 						style="font-size: 15px;">дополнительные услуги</a></li>
 				</ul>
 				<div class="text-end">

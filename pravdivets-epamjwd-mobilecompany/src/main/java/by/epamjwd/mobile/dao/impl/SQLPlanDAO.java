@@ -10,24 +10,25 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.TariffPlan;
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.controller.repository.DBColumnName;
-import by.epamjwd.mobile.dao.TariffPlanDAO;
+import by.epamjwd.mobile.controller.repository.DBTableName;
+import by.epamjwd.mobile.dao.PlanDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
-public class SQLTariffPlanDAO implements TariffPlanDAO{
+public class SQLPlanDAO implements PlanDAO{
 
-	private final static Logger LOGGER = LogManager.getLogger(SQLTariffPlanDAO.class);	
+	private final static Logger LOGGER = LogManager.getLogger(SQLPlanDAO.class);	
 
 	public final static String BASE_NAME = "db";
 	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
 
-	public final static String SELECT_ALL_TARIFF_PLANS = "SELECT * FROM Tariff_Plans";
+	public final static String SELECT_ALL_PLANS = "SELECT * FROM " + DBTableName.PLANS;
 	
 	@Override
-	public List<TariffPlan> getAllTariffPlans() {
-		List<TariffPlan> all;
+	public List<Plan> getAllPlans() {
+		List<Plan> all;
 		ConnectionPool pool = null;
 		Connection connection = null;
 		Statement statement = null;
@@ -40,12 +41,12 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 			pool.initPoolData(BASE_NAME);
 			connection = pool.takeConnection();
 			statement = connection.createStatement();
-			resultSet = statement.executeQuery(SELECT_ALL_TARIFF_PLANS);
+			resultSet = statement.executeQuery(SELECT_ALL_PLANS);
 			
 			while (resultSet.next()) {
-				TariffPlan tariffPlan = new TariffPlan();
-				fillTariffPlan(tariffPlan, resultSet);
-				all.add(tariffPlan);
+				Plan plan = new Plan();
+				fillPlan(plan, resultSet);
+				all.add(plan);
 			}
 			// check exception messages
 		} catch (ConnectionPoolException e) {
@@ -62,10 +63,10 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 	}
 
 	@Override
-	public TariffPlan getTariffPlanByID(int id) {
-		List<TariffPlan> allTariffPlans = getAllTariffPlans();
-		TariffPlan result = null;
-		for (TariffPlan tariffPlan : allTariffPlans) {
+	public Plan getPlanByID(int id) {
+		List<Plan> allTariffPlans = getAllPlans();
+		Plan result = null;
+		for (Plan tariffPlan : allTariffPlans) {
 			if (tariffPlan.getId() == id) {
 				result = tariffPlan;
 			}
@@ -75,7 +76,7 @@ public class SQLTariffPlanDAO implements TariffPlanDAO{
 
 	
 	
-	private void fillTariffPlan(TariffPlan tariffPlan, ResultSet resultSet) {
+	private void fillPlan(Plan tariffPlan, ResultSet resultSet) {
 		try {
 			tariffPlan.setId(resultSet.getInt(DBColumnName.TARIFF_PLANS_ID));
 			tariffPlan.setName(resultSet.getString(DBColumnName.TARIFF_PLANS_NAME));

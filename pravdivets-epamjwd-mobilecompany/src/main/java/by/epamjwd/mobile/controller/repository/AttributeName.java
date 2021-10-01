@@ -5,4 +5,6 @@ public class AttributeName {
 	public static final String PLAN = "plan";
 	public static final String ALL_PLANS = "all_plans";
 	public static final String NEWS = "news";
+	public static final String ALL_SERVICES = "all_services";
+	public static final String SERVICE = "service";
 }

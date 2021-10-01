@@ -3,7 +3,7 @@ package by.epamjwd.mobile.controller.command.impl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.epamjwd.mobile.bean.TariffPlan;
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -21,7 +21,7 @@ public class FullPlanCommand implements Command {
 		PlanService tariffPlanService = provider.getPlanService();
 		
 		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
-		TariffPlan plan = tariffPlanService.getTariffPlanByID(id);
+		Plan plan = tariffPlanService.getTariffPlanByID(id);
 		
 		request.setAttribute(AttributeName.PLAN, plan);
 		

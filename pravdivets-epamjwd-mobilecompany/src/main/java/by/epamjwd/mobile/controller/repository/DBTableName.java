@@ -9,6 +9,6 @@ public class DBTableName {
 	public static final String BILLS = "Bills";
 	public static final String SERVICES = "Services";
 	public static final String ABONENT_HAS_SERVICES = "Abonent_has_Services";
-	public static final String TARIFF_PALNS = "Tariff_plans";
+	public static final String PLANS = "Tariff_plans";
 	public static final String NEWS = "News";
 }

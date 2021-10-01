@@ -14,6 +14,7 @@ import by.epamjwd.mobile.controller.command.impl.MainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ProfileEditorCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideAllPlansCommand;
+import by.epamjwd.mobile.controller.command.impl.ProvideAllServicesCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideNewsCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
 
@@ -33,6 +34,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.LOGIN, new LoginCommand());
 		allCommands.put(CommandName.PROVIDE_ALL_PLANS, new ProvideAllPlansCommand());
 		allCommands.put(CommandName.FULL_PLAN, new FullPlanCommand());
+		allCommands.put(CommandName.PROVIDE_ALL_SERVICES, new ProvideAllServicesCommand());
 	}
 
 	public Command getCommand(String commandName) {

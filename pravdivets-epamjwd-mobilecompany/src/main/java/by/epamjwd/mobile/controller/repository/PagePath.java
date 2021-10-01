@@ -16,6 +16,8 @@ public class PagePath {
 	public static final String ADMIN = "WEB-INF/jsp/admin.jsp";
 	public static final String ALL_PLANS = "WEB-INF/jsp/allplans.jsp";
 	public static final String PLAN = "WEB-INF/jsp/plan.jsp";
+	public static final String ALL_SERVICES = "WEB-INF/jsp/allservices.jsp";
+	public static final String SERVICE = "WEB-INF/jsp/service.jsp";
 	public static final String ERROR_404 = "WEB-INF/jsp/error404.jsp";
 
 }

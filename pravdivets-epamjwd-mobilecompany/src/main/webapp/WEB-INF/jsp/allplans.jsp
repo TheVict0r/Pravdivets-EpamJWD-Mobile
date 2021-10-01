@@ -34,7 +34,7 @@
 
 							<c:forEach var="plan" items="${requestScope.all_plans}">
 
-								<div class="col-sm-4 mb-3 mb-md-0">
+								<div class="col-sm-4 mb-3 mb-md-4">
 									<div class="card text-center h-100">
 										<div class="card-body d-flex flex-column">
 											<div class="mb-4">
@@ -72,8 +72,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- ---------------------- -->
 
 
 	</div>

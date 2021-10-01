@@ -2,7 +2,7 @@ package by.epamjwd.mobile.bean;
 
 import java.io.Serializable;
 
-public class TariffPlan implements Serializable{
+public class Plan implements Serializable{
 
 	private static final long serialVersionUID = 1240407715285924386L;
 	
@@ -18,11 +18,11 @@ public class TariffPlan implements Serializable{
 	private int priceMMS;
 	private int priceInternet;
 	
-	public TariffPlan() {
+	public Plan() {
 		
 	}
 
-	public TariffPlan(int id, String name, int regularPayment, String description, int priceWithinNetwork,
+	public Plan(int id, String name, int regularPayment, String description, int priceWithinNetwork,
 			int priceOtherNetworks, int priceAbroad, int priceVideocall, int priceSMS, int priceMMS,
 			int priceInternet) {
 		super();
@@ -153,7 +153,7 @@ public class TariffPlan implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TariffPlan other = (TariffPlan) obj;
+		Plan other = (Plan) obj;
 		if (description == null) {
 			if (other.description != null)
 				return false;

@@ -11,5 +11,7 @@ public class CommandName {
 	public static final String LOGIN = "login";
 	public static final String PROVIDE_ALL_PLANS = "provide_all_plans";
 	public static final String FULL_PLAN = "full_plan";
+	public static final String PROVIDE_ALL_SERVICES = "provide_all_services";
+	public static final String FULL_SERVICE = "full_service";
 
 }
