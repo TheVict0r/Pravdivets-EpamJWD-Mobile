@@ -9,7 +9,7 @@ import java.util.Locale;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class NewsArticle implements Serializable {
+public class NewsArticle implements Identifiable, Serializable {
 
 	private static final long serialVersionUID = 5492324511728285746L;
 	

@@ -3,7 +3,7 @@ package by.epamjwd.mobile.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Abonent implements Serializable{
+public class Abonent implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = 5046781397740402140L;
 	
