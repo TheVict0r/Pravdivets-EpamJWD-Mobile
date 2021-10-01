@@ -12,7 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.NewsArticle;
-import by.epamjwd.mobile.controller.command.repository.DBColumnName;
+import by.epamjwd.mobile.controller.repository.DBColumnName;
 import by.epamjwd.mobile.dao.NewsDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;

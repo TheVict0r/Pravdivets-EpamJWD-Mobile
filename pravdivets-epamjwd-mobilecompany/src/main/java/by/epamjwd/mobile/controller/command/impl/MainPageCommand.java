@@ -7,8 +7,8 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.CommandProvider;
-import by.epamjwd.mobile.controller.command.repository.CommandName;
-import by.epamjwd.mobile.controller.command.repository.PagePath;
+import by.epamjwd.mobile.controller.repository.CommandName;
+import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class MainPageCommand implements Command{
 

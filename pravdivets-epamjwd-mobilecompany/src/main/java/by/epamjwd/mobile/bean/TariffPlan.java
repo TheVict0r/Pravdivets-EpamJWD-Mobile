@@ -187,7 +187,7 @@ public class TariffPlan implements Serializable{
 
 	@Override
 	public String toString() {
-		return new StringBuilder (getClass().getSimpleName())
+		return new StringBuilder(getClass().getSimpleName())
 				.append("[")
 				.append("ID=").append(id)
 				.append(", Name=").append(name)

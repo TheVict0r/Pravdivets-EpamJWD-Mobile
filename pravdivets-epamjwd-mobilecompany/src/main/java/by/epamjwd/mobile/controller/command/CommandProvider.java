@@ -15,7 +15,7 @@ import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ProfileEditorCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideNewsCommand;
-import by.epamjwd.mobile.controller.command.repository.CommandName;
+import by.epamjwd.mobile.controller.repository.CommandName;
 
 public class CommandProvider {
 

@@ -11,8 +11,8 @@ import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.command.repository.PagePath;
-import by.epamjwd.mobile.controller.command.repository.ParameterName;
+import by.epamjwd.mobile.controller.repository.PagePath;
+import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 

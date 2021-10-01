@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.command.repository;
+package by.epamjwd.mobile.controller.repository;
 
 public class AttributeName {
 	public static final String ARTICLE = "article";

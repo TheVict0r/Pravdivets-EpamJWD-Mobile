@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.CommandProvider;
-import by.epamjwd.mobile.controller.command.repository.PagePath;
+import by.epamjwd.mobile.controller.repository.PagePath;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {

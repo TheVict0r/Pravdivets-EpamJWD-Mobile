@@ -1,12 +1,12 @@
-package by.epamjwd.mobile.controller.command.repository;
+package by.epamjwd.mobile.controller.repository;
 
 public class DBColumnName {
 
     public static final String ROLES_ID = "id";
     public static final String ROLES_ROLE = "role";
 	  
-    public static final String ABONENT_STATUSES_ID = "id";
-    public static final String ABONENT_STATUSES_STATUS = "status";
+    public static final String ABONENT_STATUS_ID = "id";
+    public static final String ABONENT_STATUS_STATUS = "status";
 	  
     public static final String TARIFF_PLANS_ID = "id";
     public static final String TARIFF_PLANS_NAME = "name";
@@ -38,7 +38,7 @@ public class DBColumnName {
     public static final String ABONENTS_CHECKING_ACCOUNT_NUMBER = "checking_account_number";
     public static final String ABONENTS_CHECKING_ACCOUNT_AMOUNT = "checking_account_amount";
     public static final String ABONENTS_PHONE_NUMBER = "phone_number";
-    public static final String ABONENTS_ABONENT_STATUSES_ID = "abonent_statuses_id";
+    public static final String ABONENTS_ABONENT_STATUS_ID = "abonent_status_id";
     public static final String ABONENTS_ABONENT_STATUS_DATE = "abonent_status_date";
     public static final String ABONENTS_CONTRACT_NUMBER = "contract_number";
     public static final String ABONENTS_TARIFF_PLANS_ID = "tariff_plans_id";
@@ -47,6 +47,7 @@ public class DBColumnName {
     public static final String SERVICES_ID = "id";
     public static final String SERVICES_NAME = "name";
     public static final String SERVICES_TARIF = "tarif";
+    public static final String SERVICES_DESCRIPTION = "description";
 	  
     public static final String BILLS_ID = "id";
     public static final String BILLS_CHECKING_ACCOUNT_NUMBER = "checking_account_number";
