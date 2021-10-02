@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import by.epamjwd.mobile.bean.Plan;
-import by.epamjwd.mobile.controller.repository.DBColumnName;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
+import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class PlanRowMapper implements RowMapper<Plan>{
 

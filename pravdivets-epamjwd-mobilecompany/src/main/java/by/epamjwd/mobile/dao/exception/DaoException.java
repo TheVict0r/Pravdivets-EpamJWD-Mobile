@@ -1,14 +1,21 @@
 package by.epamjwd.mobile.dao.exception;
 
 public class DaoException extends Exception {
-    public DaoException() {
+	private static final long serialVersionUID = 6036396863670585075L;
+
+	public DaoException() {
     }
 
     public DaoException(String message) {
         super(message);
     }
 
-    public DaoException(String message, Throwable cause) {
-        super(message, cause);
+    public DaoException(Throwable cause) {
+        super(cause);
     }
+    
+    public DaoException(String message, Throwable cause) {
+    	super(message, cause);
+    }
+    
 }

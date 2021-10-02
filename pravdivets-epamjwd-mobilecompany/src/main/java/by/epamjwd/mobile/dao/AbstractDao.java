@@ -22,13 +22,13 @@ public abstract class AbstractDao<T extends Identifiable> extends AbstractQueryE
     }
 
     @Override
-    public Optional<T> findById(long id) throws DaoException {
+    public Optional<T> findById(int id) throws DaoException {
         String query = "SELECT * FROM " + tableName + " WHERE id=?";
         return executeQueryForSingleResult(query, id);
     }
 
     @Override
-    public void removeById(long id) throws DaoException {
+    public void removeById(int id) throws DaoException {
         String deleteQuery = "DELETE FROM " + tableName + " WHERE id=?";
         executeUpdateQuery(deleteQuery, id);
     }

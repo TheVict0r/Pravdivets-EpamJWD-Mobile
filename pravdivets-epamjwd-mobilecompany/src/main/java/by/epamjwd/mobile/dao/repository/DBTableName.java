@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.repository;
+package by.epamjwd.mobile.dao.repository;
 
 public class DBTableName {
 	public static final String USERS = "Users";

@@ -5,8 +5,8 @@ import java.sql.SQLException;
 
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.controller.repository.DBColumnName;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
+import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class UserRowMapper implements RowMapper<User>{
 

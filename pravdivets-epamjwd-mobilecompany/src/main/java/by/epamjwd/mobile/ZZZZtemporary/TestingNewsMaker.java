@@ -1,7 +1,7 @@
 package by.epamjwd.mobile.ZZZZtemporary;
 
 import by.epamjwd.mobile.bean.NewsArticle;
-import by.epamjwd.mobile.dao.impl.SQLNewsDAO;
+import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 
 //import java.util.List;
 //
@@ -21,7 +21,7 @@ public class TestingNewsMaker {
 //		System.out.println();
 //		System.out.println(newsArticles.get(newsArticles.size()-3));
 		
-		SQLNewsDAO dao = new SQLNewsDAO();
+		SQLNewsDAOImpl dao = new SQLNewsDAOImpl();
 		NewsArticle article = dao.getArticleByID(10);
 		
 		System.out.println(article);

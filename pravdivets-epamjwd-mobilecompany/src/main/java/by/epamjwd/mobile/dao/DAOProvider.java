@@ -1,22 +1,22 @@
 package by.epamjwd.mobile.dao;
 
-import by.epamjwd.mobile.dao.impl.SQLAbonentDAO;
-import by.epamjwd.mobile.dao.impl.SQLAdminDAO;
-import by.epamjwd.mobile.dao.impl.SQLConsultantDAO;
-import by.epamjwd.mobile.dao.impl.SQLNewsDAO;
-import by.epamjwd.mobile.dao.impl.SQLPlanDAO;
-import by.epamjwd.mobile.dao.impl.SQLServiceDAO;
-import by.epamjwd.mobile.dao.impl.SQLUserDAO;
+import by.epamjwd.mobile.dao.impl.SQLAbonentDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLAdminDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLConsultantDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLPlanDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLServiceDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLUserDAOImpl;
 
 public class DAOProvider {
 
-	private AbonentDAO abonentDAO       = new SQLAbonentDAO();
-	private AdminDAO adminDAO           = new SQLAdminDAO();
-	private ConsultantDAO consultantDAO = new SQLConsultantDAO();
-	private NewsDAO newsDao             = new SQLNewsDAO();
-	private UserDAO userDAO             = new SQLUserDAO();
-	private PlanDAO planDAO 			= new SQLPlanDAO();
-	private ServiceDAO serviceDAO 		= new SQLServiceDAO();
+	private AbonentDAO abonentDAO       = new SQLAbonentDAOImpl();
+	private AdminDAO adminDAO           = new SQLAdminDAOImpl();
+	private ConsultantDAO consultantDAO = new SQLConsultantDAOImpl();
+	private NewsDAO newsDao             = new SQLNewsDAOImpl();
+	private UserDAO userDAO             = new SQLUserDAOImpl();
+	private PlanDAO planDAO 			= new SQLPlanDAOImpl();
+	private ServiceDAO serviceDAO 		= new SQLServiceDAOImpl();
 	
 	private DAOProvider() {
 		

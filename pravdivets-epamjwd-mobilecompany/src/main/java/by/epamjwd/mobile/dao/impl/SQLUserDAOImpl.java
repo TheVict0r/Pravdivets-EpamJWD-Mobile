@@ -12,14 +12,14 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.bean.Abonent;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.controller.repository.DBColumnName;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
+import by.epamjwd.mobile.dao.repository.DBColumnName;
 
-public class SQLUserDAO implements UserDAO{
+public class SQLUserDAOImpl implements UserDAO{
 
-	private final static Logger LOGGER = LogManager.getLogger(SQLUserDAO.class);
+	private final static Logger LOGGER = LogManager.getLogger(SQLUserDAOImpl.class);
 
 	public final static String BASE_NAME = "db";
 	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER

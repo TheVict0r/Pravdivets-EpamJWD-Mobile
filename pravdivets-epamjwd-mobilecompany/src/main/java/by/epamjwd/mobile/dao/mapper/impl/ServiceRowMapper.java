@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import by.epamjwd.mobile.bean.Service;
-import by.epamjwd.mobile.controller.repository.DBColumnName;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
+import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class ServiceRowMapper implements RowMapper<Service>{
 

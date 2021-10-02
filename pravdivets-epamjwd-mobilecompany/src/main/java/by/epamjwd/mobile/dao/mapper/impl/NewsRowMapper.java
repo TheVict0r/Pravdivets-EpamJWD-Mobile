@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import by.epamjwd.mobile.bean.NewsArticle;
-import by.epamjwd.mobile.controller.repository.DBColumnName;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
+import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class NewsRowMapper implements RowMapper<NewsArticle>{
 

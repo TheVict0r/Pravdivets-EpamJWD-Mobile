@@ -1,11 +1,14 @@
 package by.epamjwd.mobile.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.PlanDAO;
+import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.PlanService;
+import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class PlanServiceImpl implements PlanService{
 
@@ -14,13 +17,22 @@ public class PlanServiceImpl implements PlanService{
 	
 	
 	@Override
-	public List<Plan> getAllPlans() {
-		return tariffsDao.getAllPlans();
+	public List<Plan> getAllPlans() throws ServiceException {
+		try {
+			return tariffsDao.getAllPlans();
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
 	}
 
 	@Override
-	public Plan getTariffPlanByID(int id) {
-		return tariffsDao.getPlanByID(id);
+	public Optional<Plan> getTariffPlanByID(int id) throws ServiceException {
+		try {
+			return tariffsDao.getPlanByID(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		
 	}
 
 }

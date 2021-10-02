@@ -1,7 +1,7 @@
 package by.epamjwd.mobile.ZZZZtemporary;
 
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.dao.impl.SQLUserDAO;
+import by.epamjwd.mobile.dao.impl.SQLUserDAOImpl;
 
 public class SQLUserDAOtest {
 public static void main(String[] args) {
@@ -10,7 +10,7 @@ public static void main(String[] args) {
 	String email2 = "consultant1@mail.ru";
 	String email3 = "admin2@gmail.com";
 	
-	SQLUserDAO sqlUserDao = new SQLUserDAO();
+	SQLUserDAOImpl sqlUserDao = new SQLUserDAOImpl();
 	
 	User user1 = sqlUserDao.getUserByEmail(email1);
 	User user2 = sqlUserDao.getUserByEmail(email2);

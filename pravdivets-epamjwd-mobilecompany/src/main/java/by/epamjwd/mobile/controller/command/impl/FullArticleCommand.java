@@ -1,7 +1,12 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.NewsArticle;
 import by.epamjwd.mobile.controller.RouteHelper;
@@ -12,9 +17,13 @@ import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.NewsService;
 import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class FullArticleCommand implements Command {
 
+	private final static Logger LOGGER = LogManager.getLogger(FullArticleCommand.class);
+
+	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response){
 
@@ -24,12 +33,16 @@ public class FullArticleCommand implements Command {
 		String idString = request.getParameter(ParameterName.ID);
 		int id = Integer.parseInt(idString);
 
-		NewsArticle article = newsService.getArticleByID(id);
+		try {
+			//Optional<NewsArticle> article = newsService.getArticleByID(id);
+			NewsArticle article = newsService.getArticleByID(id).orElse(null);
+			request.setAttribute(AttributeName.ARTICLE, article);
+			return new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
+		} catch (ServiceException e) {
+			LOGGER.error("Unable to obtain news article data. ", e);
+			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+		}
 
-		request.setAttribute(AttributeName.ARTICLE, article);
-
-		RouteHelper result = new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
-		return result;
 	}
 
 }

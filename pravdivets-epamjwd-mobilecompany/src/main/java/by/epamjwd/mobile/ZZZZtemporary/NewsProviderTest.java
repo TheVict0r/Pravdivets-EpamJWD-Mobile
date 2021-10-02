@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.bean.NewsArticle;
-import by.epamjwd.mobile.dao.impl.SQLNewsDAO;
+import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 
 public class NewsProviderTest {
 
 	public void provideNews(HttpServletRequest request, HttpServletResponse response, String page)
 			throws ServletException, IOException {
 
-		SQLNewsDAO newsMaker = new SQLNewsDAO();
+		SQLNewsDAOImpl newsMaker = new SQLNewsDAOImpl();
 		List<NewsArticle> list = newsMaker.getAllNews();
 
 		request.setAttribute("news", list);

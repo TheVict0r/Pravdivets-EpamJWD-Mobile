@@ -108,6 +108,19 @@ public final class ConnectionPool {
 		return connection;
 	}
 
+    public void releaseConnection(Connection connection) throws ConnectionPoolException  {
+        if (connection != null) {
+        	givenAwayConQueue.remove(connection);
+            try {
+                connectionQueue.put(connection);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                LOGGER.error("Unable to release connection!", e);
+                throw new ConnectionPoolException(e.getMessage(), e);
+            }
+        }
+    }
+	
 	public void dispose() {
 		try {
 			closeConnectionsQueue(givenAwayConQueue);
