@@ -16,7 +16,11 @@
 
 	<jsp:include page="components/header.jsp" />
 
-<h1>Admin.jsp</h1>
+	<h1>Admin.jsp</h1>
+
+	<span class="display-3 text-center">${requestScope.user.firstName}</span>
+
+
 
 	<jsp:include page="components/footer.jsp" />
 </body>

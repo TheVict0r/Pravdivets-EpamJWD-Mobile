@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 
 public class NewsProviderTest {
 
 	public void provideNews(HttpServletRequest request, HttpServletResponse response, String page)
-			throws ServletException, IOException {
+			throws ServletException, IOException, DaoException {
 
 		SQLNewsDAOImpl newsMaker = new SQLNewsDAOImpl();
 		List<NewsArticle> list = newsMaker.getAllNews();

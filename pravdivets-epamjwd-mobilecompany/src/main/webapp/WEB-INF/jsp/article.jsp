@@ -14,14 +14,12 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 
-	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1">
-
 		<div class="col-sm" id="promo">
 			<img src="pic/article.jpg" class="img-fluid" alt="mobile">
 		</div>
-
-		<h4>${requestScope.article.title}</h4>
-		<em> ${requestScope.article.date}</em>
+	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-2">
+		<span class="display-6 text-left d-flex align-items-center">${requestScope.article.title}</span>
+		 <span class="display-7 text-left d-flex"><em> ${requestScope.article.date}</em></span>
 		<p>${requestScope.article.text}</p>
 	</div>
 	<br/>

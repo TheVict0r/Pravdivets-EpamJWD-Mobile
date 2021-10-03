@@ -1,7 +1,6 @@
 package by.epamjwd.mobile.controller.command.impl;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,37 +8,33 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.NewsService;
 import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class FullArticleCommand implements Command {
+public class FullServiceCommand implements Command{
 
-	private final static Logger LOGGER = LogManager.getLogger(FullArticleCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(FullServiceCommand.class);
 
-	
 	@Override
-	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response){
-
+	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
-		NewsService newsService = provider.getNewsService();
+		ServiceService serviceService = provider.getServiceService();
 
-		String idString = request.getParameter(ParameterName.ID);
-		int id = Integer.parseInt(idString);
-
+		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
 		try {
-			NewsArticle article = newsService.getArticleByID(id).get();
-			request.setAttribute(AttributeName.ARTICLE, article);
-			return new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
-		} catch (ServiceException| NoSuchElementException e) {
-			LOGGER.error("Unable to obtain news article data. ", e);
+			Service service = serviceService.getServiceByID(id).get();
+			request.setAttribute(AttributeName.SERVICE, service);
+			return new RouteHelper(PagePath.SERVICE, RouteMethod.FORWARD);
+		} catch (ServiceException | NoSuchElementException e) {
+			LOGGER.error("Unable to obtain full service data. ", e);
 			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
 

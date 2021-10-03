@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,19 +12,35 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.bean.Abonent;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
+import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
+import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.dao.mapper.RowMapper;
+import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
+import by.epamjwd.mobile.dao.repository.DBTableName;
 
-public class SQLUserDAOImpl implements UserDAO{
+public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
+
+	public SQLUserDAOImpl() {
+        super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
+	}
 
 	private final static Logger LOGGER = LogManager.getLogger(SQLUserDAOImpl.class);
 
-	public final static String BASE_NAME = "db";
-	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
+	public final static String GET_USER_BY_EMAIL = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.email = ?";
+	
+	
+	
+	@Override
+	public Optional<User> getUserByPhoneNumber(int phoneNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	public final static String GET_USER_BY_EMAIL = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role, Regions.region FROM Users INNER JOIN Roles ON Users.role_id = Roles.id INNER JOIN Regions ON Users.region_id = Regions.id WHERE Users.email = ?";
+	
 	
 	@Override
 	public boolean authorization(String login, String passwordHash) {
@@ -75,41 +91,17 @@ public class SQLUserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User getUserByEmail(String email) {
-		ConnectionPool pool = null;
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet userResultSet = null;
-		User user = null;
+	public Optional<User> getUserByEmail(String email) throws DaoException {
+		return executeQueryForSingleResult(GET_USER_BY_EMAIL, email);
 		
-		try {
-			pool = ConnectionPool.getInstance();
-			pool.initPoolData(BASE_NAME);
-			connection = pool.takeConnection();
-			statement = connection.prepareStatement(GET_USER_BY_EMAIL);
-			statement.setString(1, email);
-			userResultSet = statement.executeQuery();
-			while (userResultSet.next()) {
-				user = new User(
-						userResultSet.getInt   (DBColumnName.USERS_ID), 
-						userResultSet.getString(DBColumnName.USERS_PASSWORD), 
-						userResultSet.getString(DBColumnName.USERS_FIRST_NAME), 
-						userResultSet.getString(DBColumnName.USERS_MIDDLE_NAME), 
-						userResultSet.getString(DBColumnName.USERS_LAST_NAME), 
-						userResultSet.getString(DBColumnName.USERS_EMAIL), 
-		   Role.valueOf(userResultSet.getString(DBColumnName.ROLES_ROLE).toUpperCase())); 
-			}
-			// check exception messages
-		} catch (ConnectionPoolException e) {
-			LOGGER.error("ConnectionPoolException in ConnectionPool", e);
-		} catch (SQLException e) {
-			LOGGER.error("SQLException in ConnectionPool", e);
-		} catch (NullPointerException e) {
-			LOGGER.error("NullPointerException in ConnectionPool", e);
-		} finally {
-			pool.dispose();
-		}
-		return user;
+	}
+
+
+
+	@Override
+	public long save(User item) throws DaoException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

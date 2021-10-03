@@ -7,4 +7,5 @@ public class AttributeName {
 	public static final String NEWS = "news";
 	public static final String ALL_SERVICES = "all_services";
 	public static final String SERVICE = "service";
+	public static final String USER = "user";
 }

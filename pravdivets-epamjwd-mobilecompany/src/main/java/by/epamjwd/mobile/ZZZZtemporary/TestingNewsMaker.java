@@ -1,6 +1,9 @@
 package by.epamjwd.mobile.ZZZZtemporary;
 
+import java.util.Optional;
+
 import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 
 //import java.util.List;
@@ -12,7 +15,7 @@ public class TestingNewsMaker {
 
 	public static final String SELECT_FROM_NEWS = "SELECT * FROM NEWS";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DaoException {
 		//NewsMaker newsmaker = new NewsMaker();
 		//List<NewsArticle> newsArticles = newsmaker.selectNewsSetFromDatabase(SELECT_FROM_NEWS);
 		//System.out.println(newsArticles.get(newsArticles.size()-1));
@@ -22,7 +25,7 @@ public class TestingNewsMaker {
 //		System.out.println(newsArticles.get(newsArticles.size()-3));
 		
 		SQLNewsDAOImpl dao = new SQLNewsDAOImpl();
-		NewsArticle article = dao.getArticleByID(10);
+		Optional<NewsArticle> article = dao.getArticleByID(10);
 		
 		System.out.println(article);
 		

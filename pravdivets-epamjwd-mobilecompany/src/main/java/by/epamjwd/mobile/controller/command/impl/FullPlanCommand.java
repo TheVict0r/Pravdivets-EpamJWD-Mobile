@@ -1,5 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.NoSuchElementException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,11 +30,10 @@ public class FullPlanCommand implements Command {
 
 		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
 		try {
-			Plan plan = tariffPlanService.getTariffPlanByID(id).orElse(new Plan());
-			//CHECK OPTIONAL
+			Plan plan = tariffPlanService.getTariffPlanByID(id).get();
 			request.setAttribute(AttributeName.PLAN, plan);
 			return new RouteHelper(PagePath.PLAN, RouteMethod.FORWARD);
-		} catch (ServiceException e) {
+		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain full tariff plan data. ", e);
 			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}

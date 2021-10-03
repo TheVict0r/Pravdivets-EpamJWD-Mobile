@@ -1,9 +1,10 @@
 package by.epamjwd.mobile.ZZZZtemporary;
 
+import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.impl.SQLPlanDAOImpl;
 
 public class TestSQLTariffPlanDAO {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DaoException {
 
 		SQLPlanDAOImpl tPDao = new SQLPlanDAOImpl();
 		

@@ -3,7 +3,7 @@
 
     <footer id="footer">
         <div style="background: Black;text-align: center;margin: 0px;padding: 10px;">
-            <p style="color: grey;"> copyright ©  2021 mobile | e-mail: ${initParam.companyEmail} | not a real company demonstration use only</p>
+            <p style="color: grey;"> copyright ©  2021 mobile | e-mail: ${initParam.companyEmail} | not a real company - demonstration use only</p>
             ${initParam.mainEmail}
         </div>
     </footer>
