@@ -39,14 +39,14 @@ public class AuthenticationCommand implements Command {
 		UserService userService = provider.getUserService();
 		try {
 			User user = userService.getUserByLogin(login).get();
-			request.getSession().setAttribute("email", user.getEmail());
+			request.getSession().setAttribute(AttributeName.EMAIL, user.getEmail());
 			String path = userService.getPathByUserType(user);
 			return new RouteHelper(path, RouteMethod.REDIRECT);
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain user data. ", e);
-			request.getSession().setAttribute("error", "login_error");
-			request.getSession().setAttribute("login", login);
-			request.getSession().setAttribute("password", String.valueOf(password));
+			request.getSession().setAttribute(AttributeName.ERROR, AttributeName.LOGIN_ERROR);
+			request.getSession().setAttribute(AttributeName.LOGIN, login);
+			request.getSession().setAttribute(AttributeName.PASSWORD, String.valueOf(password));
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
 		

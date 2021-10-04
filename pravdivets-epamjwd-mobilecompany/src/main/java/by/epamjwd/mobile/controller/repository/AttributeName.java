@@ -12,4 +12,8 @@ public class AttributeName {
 	public static final String ADMIN = "admin";
 	public static final String CONSULTANT = "consultant";
 	public static final String ABONENT = "abonent";
+	public static final String LOGIN = "login";
+	public static final String PASSWORD = "password";
+	public static final String ERROR = "error";
+	public static final String LOGIN_ERROR = "login_error";
 }
