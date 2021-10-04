@@ -17,20 +17,31 @@
 		<h3>Вход</h3>
 		<form method="POST" action="controller?command=authentication">
 			<table>
+				
+				<c:if test="${sessionScope.error eq 'login_error'}">
+					<p class="text-danger">Проверьте корректность введенных данных</p>
+					<c:remove var="error" />
+				</c:if>   
 				<tr>
 					<td>Phone number<b class="text-primary fs-5">*</b> / e-mail:
 					</td>
-					<td><input type="text" name="login" required></td>
+					<td><input type="text" name="login"
+						value="${sessionScope.login}" required></td>
+						<c:remove var="login" />
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type="password" name="password" required></td>
+					<td><input type="password" name="password"
+						value="${sessionScope.password}" required></td>
+						<c:remove var="password" />
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="submit" value="Вход"></td>
 				</tr>
 			</table>
+			<div>
+			</div>
 		</form>
 	</div>
 	<div class="row align-content-center mx-auto flex-grow-1">

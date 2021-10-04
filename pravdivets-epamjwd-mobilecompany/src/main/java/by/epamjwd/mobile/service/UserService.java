@@ -10,4 +10,5 @@ public interface UserService {
 	Optional<User> getUserByLogin(String email) throws ServiceException;
 	Optional<User> getUserByEmail(String email) throws ServiceException;
 	Optional<User> getUserByPhoneNumber(int phoneNumber) throws ServiceException;
+	String getPathByUserType(User user);
 }

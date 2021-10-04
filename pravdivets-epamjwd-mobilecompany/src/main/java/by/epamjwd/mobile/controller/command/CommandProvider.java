@@ -6,7 +6,10 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.epamjwd.mobile.controller.command.impl.AbonentCommand;
+import by.epamjwd.mobile.controller.command.impl.AdminCommand;
 import by.epamjwd.mobile.controller.command.impl.AuthenticationCommand;
+import by.epamjwd.mobile.controller.command.impl.ConsultantCommand;
 import by.epamjwd.mobile.controller.command.impl.FullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.FullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.FullServiceCommand;
@@ -37,6 +40,9 @@ public class CommandProvider {
 		allCommands.put(CommandName.FULL_PLAN, new FullPlanCommand());
 		allCommands.put(CommandName.PROVIDE_ALL_SERVICES, new ProvideAllServicesCommand());
 		allCommands.put(CommandName.FULL_SERVICE, new FullServiceCommand());
+		allCommands.put(CommandName.ADMIN, new AdminCommand());
+		allCommands.put(CommandName.CONSULTANT, new ConsultantCommand());
+		allCommands.put(CommandName.ABONENT, new AbonentCommand());
 	}
 
 	public Command getCommand(String commandName) {

@@ -29,27 +29,26 @@ public class AuthenticationCommand implements Command {
 	public static final String PHONE_NUMBER_REGEX = "\\d{9}";
 
 	private final static Logger LOGGER = LogManager.getLogger(AuthenticationCommand.class);
-	
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String login = request.getParameter(ParameterName.LOGIN);
 		char[] password = request.getParameter(ParameterName.PASSWORD).toCharArray();
-		//c паролем надо поработать
+		// c паролем надо поработать
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
 		try {
 			User user = userService.getUserByLogin(login).get();
-			//сохранять надо в сессию. т.к. у нас redirect
-			request.setAttribute(AttributeName.USER, user);
-					//TEMPORARY ROUTING
-		RouteHelper result = new RouteHelper(PagePath.ADMIN, RouteMethod.REDIRECT);
-		
-		return result;
-		} catch (ServiceException| NoSuchElementException e) {
+			request.getSession().setAttribute("email", user.getEmail());
+			String path = userService.getPathByUserType(user);
+			return new RouteHelper(path, RouteMethod.REDIRECT);
+		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain user data. ", e);
-			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			request.getSession().setAttribute("error", "login_error");
+			request.getSession().setAttribute("login", login);
+			request.getSession().setAttribute("password", String.valueOf(password));
+			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
-
 		
 	}
 

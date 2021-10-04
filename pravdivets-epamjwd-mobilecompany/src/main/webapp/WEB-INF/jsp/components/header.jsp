@@ -10,7 +10,7 @@
 
 <header id="header">
 	<nav
-		class="navbar navbar-light navbar-expand-md navigation-clean-button">
+		class="navbar navbar-light navbar-expand-lg navigation-clean-button">
 		<div class="container">
 			<a class="navbar-brand text-primary fs-1"
 				href="controller?command=main_page"><strong>mobile</strong></a>

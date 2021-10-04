@@ -1,11 +1,11 @@
 package by.epamjwd.mobile.service.impl;
 
-import java.rmi.ServerException;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import by.epamjwd.mobile.bean.User;
+import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
@@ -22,12 +22,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Optional<User> getUserByLogin(String login) throws ServiceException {
-		Optional<User> user = null;
+		Optional<User> user = Optional.ofNullable(null);
 		if(isPhoneNumber(login)) {
 			user = getUserByPhoneNumber(Integer.parseInt(login));
 		} else if(isEmail(login)) {
 			user = getUserByEmail(login);
-		}
+		} 
 		
 		return user;
 	}
@@ -49,6 +49,26 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	@Override
+	public String getPathByUserType(User user) {
+		String path = null;
+		switch (user.getRole()) {
+		case ABONENT:
+			path = PagePath.ABONENT_REDIRECT;
+			break;
+		case CONSULTANT:
+			path = PagePath.CONSULTANT_REDIRECT;
+			break;
+		case ADMIN:
+			path = PagePath.ADMIN_REDIRECT;
+			break;
+		default:
+			path = PagePath.LOGIN_REDIRECT;
+		}
+		return path;
+	}
+	
+	
 	private boolean isPhoneNumber(String anyString) {
 		Pattern validEmailPattern = Pattern.compile(PHONE_NUMBER_REGEX);
 		Matcher matcher = validEmailPattern.matcher(anyString);
