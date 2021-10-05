@@ -1,14 +1,17 @@
 package by.epamjwd.mobile.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
-public class Abonent implements Identifiable, Serializable{
+public class Abonent extends User implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = 5046781397740402140L;
 	
-	private int id;
-	private String login;
+	private long id;
+	private Date contractDate;
+	
 	private String password;
 	
 	private String firstName;
@@ -17,61 +20,52 @@ public class Abonent implements Identifiable, Serializable{
 	private String passportNumber;
 	
 	private String email;
-	private String region;
 	private String homeAddress;
 	
-	private int contractNumber;
-	private Date contractDate;
-
-	private int checkingAccountNumber;
 	private int checkingAccountAmount;
 	
 	private int phoneNumber;
 	private String tariffPlan;
-	private AbonentStatus status;
+	private String status;
+	private Date statusDate;
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+	
 	
 	public Abonent() {
 		
 	}
 	
-	public Abonent(int id, String login, String password, String firstName, String middleName, String lastName,
-			String passportNumber, String email, String region, String homeAddress, int contractNumber,
-			Date contractDate, int checkingAccountNumber, int checkingAccountAmount, int phoneNumber,
-			String tariffPlan, AbonentStatus status) {
-		
+	public Abonent(long id, Date contractDate, String password, String firstName, String middleName, String lastName,
+			String passportNumber, String email, String homeAddress, int checkingAccountAmount,
+			int phoneNumber, String tariffPlan, String status, Date statusDate) {
+		super();
 		this.id = id;
-		this.login = login;
+		this.contractDate = contractDate;
 		this.password = password;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.passportNumber = passportNumber;
 		this.email = email;
-		this.region = region;
 		this.homeAddress = homeAddress;
-		this.contractNumber = contractNumber;
-		this.contractDate = contractDate;
-		this.checkingAccountNumber = checkingAccountNumber;
 		this.checkingAccountAmount = checkingAccountAmount;
 		this.phoneNumber = phoneNumber;
 		this.tariffPlan = tariffPlan;
 		this.status = status;
+		this.statusDate = statusDate;
 	}
 
-	public int getId() {
+
+
+
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getPassword() {
@@ -122,14 +116,6 @@ public class Abonent implements Identifiable, Serializable{
 		this.email = email;
 	}
 
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
-	}
-
 	public String getHomeAddress() {
 		return homeAddress;
 	}
@@ -138,28 +124,12 @@ public class Abonent implements Identifiable, Serializable{
 		this.homeAddress = homeAddress;
 	}
 
-	public int getContractNumber() {
-		return contractNumber;
-	}
-
-	public void setContractNumber(int contractNumber) {
-		this.contractNumber = contractNumber;
-	}
-
 	public Date getContractDate() {
 		return contractDate;
 	}
 
 	public void setContractDate(Date contractDate) {
 		this.contractDate = contractDate;
-	}
-
-	public int getCheckingAccountNumber() {
-		return checkingAccountNumber;
-	}
-
-	public void setCheckingAccountNumber(int checkingAccountNumber) {
-		this.checkingAccountNumber = checkingAccountNumber;
 	}
 
 	public int getCheckingAccountAmount() {
@@ -182,42 +152,45 @@ public class Abonent implements Identifiable, Serializable{
 		return tariffPlan;
 	}
 
-	public void setTarifPlan(String tariffPlan) {
+	public void setTariffPlan(String tariffPlan) {
 		this.tariffPlan = tariffPlan;
 	}
-
-	public AbonentStatus getStatus() {
+	
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(AbonentStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+
+	public Date getStatusDate() {
+		return statusDate;
+	}
+
+	public void setStatusDate(Date statusDate) {
+		this.statusDate = statusDate;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + checkingAccountAmount;
-		result = prime * result + checkingAccountNumber;
 		result = prime * result + ((contractDate == null) ? 0 : contractDate.hashCode());
-		result = prime * result + contractNumber;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((formatter == null) ? 0 : formatter.hashCode());
 		result = prime * result + ((homeAddress == null) ? 0 : homeAddress.hashCode());
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
 		result = prime * result + ((passportNumber == null) ? 0 : passportNumber.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + phoneNumber;
-		result = prime * result + ((region == null) ? 0 : region.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((statusDate == null) ? 0 : statusDate.hashCode());
 		result = prime * result + ((tariffPlan == null) ? 0 : tariffPlan.hashCode());
 		return result;
 	}
@@ -226,21 +199,17 @@ public class Abonent implements Identifiable, Serializable{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Abonent other = (Abonent) obj;
 		if (checkingAccountAmount != other.checkingAccountAmount)
 			return false;
-		if (checkingAccountNumber != other.checkingAccountNumber)
-			return false;
 		if (contractDate == null) {
 			if (other.contractDate != null)
 				return false;
 		} else if (!contractDate.equals(other.contractDate))
-			return false;
-		if (contractNumber != other.contractNumber)
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -251,6 +220,11 @@ public class Abonent implements Identifiable, Serializable{
 			if (other.firstName != null)
 				return false;
 		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (formatter == null) {
+			if (other.formatter != null)
+				return false;
+		} else if (!formatter.equals(other.formatter))
 			return false;
 		if (homeAddress == null) {
 			if (other.homeAddress != null)
@@ -263,11 +237,6 @@ public class Abonent implements Identifiable, Serializable{
 			if (other.lastName != null)
 				return false;
 		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
 			return false;
 		if (middleName == null) {
 			if (other.middleName != null)
@@ -286,11 +255,20 @@ public class Abonent implements Identifiable, Serializable{
 			return false;
 		if (phoneNumber != other.phoneNumber)
 			return false;
-		if (region != other.region)
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
-		if (status != other.status)
+		if (statusDate == null) {
+			if (other.statusDate != null)
+				return false;
+		} else if (!statusDate.equals(other.statusDate))
 			return false;
-		if (tariffPlan != other.tariffPlan)
+		if (tariffPlan == null) {
+			if (other.tariffPlan != null)
+				return false;
+		} else if (!tariffPlan.equals(other.tariffPlan))
 			return false;
 		return true;
 	}
@@ -301,22 +279,20 @@ public class Abonent implements Identifiable, Serializable{
 		return new StringBuilder(getClass().getSimpleName())
                 .append("[")
                 .append("ID=").append(id)
-                .append(", login=").append(login)
+                .append(", contractDate=").append(formatter.format(contractDate))
                 .append(", password=").append(password)
                 .append(", firstName=").append(firstName)
                 .append(", middleName=").append(middleName)
                 .append(", lastName=").append(lastName)
                 .append(", passportNumber=").append(passportNumber)
                 .append(", email=").append(email)
-                .append(", region=").append(region)
                 .append(", homeAddress=").append(homeAddress)
-                .append(", contractNumber=").append(contractNumber)
-                .append(", contractDate=").append(contractDate)
-                .append(", checkingAccountNumber=").append(checkingAccountNumber)
+                .append(", contractDate=").append(formatter.format(contractDate))
                 .append(", checkingAccountAmount=").append(checkingAccountAmount)
                 .append(", phoneNumber=").append(phoneNumber)
                 .append(", tariffPlan=").append(tariffPlan)
                 .append(", status=").append(status)
+                .append(", statusDate=").append(formatter.format(statusDate))
                 .append("]")
                 .toString();
 	}

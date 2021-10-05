@@ -12,7 +12,7 @@ public class PlanRowMapper implements RowMapper<Plan>{
 	@Override
 	public Plan map(ResultSet resultSet) throws SQLException {
 		Plan plan = new Plan(
-			resultSet.getInt(DBColumnName.TARIFF_PLANS_ID),
+			resultSet.getLong(DBColumnName.TARIFF_PLANS_ID),
 			resultSet.getString(DBColumnName.TARIFF_PLANS_NAME),
 			resultSet.getInt(DBColumnName.TARIFF_PLANS_REGULAR_PAYMENT),
 			resultSet.getString(DBColumnName.TARIFF_PLANS_DESCRIPTION),

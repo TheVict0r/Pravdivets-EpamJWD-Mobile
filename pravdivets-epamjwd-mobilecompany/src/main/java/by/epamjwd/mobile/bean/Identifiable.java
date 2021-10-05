@@ -7,5 +7,5 @@ public interface Identifiable {
      *
      * @return entity ID
      */
-    int getId();
+    long getId();
 }

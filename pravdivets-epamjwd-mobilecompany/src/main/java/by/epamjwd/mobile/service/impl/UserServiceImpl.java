@@ -44,8 +44,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<User> getUserByPhoneNumber(int phoneNumber) {
-		Optional<User> result = userDao.getUserByPhoneNumber(phoneNumber);
+	public Optional<User> getUserByPhoneNumber(int phoneNumber) throws ServiceException {
+		Optional<User> result;
+		try {
+			result = userDao.getUserByPhoneNumber(phoneNumber);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
 		return result;
 	}
 

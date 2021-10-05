@@ -5,8 +5,8 @@ public class DBColumnName {
     public static final String ROLES_ID = "id";
     public static final String ROLES_ROLE = "role";
 	  
-    public static final String ABONENT_STATUS_ID = "id";
-    public static final String ABONENT_STATUS_STATUS = "status";
+    public static final String STATUS_ID = "id";
+    public static final String STATUS_STATUS = "status";
 	  
     public static final String TARIFF_PLANS_ID = "id";
     public static final String TARIFF_PLANS_NAME = "name";
@@ -30,20 +30,19 @@ public class DBColumnName {
     public static final String USERS_ROLE_ID = "role_id";
 	  
     public static final String CUSTOMERS_ID = "id";
-    public static final String CUSTOMERS_CONTRACT_DATE = "contract_date";
     public static final String CUSTOMERS_PASSPORT_NUMBER = "passport_number";
     public static final String CUSTOMERS_HOME_ADDRESS = "home_address";
     public static final String CUSTOMERS_USERS_ID = "users_id";
 	  
     public static final String ABONENTS_ID = "id";
+    public static final String ABONENT_CONTRACT_DATE = "contract_date";
     public static final String ABONENTS_ACCOUNT = "account";
     public static final String ABONENTS_PHONE_NUMBER = "phone_number";
-    public static final String ABONENTS_ABONENT_STATUS_ID = "abonent_status_id";
-    public static final String ABONENTS_ABONENT_STATUS_DATE = "abonent_status_date";
+    public static final String ABONENTS_STATUS_ID = "status_id";
+    public static final String ABONENTS_STATUS_DATE = "status_date";
     public static final String ABONENTS_TARIFF_PLANS_ID = "tariff_plans_id";
     public static final String ABONENTS_CUSTOMERS_ID = "customers_id";
 	  
-  
     public static final String SERVICES_ID = "id";
     public static final String SERVICES_NAME = "name";
     public static final String SERVICES_TARIF = "tarif";

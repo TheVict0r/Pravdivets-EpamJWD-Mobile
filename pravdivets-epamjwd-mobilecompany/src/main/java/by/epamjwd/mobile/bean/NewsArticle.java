@@ -17,7 +17,7 @@ public class NewsArticle implements Identifiable, Serializable {
 	private final static Logger LOGGER = LogManager.getLogger(NewsArticle.class);
 	
 	
-	private int id;
+	private long id;
 	private Date date;
 	private String title; 
 	private String lead;
@@ -27,7 +27,7 @@ public class NewsArticle implements Identifiable, Serializable {
 		
 	}
 
-	public NewsArticle(int id, Date date, String title, String lead, String text) {
+	public NewsArticle(long id, Date date, String title, String lead, String text) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -36,11 +36,11 @@ public class NewsArticle implements Identifiable, Serializable {
 		this.text = text;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -92,14 +92,13 @@ public class NewsArticle implements Identifiable, Serializable {
 		return serialVersionUID;
 	}
 
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((formatter == null) ? 0 : formatter.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((lead == null) ? 0 : lead.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
@@ -119,6 +118,11 @@ public class NewsArticle implements Identifiable, Serializable {
 			if (other.date != null)
 				return false;
 		} else if (!date.equals(other.date))
+			return false;
+		if (formatter == null) {
+			if (other.formatter != null)
+				return false;
+		} else if (!formatter.equals(other.formatter))
 			return false;
 		if (id != other.id)
 			return false;

@@ -6,7 +6,7 @@ public class Service implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = -3179952249585984534L;
 	
-	private int id;
+	private long id;
 	private String name;
 	private int tarif;
 	private String description;
@@ -14,19 +14,18 @@ public class Service implements Identifiable, Serializable{
 	public Service() {
 	}
 
-	public Service(int id, String name, int tarif, String description) {
-		super();
+	public Service(long id, String name, int tarif, String description) {
 		this.id = id;
 		this.name = name;
 		this.tarif = tarif;
 		this.description = description;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -54,12 +53,14 @@ public class Service implements Identifiable, Serializable{
 		this.description = description;
 	}
 
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + tarif;
 		return result;

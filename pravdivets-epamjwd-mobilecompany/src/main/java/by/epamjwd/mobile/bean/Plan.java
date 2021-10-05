@@ -6,7 +6,7 @@ public class Plan implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = 1240407715285924386L;
 	
-	private int id;
+	private long id;
 	private String name;
 	private int regularPayment;
 	private String description;
@@ -22,10 +22,9 @@ public class Plan implements Identifiable, Serializable{
 		
 	}
 
-	public Plan(int id, String name, int regularPayment, String description, int priceWithinNetwork,
+	public Plan(long id, String name, int regularPayment, String description, int priceWithinNetwork,
 			int priceOtherNetworks, int priceAbroad, int priceVideocall, int priceSMS, int priceMMS,
 			int priceInternet) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.regularPayment = regularPayment;
@@ -39,11 +38,11 @@ public class Plan implements Identifiable, Serializable{
 		this.priceInternet = priceInternet;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -132,7 +131,7 @@ public class Plan implements Identifiable, Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + priceAbroad;
 		result = prime * result + priceInternet;
@@ -203,8 +202,5 @@ public class Plan implements Identifiable, Serializable{
 				.append("]")
 				.toString();
 	}
-	
-	
-	
 	
 }

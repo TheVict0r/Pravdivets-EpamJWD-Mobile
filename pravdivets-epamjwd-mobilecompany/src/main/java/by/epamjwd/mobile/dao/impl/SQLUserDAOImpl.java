@@ -1,25 +1,16 @@
 package by.epamjwd.mobile.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Abonent;
-import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.UserDAO;
-import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
-import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 import by.epamjwd.mobile.dao.exception.DaoException;
-import by.epamjwd.mobile.dao.mapper.RowMapper;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
-import by.epamjwd.mobile.dao.repository.DBColumnName;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
@@ -28,16 +19,15 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
         super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
 	}
 
-	private final static Logger LOGGER = LogManager.getLogger(SQLUserDAOImpl.class);
 
 	public final static String GET_USER_BY_EMAIL = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.email = ?";
+	public final static String GET_USER_BY_PHONE_NUMBER = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id INNER JOIN Customers ON Users.id = Customers.users_id INNER JOIN Abonents ON Customers.id = Abonents.customers_id WHERE Abonents.phone_number = ?";
 	
 	
 	
 	@Override
-	public Optional<User> getUserByPhoneNumber(int phoneNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<User> getUserByPhoneNumber(int phoneNumber) throws DaoException {
+		return executeQueryForSingleResult(GET_USER_BY_PHONE_NUMBER, phoneNumber);
 	}
 
 	

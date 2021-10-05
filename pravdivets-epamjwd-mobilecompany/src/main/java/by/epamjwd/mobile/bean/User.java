@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class User implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = -7824134086755989749L;
-	private int id;
+	
+	private long id;
 	private String password;
 	private String firstName;
 	private String middleName;
@@ -16,7 +17,7 @@ public class User implements Identifiable, Serializable{
 	public User() {
 	}
 
-	public User(int id, String password, String firstName, String middleName, 
+	public User(long id, String password, String firstName, String middleName, 
 			String lastName, String email, Role role) {
 		this.id = id;
 		this.password = password;
@@ -27,11 +28,11 @@ public class User implements Identifiable, Serializable{
 		this.role = role;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -89,7 +90,7 @@ public class User implements Identifiable, Serializable{
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
