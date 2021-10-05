@@ -18,9 +18,9 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class AbonentCommand implements Command{
+public class CustomerCommand implements Command{
 
-	private final static Logger LOGGER = LogManager.getLogger(AbonentCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(CustomerCommand.class);
 
 	
 	@Override
@@ -29,9 +29,9 @@ public class AbonentCommand implements Command{
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
 		try {
-			User abonent = userService.getUserByEmail(email).get();
-			request.setAttribute(AttributeName.ABONENT, abonent);
-			RouteHelper result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
+			User cutomer = userService.getUserByEmail(email).get();
+			request.setAttribute(AttributeName.CUSTOMER, cutomer);
+			RouteHelper result = new RouteHelper(PagePath.CUSTOMER, RouteMethod.FORWARD);
 			return result;
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain abonent user data. ", e);

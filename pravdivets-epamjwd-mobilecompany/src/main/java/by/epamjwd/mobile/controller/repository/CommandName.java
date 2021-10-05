@@ -16,5 +16,6 @@ public class CommandName {
 	public static final String ADMIN = "admin";
 	public static final String CONSULTANT = "consultant";
 	public static final String ABONENT = "abonent";
+	public static final String CUSTOMER = "customer";
 
 }

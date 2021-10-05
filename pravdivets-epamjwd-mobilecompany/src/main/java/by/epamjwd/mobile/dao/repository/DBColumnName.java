@@ -29,19 +29,19 @@ public class DBColumnName {
     public static final String USERS_EMAIL = "email";
     public static final String USERS_ROLE_ID = "role_id";
 	  
-    public static final String CUSTOMERS_CONTRACT_NUMBER = "contract_number";
+    public static final String CUSTOMERS_ID = "id";
     public static final String CUSTOMERS_CONTRACT_DATE = "contract_date";
     public static final String CUSTOMERS_PASSPORT_NUMBER = "passport_number";
     public static final String CUSTOMERS_HOME_ADDRESS = "home_address";
     public static final String CUSTOMERS_USERS_ID = "users_id";
 	  
-    public static final String ABONENTS_CHECKING_ACCOUNT_NUMBER = "checking_account_number";
-    public static final String ABONENTS_CHECKING_ACCOUNT_AMOUNT = "checking_account_amount";
+    public static final String ABONENTS_ID = "id";
+    public static final String ABONENTS_ACCOUNT = "account";
     public static final String ABONENTS_PHONE_NUMBER = "phone_number";
     public static final String ABONENTS_ABONENT_STATUS_ID = "abonent_status_id";
     public static final String ABONENTS_ABONENT_STATUS_DATE = "abonent_status_date";
-    public static final String ABONENTS_CONTRACT_NUMBER = "contract_number";
     public static final String ABONENTS_TARIFF_PLANS_ID = "tariff_plans_id";
+    public static final String ABONENTS_CUSTOMERS_ID = "customers_id";
 	  
   
     public static final String SERVICES_ID = "id";
@@ -50,7 +50,7 @@ public class DBColumnName {
     public static final String SERVICES_DESCRIPTION = "description";
 	  
     public static final String BILLS_ID = "id";
-    public static final String BILLS_CHECKING_ACCOUNT_NUMBER = "checking_account_number";
+    public static final String BILLS_ABONENTS_ID = "abonents_id";
     public static final String BILLS_DATE = "date";
     public static final String BILLS_AMOUNT = "amount";
     public static final String BILLS_PAYED = "payed";

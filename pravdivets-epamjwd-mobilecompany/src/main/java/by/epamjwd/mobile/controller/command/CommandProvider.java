@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.controller.command.impl.AbonentCommand;
+import by.epamjwd.mobile.controller.command.impl.CustomerCommand;
 import by.epamjwd.mobile.controller.command.impl.AdminCommand;
 import by.epamjwd.mobile.controller.command.impl.AuthenticationCommand;
 import by.epamjwd.mobile.controller.command.impl.ConsultantCommand;
@@ -42,7 +42,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.FULL_SERVICE, new FullServiceCommand());
 		allCommands.put(CommandName.ADMIN, new AdminCommand());
 		allCommands.put(CommandName.CONSULTANT, new ConsultantCommand());
-		allCommands.put(CommandName.ABONENT, new AbonentCommand());
+		allCommands.put(CommandName.CUSTOMER, new CustomerCommand());
+		//allCommands.put(CommandName.ABONENT, new AbonentCommand());
 	}
 
 	public Command getCommand(String commandName) {
@@ -56,7 +57,7 @@ public class CommandProvider {
 			LOGGER.error("Null value instead of command", e);
 			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
 		}
-		
+		//возможно отсечётся через web.xml
 		if (command == null) {
 			LOGGER.error("Nonexistent command name" + commandName);
 			command = allCommands.get(CommandName.NO_SUCH_COMMAND);

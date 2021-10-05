@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
 	public String getPathByUserType(User user) {
 		String path = null;
 		switch (user.getRole()) {
-		case ABONENT:
-			path = PagePath.ABONENT_REDIRECT;
+		case CUSTOMER:
+			path = PagePath.CUSTOMER_REDIRECT;
 			break;
 		case CONSULTANT:
 			path = PagePath.CONSULTANT_REDIRECT;

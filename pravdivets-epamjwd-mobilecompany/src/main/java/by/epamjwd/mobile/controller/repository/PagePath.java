@@ -14,6 +14,8 @@ public class PagePath {
 	public static final String LOGIN_REDIRECT = "/controller?command=login";
 	public static final String ABONENT = "WEB-INF/jsp/abonent.jsp";
 	public static final String ABONENT_REDIRECT = "/controller?command=abonent";
+	public static final String CUSTOMER = "WEB-INF/jsp/customer.jsp";
+	public static final String CUSTOMER_REDIRECT = "/controller?command=customer";
 	public static final String CONSULTANT = "WEB-INF/jsp/consultant.jsp";
 	public static final String CONSULTANT_REDIRECT = "/controller?command=consultant";
 	public static final String ADMIN = "WEB-INF/jsp/admin.jsp";
