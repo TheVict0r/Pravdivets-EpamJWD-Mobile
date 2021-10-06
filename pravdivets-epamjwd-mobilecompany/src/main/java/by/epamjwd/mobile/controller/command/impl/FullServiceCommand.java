@@ -29,15 +29,16 @@ public class FullServiceCommand implements Command{
 		ServiceService serviceService = provider.getServiceService();
 
 		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
+		RouteHelper result = null;
 		try {
 			Service service = serviceService.getServiceByID(id).get();
 			request.setAttribute(AttributeName.SERVICE, service);
-			return new RouteHelper(PagePath.SERVICE, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.SERVICE, RouteMethod.FORWARD);
 		} catch (ServiceException | NoSuchElementException e) {
-			LOGGER.error("Unable to obtain full service data. ", e);
-			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			LOGGER.error("Unable to obtain full service data for ID " + id, e);
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
-
+		return result;
 	}
 
 }

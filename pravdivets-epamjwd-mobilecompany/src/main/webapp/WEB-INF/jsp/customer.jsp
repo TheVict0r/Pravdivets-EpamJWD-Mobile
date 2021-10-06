@@ -17,12 +17,18 @@
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
 
-		<h1>customer.jsp</h1>
+		<span class="display-6 text-center">Здравствуйте, ${requestScope.abonent_list[0].firstName} ${requestScope.abonent_list[0].middleName}!</span>
+		</div>
+	<div class="row align-content-center mx-auto flex-grow-1">
 
-		<span class="display-5 text-center">Здравствуйте, ${requestScope.customer.firstName} ${requestScope.customer.lastName}</span>
-		<span class="display-5 text-center">Тут ЕГОНЫЕ телефоны</span>
-
-	</div>
+		<span class="fs-4 fw-light text-center">Пожалуйста, выберите тот номер телефона, </br>информацию по которому Вы хотите получить:</span> 
+			</div>
+			
+			<div class="fs-4 fw-bold text-center text-primary flex-grow-1">
+			<c:forEach var="abonent" items="${requestScope.abonent_list}">
+			<a  href="${pageContext.request.contextPath}/controller?command=abonent&phone_number=${abonent.phoneNumber}">${abonent.phoneNumber}</a></br>
+			</c:forEach>
+			</div>
 
 	<jsp:include page="components/footer.jsp" />
 </body>

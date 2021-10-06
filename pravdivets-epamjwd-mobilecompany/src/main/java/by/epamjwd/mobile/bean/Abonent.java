@@ -26,7 +26,7 @@ public class Abonent extends User implements Identifiable, Serializable{
 	
 	private int phoneNumber;
 	private String tariffPlan;
-	private String status;
+	private AbonentStatus status;
 	private Date statusDate;
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -38,7 +38,7 @@ public class Abonent extends User implements Identifiable, Serializable{
 	
 	public Abonent(long id, Date contractDate, String password, String firstName, String middleName, String lastName,
 			String passportNumber, String email, String homeAddress, int checkingAccountAmount,
-			int phoneNumber, String tariffPlan, String status, Date statusDate) {
+			int phoneNumber, String tariffPlan, AbonentStatus status, Date statusDate) {
 		super();
 		this.id = id;
 		this.contractDate = contractDate;
@@ -156,11 +156,11 @@ public class Abonent extends User implements Identifiable, Serializable{
 		this.tariffPlan = tariffPlan;
 	}
 	
-	public String getStatus() {
+	public AbonentStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(AbonentStatus status) {
 		this.status = status;
 	}
 
@@ -291,7 +291,7 @@ public class Abonent extends User implements Identifiable, Serializable{
                 .append(", checkingAccountAmount=").append(checkingAccountAmount)
                 .append(", phoneNumber=").append(phoneNumber)
                 .append(", tariffPlan=").append(tariffPlan)
-                .append(", status=").append(status)
+                .append(", status=").append(status.getStatusName())
                 .append(", statusDate=").append(formatter.format(statusDate))
                 .append("]")
                 .toString();

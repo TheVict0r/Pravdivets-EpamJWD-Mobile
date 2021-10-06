@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.AbonentStatus;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
 
@@ -24,7 +25,7 @@ public class AbonentRowMapper implements RowMapper<Abonent> {
 						resultSet.getInt(DBColumnName.ABONENTS_ACCOUNT),
 						resultSet.getInt(DBColumnName.ABONENTS_PHONE_NUMBER),
 						resultSet.getString(DBColumnName.TARIFF_PLANS_NAME),
-						resultSet.getString(DBColumnName.STATUS_STATUS),
+  AbonentStatus.valueOf(resultSet.getString(DBColumnName.STATUS_STATUS).toUpperCase()),
 				        resultSet.getDate(DBColumnName.ABONENTS_STATUS_DATE)
 				         );
 		return abonent;

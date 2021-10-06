@@ -17,9 +17,16 @@
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
 
-		<h1>abonent.jsp</h1>
+		<span class="display-5 text-center">Здравствуйте,
+			${requestScope.abonent.firstName} ${requestScope.abonent.lastName}</span>
+		<div class="container fs-4 fw-light ">
+			Номер телефона: ${requestScope.abonent.phoneNumber}</br> 
+			Cчет №:${requestScope.abonent.id}</br> 
+			Статус: ${requestScope.abonent.status.statusName}</br>
+			Состояние счета: ${requestScope.abonent.checkingAccountAmount/100} руб.</br>
+			Тарифный план: ${requestScope.abonent.tariffPlan}</br>
+		</div>
 
-		<span class="display-5 text-center">Здравствуйте, ${requestScope.abonent.firstName} ${requestScope.abonent.lastName}</span>
 
 	</div>
 

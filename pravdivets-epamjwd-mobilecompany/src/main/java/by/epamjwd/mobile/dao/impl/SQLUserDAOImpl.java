@@ -87,7 +87,6 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	}
 
 
-
 	@Override
 	public long save(User item) throws DaoException {
 		// TODO Auto-generated method stub

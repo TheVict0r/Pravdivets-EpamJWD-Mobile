@@ -28,14 +28,16 @@ public class ProvideAllServicesCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		ServiceService serviceService = provider.getServiceService();
+		RouteHelper result = null;
 		try {
 			List<Service> serviceList = serviceService.getAllServices();
 			request.setAttribute(AttributeName.ALL_SERVICES, serviceList);
-			return new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain service list. ", e);
-			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
+		return result;
 	}
 
 }

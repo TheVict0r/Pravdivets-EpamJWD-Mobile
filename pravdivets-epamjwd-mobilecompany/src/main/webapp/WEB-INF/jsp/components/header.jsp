@@ -12,8 +12,8 @@
 	<nav
 		class="navbar navbar-light navbar-expand-lg navigation-clean-button">
 		<div class="container">
-			<a class="navbar-brand text-primary fs-1"
-				href="controller?command=main_page"><strong>mobile</strong></a>
+			<a class="navbar-brand text-primary fs-1 fw-bold"
+				href="controller?command=main_page">mobile</a>
 			<button data-bs-toggle="collapse" data-bs-target="#navcol-1"
 				class="navbar-toggler">
 				<span class="visually-hidden">Toggle navigation</span><span

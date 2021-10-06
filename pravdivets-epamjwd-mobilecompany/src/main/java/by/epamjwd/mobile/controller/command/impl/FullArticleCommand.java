@@ -24,25 +24,24 @@ public class FullArticleCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FullArticleCommand.class);
 
-	
 	@Override
-	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response){
+	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 
 		ServiceProvider provider = ServiceProvider.getInstance();
 		NewsService newsService = provider.getNewsService();
 
-		String idString = request.getParameter(ParameterName.ID);
-		int id = Integer.parseInt(idString);
+		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
+		RouteHelper result = null;
 
 		try {
 			NewsArticle article = newsService.getArticleByID(id).get();
 			request.setAttribute(AttributeName.ARTICLE, article);
-			return new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
-		} catch (ServiceException| NoSuchElementException e) {
-			LOGGER.error("Unable to obtain news article data. ", e);
-			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
+		} catch (ServiceException | NoSuchElementException e) {
+			LOGGER.error("Unable to obtain news article data for ID -  " + id, e);
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
-
+		return result;
 	}
 
 }

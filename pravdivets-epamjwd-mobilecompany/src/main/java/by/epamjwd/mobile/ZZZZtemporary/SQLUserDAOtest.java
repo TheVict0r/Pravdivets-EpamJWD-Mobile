@@ -1,10 +1,11 @@
 package by.epamjwd.mobile.ZZZZtemporary;
 
 import by.epamjwd.mobile.bean.User;
+import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.impl.SQLUserDAOImpl;
 
 public class SQLUserDAOtest {
-public static void main(String[] args) {
+public static void main(String[] args) throws DaoException {
 
 	String email1 = "abonent7@mail.ru";
 	String email2 = "consultant1@mail.ru";
@@ -12,12 +13,9 @@ public static void main(String[] args) {
 	
 	SQLUserDAOImpl sqlUserDao = new SQLUserDAOImpl();
 	
-	User user1 = sqlUserDao.getUserByEmail(email1);
-	User user2 = sqlUserDao.getUserByEmail(email2);
-	User user3 = sqlUserDao.getUserByEmail(email3);
+	User user1 = sqlUserDao.getUserByEmail(email1).get();
+	User user2 = sqlUserDao.getUserByEmail(email2).get();
+	User user3 = sqlUserDao.getUserByEmail(email3).get();
 	
-	System.out.println(user1);
-	System.out.println(user2);
-	System.out.println(user3);
 }
 }

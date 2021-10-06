@@ -10,7 +10,7 @@ import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
 
-public class LoginCommand implements Command {
+public class GoToLoginPageCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {

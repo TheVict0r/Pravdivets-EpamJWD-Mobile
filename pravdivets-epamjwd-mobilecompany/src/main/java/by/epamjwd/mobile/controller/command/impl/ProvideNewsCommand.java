@@ -27,15 +27,15 @@ public class ProvideNewsCommand implements Command {
 
 		ServiceProvider provider = ServiceProvider.getInstance();
 		NewsService newsService = provider.getNewsService();
+		RouteHelper result = null;
 		try {
 			List<NewsArticle> newsList = newsService.getAllNews();
 			request.setAttribute(AttributeName.NEWS, newsList);
-			return new RouteHelper(PagePath.ALL_NEWS, RouteMethod.FORWARD);
-
+			result = new RouteHelper(PagePath.ALL_NEWS, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain news list. ", e);
-			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
-
+		return result;
 	}
 }

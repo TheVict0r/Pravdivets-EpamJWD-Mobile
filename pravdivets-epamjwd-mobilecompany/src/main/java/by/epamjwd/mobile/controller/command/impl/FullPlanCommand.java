@@ -27,17 +27,18 @@ public class FullPlanCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		PlanService tariffPlanService = provider.getPlanService();
+		RouteHelper result = null;
 
 		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
 		try {
 			Plan plan = tariffPlanService.getTariffPlanByID(id).get();
 			request.setAttribute(AttributeName.PLAN, plan);
-			return new RouteHelper(PagePath.PLAN, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.PLAN, RouteMethod.FORWARD);
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain full tariff plan data. ", e);
-			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
-
+		return result;
 	}
 
 }
