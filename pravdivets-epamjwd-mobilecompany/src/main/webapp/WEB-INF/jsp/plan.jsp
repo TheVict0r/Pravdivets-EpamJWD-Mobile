@@ -19,8 +19,7 @@
 	</div>
 
 
-	<div
-		class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-2">
+	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-2">
 
 		
 		<span class="display-6 text-center">Тарифный план</span> 

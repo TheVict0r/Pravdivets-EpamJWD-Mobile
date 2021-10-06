@@ -13,7 +13,7 @@
 		class="navbar navbar-light navbar-expand-lg navigation-clean-button">
 		<div class="container">
 			<a class="navbar-brand text-primary fs-1 fw-bold"
-				href="controller?command=main_page">mobile</a>
+				href="controller?command=go_to_main_page">mobile</a>
 			<button data-bs-toggle="collapse" data-bs-target="#navcol-1"
 				class="navbar-toggler">
 				<span class="visually-hidden">Toggle navigation</span><span
@@ -33,7 +33,7 @@
 				<div class="text-end">
 					<span class="navbar actions"> <a
 						class="login btn btn-outline-primary me-2"
-						href="${pageContext.request.contextPath}/controller?command=login">Вход</a>
+						href="${pageContext.request.contextPath}/controller?command=go_to_login_page">Вход</a>
 						<a class="btn btn-primary" role="button" href="#">Регистрация</a></span>
 				</div>
 			</div>

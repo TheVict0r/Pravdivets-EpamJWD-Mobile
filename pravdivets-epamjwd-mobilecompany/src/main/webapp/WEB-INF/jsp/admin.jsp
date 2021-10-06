@@ -15,13 +15,12 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-	<div class="row align-content-center mx-auto flex-grow-1">
 
-		<h1>Admin.jsp</h1>
-
-		<span class="display-5 text-center">Здравствуйте, ${requestScope.admin.firstName} ${requestScope.admin.lastName}</span>
-
+	<div class="align-content-center mx-auto flex-grow-1">
+		<span class="fs-5 fw-bold text-left">Оператор:
+			${requestScope.admin.firstName} ${requestScope.admin.lastName}</span>
 	</div>
+
 
 	<jsp:include page="components/footer.jsp" />
 </body>

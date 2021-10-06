@@ -16,19 +16,38 @@
 
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
-
-		<span class="display-5 text-center">Здравствуйте,
-			${requestScope.abonent.firstName} ${requestScope.abonent.middleName}!</span>
-		<div class="container fs-4 fw-light ">
-			Номер телефона: ${requestScope.abonent.phoneNumber}</br> 
-			Лицевой счет №: ${requestScope.abonent.id}</br> 
-			Баланс лицевого счета: ${requestScope.abonent.checkingAccountAmount/100} руб.</br>
-			Статус: ${requestScope.abonent.status.statusName}</br>
-			Тарифный план: ${requestScope.abonent.tariffPlan}</br>
+		<span class="display-4 text-center">Личный кабинет</span>
+		<h4 class="h4 mb-3 text-center">${requestScope.abonent.firstName} ${requestScope.abonent.middleName} ${requestScope.abonent.lastName}</h4>
+			</div>
+			
+		<div class="container col-sm-9 align-content-center fs-5 fw-light flex-grow-1">
+			<table class="table ">
+				<tr>
+					<td>Номер телефона:</td>
+					<td>${requestScope.abonent.phoneNumber}</td>
+				</tr>
+				<tr>
+					<td>Текущий баланс:</td>
+					<td>${requestScope.abonent.checkingAccountAmount/100} руб.</td>
+				</tr>
+				<tr>
+					<td>Статус:</td>
+					<td>${requestScope.abonent.status.statusName}</td>
+				</tr>
+				<tr>
+					<td>Лицевой счет №:</td>
+					<td>${requestScope.abonent.id}</td>
+				</tr>
+				<tr>
+					<td>Тарифный план: </td>
+					<td>${requestScope.abonent.tariffPlan}</td>
+					<td>Сменить тариф >></td>
+				</tr>
+			</table>
 		</div>
 
 
-	</div>
+
 
 	<jsp:include page="components/footer.jsp" />
 </body>

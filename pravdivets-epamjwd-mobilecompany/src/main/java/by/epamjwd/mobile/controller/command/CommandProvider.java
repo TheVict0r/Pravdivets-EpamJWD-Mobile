@@ -30,13 +30,13 @@ public class CommandProvider {
 	private final Map<String, Command> allCommands = new HashMap<>();
 
 	public CommandProvider() {
-		allCommands.put(CommandName.MAIN_PAGE, new GoToMainPageCommand());
+		allCommands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPageCommand());
 		allCommands.put(CommandName.AUTHENTICATION, new AuthenticationCommand());
 		allCommands.put(CommandName.EDIT_PROFILE, new ProfileEditorCommand());
 		allCommands.put(CommandName.PROVIDE_NEWS, new ProvideNewsCommand());
 		allCommands.put(CommandName.FULL_ARTICLE, new FullArticleCommand());
 		allCommands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
-		allCommands.put(CommandName.LOGIN, new GoToLoginPageCommand());
+		allCommands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
 		allCommands.put(CommandName.PROVIDE_ALL_PLANS, new ProvideAllPlansCommand());
 		allCommands.put(CommandName.FULL_PLAN, new FullPlanCommand());
 		allCommands.put(CommandName.PROVIDE_ALL_SERVICES, new ProvideAllServicesCommand());
