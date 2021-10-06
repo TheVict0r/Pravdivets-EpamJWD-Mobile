@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserService {
 		} else if(isEmail(login)) {
 			user = getUserByEmail(login);
 		} 
-		
 		return user;
 	}
 

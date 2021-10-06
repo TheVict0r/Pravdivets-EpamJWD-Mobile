@@ -18,12 +18,12 @@
 	<div class="row align-content-center mx-auto flex-grow-1">
 
 		<span class="display-5 text-center">Здравствуйте,
-			${requestScope.abonent.firstName} ${requestScope.abonent.lastName}</span>
+			${requestScope.abonent.firstName} ${requestScope.abonent.middleName}!</span>
 		<div class="container fs-4 fw-light ">
 			Номер телефона: ${requestScope.abonent.phoneNumber}</br> 
-			Cчет №:${requestScope.abonent.id}</br> 
+			Лицевой счет №: ${requestScope.abonent.id}</br> 
+			Баланс лицевого счета: ${requestScope.abonent.checkingAccountAmount/100} руб.</br>
 			Статус: ${requestScope.abonent.status.statusName}</br>
-			Состояние счета: ${requestScope.abonent.checkingAccountAmount/100} руб.</br>
 			Тарифный план: ${requestScope.abonent.tariffPlan}</br>
 		</div>
 

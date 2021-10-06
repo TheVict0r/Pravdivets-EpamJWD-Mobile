@@ -44,7 +44,7 @@ public class AuthenticationCommand implements Command {
 			String path = userService.getPathByUserType(user);
 			result = new RouteHelper(path, RouteMethod.REDIRECT);
 		} catch (ServiceException | NoSuchElementException e) {
-			LOGGER.error("Unable to obtain user data. ", e);
+			LOGGER.error("Unable to obtain user data for " + login, e);
 			request.getSession().setAttribute(AttributeName.ERROR, AttributeName.LOGIN_ERROR);
 			request.getSession().setAttribute(AttributeName.LOGIN, login);
 			request.getSession().setAttribute(AttributeName.PASSWORD, String.valueOf(password));
