@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.CustomerCommand;
 import by.epamjwd.mobile.controller.command.impl.AbonentCommand;
+import by.epamjwd.mobile.controller.command.impl.AbonentForStuffCommand;
 import by.epamjwd.mobile.controller.command.impl.AdminCommand;
 import by.epamjwd.mobile.controller.command.impl.AuthenticationCommand;
 import by.epamjwd.mobile.controller.command.impl.ConsultantCommand;
@@ -45,6 +46,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.CONSULTANT, new ConsultantCommand());
 		allCommands.put(CommandName.CUSTOMER, new CustomerCommand());
 		allCommands.put(CommandName.ABONENT, new AbonentCommand());
+		allCommands.put(CommandName.ABONENT_FOR_STUFF, new AbonentForStuffCommand());
 	}
 
 	public Command getCommand(String commandName) {

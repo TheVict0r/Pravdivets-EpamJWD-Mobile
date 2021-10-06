@@ -20,16 +20,7 @@
 		<span class="fs-5 fw-bold text-start">Оператор: ${requestScope.consultant.firstName} ${requestScope.consultant.lastName}</span>
 	</div>
 
-	<div
-		class="container col-sm-9 align-content-center fs-5 fw-light flex-grow-1">
-		<form method="POST" action="controller?command=abonent_for_stuff">
-			<p>Показать данные абонента по номеру телефона</p>
-			<input type="text" name="phone_number" value="" required> 
-			<input type="submit" value="OK">
-		</form>
-	</div>
-
-
+		<h4 class="h4 mb-3 text-center flex-grow-1">${requestScope.abonent.firstName} ${requestScope.abonent.middleName} ${requestScope.abonent.lastName}</h4>
 
 	<jsp:include page="components/footer.jsp" />
 </body>
