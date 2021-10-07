@@ -7,11 +7,11 @@ package by.epamjwd.mobile.controller.repository;
 public class PagePath {
 
 	public static final String MAIN = "WEB-INF/jsp/main.jsp";
-	public static final String MAIN_REDIRECT = "/controller?command=main_page";
+	public static final String MAIN_REDIRECT = "/controller?command=go_to_main_page";
 	public static final String ARTICLE = "WEB-INF/jsp/article.jsp";
 	public static final String ALL_NEWS = "WEB-INF/jsp/allnews.jsp";
 	public static final String LOGIN = "WEB-INF/jsp/login.jsp";
-	public static final String LOGIN_REDIRECT = "/controller?command=login";
+	public static final String LOGIN_REDIRECT = "/controller?command=go_to_login_page";
 	public static final String ABONENT = "WEB-INF/jsp/abonent.jsp";
 	public static final String ABONENT_REDIRECT = "/controller?command=abonent";
 	public static final String ABONENT_FOR_STUFF = "WEB-INF/jsp/abonentforstuff.jsp";

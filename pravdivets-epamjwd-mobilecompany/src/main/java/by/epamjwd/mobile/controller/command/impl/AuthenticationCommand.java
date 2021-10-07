@@ -34,13 +34,24 @@ public class AuthenticationCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String login = request.getParameter(ParameterName.LOGIN);
 		char[] password = request.getParameter(ParameterName.PASSWORD).toCharArray();
+		
+		if(login==null || String.valueOf(password)==null) {
+			request.getSession().setAttribute(AttributeName.ERROR, AttributeName.LOGIN_ERROR);
+			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
+		}
+		
 		// c паролем надо поработать
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
 		RouteHelper result = null;
+		
 		try {
 			User user = userService.getUserByLogin(login).get();
 			request.getSession().setAttribute(AttributeName.EMAIL, user.getEmail());
+			
+			
+			
+			
 			String path = userService.getPathByUserType(user);
 			result = new RouteHelper(path, RouteMethod.REDIRECT);
 		} catch (ServiceException | NoSuchElementException e) {

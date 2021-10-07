@@ -17,11 +17,14 @@
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<span class="display-4 text-center">Личный кабинет</span>
-		<h4 class="h4 mb-3 text-center">${requestScope.abonent.firstName} ${requestScope.abonent.middleName} ${requestScope.abonent.lastName}</h4>
 			</div>
 			
-		<div class="container col-sm-9 align-content-center fs-5 fw-light flex-grow-1">
+		<div class="container col-sm-12 col-md-9 col-lg-8 col-xl-7 fs-5 fw-light flex-grow-1">
 			<table class="table ">
+				<tr>
+					<td>ФИО:</td>
+					<td>${requestScope.abonent.firstName} ${requestScope.abonent.middleName} ${requestScope.abonent.lastName}</td>
+				</tr>
 				<tr>
 					<td>Номер телефона:</td>
 					<td>${requestScope.abonent.phoneNumber}</td>
@@ -41,7 +44,7 @@
 				<tr>
 					<td>Тарифный план: </td>
 					<td>${requestScope.abonent.tariffPlan}</td>
-					<td>Сменить тариф >></td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 			</table>
 		</div>

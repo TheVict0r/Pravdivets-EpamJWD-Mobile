@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>mobile</title>
+
+	
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
@@ -23,21 +25,26 @@
 					<c:remove var="error" />
 				</c:if>   
 				<tr>
-					<td>Phone number<b class="text-primary fs-5">*</b> / e-mail:
+					<td>Номер телефона<b class="text-primary fs-5">*</b> / e-mail:
 					</td>
-					<td><input type="text" name="login"
+					<td><input type="text" class="form-control" name="login"
 						value="${sessionScope.login}" required></td>
 						<c:remove var="login" />
 				</tr>
 				<tr>
-					<td>Password:</td>
-					<td><input type="password" name="password"
-						value="${sessionScope.password}" required></td>
+					<td>Пароль:</td>
+					<td><input  type="password" class="form-control" name="password" 
+						value="${sessionScope.password}" id="password" required></td>
 						<c:remove var="password" />
+						
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Вход"></td>
+					<td class="fw-light"><input class="form-check-input" type="checkbox" onclick="showPassword()" > Показать пароль</td>
+				</tr>	
+				<tr>
+					<td></td>
+					<td><input type="submit" class="btn btn-outline-dark" value="Вход"></td>
 				</tr>
 			</table>
 			<div>
@@ -46,10 +53,12 @@
 	</div>
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<p>
-			<b class="text-primary fs-5">*</b> Введите 9 цифр номера телефона в
+			<b class="text-primary fs-5 ">*</b> Введите 9 цифр номера телефона в
 			формате 29xxxxxxx, 33xxxxxxx, 44xxxxxxx и т.п.
 		</p>
 	</div>
 	<jsp:include page="components/footer.jsp" />
+	
+	<script src="js/login.js"></script>
 </body>
 </html>

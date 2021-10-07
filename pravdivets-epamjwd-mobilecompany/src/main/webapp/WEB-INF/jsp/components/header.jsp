@@ -31,8 +31,8 @@
 						style="font-size: 15px;">дополнительные услуги</a></li>
 				</ul>
 				<div class="text-end">
-					<span class="navbar actions"> <a
-						class="login btn btn-outline-primary me-2"
+					<span class="navbar actions"> 
+						<a class="login btn btn-outline-primary me-2"
 						href="${pageContext.request.contextPath}/controller?command=go_to_login_page">Вход</a>
 						<a class="btn btn-primary" role="button" href="#">Регистрация</a></span>
 				</div>

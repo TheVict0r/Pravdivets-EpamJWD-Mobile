@@ -15,19 +15,52 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-	
-	<div class="container mx-auto flex-grow-1">
-		<span class="fs-5 fw-bold text-start">Оператор: ${requestScope.consultant.firstName} ${requestScope.consultant.lastName}</span>
+
+	<div class="container mx-auto ">
+		<span class="fs-5 fw-bold text-start">Оператор:
+			${requestScope.consultant.firstName}
+			${requestScope.consultant.lastName}</span>
 	</div>
 
-	<div
-		class="container col-sm-9 align-content-center fs-5 fw-light flex-grow-1">
-		<form method="POST" action="controller?command=abonent_for_stuff">
-			<p>Показать данные абонента по номеру телефона</p>
-			<input type="text" name="phone_number" value="" required> 
-			<input type="submit" value="OK">
+	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9  fs-5 fw-light flex-grow-1">
+		<h5 class="mt-4">Показать данные абонента</h5>
+		<form class="row" method="POST" action="controller?command=abonent_for_stuff">
+				<div >
+					по номеру телефона
+				</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="phoneNumber" name="phone_number" value="" placeholder="№ телефона" required>
+			</div>
+			<div class="col-md-2">
+				<input type="submit" class="btn btn-outline-dark" value="OK">
+			</div>
 		</form>
+
+		<form class="row" method="POST" action="controller?command=abonent_for_stuff">
+				<div >
+					по ФИО
+				</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="lastName" name="last_name" value=""
+					placeholder="Фамилия" required>
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control" name="first_name" value=""
+					placeholder="Имя" required>
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control" name="middle_name" value=""
+					placeholder="Отчество" required>
+			</div>
+			<div class="col-md-1">
+				<input type="submit" class="btn btn-outline-dark" value="OK">
+			</div>
+		</form>
+				<h5 class="mt-4">Добавить нового абонента</h5>
+		
+		
 	</div>
+
 
 
 

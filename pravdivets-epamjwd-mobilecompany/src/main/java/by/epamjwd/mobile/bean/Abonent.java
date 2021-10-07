@@ -287,7 +287,6 @@ public class Abonent extends User implements Identifiable, Serializable{
                 .append(", passportNumber=").append(passportNumber)
                 .append(", email=").append(email)
                 .append(", homeAddress=").append(homeAddress)
-                .append(", contractDate=").append(formatter.format(contractDate))
                 .append(", checkingAccountAmount=").append(checkingAccountAmount)
                 .append(", phoneNumber=").append(phoneNumber)
                 .append(", tariffPlan=").append(tariffPlan)

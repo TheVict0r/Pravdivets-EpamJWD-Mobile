@@ -18,7 +18,7 @@
 		</div>
 		</div>
 		
-	<div class="container col-md-10 col-xl-9 mx-auto d-grid gap-4">
+	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 mx-auto d-grid gap-4">
 		
 		<div class="row">
 			<h1 class="h3 mb-3 text-center text-primary">mobile - максимум возможностей!</h1>

@@ -36,6 +36,7 @@ public class AbonentForStuffCommand implements Command {
 			request.setAttribute(AttributeName.ABONENT, abonent);
 			result = new RouteHelper(PagePath.ABONENT_FOR_STUFF, RouteMethod.FORWARD);
 		} catch (ServiceException| NoSuchElementException e) {
+			//подумай и переделай, чтобы было понятно, что такого номера нет
 			LOGGER.error("Unable to obtain data for phone number " + phoneNumber, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
