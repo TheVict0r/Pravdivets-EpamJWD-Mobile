@@ -7,10 +7,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.CustomerCommand;
-import by.epamjwd.mobile.controller.command.impl.AbonentCommand;
-import by.epamjwd.mobile.controller.command.impl.AbonentForStuffCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowAbonentCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowAbonentForStuffCommand;
 import by.epamjwd.mobile.controller.command.impl.AdminCommand;
-import by.epamjwd.mobile.controller.command.impl.AuthenticationCommand;
+import by.epamjwd.mobile.controller.command.impl.LoginCommand;
+import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
 import by.epamjwd.mobile.controller.command.impl.ConsultantCommand;
 import by.epamjwd.mobile.controller.command.impl.FullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.FullPlanCommand;
@@ -21,7 +22,7 @@ import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ProfileEditorCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ProvideAllServicesCommand;
-import by.epamjwd.mobile.controller.command.impl.ProvideNewsCommand;
+import by.epamjwd.mobile.controller.command.impl.ProvideAllNewsCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
 
 public class CommandProvider {
@@ -32,9 +33,10 @@ public class CommandProvider {
 
 	public CommandProvider() {
 		allCommands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPageCommand());
-		allCommands.put(CommandName.AUTHENTICATION, new AuthenticationCommand());
+		allCommands.put(CommandName.LOGIN, new LoginCommand());
+		allCommands.put(CommandName.LOGOUT, new LogoutCommand());
 		allCommands.put(CommandName.EDIT_PROFILE, new ProfileEditorCommand());
-		allCommands.put(CommandName.PROVIDE_NEWS, new ProvideNewsCommand());
+		allCommands.put(CommandName.PROVIDE_ALL_NEWS, new ProvideAllNewsCommand());
 		allCommands.put(CommandName.FULL_ARTICLE, new FullArticleCommand());
 		allCommands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
 		allCommands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
@@ -45,8 +47,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.ADMIN, new AdminCommand());
 		allCommands.put(CommandName.CONSULTANT, new ConsultantCommand());
 		allCommands.put(CommandName.CUSTOMER, new CustomerCommand());
-		allCommands.put(CommandName.ABONENT, new AbonentCommand());
-		allCommands.put(CommandName.ABONENT_FOR_STUFF, new AbonentForStuffCommand());
+		allCommands.put(CommandName.SHOW_ABONENT, new ShowAbonentCommand());
+		allCommands.put(CommandName.SHOW_ABONENT_FOR_STUFF, new ShowAbonentForStuffCommand());
 	}
 
 	public Command getCommand(String commandName) {

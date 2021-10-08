@@ -15,11 +15,10 @@
 
 	<jsp:include page="components/header.jsp" />
 
-	<div class="align-content-center mx-auto flex-grow-1">
-		<span class="fs-5 fw-bold text-left">Оператор:
-			${requestScope.admin.firstName} ${requestScope.admin.lastName}</span>
-	</div>
+	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9  fs-5 fw-light flex-grow-1">
 
+		<h1>ADMIN.jsp</h1>
+	</div>
 
 	<jsp:include page="components/footer.jsp" />
 </body>

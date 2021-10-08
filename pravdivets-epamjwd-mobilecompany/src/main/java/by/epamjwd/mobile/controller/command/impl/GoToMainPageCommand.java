@@ -16,7 +16,7 @@ public class GoToMainPageCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		CommandProvider commandProvider = new CommandProvider();
 		Command plans = commandProvider.getCommand(CommandName.PROVIDE_ALL_PLANS);
-		Command news = commandProvider.getCommand(CommandName.PROVIDE_NEWS);
+		Command news = commandProvider.getCommand(CommandName.PROVIDE_ALL_NEWS);
 		plans.execute(request, response);
 		news.execute(request, response);
 		

@@ -15,15 +15,9 @@
 
 	<jsp:include page="components/header.jsp" />
 
-	<div class="container mx-auto ">
-		<span class="fs-5 fw-bold text-start">Оператор:
-			${requestScope.consultant.firstName}
-			${requestScope.consultant.lastName}</span>
-	</div>
-
 	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9  fs-5 fw-light flex-grow-1">
 		<h5 class="mt-4">Показать данные абонента</h5>
-		<form class="row" method="POST" action="controller?command=abonent_for_stuff">
+		<form class="row" method="POST" action="controller?command=show_abonent_for_stuff">
 				<div >
 					по номеру телефона
 				</div>
@@ -35,7 +29,7 @@
 			</div>
 		</form>
 
-		<form class="row" method="POST" action="controller?command=abonent_for_stuff">
+		<form class="row" method="POST" action="controller?command=show_abonent_for_stuff">
 				<div >
 					по ФИО
 				</div>

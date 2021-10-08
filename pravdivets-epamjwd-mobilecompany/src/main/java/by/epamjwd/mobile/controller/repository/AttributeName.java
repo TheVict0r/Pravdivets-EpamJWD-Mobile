@@ -8,6 +8,9 @@ public class AttributeName {
 	public static final String ALL_SERVICES = "all_services";
 	public static final String SERVICE = "service";
 	public static final String USER = "user";
+	public static final String FIRST_NAME = "first_name";
+	public static final String MIDDLE_NAME = "middle_name";
+	public static final String LAST_NAME = "last_name";
 	public static final String ID = "id";
 	public static final String EMAIL = "email";
 	public static final String ADMIN = "admin";

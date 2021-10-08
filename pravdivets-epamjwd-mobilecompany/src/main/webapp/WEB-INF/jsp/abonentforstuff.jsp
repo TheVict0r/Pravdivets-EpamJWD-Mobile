@@ -15,9 +15,12 @@
 
 	<jsp:include page="components/header.jsp" />
 	
-	<div class="container mx-auto flex-grow-1">
-		<span class="fs-5 fw-bold text-secondary text-start">Оператор: ${requestScope.consultant.firstName} ${requestScope.consultant.lastName}</span>
+	<div class="container mx-auto ">
+		<span class="fs-5 fw-bold text-secondary text-start">Оператор:
+			${sessionScope.first_name}
+			${sessionScope.last_name}</span>
 	</div>
+
 
 		<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-7 fs-6 fw-light flex-grow-1">
 			<table class="table ">

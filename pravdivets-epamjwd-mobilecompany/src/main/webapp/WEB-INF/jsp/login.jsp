@@ -15,7 +15,7 @@
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<h3>Вход</h3>
-		<form method="POST" action="controller?command=authentication">
+		<form method="POST" action="controller?command=login">
 			<table>
 				
 				<c:if test="${sessionScope.error eq 'login_error'}">
@@ -23,7 +23,7 @@
 					<c:remove var="error" />
 				</c:if>   
 				<tr>
-					<td>Номер телефона<b class="text-primary fs-5">*</b> / e-mail:
+					<td>Номер телефона<span class="text-primary fw-bold fs-5 ">*</span> / e-mail:
 					</td>
 					<td><input type="text" class="form-control" name="login"
 						value="${sessionScope.login}" required></td>
@@ -33,7 +33,7 @@
 					<td>Пароль:</td>
 					<td><input  type="password" class="form-control" name="password" 
 						value="${sessionScope.password}" id="password" required></td>
-						<c:remove var="password" />
+						<c:remove var="password"/>
 						
 				</tr>
 				<tr>
@@ -51,7 +51,7 @@
 	</div>
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<p>
-			<b class="text-primary fs-5 ">*</b> Введите 9 цифр номера телефона в
+			<span class="text-primary fw-bold fs-5 ">*</span> Введите 9 цифр номера телефона в
 			формате 29xxxxxxx, 33xxxxxxx, 44xxxxxxx и т.п.
 		</p>
 	</div>

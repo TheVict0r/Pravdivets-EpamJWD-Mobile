@@ -23,12 +23,12 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class AuthenticationCommand implements Command {
+public class LoginCommand implements Command {
 
 	public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 	public static final String PHONE_NUMBER_REGEX = "\\d{9}";
 
-	private final static Logger LOGGER = LogManager.getLogger(AuthenticationCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(LoginCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -48,10 +48,8 @@ public class AuthenticationCommand implements Command {
 		try {
 			User user = userService.getUserByLogin(login).get();
 			request.getSession().setAttribute(AttributeName.EMAIL, user.getEmail());
-			
-			
-			
-			
+			request.getSession().setAttribute(AttributeName.FIRST_NAME, user.getFirstName());
+			request.getSession().setAttribute(AttributeName.LAST_NAME, user.getLastName());
 			String path = userService.getPathByUserType(user);
 			result = new RouteHelper(path, RouteMethod.REDIRECT);
 		} catch (ServiceException | NoSuchElementException e) {

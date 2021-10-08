@@ -19,7 +19,7 @@ import by.epamjwd.mobile.service.AbonentService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class AbonentCommand implements Command {
+public class ShowAbonentCommand implements Command {
 	
 	private final static Logger LOGGER = LogManager.getLogger(RouteHelper.class);
 
