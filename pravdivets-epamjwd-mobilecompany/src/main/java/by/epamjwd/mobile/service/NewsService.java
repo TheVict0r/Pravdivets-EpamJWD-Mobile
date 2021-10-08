@@ -8,9 +8,9 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface NewsService {
 
-	public List<NewsArticle> getAllNews() throws ServiceException;
+	public List<NewsArticle> findAllNews() throws ServiceException;
 	
-	public Optional<NewsArticle> getArticleByID(int id) throws ServiceException;
+	public Optional<NewsArticle> findArticleByID(int id) throws ServiceException;
 	
 	
 }

@@ -18,22 +18,22 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ConsultantCommand implements Command{
+public class ShowConsultantCommand implements Command{
 
-	private final static Logger LOGGER = LogManager.getLogger(ConsultantCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(ShowConsultantCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String email = String.valueOf(request.getSession().getAttribute(AttributeName.EMAIL));
+		String id = String.valueOf(request.getSession().getAttribute(AttributeName.ID));
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
 		RouteHelper result = null;
 		try {
-			User consultant = userService.getUserByEmail(email).get();
+			User consultant = userService.findUserById(id).get();
 			request.setAttribute(AttributeName.CONSULTANT, consultant);
 			result = new RouteHelper(PagePath.CONSULTANT, RouteMethod.FORWARD);
 		} catch (ServiceException | NoSuchElementException e) {
-			LOGGER.error("Unable to obtain consultant user data. ", e);
+			LOGGER.error("Unable to obtain consultant user data for ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
 		return result;

@@ -7,8 +7,9 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface UserService {
 	
-	Optional<User> getUserByLogin(String email) throws ServiceException;
-	Optional<User> getUserByEmail(String email) throws ServiceException;
-	Optional<User> getUserByPhoneNumber(int phoneNumber) throws ServiceException;
-	String getPathByUserType(User user);
+	Optional<User> findUserByLogin(String login) throws ServiceException;
+	Optional<User> findUserByEmail(String email) throws ServiceException;
+	Optional<User> findUserById(String id) throws ServiceException;
+	Optional<User> findUserByPhoneNumber(int phoneNumber) throws ServiceException;
+	String findPathByUserType(User user);
 }

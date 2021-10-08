@@ -7,6 +7,6 @@ import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface PlanService {
-	public List<Plan> getAllPlans() throws ServiceException;
-	public Optional<Plan> getTariffPlanByID(int id) throws ServiceException;
+	public List<Plan> findAllPlans() throws ServiceException;
+	public Optional<Plan> findTariffPlanByID(int id) throws ServiceException;
 }

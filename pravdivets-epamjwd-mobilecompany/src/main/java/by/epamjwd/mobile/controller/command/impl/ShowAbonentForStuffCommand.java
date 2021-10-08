@@ -32,7 +32,7 @@ public class ShowAbonentForStuffCommand implements Command {
 		int phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE_NUMBER));
 		RouteHelper result = null;
 		try {
-			Abonent abonent = abonentService.getAbonentByPhoneNumber(phoneNumber).get();
+			Abonent abonent = abonentService.findAbonentByPhoneNumber(phoneNumber).get();
 			request.setAttribute(AttributeName.ABONENT, abonent);
 			result = new RouteHelper(PagePath.ABONENT_FOR_STUFF, RouteMethod.FORWARD);
 		} catch (ServiceException| NoSuchElementException e) {

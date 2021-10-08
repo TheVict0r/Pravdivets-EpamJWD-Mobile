@@ -18,9 +18,9 @@ import by.epamjwd.mobile.service.NewsService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ProvideAllNewsCommand implements Command {
+public class ShowAllNewsCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(ProvideAllNewsCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(ShowAllNewsCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -29,7 +29,7 @@ public class ProvideAllNewsCommand implements Command {
 		NewsService newsService = provider.getNewsService();
 		RouteHelper result = null;
 		try {
-			List<NewsArticle> newsList = newsService.getAllNews();
+			List<NewsArticle> newsList = newsService.findAllNews();
 			request.setAttribute(AttributeName.NEWS, newsList);
 			result = new RouteHelper(PagePath.ALL_NEWS, RouteMethod.FORWARD);
 		} catch (ServiceException e) {

@@ -22,13 +22,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_all_news"
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_news"
 						style="font-size: 15px;">новости</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_all_plans"
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_plans"
 						style="font-size: 15px;">тарифы</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						style="font-size: 15px;">калькулятор тарифов</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=provide_all_services"
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_services"
 						style="font-size: 15px;">услуги</a></li>
 				</ul>
 				<div class="navbar actions text-end">

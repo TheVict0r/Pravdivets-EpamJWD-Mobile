@@ -25,7 +25,7 @@
 
 		<div class="row">
 			<div class="col-md-12 col-xl-10 mx-auto">
-				<h1 class="text-center">Дополнительные услуги</h1>
+				<h1 class="text-center">Услуги</h1>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="monthly">
 						<div class="row py-5">
@@ -40,7 +40,7 @@
 													class="display-6">руб.</span>
 											</div>
 											<div class="mt-auto">
-												<a href="${pageContext.request.contextPath}/controller?command=full_service&id=${service.id}" class="btn btn-lg btn-outline-primary">Подробнее</a>
+												<a href="${pageContext.request.contextPath}/controller?command=show_full_service&id=${service.id}" class="btn btn-lg btn-outline-primary">Подробнее</a>
 												
 											</div>
 										</div>

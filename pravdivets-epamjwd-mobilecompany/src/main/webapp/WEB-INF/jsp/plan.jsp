@@ -68,8 +68,6 @@
 				</tr>
 			</tbody>
 		</table>
-
-
 	</div>
 	<br />
 	<jsp:include page="components/footer.jsp" />

@@ -21,8 +21,6 @@
 		<span class="display-5 text-left ">${requestScope.service.name}</span>
 		<span class="display-7">${requestScope.service.description}</span>
 		<span class="fs-5"><b>Стоимость предоставления услуги — ${service.tarif/100} руб.</b></span> 
-		
-
 	</div>
 	<br/>
 	<jsp:include page="components/footer.jsp" />

@@ -9,8 +9,9 @@ import by.epamjwd.mobile.dao.exception.DaoException;
 
 public interface AbonentDAO {
 
-	public Optional<Abonent> getAbonentByPhoneNumber(int phoneNumber) throws DaoException;
-	public List<Abonent> getAbonentsByEmail(String email) throws DaoException;
+	public Optional<Abonent> findAbonentByPhoneNumber(int phoneNumber) throws DaoException;
+	public List<Abonent> findAbonentsByEmail(String email) throws DaoException;
+	public List<Abonent> findAbonentsByUserId(String id) throws DaoException;
 
 	
 }

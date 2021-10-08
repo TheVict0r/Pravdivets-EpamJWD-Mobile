@@ -46,11 +46,11 @@ public class LoginCommand implements Command {
 		RouteHelper result = null;
 		
 		try {
-			User user = userService.getUserByLogin(login).get();
-			request.getSession().setAttribute(AttributeName.EMAIL, user.getEmail());
+			User user = userService.findUserByLogin(login).get();
+			request.getSession().setAttribute(AttributeName.ID, user.getId());
 			request.getSession().setAttribute(AttributeName.FIRST_NAME, user.getFirstName());
 			request.getSession().setAttribute(AttributeName.LAST_NAME, user.getLastName());
-			String path = userService.getPathByUserType(user);
+			String path = userService.findPathByUserType(user);
 			result = new RouteHelper(path, RouteMethod.REDIRECT);
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain user data for " + login, e);

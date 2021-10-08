@@ -16,7 +16,7 @@ public class ServiceServiceImpl implements ServiceService {
 	ServiceDAO serviceDao = provider.getServiceDAO();
 
 	@Override
-	public List<Service> getAllServices() throws ServiceException {
+	public List<Service> findAllServices() throws ServiceException {
 		try {
 			return serviceDao.getAllServices();
 		} catch (DaoException e) {
@@ -25,7 +25,7 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public Optional<Service> getServiceByID(int id) throws ServiceException {
+	public Optional<Service> findServiceByID(int id) throws ServiceException {
 		try {
 			return serviceDao.getServiceByID(id);
 		} catch (DaoException e) {

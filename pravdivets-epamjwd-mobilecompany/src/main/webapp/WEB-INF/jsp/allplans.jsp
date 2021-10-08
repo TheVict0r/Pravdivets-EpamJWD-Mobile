@@ -59,7 +59,7 @@
 												<li class="mb-2"> <b> ${plan.priceMMS/100} руб. </b> - за 1 MMS</li>
 											</ul>
 											<div class="mt-auto">
-												<a href="${pageContext.request.contextPath}/controller?command=full_plan&id=${plan.id}" class="btn btn-lg btn-outline-primary">Подробнее</a>
+												<a href="${pageContext.request.contextPath}/controller?command=show_full_plan&id=${plan.id}" class="btn btn-lg btn-outline-primary">Подробнее</a>
 											</div>
 										</div>
 									</div>

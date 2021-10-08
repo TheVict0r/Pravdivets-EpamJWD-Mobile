@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.command.Command;
 
-public class ProfileEditorCommand implements Command {
+public class EditProfileCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response){

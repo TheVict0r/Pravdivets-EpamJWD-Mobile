@@ -18,5 +18,6 @@ public interface UserDAO {
 	void pause();
 	Optional<User> getUserByEmail(String email) throws DaoException;
 	Optional<User> getUserByPhoneNumber(int phoneNumber) throws DaoException;
+	Optional<User> getUserById(String id) throws DaoException;
 	
 }

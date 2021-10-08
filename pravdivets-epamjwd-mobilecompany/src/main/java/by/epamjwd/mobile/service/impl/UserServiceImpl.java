@@ -21,18 +21,29 @@ public class UserServiceImpl implements UserService {
 	UserDAO userDao = provider.getUserDAO();
 
 	@Override
-	public Optional<User> getUserByLogin(String login) throws ServiceException {
+	public Optional<User> findUserByLogin(String login) throws ServiceException {
 		Optional<User> user = Optional.ofNullable(null);
 		if(isPhoneNumber(login)) {
-			user = getUserByPhoneNumber(Integer.parseInt(login));
+			user = findUserByPhoneNumber(Integer.parseInt(login));
 		} else if(isEmail(login)) {
-			user = getUserByEmail(login);
+			user = findUserByEmail(login);
 		} 
 		return user;
 	}
 
 	@Override
-	public Optional<User> getUserByEmail(String email) throws ServiceException {
+	public Optional<User> findUserById(String id) throws ServiceException {
+		Optional<User> result;
+		try {
+			result = userDao.getUserById(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return result;
+	}
+	
+	@Override
+	public Optional<User> findUserByEmail(String email) throws ServiceException {
 		Optional<User> result;
 		try {
 			result = userDao.getUserByEmail(email);
@@ -43,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<User> getUserByPhoneNumber(int phoneNumber) throws ServiceException {
+	public Optional<User> findUserByPhoneNumber(int phoneNumber) throws ServiceException {
 		Optional<User> result;
 		try {
 			result = userDao.getUserByPhoneNumber(phoneNumber);
@@ -54,7 +65,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String getPathByUserType(User user) {
+	public String findPathByUserType(User user) {
 		String path = null;
 		switch (user.getRole()) {
 		case CUSTOMER:
@@ -84,5 +95,6 @@ public class UserServiceImpl implements UserService {
 		Matcher matcher = validEmailPattern.matcher(anyString);
 		return matcher.find();
 	}
+
 
 }
