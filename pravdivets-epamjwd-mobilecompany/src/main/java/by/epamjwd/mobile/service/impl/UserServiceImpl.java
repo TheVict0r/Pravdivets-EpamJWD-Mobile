@@ -1,6 +1,5 @@
 package by.epamjwd.mobile.service.impl;
 
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,62 +10,57 @@ import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.HashGenerator;
 
 public class UserServiceImpl implements UserService {
 
 	public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-	public static final String PHONE_NUMBER_REGEX = "\\d{9}";
 
 	DAOProvider provider = DAOProvider.getInstance();
 	UserDAO userDao = provider.getUserDAO();
 
 	@Override
-	public Optional<User> findUserByLogin(String login) throws ServiceException {
-		Optional<User> user = Optional.ofNullable(null);
-		if(isPhoneNumber(login)) {
-			user = findUserByPhoneNumber(Integer.parseInt(login));
-		} else if(isEmail(login)) {
-			user = findUserByEmail(login);
-		} 
+	public User findUserById(String id) throws ServiceException {
+		User user;
+		try {
+			user = userDao.findUserById(id).get();
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
 		return user;
 	}
 
 	@Override
-	public Optional<User> findUserById(String id) throws ServiceException {
-		Optional<User> result;
+	public User findUserByEmail(String email) throws ServiceException {
+		User user;
 		try {
-			result = userDao.findUserById(id);
+			user = userDao.findUserByEmail(email).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return result;
-	}
-	
-	@Override
-	public Optional<User> findUserByEmail(String email) throws ServiceException {
-		Optional<User> result;
-		try {
-			result = userDao.findUserByEmail(email);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return result;
+
+		return user;
 	}
 
 	@Override
-	public Optional<User> findUserByPhoneNumber(int phoneNumber) throws ServiceException {
-		Optional<User> result;
+	public User findUserByPhoneNumber(int phoneNumber) throws ServiceException {
+		User user;
 		try {
-			result = userDao.findUserByPhoneNumber(phoneNumber);
+			user = userDao.findUserByPhoneNumber(phoneNumber).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return result;
+		return user;
 	}
 
 	@Override
 	public String findPathByUserType(User user) {
+		if (user == null) {
+			return PagePath.LOGIN_REDIRECT;
+		}
+
 		String path = null;
+
 		switch (user.getRole()) {
 		case CUSTOMER:
 			path = PagePath.CUSTOMER_REDIRECT;
@@ -82,19 +76,22 @@ public class UserServiceImpl implements UserService {
 		}
 		return path;
 	}
-	
-	
-	private boolean isPhoneNumber(String anyString) {
-		Pattern validEmailPattern = Pattern.compile(PHONE_NUMBER_REGEX);
-		Matcher matcher = validEmailPattern.matcher(anyString);
-		return matcher.find();
-	}
 
-	private boolean isEmail(String anyString) {
+	@Override
+	public boolean isEmail(String anyString) {
 		Pattern validEmailPattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = validEmailPattern.matcher(anyString);
 		return matcher.find();
 	}
 
+	@Override
+	public boolean isPasswordValid(User user, char[] password) {
+		HashGenerator hashGenerator = new HashGenerator();
+		String hashPassword = hashGenerator.generateHash(String.valueOf(password));
+		return user.getPassword().equals(hashPassword);
+
+		// return true;
+		// for testing simplicity
+	}
 
 }

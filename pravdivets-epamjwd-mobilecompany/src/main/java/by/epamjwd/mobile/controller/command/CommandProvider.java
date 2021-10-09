@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.ShowCustomerCommand;
-import by.epamjwd.mobile.controller.command.impl.ShowAbonentCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowAbonentByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAbonentForStuffCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
@@ -20,6 +20,7 @@ import by.epamjwd.mobile.controller.command.impl.GoToLoginPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowAbonentByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToAbonentForStuffPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
@@ -49,7 +50,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_CUSTOMER, new ShowCustomerCommand());
 		allCommands.put(CommandName.SHOW_ADMIN, new ShowAdminCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT, new ShowConsultantCommand());
-		allCommands.put(CommandName.SHOW_ABONENT, new ShowAbonentCommand());
+		allCommands.put(CommandName.SHOW_ABONENT_BY_PHONE, new ShowAbonentByPhoneCommand());
+		allCommands.put(CommandName.SHOW_ABONENT_BY_ID, new ShowAbonentByIDCommand());
 		allCommands.put(CommandName.SHOW_ABONENT_FOR_STUFF, new ShowAbonentForStuffCommand());
 		allCommands.put(CommandName.GO_TO_ABONENT_FOR_STUFF_PAGE, new GoToAbonentForStuffPageCommand());
 		allCommands.put(CommandName.GO_TO_PROFILE_PAGE, new GoToProfilePageCommand());

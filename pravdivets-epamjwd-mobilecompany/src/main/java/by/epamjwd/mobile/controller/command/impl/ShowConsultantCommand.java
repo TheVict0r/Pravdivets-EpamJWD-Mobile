@@ -1,7 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.NoSuchElementException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,10 +27,10 @@ public class ShowConsultantCommand implements Command{
 		UserService userService = provider.getUserService();
 		RouteHelper result = null;
 		try {
-			User consultant = userService.findUserById(id).get();
+			User consultant = userService.findUserById(id);
 			request.setAttribute(AttributeName.CONSULTANT, consultant);
 			result = new RouteHelper(PagePath.CONSULTANT, RouteMethod.FORWARD);
-		} catch (ServiceException | NoSuchElementException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain consultant user data for ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}

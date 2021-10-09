@@ -41,7 +41,6 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
             LOGGER.error("Unable to execute query", e);
             throw new DaoException("Unable to execute query", e);
         }
-        
         return entities;
     }
 

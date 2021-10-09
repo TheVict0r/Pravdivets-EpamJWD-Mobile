@@ -2,6 +2,8 @@ package by.epamjwd.mobile.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import by.epamjwd.mobile.bean.Abonent;
 import by.epamjwd.mobile.dao.AbonentDAO;
@@ -12,6 +14,8 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class AbonentServiceImpl implements AbonentService {
 
+	public static final String PHONE_NUMBER_REGEX = "\\d{9}";
+	
 	DAOProvider provider = DAOProvider.getInstance();
 	AbonentDAO abonentDao = provider.getAbonentDAO();
 
@@ -28,10 +32,10 @@ public class AbonentServiceImpl implements AbonentService {
 	}
 
 	@Override
-	public Optional<Abonent> findAbonentById(String id) throws ServiceException {
-		Optional<Abonent> result;
+	public Abonent findAbonentById(String id) throws ServiceException {
+		Abonent result;
 		try {
-			result = abonentDao.findAbonentById(id);
+			result = abonentDao.findAbonentById(id).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -50,15 +54,23 @@ public class AbonentServiceImpl implements AbonentService {
 	}
 	
 	@Override
-	public Optional<Abonent> findAbonentByPhoneNumber(int phoneNumber) throws ServiceException {
-		Optional<Abonent> result;
+	public Abonent findAbonentByPhoneNumber(int phoneNumber) throws ServiceException {
+		Abonent result;
 		try {
-			result = abonentDao.findAbonentByPhoneNumber(phoneNumber);
+			result = abonentDao.findAbonentByPhoneNumber(phoneNumber).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
 		return result;
 	}
 
+	@Override
+	public boolean isPhoneNumber(String anyString) {
+		Pattern validEmailPattern = Pattern.compile(PHONE_NUMBER_REGEX);
+		Matcher matcher = validEmailPattern.matcher(anyString);
+		return matcher.find();
+	}
+
+	
 
 }

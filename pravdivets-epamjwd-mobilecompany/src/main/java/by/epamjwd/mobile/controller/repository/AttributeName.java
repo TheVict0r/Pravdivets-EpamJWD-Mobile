@@ -17,11 +17,11 @@ public class AttributeName {
 	public static final String CONSULTANT = "consultant";
 	public static final String CUSTOMER = "customer";
 	public static final String ABONENT = "abonent";
+	public static final String ABONENT_ID = "abonent_id";
 	public static final String ABONENT_LIST = "abonent_list";
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
 	public static final String ERROR = "error";
-	public static final String LOGIN_ERROR = "login_error";
 	public static final String PHONE_NUMBER = "phone_number";
 	public static final String ROLE = "role";
 }

@@ -14,18 +14,14 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-	<div class="row align-content-center mx-auto flex-grow-1">
 
-		<span class="display-6 text-center">Здравствуйте, ${requestScope.abonent_list[0].firstName} ${requestScope.abonent_list[0].middleName}!</span>
-		</div>
 	<div class="row align-content-center mx-auto flex-grow-1">
-
-		<span class="fs-4 fw-light text-center">Пожалуйста, выберите тот номер телефона, </br>информацию по которому Вы хотите получить:</span> 
+		<span class="fs-4 fw-light text-center">Пожалуйста, выберите тот номер телефона, </br>информацию по которому Вы желаете получить:</span> 
 			</div>
 			
 			<div class="fs-4 fw-bold text-center text-primary flex-grow-1">
 			<c:forEach var="abonent" items="${requestScope.abonent_list}">
-			<a  href="${pageContext.request.contextPath}/controller?command=show_abonent&phone_number=${abonent.phoneNumber}">${abonent.phoneNumber}</a></br>
+			<a  href="${pageContext.request.contextPath}/controller?command=show_abonent_by_phone&phone_number=${abonent.phoneNumber}">${abonent.phoneNumber}</a></br>
 			</c:forEach>
 			</div>
 
