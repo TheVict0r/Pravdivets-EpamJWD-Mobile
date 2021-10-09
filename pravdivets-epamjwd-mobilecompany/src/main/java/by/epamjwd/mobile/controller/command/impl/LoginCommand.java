@@ -1,5 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -70,6 +72,8 @@ public class LoginCommand implements Command {
 			setErrorAttributes(session, login, password);
 			user = null;
 		}
+		
+		Arrays.fill(password, ' ');
 		
 		if (user != null) {
 			session.setAttribute(AttributeName.USER_ID, user.getId());

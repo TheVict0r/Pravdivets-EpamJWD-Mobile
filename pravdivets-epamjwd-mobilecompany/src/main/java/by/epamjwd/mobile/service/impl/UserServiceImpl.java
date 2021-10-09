@@ -1,5 +1,6 @@
 package by.epamjwd.mobile.service.impl;
 
+import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +28,8 @@ public class UserServiceImpl implements UserService {
 			user = userDao.findUserById(id).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
+		} catch (NoSuchElementException e) {
+			throw new ServiceException("Unable to obtain user data for ID - " + id, e);
 		}
 		return user;
 	}
@@ -38,8 +41,9 @@ public class UserServiceImpl implements UserService {
 			user = userDao.findUserByEmail(email).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
+		} catch (NoSuchElementException e) {
+			throw new ServiceException("Unable to obtain user data for email - " + email, e);
 		}
-
 		return user;
 	}
 
@@ -50,6 +54,8 @@ public class UserServiceImpl implements UserService {
 			user = userDao.findUserByPhoneNumber(phoneNumber).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
+		} catch (NoSuchElementException e) {
+			throw new ServiceException("Unable to obtain user data for phone number - " + phoneNumber, e);
 		}
 		return user;
 	}
@@ -87,6 +93,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean isPasswordValid(User user, char[] password) {
+		if (user == null) {
+			return false;
+		}
 		HashGenerator hashGenerator = new HashGenerator();
 		String hashPassword = hashGenerator.generateHash(String.valueOf(password));
 		return user.getPassword().equals(hashPassword);
