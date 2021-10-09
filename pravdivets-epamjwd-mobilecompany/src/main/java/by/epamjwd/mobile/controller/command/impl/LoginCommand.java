@@ -1,10 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,22 +27,18 @@ public class LoginCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String login = request.getParameter(ParameterName.LOGIN);
-		char[] password = request.getParameter(ParameterName.PASSWORD).toCharArray();
-		// c паролем надо поработать
-		
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
 		User user = null;
 		AbonentService abonentService = provider.getAbonentService();
 		Abonent abonent = null;
-		
 		String path = null;
-
 		HttpSession session = request.getSession();
-		
 		RouteHelper result = null;
 
+		String login = request.getParameter(ParameterName.LOGIN);
+		char[] password = request.getParameter(ParameterName.PASSWORD).toCharArray();
+		
 		if (login == null || String.valueOf(password) == null) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.LOGIN_ERROR);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
@@ -62,7 +53,7 @@ public class LoginCommand implements Command {
 				path = PagePath.ABONENT_REDIRECT;
 			} else if (userService.isEmail(login)) {
 				user = userService.findUserByEmail(login);
-				path = userService.findPathByUserType(user);
+				path = userService.findPathByUserRole(user);
 			} else {
 				LOGGER.error("Unable to obtain user data for login - " + login);
 				setErrorAttributes(session, login, password);

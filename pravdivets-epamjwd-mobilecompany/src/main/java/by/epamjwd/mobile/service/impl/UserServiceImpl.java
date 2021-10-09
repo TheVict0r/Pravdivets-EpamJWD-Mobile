@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String findPathByUserType(User user) {
+	public String findPathByUserRole(User user) {
 		if (user == null) {
 			return PagePath.LOGIN_REDIRECT;
 		}
