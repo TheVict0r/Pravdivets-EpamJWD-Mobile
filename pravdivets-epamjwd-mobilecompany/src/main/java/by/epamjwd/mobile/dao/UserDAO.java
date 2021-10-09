@@ -16,8 +16,8 @@ public interface UserDAO {
 	void switchServiceParameters(String oldServiceId, String newServiceId);
 	void changePhoneNumber(String oldPhoneNumber, String newPhoneNumber);
 	void pause();
-	Optional<User> getUserByEmail(String email) throws DaoException;
-	Optional<User> getUserByPhoneNumber(int phoneNumber) throws DaoException;
-	Optional<User> getUserById(String id) throws DaoException;
+	Optional<User> findUserByEmail(String email) throws DaoException;
+	Optional<User> findUserByPhoneNumber(int phoneNumber) throws DaoException;
+	Optional<User> findUserById(String id) throws DaoException;
 	
 }

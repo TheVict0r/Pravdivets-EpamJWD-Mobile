@@ -20,14 +20,14 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	}
 
 
-	public final static String FIND_USER_BY_EMAIL = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.email = ?";
-	public final static String FIND_USER_BY_ID = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.id = ?";
+	public final static String FIND_USER_BY_EMAIL        = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.email = ?";
+	public final static String FIND_USER_BY_ID           = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.id = ?";
 	public final static String FIND_USER_BY_PHONE_NUMBER = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id INNER JOIN Customers ON Users.id = Customers.users_id INNER JOIN Abonents ON Customers.id = Abonents.customers_id WHERE Abonents.phone_number = ?";
 	
 	
 	
 	@Override
-	public Optional<User> getUserByPhoneNumber(int phoneNumber) throws DaoException {
+	public Optional<User> findUserByPhoneNumber(int phoneNumber) throws DaoException {
 		return executeQueryForSingleResult(FIND_USER_BY_PHONE_NUMBER, phoneNumber);
 	}
 
@@ -82,13 +82,13 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	}
 
 	@Override
-	public Optional<User> getUserByEmail(String email) throws DaoException {
+	public Optional<User> findUserByEmail(String email) throws DaoException {
 		return executeQueryForSingleResult(FIND_USER_BY_EMAIL, email);
 		
 	}
 
 	@Override
-	public Optional<User> getUserById(String id) throws DaoException {
+	public Optional<User> findUserById(String id) throws DaoException {
 		return executeQueryForSingleResult(FIND_USER_BY_ID, id);
 		
 	}

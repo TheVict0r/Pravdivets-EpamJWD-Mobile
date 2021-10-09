@@ -18,8 +18,10 @@ import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToLoginPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToAbonentForStuffPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllNewsCommand;
@@ -49,6 +51,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_CONSULTANT, new ShowConsultantCommand());
 		allCommands.put(CommandName.SHOW_ABONENT, new ShowAbonentCommand());
 		allCommands.put(CommandName.SHOW_ABONENT_FOR_STUFF, new ShowAbonentForStuffCommand());
+		allCommands.put(CommandName.GO_TO_ABONENT_FOR_STUFF_PAGE, new GoToAbonentForStuffPageCommand());
+		allCommands.put(CommandName.GO_TO_PROFILE_PAGE, new GoToProfilePageCommand());
 	}
 
 	public Command getCommand(String commandName) {

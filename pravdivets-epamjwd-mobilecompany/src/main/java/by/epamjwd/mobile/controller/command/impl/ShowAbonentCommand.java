@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,12 +29,23 @@ public class ShowAbonentCommand implements Command {
 
 		ServiceProvider provider = ServiceProvider.getInstance();
 		AbonentService abonentService = provider.getAbonentService();
+		HttpSession session = request.getSession();
 
-		int phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE_NUMBER));
+		Integer phoneNumber;
+		
+		
+		phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE_NUMBER));
+		System.out.println("request" + phoneNumber);
+			
+//		phoneNumber = Integer.parseInt((String.valueOf(session.getAttribute(AttributeName.PHONE_NUMBER))));
+//		System.out.println("session" + phoneNumber);
+			
 		RouteHelper result = null;
 		try {
+			//Abonent abonent = abonentService.findAbonentListByUserId(id).get();
 			Abonent abonent = abonentService.findAbonentByPhoneNumber(phoneNumber).get();
 			request.setAttribute(AttributeName.ABONENT, abonent);
+			session.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
 			result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
 		} catch (ServiceException| NoSuchElementException e) {
 			LOGGER.error("Unable to obtain data for phone number " + phoneNumber, e);

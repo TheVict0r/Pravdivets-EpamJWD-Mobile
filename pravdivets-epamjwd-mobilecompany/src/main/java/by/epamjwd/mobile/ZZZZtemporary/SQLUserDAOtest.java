@@ -13,9 +13,9 @@ public static void main(String[] args) throws DaoException {
 	
 	SQLUserDAOImpl sqlUserDao = new SQLUserDAOImpl();
 	
-	User user1 = sqlUserDao.getUserByEmail(email1).get();
-	User user2 = sqlUserDao.getUserByEmail(email2).get();
-	User user3 = sqlUserDao.getUserByEmail(email3).get();
+	User user1 = sqlUserDao.findUserByEmail(email1).get();
+	User user2 = sqlUserDao.findUserByEmail(email2).get();
+	User user3 = sqlUserDao.findUserByEmail(email3).get();
 	
 }
 }

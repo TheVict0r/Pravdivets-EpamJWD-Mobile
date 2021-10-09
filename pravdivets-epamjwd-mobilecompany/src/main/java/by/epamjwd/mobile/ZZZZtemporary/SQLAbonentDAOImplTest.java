@@ -12,7 +12,7 @@ public class SQLAbonentDAOImplTest {
 		SQLAbonentDAOImpl ab = new SQLAbonentDAOImpl();
 		
 		//System.out.println(ab.getAbonentByPhoneNumber(442532486));
-		List<Abonent> abList = ab.findAbonentsByEmail("abonent9@mail.ru");
+		List<Abonent> abList = ab.findAbonentListByEmail("abonent9@mail.ru");
 		
 		for(Abonent abonent : abList) {
 			System.out.println(abonent);

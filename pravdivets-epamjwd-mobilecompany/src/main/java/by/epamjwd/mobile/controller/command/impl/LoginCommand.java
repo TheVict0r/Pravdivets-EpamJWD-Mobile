@@ -35,7 +35,7 @@ public class LoginCommand implements Command {
 		String login = request.getParameter(ParameterName.LOGIN);
 		char[] password = request.getParameter(ParameterName.PASSWORD).toCharArray();
 		
-		if(login==null || String.valueOf(password)==null) {
+		if(login == null || String.valueOf(password)==null) {
 			request.getSession().setAttribute(AttributeName.ERROR, AttributeName.LOGIN_ERROR);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
@@ -47,9 +47,10 @@ public class LoginCommand implements Command {
 		
 		try {
 			User user = userService.findUserByLogin(login).get();
-			request.getSession().setAttribute(AttributeName.ID, user.getId());
+			request.getSession().setAttribute(AttributeName.USER_ID, user.getId());
 			request.getSession().setAttribute(AttributeName.FIRST_NAME, user.getFirstName());
 			request.getSession().setAttribute(AttributeName.LAST_NAME, user.getLastName());
+			request.getSession().setAttribute(AttributeName.ROLE, user.getRole());
 			String path = userService.findPathByUserType(user);
 			result = new RouteHelper(path, RouteMethod.REDIRECT);
 		} catch (ServiceException | NoSuchElementException e) {

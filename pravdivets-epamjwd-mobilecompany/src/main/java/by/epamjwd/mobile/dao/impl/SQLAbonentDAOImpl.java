@@ -36,15 +36,21 @@ public class SQLAbonentDAOImpl extends AbstractDao<Abonent> implements AbonentDA
 	}
 
 	@Override
-	public List<Abonent> findAbonentsByEmail(String email) throws DaoException {
+	public List<Abonent> findAbonentListByEmail(String email) throws DaoException {
 		String query = makeAbonentSelectQuery(DBTableName.USERS, DBColumnName.USERS_EMAIL);
 		return executeQuery(query, email);
 	}
 
 	@Override
-	public List<Abonent> findAbonentsByUserId(String id) throws DaoException {
+	public List<Abonent> findAbonentListByUserId(String id) throws DaoException {
 		String query = makeAbonentSelectQuery(DBTableName.USERS, DBColumnName.USERS_ID);
 		return executeQuery(query, id);
+	}
+	
+	@Override
+	public Optional<Abonent> findAbonentById(String id) throws DaoException {
+		String query = makeAbonentSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_ID);
+		return executeQueryForSingleResult(query, id);
 	}
 	
 //	@Override

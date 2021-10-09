@@ -4,23 +4,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class LogoutCommand implements Command {
+public class GoToProfilePageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.removeAttribute(AttributeName.FIRST_NAME);
-		session.removeAttribute(AttributeName.LAST_NAME);
-		session.removeAttribute(AttributeName.USER_ID);
-		session.invalidate();
-		RouteHelper result = null;
-		result = new RouteHelper(PagePath.LOGIN, RouteMethod.FORWARD);
+		Role role = (Role) session.getAttribute(AttributeName.ROLE);
+		
+		RouteHelper result;
+		switch (role) {
+		case ADMIN:
+			result = new RouteHelper(PagePath.ADMIN, RouteMethod.FORWARD);
+			break;
+		case CONSULTANT:
+			result = new RouteHelper(PagePath.CONSULTANT, RouteMethod.FORWARD);
+			break;
+		case CUSTOMER:
+			result = new RouteHelper(PagePath.CUSTOMER_REDIRECT, RouteMethod.REDIRECT);
+			break;
+		default:
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+		}
 		return result;
 	}
 

@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> findUserById(String id) throws ServiceException {
 		Optional<User> result;
 		try {
-			result = userDao.getUserById(id);
+			result = userDao.findUserById(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> findUserByEmail(String email) throws ServiceException {
 		Optional<User> result;
 		try {
-			result = userDao.getUserByEmail(email);
+			result = userDao.findUserByEmail(email);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> findUserByPhoneNumber(int phoneNumber) throws ServiceException {
 		Optional<User> result;
 		try {
-			result = userDao.getUserByPhoneNumber(phoneNumber);
+			result = userDao.findUserByPhoneNumber(phoneNumber);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

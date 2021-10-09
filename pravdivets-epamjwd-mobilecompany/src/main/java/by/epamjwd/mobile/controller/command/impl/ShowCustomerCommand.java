@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,15 +26,19 @@ public class ShowCustomerCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = String.valueOf(request.getSession().getAttribute(AttributeName.ID));
+		String id = String.valueOf(request.getSession().getAttribute(AttributeName.USER_ID));
 		ServiceProvider provider = ServiceProvider.getInstance();
 		AbonentService abonentService = provider.getAbonentService();
+		HttpSession session = request.getSession();
+
 		RouteHelper result = null;
 		try {
-			List<Abonent> abonentsList = abonentService.findAbonentsById(id);
+			List<Abonent> abonentsList = abonentService.findAbonentListByUserId(id);
 			if (abonentsList.size() == 1) {
 				Abonent abonent = abonentsList.get(0);
 				request.setAttribute(AttributeName.ABONENT, abonent);
+				session.setAttribute(AttributeName.PHONE_NUMBER, abonent.getPhoneNumber());
+
 				result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
 			} else {
 				request.setAttribute(AttributeName.ABONENT_LIST, abonentsList);

@@ -10,6 +10,7 @@ public interface AbonentService {
 
 	public List<Abonent> findAbonentsByEmail(String email) throws ServiceException;
 	public Optional<Abonent> findAbonentByPhoneNumber(int phoneNumber) throws ServiceException;
-	List<Abonent> findAbonentsById(String id) throws ServiceException;
-	
+	List<Abonent> findAbonentListByUserId(String id) throws ServiceException;
+	Optional<Abonent> findAbonentById(String id) throws ServiceException;
+
 }

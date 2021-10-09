@@ -11,7 +11,7 @@
 <header id="header">
 
 	<nav
-		class="navbar navbar-light navbar-expand-lg navigation-clean-button">
+		class="navbar sticky-top navbar-light navbar-expand-lg navigation-clean-button">
 		<div class="container">
 			<a class="navbar-brand text-primary fs-1 fw-bold"
 				href="controller?command=go_to_main_page">mobile</a>
@@ -39,11 +39,13 @@
 					</c:when>
 					
 					<c:when test="${sessionScope.last_name != null}">
-					<span class="fw-bold text-secondary">
-						${sessionScope.first_name}
-						${sessionScope.last_name} 
-					</span>
-					<span>
+							
+									<span class="fw-bold text-secondary">
+										<a href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
+										class="card-link">${sessionScope.first_name} ${sessionScope.last_name}</a>
+									</span>
+								
+							<span>
 						<a class="btn btn-primary btn-sm me-2" href="${pageContext.request.contextPath}/controller?command=logout">Выйти</a>
 					</span>
 					</c:when>

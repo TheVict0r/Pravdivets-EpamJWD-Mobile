@@ -20,7 +20,7 @@ public class AbonentServiceImpl implements AbonentService {
 	public List<Abonent> findAbonentsByEmail(String email) throws ServiceException {
 		List<Abonent> result;
 		try {
-			result = abonentDao.findAbonentsByEmail(email);
+			result = abonentDao.findAbonentListByEmail(email);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -28,10 +28,21 @@ public class AbonentServiceImpl implements AbonentService {
 	}
 
 	@Override
-	public List<Abonent> findAbonentsById(String id) throws ServiceException {
+	public Optional<Abonent> findAbonentById(String id) throws ServiceException {
+		Optional<Abonent> result;
+		try {
+			result = abonentDao.findAbonentById(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return result;
+	}
+	
+	@Override
+	public List<Abonent> findAbonentListByUserId(String id) throws ServiceException {
 		List<Abonent> result;
 		try {
-			result = abonentDao.findAbonentsByUserId(id);
+			result = abonentDao.findAbonentListByUserId(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -48,5 +59,6 @@ public class AbonentServiceImpl implements AbonentService {
 		}
 		return result;
 	}
+
 
 }
