@@ -32,6 +32,7 @@ public class LoginCommand implements Command {
 		User user = null;
 		AbonentService abonentService = provider.getAbonentService();
 		Abonent abonent = null;
+		
 		String path = null;
 		HttpSession session = request.getSession();
 		RouteHelper result = null;
@@ -53,7 +54,7 @@ public class LoginCommand implements Command {
 				path = PagePath.ABONENT_REDIRECT;
 			} else if (userService.isEmail(login)) {
 				user = userService.findUserByEmail(login);
-				path = userService.findPathByUserRole(user);
+				path = userService.findPathByUserRole(user.getRole());
 			} else {
 				LOGGER.error("Unable to obtain user data for login - " + login);
 				setErrorAttributes(session, login, password);
@@ -66,6 +67,7 @@ public class LoginCommand implements Command {
 		}
 
 		if(!userService.isPasswordValid(user, password)) {
+			setErrorAttributes(session, login, password);
 			user = null;
 		}
 		

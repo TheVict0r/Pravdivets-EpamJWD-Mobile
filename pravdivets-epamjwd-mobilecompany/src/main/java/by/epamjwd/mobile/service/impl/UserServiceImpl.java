@@ -3,6 +3,7 @@ package by.epamjwd.mobile.service.impl;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.dao.DAOProvider;
@@ -54,14 +55,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String findPathByUserRole(User user) {
-		if (user == null) {
+	public String findPathByUserRole(Role role) {
+		if (role == null) {
 			return PagePath.LOGIN_REDIRECT;
 		}
 
 		String path = null;
 
-		switch (user.getRole()) {
+		switch (role) {
 		case CUSTOMER:
 			path = PagePath.CUSTOMER_REDIRECT;
 			break;
