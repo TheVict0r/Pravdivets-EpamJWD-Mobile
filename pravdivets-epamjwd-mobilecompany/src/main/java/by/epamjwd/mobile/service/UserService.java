@@ -10,5 +10,5 @@ public interface UserService {
 	User findUserByEmail(String email) throws ServiceException;
 	User findUserById(String id) throws ServiceException;
 	User findUserByPhoneNumber(int phoneNumber) throws ServiceException;
-	boolean isPasswordValid(User user, char[] password);
+	boolean isPasswordValid(User user, String password);
 }

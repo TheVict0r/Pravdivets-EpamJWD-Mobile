@@ -23,6 +23,7 @@ import by.epamjwd.mobile.service.AbonentService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.HashGenerator;
 
 public class LoginCommand implements Command {
 
@@ -38,12 +39,13 @@ public class LoginCommand implements Command {
 		
 		String path = null;
 		HttpSession session = request.getSession();
+		HashGenerator hashGenerator = new HashGenerator();
 		RouteHelper result = null;
 
 		String login = request.getParameter(ParameterName.LOGIN);
-		char[] password = request.getParameter(ParameterName.PASSWORD).toCharArray();
+		String hashPassword = hashGenerator.generateHash(request.getParameter(ParameterName.PASSWORD));
 		
-		if (login == null || String.valueOf(password) == null) {
+		if (login == null || request.getParameter(ParameterName.PASSWORD) == null) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.LOGIN_ERROR);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
@@ -57,12 +59,11 @@ public class LoginCommand implements Command {
 			path = PagePath.LOGIN_REDIRECT;
 		}
 		
-		if(!userService.isPasswordValid(user, password)) {
+		if(!userService.isPasswordValid(user, hashPassword)) {
 			user = null;
 			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
 			path = PagePath.LOGIN_REDIRECT;
 		}
-		Arrays.fill(password, ' ');
 		
 		if (user != null) {
 			session.setAttribute(AttributeName.USER_ID, user.getId());
