@@ -7,6 +7,7 @@ import by.epamjwd.mobile.bean.Abonent;
 import by.epamjwd.mobile.bean.AbonentStatus;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
+import by.epamjwd.mobile.util.PhoneNumberFormatter;
 
 public class AbonentRowMapper implements RowMapper<Abonent> {
 

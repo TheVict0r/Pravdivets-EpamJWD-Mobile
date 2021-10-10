@@ -52,7 +52,7 @@
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<p>
 			<span class="text-primary fw-bold fs-5 ">*</span> Введите 9 цифр номера телефона в
-			формате 29xxxxxxx, 33xxxxxxx, 44xxxxxxx и т.п.
+			формате <br/><b><i>25xxxxxxx, 29xxxxxxx, 33xxxxxxx</i></b> или <b><i>44xxxxxxx</i></b>
 		</p>
 	</div>
 	

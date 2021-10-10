@@ -26,7 +26,7 @@
 				</tr>
 				<tr>
 					<td>Номер телефона:</td>
-					<td>${requestScope.abonent.phoneNumber}</td>
+					<td>${requestScope.phone_number}</td>
 				</tr>
 				<tr>
 					<td>Текущий баланс:</td>

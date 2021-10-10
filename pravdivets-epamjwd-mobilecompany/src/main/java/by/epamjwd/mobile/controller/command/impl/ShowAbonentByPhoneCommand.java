@@ -17,6 +17,7 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.AbonentService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.PhoneNumberFormatter;
 
 public class ShowAbonentByPhoneCommand implements Command {
 	
@@ -29,11 +30,14 @@ public class ShowAbonentByPhoneCommand implements Command {
 		AbonentService abonentService = provider.getAbonentService();
 
 		Integer phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE_NUMBER));
-		
+		PhoneNumberFormatter numberFormatter = new PhoneNumberFormatter();
+
 		RouteHelper result = null;
 		try {
 			Abonent abonent = abonentService.findAbonentByPhoneNumber(phoneNumber);
 			request.setAttribute(AttributeName.ABONENT, abonent);
+			String phoneNumberFormat = numberFormatter.formatPhomeNumber(phoneNumber);
+			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumberFormat);
 			result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for phone number " + phoneNumber, e);

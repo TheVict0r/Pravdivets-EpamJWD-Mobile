@@ -27,50 +27,50 @@ public class AbonentServiceImpl implements AbonentService {
 
 	@Override
 	public Abonent findAbonentByPhoneNumber(int phoneNumber) throws ServiceException {
-		Abonent result;
+		Abonent abonent;
 		try {
-			result = abonentDao.findAbonentByPhoneNumber(phoneNumber).get();
+			abonent = abonentDao.findAbonentByPhoneNumber(phoneNumber).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		} catch (NoSuchElementException e) {
 			throw new ServiceException("The Optional<Abonent> contains null for phone number - " + phoneNumber, e);
 		}
-		return result;
+		return abonent;
 	}
 	
 	@Override
 	public Abonent findAbonentById(String id) throws ServiceException {
-		Abonent result;
+		Abonent abonent;
 		try {
-			result = abonentDao.findAbonentById(id).get();
+			abonent = abonentDao.findAbonentById(id).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		} catch (NoSuchElementException e) {
 			throw new ServiceException("The Optional<Abonent> contains null for ID - " + id, e);
 		}
-		return result;
+		return abonent;
 	}
 	
 	@Override
 	public List<Abonent> findAbonentListByEmail(String email) throws ServiceException {
-		List<Abonent> result;
+		List<Abonent> abonentList;
 		try {
-			result = abonentDao.findAbonentListByEmail(email);
+			abonentList = abonentDao.findAbonentListByEmail(email);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return result;
+		return abonentList;
 	}
 
 	@Override
 	public List<Abonent> findAbonentListByUserId(String id) throws ServiceException {
-		List<Abonent> result;
+		List<Abonent> abonentList;
 		try {
-			result = abonentDao.findAbonentListByUserId(id);
+			abonentList = abonentDao.findAbonentListByUserId(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return result;
+		return abonentList;
 	}
 	
 }

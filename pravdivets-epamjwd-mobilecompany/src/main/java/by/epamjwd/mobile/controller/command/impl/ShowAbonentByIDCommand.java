@@ -1,7 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.NoSuchElementException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,9 +14,11 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
+import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.AbonentService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.PhoneNumberFormatter;
 
 public class ShowAbonentByIDCommand implements Command{
 
@@ -33,10 +33,14 @@ public class ShowAbonentByIDCommand implements Command{
 		
 		String id = String.valueOf(session.getAttribute(AttributeName.ABONENT_ID));
 		
+		PhoneNumberFormatter numberFormatter = new PhoneNumberFormatter();
+
 		RouteHelper result = null;
 		try {
 			Abonent abonent = abonentService.findAbonentById(id);
 			request.setAttribute(AttributeName.ABONENT, abonent);
+			String phoneNumberFormat = numberFormatter.formatPhomeNumber(abonent.getPhoneNumber());
+			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumberFormat);
 			session.setAttribute(AttributeName.ROLE, Role.CUSTOMER);
 			result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
 		} catch (ServiceException e) {

@@ -19,6 +19,7 @@ import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.AbonentService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.PhoneNumberFormatter;
 
 public class ShowCustomerCommand implements Command {
 
@@ -29,6 +30,7 @@ public class ShowCustomerCommand implements Command {
 		String id = String.valueOf(request.getSession().getAttribute(AttributeName.USER_ID));
 		ServiceProvider provider = ServiceProvider.getInstance();
 		AbonentService abonentService = provider.getAbonentService();
+		PhoneNumberFormatter numberFormatter = new PhoneNumberFormatter();
 		HttpSession session = request.getSession();
 
 		RouteHelper result = null;
@@ -37,8 +39,8 @@ public class ShowCustomerCommand implements Command {
 			if (abonentsList.size() == 1) {
 				Abonent abonent = abonentsList.get(0);
 				request.setAttribute(AttributeName.ABONENT, abonent);
-				session.setAttribute(AttributeName.PHONE_NUMBER, abonent.getPhoneNumber());
-
+				String phoneNumber = numberFormatter.formatPhomeNumber(abonent.getPhoneNumber());
+				request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
 				result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
 			} else {
 				request.setAttribute(AttributeName.ABONENT_LIST, abonentsList);

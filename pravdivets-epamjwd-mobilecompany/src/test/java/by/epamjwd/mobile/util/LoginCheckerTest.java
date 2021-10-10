@@ -5,35 +5,30 @@ import org.junit.Test;
 
 public class LoginCheckerTest {
 
-	private final String goodPhoneNumber24 = "241234567";
 	private final String goodPhoneNumber25 = "258901234";
 	private final String goodPhoneNumber29 = "295678901";
 	private final String goodPhoneNumber33 = "332345678";
 	private final String goodPhoneNumber44 = "449012345";
 	
-	private final String badPhoneNumber1   = "4490123456";
-	private final String badPhoneNumber2   = "44901234";
-	private final String badPhoneNumber3   = "451234567";
-	private final String badPhoneNumber4   = "44123456a";
+	private final String badPhoneNumber1   = "2590123456";
+	private final String badPhoneNumber2   = "29901234";
+	private final String badPhoneNumber3   = "951234567";
+	private final String badPhoneNumber4   = "33123456a";
 	private final String badPhoneNumber5   = "441234567 ";
 	
-	private final String goodEmail1   = "chuck_norris@mail.ru";
-	private final String goodEmail2   = "j.c.van-damme@mail.ru";
-	private final String goodEmail3   = "panin@google.com";
-	private final String goodEmail4   = "DooM-2@idsoftware.com";
-	private final String goodEmail5   = "fall.out@blackisle.com";
+	private final String goodEmail1 = "chuck_norris@mail.ru";
+	private final String goodEmail2 = "j.c.van-damme@mail.ru";
+	private final String goodEmail3 = "panin@google.com";
+	private final String goodEmail4 = "DooM-2@idsoftware.com";
+	private final String goodEmail5 = "fall.out@blackisle.com";
 	
-	private final String badEmail1   = "vasya pupkin@gmail.com";
-	private final String badEmail2   = "vasyapupkin@gmail com";
-	private final String badEmail3   = "vasyapupkin-gmail.com";
-	private final String badEmail4   = "vasyapupkin@gmailcom";
-	private final String badEmail5   = "vasyapupkingmail.com";
+	private final String badEmail1 = "vasya pupkin@gmail.com";
+	private final String badEmail2 = "vasyapupkin@gmail com";
+	private final String badEmail3 = "vasyapupkin-gmail.com";
+	private final String badEmail4 = "vasyapupkin@gmailcom";
+	private final String badEmail5 = "vasyapupkingmail.com";
 
-	@Test
-	public void testGoodPhoneNumber24() {
-		Assert.assertTrue(LoginChecker.isPhoneNumber(goodPhoneNumber24));
-	}
-	
+
 	@Test
 	public void testGoodPhoneNumber25() {
 		Assert.assertTrue(LoginChecker.isPhoneNumber(goodPhoneNumber25));
