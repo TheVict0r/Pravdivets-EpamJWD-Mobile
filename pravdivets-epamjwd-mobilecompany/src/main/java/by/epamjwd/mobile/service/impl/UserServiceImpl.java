@@ -1,35 +1,29 @@
 package by.epamjwd.mobile.service.impl;
 
 import java.util.NoSuchElementException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.HashGenerator;
+import by.epamjwd.mobile.util.LoginChecker;
 
 public class UserServiceImpl implements UserService {
-
-	public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
 	DAOProvider provider = DAOProvider.getInstance();
 	UserDAO userDao = provider.getUserDAO();
 
 	@Override
-	public User findUserById(String id) throws ServiceException {
-		User user;
-		try {
-			user = userDao.findUserById(id).get();
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		} catch (NoSuchElementException e) {
-			throw new ServiceException("Unable to obtain user data for ID - " + id, e);
+	public User findUserByLogin(String login) throws ServiceException {
+		User user = null;
+		if (LoginChecker.isEmail(login)) {
+			user = findUserByEmail(login);
+		} else if (LoginChecker.isPhoneNumber(login)) {
+			int phoneNumber = Integer.parseInt(login);
+			user = findUserByPhoneNumber(phoneNumber);
 		}
 		return user;
 	}
@@ -42,7 +36,7 @@ public class UserServiceImpl implements UserService {
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		} catch (NoSuchElementException e) {
-			throw new ServiceException("Unable to obtain user data for email - " + email, e);
+			throw new ServiceException("The Optional<User> contains null for email  - " + email, e);
 		}
 		return user;
 	}
@@ -55,40 +49,22 @@ public class UserServiceImpl implements UserService {
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		} catch (NoSuchElementException e) {
-			throw new ServiceException("Unable to obtain user data for phone number - " + phoneNumber, e);
+			throw new ServiceException("The Optional<User> contains null for phone number - " + phoneNumber, e);
 		}
 		return user;
 	}
 
 	@Override
-	public String findPathByUserRole(Role role) {
-		if (role == null) {
-			return PagePath.LOGIN_REDIRECT;
+	public User findUserById(String id) throws ServiceException {
+		User user;
+		try {
+			user = userDao.findUserById(id).get();
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		} catch (NoSuchElementException e) {
+			throw new ServiceException("The Optional<User> contains null for ID - " + id, e);
 		}
-
-		String path = null;
-
-		switch (role) {
-		case CUSTOMER:
-			path = PagePath.CUSTOMER_REDIRECT;
-			break;
-		case CONSULTANT:
-			path = PagePath.CONSULTANT_REDIRECT;
-			break;
-		case ADMIN:
-			path = PagePath.ADMIN_REDIRECT;
-			break;
-		default:
-			path = PagePath.LOGIN_REDIRECT;
-		}
-		return path;
-	}
-
-	@Override
-	public boolean isEmail(String anyString) {
-		Pattern validEmailPattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = validEmailPattern.matcher(anyString);
-		return matcher.find();
+		return user;
 	}
 
 	@Override

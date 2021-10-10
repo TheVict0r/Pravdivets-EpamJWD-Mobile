@@ -22,10 +22,10 @@ public class ShowAdminCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = String.valueOf(request.getSession().getAttribute(AttributeName.USER_ID));
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
 		RouteHelper result = null;
+		String id = String.valueOf(request.getSession().getAttribute(AttributeName.USER_ID));
 		try {
 			User admin = userService.findUserById(id);
 			request.setAttribute(AttributeName.ADMIN, admin);

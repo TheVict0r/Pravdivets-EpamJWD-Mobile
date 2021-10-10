@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
@@ -31,8 +32,8 @@ public class LoginCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
-		User user = null;
 		AbonentService abonentService = provider.getAbonentService();
+		User user = null;
 		Abonent abonent = null;
 		
 		String path = null;
@@ -48,31 +49,19 @@ public class LoginCommand implements Command {
 		}
 
 		try {
-			if (abonentService.isPhoneNumber(login)) {
-				int phoneNumber = Integer.parseInt(login);
-				user = userService.findUserByPhoneNumber(phoneNumber);
-				abonent = abonentService.findAbonentByPhoneNumber(phoneNumber);
-				session.setAttribute(AttributeName.ABONENT_ID, abonent.getId());
-				path = PagePath.ABONENT_REDIRECT;
-			} else if (userService.isEmail(login)) {
-				user = userService.findUserByEmail(login);
-				path = userService.findPathByUserRole(user.getRole());
-			} else {
-				LOGGER.error("Unable to obtain user data for login - " + login);
-				setErrorAttributes(session, login, password);
-				path = PagePath.LOGIN_REDIRECT;
-			}
+			user = userService.findUserByLogin(login);
+			abonent = abonentService.findAbonentByLogin(login);
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain user data for login - " + login, e);
-			setErrorAttributes(session, login, password);
+			LOGGER.error("Unable to obtain data for login - " + login, e);
+			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
 			path = PagePath.LOGIN_REDIRECT;
 		}
-
-		if(!userService.isPasswordValid(user, password)) {
-			setErrorAttributes(session, login, password);
-			user = null;
-		}
 		
+		if(!userService.isPasswordValid(user, password)) {
+			user = null;
+			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
+			path = PagePath.LOGIN_REDIRECT;
+		}
 		Arrays.fill(password, ' ');
 		
 		if (user != null) {
@@ -80,20 +69,46 @@ public class LoginCommand implements Command {
 			session.setAttribute(AttributeName.FIRST_NAME, user.getFirstName());
 			session.setAttribute(AttributeName.LAST_NAME, user.getLastName());
 			session.setAttribute(AttributeName.ROLE, user.getRole());
+			path = findPathByUserRole(user.getRole());
 		} else {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.LOGIN_ERROR);
+			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
 			path = PagePath.LOGIN_REDIRECT;
 		}
 		
+		if (abonent != null && user != null) {
+			session.setAttribute(AttributeName.ABONENT_ID, abonent.getId());
+			path = PagePath.ABONENT_REDIRECT;
+		}
+		
 		result = new RouteHelper(path, RouteMethod.REDIRECT);
-
 		return result;
 	}
 
-	private void setErrorAttributes(HttpSession session, String login, char[] password) {
+	private String findPathByUserRole(Role role) {
+		if (role == null) {
+			return PagePath.LOGIN_REDIRECT;
+		}
+		String path = null;
+		switch (role) {
+		case CUSTOMER:
+			path = PagePath.CUSTOMER_REDIRECT;
+			break;
+		case CONSULTANT:
+			path = PagePath.CONSULTANT_REDIRECT;
+			break;
+		case ADMIN:
+			path = PagePath.ADMIN_REDIRECT;
+			break;
+		default:
+			path = PagePath.LOGIN_REDIRECT;
+		}
+		return path;
+	}
+	
+	private void setErrorAttributes(HttpSession session, String login, String password) {
 		session.setAttribute(AttributeName.ERROR, AttributeValue.LOGIN_ERROR);
 		session.setAttribute(AttributeName.LOGIN, login);
-		session.setAttribute(AttributeName.PASSWORD, String.valueOf(password));
+		session.setAttribute(AttributeName.PASSWORD, password);
 	}
-
+	
 }

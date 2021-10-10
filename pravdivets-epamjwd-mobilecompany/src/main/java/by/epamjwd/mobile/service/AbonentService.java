@@ -8,10 +8,10 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface AbonentService {
 
-	List<Abonent> findAbonentsByEmail(String email) throws ServiceException;
+	Abonent findAbonentByLogin(String login) throws ServiceException;
 	Abonent findAbonentByPhoneNumber(int phoneNumber) throws ServiceException;
-	List<Abonent> findAbonentListByUserId(String id) throws ServiceException;
 	Abonent findAbonentById(String id) throws ServiceException;
-	boolean isPhoneNumber(String anyString);
+	List<Abonent> findAbonentListByEmail(String email) throws ServiceException;
+	List<Abonent> findAbonentListByUserId(String id) throws ServiceException;
 
 }
