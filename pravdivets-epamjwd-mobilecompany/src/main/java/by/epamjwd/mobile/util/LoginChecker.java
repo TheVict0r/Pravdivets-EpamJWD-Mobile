@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class LoginChecker {
 
 	public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-	public static final String PHONE_NUMBER_REGEX = "\\d{9}";
+	public static final String PHONE_NUMBER_REGEX = "^24|25|29|33|44\\d{7}$";
 
 	public static boolean isEmail(String anyString) {
 		Pattern validEmailPattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
