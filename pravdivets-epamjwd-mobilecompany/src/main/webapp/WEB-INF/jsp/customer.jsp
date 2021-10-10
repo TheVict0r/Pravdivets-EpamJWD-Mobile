@@ -21,7 +21,8 @@
 			
 			<div class="fs-4 fw-bold text-center text-primary flex-grow-1">
 			<c:forEach var="abonent" items="${requestScope.abonent_list}">
-			<a  href="${pageContext.request.contextPath}/controller?command=show_abonent_by_phone&phone_number=${abonent.phoneNumber}">${abonent.phoneNumber}</a></br>
+			<c:set value="${abonent.phoneNumber}" var="phone" />
+			<a href="${pageContext.request.contextPath}/controller?command=show_abonent_by_phone&phone_number=${abonent.phoneNumber}"> ${abonent.phoneNumber} </a><br/>
 			</c:forEach>
 			</div>
 

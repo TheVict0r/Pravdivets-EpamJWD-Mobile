@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}"/>
+<fmt:setBundle basename="language"/>
+
 <!-- bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -23,19 +27,19 @@
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_news"
-						style="font-size: 15px;">новости</a></li>
+						style="font-size: 15px;"><fmt:message key = "header.news"/></a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_plans"
-						style="font-size: 15px;">тарифы</a></li>
+						style="font-size: 15px;"><fmt:message key = "header.tariffs"/></a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
-						style="font-size: 15px;">калькулятор тарифов</a></li>
+						style="font-size: 15px;"><fmt:message key = "header.tariffCalculator"/></a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_services"
-						style="font-size: 15px;">услуги</a></li>
+						style="font-size: 15px;"><fmt:message key = "header.services"/></a></li>
 				</ul>
 				<div class="navbar actions text-end">
 				<c:choose>
 					<c:when test="${sessionScope.last_name == null}">
-						<a class="login btn btn-outline-primary btn-sm me-2" href="${pageContext.request.contextPath}/controller?command=go_to_login_page">Вход</a>
-						<a class="btn btn-primary btn-sm " role="button" href="#">Регистрация</a>
+						<a class="login btn btn-outline-primary btn-sm me-2" href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message key = "header.signin"/></a>
+						<a class="btn btn-primary btn-sm " role="button" href="#"><fmt:message key = "header.register"/></a>
 					</c:when>
 					
 					<c:when test="${sessionScope.last_name != null}">
@@ -44,9 +48,8 @@
 										<a href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
 										class="card-link">${sessionScope.first_name} ${sessionScope.last_name}</a>
 									</span>
-								
 							<span>
-						<a class="btn btn-primary btn-sm me-2" href="${pageContext.request.contextPath}/controller?command=logout">Выйти</a>
+						<a class="btn btn-primary btn-sm me-2" href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key = "header.signout"/></a>
 					</span>
 					</c:when>
 				</c:choose>

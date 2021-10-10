@@ -1,6 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,8 @@ public class ShowCustomerCommand implements Command {
 				result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
 			} else {
 				request.setAttribute(AttributeName.ABONENT_LIST, abonentsList);
+//				Map<String, String> phoneNumbersMap = numberFormatter.provideFormattedPhoneNumbersMap(abonentsList);
+//				request.setAttribute(AttributeName.PHONE_NUMBERS_MAP, phoneNumbersMap);
 				result = new RouteHelper(PagePath.CUSTOMER, RouteMethod.FORWARD);
 			}
 		} catch (ServiceException | NoSuchElementException e) {
