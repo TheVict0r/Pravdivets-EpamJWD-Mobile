@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}"/>
-<fmt:setBundle basename="language"/>
+<fmt:setLocale
+	value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
+<fmt:setBundle basename="language" />
 
 <!-- bootstrap CSS -->
 <link
@@ -17,7 +18,7 @@
 	<nav
 		class="navbar sticky-top navbar-light navbar-expand-lg navigation-clean-button">
 		<div class="container">
-			<a class="navbar-brand text-primary fs-1 fw-bold"
+			<a class="navbar-brand text-primary fs-1 fw-bold me-2"
 				href="controller?command=go_to_main_page">mobile</a>
 			<button data-bs-toggle="collapse" data-bs-target="#navcol-1"
 				class="navbar-toggler">
@@ -26,33 +27,45 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navcol-1">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_news"
-						style="font-size: 15px;"><fmt:message key = "header.news"/></a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_plans"
-						style="font-size: 15px;"><fmt:message key = "header.tariffs"/></a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						style="font-size: 15px;"><fmt:message key = "header.tariffCalculator"/></a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=show_all_services"
-						style="font-size: 15px;"><fmt:message key = "header.services"/></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/controller?command=show_all_news"
+						style="font-size: 15px;"><fmt:message key="header.news" /></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/controller?command=show_all_plans"
+						style="font-size: 15px;"><fmt:message key="header.tariffs" /></a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_calculator_page"
+						style="font-size: 15px;"><fmt:message
+								key="header.tariffCalculator" /></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/controller?command=show_all_services"
+						style="font-size: 15px;"><fmt:message key="header.services" /></a></li>
 				</ul>
 				<div class="navbar actions text-end">
-				<c:choose>
-					<c:when test="${sessionScope.last_name == null}">
-						<a class="login btn btn-outline-primary btn-sm me-2" href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message key = "header.signin"/></a>
-						<a class="btn btn-primary btn-sm " role="button" href="#"><fmt:message key = "header.register"/></a>
-					</c:when>
-					
-					<c:when test="${sessionScope.last_name != null}">
-							
-									<span class="fw-bold text-secondary">
-										<a href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
-										class="card-link">${sessionScope.first_name} ${sessionScope.last_name}</a>
-									</span>
-							<span>
-						<a class="btn btn-primary btn-sm me-2" href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key = "header.signout"/></a>
-					</span>
-					</c:when>
-				</c:choose>
+					<c:choose>
+						<c:when test="${sessionScope.last_name == null}">
+							<ul class="navbar-nav me-auto">
+								<li class="nav-item"><a
+									class="login btn btn-outline-primary btn-sm me-2"
+									href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message
+											key="header.signin" /></a></li>
+								<li class="nav-item"><a class="btn btn-primary btn-sm "
+									role="button" href="#"><fmt:message key="header.register" /></a></li>
+							</ul>
+						</c:when>
+
+						<c:when test="${sessionScope.last_name != null}">
+							<ul class="navbar-nav me-auto">
+								<li class="nav-item fw-bold text-secondary">
+										<a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
+										>${sessionScope.first_name}	${sessionScope.last_name}</a>
+								</li>
+								<li class="nav-item"> <a class="btn btn-primary btn-sm me-2"
+										href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message
+												key="header.signout" /></a>
+								</li>
+							</ul>
+						</c:when>
+					</c:choose>
 				</div>
 			</div>
 		</div>
