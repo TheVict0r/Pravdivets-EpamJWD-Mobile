@@ -18,11 +18,16 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-	<div class="row align-content-center mx-auto flex-grow-1">
+		<div class="display-4 text-center mb-4"><fmt:message key="calculator.title" /></div>
+	<div class="text text-center lh-sm mb-4 col-sm-6 fst-italic fw-light mx-auto"><fmt:message key="calculator.lead" /></div>
+
+	<div class="row align-content-center mx-auto fw-light flex-grow-1 ">
 
 		<form method="POST" action="controller?command=calculator">
-
-			<h4><fmt:message key="calculator.calls.within.network" /></h4>
+			<table class="table table-hover">
+			<tbody>
+			<tr><td>
+			<b><fmt:message key="calculator.calls.within.network" /></b>
 			<div >
 				<input class="form-check-input" type="radio" name="within_network" id="radios1" required="required" value="10"> 
 				<label class="form-check-label" for="radios1"> 0-20 <fmt:message key="calculator.min" /></label>
@@ -37,8 +42,9 @@
 				<input class="form-check-input" type="radio" name="within_network" id="radios6" required="required" value="150"> 
 				<label class="form-check-label" for="radios6"><fmt:message key="calculator.more.than" /> 120 <fmt:message key="calculator.min" /> </label>
 			</div>
-			
-			<h4><fmt:message key="calculator.calls.other.networks" /></h4>
+			</td></tr>
+			<tr><td>
+			<b><fmt:message key="calculator.calls.other.networks" /></b>
 			<div >
 				<input class="form-check-input" type="radio" name="other_networks" id="radios1" required="required" value="10"> 
 				<label class="form-check-label" for="radios1"> 0-20 <fmt:message key="calculator.min" /></label>
@@ -53,8 +59,9 @@
 				<input class="form-check-input" type="radio" name="other_networks" id="radios6" required="required" value="150"> 
 				<label class="form-check-label" for="radios6"><fmt:message key="calculator.more.than" /> 120 <fmt:message key="calculator.min" /> </label>
 			</div>
-			
-			<h4><fmt:message key="calculator.calls.abroad" /></h4>
+			</td></tr>
+			<tr><td>
+			<b><fmt:message key="calculator.calls.abroad" /></b>
 			<div >
 				<input class="form-check-input" type="radio" name="abroad" id="radios1" required="required" value="10"> 
 				<label class="form-check-label" for="radios1"> 0-20 <fmt:message key="calculator.min" /></label>
@@ -69,8 +76,9 @@
 				<input class="form-check-input" type="radio" name="abroad" id="radios6" required="required" value="150"> 
 				<label class="form-check-label" for="radios6"><fmt:message key="calculator.more.than" /> 120 <fmt:message key="calculator.min" /> </label>
 			</div>
-			
-			<h4><fmt:message key="calculator.calls.videocall" /></h4>
+			</td></tr>
+			<tr><td>
+			<b><fmt:message key="calculator.calls.videocall" /></b>
 			<div >
 				<input class="form-check-input" type="radio" name="videocall" id="radios1" required="required" value="10"> 
 				<label class="form-check-label" for="radios1"> 0-20 <fmt:message key="calculator.min" /></label>
@@ -85,8 +93,9 @@
 				<input class="form-check-input" type="radio" name="videocall" id="radios6" required="required" value="150"> 
 				<label class="form-check-label" for="radios6"><fmt:message key="calculator.more.than" /> 120 <fmt:message key="calculator.min" /> </label>
 			</div>
-			
-			<h4><fmt:message key="calculator.sms" /></h4>
+			</td></tr>
+			<tr><td>
+			<b><fmt:message key="calculator.sms" /></b>
 			<div >
 				<input class="form-check-input" type="radio" name="sms" id="radios1" required="required" value="10"> 
 				<label class="form-check-label" for="radios1"> 0-20 <fmt:message key="calculator.min" /></label>
@@ -101,8 +110,9 @@
 				<input class="form-check-input" type="radio" name="sms" id="radios6" required="required" value="150"> 
 				<label class="form-check-label" for="radios6"><fmt:message key="calculator.more.than" /> 120 <fmt:message key="calculator.min" /> </label>
 			</div>
-			
-			<h4><fmt:message key="calculator.mms" /></h4>
+			</td></tr>
+			<tr><td>
+			<b><fmt:message key="calculator.mms" /></b>
 			<div >
 				<input class="form-check-input" type="radio" name="mms" id="radios1" required="required" value="10"> 
 				<label class="form-check-label" for="radios1"> 0-20 <fmt:message key="calculator.min" /></label>
@@ -117,8 +127,9 @@
 				<input class="form-check-input" type="radio" name="mms" id="radios6" required="required" value="150"> 
 				<label class="form-check-label" for="radios6"><fmt:message key="calculator.more.than" /> 120 <fmt:message key="calculator.min" /> </label>
 			</div>
-			
-			<h4><fmt:message key="calculator.internet" /></h4>
+			</td></tr>
+			<tr><td>
+			<b><fmt:message key="calculator.internet" /></b>
 			<div >
 				<input class="form-check-input" type="radio" name="internet" id="radios1" required="required" value="10"> 
 				<label class="form-check-label" for="radios1"> 0-20 <fmt:message key="calculator.min" /></label>
@@ -133,15 +144,14 @@
 				<input class="form-check-input" type="radio" name="internet" id="radios6" required="required" value="150"> 
 				<label class="form-check-label" for="radios6"><fmt:message key="calculator.more.than" /> 120 <fmt:message key="calculator.min" /> </label>
 			</div>
+			</td></tr>
+			</tbody>
+			</table>
 			
-			<button type="submit" class="btn btn-outline-primary btn-sm">Предложить тариф</button>
+			<button type="submit" class="btn btn-outline-primary btn-sm"><fmt:message key="calculator.suggest.tariff" /></button>
 		</form>
-
-
-
-
 	</div>
-
+<br/>
 	<jsp:include page="components/footer.jsp" />
 
 

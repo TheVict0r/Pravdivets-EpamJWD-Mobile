@@ -21,7 +21,7 @@
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
 
-		${requestScope.question1}
+		${requestScope.within_network}
 
 
 
