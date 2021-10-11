@@ -21,6 +21,7 @@ import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAbonentByIDCommand;
+import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToAbonentForStuffPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
@@ -57,6 +58,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_ABONENT_FOR_STUFF_PAGE, new GoToAbonentForStuffPageCommand());
 		allCommands.put(CommandName.GO_TO_PROFILE_PAGE, new GoToProfilePageCommand());
 		allCommands.put(CommandName.GO_TO_CALCULATOR_PAGE, new GoToCalculatorPageCommand());
+		allCommands.put(CommandName.CALCULATOR, new CalculatorCommand());
 	}
 
 	public Command getCommand(String commandName) {
@@ -72,7 +74,7 @@ public class CommandProvider {
 		}
 		//возможно отсечётся через web.xml
 		if (command == null) {
-			LOGGER.error("Nonexistent command name" + commandName);
+			LOGGER.error("Nonexistent command name - " + commandName);
 			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
 		}
 		

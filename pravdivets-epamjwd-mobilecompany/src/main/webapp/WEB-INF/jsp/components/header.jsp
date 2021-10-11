@@ -35,7 +35,7 @@
 						style="font-size: 15px;"><fmt:message key="header.tariffs" /></a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_calculator_page"
 						style="font-size: 15px;"><fmt:message
-								key="header.tariffCalculator" /></a></li>
+								key="header.tariff.calculator" /></a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/controller?command=show_all_services"
 						style="font-size: 15px;"><fmt:message key="header.services" /></a></li>

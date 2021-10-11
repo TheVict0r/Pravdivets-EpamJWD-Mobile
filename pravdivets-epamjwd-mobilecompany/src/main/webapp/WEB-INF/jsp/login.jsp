@@ -25,26 +25,30 @@
 			<table>
 				
 				<c:if test="${sessionScope.error eq 'login_error'}">
-					<p class="text-danger"><fmt:message key = "login.checkData"/></p>
+					<p class="text-danger"><fmt:message key = "login.check.data"/></p>
 					<c:remove var="error" />
-				</c:if>   
+				</c:if>
 				<tr>
-					<td><fmt:message key = "login.phoneNumber"/><span class="text-primary fw-bold fs-5 ">*</span> / e-mail:
-					</td>
+					<td><label for="password" class="form-label"> <fmt:message
+								key="login.phone.number" /> <span
+							class="text-primary fw-bold fs-5 ">*</span> / e-mail:
+					</label></td>
 					<td><input type="text" class="form-control" name="login"
-						value="${sessionScope.login}" required></td>
-						<c:remove var="login" />
+						value="${sessionScope.login}" id="login" required></td>
+					<c:remove var="login" />
 				</tr>
 				<tr>
-					<td><fmt:message key = "login.password"/>:</td>
-					<td><input  type="password" class="form-control" name="password" 
-						value="${sessionScope.password}" id="password" required></td>
-						<c:remove var="password"/>
-						
+					<td><label for="password" class="form-label"><fmt:message
+								key="login.password" />:</label></td>
+					<td><input type="password" class="form-control"
+						name="password" value="${sessionScope.password}" id="password"
+						required></td>
+					<c:remove var="password" />
+
 				</tr>
 				<tr>
 					<td></td>
-					<td class="fw-light"><input class="form-check-input" type="checkbox" onclick="showPassword()" > <fmt:message key = "login.showPassword"/></td>
+					<td class="fw-light"><input class="form-check-input" type="checkbox" onclick="showPassword()" > <fmt:message key = "login.show.password"/></td>
 				</tr>	
 				<tr>
 					<td></td>
@@ -57,7 +61,7 @@
 	</div>
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<p>
-			<span class="text-primary fw-bold fs-5 ">*</span> <fmt:message key = "login.numberFormat"/>
+			<span class="text-primary fw-bold fs-5 ">*</span> <fmt:message key = "login.number.format"/>
 			<br/><b><i>25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
 		</p>
 	</div>

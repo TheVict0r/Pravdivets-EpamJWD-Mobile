@@ -40,31 +40,35 @@
 			<tbody>
 				<tr>
 					<td>Абонентская плата</td>
-					<td>${plan.regularPayment/100} руб.</td>
+					<td>${plan.regularPayment/100} руб./мес.</td>
 				</tr>
 				<tr>
 					<td>Исходящие внутри сети и на голосовую почту</td>
-					<td>${plan.priceWithinNetwork/100} руб.</td>
+					<td>${plan.priceWithinNetwork/100} руб./мин.</td>
 				</tr>
 				<tr>
 					<td>На стационарную сеть, сети других мобильных операторов Беларуси</td>
-					<td>${plan.priceOtherNetworks/100} руб. </td>
+					<td>${plan.priceOtherNetworks/100} руб./мин.</td>
 				</tr>
 				<tr>
 					<td>Международные звонки</td>
-					<td>${plan.priceAbroad/100} руб.</td>
+					<td>${plan.priceAbroad/100} руб./мин.</td>
 				</tr>
 				<tr>
 					<td>Видеозвонки</td>
-					<td>${plan.priceVideocall/100} руб.</td>
+					<td>${plan.priceVideocall/100} руб./мин.</td>
 				</tr>
 				<tr>
 					<td>Короткие сообщения SMS</td>
-					<td>${plan.priceSMS/100} руб.</td>
+					<td>${plan.priceSMS/100} руб./шт.</td>
 				</tr>
 				<tr>
 					<td>Мультимедийные сообщения (MMS)</td>
-					<td>${plan.priceMMS/100} руб.</td>
+					<td>${plan.priceMMS/100} руб./шт.</td>
+				</tr>
+				<tr>
+					<td>Интернет</td>
+					<td>${plan.priceInternet/100} руб./мб.</td>
 				</tr>
 			</tbody>
 		</table>
