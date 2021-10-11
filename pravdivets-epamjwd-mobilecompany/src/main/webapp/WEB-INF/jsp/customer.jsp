@@ -16,7 +16,7 @@
 	<jsp:include page="components/header.jsp" />
 
 	<div class="row align-content-center mx-auto flex-grow-1">
-		<span class="fs-4 fw-light text-center">Пожалуйста, выберите тот номер телефона, </br>информацию по которому Вы желаете получить:</span> 
+		<span class="fs-4 fw-light text-center">Пожалуйста, выберите тот номер телефона, </br>по которому Вы желаете получить информацию:</span> 
 			</div>
 			
 			<div class="fs-4 fw-bold text-center text-primary flex-grow-1">

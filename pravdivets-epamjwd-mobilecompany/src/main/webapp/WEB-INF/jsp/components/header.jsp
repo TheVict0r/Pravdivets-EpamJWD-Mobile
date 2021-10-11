@@ -45,10 +45,10 @@
 						<c:when test="${sessionScope.last_name == null}">
 							<ul class="navbar-nav me-auto">
 								<li class="nav-item"><a
-									class="login btn btn-outline-primary btn-sm me-2"
+									class="login btn btn-outline-primary me-2"
 									href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message
 											key="header.signin" /></a></li>
-								<li class="nav-item"><a class="btn btn-primary btn-sm "
+								<li class="nav-item"><a class="btn btn-primary"
 									role="button" href="#"><fmt:message key="header.register" /></a></li>
 							</ul>
 						</c:when>
@@ -59,7 +59,7 @@
 										<a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
 										>${sessionScope.first_name}	${sessionScope.last_name}</a>
 								</li>
-								<li class="nav-item"> <a class="btn btn-primary btn-sm me-2"
+								<li class="nav-item"> <a class="btn btn-primary me-2"
 										href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message
 												key="header.signout" /></a>
 								</li>
