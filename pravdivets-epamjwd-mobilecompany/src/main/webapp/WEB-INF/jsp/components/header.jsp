@@ -3,9 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<fmt:setLocale
-	value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
+<fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
 <fmt:setBundle basename="language" />
+
+
 
 <!-- bootstrap CSS -->
 <link
@@ -15,8 +16,7 @@
 	crossorigin="anonymous">
 <header id="header">
 
-	<nav
-		class="navbar sticky-top navbar-light navbar-expand-lg navigation-clean-button">
+	<nav class="navbar sticky-top navbar-light navbar-expand-lg navigation-clean-button">
 		<div class="container">
 			<a class="navbar-brand text-primary fs-1 fw-bold me-2"
 				href="controller?command=go_to_main_page">mobile</a>
@@ -41,6 +41,14 @@
 						style="font-size: 15px;"><fmt:message key="header.services" /></a></li>
 				</ul>
 				<div class="navbar actions text-end">
+
+
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&language=ru">RU</a>
+						</li>
+						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&language=en">EN</a>
+						</li>
+					</ul>
 					<c:choose>
 						<c:when test="${sessionScope.last_name == null}">
 							<ul class="navbar-nav me-auto">
@@ -55,7 +63,7 @@
 
 						<c:when test="${sessionScope.last_name != null}">
 							<ul class="navbar-nav me-auto">
-								<li class="nav-item fw-bold text-secondary">
+								<li class="nav-item fw-bold">
 										<a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
 										>${sessionScope.first_name}	${sessionScope.last_name}</a>
 								</li>
@@ -66,6 +74,8 @@
 							</ul>
 						</c:when>
 					</c:choose>
+
+
 				</div>
 			</div>
 		</div>
