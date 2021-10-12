@@ -21,7 +21,7 @@ public class ShowBestPlanCommand implements Command{
 		request.setAttribute(AttributeName.CALCULATOR_BEST_PLAN, bestPlan);
 		
 		RouteHelper result = null;
-		result = new RouteHelper(PagePath.CALCULATOR_RESULT, RouteMethod.FORWARD);
+		result = new RouteHelper(PagePath.CALCULATOR, RouteMethod.FORWARD);
 		
 		return result;
 	}

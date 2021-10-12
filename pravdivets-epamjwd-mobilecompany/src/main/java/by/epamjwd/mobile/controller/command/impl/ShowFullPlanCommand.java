@@ -26,8 +26,8 @@ public class ShowFullPlanCommand implements Command {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		PlanService tariffPlanService = provider.getPlanService();
 		RouteHelper result = null;
-
 		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
+
 		try {
 			Plan plan = tariffPlanService.findTariffPlanByID(id);
 			request.setAttribute(AttributeName.PLAN, plan);

@@ -28,8 +28,7 @@
 				<h1 class="text-center">We have a plan for everyone</h1>
 				<p class="lead text-center mb-4">Whether you're a business or an individual, 14-day trial no credit card required.</p>
 
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="monthly">
+					<div class="tab-content tab-pane fade show active" id="monthly">
 						<div class="row py-5">
 
 
@@ -75,7 +74,7 @@
 		</div>
 
 
-	</div>
+
 	<br />
 	<jsp:include page="components/footer.jsp" />
 </body>

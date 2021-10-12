@@ -19,12 +19,17 @@
 
 	<jsp:include page="components/header.jsp" />
 		<div class="display-4 text-center mb-4"><fmt:message key="calculator.title" /></div>
+	<c:if test="${requestScope.best_plan == null}">
+		
 	<div class="text text-center lh-sm mb-2 col-sm-7 fst-italic fw-light mx-auto"><fmt:message key="calculator.lead" /></div>
 
 	<div class="row align-content-center mx-auto fw-light flex-grow-1 ">
 
 		<form method="POST" action="controller?command=calculator">
 			<table class="table table-hover">
+			<thead>
+			<tr><th><fmt:message key="calculator.per.month" /></th></tr>
+			</thead>
 			<tbody>
 			<tr><td>
 			<b><fmt:message key="calculator.calls.within.network" /></b>
@@ -155,7 +160,55 @@
 			<button type="submit" class="btn btn-outline-primary btn-sm"><fmt:message key="calculator.suggest.tariff" /></button>
 		</form>
 	</div>
-<br/>
+	</c:if>
+
+	<c:if test="${requestScope.best_plan != null}">
+		<div
+			class="container tab-content tab-pane align-content-center mx-auto fade show active flex-grow-1"
+			id="monthly">
+			<div
+				class="text text-center fs-3 fw-light lh-sm col-sm-9 mb-3 mx-auto">
+				<fmt:message key="calculator.result.lead" />
+			</div>
+
+			<div
+				class="container align-content-center col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3 mb-md-4">
+
+
+				<div class="card align-content-center text-center mb-5 h-100 ">
+					<div class="card-body d-flex flex-column">
+						<div class="mb-4">
+							<h3>${requestScope.best_plan.name}</h3>
+							<span class="display-4">${requestScope.best_plan.regularPayment/100}</span>
+							<br/> <span class="display-6"><fmt:message
+									key="calculator.result.rub.per.month" /></span>
+							<p class="lead text-center mb-4">
+								<fmt:message key="calculator.result.regular.payment" />
+							</p>
+						</div>
+
+						<div class="mb-4">
+							<p class="lead text-center mb-4">${requestScope.best_plan.description}</p>
+						</div>
+
+						<div class="mt-auto">
+							<a
+								href="${pageContext.request.contextPath}/controller?command=show_full_plan&id=${requestScope.best_plan.id}"
+								class="btn btn-outline-primary"><fmt:message
+									key="calculator.result.learn.more" /></a>
+						</div>
+					</div>
+				</div>
+				<div class="container text-center ">
+					<a
+						href="${pageContext.request.contextPath}/controller?command=go_to_calculator_page"
+						class="btn btn-outline-dark"><fmt:message
+							key="calculator.result.try.again" /></a>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	<br/>
 	<jsp:include page="components/footer.jsp" />
 
 
