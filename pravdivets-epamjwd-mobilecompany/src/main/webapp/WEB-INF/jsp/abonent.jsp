@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="pic/mobile.ico" />
 <title>mobile</title>
 </head>
-<body class="min-vh-100 bg-light">
+<body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
 	
@@ -54,7 +54,7 @@
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
-					<td>Дата договора:</td>
+					<td>Дата заключения договора:</td>
 					<td>${requestScope.abonent.contractDate}</td>
 				</tr>
 				<tr>
