@@ -24,7 +24,7 @@ public interface Dao<T> {
      * @return optional Entity object from table
      * @throws DaoException
      */
-    Optional<T> findById(int id) throws DaoException;
+    Optional<T> findById(long id) throws DaoException;
 
     /**
      * Method to save entity into table
@@ -40,7 +40,7 @@ public interface Dao<T> {
      * @param id ID of entity to delete
      * @throws DaoException
      */
-    void removeById(int id) throws DaoException;
+    void removeById(long id) throws DaoException;
 
 	
 }

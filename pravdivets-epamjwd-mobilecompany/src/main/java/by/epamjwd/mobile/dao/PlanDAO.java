@@ -9,6 +9,6 @@ import by.epamjwd.mobile.dao.exception.DaoException;
 public interface PlanDAO {
 	public List<Plan> getAllPlans() throws DaoException;
 	
-	public Optional<Plan> getPlanByID(int id) throws DaoException;
+	public Optional<Plan> getPlanByID(long id) throws DaoException;
 
 }

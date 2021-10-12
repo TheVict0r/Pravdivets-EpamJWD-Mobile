@@ -24,7 +24,7 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 	}
 
 	@Override
-	public Optional<Plan> getPlanByID(int id) throws DaoException {
+	public Optional<Plan> getPlanByID(long id) throws DaoException {
 		return findById(id);
 
 	}

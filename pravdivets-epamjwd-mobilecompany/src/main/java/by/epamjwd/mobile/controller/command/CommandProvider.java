@@ -27,6 +27,7 @@ import by.epamjwd.mobile.controller.command.impl.GoToAbonentForStuffPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowBestPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllNewsCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
 
@@ -59,6 +60,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_PROFILE_PAGE, new GoToProfilePageCommand());
 		allCommands.put(CommandName.GO_TO_CALCULATOR_PAGE, new GoToCalculatorPageCommand());
 		allCommands.put(CommandName.CALCULATOR, new CalculatorCommand());
+		allCommands.put(CommandName.SHOW_BEST_PLAN, new ShowBestPlanCommand());
 	}
 
 	public Command getCommand(String commandName) {

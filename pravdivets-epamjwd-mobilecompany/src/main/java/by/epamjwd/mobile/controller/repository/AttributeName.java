@@ -32,5 +32,6 @@ public class AttributeName {
 	public static final String CALCULATOR_SMS = "sms";
 	public static final String CALCULATOR_MMS = "mms";
 	public static final String CALCULATOR_INTERNET = "internet";
+	public static final String CALCULATOR_BEST_PLAN = "best_plan";
 
 }

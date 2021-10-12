@@ -24,5 +24,6 @@ public class CommandName {
 	public static final String GO_TO_PROFILE_PAGE = "go_to_profile_page";
 	public static final String GO_TO_CALCULATOR_PAGE = "go_to_calculator_page";
 	public static final String CALCULATOR = "calculator";
+	public static final String SHOW_BEST_PLAN = "show_best_plan";
 
 }
