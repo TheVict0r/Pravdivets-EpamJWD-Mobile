@@ -11,22 +11,55 @@
 <link rel="shortcut icon" href="pic/mobile.ico" />
 <title>mobile</title>
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-	<div class="row align-content-center mx-auto flex-grow-1">
-		<span class="display-4 text-center">Личный кабинет</span>
-			</div>
-			
-		<div class="container col-sm-12 col-md-9 col-lg-8 col-xl-7 fs-5 fw-light flex-grow-1">
+	
+	<div class="container text-center mx-auto flex-grow-1">
+		<span class="fs-6 fw-bold text-secondary ">Информация об абоненте:</span>
+	</div>
+
+
+
+		<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-7 fs-6 fw-light flex-grow-1">
 			<table class="table ">
-				<tr>
-					<td>ФИО:</td>
-					<td>${requestScope.abonent.firstName} ${requestScope.abonent.middleName} ${requestScope.abonent.lastName}</td>
-				</tr>
 				<tr>
 					<td>Номер телефона:</td>
 					<td>${requestScope.phone_number}</td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+				</tr>
+				<tr>
+					<td>ФИО абонента:</td>
+					<td>${requestScope.abonent.firstName} ${requestScope.abonent.middleName} ${requestScope.abonent.lastName}</td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+				</tr>
+				<tr>
+					<td>Номер паспорта:</td>
+					<td>${requestScope.abonent.passportNumber}</td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+				</tr>
+				<tr>
+					<td>Тарифный план: </td>
+					<td>${requestScope.abonent.tariffPlan}</td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+				</tr>
+				<tr>
+					<td>Домашний адрес:</td>
+					<td>${requestScope.abonent.homeAddress}</td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+				</tr>
+				<tr>
+					<td>e-mail:</td>
+					<td>${requestScope.abonent.email}</td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+				</tr>
+				<tr>
+					<td>Дата договора:</td>
+					<td>${requestScope.abonent.contractDate}</td>
+				</tr>
+				<tr>
+					<td>Лицевой счет №:</td>
+					<td>${requestScope.abonent.id}</td>
 				</tr>
 				<tr>
 					<td>Текущий баланс:</td>
@@ -37,18 +70,12 @@
 					<td>${requestScope.abonent.status.statusName}</td>
 				</tr>
 				<tr>
-					<td>Лицевой счет №:</td>
-					<td>${requestScope.abonent.id}</td>
-				</tr>
-				<tr>
-					<td>Тарифный план: </td>
-					<td>${requestScope.abonent.tariffPlan}</td>
-					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+					<td>Дата выставления статуса:</td>
+					<td>${requestScope.abonent.statusDate}</td>
 				</tr>
 			</table>
 		</div>
-
-
+		
 
 
 	<jsp:include page="components/footer.jsp" />

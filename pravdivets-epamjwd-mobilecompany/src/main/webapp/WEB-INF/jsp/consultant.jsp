@@ -17,7 +17,7 @@
 
 	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9  fs-5 fw-light flex-grow-1">
 		<h5 class="mt-4">Показать данные абонента</h5>
-		<form class="row" method="POST" action="controller?command=show_abonent_for_stuff">
+		<form class="row" method="POST" action="controller?command=show_abonent_by_phone">
 				<div >
 					по номеру телефона
 				</div>

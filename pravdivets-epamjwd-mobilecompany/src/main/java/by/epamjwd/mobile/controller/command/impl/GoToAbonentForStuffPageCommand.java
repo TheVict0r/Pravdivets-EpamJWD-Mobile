@@ -20,7 +20,7 @@ import by.epamjwd.mobile.util.PhoneNumberFormatter;
 
 public class GoToAbonentForStuffPageCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowAbonentForStuffCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(GoToAbonentForStuffPageCommand.class);
 
 	
 	@Override

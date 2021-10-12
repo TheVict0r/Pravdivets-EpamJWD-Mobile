@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.ShowCustomerCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAbonentByPhoneCommand;
-import by.epamjwd.mobile.controller.command.impl.ShowAbonentForStuffCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
@@ -55,7 +54,6 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_CONSULTANT, new ShowConsultantCommand());
 		allCommands.put(CommandName.SHOW_ABONENT_BY_PHONE, new ShowAbonentByPhoneCommand());
 		allCommands.put(CommandName.SHOW_ABONENT_BY_ID, new ShowAbonentByIDCommand());
-		allCommands.put(CommandName.SHOW_ABONENT_FOR_STUFF, new ShowAbonentForStuffCommand());
 		allCommands.put(CommandName.GO_TO_ABONENT_FOR_STUFF_PAGE, new GoToAbonentForStuffPageCommand());
 		allCommands.put(CommandName.GO_TO_PROFILE_PAGE, new GoToProfilePageCommand());
 		allCommands.put(CommandName.GO_TO_CALCULATOR_PAGE, new GoToCalculatorPageCommand());

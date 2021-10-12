@@ -19,7 +19,6 @@ public class CommandName {
 	public static final String SHOW_CONSULTANT = "show_consultant";
 	public static final String SHOW_ABONENT_BY_PHONE = "show_abonent_by_phone";
 	public static final String SHOW_ABONENT_BY_ID = "show_abonent_by_id";
-	public static final String SHOW_ABONENT_FOR_STUFF = "show_abonent_for_stuff";
 	public static final String GO_TO_ABONENT_FOR_STUFF_PAGE = "go_to_abonent_for_stuff_page";
 	public static final String GO_TO_PROFILE_PAGE = "go_to_profile_page";
 	public static final String GO_TO_CALCULATOR_PAGE = "go_to_calculator_page";

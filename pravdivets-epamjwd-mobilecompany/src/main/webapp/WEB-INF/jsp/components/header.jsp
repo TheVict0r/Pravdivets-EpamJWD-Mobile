@@ -30,22 +30,24 @@
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/controller?command=show_all_news"
 						style="font-size: 15px;"><fmt:message key="header.news" /></a></li>
+					<li class="nav-link text-primary fw-bold">|</li>	
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/controller?command=show_all_plans"
 						style="font-size: 15px;"><fmt:message key="header.tariffs" /></a></li>
+					<li class="nav-link text-primary fw-bold">|</li>	
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_calculator_page"
 						style="font-size: 15px;"><fmt:message
 								key="header.tariff.calculator" /></a></li>
+					<li class="nav-link text-primary fw-bold">|</li>	
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/controller?command=show_all_services"
 						style="font-size: 15px;"><fmt:message key="header.services" /></a></li>
 				</ul>
 				<div class="navbar actions text-end">
-
-
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&language=ru">RU</a>
 						</li>
+					<li class="nav-link text-primary fw-bold">|</li>	
 						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&language=en">EN</a>
 						</li>
 					</ul>

@@ -2,13 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
 <fmt:setBundle basename="language" />
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,15 +13,11 @@
 <title>mobile</title>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
-
 	<jsp:include page="components/header.jsp" />
 		<div class="display-4 text-center mb-4"><fmt:message key="calculator.title" /></div>
 	<c:if test="${requestScope.best_plan == null}">
-		
 	<div class="text text-center lh-sm mb-2 col-sm-7 fst-italic fw-light mx-auto"><fmt:message key="calculator.lead" /></div>
-
 	<div class="row align-content-center mx-auto fw-light flex-grow-1 ">
-
 		<form method="POST" action="controller?command=calculator">
 			<table class="table table-hover">
 			<thead>
@@ -161,7 +154,6 @@
 		</form>
 	</div>
 	</c:if>
-
 	<c:if test="${requestScope.best_plan != null}">
 		<div
 			class="container tab-content tab-pane align-content-center mx-auto fade show active flex-grow-1"
@@ -173,8 +165,6 @@
 
 			<div
 				class="container align-content-center col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3 mb-md-4">
-
-
 				<div class="card align-content-center text-center mb-5 h-100 ">
 					<div class="card-body d-flex flex-column">
 						<div class="mb-4">
@@ -190,7 +180,6 @@
 						<div class="mb-4">
 							<p class="lead text-center mb-4">${requestScope.best_plan.description}</p>
 						</div>
-
 						<div class="mt-auto">
 							<a
 								href="${pageContext.request.contextPath}/controller?command=show_full_plan&id=${requestScope.best_plan.id}"
@@ -210,7 +199,5 @@
 	</c:if>
 	<br/>
 	<jsp:include page="components/footer.jsp" />
-
-
 </body>
 </html>
