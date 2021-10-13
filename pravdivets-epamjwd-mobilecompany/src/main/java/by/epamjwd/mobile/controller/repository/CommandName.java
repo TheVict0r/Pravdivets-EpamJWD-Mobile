@@ -15,7 +15,7 @@ public class CommandName {
 	public static final String SHOW_ALL_SERVICES = "show_all_services";
 	public static final String SHOW_FULL_SERVICE = "show_full_service";
 	public static final String SHOW_CUSTOMER_BY_USER_ID = "show_customer_by_user_id";
-	public static final String SHOW_CUSTOMER_BY_NAME = "show_customer_by_name";
+	public static final String SHOW_CUSTOMER_BY_FULL_NAME = "show_customer_by_full_name";
 	public static final String SHOW_ADMIN = "show_admin";
 	public static final String SHOW_CONSULTANT = "show_consultant";
 	public static final String SHOW_ABONENT_BY_PHONE = "show_abonent_by_phone";

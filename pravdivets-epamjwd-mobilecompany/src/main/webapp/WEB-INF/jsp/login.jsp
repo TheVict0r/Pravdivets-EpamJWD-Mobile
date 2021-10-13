@@ -29,7 +29,7 @@
 					<c:remove var="error" />
 				</c:if>
 				<tr>
-					<td><label for="password" class="form-label"> <fmt:message
+					<td><label for="login" class="form-label"> <fmt:message
 								key="login.phone.number" /> <span
 							class="text-primary fw-bold fs-5 ">*</span> / e-mail:
 					</label></td>

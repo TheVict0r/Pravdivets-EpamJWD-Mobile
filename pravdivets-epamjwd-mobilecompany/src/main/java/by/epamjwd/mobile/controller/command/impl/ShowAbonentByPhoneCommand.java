@@ -37,7 +37,6 @@ public class ShowAbonentByPhoneCommand implements Command {
 		HttpSession session = request.getSession();
 		Role userRole = (Role)session.getAttribute(AttributeName.ROLE);
 		
-		
 		String phoneNumber = request.getParameter(ParameterName.PHONE_NUMBER);
 		
 		RouteHelper result = null;

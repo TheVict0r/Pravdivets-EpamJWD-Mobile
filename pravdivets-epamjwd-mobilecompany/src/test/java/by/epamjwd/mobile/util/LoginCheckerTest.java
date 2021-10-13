@@ -27,6 +27,18 @@ public class LoginCheckerTest {
 	private final String badEmail3 = "vasyapupkin-gmail.com";
 	private final String badEmail4 = "vasyapupkin@gmailcom";
 	private final String badEmail5 = "vasyapupkingmail.com";
+	
+	
+	private final String goodName1 = "Петрович";
+	private final String goodName2 = "Peterson";
+	private final String goodName3 = "Жан-поль";
+	
+	
+	private final String badName1 = "петрович";
+	private final String badName2 = "Вася Ложкин";
+	private final String badName3 = " Peterson";
+	private final String badName4 = "Peterson ";
+	private final String badName5 = "pEterson";
 
 
 	@Test
@@ -123,5 +135,46 @@ public class LoginCheckerTest {
 	public void testBadEmail5() {
 		Assert.assertFalse(LoginChecker.isEmail(badEmail5));
 	}
+	
+	@Test
+	public void testGoodName1() {
+		Assert.assertTrue(LoginChecker.isName(goodName1));
+	}
+
+	@Test
+	public void testGoodName2() {
+		Assert.assertTrue(LoginChecker.isName(goodName2));
+	}
+	
+	@Test
+	public void testGoodName3() {
+		Assert.assertTrue(LoginChecker.isName(goodName3));
+	}
+	
+	@Test
+	public void testBadName1() {
+		Assert.assertFalse(LoginChecker.isName(badName1));
+	}
+	
+	@Test
+	public void testBadName2() {
+		Assert.assertFalse(LoginChecker.isName(badName2));
+	}
+	
+	@Test
+	public void testBadName3() {
+		Assert.assertFalse(LoginChecker.isName(badName3));
+	}
+	
+	@Test
+	public void testBadName4() {
+		Assert.assertFalse(LoginChecker.isName(badName4));
+	}
+	
+	@Test
+	public void testBadName5() {
+		Assert.assertFalse(LoginChecker.isName(badName5));
+	}
+	
 	
 }
