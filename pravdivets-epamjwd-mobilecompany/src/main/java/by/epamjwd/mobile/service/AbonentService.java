@@ -12,5 +12,7 @@ public interface AbonentService {
 	Abonent findAbonentById(String id) throws ServiceException;
 	List<Abonent> findAbonentListByEmail(String email) throws ServiceException;
 	List<Abonent> findAbonentListByUserId(String id) throws ServiceException;
+	List<Abonent> findAbonentListByFullName(String firstName, String middleName, String lastName)
+			throws ServiceException;
 
 }

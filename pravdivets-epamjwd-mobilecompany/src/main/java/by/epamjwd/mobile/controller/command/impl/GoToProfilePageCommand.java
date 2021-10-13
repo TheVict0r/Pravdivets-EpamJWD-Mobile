@@ -10,6 +10,7 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class GoToProfilePageCommand implements Command{
@@ -18,6 +19,11 @@ public class GoToProfilePageCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
+		
+		if(role == null) {
+			request.setAttribute(AttributeName.SESSION_TIME_OUT, AttributeValue.SESSION_TIME_OUT);
+			return new RouteHelper(PagePath.LOGIN, RouteMethod.FORWARD);
+		}
 		
 		RouteHelper result;
 		switch (role) {

@@ -48,6 +48,16 @@ public class SQLAbonentDAOImpl extends AbstractDao<Abonent> implements AbonentDA
 	}
 	
 	@Override
+	public List<Abonent> findAbonentListByFullName(String firstName, String middleName, String lastName) throws DaoException {
+		String query = new StringBuilder(BASIC_ABONENT_SELECT_QUERY)
+				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_FIRST_NAME).append(" = ? AND ")
+				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME).append(" = ? AND ")
+				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME).append(" = ?")
+				.toString();
+		return executeQuery(query, firstName, middleName, lastName);
+	}
+	
+	@Override
 	public Optional<Abonent> findAbonentById(String id) throws DaoException {
 		String query = makeAbonentSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_ID);
 		return executeQueryForSingleResult(query, id);
@@ -104,8 +114,7 @@ public class SQLAbonentDAOImpl extends AbstractDao<Abonent> implements AbonentDA
 
 	private String makeAbonentSelectQuery(String tableName, String columnName) {
 		
-		return new StringBuilder()
-				.append(BASIC_ABONENT_SELECT_QUERY)
+		return new StringBuilder(BASIC_ABONENT_SELECT_QUERY)
 				.append(tableName)
 				.append(".")
 				.append(columnName)

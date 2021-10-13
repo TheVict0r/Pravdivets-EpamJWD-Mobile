@@ -39,11 +39,11 @@
 			</div>
 		</form>
 
-		<form class="row mb-5" method="POST" action="controller?command=show_customer_by_full_name">
+		<form class="row mb-5" method="POST" action="controller?command=show_abonent_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message key="consultant.by.name"/></label>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="lastName" name="last_name" value=""
-					placeholder="<fmt:message key="consultant.last.name"/>" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
+					placeholder="<fmt:message key="consultant.last.name"/>"  pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
 			</div>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="firstName" name="first_name" value=""

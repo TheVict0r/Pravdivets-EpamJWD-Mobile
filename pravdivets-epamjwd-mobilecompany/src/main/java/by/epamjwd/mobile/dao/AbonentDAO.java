@@ -13,6 +13,7 @@ public interface AbonentDAO {
 	public List<Abonent> findAbonentListByEmail(String email) throws DaoException;
 	public Optional<Abonent> findAbonentById(String id) throws DaoException;
 	List<Abonent> findAbonentListByUserId(String id) throws DaoException;
+	public List<Abonent> findAbonentListByFullName(String firstName, String middleName, String lastName) throws DaoException;
 
 	
 }

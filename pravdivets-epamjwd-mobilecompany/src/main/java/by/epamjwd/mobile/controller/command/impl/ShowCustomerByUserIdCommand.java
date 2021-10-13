@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.bean.Abonent;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
+import by.epamjwd.mobile.controller.command.AbonentCommandHelper;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -31,23 +32,11 @@ public class ShowCustomerByUserIdCommand implements Command {
 		String id = String.valueOf(request.getSession().getAttribute(AttributeName.USER_ID));
 		ServiceProvider provider = ServiceProvider.getInstance();
 		AbonentService abonentService = provider.getAbonentService();
-		HttpSession session = request.getSession();
 
 		RouteHelper result = null;
 		try {
 			List<Abonent> abonentsList = abonentService.findAbonentListByUserId(id);
-			if (abonentsList.size() == 1) {
-				Abonent abonent = abonentsList.get(0);
-				request.setAttribute(AttributeName.ABONENT, abonent);
-				String phoneNumber = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(abonent.getPhoneNumber()));
-				request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
-				result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);
-			} else {
-				request.setAttribute(AttributeName.ABONENT_LIST, abonentsList);
-//				Map<String, String> phoneNumbersMap = numberFormatter.provideFormattedPhoneNumbersMap(abonentsList);
-//				request.setAttribute(AttributeName.PHONE_NUMBERS_MAP, phoneNumbersMap);
-				result = new RouteHelper(PagePath.CUSTOMER, RouteMethod.FORWARD);
-			}
+			result = AbonentCommandHelper.getInstance().handleAbonentsList(request, abonentsList);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain abonent user data for ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);

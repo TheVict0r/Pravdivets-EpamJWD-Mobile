@@ -12,7 +12,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowConsultantCommand;
-import by.epamjwd.mobile.controller.command.impl.ShowCustomerByFullNameCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowAbonentListByFullNameCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
@@ -50,7 +50,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_ALL_SERVICES, new ShowAllServicesCommand());
 		allCommands.put(CommandName.SHOW_FULL_SERVICE, new ShowFullServiceCommand());
 		allCommands.put(CommandName.SHOW_CUSTOMER_BY_USER_ID, new ShowCustomerByUserIdCommand());
-		allCommands.put(CommandName.SHOW_CUSTOMER_BY_FULL_NAME, new ShowCustomerByFullNameCommand());
+		allCommands.put(CommandName.SHOW_ABONENT_LIST_BY_FULL_NAME, new ShowAbonentListByFullNameCommand());
 		allCommands.put(CommandName.SHOW_ADMIN, new ShowAdminCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT, new ShowConsultantCommand());
 		allCommands.put(CommandName.SHOW_ABONENT_BY_PHONE, new ShowAbonentByPhoneCommand());

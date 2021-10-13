@@ -10,12 +10,12 @@ import by.epamjwd.mobile.service.impl.UserServiceImpl;
 
 public class ServiceProvider {
 
+	private UserService userService             = new UserServiceImpl();
 	private AbonentService abonentService       = new AbonentServiceImpl();
 	private AdminService adminService           = new AdminServiceImpl();
 	private ConsultantService consultantService = new ConsultantServiceImpl();
 	private NewsService newsService             = new NewsServiceImpl();
 	private PlanService planService             = new PlanServiceImpl();
-	private UserService userService             = new UserServiceImpl();
 	private ServiceService serviceService       = new ServiceServiceImpl();
 
 	private ServiceProvider() {

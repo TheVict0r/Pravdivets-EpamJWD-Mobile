@@ -27,5 +27,6 @@ public class AttributeName {
 	public static final String PHONE_NUMBERS_MAP = "phone_numbers_map";
 	public static final String ROLE = "role";
 	public static final String CALCULATOR_BEST_PLAN = "best_plan";
+	public static final String SESSION_TIME_OUT = "session_time_out";
 
 }

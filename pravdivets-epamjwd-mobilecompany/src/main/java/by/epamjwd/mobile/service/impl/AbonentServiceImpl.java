@@ -56,6 +56,17 @@ public class AbonentServiceImpl implements AbonentService {
 	}
 
 	@Override
+	public List<Abonent> findAbonentListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
+		List<Abonent> abonentList;
+		try {
+			abonentList = abonentDao.findAbonentListByFullName(firstName, middleName, lastName);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return abonentList;
+	}
+
+	@Override
 	public List<Abonent> findAbonentListByUserId(String id) throws ServiceException {
 		List<Abonent> abonentList;
 		try {
