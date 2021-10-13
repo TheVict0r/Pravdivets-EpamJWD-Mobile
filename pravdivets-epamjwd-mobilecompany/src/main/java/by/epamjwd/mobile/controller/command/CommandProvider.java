@@ -6,12 +6,13 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.controller.command.impl.ShowCustomerCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowCustomerByUserIdCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAbonentByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowConsultantCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowCustomerByNameCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
@@ -22,7 +23,6 @@ import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAbonentByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
-import by.epamjwd.mobile.controller.command.impl.GoToAbonentForStuffPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
@@ -36,7 +36,7 @@ public class CommandProvider {
 
 	private final Map<String, Command> allCommands = new HashMap<>();
 
-	public CommandProvider() {
+	private CommandProvider() {
 		allCommands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
 		allCommands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPageCommand());
 		allCommands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
@@ -49,18 +49,22 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_FULL_PLAN, new ShowFullPlanCommand());
 		allCommands.put(CommandName.SHOW_ALL_SERVICES, new ShowAllServicesCommand());
 		allCommands.put(CommandName.SHOW_FULL_SERVICE, new ShowFullServiceCommand());
-		allCommands.put(CommandName.SHOW_CUSTOMER, new ShowCustomerCommand());
+		allCommands.put(CommandName.SHOW_CUSTOMER_BY_USER_ID, new ShowCustomerByUserIdCommand());
+		allCommands.put(CommandName.SHOW_CUSTOMER_BY_NAME, new ShowCustomerByNameCommand());
 		allCommands.put(CommandName.SHOW_ADMIN, new ShowAdminCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT, new ShowConsultantCommand());
 		allCommands.put(CommandName.SHOW_ABONENT_BY_PHONE, new ShowAbonentByPhoneCommand());
 		allCommands.put(CommandName.SHOW_ABONENT_BY_ID, new ShowAbonentByIDCommand());
-		allCommands.put(CommandName.GO_TO_ABONENT_FOR_STUFF_PAGE, new GoToAbonentForStuffPageCommand());
 		allCommands.put(CommandName.GO_TO_PROFILE_PAGE, new GoToProfilePageCommand());
 		allCommands.put(CommandName.GO_TO_CALCULATOR_PAGE, new GoToCalculatorPageCommand());
 		allCommands.put(CommandName.CALCULATOR, new CalculatorCommand());
 		allCommands.put(CommandName.SHOW_BEST_PLAN, new ShowBestPlanCommand());
 	}
 
+    public static CommandProvider getInstance() {
+    	return Holder.INSTANCE;
+    }
+    
 	public Command getCommand(String commandName) {
 		Command command = null;
 		try {
@@ -73,12 +77,16 @@ public class CommandProvider {
 			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
 		}
 		//возможно отсечётся через web.xml
-		if (command == null) {
-			LOGGER.error("Nonexistent command name - " + commandName);
-			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
-		}
+//		if (command == null) {
+//			LOGGER.error("Nonexistent command name - " + commandName);
+//			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
+//		}
 		
 		return command;
 	}
 
+	private static class Holder {
+		static final CommandProvider INSTANCE = new CommandProvider();
+	}
+	
 }

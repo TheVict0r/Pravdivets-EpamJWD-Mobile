@@ -16,24 +16,17 @@ public class AbonentServiceImpl implements AbonentService {
 	AbonentDAO abonentDao = provider.getAbonentDAO();
 
 	@Override
-	public Abonent findAbonentByLogin(String login) throws ServiceException {
+	public Abonent findAbonentByPhoneNumber(String phoneString) throws ServiceException {
 		Abonent abonent = null;
-		if(LoginChecker.isPhoneNumber(login)) {
-			int phoneNumber = Integer.parseInt(login);
-			abonent = findAbonentByPhoneNumber(phoneNumber);
-		}
-		return abonent;
-	}
-
-	@Override
-	public Abonent findAbonentByPhoneNumber(int phoneNumber) throws ServiceException {
-		Abonent abonent;
-		try {
-			abonent = abonentDao.findAbonentByPhoneNumber(phoneNumber).get();
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		} catch (NoSuchElementException e) {
-			throw new ServiceException("The Optional<Abonent> contains null for phone number - " + phoneNumber, e);
+		if (LoginChecker.isPhoneNumber(phoneString)) {
+			int phoneNumber = Integer.parseInt(phoneString);
+			try {
+				abonent = abonentDao.findAbonentByPhoneNumber(phoneNumber).get();
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			} catch (NoSuchElementException e) {
+				throw new ServiceException("The Optional<Abonent> contains null for phone number - " + phoneNumber, e);
+			}
 		}
 		return abonent;
 	}

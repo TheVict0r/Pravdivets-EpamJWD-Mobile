@@ -25,7 +25,7 @@
 			<table class="table ">
 				<tr>
 					<td>Номер телефона:</td>
-					<td>${requestScope.phone_number}</td>
+					<td>${requestScope.phone_number_format}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>

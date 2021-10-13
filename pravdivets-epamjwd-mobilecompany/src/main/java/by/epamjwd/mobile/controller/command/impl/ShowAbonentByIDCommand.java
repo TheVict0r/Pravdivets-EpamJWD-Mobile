@@ -33,13 +33,11 @@ public class ShowAbonentByIDCommand implements Command{
 		
 		String id = String.valueOf(session.getAttribute(AttributeName.ABONENT_ID));
 		
-		PhoneNumberFormatter numberFormatter = new PhoneNumberFormatter();
-
 		RouteHelper result = null;
 		try {
 			Abonent abonent = abonentService.findAbonentById(id);
 			request.setAttribute(AttributeName.ABONENT, abonent);
-			String phoneNumberFormat = numberFormatter.formatPhomeNumber(abonent.getPhoneNumber());
+			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(abonent.getPhoneNumber()));
 			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumberFormat);
 			session.setAttribute(AttributeName.ROLE, Role.CUSTOMER);
 			result = new RouteHelper(PagePath.ABONENT, RouteMethod.FORWARD);

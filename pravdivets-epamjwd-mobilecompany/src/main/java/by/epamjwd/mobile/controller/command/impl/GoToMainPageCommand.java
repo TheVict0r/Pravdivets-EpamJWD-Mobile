@@ -14,7 +14,7 @@ public class GoToMainPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		CommandProvider commandProvider = new CommandProvider();
+		CommandProvider commandProvider = CommandProvider.getInstance();
 		Command plans = commandProvider.getCommand(CommandName.SHOW_ALL_PLANS);
 		Command news = commandProvider.getCommand(CommandName.SHOW_ALL_NEWS);
 		plans.execute(request, response);

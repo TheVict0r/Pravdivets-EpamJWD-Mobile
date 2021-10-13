@@ -44,13 +44,13 @@ public class LoginCommand implements Command {
 		String hashPassword = hashGenerator.generateHash(request.getParameter(ParameterName.PASSWORD));
 		
 		if (login == null || request.getParameter(ParameterName.PASSWORD) == null) {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.LOGIN_ERROR);
+			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
 
 		try {
 			user = userService.findUserByLogin(login);
-			abonent = abonentService.findAbonentByLogin(login);
+			abonent = abonentService.findAbonentByPhoneNumber(login);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for login - " + login, e);
 			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
@@ -105,7 +105,7 @@ public class LoginCommand implements Command {
 	}
 	
 	private void setErrorAttributes(HttpSession session, String login, String password) {
-		session.setAttribute(AttributeName.ERROR, AttributeValue.LOGIN_ERROR);
+		session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 		session.setAttribute(AttributeName.LOGIN, login);
 		session.setAttribute(AttributeName.PASSWORD, password);
 	}

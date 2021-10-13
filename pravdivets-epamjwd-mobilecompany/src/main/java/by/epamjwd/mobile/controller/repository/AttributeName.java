@@ -23,6 +23,7 @@ public class AttributeName {
 	public static final String PASSWORD = "password";
 	public static final String ERROR = "error";
 	public static final String PHONE_NUMBER = "phone_number";
+	public static final String PHONE_NUMBER_FORMAT = "phone_number_format";
 	public static final String PHONE_NUMBERS_MAP = "phone_numbers_map";
 	public static final String ROLE = "role";
 	public static final String CALCULATOR_WITHIN_NETWORK = "within_network";

@@ -6,11 +6,11 @@ import by.epamjwd.mobile.util.PhoneNumberFormatter;
 public class TestPhoneNumberFormatter {
 public static void main(String[] args) {
 	
-	int goodPhoneNumber25 = 258901235;
-	int goodPhoneNumber29 = 295678901;
-	int goodPhoneNumber33 = 332345678;
-	int goodPhoneNumber44 = 449012345;
-	int goodPhoneNumber55 = 1290123235;
+	String goodPhoneNumber25 = "258901235";
+	String goodPhoneNumber29 = "295678901";
+	String goodPhoneNumber33 = "332345678";
+	String goodPhoneNumber44 = "449012345";
+	String goodPhoneNumber55 = "1290123235";
 
 	
 	PhoneNumberFormatter formatter = new PhoneNumberFormatter();

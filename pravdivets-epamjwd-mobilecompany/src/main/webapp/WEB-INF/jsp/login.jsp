@@ -24,7 +24,7 @@
 		<form method="POST" action="controller?command=login">
 			<table>
 				
-				<c:if test="${sessionScope.error eq 'login_error'}">
+				<c:if test="${sessionScope.error eq 'error_login'}">
 					<p class="text-danger"><fmt:message key = "login.check.data"/></p>
 					<c:remove var="error" />
 				</c:if>

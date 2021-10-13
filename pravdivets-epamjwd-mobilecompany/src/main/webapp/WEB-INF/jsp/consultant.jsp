@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
+<fmt:setBundle basename="language" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,14 +26,27 @@
 					по номеру телефона
 				</div>
 			<div class="col-md-3">
-				<input type="text" class="form-control" id="phoneNumber" name="phone_number" value="" placeholder="№ телефона" required>
+				<input type="text" class="form-control" id="phoneNumber" name="phone_number" value="${requestScope.phone_number}" placeholder="Номер телефона" required>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<input type="submit" class="btn btn-outline-dark" value="OK">
+			</div>
+			<div class="col-md-7">
+
+				<c:if test="${requestScope.error eq 'error_null_abonent'}">
+					<p class="text-danger">
+						<fmt:message key="consultant.check.data" />
+						<c:remove var="error" />
+					</p>
+					<c:remove var="error" />
+				</c:if>
+
+
+
 			</div>
 		</form>
 
-		<form class="row" method="POST" action="controller?command=show_abonent_for_stuff">
+		<form class="row" method="POST" action="controller?command=show_customer_by_name">
 				<div >
 					по ФИО
 				</div>

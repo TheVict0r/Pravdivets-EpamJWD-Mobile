@@ -35,7 +35,7 @@ public class Controller extends HttpServlet {
 
 		String commandName = request.getParameter("command");
 
-		CommandProvider commandProvider = new CommandProvider();
+		CommandProvider commandProvider = CommandProvider.getInstance();
 		Command command = commandProvider.getCommand(commandName);
 
 		RouteHelper routeHelper = command.execute(request, response);
