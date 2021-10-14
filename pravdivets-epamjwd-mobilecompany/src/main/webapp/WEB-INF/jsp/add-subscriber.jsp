@@ -14,9 +14,7 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-
-		<div class="mb-4 "></div>
-		<div><h1 class="row justify-content-center fw-light mx-auto mb-5 ">Новый абонент</h1></div>
+		<div class="row justify-content-center fs-1 fw-light mx-auto py-4 mb-4 ">Новый абонент</div>
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 			<form method="post" action=controller?command=add_subscriber>
 				<table>

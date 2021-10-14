@@ -17,7 +17,7 @@
 		<div class="display-4 text-center mb-4"><fmt:message key="calculator.title" /></div>
 	<c:if test="${requestScope.best_plan == null}">
 	<div class="text text-center lh-sm mb-2 col-sm-7 fst-italic fw-light mx-auto"><fmt:message key="calculator.lead" /></div>
-	<div class="row align-content-center mx-auto fw-light flex-grow-1 ">
+	<div class="row align-content-center mx-auto fw-light mb-3 flex-grow-1 ">
 		<form method="POST" action="controller?command=calculator">
 			<table class="table table-hover">
 			<thead>
@@ -149,7 +149,6 @@
 			</td></tr>
 			</tbody>
 			</table>
-			
 			<button type="submit" class="btn btn-outline-primary btn-sm"><fmt:message key="calculator.suggest.tariff" /></button>
 		</form>
 	</div>
@@ -162,7 +161,6 @@
 				class="text text-center fs-3 fw-light lh-sm col-sm-9 mb-3 mx-auto">
 				<fmt:message key="calculator.result.lead" />
 			</div>
-
 			<div
 				class="container align-content-center col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3 mb-md-4">
 				<div class="card align-content-center text-center mb-5 h-100 ">
@@ -176,7 +174,6 @@
 								<fmt:message key="calculator.result.regular.payment" />
 							</p>
 						</div>
-
 						<div class="mb-2">
 							<p class="lead text-center">${requestScope.best_plan.description}</p>
 						</div>
@@ -197,7 +194,7 @@
 			</div>
 		</div>
 	</c:if>
-	<br/>
+
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

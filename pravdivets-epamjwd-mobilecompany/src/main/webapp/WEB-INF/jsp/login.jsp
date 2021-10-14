@@ -29,7 +29,7 @@
 			<c:remove var="session_time_out" />
 		</c:if>
 	</div>
-		<div><h1 class="row justify-content-center fw-light mx-auto mb-5 "><fmt:message key="login.signin"/></h1></div>
+		<div class="row justify-content-center fs-1 fw-light mx-auto mb-5 "><fmt:message key="login.signin"/></div>
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=login">
 			<table>

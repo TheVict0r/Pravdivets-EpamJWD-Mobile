@@ -18,18 +18,9 @@
 	<div class="col-sm" id="promo">
 		<img src="pic/article.jpg" class="img-fluid" alt="mobile">
 	</div>
-
-	<div class="container p-0">
-
-		<h1 class="h3 mb-3 text-center"></h1>
-
-		<div class="row">
-			<div class="col-md-12 col-xl-10 mx-auto">
-				<h1 class="text-center">Услуги</h1>
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="monthly">
-						<div class="row py-5">
-
+		<div class="row justify-content-center fs-1 fw-light py-4 mx-auto ">Услуги</div>
+		<div class="tab-pane tab-content col-xs-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+						<div class="row py-4">
 							<c:forEach var="service" items="${requestScope.all_services}">
 								<div class="col-sm-4 mb-3 mb-md-4">
 									<div class="card text-center h-100">
@@ -41,24 +32,13 @@
 											</div>
 											<div class="mt-auto">
 												<a href="${pageContext.request.contextPath}/controller?command=show_full_service&id=${service.id}" class="btn btn-lg btn-outline-primary">Подробнее</a>
-												
 											</div>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
-							
 						</div>
-							
 					</div>
-
-				</div>
-			</div>
-		</div>
-
-
-	</div>
-	<br />
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>
