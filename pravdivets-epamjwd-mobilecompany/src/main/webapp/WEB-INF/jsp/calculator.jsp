@@ -167,18 +167,18 @@
 				class="container align-content-center col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4 mb-3 mb-md-4">
 				<div class="card align-content-center text-center mb-5 h-100 ">
 					<div class="card-body d-flex flex-column">
-						<div class="mb-4">
+						<div class="mb-2">
 							<h3>${requestScope.best_plan.name}</h3>
 							<span class="display-4">${requestScope.best_plan.regularPayment/100}</span>
 							<br/> <span class="display-6"><fmt:message
 									key="calculator.result.rub.per.month" /></span>
-							<p class="lead text-center mb-4">
+							<p class="lead text-center">
 								<fmt:message key="calculator.result.regular.payment" />
 							</p>
 						</div>
 
-						<div class="mb-4">
-							<p class="lead text-center mb-4">${requestScope.best_plan.description}</p>
+						<div class="mb-2">
+							<p class="lead text-center">${requestScope.best_plan.description}</p>
 						</div>
 						<div class="mt-auto">
 							<a

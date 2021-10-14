@@ -20,7 +20,7 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-
+	<div class="mb-4 "></div>
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<c:if test="${requestScope.session_time_out eq 'session_time_out'}">
 			<p class="text-danger fs-5 ">
@@ -29,15 +29,10 @@
 			<c:remove var="session_time_out" />
 		</c:if>
 	</div>
-
-	<div class="row align-content-center mx-auto">
-
-		<h3>
-			<fmt:message key="login.signin" />
-		</h3>
+		<div><h1 class="row justify-content-center fw-light mx-auto mb-5 "><fmt:message key="login.signin"/></h1></div>
+		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=login">
 			<table>
-
 				<c:if test="${sessionScope.error eq 'error_login'}">
 					<p class="text-danger">
 						<fmt:message key="login.check.data" />
@@ -49,7 +44,7 @@
 								key="login.phone.number" /> <span
 							class="text-primary fw-bold fs-5 ">*</span> / e-mail:
 					</label></td>
-					<td><input type="text" class="form-control" name="login"
+					<td><input type="text" class="form-control mb-1" name="login"
 						value="${sessionScope.login}" id="login" required></td>
 					<c:remove var="login" />
 				</tr>
@@ -63,7 +58,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td class="fw-light"><input class="form-check-input"
+					<td class="fw-light "><input class="form-check-input mb-4"
 						type="checkbox" onclick="showPassword()"> <fmt:message
 							key="login.show.password" /></td>
 				</tr>
@@ -75,13 +70,12 @@
 			</table>
 		</form>
 	</div>
-	<div class="row align-content-center mx-auto flex-grow-1">
-		<p>
+	<div class="row fw-light row justify-content-center mx-auto flex-grow-1">
+		<span>
 			<span class="text-primary fw-bold fs-5 ">*</span>
 			<fmt:message key="login.number.format" />
-			<br />
 			<b><i>25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
-		</p>
+		</span>
 	</div>
 	<jsp:include page="components/footer.jsp" />
 	<script src="js/login.js"></script>

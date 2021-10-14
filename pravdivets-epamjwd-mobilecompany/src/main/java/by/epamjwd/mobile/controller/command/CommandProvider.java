@@ -21,8 +21,10 @@ import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
+import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
@@ -59,6 +61,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_CALCULATOR_PAGE, new GoToCalculatorPageCommand());
 		allCommands.put(CommandName.CALCULATOR, new CalculatorCommand());
 		allCommands.put(CommandName.SHOW_BEST_PLAN, new ShowBestPlanCommand());
+		allCommands.put(CommandName.ADD_SUBSCRIBER, new AddSubscriberCommand());
+		allCommands.put(CommandName.GO_TO_ADD_SUBSCRIBER_PAGE, new GoToAddSubscriberPageCommand());
 	}
 
     public static CommandProvider getInstance() {
