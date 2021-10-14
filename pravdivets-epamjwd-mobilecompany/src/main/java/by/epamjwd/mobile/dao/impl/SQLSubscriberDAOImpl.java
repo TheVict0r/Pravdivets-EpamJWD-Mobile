@@ -49,12 +49,26 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws DaoException {
-		String query = new StringBuilder(BASIC_SUBSCRIBER_SELECT_QUERY)
+		List<Subscriber> result = null;
+		String query = null;
+		StringBuilder builder = new StringBuilder(BASIC_SUBSCRIBER_SELECT_QUERY)
 				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_FIRST_NAME).append(" = ? AND ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME).append(" = ? AND ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME).append(" = ?")
-				.toString();
-		return executeQuery(query, firstName, middleName, lastName);
+				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME);
+		
+		if("".equals(middleName)) {
+			query = builder
+					.append(" = ?")
+					.toString();
+			result = executeQuery(query, firstName,  lastName);
+		} else {
+			query = builder
+					.append(" = ? AND ")
+					.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME)
+					.append(" = ?")
+					.toString();
+			result = executeQuery(query, firstName,  lastName, middleName);
+		}
+		return result;
 	}
 	
 	@Override

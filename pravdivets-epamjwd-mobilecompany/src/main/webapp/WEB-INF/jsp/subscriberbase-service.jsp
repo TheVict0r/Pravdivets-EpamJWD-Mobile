@@ -43,15 +43,15 @@
 		<form class="row mb-5" method="POST" action="controller?command=show_subscriber_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message key="consultant.by.name"/></label>
 			<div class="col-md-3">
-				<input type="text" class="form-control" id="lastName" name="last_name" value=""
+				<input type="text" class="form-control" id="lastName" name="last_name" value="${requestScope.last_name}"
 					placeholder="<fmt:message key="consultant.last.name"/>"  pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
 			</div>
 			<div class="col-md-3">
-				<input type="text" class="form-control" id="firstName" name="first_name" value=""
+				<input type="text" class="form-control" id="firstName" name="first_name" value="${requestScope.first_name}"
 					placeholder="<fmt:message key="consultant.first.name"/>" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
 			</div>
 			<div class="col-md-3">
-				<input type="text" class="form-control" id="middleName" name="middle_name" value=""
+				<input type="text" class="form-control" id="middleName" name="middle_name" value="${requestScope.middle_name}"
 					placeholder="<fmt:message key="consultant.middle.name"/>" pattern="^[A-ZА-ЯЁ][a-zа-яё]+$">
 			</div>
 			<div class="col-md-1">

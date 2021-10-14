@@ -38,6 +38,10 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 		List<Subscriber> abonentList = null;
 		RouteHelper result = null;
 		
+		if(middleName.equals("") ) {
+			
+		}
+		
 		try {
 			abonentList = abonentService.findSubscriberListByFullName(firstName, middleName, lastName);
 			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, abonentList);
@@ -45,6 +49,9 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain abonent data for " + firstName + " " + middleName + " " + lastName, e);
 			request.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_NULL_SUBSCRIBER);
+			request.setAttribute(AttributeName.FIRST_NAME, firstName);
+			request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
+			request.setAttribute(AttributeName.LAST_NAME, lastName);
 			result = new RouteHelper(PagePath.SUBSCRIBERBASE_SERVICE, RouteMethod.FORWARD);
 		}
 		return result;

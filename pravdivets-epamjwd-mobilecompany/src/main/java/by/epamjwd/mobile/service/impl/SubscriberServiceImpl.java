@@ -33,15 +33,15 @@ public class SubscriberServiceImpl implements SubscriberService {
 	
 	@Override
 	public Subscriber findSubscriberById(String id) throws ServiceException {
-		Subscriber abonent;
+		Subscriber subscriber;
 		try {
-			abonent = subscriberDao.findSubscriberById(id).get();
+			subscriber = subscriberDao.findSubscriberById(id).get();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		} catch (NoSuchElementException e) {
 			throw new ServiceException("The Optional<Subscriber> contains null for ID - " + id, e);
 		}
-		return abonent;
+		return subscriber;
 	}
 	
 	@Override
@@ -59,29 +59,29 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
-		List<Subscriber> abonentList;
+		List<Subscriber> subscriberList;
 		try {
-			abonentList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
+			subscriberList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} if (abonentList.isEmpty()) {
-			throw new ServiceException("Empty abonent list for " + firstName + " " + middleName + " " + lastName);
+		} if (subscriberList.isEmpty()) {
+			throw new ServiceException("Empty subscriber list for " + firstName + " " + middleName + " " + lastName);
 		}
 
-		return abonentList;
+		return subscriberList;
 	}
 
 	@Override
 	public List<Subscriber> findSubscriberListByUserId(String id) throws ServiceException {
-		List<Subscriber> abonentList;
+		List<Subscriber> subscriberList;
 		try {
-			abonentList = subscriberDao.findSubscriberListByUserId(id);
+			subscriberList = subscriberDao.findSubscriberListByUserId(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} if (abonentList.isEmpty()) {
-			throw new ServiceException("Empty abonent list for ID " + id);
+		} if (subscriberList.isEmpty()) {
+			throw new ServiceException("Empty subscriber list for ID " + id);
 		}
-		return abonentList;
+		return subscriberList;
 	}
 	
 }
