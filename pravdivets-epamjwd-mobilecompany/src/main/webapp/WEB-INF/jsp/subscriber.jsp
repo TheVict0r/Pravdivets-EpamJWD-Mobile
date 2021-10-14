@@ -30,48 +30,48 @@
 				</tr>
 				<tr>
 					<td>ФИО абонента:</td>
-					<td>${requestScope.abonent.firstName} ${requestScope.abonent.middleName} ${requestScope.abonent.lastName}</td>
+					<td>${requestScope.subscriber.firstName} ${requestScope.subscriber.middleName} ${requestScope.subscriber.lastName}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
 					<td>Номер паспорта:</td>
-					<td>${requestScope.abonent.passportNumber}</td>
+					<td>${requestScope.subscriber.passportNumber}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
 					<td>Тарифный план: </td>
-					<td>${requestScope.abonent.tariffPlan}</td>
+					<td>${requestScope.subscriber.tariffPlan}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
 					<td>Домашний адрес:</td>
-					<td>${requestScope.abonent.homeAddress}</td>
+					<td>${requestScope.subscriber.homeAddress}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
 					<td>e-mail:</td>
-					<td>${requestScope.abonent.email}</td>
+					<td>${requestScope.subscriber.email}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
 					<td>Дата заключения договора:</td>
-					<td>${requestScope.abonent.contractDate}</td>
+					<td>${requestScope.subscriber.contractDate}</td>
 				</tr>
 				<tr>
 					<td>Лицевой счет №:</td>
-					<td>${requestScope.abonent.id}</td>
+					<td>${requestScope.subscriber.id}</td>
 				</tr>
 				<tr>
 					<td>Текущий баланс:</td>
-					<td>${requestScope.abonent.checkingAccountAmount/100} руб.</td>
+					<td>${requestScope.subscriber.checkingAccountAmount/100} руб.</td>
 				</tr>
 				<tr>
 					<td>Статус:</td>
-					<td>${requestScope.abonent.status.statusName}</td>
+					<td>${requestScope.subscriber.status.statusName}</td>
 				</tr>
 				<tr>
 					<td>Дата выставления статуса:</td>
-					<td>${requestScope.abonent.statusDate}</td>
+					<td>${requestScope.subscriber.statusDate}</td>
 				</tr>
 			</table>
 		</div>

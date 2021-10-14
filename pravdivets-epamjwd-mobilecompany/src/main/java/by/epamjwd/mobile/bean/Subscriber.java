@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Abonent extends User implements Identifiable, Serializable{
+public class Subscriber extends User implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = 5046781397740402140L;
 	
@@ -26,19 +26,19 @@ public class Abonent extends User implements Identifiable, Serializable{
 	
 	private int phoneNumber;
 	private String tariffPlan;
-	private AbonentStatus status;
+	private SubscriberStatus status;
 	private Date statusDate;
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 	
 	
-	public Abonent() {
+	public Subscriber() {
 		
 	}
 	
-	public Abonent(long id, Date contractDate, String password, String firstName, String middleName, String lastName,
+	public Subscriber(long id, Date contractDate, String password, String firstName, String middleName, String lastName,
 			String passportNumber, String email, String homeAddress, int checkingAccountAmount,
-			int phoneNumber, String tariffPlan, AbonentStatus status, Date statusDate) {
+			int phoneNumber, String tariffPlan, SubscriberStatus status, Date statusDate) {
 		super();
 		this.id = id;
 		this.contractDate = contractDate;
@@ -156,11 +156,11 @@ public class Abonent extends User implements Identifiable, Serializable{
 		this.tariffPlan = tariffPlan;
 	}
 	
-	public AbonentStatus getStatus() {
+	public SubscriberStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(AbonentStatus status) {
+	public void setStatus(SubscriberStatus status) {
 		this.status = status;
 	}
 
@@ -203,7 +203,7 @@ public class Abonent extends User implements Identifiable, Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Abonent other = (Abonent) obj;
+		Subscriber other = (Subscriber) obj;
 		if (checkingAccountAmount != other.checkingAccountAmount)
 			return false;
 		if (contractDate == null) {

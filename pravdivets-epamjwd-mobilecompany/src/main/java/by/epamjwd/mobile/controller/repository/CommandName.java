@@ -15,11 +15,11 @@ public class CommandName {
 	public static final String SHOW_ALL_SERVICES = "show_all_services";
 	public static final String SHOW_FULL_SERVICE = "show_full_service";
 	public static final String SHOW_CUSTOMER_BY_USER_ID = "show_customer_by_user_id";
-	public static final String SHOW_ABONENT_LIST_BY_FULL_NAME = "show_abonent_list_by_full_name";
+	public static final String SHOW_SUBSCRIBER_LIST_BY_FULL_NAME = "show_subscriber_list_by_full_name";
 	public static final String SHOW_ADMIN = "show_admin";
 	public static final String SHOW_CONSULTANT = "show_consultant";
-	public static final String SHOW_ABONENT_BY_PHONE = "show_abonent_by_phone";
-	public static final String SHOW_ABONENT_BY_ID = "show_abonent_by_id";
+	public static final String SHOW_SUBSCRIBER_BY_PHONE = "show_subscriber_by_phone";
+	public static final String SHOW_SUBSCRIBER_BY_ID = "show_subscriber_by_id";
 	public static final String GO_TO_PROFILE_PAGE = "go_to_profile_page";
 	public static final String GO_TO_CALCULATOR_PAGE = "go_to_calculator_page";
 	public static final String CALCULATOR = "calculator";

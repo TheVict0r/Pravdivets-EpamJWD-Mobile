@@ -3,17 +3,17 @@ package by.epamjwd.mobile.dao.mapper.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.epamjwd.mobile.bean.Abonent;
-import by.epamjwd.mobile.bean.AbonentStatus;
+import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
 import by.epamjwd.mobile.util.PhoneNumberFormatter;
 
-public class AbonentRowMapper implements RowMapper<Abonent> {
+public class AbonentRowMapper implements RowMapper<Subscriber> {
 
 	@Override
-	public Abonent map(ResultSet resultSet) throws SQLException {
-		Abonent abonent = new Abonent(
+	public Subscriber map(ResultSet resultSet) throws SQLException {
+		Subscriber abonent = new Subscriber(
 						resultSet.getLong  (DBColumnName.ABONENTS_ID),
 						resultSet.getDate(DBColumnName.ABONENT_CONTRACT_DATE),
 						resultSet.getString(DBColumnName.USERS_PASSWORD),
@@ -26,7 +26,7 @@ public class AbonentRowMapper implements RowMapper<Abonent> {
 						resultSet.getInt(DBColumnName.ABONENTS_ACCOUNT),
 						resultSet.getInt(DBColumnName.ABONENTS_PHONE_NUMBER),
 						resultSet.getString(DBColumnName.TARIFF_PLANS_NAME),
-  AbonentStatus.valueOf(resultSet.getString(DBColumnName.STATUS_STATUS).toUpperCase()),
+  SubscriberStatus.valueOf(resultSet.getString(DBColumnName.STATUS_STATUS).toUpperCase()),
 				        resultSet.getDate(DBColumnName.ABONENTS_STATUS_DATE)
 				         );
 		return abonent;

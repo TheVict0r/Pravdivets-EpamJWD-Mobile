@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.UserDAO;
@@ -40,13 +40,13 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	}
 
 	@Override
-	public void registration(Abonent newAbonent) {
+	public void registration(Subscriber newAbonent) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Abonent lookAbonent(int idAbonent) {
+	public Subscriber lookAbonent(int idAbonent) {
 		// TODO Auto-generated method stub
 		return null;
 	}

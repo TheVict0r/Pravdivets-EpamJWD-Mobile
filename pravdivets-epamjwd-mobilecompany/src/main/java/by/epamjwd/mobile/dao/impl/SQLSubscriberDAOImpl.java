@@ -6,22 +6,22 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.dao.AbonentDAO;
+import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
-public class SQLAbonentDAOImpl extends AbstractDao<Abonent> implements AbonentDAO{
+public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements SubscriberDAO{
 
-	public SQLAbonentDAOImpl() {
-        super(RowMapperFactory.getInstance().getAbonentRowMapper(), DBTableName.ABONENTS);
+	public SQLSubscriberDAOImpl() {
+        super(RowMapperFactory.getInstance().getSubscriberRowMapper(), DBTableName.ABONENTS);
 	}
 
-	public final static String BASIC_ABONENT_SELECT_QUERY = "SELECT Abonents.id, Abonents.contract_date, "
+	public final static String BASIC_SUBSCRIBER_SELECT_QUERY = "SELECT Abonents.id, Abonents.contract_date, "
 			+ "Users.password, Users.first_name, Users.middle_name, Users.last_name, Customers.passport_number, "
 			+ "Users.email,  Customers.home_address, Abonents.account, Abonents.phone_number, Tariff_Plans.name, "
 			+ "Status.status,  Abonents.status_date FROM Users INNER JOIN Customers ON Users.id = Customers.users_id "
@@ -30,26 +30,26 @@ public class SQLAbonentDAOImpl extends AbstractDao<Abonent> implements AbonentDA
 			+ "WHERE ";
 	
 	@Override
-	public Optional<Abonent> findAbonentByPhoneNumber(int phoneNumber) throws DaoException {
-		String query = makeAbonentSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_PHONE_NUMBER);
+	public Optional<Subscriber> findSubscriberByPhoneNumber(int phoneNumber) throws DaoException {
+		String query = makeSubscriberSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_PHONE_NUMBER);
 		return executeQueryForSingleResult(query, phoneNumber);
 	}
 
 	@Override
-	public List<Abonent> findAbonentListByEmail(String email) throws DaoException {
-		String query = makeAbonentSelectQuery(DBTableName.USERS, DBColumnName.USERS_EMAIL);
+	public List<Subscriber> findSubscriberListByEmail(String email) throws DaoException {
+		String query = makeSubscriberSelectQuery(DBTableName.USERS, DBColumnName.USERS_EMAIL);
 		return executeQuery(query, email);
 	}
 
 	@Override
-	public List<Abonent> findAbonentListByUserId(String id) throws DaoException {
-		String query = makeAbonentSelectQuery(DBTableName.USERS, DBColumnName.USERS_ID);
+	public List<Subscriber> findSubscriberListByUserId(String id) throws DaoException {
+		String query = makeSubscriberSelectQuery(DBTableName.USERS, DBColumnName.USERS_ID);
 		return executeQuery(query, id);
 	}
 	
 	@Override
-	public List<Abonent> findAbonentListByFullName(String firstName, String middleName, String lastName) throws DaoException {
-		String query = new StringBuilder(BASIC_ABONENT_SELECT_QUERY)
+	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws DaoException {
+		String query = new StringBuilder(BASIC_SUBSCRIBER_SELECT_QUERY)
 				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_FIRST_NAME).append(" = ? AND ")
 				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME).append(" = ? AND ")
 				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME).append(" = ?")
@@ -58,8 +58,8 @@ public class SQLAbonentDAOImpl extends AbstractDao<Abonent> implements AbonentDA
 	}
 	
 	@Override
-	public Optional<Abonent> findAbonentById(String id) throws DaoException {
-		String query = makeAbonentSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_ID);
+	public Optional<Subscriber> findSubscriberById(String id) throws DaoException {
+		String query = makeSubscriberSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_ID);
 		return executeQueryForSingleResult(query, id);
 	}
 	
@@ -107,14 +107,14 @@ public class SQLAbonentDAOImpl extends AbstractDao<Abonent> implements AbonentDA
 
 
 	@Override
-	public long save(Abonent item) throws DaoException {
+	public long save(Subscriber item) throws DaoException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	private String makeAbonentSelectQuery(String tableName, String columnName) {
+	private String makeSubscriberSelectQuery(String tableName, String columnName) {
 		
-		return new StringBuilder(BASIC_ABONENT_SELECT_QUERY)
+		return new StringBuilder(BASIC_SUBSCRIBER_SELECT_QUERY)
 				.append(tableName)
 				.append(".")
 				.append(columnName)

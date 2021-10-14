@@ -1,6 +1,6 @@
 package by.epamjwd.mobile.dao.mapper;
 
-import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.NewsArticle;
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Service;
@@ -17,7 +17,7 @@ public class RowMapperFactory {
 	private final RowMapper<Plan> planRowMapper = new PlanRowMapper();
 	private final RowMapper<Service> serviceRowMapper = new ServiceRowMapper();
 	private final RowMapper<User> userRowMapper = new UserRowMapper();
-	private final RowMapper<Abonent> abonentRowMapper = new AbonentRowMapper();
+	private final RowMapper<Subscriber> abonentRowMapper = new AbonentRowMapper();
 	
 	
     public static RowMapperFactory getInstance() {
@@ -43,7 +43,7 @@ public class RowMapperFactory {
 	public RowMapper<User> getUserRowMapper() {
 		return userRowMapper;
 	}
-	public RowMapper<Abonent> getAbonentRowMapper() {
+	public RowMapper<Subscriber> getSubscriberRowMapper() {
 		return abonentRowMapper;
 	}
     

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
@@ -17,7 +17,7 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.AbonentService;
+import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -31,9 +31,9 @@ public class LoginCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
-		AbonentService abonentService = provider.getAbonentService();
+		SubscriberService subscriberService = provider.getSubscriberService();
 		User user = null;
-		Abonent abonent = null;
+		Subscriber subscriber = null;
 		
 		String path = null;
 		HttpSession session = request.getSession();
@@ -50,7 +50,7 @@ public class LoginCommand implements Command {
 
 		try {
 			user = userService.findUserByLogin(login);
-			abonent = abonentService.findAbonentByPhoneNumber(login);
+			subscriber = subscriberService.findSubscriberByPhoneNumber(login);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for login - " + login, e);
 			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
@@ -74,9 +74,9 @@ public class LoginCommand implements Command {
 			path = PagePath.LOGIN_REDIRECT;
 		}
 		
-		if (abonent != null && user != null) {
-			session.setAttribute(AttributeName.ABONENT_ID, abonent.getId());
-			path = PagePath.ABONENT_REDIRECT;
+		if (subscriber != null && user != null) {
+			session.setAttribute(AttributeName.SUBSCRIBER_ID, subscriber.getId());
+			path = PagePath.SUBSCRIBER_REDIRECT;
 		}
 		
 		result = new RouteHelper(path, RouteMethod.REDIRECT);

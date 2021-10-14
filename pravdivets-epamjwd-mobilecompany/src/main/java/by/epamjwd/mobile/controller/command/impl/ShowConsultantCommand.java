@@ -29,7 +29,7 @@ public class ShowConsultantCommand implements Command{
 		try {
 			User consultant = userService.findUserById(id);
 			request.setAttribute(AttributeName.CONSULTANT, consultant);
-			result = new RouteHelper(PagePath.CONSULTANT, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.SUBSCRIBERBASE_SERVICE, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain consultant user data for ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);

@@ -1,6 +1,6 @@
 package by.epamjwd.mobile.service;
 
-import by.epamjwd.mobile.service.impl.AbonentServiceImpl;
+import by.epamjwd.mobile.service.impl.SubscriberServiceImpl;
 import by.epamjwd.mobile.service.impl.AdminServiceImpl;
 import by.epamjwd.mobile.service.impl.ConsultantServiceImpl;
 import by.epamjwd.mobile.service.impl.NewsServiceImpl;
@@ -11,7 +11,7 @@ import by.epamjwd.mobile.service.impl.UserServiceImpl;
 public class ServiceProvider {
 
 	private UserService userService             = new UserServiceImpl();
-	private AbonentService abonentService       = new AbonentServiceImpl();
+	private SubscriberService subscriberService = new SubscriberServiceImpl();
 	private AdminService adminService           = new AdminServiceImpl();
 	private ConsultantService consultantService = new ConsultantServiceImpl();
 	private NewsService newsService             = new NewsServiceImpl();
@@ -30,12 +30,12 @@ public class ServiceProvider {
 		return ProviderHolder.INSTANCE;
 	}
 
-	public AbonentService getAbonentService() {
-		return abonentService;
+	public SubscriberService getSubscriberService() {
+		return subscriberService;
 	}
 
-	public void setAbonentService(AbonentService abonentService) {
-		this.abonentService = abonentService;
+	public void setAbonentService(SubscriberService abonentService) {
+		this.subscriberService = abonentService;
 	}
 
 	public AdminService getAdminService() {

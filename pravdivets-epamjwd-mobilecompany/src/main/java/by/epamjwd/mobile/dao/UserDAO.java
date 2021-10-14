@@ -2,15 +2,15 @@ package by.epamjwd.mobile.dao;
 
 import java.util.Optional;
 
-import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.exception.DaoException;
 
 public interface UserDAO {
 	
 	boolean authorization (String login, String passwordHash);
-	void registration(Abonent newAbonent);
-	Abonent lookAbonent(int idAbonent);
+	void registration(Subscriber newAbonent);
+	Subscriber lookAbonent(int idAbonent);
 	void activateService(int serviceId);
 	void deActivateService(int serviceId);
 	void switchServiceParameters(String oldServiceId, String newServiceId);

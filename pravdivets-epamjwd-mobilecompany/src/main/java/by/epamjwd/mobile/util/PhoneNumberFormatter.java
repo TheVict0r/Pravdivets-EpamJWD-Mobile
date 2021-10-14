@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import by.epamjwd.mobile.bean.Abonent;
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class PhoneNumberFormatter {
@@ -30,11 +30,11 @@ public class PhoneNumberFormatter {
 
 	}
 	
-	public Map<String, String> provideFormattedPhoneNumbersMap(List<Abonent> userList) throws ServiceException{
+	public Map<String, String> provideFormattedPhoneNumbersMap(List<Subscriber> userList) throws ServiceException{
 		
 		Map<String, String> phoneNumbersMap = new HashMap<>();
 		
-		for(Abonent abonent : userList) {
+		for(Subscriber abonent : userList) {
 			String key = String.valueOf(abonent.getPhoneNumber());
 			String value = formatPhomeNumber(key);
 			phoneNumbersMap.put(key, value);

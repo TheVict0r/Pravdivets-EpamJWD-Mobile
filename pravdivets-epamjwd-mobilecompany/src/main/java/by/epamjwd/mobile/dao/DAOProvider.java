@@ -1,6 +1,6 @@
 package by.epamjwd.mobile.dao;
 
-import by.epamjwd.mobile.dao.impl.SQLAbonentDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLSubscriberDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLAdminDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLConsultantDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
@@ -10,7 +10,7 @@ import by.epamjwd.mobile.dao.impl.SQLUserDAOImpl;
 
 public class DAOProvider {
 
-	private AbonentDAO abonentDAO       = new SQLAbonentDAOImpl();
+	private SubscriberDAO subscriberDAO = new SQLSubscriberDAOImpl();
 	private AdminDAO adminDAO           = new SQLAdminDAOImpl();
 	private ConsultantDAO consultantDAO = new SQLConsultantDAOImpl();
 	private NewsDAO newsDao             = new SQLNewsDAOImpl();
@@ -30,12 +30,12 @@ public class DAOProvider {
 		return ProviderHolder.INSTANCE;
 	}
 
-	public AbonentDAO getAbonentDAO() {
-		return abonentDAO;
+	public SubscriberDAO getSubscriberDAO() {
+		return subscriberDAO;
 	}
 
-	public void setAbonentDAO(AbonentDAO abonentDAO) {
-		this.abonentDAO = abonentDAO;
+	public void setSubscriberDAO(SubscriberDAO subscrierDAO) {
+		this.subscriberDAO = subscrierDAO;
 	}
 
 	public AdminDAO getAdminDAO() {

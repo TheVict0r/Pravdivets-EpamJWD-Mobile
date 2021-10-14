@@ -16,9 +16,9 @@ public class AttributeName {
 	public static final String ADMIN = "admin";
 	public static final String CONSULTANT = "consultant";
 	public static final String CUSTOMER = "customer";
-	public static final String ABONENT = "abonent";
-	public static final String ABONENT_ID = "abonent_id";
-	public static final String ABONENT_LIST = "abonent_list";
+	public static final String SUBSCRIBER = "subscriber";
+	public static final String SUBSCRIBER_ID = "subscriber_id";
+	public static final String SUBSCRIBER_LIST = "subscriber_list";
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
 	public static final String ERROR = "error";

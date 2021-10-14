@@ -12,11 +12,11 @@ public class PagePath {
 	public static final String ALL_NEWS = "WEB-INF/jsp/allnews.jsp";
 	public static final String LOGIN = "WEB-INF/jsp/login.jsp";
 	public static final String LOGIN_REDIRECT = "/controller?command=go_to_login_page";
-	public static final String ABONENT = "WEB-INF/jsp/abonent.jsp";
-	public static final String ABONENT_REDIRECT = "/controller?command=show_abonent_by_id";
+	public static final String SUBSCRIBER = "WEB-INF/jsp/subscriber.jsp";
+	public static final String SUBSCRIBER_REDIRECT = "/controller?command=show_subscriber_by_id";
 	public static final String CUSTOMER = "WEB-INF/jsp/customer.jsp";
 	public static final String CUSTOMER_REDIRECT = "/controller?command=show_customer_by_user_id";
-	public static final String CONSULTANT = "WEB-INF/jsp/consultant.jsp";
+	public static final String SUBSCRIBERBASE_SERVICE = "WEB-INF/jsp/subscriberbase-service.jsp";
 	public static final String CONSULTANT_REDIRECT = "/controller?command=show_consultant";
 	public static final String ADMIN = "WEB-INF/jsp/admin.jsp";
 	public static final String ADMIN_REDIRECT = "/controller?command=show_admin";

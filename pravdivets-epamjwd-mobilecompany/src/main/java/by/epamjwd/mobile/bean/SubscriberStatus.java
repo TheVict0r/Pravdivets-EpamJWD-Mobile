@@ -1,6 +1,6 @@
 package by.epamjwd.mobile.bean;
 
-public enum AbonentStatus {
+public enum SubscriberStatus {
 
 	ACTIVE("Активный"),
 	SEMI_BLOCKED("Частично заблокирован"),
@@ -10,7 +10,7 @@ public enum AbonentStatus {
 	
 	String statusName;
 	
-	AbonentStatus(String statusName) {
+	SubscriberStatus(String statusName) {
 		this.statusName = statusName;
 	}
 	
