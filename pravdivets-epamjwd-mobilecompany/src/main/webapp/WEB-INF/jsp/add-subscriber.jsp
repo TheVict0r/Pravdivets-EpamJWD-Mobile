@@ -38,7 +38,7 @@
 					</tr>
 					<tr>
 						<td><label for="passport_number" class="form-label"><fmt:message key="add.subscriber.passport.number"/>:</label></td>
-						<td><input type="text" class="form-control" name="passport_number" id="passport_number" required></td>
+						<td><input type="text" class="form-control" name="passport_number" id="passport_number" pattern="^[A-Z]{2}[0-9]{7}$" required></td>
 					</tr>
 					<tr>
 						<td><label for="home_address" class="form-label"><fmt:message key="add.subscriber.address"/>:</label></td>
@@ -46,11 +46,11 @@
 					</tr>
 					<tr>
 						<td><label for="email" class="form-label">e-mail:</label></td>
-						<td><input type="text" class="form-control" name="email" id="email" required></td>
+						<td><input type="email" class="form-control" name="email" id="email" required></td>
 					</tr>
 					<tr>
 						<td><label for="phone_number" class="form-label"><fmt:message key="add.subscriber.phone.number"/>:</label></td>
-						<td><input type="text" class="form-control" name="phone_number" id="phone_number" required></td>
+						<td><input type="text" class="form-control" name="phone_number" id="phone_number" pattern="^(25|29|33|44)[0-9]{7}$" required></td>
 					</tr>
 					<tr>
 						<td><label for="plan" class="form-label"><fmt:message key="add.subscriber.plan"/>:</label></td>

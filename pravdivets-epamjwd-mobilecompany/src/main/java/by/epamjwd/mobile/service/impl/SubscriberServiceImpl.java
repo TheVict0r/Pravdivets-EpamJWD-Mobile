@@ -9,7 +9,7 @@ import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.LoginChecker;
+import by.epamjwd.mobile.util.InputValueChecker;
 
 public class SubscriberServiceImpl implements SubscriberService {
 	DAOProvider provider = DAOProvider.getInstance();
@@ -18,7 +18,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public Subscriber findSubscriberByPhoneNumber(String phoneString) throws ServiceException {
 		Subscriber subscriber = null;
-		if (LoginChecker.isPhoneNumber(phoneString)) {
+		if (InputValueChecker.isPhoneNumber(phoneString)) {
 			int phoneNumber = Integer.parseInt(phoneString);
 			try {
 				subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber).get();

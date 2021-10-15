@@ -8,7 +8,7 @@ import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.LoginChecker;
+import by.epamjwd.mobile.util.InputValueChecker;
 
 public class UserServiceImpl implements UserService {
 
@@ -18,9 +18,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findUserByLogin(String login) throws ServiceException {
 		User user = null;
-		if (LoginChecker.isEmail(login)) {
+		if (InputValueChecker.isEmail(login)) {
 			user = findUserByEmail(login);
-		} else if (LoginChecker.isPhoneNumber(login)) {
+		} else if (InputValueChecker.isPhoneNumber(login)) {
 			int phoneNumber = Integer.parseInt(login);
 			user = findUserByPhoneNumber(phoneNumber);
 		}

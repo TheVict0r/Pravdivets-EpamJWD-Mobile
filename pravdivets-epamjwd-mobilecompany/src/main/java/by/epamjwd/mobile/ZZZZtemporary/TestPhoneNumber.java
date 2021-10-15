@@ -1,13 +1,13 @@
 package by.epamjwd.mobile.ZZZZtemporary;
 
-import by.epamjwd.mobile.util.LoginChecker;
+import by.epamjwd.mobile.util.InputValueChecker;
 
 public class TestPhoneNumber {
 	public static void main(String[] args) {
 
 		String number = "951234567";
 		
-		System.out.println(LoginChecker.isPhoneNumber(number));
+		System.out.println(InputValueChecker.isPhoneNumber(number));
 	}
 
 }
