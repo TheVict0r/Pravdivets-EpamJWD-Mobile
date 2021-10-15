@@ -16,9 +16,9 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowConsultantCommand implements Command{
+public class GoToSubscriberВaseCommand implements Command{
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowConsultantCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(GoToSubscriberВaseCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -29,7 +29,7 @@ public class ShowConsultantCommand implements Command{
 		try {
 			User consultant = userService.findUserById(id);
 			request.setAttribute(AttributeName.CONSULTANT, consultant);
-			result = new RouteHelper(PagePath.SUBSCRIBERBASE_SERVICE, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain consultant user data for ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);

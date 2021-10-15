@@ -17,7 +17,7 @@ public class CommandName {
 	public static final String SHOW_CUSTOMER_BY_USER_ID = "show_customer_by_user_id";
 	public static final String SHOW_SUBSCRIBER_LIST_BY_FULL_NAME = "show_subscriber_list_by_full_name";
 	public static final String SHOW_ADMIN = "show_admin";
-	public static final String SHOW_CONSULTANT = "show_consultant";
+	public static final String GO_TO_SUBSCRIBER_BASE = "go_to_subscriber_base";
 	public static final String SHOW_SUBSCRIBER_BY_PHONE = "show_subscriber_by_phone";
 	public static final String SHOW_SUBSCRIBER_BY_ID = "show_subscriber_by_id";
 	public static final String GO_TO_PROFILE_PAGE = "go_to_profile_page";

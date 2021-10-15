@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:setLocale
+	value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
+<fmt:setBundle basename="language" />
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,52 +20,54 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
-		<div class="row justify-content-center fs-1 fw-light mx-auto py-4 mb-4 ">Новый абонент</div>
+		<div class="row justify-content-center fs-1 fw-light mx-auto py-4 "><fmt:message key="add.subscriber.new.subscriber"/></div>
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 			<form method="post" action=controller?command=add_subscriber>
 				<table>
 					<tr>
-						<td>Фамилия:</td>
-						<td><input type="text" class="form-control" name="last_name" required></td>
+						<td><label for="last_name" class="form-label"><fmt:message key="add.subscriber.last.name"/>:</label></td>
+						<td><input type="text" class="form-control" name="last_name" id="last_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
 					</tr>
 					<tr>
-						<td>Имя:</td>
-						<td><input type="text" class="form-control" name="first_name" required></td>
+						<td><label for="first_name" class="form-label"><fmt:message key="add.subscriber.first.name"/>:</label></td>
+						<td><input type="text" class="form-control" name="first_name" id="first_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
 					</tr>
 					<tr>
-						<td>Отчество:</td>
-						<td><input type="text" class="form-control" name="middle_name"></td>
+						<td><label for="middle_name" class="form-label"><fmt:message key="add.subscriber.middle.name"/>:</label></td>
+						<td><input type="text" class="form-control" name="middle_name" id="middle_name" pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"></td>
 					</tr>
 					<tr>
-						<td>Серия и номер паспорта:</td>
-						<td><input type="text" class="form-control" name="passport_number" required></td>
+						<td><label for="passport_number" class="form-label"><fmt:message key="add.subscriber.passport.number"/>:</label></td>
+						<td><input type="text" class="form-control" name="passport_number" id="passport_number" required></td>
 					</tr>
 					<tr>
-						<td>Домашний адрес:</td>
-						<td><input type="text" class="form-control" name="home_address" required></td>
+						<td><label for="home_address" class="form-label"><fmt:message key="add.subscriber.address"/>:</label></td>
+						<td><input type="text" class="form-control" name="home_address" id="home_address" required></td>
 					</tr>
 					<tr>
-						<td>e-mail:</td>
-						<td><input type="text" class="form-control" name="email" required></td>
+						<td><label for="email" class="form-label">e-mail:</label></td>
+						<td><input type="text" class="form-control" name="email" id="email" required></td>
 					</tr>
 					<tr>
-						<td>Номер телефона:</td>
-						<td><input type="text" class="form-control" name="phone_number" required></td>
+						<td><label for="phone_number" class="form-label"><fmt:message key="add.subscriber.phone.number"/>:</label></td>
+						<td><input type="text" class="form-control" name="phone_number" id="phone_number" required></td>
 					</tr>
 					<tr>
-						<td>Тарифный план:</td>
-						<td><input type="text" class="form-control mb-2" name="plan" required></td>
+						<td><label for="plan" class="form-label"><fmt:message key="add.subscriber.plan"/>:</label></td>
+						<td><input type="text" class="form-control mb-2" name="plan" id="plan" required></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" class="btn btn-outline-dark" value="Добавить"></td>
+						<td><input type="submit" class="btn btn-outline-dark" value="<fmt:message key="add.subscriber.add"/>"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
-	
-	</br>
-	</br>
+
+	<div class="container text-center py-3 mb-3">
+		<a class="btn btn-outline-primary "
+			href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_base"><fmt:message key="add.subscriber.to.operations"/></a>
+	</div>
 	<jsp:include page="components/footer.jsp"/>
 </body>
 </html>

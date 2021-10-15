@@ -19,12 +19,8 @@
 		<img src="pic/news.jpg" class="img-fluid" alt="mobile">
 	</div>
 
-	
-
-	<div class="container text-dark mx-auto col-sm-8">
-	<br/>
-		<h1>Новости</h1>
-		<br/>
+			<div class="row display-4 justify-content-center py-4 mx-auto ">Новости</div>
+			<div class="tab-pane tab-content col-xs-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 mx-auto">
 	
 		<c:forEach var="article" items="${requestScope.news}">
 				<h5>${article.title}</h5>

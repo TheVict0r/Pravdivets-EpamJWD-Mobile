@@ -21,11 +21,11 @@
 
 	<div class="container p-0">
 
-		<h1 class="h3 mb-3 text-center">Plans &amp; Pricing</h1>
+		<h1 class="h3 py-4 mb-2 text-center">Plans &amp; Pricing</h1>
 
 		<div class="row">
 			<div class="col-md-12 col-xl-10 mx-auto">
-				<h1 class="text-center">We have a plan for everyone</h1>
+				<h1 class="text-center ">We have a plan for everyone</h1>
 				<p class="lead text-center mb-4">Whether you're a business or an individual, 14-day trial no credit card required.</p>
 
 					<div class="tab-content tab-pane fade show active" id="monthly">

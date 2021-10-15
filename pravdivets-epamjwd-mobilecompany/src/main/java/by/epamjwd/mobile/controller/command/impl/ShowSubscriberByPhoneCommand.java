@@ -60,7 +60,7 @@ public class ShowSubscriberByPhoneCommand implements Command {
 		Map<Role, String> pathMap = new HashMap<>();
 		
 		pathMap.put(Role.CUSTOMER, PagePath.ERROR_404);
-		pathMap.put(Role.CONSULTANT, PagePath.SUBSCRIBERBASE_SERVICE);
+		pathMap.put(Role.CONSULTANT, PagePath.SUBSCRIBER_BASE);
 		pathMap.put(Role.ADMIN, PagePath.ADMIN);
 		
 		String result = pathMap.get(userRole);

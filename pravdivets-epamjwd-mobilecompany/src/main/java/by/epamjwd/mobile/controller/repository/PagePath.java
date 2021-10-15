@@ -16,8 +16,8 @@ public class PagePath {
 	public static final String SUBSCRIBER_REDIRECT = "/controller?command=show_subscriber_by_id";
 	public static final String CUSTOMER = "WEB-INF/jsp/customer.jsp";
 	public static final String CUSTOMER_REDIRECT = "/controller?command=show_customer_by_user_id";
-	public static final String SUBSCRIBERBASE_SERVICE = "WEB-INF/jsp/subscriberbase-service.jsp";
-	public static final String CONSULTANT_REDIRECT = "/controller?command=show_consultant";
+	public static final String SUBSCRIBER_BASE = "WEB-INF/jsp/subscriber_base.jsp";
+	public static final String SUBSCRIBER_BASE_REDIRECT = "/controller?command=go_to_subscriber_base";
 	public static final String ADMIN = "WEB-INF/jsp/admin.jsp";
 	public static final String ADMIN_REDIRECT = "/controller?command=show_admin";
 	public static final String ALL_PLANS = "WEB-INF/jsp/allplans.jsp";

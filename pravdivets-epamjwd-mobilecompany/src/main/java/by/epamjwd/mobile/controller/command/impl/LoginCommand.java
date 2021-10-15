@@ -93,7 +93,7 @@ public class LoginCommand implements Command {
 			path = PagePath.CUSTOMER_REDIRECT;
 			break;
 		case CONSULTANT:
-			path = PagePath.CONSULTANT_REDIRECT;
+			path = PagePath.SUBSCRIBER_BASE_REDIRECT;
 			break;
 		case ADMIN:
 			path = PagePath.ADMIN_REDIRECT;

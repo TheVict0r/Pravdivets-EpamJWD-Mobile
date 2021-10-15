@@ -52,7 +52,7 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 			request.setAttribute(AttributeName.FIRST_NAME, firstName);
 			request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
 			request.setAttribute(AttributeName.LAST_NAME, lastName);
-			result = new RouteHelper(PagePath.SUBSCRIBERBASE_SERVICE, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 		}
 		return result;
 	}

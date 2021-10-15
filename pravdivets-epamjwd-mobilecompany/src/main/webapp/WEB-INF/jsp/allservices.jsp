@@ -18,7 +18,7 @@
 	<div class="col-sm" id="promo">
 		<img src="pic/article.jpg" class="img-fluid" alt="mobile">
 	</div>
-		<div class="row justify-content-center fs-1 fw-light py-4 mx-auto ">Услуги</div>
+		<div class="row display-4 justify-content-center py-4 mx-auto ">Услуги</div>
 		<div class="tab-pane tab-content col-xs-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
 						<div class="row py-4">
 							<c:forEach var="service" items="${requestScope.all_services}">

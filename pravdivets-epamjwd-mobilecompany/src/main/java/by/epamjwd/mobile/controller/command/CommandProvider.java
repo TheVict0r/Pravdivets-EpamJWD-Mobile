@@ -11,7 +11,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
-import by.epamjwd.mobile.controller.command.impl.ShowConsultantCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToSubscriberВaseCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByFullNameCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
@@ -54,7 +54,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_CUSTOMER_BY_USER_ID, new ShowCustomerByUserIdCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME, new ShowSubscriberListByFullNameCommand());
 		allCommands.put(CommandName.SHOW_ADMIN, new ShowAdminCommand());
-		allCommands.put(CommandName.SHOW_CONSULTANT, new ShowConsultantCommand());
+		allCommands.put(CommandName.GO_TO_SUBSCRIBER_BASE, new GoToSubscriberВaseCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_BY_PHONE, new ShowSubscriberByPhoneCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_BY_ID, new ShowSubscriberByIDCommand());
 		allCommands.put(CommandName.GO_TO_PROFILE_PAGE, new GoToProfilePageCommand());

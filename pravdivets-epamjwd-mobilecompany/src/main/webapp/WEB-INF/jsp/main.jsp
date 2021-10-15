@@ -22,10 +22,9 @@
 	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 mx-auto d-grid gap-4">
 		
 		<div class="row">
-			<h1 class="h3 mb-3 text-center text-primary">mobile - максимум возможностей!</h1>
-			<h1 class="text-center">Тарифы</h1>
+			<h1 class="h3 mb-2 py-2 text-center text-primary">mobile - максимум возможностей!</h1>
+			<div class="row mb-3 display-4 justify-content-center mx-auto ">Тарифы</div>
 			<c:forEach var="plan" items="${requestScope.all_plans}">
-
 				<div class="col-sm-4 mb-3 mb-md-0">
 					<div class="card text-center h-100">
 						<div class="card-body d-flex flex-column">
@@ -50,11 +49,11 @@
 			</c:forEach>
 		</div>
 		<div class="row">
-			<h1 class="text-center">Новости</h1>
+		<div class="row mb-2 display-4 justify-content-center mx-auto ">Новости</div>
 			<c:forEach var="article" items="${requestScope.news}" begin="0"
 				end="2">
-				<div class="col-sm-4">
-					<h5>${article.title}</h5>
+				<div class="col-sm-4 fw-light" >
+					<span class="fs-5"><b>${article.title}</b></span>
 					<em> ${article.date}</em><br />
 					<p>
 						${article.lead} <br /> <a

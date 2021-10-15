@@ -19,10 +19,9 @@
 
 	<jsp:include page="components/header.jsp"/>
 
-	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fs-5 fw-light flex-grow-1">
+	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fw-light py-5 flex-grow-1">
 	
-	<div class="display-3 text-start mb-5 flex-grow-1"><fmt:message key="subscriberbase.service.title" /></div>
-	
+	<div class="display-4 text-start mb-5 flex-grow-1"><fmt:message key="subscriberbase.service.title" /></div>
 		<div><h2 class="mb-3 text-primary "><fmt:message key="subscriberbase.service.current.subscribers"/></h2></div>
 		<div><h4 class="mb-2"><fmt:message key="subscriberbase.service.show.subscriber"/></h4></div>
 			<div class="col-md-12 mb-2">
@@ -51,7 +50,7 @@
 			</div>
 		</form>
 
-		<form class="row mb-5" method="POST"
+		<form class="row" method="POST"
 			action="controller?command=show_subscriber_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message
 					key="subscriberbase.service.by.name" /></label>
@@ -77,8 +76,8 @@
 				<input type="submit" class="btn btn-outline-dark" value="OK">
 			</div>
 		</form>
-		<h2 class="mt-4 mb-3 text-primary"><fmt:message key="subscriberbase.service.new.subscribers"/></h2>
-		<form class="row mb-5" method="POST"
+		<h2 class="mt-3 mb-0 py-3 text-primary"><fmt:message key="subscriberbase.service.new.subscribers"/></h2>
+		<form class="row mb-2" method="POST"
 			action="controller?command=go_to_add_subscriber_page">
 			<div class="col-md-1">
 				<input type="submit" class="btn btn-outline-dark" value="<fmt:message key="subscriberbase.service.add.subscriber" />">

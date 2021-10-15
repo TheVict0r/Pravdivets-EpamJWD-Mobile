@@ -14,7 +14,7 @@ public class AddSubscriberCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = null;
 		
-		result = new RouteHelper(PagePath.SUBSCRIBERBASE_SERVICE, RouteMethod.FORWARD);
+		result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 		
 		return result;
 	}
