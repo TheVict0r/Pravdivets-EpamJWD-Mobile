@@ -26,27 +26,27 @@
 				<table>
 					<tr>
 						<td><label for="last_name" class="form-label"><fmt:message key="add.subscriber.last.name"/>:</label></td>
-						<td><input type="text" class="form-control" name="last_name" id="last_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
+						<td><input type="text" class="form-control" name="last_name" id="last_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" value="${requestScope.subscriber.lastName}" required></td>
 					</tr>
 					<tr>
 						<td><label for="first_name" class="form-label"><fmt:message key="add.subscriber.first.name"/>:</label></td>
-						<td><input type="text" class="form-control" name="first_name" id="first_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
+						<td><input type="text" class="form-control" name="first_name" id="first_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" value="${requestScope.subscriber.firstName}" required></td>
 					</tr>
 					<tr>
 						<td><label for="middle_name" class="form-label"><fmt:message key="add.subscriber.middle.name"/>:</label></td>
-						<td><input type="text" class="form-control" name="middle_name" id="middle_name" pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"></td>
+						<td><input type="text" class="form-control" name="middle_name" id="middle_name" pattern="^[A-ZА-ЯЁ][a-zа-яё]+$" value="${requestScope.subscriber.middleName}" ></td>
 					</tr>
 					<tr>
-						<td><label for="passport_number" class="form-label"><fmt:message key="add.subscriber.passport.number"/>:</label></td>
-						<td><input type="text" class="form-control" name="passport_number" id="passport_number" pattern="^[A-Z]{2}[0-9]{7}$" required></td>
+						<td><label for="passport" class="form-label"><fmt:message key="add.subscriber.passport"/>:</label></td>
+						<td><input type="text" class="form-control" name="passport" id="passport" pattern="^[A-Z]{2}[0-9]{7}$" value="${requestScope.passport}" required></td>
 					</tr>
 					<tr>
 						<td><label for="home_address" class="form-label"><fmt:message key="add.subscriber.address"/>:</label></td>
-						<td><input type="text" class="form-control" name="home_address" id="home_address" required></td>
+						<td><input type="text" class="form-control" name="home_address" id="home_address" value="${requestScope.subscriber.homeAddress}" required></td>
 					</tr>
 					<tr>
 						<td><label for="email" class="form-label">e-mail:</label></td>
-						<td><input type="email" class="form-control" name="email" id="email" required></td>
+						<td><input type="email" class="form-control" name="email" id="email" value="${requestScope.subscriber.email}" required></td>
 					</tr>
 					<tr>
 						<td><label for="phone_number" class="form-label"><fmt:message key="add.subscriber.phone.number"/>:</label></td>

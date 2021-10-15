@@ -42,6 +42,15 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	}
 
 	@Override
+	public List<Subscriber> findSubscriberListByPassport(String passport) throws DaoException {
+		String query = makeSubscriberSelectQuery(DBTableName.CUSTOMERS, DBColumnName.CUSTOMERS_PASSPORT_NUMBER);
+		return executeQuery(query, passport);
+	}
+
+
+	
+	
+	@Override
 	public List<Subscriber> findSubscriberListByUserId(String id) throws DaoException {
 		String query = makeSubscriberSelectQuery(DBTableName.USERS, DBColumnName.USERS_ID);
 		return executeQuery(query, id);

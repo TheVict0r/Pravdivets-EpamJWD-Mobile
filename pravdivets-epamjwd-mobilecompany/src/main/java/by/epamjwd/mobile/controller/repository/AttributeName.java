@@ -21,7 +21,9 @@ public class AttributeName {
 	public static final String SUBSCRIBER_LIST = "subscriber_list";
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
+	public static final String PASSPORT = "passport";
 	public static final String ERROR = "error";
+	public static final String DEBT = "debt";
 	public static final String PHONE_NUMBER = "phone_number";
 	public static final String PHONE_NUMBER_FORMAT = "phone_number_format";
 	public static final String PHONE_NUMBERS_MAP = "phone_numbers_map";

@@ -14,6 +14,7 @@ public interface SubscriberDAO {
 	public Optional<Subscriber> findSubscriberById(String id) throws DaoException;
 	List<Subscriber> findSubscriberListByUserId(String id) throws DaoException;
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws DaoException;
+	public List<Subscriber> findSubscriberListByPassport(String passport)throws DaoException;
 
 	
 }

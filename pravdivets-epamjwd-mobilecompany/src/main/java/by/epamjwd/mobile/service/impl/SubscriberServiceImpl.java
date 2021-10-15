@@ -1,5 +1,6 @@
 package by.epamjwd.mobile.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -58,6 +59,17 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
+	public List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException {
+		List<Subscriber> subscriberList;
+		try {
+			subscriberList = subscriberDao.findSubscriberListByPassport(passport);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return subscriberList;
+	}
+	
+	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
 		List<Subscriber> subscriberList;
 		try {
@@ -82,6 +94,30 @@ public class SubscriberServiceImpl implements SubscriberService {
 			throw new ServiceException("Empty subscriber list for ID " + id);
 		}
 		return subscriberList;
+	}
+
+	@Override
+	public boolean isNewSubscriber(String passport) throws ServiceException {
+		List<Subscriber> result = findSubscriberListByPassport(passport);
+		return result.isEmpty();
+	}
+
+	@Override
+	public boolean isNoDebt(String passport) throws ServiceException {
+		List<Subscriber> subscribersWithDebts = findSubscribersListWithDebts(passport);
+		return subscribersWithDebts.isEmpty();
+	}
+
+	@Override
+	public List<Subscriber> findSubscribersListWithDebts(String passport) throws ServiceException {
+		List<Subscriber> subscribersList = findSubscriberListByPassport(passport);
+		List<Subscriber> subscribersWithDebts = new ArrayList<>();
+		for(Subscriber subscriber : subscribersList) {
+			if (subscriber.getCheckingAccountAmount() < 0) {
+				subscribersWithDebts.add(subscriber);
+			}
+		}
+		return subscribersWithDebts;
 	}
 	
 }

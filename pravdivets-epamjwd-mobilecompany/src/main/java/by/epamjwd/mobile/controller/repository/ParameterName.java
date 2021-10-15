@@ -16,4 +16,5 @@ public class ParameterName {
 	public static final String CALCULATOR_SMS = "sms";
 	public static final String CALCULATOR_MMS = "mms";
 	public static final String CALCULATOR_INTERNET = "internet";
+	public static final String PASSPORT = "passport";
 }

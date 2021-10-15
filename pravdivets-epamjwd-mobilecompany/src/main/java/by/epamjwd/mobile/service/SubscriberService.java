@@ -14,5 +14,9 @@ public interface SubscriberService {
 	List<Subscriber> findSubscriberListByUserId(String id) throws ServiceException;
 	List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName)
 			throws ServiceException;
+	List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException;
+	boolean isNewSubscriber(String passport) throws ServiceException;
+	boolean isNoDebt(String passport) throws ServiceException;
+	List<Subscriber> findSubscribersListWithDebts(String passport) throws ServiceException;
 
 }

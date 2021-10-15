@@ -26,5 +26,6 @@ public class CommandName {
 	public static final String SHOW_BEST_PLAN = "show_best_plan";
 	public static final String ADD_SUBSCRIBER = "add_subscriber";
 	public static final String GO_TO_ADD_SUBSCRIBER_PAGE = "go_to_add_subscriber_page";
+	public static final String CHECK_SUBSCRIBER_BY_PASSPORT = "check_subscriber_by_passport";
 
 }
