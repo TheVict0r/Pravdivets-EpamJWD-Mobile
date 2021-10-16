@@ -103,9 +103,13 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public boolean isNoDebt(String passport) throws ServiceException {
+	public boolean isDebt(String passport) throws ServiceException {
 		List<Subscriber> subscribersWithDebts = findSubscribersListWithDebts(passport);
-		return subscribersWithDebts.isEmpty();
+		boolean result = true;
+		if (subscribersWithDebts.isEmpty()) {
+			result = false;
+		}
+		return result;
 	}
 
 	@Override

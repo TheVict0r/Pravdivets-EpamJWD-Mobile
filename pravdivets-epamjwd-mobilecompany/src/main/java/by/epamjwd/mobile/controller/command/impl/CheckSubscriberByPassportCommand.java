@@ -37,17 +37,17 @@ public class CheckSubscriberByPassportCommand implements Command{
 		try {
 			if(subscriberService.isNewSubscriber(passport)) {
 				request.setAttribute(AttributeName.PASSPORT, passport);
+				request.setAttribute(AttributeName.NEW_SUBSCRIBER, AttributeValue.TRUE);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
-			} else if(subscriberService.isNoDebt(passport)) {
-				Subscriber currentSubscriber = subscriberService.findSubscriberListByPassport(passport).get(0);
-				request.setAttribute(AttributeName.SUBSCRIBER, currentSubscriber);
-				request.setAttribute(AttributeName.PASSPORT, passport);
-				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
-			} else {
+			} else if(subscriberService.isDebt(passport)) {
 				List<Subscriber> debtSubscribers = subscriberService.findSubscribersListWithDebts(passport);
 				request.setAttribute(AttributeName.DEBT, AttributeValue.TRUE);
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+			} else {
+				Subscriber currentSubscriber = subscriberService.findSubscriberListByPassport(passport).get(0);
+				request.setAttribute(AttributeName.SUBSCRIBER, currentSubscriber);
+				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to check the passport" + passport, e);

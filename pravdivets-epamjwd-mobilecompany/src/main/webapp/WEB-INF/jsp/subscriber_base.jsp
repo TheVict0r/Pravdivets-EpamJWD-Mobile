@@ -32,14 +32,6 @@
 				<fmt:message key="subscriberbase.service.find.subscriber" />
 			</h4>
 		</div>
-		<div class="col-md-12 mb-2">
-			<c:if test="${requestScope.error eq 'error_null_subscriber'}">
-				<span class="fw-normal fs-6 text-danger"> <fmt:message
-						key="subscriberbase.service.null.subscriber" /> <c:remove
-						var="error" />
-				</span>
-			</c:if>
-		</div>
 
 		<form class="row mb-3" method="POST"
 			action="controller?command=show_subscriber_by_phone">
@@ -59,8 +51,8 @@
 			</div>
 		</form>
 
-		<div class="mb-4">
-		<form class="row" method="POST"
+		<div class="mb-5">
+		<form class="row mb-2" method="POST"
 			action="controller?command=show_subscriber_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message
 					key="subscriberbase.service.by.name" /></label>
@@ -86,6 +78,17 @@
 				<input type="submit" class="btn btn-outline-dark" value="OK">
 			</div>
 		</form>
+		
+				<div class="col-md-12">
+			<c:if test="${requestScope.error eq 'error_null_subscriber'}">
+				<span class="fw-normal fs-6 text-danger"> <fmt:message
+						key="subscriberbase.service.null.subscriber" /> <c:remove
+						var="error" />
+				</span>
+			</c:if>
+		</div>
+		
+		
 		</div>
 		<div>
 			<h4 class="mb-2">
@@ -97,7 +100,7 @@
 			action="controller?command=check_subscriber_by_passport">
 			<label for="passport" class="form-label"><fmt:message
 					key="subscriberbase.service.passport" /></label>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<input type="text" class="form-control" name="passport"
 					id="passport"
 					placeholder="AB1234567"
