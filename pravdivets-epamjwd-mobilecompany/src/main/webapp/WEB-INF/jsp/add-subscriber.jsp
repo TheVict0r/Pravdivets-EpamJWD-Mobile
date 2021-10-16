@@ -20,6 +20,7 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 	<jsp:include page="components/header.jsp" />
+	
 	<div class="row justify-content-center display-5 fw-light mx-auto py-3 mb-3">
 		<fmt:message key="add.subscriber.new.subscriber" />
 	</div>
@@ -117,26 +118,22 @@
 				</tr>
 
 			</table>
+			<div class="container py-3 mb-2">
+				<div class="row justify-content-between">
+					<div class="col-4">
+						<a class="btn btn-outline-dark"
+							href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_base"><fmt:message
+								key="add.subscriber.back" /></a>
+					</div>
 
-
-<div class="container py-3 mb-2">
-<div class="row justify-content-between">
-			<div class="col-4">
-				<a class="btn btn-outline-dark"
-					href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_base"><fmt:message
-						key="add.subscriber.back" /></a>
-			</div>
-
-			<div class="col-4">
-				<input type="submit" class="btn btn-outline-dark"
-					value="<fmt:message key="subscriberbase.service.next"/>">
-			</div>
-			</div>
+					<div class="col-4">
+						<input type="submit" class="btn btn-outline-dark"
+							value="<fmt:message key="subscriberbase.service.next"/>">
+					</div>
+				</div>
 			</div>
 		</form>
 	</div>
-	
-
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

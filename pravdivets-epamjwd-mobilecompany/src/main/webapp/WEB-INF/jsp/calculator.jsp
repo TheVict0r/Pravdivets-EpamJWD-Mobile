@@ -15,9 +15,10 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 		<div class="display-4 text-center mb-4"><fmt:message key="calculator.title" /></div>
-	<c:if test="${requestScope.best_plan == null}">
-	<div class="text text-center lh-sm mb-2 col-sm-7 fst-italic fw-light mx-auto"><fmt:message key="calculator.lead" /></div>
-	<div class="row align-content-center mx-auto fw-light mb-3 flex-grow-1 ">
+<c:choose>
+	<c:when test="${requestScope.best_plan eq null}">
+		<div class="text text-center lh-sm mb-2 col-sm-7 fst-italic fw-light mx-auto"><fmt:message key="calculator.lead" /></div>
+		<div class="row align-content-center mx-auto fw-light mb-3 flex-grow-1 ">
 		<form method="POST" action="controller?command=calculator">
 			<table class="table table-hover">
 			<thead>
@@ -152,8 +153,8 @@
 			<button type="submit" class="btn btn-outline-primary btn-sm"><fmt:message key="calculator.suggest.tariff" /></button>
 		</form>
 	</div>
-	</c:if>
-	<c:if test="${requestScope.best_plan != null}">
+	</c:when>
+	<c:otherwise>
 		<div
 			class="container tab-content tab-pane align-content-center mx-auto fade show active flex-grow-1"
 			id="monthly">
@@ -193,8 +194,8 @@
 				</div>
 			</div>
 		</div>
-	</c:if>
-
+	</c:otherwise>
+</c:choose>
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>
