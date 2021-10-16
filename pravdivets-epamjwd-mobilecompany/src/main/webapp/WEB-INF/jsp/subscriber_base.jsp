@@ -22,24 +22,19 @@
 	<jsp:include page="components/header.jsp" />
 
 	<div
-		class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fw-light py-1 flex-grow-1">
+		class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fw-light py-4 flex-grow-1">
 
-		<div class="display-4 text-start mb-4 flex-grow-1">
+		<div class="display-4 text-start mb-5 flex-grow-1">
 			<fmt:message key="subscriberbase.service.title" />
 		</div>
 		<div>
-			<h2 class="mb-3 text-primary ">
-				<fmt:message key="subscriberbase.service.current.subscribers" />
-			</h2>
-		</div>
-		<div>
 			<h4 class="mb-2">
-				<fmt:message key="subscriberbase.service.show.subscriber" />
+				<fmt:message key="subscriberbase.service.find.subscriber" />
 			</h4>
 		</div>
 		<div class="col-md-12 mb-2">
 			<c:if test="${requestScope.error eq 'error_null_subscriber'}">
-				<span class="fs-4 text-danger"> <fmt:message
+				<span class="fw-normal fs-6 text-danger"> <fmt:message
 						key="subscriberbase.service.null.subscriber" /> <c:remove
 						var="error" />
 				</span>
@@ -64,6 +59,7 @@
 			</div>
 		</form>
 
+		<div class="mb-4">
 		<form class="row" method="POST"
 			action="controller?command=show_subscriber_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message
@@ -90,18 +86,17 @@
 				<input type="submit" class="btn btn-outline-dark" value="OK">
 			</div>
 		</form>
-		<h2 class="mt-3 mb-0 py-3 text-primary">
-			<fmt:message key="subscriberbase.service.new.subscribers" />
-		</h2>
+		</div>
 		<div>
 			<h4 class="mb-2">
 				<fmt:message key="subscriberbase.service.add.subscriber" />
 			</h4>
 		</div>
-		<form class="row " method="POST"
+		<div>
+		<form class="row mb-2" method="POST"
 			action="controller?command=check_subscriber_by_passport">
 			<label for="passport" class="form-label"><fmt:message
-					key="add.subscriber.passport" /></label>
+					key="subscriberbase.service.passport" /></label>
 			<div class="col-md-2">
 				<input type="text" class="form-control" name="passport"
 					id="passport"
@@ -110,19 +105,19 @@
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark"
-					value="<fmt:message key="subscriberbase.service.check"/>">
+					value="<fmt:message key="subscriberbase.service.next"/>">
 			</div>
 		</form>
 		<c:if test="${requestScope.debt eq 'true'}">
-			<div class="col-md-12 text-danger fs-6">
-				<b>по этому паспорту <c:forEach var="subscriber"
+			<div class="col-md-12 fw-normal fs-6 text-danger">
+				<fmt:message key="subscriberbase.service.debt.found"/><c:forEach var="subscriber"
 						items="${requestScope.subscriber_list}">
-		 на тел. ${subscriber.phoneNumber} обнаружена задолженность <span class="fw-bold">${subscriber.checkingAccountAmount/100} руб.</span>
-		</c:forEach> <br />Сперва верни бабло, тварь!!
-				</b>
+		 <b>${subscriber.checkingAccountAmount/100} <fmt:message key="subscriberbase.service.rub"/></b>
+		 (<fmt:message key="subscriberbase.service.phone"/> ${subscriber.phoneNumber})
+		</c:forEach> <br/><fmt:message key="subscriberbase.service.pay.debt"/>
 			</div>
 		</c:if>
-
+		</div>
 	</div>
 	<jsp:include page="components/footer.jsp" />
 </body>
