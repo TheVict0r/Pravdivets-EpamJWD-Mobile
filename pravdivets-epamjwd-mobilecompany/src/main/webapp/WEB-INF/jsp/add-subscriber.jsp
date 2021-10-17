@@ -21,7 +21,7 @@
 
 	<jsp:include page="components/header.jsp" />
 	
-	<div class="row justify-content-center display-5 fw-light mx-auto py-3 mb-2">
+	<div class="row justify-content-center display-5 fw-light mx-auto py-2 mb-1">
 		<fmt:message key="add.subscriber.new.subscriber" />
 	</div>
 	
@@ -29,7 +29,6 @@
 	<div class="row justify-content-center mx-auto text-success text-center"> 
 		У этого абонента уже имеются номера "mobile"
 	</div>
-	
 	</c:if>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>

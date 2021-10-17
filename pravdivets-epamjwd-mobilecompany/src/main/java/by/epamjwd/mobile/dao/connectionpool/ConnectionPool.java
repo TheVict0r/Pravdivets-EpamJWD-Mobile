@@ -36,6 +36,7 @@ public final class ConnectionPool {
 
 	//public final static String BASE_NAME = "db";
 	
+	private static final int DEFAULT_POOL_SIZE = 8;
 	private BlockingQueue<Connection> connectionQueue;
 	private BlockingQueue<Connection> givenAwayConQueue;
 	
@@ -66,7 +67,7 @@ public final class ConnectionPool {
 		try {
 			poolSize = Integer.parseInt(dbResourseManager.getValue(DBParameter.DB_POLL_SIZE));
 		} catch (NumberFormatException e) {
-			poolSize = 8;
+			poolSize = DEFAULT_POOL_SIZE;
 		}
 
 		Locale.setDefault(Locale.ENGLISH);

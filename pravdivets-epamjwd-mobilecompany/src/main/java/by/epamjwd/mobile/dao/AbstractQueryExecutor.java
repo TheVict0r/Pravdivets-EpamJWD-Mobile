@@ -92,7 +92,6 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 			for (int i = 0; i < params.length; i++) {
 				preparedStatement.setObject(i + 1, params[i]);
 			}
-			
 			return preparedStatement;
 		} catch (ConnectionPoolException e) {
 			LOGGER.error("Unable to retrieve connection.", e);
