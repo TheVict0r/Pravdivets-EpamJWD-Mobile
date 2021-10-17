@@ -111,7 +111,7 @@
 					value="<fmt:message key="subscriberbase.service.next"/>">
 			</div>
 		</form>
-		<c:if test="${requestScope.debt eq 'true'}">
+		<c:if test="${requestScope.subscriber eq 'debtor'}">
 			<div class="col-md-12 fw-normal fs-6 text-danger">
 				<fmt:message key="subscriberbase.service.debt.found"/><c:forEach var="subscriber"
 						items="${requestScope.subscriber_list}">

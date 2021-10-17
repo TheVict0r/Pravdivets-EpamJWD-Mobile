@@ -31,18 +31,19 @@
 	</div>
 	
 	</c:if>
-	
-	
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>
-				<div class="row justify-content-center fs-4">
+				<div class="row justify-content-center fs-5">
 					<fmt:message key="add.subscriber.passport" />: ${sessionScope.passport}
 				</div>
-				<div class="row justify-content-center fs-4 mb-1">
-					<fmt:message key="add.subscriber.phone.number" />: ${sessionScope.phone_number_format}
+				<div class="row justify-content-center fs-5 mb-1">
+					<fmt:message key="add.subscriber.phone.number" />:
+				</div>
+				<div class="row justify-content-center text-primary fs-2 mb-1">
+					${sessionScope.phone_number_format}
 				</div>
 				
-					<div class="row justify-content-center">
+					<div class="row justify-content-center mb-3">
 						<a class="btn btn-outline-dark"
 							href="${pageContext.request.contextPath}/controller?command=check_subscriber_by_passport&passport=${sessionScope.passport}"><fmt:message
 								key="add.subscriber.reload" /></a>
