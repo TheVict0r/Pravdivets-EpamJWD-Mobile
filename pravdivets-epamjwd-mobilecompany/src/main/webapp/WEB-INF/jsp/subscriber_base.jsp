@@ -38,13 +38,13 @@
 			<label for="phoneNumber" class="form-label"><fmt:message
 					key="subscriberbase.service.by.phone" /> <span
 				class="fs-6 fst-italic">(<fmt:message
-						key="subscriberbase.service.nine.digits" /> <b>25xxxxxxx,
+						key="subscriberbase.service.nine.digits" /> <b>55xxxxxxx, 25xxxxxxx,
 						29xxxxxxx, 33xxxxxxx, 44xxxxxxx</b>)
 			</span></label>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="phoneNumber"
 					name="phone_number" value="${requestScope.phone_number}"
-					placeholder="291234567" pattern="^(25|29|33|44)[0-9]{7}$" required>
+					placeholder="551234567" pattern="^(25|29|33|44|55)[0-9]{7}$" required>
 			</div>
 			<div class="col-md-1">
 				<input type="submit" class="btn btn-outline-dark" value="OK">

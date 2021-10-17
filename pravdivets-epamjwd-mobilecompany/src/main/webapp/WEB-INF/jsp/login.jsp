@@ -74,7 +74,7 @@
 		<span>
 			<span class="text-primary fw-bold fs-5 ">*</span>
 			<fmt:message key="login.number.format" />
-			<b><i>25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
+			<b><i>55xxxxxxx, 25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
 		</span>
 	</div>
 	<jsp:include page="components/footer.jsp" />

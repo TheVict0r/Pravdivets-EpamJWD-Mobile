@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class InputValueChecker {
 
 	public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-	public static final String PHONE_NUMBER_REGEX = "^(25|29|33|44)[0-9]{7}$";
+	public static final String PHONE_NUMBER_REGEX = "^(25|29|33|44|55)[0-9]{7}$";
 	public static final String NAME_REGEX = "^[A-ZА-ЯЁ][a-zа-яё\\-]+$";
 	public static final String PASSPORT_REGEX = "^[A-Z]{2}[0-9]{7}$";
 

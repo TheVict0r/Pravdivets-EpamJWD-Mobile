@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <fmt:setLocale
-	value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
+	value="${sessionScope.locale != null ? sessionScope.locale : 'en'}" />
 <fmt:setBundle basename="language" />
 
 
@@ -21,13 +21,13 @@
 
 	<jsp:include page="components/header.jsp" />
 	
-	<div class="row justify-content-center display-5 fw-light mx-auto py-2 mb-1">
+	<div class="row justify-content-center display-5 fw-light mx-auto  mb-1">
 		<fmt:message key="add.subscriber.new.subscriber" />
 	</div>
 	
 	<c:if test="${!(requestScope.subscriber eq 'new')}">
 	<div class="row justify-content-center mx-auto text-success text-center"> 
-		У этого абонента уже имеются номера "mobile"
+		<fmt:message key="add.subscriber.current" />
 	</div>
 	</c:if>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
@@ -35,7 +35,7 @@
 				<div class="row justify-content-center fs-5">
 					<fmt:message key="add.subscriber.passport" />: ${sessionScope.passport}
 				</div>
-				<div class="row justify-content-center fs-5 mb-1">
+				<div class="row justify-content-center fs-5 ">
 					<fmt:message key="add.subscriber.phone.number" />:
 				</div>
 				<div class="row justify-content-center text-primary fs-2 mb-1">
@@ -47,8 +47,6 @@
 							href="${pageContext.request.contextPath}/controller?command=check_subscriber_by_passport&passport=${sessionScope.passport}"><fmt:message
 								key="add.subscriber.reload" /></a>
 					</div>
-				
-				
 				
 			<table>
 				<c:choose>
@@ -110,7 +108,7 @@
 						</table>
 					</c:otherwise>
 				</c:choose>
-
+				<tr>
 					<td><label for="plan" class="form-label"><fmt:message
 								key="add.subscriber.plan" />:</label></td>
 					<td><input type="text" class="form-control mb-2" name="plan"
@@ -118,7 +116,7 @@
 				</tr>
 
 			</table>
-			<div class="container py-3 mb-2">
+			<div class="container py-2 mb-1">
 				<div class="row justify-content-between">
 					<div class="col-4">
 						<a class="btn btn-outline-dark"

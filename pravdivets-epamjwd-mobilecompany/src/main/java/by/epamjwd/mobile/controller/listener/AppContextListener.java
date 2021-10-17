@@ -18,26 +18,16 @@ public class AppContextListener implements ServletContextListener  {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		ConnectionPool pool = null;
-// TODO - check why the exception does not occur		
-//		try {
 			pool = ConnectionPool.getInstance();
 			pool.initPoolData(BASE_NAME);
-//		} catch(ConnectionPoolException e) {
-//			LOGGER.error("Error while initializing the connection pool", e);
-//			throw new RuntimeException("Error while initializing the connection pool", e);
-//	}
 	}
 	
 	
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		ConnectionPool pool = null;
-//		try {
 		pool = ConnectionPool.getInstance();
 		pool.dispose();
-//		} catch(ConnectionPoolException e) {
-//		LOGGER.error("Error while closing the connection pool", e);
-//		throw new RuntimeException("Error while closing the connection pool", e);
 		
 		
 	}
