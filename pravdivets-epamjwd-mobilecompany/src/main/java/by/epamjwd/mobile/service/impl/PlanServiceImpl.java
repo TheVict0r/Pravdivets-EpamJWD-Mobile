@@ -26,7 +26,7 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	@Override
-	public Plan findTariffPlanByID(long id) throws ServiceException {
+	public Plan findPlanByID(long id) throws ServiceException {
 		try {
 			return tariffsDao.getPlanByID(id).get();
 		} catch (DaoException e) {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
@@ -17,6 +18,7 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
+import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -34,14 +36,17 @@ public class CheckSubscriberByPassportCommand implements Command {
 
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
+		PlanService planService = serviceProvider.getPlanService();
 		HttpSession session = request.getSession();
 
 		try {
 			int phoneNumber = PhoneNumberGenerator.generatePhoneNumber();
 			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(phoneNumber));
+			List<Plan> allPlans = planService.findAllPlans();
 			session.setAttribute(AttributeName.PASSPORT, passport);
 			session.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
 			session.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
+			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
 			if (subscriberService.isNewSubscriber(passport)) {
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <fmt:setLocale
-	value="${sessionScope.locale != null ? sessionScope.locale : 'en'}" />
+	value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
 <fmt:setBundle basename="language" />
 
 
@@ -18,39 +18,27 @@
 <title>mobile</title>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
-
 	<jsp:include page="components/header.jsp" />
-	
-	<div class="row justify-content-center display-5 fw-light mx-auto  mb-1">
+
+	<div
+		class="row justify-content-center display-4 fw-light mx-auto  mb-1">
 		<fmt:message key="add.subscriber.new.subscriber" />
 	</div>
-	
-	<c:if test="${!(requestScope.subscriber eq 'new')}">
-	<div class="row justify-content-center mx-auto text-success text-center"> 
-		<fmt:message key="add.subscriber.current" />
-	</div>
-	</c:if>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>
-				<div class="row justify-content-center fs-5">
-					<fmt:message key="add.subscriber.passport" />: ${sessionScope.passport}
+			<div class="row justify-content-center fs-2">
+				<fmt:message key="add.subscriber.passport" />
+				: ${sessionScope.passport}
+			</div>
+			<c:if test="${!(requestScope.subscriber eq 'new')}">
+				<div
+					class="row justify-content-center mx-auto text-success text-center fw-normal">
+					<fmt:message key="add.subscriber.current" />
 				</div>
-				<div class="row justify-content-center fs-5 ">
-					<fmt:message key="add.subscriber.phone.number" />:
-				</div>
-				<div class="row justify-content-center text-primary fs-2 mb-1">
-					${sessionScope.phone_number_format}
-				</div>
-				
-					<div class="row justify-content-center mb-3">
-						<a class="btn btn-outline-dark"
-							href="${pageContext.request.contextPath}/controller?command=check_subscriber_by_passport&passport=${sessionScope.passport}"><fmt:message
-								key="add.subscriber.reload" /></a>
-					</div>
-				
-			<table>
-				<c:choose>
-					<c:when test="${requestScope.subscriber eq 'new'}">
+			</c:if>
+			<c:choose>
+				<c:when test="${requestScope.subscriber eq 'new'}">
+					<table>
 						<tr>
 							<td><label for="last_name" class="form-label"><fmt:message
 										key="add.subscriber.last.name" />:</label></td>
@@ -82,41 +70,52 @@
 							<td><input type="email" class="form-control" name="email"
 								id="email" required></td>
 						</tr>
-					</c:when>
-					<c:otherwise>
-						<table class="table">
-							<tr>
-								<td><fmt:message key="add.subscriber.last.name" />:</td>
-								<td>${requestScope.subscriber.lastName}</td>
-							</tr>
-							<tr>
-								<td><fmt:message key="add.subscriber.first.name" />:</td>
-								<td>${requestScope.subscriber.firstName}</td>
-							</tr>
-							<tr>
-								<td><fmt:message key="add.subscriber.middle.name" />:</td>
-								<td>${requestScope.subscriber.middleName}</td>
-							</tr>
-							<tr>
-								<td><fmt:message key="add.subscriber.address" />:</td>
-								<td>${requestScope.subscriber.homeAddress}</td>
-							</tr>
-							<tr>
-								<td>e-mail:</td>
-								<td>${requestScope.subscriber.email}</td>
-							</tr>
-						</table>
-					</c:otherwise>
-				</c:choose>
-				<tr>
-					<td><label for="plan" class="form-label"><fmt:message
-								key="add.subscriber.plan" />:</label></td>
-					<td><input type="text" class="form-control mb-2" name="plan"
-						id="plan" required></td>
-				</tr>
-
-			</table>
-			<div class="container py-2 mb-1">
+					</table>
+				</c:when>
+				<c:otherwise>
+					<table class="table">
+						<tr>
+							<td><fmt:message key="add.subscriber.last.name" />:</td>
+							<td>${requestScope.subscriber.lastName}</td>
+						</tr>
+						<tr>
+							<td><fmt:message key="add.subscriber.first.name" />:</td>
+							<td>${requestScope.subscriber.firstName}</td>
+						</tr>
+						<tr>
+							<td><fmt:message key="add.subscriber.middle.name" />:</td>
+							<td>${requestScope.subscriber.middleName}</td>
+						</tr>
+						<tr>
+							<td><fmt:message key="add.subscriber.address" />:</td>
+							<td>${requestScope.subscriber.homeAddress}</td>
+						</tr>
+						<tr>
+							<td>e-mail:</td>
+							<td>${requestScope.subscriber.email}</td>
+						</tr>
+					</table>
+				</c:otherwise>
+			</c:choose>
+			<div class="row justify-content-center fs-6 ">
+				<fmt:message key="add.subscriber.phone.number" />:
+			</div>
+			<div class="row justify-content-center text-primary fs-3 mb-1">
+				${sessionScope.phone_number_format}</div>
+			<div class="row justify-content-center mb-1">
+				<a class="btn btn-outline-dark"
+					href="${pageContext.request.contextPath}/controller?command=check_subscriber_by_passport&passport=${sessionScope.passport}"><fmt:message
+						key="add.subscriber.reload" /></a>
+			</div>
+			<div class="row justify-content-center mb-3">
+				<fmt:message key="add.subscriber.plan" />:
+				<select class="form-select form-select-sm" id="plan" name="plan">
+				<c:forEach var="plan" items="${requestScope.all_plans}">
+					<option value="${plan.id}">${plan.name}</option>
+				</c:forEach>
+				</select>
+			</div>
+			<div class="container py-3 mb-1">
 				<div class="row justify-content-between">
 					<div class="col-4">
 						<a class="btn btn-outline-dark"

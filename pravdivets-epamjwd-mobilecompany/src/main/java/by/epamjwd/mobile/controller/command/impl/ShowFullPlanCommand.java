@@ -29,7 +29,7 @@ public class ShowFullPlanCommand implements Command {
 		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
 
 		try {
-			Plan plan = tariffPlanService.findTariffPlanByID(id);
+			Plan plan = tariffPlanService.findPlanByID(id);
 			request.setAttribute(AttributeName.PLAN, plan);
 			result = new RouteHelper(PagePath.PLAN, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
