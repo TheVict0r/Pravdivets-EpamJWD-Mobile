@@ -3,6 +3,7 @@ package by.epamjwd.mobile.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.dao.SubscriberDAO;
@@ -30,6 +31,24 @@ public class SubscriberServiceImpl implements SubscriberService {
 			}
 		}
 		return subscriber;
+	}
+	
+	@Override
+	public boolean isPhoneNumberAvailable(int phoneNumber) throws ServiceException {
+		boolean result = false;
+		
+		Optional<Subscriber> subscriber;
+		try {
+			subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+
+		if (subscriber.isEmpty()) {
+			result = true;
+		}
+
+		return result;
 	}
 	
 	@Override
@@ -103,7 +122,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public boolean isDebt(String passport) throws ServiceException {
+	public boolean isDebtor(String passport) throws ServiceException {
 		List<Subscriber> subscribersWithDebts = findSubscribersListWithDebts(passport);
 		boolean result = true;
 		if (subscribersWithDebts.isEmpty()) {

@@ -18,6 +18,10 @@ public class GoToProfilePageCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		session.removeAttribute(AttributeName.PASSPORT);
+		session.removeAttribute(AttributeName.PHONE_NUMBER);
+		session.removeAttribute(AttributeName.PHONE_NUMBER_FORMAT);
+		
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		
 		if(role == null) {

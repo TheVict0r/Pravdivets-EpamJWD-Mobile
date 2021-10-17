@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,29 +20,37 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.PhoneNumberFormatter;
+import by.epamjwd.mobile.util.PhoneNumberGenerator;
 
-public class CheckSubscriberByPassportCommand implements Command{
+public class CheckSubscriberByPassportCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(CheckSubscriberByPassportCommand.class);
 
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String passport = request.getParameter(ParameterName.PASSPORT);
 		RouteHelper result = null;
-		
+
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
-		
+		HttpSession session = request.getSession();
 
 		try {
-			if(subscriberService.isNewSubscriber(passport)) {
-				request.setAttribute(AttributeName.PASSPORT, passport);
-				request.setAttribute(AttributeName.NEW_SUBSCRIBER, AttributeValue.TRUE);
+			int phoneNumber = PhoneNumberGenerator.generatePhoneNumber();
+			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(phoneNumber));
+			session.setAttribute(AttributeName.PASSPORT, passport);
+			session.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
+			session.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
+			if (subscriberService.isNewSubscriber(passport)) {
+				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
-			} else if(subscriberService.isDebt(passport)) {
+			} else if (subscriberService.isDebtor(passport)) {
+				session.removeAttribute(AttributeName.PASSPORT);
+				session.removeAttribute(AttributeName.PHONE_NUMBER);
+				session.removeAttribute(AttributeName.PHONE_NUMBER_FORMAT);
 				List<Subscriber> debtSubscribers = subscriberService.findSubscribersListWithDebts(passport);
-				request.setAttribute(AttributeName.DEBT, AttributeValue.TRUE);
+				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.DEBTOR);
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 			} else {
@@ -52,7 +61,8 @@ public class CheckSubscriberByPassportCommand implements Command{
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to check the passport" + passport, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
-			//подумай - может ещё куда-то послать? Напр., на ту же страницу но с указанием ошибки
+			// подумай - может ещё куда-то послать? Напр., на ту же страницу но с указанием
+			// ошибки
 		}
 		return result;
 	}

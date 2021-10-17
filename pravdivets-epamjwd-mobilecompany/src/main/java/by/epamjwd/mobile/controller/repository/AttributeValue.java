@@ -6,6 +6,8 @@ public class AttributeValue {
 	public static final String SESSION_TIME_OUT = "session_time_out";
 	public static final String TRUE = "true";
 	public static final String FALSE = "false";
+	public static final String NEW = "new";
+	public static final String DEBTOR = "debtor";
 
 
 }

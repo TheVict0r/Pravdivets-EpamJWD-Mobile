@@ -21,26 +21,38 @@
 
 	<jsp:include page="components/header.jsp" />
 	
-	<div class="row justify-content-center display-5 fw-light mx-auto py-3 mb-3">
+	<div class="row justify-content-center display-5 fw-light mx-auto py-3 mb-2">
 		<fmt:message key="add.subscriber.new.subscriber" />
 	</div>
+	
+	<c:if test="${!(requestScope.subscriber eq 'new')}">
+	<div class="row justify-content-center mx-auto text-success text-center"> 
+		У этого абонента уже имеются номера "mobile"
+	</div>
+	
+	</c:if>
+	
+	
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>
+				<div class="row justify-content-center fs-4">
+					<fmt:message key="add.subscriber.passport" />: ${sessionScope.passport}
+				</div>
+				<div class="row justify-content-center fs-4 mb-1">
+					<fmt:message key="add.subscriber.phone.number" />: ${sessionScope.phone_number_format}
+				</div>
+				
+					<div class="row justify-content-center">
+						<a class="btn btn-outline-dark"
+							href="${pageContext.request.contextPath}/controller?command=check_subscriber_by_passport&passport=${sessionScope.passport}"><fmt:message
+								key="add.subscriber.reload" /></a>
+					</div>
+				
+				
+				
 			<table>
 				<c:choose>
-					<c:when test="${requestScope.new_subscriber eq 'true'}">
-						<tr>
-							<td><fmt:message key="add.subscriber.passport" />:</td>
-							<td>${requestScope.passport}</td>
-						</tr>
-
-						<tr>
-							<td><label for="passport" class="form-label"><fmt:message
-										key="add.subscriber.passport" />:</label></td>
-							<td><input type="text" class="form-control" name="passport"
-								id="passport" pattern="^[A-Z]{2}[0-9]{7}$"
-								value="${requestScope.passport}" required></td>
-						</tr>
+					<c:when test="${requestScope.subscriber eq 'new'}">
 						<tr>
 							<td><label for="last_name" class="form-label"><fmt:message
 										key="add.subscriber.last.name" />:</label></td>
@@ -76,10 +88,6 @@
 					<c:otherwise>
 						<table class="table">
 							<tr>
-								<td><fmt:message key="add.subscriber.passport" />:</td>
-								<td>${requestScope.subscriber.passportNumber}</td>
-							</tr>
-							<tr>
 								<td><fmt:message key="add.subscriber.last.name" />:</td>
 								<td>${requestScope.subscriber.lastName}</td>
 							</tr>
@@ -103,14 +111,6 @@
 					</c:otherwise>
 				</c:choose>
 
-				<tr>
-					<td><label for="phone_number" class="form-label"><fmt:message
-								key="add.subscriber.phone.number" />:</label></td>
-					<td><input type="text" class="form-control"
-						name="phone_number" id="phone_number"
-						pattern="^(25|29|33|44)[0-9]{7}$" required></td>
-				</tr>
-				<tr>
 					<td><label for="plan" class="form-label"><fmt:message
 								key="add.subscriber.plan" />:</label></td>
 					<td><input type="text" class="form-control mb-2" name="plan"
