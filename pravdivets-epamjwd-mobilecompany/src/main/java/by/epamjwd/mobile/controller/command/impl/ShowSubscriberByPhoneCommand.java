@@ -48,7 +48,7 @@ public class ShowSubscriberByPhoneCommand implements Command {
 			result = new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for phone number " + phoneNumber, e);
-			request.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_NULL_SUBSCRIBER);
+			request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
 			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
 			String path = getPathByRole(userRole);
 			result = new RouteHelper(path, RouteMethod.FORWARD);

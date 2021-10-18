@@ -51,6 +51,16 @@
 			</div>
 		</form>
 
+				<div class="col-md-12 mb-2">
+			<c:if test="${requestScope.error eq 'wrong_phone'}">
+				<span class="fw-normal fs-6 text-danger"> <fmt:message
+						key="subscriberbase.service.null.subscriber" /> <c:remove
+						var="error" />
+				</span>
+			</c:if>
+		</div>
+
+
 		<div class="mb-5">
 		<form class="row mb-2" method="POST"
 			action="controller?command=show_subscriber_list_by_full_name">
@@ -80,7 +90,7 @@
 		</form>
 		
 				<div class="col-md-12">
-			<c:if test="${requestScope.error eq 'error_null_subscriber'}">
+			<c:if test="${requestScope.error eq 'wrong_name'}">
 				<span class="fw-normal fs-6 text-danger"> <fmt:message
 						key="subscriberbase.service.null.subscriber" /> <c:remove
 						var="error" />
