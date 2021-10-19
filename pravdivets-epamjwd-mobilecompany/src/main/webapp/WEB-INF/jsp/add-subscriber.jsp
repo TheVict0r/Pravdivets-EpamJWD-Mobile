@@ -19,7 +19,6 @@
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
-
 	<div
 		class="row justify-content-center display-4 fw-light mx-auto  mb-1">
 		<fmt:message key="add.subscriber.new.subscriber" />
@@ -30,12 +29,6 @@
 				<fmt:message key="add.subscriber.passport" />
 				: ${sessionScope.passport}
 			</div>
-			<c:if test="${!(requestScope.subscriber eq 'new')}">
-				<div
-					class="row justify-content-center mx-auto text-success text-center fw-normal">
-					<fmt:message key="add.subscriber.current" />
-				</div>
-			</c:if>
 			<c:choose>
 				<c:when test="${requestScope.subscriber eq 'new'}">
 					<table>
@@ -73,6 +66,10 @@
 					</table>
 				</c:when>
 				<c:otherwise>
+					<div
+						class="row justify-content-center mx-auto text-success text-center fw-normal">
+						<fmt:message key="add.subscriber.current" />
+					</div>
 					<table class="table">
 						<tr>
 							<td><fmt:message key="add.subscriber.last.name" />:</td>
@@ -122,7 +119,6 @@
 							href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_base"><fmt:message
 								key="add.subscriber.back" /></a>
 					</div>
-
 					<div class="col-4">
 						<input type="submit" class="btn btn-outline-dark"
 							value="<fmt:message key="subscriberbase.service.next"/>">
