@@ -1,5 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,18 +51,28 @@ public class LoginCommand implements Command {
 		}
 
 		try {
-			user = userService.findUserByLogin(login);
-			subscriber = subscriberService.findSubscriberByPhoneNumber(login);
+			Optional<User> userOptional = userService.findUserByLogin(login);
+			if (userOptional.isPresent()) {
+				user = userOptional.get();
+			}
+
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhoneNumber(login);
+			if (subscriberOptional.isPresent()) {
+				subscriber = subscriberOptional.get();
+			}
+
+			if(user == null) {
+				path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
+			}
+			
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for login - " + login, e);
-			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
-			path = PagePath.LOGIN_REDIRECT;
+			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 		}
 		
 		if(!userService.isPasswordValid(user, hashPassword)) {
 			user = null;
-			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
-			path = PagePath.LOGIN_REDIRECT;
+			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 		}
 		
 		if (user != null) {
@@ -70,8 +82,7 @@ public class LoginCommand implements Command {
 			session.setAttribute(AttributeName.ROLE, user.getRole());
 			path = findPathByUserRole(user.getRole());
 		} else {
-			setErrorAttributes(session, login, request.getParameter(ParameterName.PASSWORD));
-			path = PagePath.LOGIN_REDIRECT;
+			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 		}
 		
 		if (subscriber != null && user != null) {
@@ -104,10 +115,13 @@ public class LoginCommand implements Command {
 		return path;
 	}
 	
-	private void setErrorAttributes(HttpSession session, String login, String password) {
+	private String prepareErrorPath(HttpSession session, String login, String password) {
 		session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 		session.setAttribute(AttributeName.LOGIN, login);
 		session.setAttribute(AttributeName.PASSWORD, password);
+		String path = PagePath.LOGIN_REDIRECT;
+		
+		return path;
 	}
 	
 }

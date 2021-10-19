@@ -8,11 +8,10 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToCalculatorPageCommand implements Command{
+public class GoToCalculatorPageCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		RouteHelper result = new RouteHelper(PagePath.CALCULATOR, RouteMethod.FORWARD);
-		return result;
-}
+		return new RouteHelper(PagePath.CALCULATOR, RouteMethod.FORWARD);
+	}
 }

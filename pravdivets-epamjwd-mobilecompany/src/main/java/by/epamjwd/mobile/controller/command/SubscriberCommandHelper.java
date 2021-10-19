@@ -43,8 +43,6 @@ public class SubscriberCommandHelper {
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscribersList);
 				result = new RouteHelper(PagePath.CUSTOMER, RouteMethod.FORWARD);
 			}
-		
-		
 		return result;
 		
 	}

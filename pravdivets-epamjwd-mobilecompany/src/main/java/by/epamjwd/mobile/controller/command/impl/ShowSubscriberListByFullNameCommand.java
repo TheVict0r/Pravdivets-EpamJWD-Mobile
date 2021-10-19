@@ -38,10 +38,6 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 		List<Subscriber> abonentList = null;
 		RouteHelper result = null;
 		
-		if(middleName.equals("") ) {
-			
-		}
-		
 		try {
 			abonentList = abonentService.findSubscriberListByFullName(firstName, middleName, lastName);
 			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, abonentList);

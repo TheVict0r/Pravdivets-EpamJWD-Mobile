@@ -1,5 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.NoSuchElementException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,18 +33,22 @@ public class ShowSubscriberByIDCommand implements Command{
 		SubscriberService subscriberService = provider.getSubscriberService();
 		HttpSession session = request.getSession();
 		
-		String id = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_ID));
-		
+		String id = null;
+			id = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_ID));
+			
+			if (id.equals("null")) {
+				id = request.getParameter(ParameterName.SUBSCRIBER_ID);
+			}
+			
 		RouteHelper result = null;
 		try {
-			Subscriber subscriber = subscriberService.findSubscriberById(id);
+			Subscriber subscriber = subscriberService.findSubscriberById(id).get();
 			request.setAttribute(AttributeName.SUBSCRIBER, subscriber);
 			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(subscriber.getPhoneNumber()));
 			request.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
-			session.setAttribute(AttributeName.ROLE, Role.CUSTOMER);
 			result = new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
-		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain data for abonent with ID " + id, e);
+		} catch (ServiceException | NoSuchElementException e) {
+			LOGGER.error("Unable to obtain data for subscriber with ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
 		return result;

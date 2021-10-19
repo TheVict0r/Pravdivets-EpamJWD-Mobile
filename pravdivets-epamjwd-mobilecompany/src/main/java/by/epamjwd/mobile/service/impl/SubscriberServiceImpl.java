@@ -18,17 +18,15 @@ public class SubscriberServiceImpl implements SubscriberService {
 	SubscriberDAO subscriberDao = provider.getSubscriberDAO();
 
 	@Override
-	public Subscriber findSubscriberByPhoneNumber(String phoneString) throws ServiceException {
-		Subscriber subscriber = null;
+	public Optional<Subscriber> findSubscriberByPhoneNumber(String phoneString) throws ServiceException {
+		Optional<Subscriber> subscriber = Optional.empty();
 		if (InputValueChecker.isPhoneNumber(phoneString)) {
 			int phoneNumber = Integer.parseInt(phoneString);
 			try {
-				subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber).get();
+				subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
-			} catch (NoSuchElementException e) {
-				throw new ServiceException("The Optional<Subscriber> contains null for phone number - " + phoneNumber, e);
-			}
+			} 
 		}
 		return subscriber;
 	}
@@ -52,15 +50,13 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 	
 	@Override
-	public Subscriber findSubscriberById(String id) throws ServiceException {
-		Subscriber subscriber;
+	public Optional<Subscriber> findSubscriberById(String id) throws ServiceException {
+		Optional<Subscriber> subscriber;
 		try {
-			subscriber = subscriberDao.findSubscriberById(id).get();
+			subscriber = subscriberDao.findSubscriberById(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} catch (NoSuchElementException e) {
-			throw new ServiceException("The Optional<Subscriber> contains null for ID - " + id, e);
-		}
+		} 
 		return subscriber;
 	}
 	

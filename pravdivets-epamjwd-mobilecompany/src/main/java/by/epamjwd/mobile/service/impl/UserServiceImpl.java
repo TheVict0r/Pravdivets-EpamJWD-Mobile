@@ -1,6 +1,6 @@
 package by.epamjwd.mobile.service.impl;
 
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.DAOProvider;
@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
 	UserDAO userDao = provider.getUserDAO();
 
 	@Override
-	public User findUserByLogin(String login) throws ServiceException {
-		User user = null;
+	public Optional<User> findUserByLogin(String login) throws ServiceException {
+		Optional<User>  user = Optional.empty();
 		if (InputValueChecker.isEmail(login)) {
 			user = findUserByEmail(login);
 		} else if (InputValueChecker.isPhoneNumber(login)) {
@@ -28,40 +28,34 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUserByEmail(String email) throws ServiceException {
-		User user;
+	public Optional<User> findUserByEmail(String email) throws ServiceException {
+		Optional<User> user;
 		try {
-			user = userDao.findUserByEmail(email).get();
+			user = userDao.findUserByEmail(email);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} catch (NoSuchElementException e) {
-			throw new ServiceException("The Optional<User> contains null for email  - " + email, e);
 		}
 		return user;
 	}
 
 	@Override
-	public User findUserByPhoneNumber(int phoneNumber) throws ServiceException {
-		User user;
+	public Optional<User>  findUserByPhoneNumber(int phoneNumber) throws ServiceException {
+		Optional<User> user;
 		try {
-			user = userDao.findUserByPhoneNumber(phoneNumber).get();
+			user = userDao.findUserByPhoneNumber(phoneNumber);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} catch (NoSuchElementException e) {
-			throw new ServiceException("The Optional<User> contains null for phone number - " + phoneNumber, e);
 		}
 		return user;
 	}
 
 	@Override
-	public User findUserById(String id) throws ServiceException {
-		User user;
+	public Optional<User>  findUserById(String id) throws ServiceException {
+		Optional<User> user;
 		try {
-			user = userDao.findUserById(id).get();
+			user = userDao.findUserById(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} catch (NoSuchElementException e) {
-			throw new ServiceException("The Optional<User> contains null for ID - " + id, e);
 		}
 		return user;
 	}

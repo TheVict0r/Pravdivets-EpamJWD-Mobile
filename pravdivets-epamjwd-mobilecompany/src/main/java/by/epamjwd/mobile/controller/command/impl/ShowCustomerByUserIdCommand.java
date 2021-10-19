@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,16 +26,18 @@ public class ShowCustomerByUserIdCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = String.valueOf(request.getSession().getAttribute(AttributeName.USER_ID));
+		HttpSession session = request.getSession();
+		String id = String.valueOf(session.getAttribute(AttributeName.USER_ID));
+		
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 
 		RouteHelper result = null;
 		try {
-			List<Subscriber> abonentsList = subscriberService.findSubscriberListByUserId(id);
-			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, abonentsList);
+			List<Subscriber> subscriberList = subscriberService.findSubscriberListByUserId(id);
+			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, subscriberList);
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain abonent user data for ID " + id, e);
+			LOGGER.error("Unable to obtain subscriber user data for ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
 		return result;

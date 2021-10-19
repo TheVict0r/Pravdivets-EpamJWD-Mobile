@@ -1,18 +1,15 @@
 package by.epamjwd.mobile.controller.command.impl;
 
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -34,46 +31,30 @@ public class ShowSubscriberByPhoneCommand implements Command {
 
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
-		HttpSession session = request.getSession();
-		Role userRole = (Role)session.getAttribute(AttributeName.ROLE);
 		
 		String phoneNumber = request.getParameter(ParameterName.PHONE_NUMBER);
+		Subscriber subscriber = null;
 		
 		RouteHelper result = null;
 		try {
-			Subscriber subscriber = subscriberService.findSubscriberByPhoneNumber(phoneNumber);
-			request.setAttribute(AttributeName.SUBSCRIBER, subscriber);
-			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(phoneNumber);
-			request.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
-			result = new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhoneNumber(phoneNumber);
+			
+			if (subscriberOptional.isPresent()) {
+				subscriber = subscriberOptional.get();
+				request.setAttribute(AttributeName.SUBSCRIBER, subscriber);
+				String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(phoneNumber);
+				request.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
+				result = new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
+			} else {
+				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
+				request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
+				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for phone number " + phoneNumber, e);
-			request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
-			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
-			String path = getPathByRole(userRole);
-			result = new RouteHelper(path, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
 		return result;
 	}
-
-	private String getPathByRole(Role userRole) {
-		Map<Role, String> pathMap = new HashMap<>();
-		
-		pathMap.put(Role.CUSTOMER, PagePath.ERROR_404);
-		pathMap.put(Role.CONSULTANT, PagePath.SUBSCRIBER_BASE);
-		pathMap.put(Role.ADMIN, PagePath.ADMIN);
-		
-		String result = pathMap.get(userRole);
-		
-		if(result == null) {
-			result = PagePath.ERROR_404;
-		}
-		
-		return result;
-	}
-
-	
-	
-	
 	
 }

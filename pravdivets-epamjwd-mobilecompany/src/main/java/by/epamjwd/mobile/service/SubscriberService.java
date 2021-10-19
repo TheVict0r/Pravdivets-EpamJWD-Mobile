@@ -8,8 +8,8 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface SubscriberService {
 
-	Subscriber findSubscriberByPhoneNumber(String phoneNumber) throws ServiceException;
-	Subscriber findSubscriberById(String id) throws ServiceException;
+	Optional<Subscriber> findSubscriberByPhoneNumber(String phoneNumber) throws ServiceException;
+	Optional<Subscriber> findSubscriberById(String id) throws ServiceException;
 	List<Subscriber> findSubscriberListByEmail(String email) throws ServiceException;
 	List<Subscriber> findSubscriberListByUserId(String id) throws ServiceException;
 	List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName)

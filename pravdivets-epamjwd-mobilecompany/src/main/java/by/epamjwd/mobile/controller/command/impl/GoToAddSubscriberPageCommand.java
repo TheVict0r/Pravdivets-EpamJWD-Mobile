@@ -12,8 +12,7 @@ public class GoToAddSubscriberPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		RouteHelper result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
-		return result;
+		return new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 	}
 
 }
