@@ -37,7 +37,7 @@ public class ShowSubscriberByIDCommand implements Command{
 			id = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_ID));
 			
 			if (id.equals("null")) {
-				id = request.getParameter(ParameterName.SUBSCRIBER_ID);
+				id = request.getParameter(ParameterName.ID);
 			}
 			
 		RouteHelper result = null;

@@ -4,7 +4,7 @@ public class ParameterName {
 
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
-	public static final String SUBSCRIBER_ID = "subscriber_id";
+	public static final String PASSPORT = "passport";
 	public static final String ID = "id";
 	public static final String PHONE_NUMBER = "phone_number";
 	public static final String FIRST_NAME = "first_name";
@@ -17,5 +17,4 @@ public class ParameterName {
 	public static final String CALCULATOR_SMS = "sms";
 	public static final String CALCULATOR_MMS = "mms";
 	public static final String CALCULATOR_INTERNET = "internet";
-	public static final String PASSPORT = "passport";
 }

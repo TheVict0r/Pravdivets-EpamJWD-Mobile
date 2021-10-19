@@ -43,17 +43,17 @@ public class CheckSubscriberByPassportCommand implements Command {
 			int phoneNumber = PhoneNumberGenerator.generatePhoneNumber();
 			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(phoneNumber));
 			List<Plan> allPlans = planService.findAllPlans();
-			session.setAttribute(AttributeName.PASSPORT, passport);
-			session.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
-			session.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
+			request.setAttribute(AttributeName.PASSPORT, passport);
+			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
+			request.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
 			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
 			if (subscriberService.isNewSubscriber(passport)) {
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			} else if (subscriberService.isDebtor(passport)) {
-				session.removeAttribute(AttributeName.PASSPORT);
-				session.removeAttribute(AttributeName.PHONE_NUMBER);
-				session.removeAttribute(AttributeName.PHONE_NUMBER_FORMAT);
+//				session.removeAttribute(AttributeName.PASSPORT);
+//				session.removeAttribute(AttributeName.PHONE_NUMBER);
+//				session.removeAttribute(AttributeName.PHONE_NUMBER_FORMAT);
 				List<Subscriber> debtSubscribers = subscriberService.findSubscribersListWithDebts(passport);
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.DEBTOR);
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);

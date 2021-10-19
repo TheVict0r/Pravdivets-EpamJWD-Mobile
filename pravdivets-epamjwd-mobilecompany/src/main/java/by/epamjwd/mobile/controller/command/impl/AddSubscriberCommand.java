@@ -9,21 +9,15 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
+import by.epamjwd.mobile.controller.repository.ParameterName;
 
 public class AddSubscriberCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		
-		String passport = String.valueOf(session.getAttribute(AttributeName.PASSPORT));
-		String phoneNumber = String.valueOf(session.getAttribute(AttributeName.PHONE_NUMBER));
-		session.removeAttribute(AttributeName.PASSPORT);
-		session.removeAttribute(AttributeName.PHONE_NUMBER);
-		session.removeAttribute(AttributeName.PHONE_NUMBER_FORMAT);
 
-		
-		
+		String passport = request.getParameter(ParameterName.PASSPORT);
+		String phoneNumber = request.getParameter(ParameterName.PHONE_NUMBER);
 		
 		
 		RouteHelper result = null;
