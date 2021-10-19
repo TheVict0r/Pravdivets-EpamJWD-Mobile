@@ -34,6 +34,7 @@
 			
 			<c:choose>
 				<c:when test="${requestScope.subscriber eq 'new'}">
+			<input type = "hidden" name = "subscriber_type" value = "new_subscriber"/>
 					<table>
 						<tr>
 							<td><label for="last_name" class="form-label"><fmt:message
@@ -69,6 +70,8 @@
 					</table>
 				</c:when>
 				<c:otherwise>
+			<input type = "hidden" name = "subscriber_type" value = "current_subscriber"/>
+			<!-- А МОЖЕТ И НЕ НАДО "current_subscriber" -->
 					<div
 						class="row justify-content-center mx-auto text-success text-center fw-normal">
 						<fmt:message key="add.subscriber.current" />
@@ -111,7 +114,7 @@
 			
 			<div class="row justify-content-center mb-3">
 				<fmt:message key="add.subscriber.plan" />:
-				<select class="form-select form-select-sm" id="plan" name="plan">
+				<select class="form-select form-select-sm" id="plan" name="plan_id">
 				<c:forEach var="plan" items="${requestScope.all_plans}">
 					<option value="${plan.id}">${plan.name}</option>
 				</c:forEach>
