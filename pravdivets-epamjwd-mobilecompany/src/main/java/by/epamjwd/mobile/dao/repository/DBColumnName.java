@@ -34,14 +34,14 @@ public class DBColumnName {
     public static final String CUSTOMERS_HOME_ADDRESS = "home_address";
     public static final String CUSTOMERS_USERS_ID = "users_id";
 	  
-    public static final String ABONENTS_ID = "id";
-    public static final String ABONENT_CONTRACT_DATE = "contract_date";
-    public static final String ABONENTS_ACCOUNT = "account";
-    public static final String ABONENTS_PHONE_NUMBER = "phone_number";
-    public static final String ABONENTS_STATUS_ID = "status_id";
-    public static final String ABONENTS_STATUS_DATE = "status_date";
-    public static final String ABONENTS_TARIFF_PLANS_ID = "tariff_plans_id";
-    public static final String ABONENTS_CUSTOMERS_ID = "customers_id";
+    public static final String SUBSCRIBERS_ID = "id";
+    public static final String SUBSCRIBERS_CONTRACT_DATE = "contract_date";
+    public static final String SUBSCRIBERS_ACCOUNT = "account";
+    public static final String SUBSCRIBERS_PHONE_NUMBER = "phone_number";
+    public static final String SUBSCRIBERS_STATUS_ID = "status_id";
+    public static final String SUBSCRIBERS_STATUS_DATE = "status_date";
+    public static final String SUBSCRIBERS_TARIFF_PLANS_ID = "tariff_plans_id";
+    public static final String SUBSCRIBERS_CUSTOMERS_ID = "customers_id";
 	  
     public static final String SERVICES_ID = "id";
     public static final String SERVICES_NAME = "name";
@@ -49,7 +49,7 @@ public class DBColumnName {
     public static final String SERVICES_DESCRIPTION = "description";
 	  
     public static final String BILLS_ID = "id";
-    public static final String BILLS_ABONENTS_ID = "abonents_id";
+    public static final String BILLS_SUBSCRIBERS_ID = "subscribers_id";
     public static final String BILLS_DATE = "date";
     public static final String BILLS_AMOUNT = "amount";
     public static final String BILLS_PAYED = "payed";

@@ -18,20 +18,20 @@ import by.epamjwd.mobile.dao.repository.DBTableName;
 public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements SubscriberDAO{
 
 	public SQLSubscriberDAOImpl() {
-        super(RowMapperFactory.getInstance().getSubscriberRowMapper(), DBTableName.ABONENTS);
+        super(RowMapperFactory.getInstance().getSubscriberRowMapper(), DBTableName.SUBSCRIBERS);
 	}
 
-	public final static String BASIC_SUBSCRIBER_SELECT_QUERY = "SELECT Abonents.id, Abonents.contract_date, "
+	public final static String BASIC_SUBSCRIBER_SELECT_QUERY = "SELECT Subscribers.id, Subscribers.contract_date, "
 			+ "Users.password, Users.first_name, Users.middle_name, Users.last_name, Customers.passport_number, "
-			+ "Users.email,  Customers.home_address, Abonents.account, Abonents.phone_number, Tariff_Plans.name, "
-			+ "Status.status,  Abonents.status_date FROM Users INNER JOIN Customers ON Users.id = Customers.users_id "
-			+ "INNER JOIN Abonents ON Customers.id = Abonents.customers_id INNER JOIN Tariff_Plans "
-			+ "ON Abonents.tariff_plan_id = Tariff_Plans.id INNER JOIN Status ON Abonents.status_id = Status.id "
+			+ "Users.email,  Customers.home_address, Subscribers.account, Subscribers.phone_number, Tariff_Plans.name, "
+			+ "Status.status,  Subscribers.status_date FROM Users INNER JOIN Customers ON Users.id = Customers.users_id "
+			+ "INNER JOIN Subscribers ON Customers.id = Subscribers.customers_id INNER JOIN Tariff_Plans "
+			+ "ON Subscribers.tariff_plan_id = Tariff_Plans.id INNER JOIN Status ON Subscribers.status_id = Status.id "
 			+ "WHERE ";
 	
 	@Override
 	public Optional<Subscriber> findSubscriberByPhoneNumber(int phoneNumber) throws DaoException {
-		String query = makeSubscriberSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_PHONE_NUMBER);
+		String query = makeSubscriberSelectQuery(DBTableName.SUBSCRIBERS, DBColumnName.SUBSCRIBERS_PHONE_NUMBER);
 		return executeQueryForSingleResult(query, phoneNumber);
 	}
 
@@ -82,7 +82,7 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	
 	@Override
 	public Optional<Subscriber> findSubscriberById(String id) throws DaoException {
-		String query = makeSubscriberSelectQuery(DBTableName.ABONENTS, DBColumnName.ABONENTS_ID);
+		String query = makeSubscriberSelectQuery(DBTableName.SUBSCRIBERS, DBColumnName.SUBSCRIBERS_ID);
 		return executeQueryForSingleResult(query, id);
 	}
 	

@@ -22,7 +22,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 
 	public final static String FIND_USER_BY_EMAIL        = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.email = ?";
 	public final static String FIND_USER_BY_ID           = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id WHERE Users.id = ?";
-	public final static String FIND_USER_BY_PHONE_NUMBER = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id INNER JOIN Customers ON Users.id = Customers.users_id INNER JOIN Abonents ON Customers.id = Abonents.customers_id WHERE Abonents.phone_number = ?";
+	public final static String FIND_USER_BY_PHONE_NUMBER = "SELECT Users.ID, Users.email, Users.password, Users.first_name, Users.middle_name, Users.last_name, Roles.role FROM Users INNER JOIN Roles ON Users.roles_id = Roles.id INNER JOIN Customers ON Users.id = Customers.users_id INNER JOIN Subscribers ON Customers.id = Subscribers.customers_id WHERE Subscribers.phone_number = ?";
 	
 	
 	
