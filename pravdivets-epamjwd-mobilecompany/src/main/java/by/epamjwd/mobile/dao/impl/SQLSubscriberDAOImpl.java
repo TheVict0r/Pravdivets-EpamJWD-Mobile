@@ -85,6 +85,9 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 		String query = makeSubscriberSelectQuery(DBTableName.SUBSCRIBERS, DBColumnName.SUBSCRIBERS_ID);
 		return executeQueryForSingleResult(query, id);
 	}
+
+
+
 	
 //	@Override
 //	public void registration(Abonent newAbonent) {

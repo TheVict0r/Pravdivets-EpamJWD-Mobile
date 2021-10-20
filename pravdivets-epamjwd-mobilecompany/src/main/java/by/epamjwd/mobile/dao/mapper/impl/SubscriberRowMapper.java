@@ -13,7 +13,7 @@ public class SubscriberRowMapper implements RowMapper<Subscriber> {
 
 	@Override
 	public Subscriber map(ResultSet resultSet) throws SQLException {
-			Subscriber abonent = new Subscriber(
+			Subscriber subscriber = new Subscriber(
 							resultSet.getLong  (DBColumnName.SUBSCRIBERS_ID),
 							resultSet.getDate  (DBColumnName.SUBSCRIBERS_CONTRACT_DATE),
 							resultSet.getString(DBColumnName.USERS_PASSWORD),
@@ -29,7 +29,7 @@ public class SubscriberRowMapper implements RowMapper<Subscriber> {
    SubscriberStatus.valueOf(resultSet.getString(DBColumnName.STATUS_STATUS).toUpperCase()),
 				        	resultSet.getDate  (DBColumnName.SUBSCRIBERS_STATUS_DATE)
 												);
-		return abonent;
+		return subscriber;
 	}
 
 }

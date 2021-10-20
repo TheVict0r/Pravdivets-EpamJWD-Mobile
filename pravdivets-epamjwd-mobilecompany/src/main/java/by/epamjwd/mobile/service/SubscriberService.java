@@ -19,5 +19,6 @@ public interface SubscriberService {
 	boolean isDebtor(String passport) throws ServiceException;
 	List<Subscriber> findSubscribersListWithDebts(String passport) throws ServiceException;
 	boolean isPhoneNumberAvailable(int phoneNumber) throws ServiceException;
-
+	
+	
 }

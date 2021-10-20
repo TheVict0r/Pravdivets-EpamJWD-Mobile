@@ -3,6 +3,7 @@ package by.epamjwd.mobile.dao;
 import by.epamjwd.mobile.dao.impl.SQLSubscriberDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLAdminDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLConsultantDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLCustomerDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLPlanDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLServiceDAOImpl;
@@ -17,6 +18,7 @@ public class DAOProvider {
 	private UserDAO userDAO             = new SQLUserDAOImpl();
 	private PlanDAO planDAO 			= new SQLPlanDAOImpl();
 	private ServiceDAO serviceDAO 		= new SQLServiceDAOImpl();
+	private CustomerDAO customerDAO 	= new SQLCustomerDAOImpl();
 	
 	private DAOProvider() {
 		
@@ -34,57 +36,35 @@ public class DAOProvider {
 		return subscriberDAO;
 	}
 
-	public void setSubscriberDAO(SubscriberDAO subscrierDAO) {
-		this.subscriberDAO = subscrierDAO;
+	public CustomerDAO getCustomerDAO() {
+		return customerDAO;
 	}
+	
 
 	public AdminDAO getAdminDAO() {
 		return adminDAO;
 	}
 
-	public void setAdminDAO(AdminDAO adminDAO) {
-		this.adminDAO = adminDAO;
-	}
 
 	public ConsultantDAO getConsultantDAO() {
 		return consultantDAO;
 	}
 
-	public void setConsultantDAO(ConsultantDAO consultantDAO) {
-		this.consultantDAO = consultantDAO;
-	}
 
 	public NewsDAO getNewsDao() {
 		return newsDao;
-	}
-
-	public void setNewsDao(NewsDAO newsDao) {
-		this.newsDao = newsDao;
 	}
 
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
 
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
-
 	public PlanDAO getPlanDAO() {
 		return planDAO;
 	}
 
-	public void setPlanDAO(PlanDAO tariffPlanDAO) {
-		this.planDAO = tariffPlanDAO;
-	}
-
-
 	public ServiceDAO getServiceDAO() {
 		return serviceDAO;
-	}
-
-	public void setServiceDAO(ServiceDAO serviceDAO) {
-		this.serviceDAO = serviceDAO;
 	}
 
 
