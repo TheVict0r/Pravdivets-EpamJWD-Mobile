@@ -35,8 +35,8 @@
 							<div class="mb-4">
 								<h3>${plan.name}</h3>
 								<span class="display-4">${plan.regularPayment/100}</span> <br />
-								<span class="display-6"><fmt:message key="plan.rub.month"/></span>
-								<p class="lead text-center mb-4"><fmt:message key="plan.regular.payment"/>
+								<span class="display-6"><fmt:message key="plan.rub-month"/></span>
+								<p class="lead text-center mb-4"><fmt:message key="plan.regular-payment"/>
 </p>
 							</div>
 
@@ -71,7 +71,7 @@
 		<form class=" d-grid gap-2 col-4" action="controller" method="GET">
 			<input type="hidden" name="command" value="provide_news" /> <input
 				type="hidden" name="path" value="all_news" /> <input type="submit"
-				value="<fmt:message key="main.all.news"/>" class="btn btn-outline-primary " />
+				value="<fmt:message key="main.all-news"/>" class="btn btn-outline-primary " />
 		</form>
 	</div>
 	<br />

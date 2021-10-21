@@ -33,7 +33,7 @@
 					<li class="nav-link text-primary fw-bold">|</li>	
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_calculator_page"
 						style="font-size: 15px;"><fmt:message
-								key="header.tariff.calculator" /></a></li>
+								key="header.tariff-calculator" /></a></li>
 					<li class="nav-link text-primary fw-bold">|</li>	
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/controller?command=show_all_services"
@@ -57,7 +57,7 @@
 								<li class="nav-item"><a
 									class="login btn btn-outline-primary me-2"
 									href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message
-											key="header.signin" /></a></li>
+											key="header.sign-in" /></a></li>
 								<li class="nav-item"><a class="btn btn-primary"
 									role="button" href="#"><fmt:message key="header.register" /></a></li>
 							</ul>
@@ -71,7 +71,7 @@
 								</li>
 								<li class="nav-item"> <a class="btn btn-primary me-2"
 										href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message
-												key="header.signout" /></a>
+												key="header.sign-out" /></a>
 								</li>
 							</ul>
 						</c:when>

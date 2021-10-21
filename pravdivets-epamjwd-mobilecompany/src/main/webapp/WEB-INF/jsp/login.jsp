@@ -20,24 +20,24 @@
 	<div class="row align-content-center mx-auto flex-grow-1">
 		<c:if test="${requestScope.session_time_out eq 'session_time_out'}">
 			<p class="text-danger fs-5 ">
-				<fmt:message key="login.time.out" />
+				<fmt:message key="login.time-out" />
 			</p>
 			<c:remove var="session_time_out" />
 		</c:if>
 	</div>
-		<div class="row justify-content-center display-4  mx-auto mb-5 "><fmt:message key="login.signin"/></div>
+		<div class="row justify-content-center display-4  mx-auto mb-5 "><fmt:message key="login.sign-in"/></div>
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=login">
 			<table>
 				<c:if test="${sessionScope.error eq 'error_login'}">
 					<p class="text-danger">
-						<fmt:message key="login.check.data" />
+						<fmt:message key="login.check-data" />
 					</p>
 					<c:remove var="error" />
 				</c:if>
 				<tr>
 					<td><label for="login" class="form-label"> <fmt:message
-								key="login.phone.number" /> <span
+								key="login.phone-number" /> <span
 							class="text-primary fw-bold fs-5 ">*</span> / e-mail:
 					</label></td>
 					<td><input type="text" class="form-control mb-1" name="login"
@@ -56,12 +56,12 @@
 					<td></td>
 					<td class="fw-light "><input class="form-check-input mb-4"
 						type="checkbox" onclick="showPassword()"> <fmt:message
-							key="login.show.password" /></td>
+							key="login.show-password" /></td>
 				</tr>
 				<tr>
 					<td></td>
 					<td><input type="submit" class="btn btn-outline-dark"
-						value="<fmt:message key = "login.signin"/>"></td>
+						value="<fmt:message key = "login.sign-in"/>"></td>
 				</tr>
 			</table>
 		</form>
@@ -69,7 +69,7 @@
 	<div class="row fw-light row justify-content-center mx-auto flex-grow-1">
 		<span>
 			<span class="text-primary fw-bold fs-5 ">*</span>
-			<fmt:message key="login.number.format" />
+			<fmt:message key="login.number-format" />
 			<b><i>55xxxxxxx, 25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
 		</span>
 	</div>

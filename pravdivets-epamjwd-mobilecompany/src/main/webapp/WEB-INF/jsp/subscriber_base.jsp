@@ -21,20 +21,20 @@
 		class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fw-light py-4 flex-grow-1">
 
 		<div class="display-4 text-start mb-5 flex-grow-1">
-			<fmt:message key="subscriberbase.service.title" />
+			<fmt:message key="subscriberbase.title" />
 		</div>
 		<div>
 			<h4 class="mb-2">
-				<fmt:message key="subscriberbase.service.find.subscriber" />
+				<fmt:message key="subscriberbase.find-subscriber" />
 			</h4>
 		</div>
 
 		<form class="row mb-3" method="POST"
 			action="controller?command=show_subscriber_by_phone">
 			<label for="phoneNumber" class="form-label"><fmt:message
-					key="subscriberbase.service.by.phone" /> <span
+					key="subscriberbase.by-phone" /> <span
 				class="fs-6 fst-italic">(<fmt:message
-						key="subscriberbase.service.nine.digits" /> <b>55xxxxxxx, 25xxxxxxx,
+						key="subscriberbase.nine-digits" /> <b>55xxxxxxx, 25xxxxxxx,
 						29xxxxxxx, 33xxxxxxx, 44xxxxxxx</b>)
 			</span></label>
 			<div class="col-md-3">
@@ -50,7 +50,7 @@
 				<div class="col-md-12 mb-2">
 			<c:if test="${requestScope.error eq 'wrong_phone'}">
 				<span class="fw-normal fs-6 text-danger"> <fmt:message
-						key="subscriberbase.service.null.subscriber" /> <c:remove
+						key="subscriberbase.null-subscriber" /> <c:remove
 						var="error" />
 				</span>
 			</c:if>
@@ -61,23 +61,23 @@
 		<form class="row mb-2" method="POST"
 			action="controller?command=show_subscriber_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message
-					key="subscriberbase.service.by.name" /></label>
+					key="subscriberbase.by-name" /></label>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="lastName"
 					name="last_name" value="${requestScope.last_name}"
-					placeholder="<fmt:message key="subscriberbase.service.last.name"/>"
+					placeholder="<fmt:message key="subscriberbase.last-name"/>"
 					pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
 			</div>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="firstName"
 					name="first_name" value="${requestScope.first_name}"
-					placeholder="<fmt:message key="subscriberbase.service.first.name"/>"
+					placeholder="<fmt:message key="subscriberbase.first-name"/>"
 					pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
 			</div>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="middleName"
 					name="middle_name" value="${requestScope.middle_name}"
-					placeholder="<fmt:message key="subscriberbase.service.middle.name"/>"
+					placeholder="<fmt:message key="subscriberbase.middle-name"/>"
 					pattern="^[A-ZА-ЯЁ][a-zа-яё]+$">
 			</div>
 			<div class="col-md-1">
@@ -88,7 +88,7 @@
 				<div class="col-md-12">
 			<c:if test="${requestScope.error eq 'wrong_name'}">
 				<span class="fw-normal fs-6 text-danger"> <fmt:message
-						key="subscriberbase.service.null.subscriber" /> <c:remove
+						key="subscriberbase.null-subscriber" /> <c:remove
 						var="error" />
 				</span>
 			</c:if>
@@ -98,14 +98,14 @@
 		</div>
 		<div>
 			<h4 class="mb-2">
-				<fmt:message key="subscriberbase.service.add.subscriber" />
+				<fmt:message key="subscriberbase.add-subscriber" />
 			</h4>
 		</div>
 		<div>
 		<form class="row mb-2" method="POST"
 			action="controller?command=check_subscriber_by_passport">
 			<label for="passport" class="form-label"><fmt:message
-					key="subscriberbase.service.passport" /></label>
+					key="subscriberbase.passport" /></label>
 			<div class="col-md-3">
 				<input type="text" class="form-control" name="passport"
 					id="passport"
@@ -114,16 +114,16 @@
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark"
-					value="<fmt:message key="subscriberbase.service.next"/>">
+					value="<fmt:message key="subscriberbase.next"/>">
 			</div>
 		</form>
 		<c:if test="${requestScope.subscriber eq 'debtor'}">
 			<div class="col-md-12 fw-normal fs-6 text-danger">
-				<fmt:message key="subscriberbase.service.debt.found"/><c:forEach var="subscriber"
+				<fmt:message key="subscriberbase.debt-found"/><c:forEach var="subscriber"
 						items="${requestScope.subscriber_list}">
-		 <b>${subscriber.checkingAccountAmount/100} <fmt:message key="subscriberbase.service.rub"/></b>
-		 (<fmt:message key="subscriberbase.service.phone"/> ${subscriber.phoneNumber})
-		</c:forEach> <br/><fmt:message key="subscriberbase.service.pay.debt"/>
+		 <b>${subscriber.checkingAccountAmount/100} <fmt:message key="subscriberbase.rub"/></b>
+		 (<fmt:message key="subscriberbase.phone"/> ${subscriber.phoneNumber})
+		</c:forEach> <br/><fmt:message key="subscriberbase.pay-debt"/>
 			</div>
 		</c:if>
 		</div>

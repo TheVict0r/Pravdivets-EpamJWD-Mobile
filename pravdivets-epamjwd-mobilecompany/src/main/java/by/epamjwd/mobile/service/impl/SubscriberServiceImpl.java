@@ -91,9 +91,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 			subscriberList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} if (subscriberList.isEmpty()) {
-			throw new ServiceException("Empty subscriber list for " + firstName + " " + middleName + " " + lastName);
-		}
+		} 
 
 		return subscriberList;
 	}

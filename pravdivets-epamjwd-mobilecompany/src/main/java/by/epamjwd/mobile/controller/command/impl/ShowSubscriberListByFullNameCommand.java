@@ -30,25 +30,27 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
-		SubscriberService abonentService = provider.getSubscriberService();
+		SubscriberService subscriberService = provider.getSubscriberService();
 
 		String firstName = request.getParameter(ParameterName.FIRST_NAME);
 		String middleName = request.getParameter(ParameterName.MIDDLE_NAME);
 		String lastName = request.getParameter(ParameterName.LAST_NAME);
-		List<Subscriber> abonentList = null;
+		List<Subscriber> subscriberList = null;
 		RouteHelper result = null;
 		
 		try {
-			abonentList = abonentService.findSubscriberListByFullName(firstName, middleName, lastName);
-			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, abonentList);
-		
+			subscriberList = subscriberService.findSubscriberListByFullName(firstName, middleName, lastName);
+			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, subscriberList);
+			if (subscriberList.isEmpty()) {
+				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_NAME);
+				request.setAttribute(AttributeName.FIRST_NAME, firstName);
+				request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
+				request.setAttribute(AttributeName.LAST_NAME, lastName);
+				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain abonent data for " + firstName + " " + middleName + " " + lastName, e);
-			request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_NAME);
-			request.setAttribute(AttributeName.FIRST_NAME, firstName);
-			request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
-			request.setAttribute(AttributeName.LAST_NAME, lastName);
-			result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
 		}
 		return result;
 	}
