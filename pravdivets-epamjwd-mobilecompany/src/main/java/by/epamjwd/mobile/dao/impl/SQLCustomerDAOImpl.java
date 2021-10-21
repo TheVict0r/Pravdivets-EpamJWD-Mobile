@@ -6,7 +6,6 @@ import by.epamjwd.mobile.bean.Customer;
 import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.CustomerDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
-import by.epamjwd.mobile.dao.mapper.RowMapper;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
 import by.epamjwd.mobile.dao.repository.DBTableName;
