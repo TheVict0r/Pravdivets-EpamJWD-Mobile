@@ -9,6 +9,7 @@ public class Plan implements Identifiable, Serializable{
 	private long id;
 	private String name;
 	private int regularPayment;
+	private int upfrontPayment;
 	private String description;
 	private int priceWithinNetwork;
 	private int priceOtherNetworks;
@@ -22,12 +23,16 @@ public class Plan implements Identifiable, Serializable{
 		
 	}
 
-	public Plan(long id, String name, int regularPayment, String description, int priceWithinNetwork,
-			int priceOtherNetworks, int priceAbroad, int priceVideocall, int priceSMS, int priceMMS,
-			int priceInternet) {
+
+	
+	public Plan(long id, String name, int regularPayment, int upfrontPayment, String description,
+			int priceWithinNetwork, int priceOtherNetworks, int priceAbroad, int priceVideocall, int priceSMS,
+			int priceMMS, int priceInternet) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.regularPayment = regularPayment;
+		this.upfrontPayment = upfrontPayment;
 		this.description = description;
 		this.priceWithinNetwork = priceWithinNetwork;
 		this.priceOtherNetworks = priceOtherNetworks;
@@ -37,6 +42,8 @@ public class Plan implements Identifiable, Serializable{
 		this.priceMMS = priceMMS;
 		this.priceInternet = priceInternet;
 	}
+
+
 
 	public long getId() {
 		return id;
@@ -126,6 +133,18 @@ public class Plan implements Identifiable, Serializable{
 		this.priceInternet = priceInternet;
 	}
 
+	
+	
+	public int getUpfrontPayment() {
+		return upfrontPayment;
+	}
+
+	public void setUpfrontPayment(int upfrontPayment) {
+		this.upfrontPayment = upfrontPayment;
+	}
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -141,6 +160,7 @@ public class Plan implements Identifiable, Serializable{
 		result = prime * result + priceVideocall;
 		result = prime * result + priceWithinNetwork;
 		result = prime * result + regularPayment;
+		result = prime * result + upfrontPayment;
 		return result;
 	}
 
@@ -181,6 +201,8 @@ public class Plan implements Identifiable, Serializable{
 			return false;
 		if (regularPayment != other.regularPayment)
 			return false;
+		if (upfrontPayment != other.upfrontPayment)
+			return false;
 		return true;
 	}
 
@@ -191,6 +213,7 @@ public class Plan implements Identifiable, Serializable{
 				.append("ID=").append(id)
 				.append(", Name=").append(name)
 				.append(", Regular payment=").append(regularPayment)
+				.append(", Upfront payment=").append(upfrontPayment)
 				.append(", Description=").append(description)
 				.append(", Price: within network=").append(priceWithinNetwork)
 				.append(", other networks=").append(priceOtherNetworks)

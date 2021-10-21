@@ -11,6 +11,7 @@ public class DBColumnName {
     public static final String TARIFF_PLANS_ID = "id";
     public static final String TARIFF_PLANS_NAME = "name";
     public static final String TARIFF_PLANS_REGULAR_PAYMENT = "regular_payment";
+    public static final String TARIFF_PLANS_UPFRONT_PAYMENT = "upfront_payment";
     public static final String TARIFF_PLANS_WITHIN_NETWORK = "within_network"; 
     public static final String TARIFF_PLANS_OTHER_NETWORKS = "other_networks"; 
     public static final String TARIFF_PLANS_ABROAD = "abroad"; 

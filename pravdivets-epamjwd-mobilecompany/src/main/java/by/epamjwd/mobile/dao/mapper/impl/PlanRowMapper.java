@@ -15,6 +15,7 @@ public class PlanRowMapper implements RowMapper<Plan>{
 			resultSet.getLong(DBColumnName.TARIFF_PLANS_ID),
 			resultSet.getString(DBColumnName.TARIFF_PLANS_NAME),
 			resultSet.getInt(DBColumnName.TARIFF_PLANS_REGULAR_PAYMENT),
+			resultSet.getInt(DBColumnName.TARIFF_PLANS_UPFRONT_PAYMENT),
 			resultSet.getString(DBColumnName.TARIFF_PLANS_DESCRIPTION),
 			resultSet.getInt(DBColumnName.TARIFF_PLANS_WITHIN_NETWORK),
 			resultSet.getInt(DBColumnName.TARIFF_PLANS_OTHER_NETWORKS),
