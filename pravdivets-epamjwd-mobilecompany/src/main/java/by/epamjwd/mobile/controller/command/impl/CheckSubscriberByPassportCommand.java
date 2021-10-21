@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,8 +36,6 @@ public class CheckSubscriberByPassportCommand implements Command {
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
 		PlanService planService = serviceProvider.getPlanService();
-		HttpSession session = request.getSession();
-
 		try {
 			int phoneNumber = PhoneNumberGenerator.generatePhoneNumber();
 			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(phoneNumber));
@@ -51,9 +48,6 @@ public class CheckSubscriberByPassportCommand implements Command {
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			} else if (subscriberService.isDebtor(passport)) {
-//				session.removeAttribute(AttributeName.PASSPORT);
-//				session.removeAttribute(AttributeName.PHONE_NUMBER);
-//				session.removeAttribute(AttributeName.PHONE_NUMBER_FORMAT);
 				List<Subscriber> debtSubscribers = subscriberService.findSubscribersListWithDebts(passport);
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.DEBTOR);
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);

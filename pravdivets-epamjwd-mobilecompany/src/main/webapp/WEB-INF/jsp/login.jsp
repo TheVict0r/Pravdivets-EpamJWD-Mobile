@@ -2,12 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <fmt:setLocale
 	value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
 <fmt:setBundle basename="language" />
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +15,6 @@
 <title>mobile</title>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
-
 	<jsp:include page="components/header.jsp" />
 	<div class="mb-4 "></div>
 	<div class="row align-content-center mx-auto flex-grow-1">
