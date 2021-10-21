@@ -38,7 +38,7 @@
 			<tbody>
 				<tr>
 					<td>Минимальная предоплата при подключении</td>
-					<td>${plan.upfrontPayment/100} руб./мес.</td>
+					<td>${plan.upfrontPayment/100} руб.</td>
 				</tr>
 				<tr>
 					<td>Абонентская плата</td>
