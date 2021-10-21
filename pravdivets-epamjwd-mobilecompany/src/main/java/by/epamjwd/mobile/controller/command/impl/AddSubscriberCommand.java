@@ -50,7 +50,7 @@ public class AddSubscriberCommand implements Command{
 				//в Service делаем метод addNewSubscriber
 				//в таблицу Subscribers вносим 
 				//contract_date (текущая дата)
-				//account (сумма при подключении, напр., 1200 коп. - возможно ее надо прописать в тарифном плане и извлекать оттуда)
+				//account (сумма при подключении, из ТП берем upfrontPayment)
 				//phone_number (берем из этого класса)
 				//status (1 активный)
 				//status_date (текущая дата)
