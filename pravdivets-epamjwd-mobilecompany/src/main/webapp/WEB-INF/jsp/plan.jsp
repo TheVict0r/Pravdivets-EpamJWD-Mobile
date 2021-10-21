@@ -37,6 +37,10 @@
 			</thead>
 			<tbody>
 				<tr>
+					<td>Минимальная плата при подключении</td>
+					<td>${plan.upfrontPayment/100} руб./мес.</td>
+				</tr>
+				<tr>
 					<td>Абонентская плата</td>
 					<td>${plan.regularPayment/100} руб./мес.</td>
 				</tr>
