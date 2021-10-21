@@ -23,10 +23,9 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 
 	public final static String BASIC_SUBSCRIBER_SELECT_QUERY = "SELECT Subscribers.id, Subscribers.contract_date, "
 			+ "Users.password, Users.first_name, Users.middle_name, Users.last_name, Customers.passport_number, "
-			+ "Users.email,  Customers.home_address, Subscribers.account, Subscribers.phone_number, Tariff_Plans.name, "
+			+ "Users.email,  Customers.home_address, Subscribers.account, Subscribers.phone_number, Subscribers.tariff_plan_id, "
 			+ "Status.status,  Subscribers.status_date FROM Users INNER JOIN Customers ON Users.id = Customers.users_id "
-			+ "INNER JOIN Subscribers ON Customers.id = Subscribers.customers_id INNER JOIN Tariff_Plans "
-			+ "ON Subscribers.tariff_plan_id = Tariff_Plans.id INNER JOIN Status ON Subscribers.status_id = Status.id "
+			+ "INNER JOIN Subscribers ON Customers.id = Subscribers.customers_id INNER JOIN Status ON Subscribers.status_id = Status.id "
 			+ "WHERE ";
 	
 	@Override
@@ -147,7 +146,5 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 				.append(" = ?")
 				.toString();
 	}
-
-
 
 }

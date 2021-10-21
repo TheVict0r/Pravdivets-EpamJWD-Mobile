@@ -37,7 +37,7 @@
 				</tr>
 				<tr>
 					<td>Тарифный план: </td>
-					<td>${requestScope.subscriber.tariffPlan}</td>
+					<td>${requestScope.plan.name}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>

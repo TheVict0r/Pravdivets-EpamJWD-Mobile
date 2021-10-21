@@ -10,14 +10,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.SubscriberService;
+import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.PhoneNumberFormatter;
@@ -32,7 +35,6 @@ public class ShowSubscriberByIDCommand implements Command{
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 		HttpSession session = request.getSession();
-		
 		String id = null;
 			id = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_ID));
 			
@@ -43,10 +45,7 @@ public class ShowSubscriberByIDCommand implements Command{
 		RouteHelper result = null;
 		try {
 			Subscriber subscriber = subscriberService.findSubscriberById(id).get();
-			request.setAttribute(AttributeName.SUBSCRIBER, subscriber);
-			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(subscriber.getPhoneNumber()));
-			request.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
-			result = new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
+			result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain data for subscriber with ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);

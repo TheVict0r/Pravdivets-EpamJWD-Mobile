@@ -25,7 +25,7 @@ public class Subscriber extends User implements Identifiable, Serializable{
 	private int checkingAccountAmount;
 	
 	private int phoneNumber;
-	private String tariffPlan;
+	private long planId;
 	private SubscriberStatus status;
 	private Date statusDate;
 	
@@ -38,7 +38,7 @@ public class Subscriber extends User implements Identifiable, Serializable{
 	
 	public Subscriber(long id, Date contractDate, String password, String firstName, String middleName, String lastName,
 			String passportNumber, String email, String homeAddress, int checkingAccountAmount,
-			int phoneNumber, String tariffPlan, SubscriberStatus status, Date statusDate) {
+			int phoneNumber, long planId, SubscriberStatus status, Date statusDate) {
 		super();
 		this.id = id;
 		this.contractDate = contractDate;
@@ -51,7 +51,7 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		this.homeAddress = homeAddress;
 		this.checkingAccountAmount = checkingAccountAmount;
 		this.phoneNumber = phoneNumber;
-		this.tariffPlan = tariffPlan;
+		this.planId = planId;
 		this.status = status;
 		this.statusDate = statusDate;
 	}
@@ -148,12 +148,12 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getTariffPlan() {
-		return tariffPlan;
+	public long getPlanId() {
+		return planId;
 	}
 
-	public void setTariffPlan(String tariffPlan) {
-		this.tariffPlan = tariffPlan;
+	public void setPlanId(long planId) {
+		this.planId = planId;
 	}
 	
 	public SubscriberStatus getStatus() {
@@ -173,6 +173,10 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		this.statusDate = statusDate;
 	}
 
+
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -189,9 +193,9 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		result = prime * result + ((passportNumber == null) ? 0 : passportNumber.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + phoneNumber;
+		result = prime * result + (int) (planId ^ (planId >>> 32));
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((statusDate == null) ? 0 : statusDate.hashCode());
-		result = prime * result + ((tariffPlan == null) ? 0 : tariffPlan.hashCode());
 		return result;
 	}
 
@@ -255,20 +259,14 @@ public class Subscriber extends User implements Identifiable, Serializable{
 			return false;
 		if (phoneNumber != other.phoneNumber)
 			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
+		if (planId != other.planId)
+			return false;
+		if (status != other.status)
 			return false;
 		if (statusDate == null) {
 			if (other.statusDate != null)
 				return false;
 		} else if (!statusDate.equals(other.statusDate))
-			return false;
-		if (tariffPlan == null) {
-			if (other.tariffPlan != null)
-				return false;
-		} else if (!tariffPlan.equals(other.tariffPlan))
 			return false;
 		return true;
 	}
@@ -289,7 +287,7 @@ public class Subscriber extends User implements Identifiable, Serializable{
                 .append(", homeAddress=").append(homeAddress)
                 .append(", checkingAccountAmount=").append(checkingAccountAmount)
                 .append(", phoneNumber=").append(phoneNumber)
-                .append(", tariffPlan=").append(tariffPlan)
+                .append(", planId=").append(planId)
                 .append(", status=").append(status.getStatusName())
                 .append(", statusDate=").append(formatter.format(statusDate))
                 .append("]")

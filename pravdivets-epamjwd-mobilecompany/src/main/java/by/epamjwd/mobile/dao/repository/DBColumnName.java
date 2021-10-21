@@ -41,7 +41,7 @@ public class DBColumnName {
     public static final String SUBSCRIBERS_PHONE_NUMBER = "phone_number";
     public static final String SUBSCRIBERS_STATUS_ID = "status_id";
     public static final String SUBSCRIBERS_STATUS_DATE = "status_date";
-    public static final String SUBSCRIBERS_TARIFF_PLANS_ID = "tariff_plans_id";
+    public static final String SUBSCRIBERS_TARIFF_PLANS_ID = "tariff_plan_id";
     public static final String SUBSCRIBERS_CUSTOMERS_ID = "customers_id";
 	  
     public static final String SERVICES_ID = "id";

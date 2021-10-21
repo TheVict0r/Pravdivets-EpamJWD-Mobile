@@ -25,7 +25,7 @@ public class SubscriberRowMapper implements RowMapper<Subscriber> {
 							resultSet.getString(DBColumnName.CUSTOMERS_HOME_ADDRESS),
 							resultSet.getInt   (DBColumnName.SUBSCRIBERS_ACCOUNT),
 							resultSet.getInt   (DBColumnName.SUBSCRIBERS_PHONE_NUMBER),
-							resultSet.getString(DBColumnName.TARIFF_PLANS_NAME),
+							resultSet.getLong  (DBColumnName.SUBSCRIBERS_TARIFF_PLANS_ID),
    SubscriberStatus.valueOf(resultSet.getString(DBColumnName.STATUS_STATUS).toUpperCase()),
 				        	resultSet.getDate  (DBColumnName.SUBSCRIBERS_STATUS_DATE)
 												);

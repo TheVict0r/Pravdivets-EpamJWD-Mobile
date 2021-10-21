@@ -41,13 +41,17 @@ public class AddSubscriberCommand implements Command{
 			homeAddress = request.getParameter(ParameterName.HOME_ADDRESS);
 			email = request.getParameter(ParameterName.EMAIL);
 			
+			Subscriber newSubscriber = new Subscriber();
+			
+			//subscriberService.addNewCustomer
+			
 			//создать нового Subscriber и добавить его в таблицы Users, Customers и Subscribers
 		} else {
 			try {
 				Subscriber currentCustomer = subscriberService.findSubscriberListByPassport(passport).get(0);
 				//обновить абонента currentCustomer и отправить его для добавления только 
 				//в таблицу Subscribers
-				//в Service делаем метод addNewSubscriber
+				//в Service делаем метод aaddNewSubscriberToExistingCustomer
 				//в таблицу Subscribers вносим 
 				//contract_date (текущая дата)
 				//account (сумма при подключении, из ТП берем upfrontPayment)
@@ -57,6 +61,7 @@ public class AddSubscriberCommand implements Command{
 				//tariff_plan_id (берем из этого класса)
 				//customer_id (получаем по паспорту из этого класса Customer извлекаем customer_id)
 				
+				//subscriberService.addNewSubscriberToExistingCustomer(currentCustomer, phoneNumber, plan_id)
 				
 				System.out.println("СТАРЫЙ - " + currentCustomer);
 			} catch (ServiceException e) {
