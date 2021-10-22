@@ -10,7 +10,6 @@ import by.epamjwd.mobile.dao.exception.DaoException;
 public interface SubscriberDAO {
 
 	Optional<Subscriber> findSubscriberByPhoneNumber(int phoneNumber) throws DaoException;
-	List<Subscriber> findSubscriberListByEmail(String email) throws DaoException;
 	Optional<Subscriber> findSubscriberById(String id) throws DaoException;
 	List<Subscriber> findSubscriberListByUserId(String id) throws DaoException;
 	List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws DaoException;

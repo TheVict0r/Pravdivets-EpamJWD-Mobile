@@ -51,7 +51,7 @@ public class ShowSubscriberByPhoneCommand implements Command {
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for phone number " + phoneNumber, e);
-			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;
 	}

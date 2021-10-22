@@ -35,7 +35,7 @@ public class ShowAllServicesCommand implements Command{
 			result = new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain service list. ", e);
-			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;
 	}

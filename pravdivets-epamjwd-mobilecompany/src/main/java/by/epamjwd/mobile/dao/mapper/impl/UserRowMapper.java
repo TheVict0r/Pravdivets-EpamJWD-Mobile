@@ -18,6 +18,7 @@ public class UserRowMapper implements RowMapper<User>{
 				resultSet.getString(DBColumnName.USERS_FIRST_NAME), 
 				resultSet.getString(DBColumnName.USERS_MIDDLE_NAME), 
 				resultSet.getString(DBColumnName.USERS_LAST_NAME), 
+				resultSet.getString(DBColumnName.USERS_PASSPORT), 
 				resultSet.getString(DBColumnName.USERS_EMAIL), 
    Role.valueOf(resultSet.getString(DBColumnName.ROLES_ROLE).toUpperCase())); 
 		return user;

@@ -11,6 +11,7 @@ public class User implements Identifiable, Serializable{
 	private String firstName;
 	private String middleName;
 	private String lastName;
+	private String passport;
 	private String email;
 	private Role role;
 
@@ -18,12 +19,13 @@ public class User implements Identifiable, Serializable{
 	}
 
 	public User(long id, String password, String firstName, String middleName, 
-			String lastName, String email, Role role) {
+			String lastName, String passport, String email, Role role) {
 		this.id = id;
 		this.password = password;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
+		this.passport = passport;
 		this.email = email;
 		this.role = role;
 	}
@@ -68,6 +70,14 @@ public class User implements Identifiable, Serializable{
 		this.lastName = lastName;
 	}
 
+	public String getPassport() {
+		return passport;
+	}
+
+	public void setPassport(String passport) {
+		this.passport = passport;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -84,6 +94,10 @@ public class User implements Identifiable, Serializable{
 		this.role = role;
 	}
 
+
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,6 +107,7 @@ public class User implements Identifiable, Serializable{
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
+		result = prime * result + ((passport == null) ? 0 : passport.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
@@ -129,6 +144,11 @@ public class User implements Identifiable, Serializable{
 				return false;
 		} else if (!middleName.equals(other.middleName))
 			return false;
+		if (passport == null) {
+			if (other.passport != null)
+				return false;
+		} else if (!passport.equals(other.passport))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -149,6 +169,7 @@ public class User implements Identifiable, Serializable{
                 .append(", firstName=").append(firstName)
                 .append(", middleName=").append(middleName)
                 .append(", lastName=").append(lastName)
+                .append(", passport=").append(passport)
                 .append(", email=").append(email)
                 .append(", role=").append(role)
                 .append("]")

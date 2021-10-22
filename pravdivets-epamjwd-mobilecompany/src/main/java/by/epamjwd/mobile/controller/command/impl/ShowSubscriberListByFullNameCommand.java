@@ -50,7 +50,7 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain abonent data for " + firstName + " " + middleName + " " + lastName, e);
-			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;
 	}

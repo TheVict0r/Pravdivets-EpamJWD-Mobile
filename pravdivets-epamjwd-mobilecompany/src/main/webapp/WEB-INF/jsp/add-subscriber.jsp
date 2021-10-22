@@ -30,8 +30,8 @@
 			<input type = "hidden" name = "passport" value = "${requestScope.passport}"/>
 			
 			<c:choose>
-				<c:when test="${requestScope.subscriber eq 'new'}">
-			<input type = "hidden" name = "subscriber_type" value = "new_subscriber"/>
+				<c:when test="${requestScope.customer eq 'new'}">
+			<input type = "hidden" name = "customer" value = "new"/>
 					<table>
 						<tr>
 							<td><label for="last_name" class="form-label"><fmt:message
@@ -67,8 +67,7 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-			<input type = "hidden" name = "subscriber_type" value = "current_subscriber"/>
-			<!-- А МОЖЕТ И НЕ НАДО "current_subscriber" -->
+			<input type = "hidden" name = "customer" value = "current"/>
 					<div
 						class="row justify-content-center mx-auto text-success text-center fw-normal">
 						<fmt:message key="add-subscriber.current" />

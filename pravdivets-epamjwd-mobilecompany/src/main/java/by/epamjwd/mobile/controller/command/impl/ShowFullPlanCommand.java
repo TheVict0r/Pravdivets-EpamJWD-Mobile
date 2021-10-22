@@ -34,7 +34,7 @@ public class ShowFullPlanCommand implements Command {
 			result = new RouteHelper(PagePath.PLAN, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain full tariff plan data. ", e);
-			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;
 	}

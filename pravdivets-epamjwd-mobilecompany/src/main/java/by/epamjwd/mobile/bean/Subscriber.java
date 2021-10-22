@@ -11,24 +11,13 @@ public class Subscriber extends User implements Identifiable, Serializable{
 	
 	private long id;
 	private Date contractDate;
-	
-	private String password;
-	
-	private String firstName;
-	private String middleName;
-	private String lastName;
-	private String passportNumber;
-	
-	private String email;
-	private String homeAddress;
-	
-	private int checkingAccountAmount;
-	
-	private int phoneNumber;
-	private long planId;
-	private SubscriberStatus status;
+	private int account;
+	private int phone;
 	private Date statusDate;
-	
+	private SubscriberStatus status;
+	private long planId;
+	private long userId;
+
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 	
 	
@@ -36,25 +25,19 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		
 	}
 	
-	public Subscriber(long id, Date contractDate, String password, String firstName, String middleName, String lastName,
-			String passportNumber, String email, String homeAddress, int checkingAccountAmount,
-			int phoneNumber, long planId, SubscriberStatus status, Date statusDate) {
+	public Subscriber(long id, Date contractDate, int account, int phone, Date statusDate, SubscriberStatus status,
+			long planId, long userId) {
 		super();
 		this.id = id;
 		this.contractDate = contractDate;
-		this.password = password;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.passportNumber = passportNumber;
-		this.email = email;
-		this.homeAddress = homeAddress;
-		this.checkingAccountAmount = checkingAccountAmount;
-		this.phoneNumber = phoneNumber;
-		this.planId = planId;
-		this.status = status;
+		this.account = account;
+		this.phone = phone;
 		this.statusDate = statusDate;
+		this.status = status;
+		this.planId = planId;
+		this.userId = userId;
 	}
+
 
 
 
@@ -68,62 +51,6 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPassportNumber() {
-		return passportNumber;
-	}
-
-	public void setPassportNumber(String passportNumber) {
-		this.passportNumber = passportNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getHomeAddress() {
-		return homeAddress;
-	}
-
-	public void setHomeAddress(String homeAddress) {
-		this.homeAddress = homeAddress;
-	}
-
 	public Date getContractDate() {
 		return contractDate;
 	}
@@ -132,38 +59,21 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		this.contractDate = contractDate;
 	}
 
-	public int getCheckingAccountAmount() {
-		return checkingAccountAmount;
+	public int getAccount() {
+		return account;
 	}
 
-	public void setCheckingAccountAmount(int checkingAccountAmount) {
-		this.checkingAccountAmount = checkingAccountAmount;
+	public void setAccount(int account) {
+		this.account = account;
 	}
 
-	public int getPhoneNumber() {
-		return phoneNumber;
+	public int getPhone() {
+		return phone;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone(int phone) {
+		this.phone = phone;
 	}
-
-	public long getPlanId() {
-		return planId;
-	}
-
-	public void setPlanId(long planId) {
-		this.planId = planId;
-	}
-	
-	public SubscriberStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(SubscriberStatus status) {
-		this.status = status;
-	}
-
 
 	public Date getStatusDate() {
 		return statusDate;
@@ -173,29 +83,42 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		this.statusDate = statusDate;
 	}
 
+	public SubscriberStatus getStatus() {
+		return status;
+	}
 
-	
-	
-	
+	public void setStatus(SubscriberStatus status) {
+		this.status = status;
+	}
+
+	public long getPlanId() {
+		return planId;
+	}
+
+	public void setPlanId(long planId) {
+		this.planId = planId;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + checkingAccountAmount;
+		result = prime * result + account;
 		result = prime * result + ((contractDate == null) ? 0 : contractDate.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((formatter == null) ? 0 : formatter.hashCode());
-		result = prime * result + ((homeAddress == null) ? 0 : homeAddress.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
-		result = prime * result + ((passportNumber == null) ? 0 : passportNumber.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + phoneNumber;
+		result = prime * result + phone;
 		result = prime * result + (int) (planId ^ (planId >>> 32));
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((statusDate == null) ? 0 : statusDate.hashCode());
+		result = prime * result + (int) (userId ^ (userId >>> 32));
 		return result;
 	}
 
@@ -208,56 +131,16 @@ public class Subscriber extends User implements Identifiable, Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Subscriber other = (Subscriber) obj;
-		if (checkingAccountAmount != other.checkingAccountAmount)
+		if (account != other.account)
 			return false;
 		if (contractDate == null) {
 			if (other.contractDate != null)
 				return false;
 		} else if (!contractDate.equals(other.contractDate))
 			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (formatter == null) {
-			if (other.formatter != null)
-				return false;
-		} else if (!formatter.equals(other.formatter))
-			return false;
-		if (homeAddress == null) {
-			if (other.homeAddress != null)
-				return false;
-		} else if (!homeAddress.equals(other.homeAddress))
-			return false;
 		if (id != other.id)
 			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (middleName == null) {
-			if (other.middleName != null)
-				return false;
-		} else if (!middleName.equals(other.middleName))
-			return false;
-		if (passportNumber == null) {
-			if (other.passportNumber != null)
-				return false;
-		} else if (!passportNumber.equals(other.passportNumber))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (phoneNumber != other.phoneNumber)
+		if (phone != other.phone)
 			return false;
 		if (planId != other.planId)
 			return false;
@@ -267,6 +150,8 @@ public class Subscriber extends User implements Identifiable, Serializable{
 			if (other.statusDate != null)
 				return false;
 		} else if (!statusDate.equals(other.statusDate))
+			return false;
+		if (userId != other.userId)
 			return false;
 		return true;
 	}
@@ -278,18 +163,12 @@ public class Subscriber extends User implements Identifiable, Serializable{
                 .append("[")
                 .append("ID=").append(id)
                 .append(", contractDate=").append(formatter.format(contractDate))
-                .append(", password=").append(password)
-                .append(", firstName=").append(firstName)
-                .append(", middleName=").append(middleName)
-                .append(", lastName=").append(lastName)
-                .append(", passportNumber=").append(passportNumber)
-                .append(", email=").append(email)
-                .append(", homeAddress=").append(homeAddress)
-                .append(", checkingAccountAmount=").append(checkingAccountAmount)
-                .append(", phoneNumber=").append(phoneNumber)
+                .append(", account=").append(account)
+                .append(", phone=").append(phone)
                 .append(", planId=").append(planId)
                 .append(", status=").append(status.getStatusName())
                 .append(", statusDate=").append(formatter.format(statusDate))
+                .append(", userId=").append(userId)
                 .append("]")
                 .toString();
 	}

@@ -51,7 +51,7 @@ public class Controller extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + path);
 			break;
         default:
-            request.getRequestDispatcher(PagePath.ERROR_404).forward(request, response);
+            request.getRequestDispatcher(PagePath.ERROR).forward(request, response);
 		}
 	}
 }

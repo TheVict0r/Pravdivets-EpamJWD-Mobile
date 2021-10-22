@@ -1,5 +1,6 @@
 package by.epamjwd.mobile.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Subscriber;
@@ -19,5 +20,7 @@ public interface UserDAO {
 	Optional<User> findUserByEmail(String email) throws DaoException;
 	Optional<User> findUserByPhoneNumber(int phoneNumber) throws DaoException;
 	Optional<User> findUserById(String id) throws DaoException;
+	Optional<User> findUserByPassport(String passport) throws DaoException;
+	List<User> findUsersListByFullName(String firstName, String middleName, String lastName) throws DaoException;
 	
 }

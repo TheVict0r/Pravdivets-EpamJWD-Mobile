@@ -26,7 +26,7 @@ public class PagePath {
 	public static final String SERVICE = "WEB-INF/jsp/service.jsp";
 	public static final String CALCULATOR = "WEB-INF/jsp/calculator.jsp";
 	public static final String CALCULATOR_RESULT_REDIRECT = "/controller?command=show_best_plan";
-	public static final String ERROR_404 = "WEB-INF/jsp/error404.jsp";
+	public static final String ERROR = "WEB-INF/jsp/error.jsp";
 	public static final String ADD_SUBSCRIBER = "WEB-INF/jsp/add-subscriber.jsp";
 
 }

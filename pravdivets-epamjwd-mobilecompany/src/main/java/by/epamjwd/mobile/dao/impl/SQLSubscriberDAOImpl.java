@@ -21,71 +21,78 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
         super(RowMapperFactory.getInstance().getSubscriberRowMapper(), DBTableName.SUBSCRIBERS);
 	}
 
-	public final static String BASIC_SUBSCRIBER_SELECT_QUERY = "SELECT Subscribers.id, Subscribers.contract_date, "
-			+ "Users.password, Users.first_name, Users.middle_name, Users.last_name, Customers.passport_number, "
-			+ "Users.email,  Customers.home_address, Subscribers.account, Subscribers.phone_number, Subscribers.tariff_plan_id, "
-			+ "Status.status,  Subscribers.status_date FROM Users INNER JOIN Customers ON Users.id = Customers.users_id "
-			+ "INNER JOIN Subscribers ON Customers.id = Subscribers.customers_id INNER JOIN Status ON Subscribers.status_id = Status.id "
-			+ "WHERE ";
-	
+
 	@Override
 	public Optional<Subscriber> findSubscriberByPhoneNumber(int phoneNumber) throws DaoException {
-		String query = makeSubscriberSelectQuery(DBTableName.SUBSCRIBERS, DBColumnName.SUBSCRIBERS_PHONE_NUMBER);
+		String query = buildSelectSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_PHONE);
 		return executeQueryForSingleResult(query, phoneNumber);
 	}
 
 	@Override
-	public List<Subscriber> findSubscriberListByEmail(String email) throws DaoException {
-		String query = makeSubscriberSelectQuery(DBTableName.USERS, DBColumnName.USERS_EMAIL);
-		return executeQuery(query, email);
+	public Optional<Subscriber> findSubscriberById(String id) throws DaoException {
+		String query = buildSelectSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_ID);
+		return executeQueryForSingleResult(query, id);
+	}
+	
+
+	@Override
+	public List<Subscriber> findSubscriberListByUserId(String userId) throws DaoException {
+		String query = buildSelectSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_USER_ID);
+		return executeQuery(query, userId);
 	}
 
+	
+	private String buildSelectSubscriberQueryByParameter(String parameter){
+		String query = new StringBuilder("SELECT * , ")
+				.append(DBColumnName.STATUSES_STATUS)
+				.append(" FROM ").append(DBTableName.SUBSCRIBERS).append(" INNER JOIN ").append(DBTableName.STATUSES)
+				.append(" ON ")
+				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_STATUS_ID)
+				.append(" = ")
+				.append(DBTableName.STATUSES).append(".").append(DBColumnName.STATUSES_ID)
+				.append(" WHERE ")
+				.append(DBTableName.SUBSCRIBERS).append(".").append(parameter).append(" = ?")
+				.toString();
+	
+				return query;
+	}
+
+	
+	
+	
+	
 	@Override
 	public List<Subscriber> findSubscriberListByPassport(String passport) throws DaoException {
-		String query = makeSubscriberSelectQuery(DBTableName.CUSTOMERS, DBColumnName.CUSTOMERS_PASSPORT_NUMBER);
-		return executeQuery(query, passport);
+		//String query = makeSubscriberSelectQuery(DBTableName.CUSTOMERS, DBColumnName.CUSTOMERS_PASSPORT_NUMBER);
+		//return executeQuery(query, passport);
+		return null;
 	}
 
 
-	
-	
-	@Override
-	public List<Subscriber> findSubscriberListByUserId(String id) throws DaoException {
-		String query = makeSubscriberSelectQuery(DBTableName.USERS, DBColumnName.USERS_ID);
-		return executeQuery(query, id);
-	}
-	
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws DaoException {
 		List<Subscriber> result = null;
-		String query = null;
-		StringBuilder builder = new StringBuilder(BASIC_SUBSCRIBER_SELECT_QUERY)
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_FIRST_NAME).append(" = ? AND ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME);
-		
-		if("".equals(middleName)) {
-			query = builder
-					.append(" = ?")
-					.toString();
-			result = executeQuery(query, firstName,  lastName);
-		} else {
-			query = builder
-					.append(" = ? AND ")
-					.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME)
-					.append(" = ?")
-					.toString();
-			result = executeQuery(query, firstName,  lastName, middleName);
-		}
+//		String query = null;
+//		StringBuilder builder = new StringBuilder(BASIC_SUBSCRIBER_SELECT_QUERY)
+//				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_FIRST_NAME).append(" = ? AND ")
+//				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME);
+//		
+//		if("".equals(middleName)) {
+//			query = builder
+//					.append(" = ?")
+//					.toString();
+//			result = executeQuery(query, firstName,  lastName);
+//		} else {
+//			query = builder
+//					.append(" = ? AND ")
+//					.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME)
+//					.append(" = ?")
+//					.toString();
+//			result = executeQuery(query, firstName,  lastName, middleName);
+//		}
 		return result;
 	}
 	
-	@Override
-	public Optional<Subscriber> findSubscriberById(String id) throws DaoException {
-		String query = makeSubscriberSelectQuery(DBTableName.SUBSCRIBERS, DBColumnName.SUBSCRIBERS_ID);
-		return executeQueryForSingleResult(query, id);
-	}
-
-
 
 	
 //	@Override
@@ -137,14 +144,5 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 		return 0;
 	}
 
-	private String makeSubscriberSelectQuery(String tableName, String columnName) {
-		
-		return new StringBuilder(BASIC_SUBSCRIBER_SELECT_QUERY)
-				.append(tableName)
-				.append(".")
-				.append(columnName)
-				.append(" = ?")
-				.toString();
-	}
 
 }

@@ -7,7 +7,6 @@ import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
-import by.epamjwd.mobile.util.PhoneNumberFormatter;
 
 public class SubscriberRowMapper implements RowMapper<Subscriber> {
 
@@ -16,18 +15,12 @@ public class SubscriberRowMapper implements RowMapper<Subscriber> {
 			Subscriber subscriber = new Subscriber(
 							resultSet.getLong  (DBColumnName.SUBSCRIBERS_ID),
 							resultSet.getDate  (DBColumnName.SUBSCRIBERS_CONTRACT_DATE),
-							resultSet.getString(DBColumnName.USERS_PASSWORD),
-							resultSet.getString(DBColumnName.USERS_FIRST_NAME),
-							resultSet.getString(DBColumnName.USERS_MIDDLE_NAME),
-							resultSet.getString(DBColumnName.USERS_LAST_NAME),
-							resultSet.getString(DBColumnName.CUSTOMERS_PASSPORT_NUMBER),
-							resultSet.getString(DBColumnName.USERS_EMAIL),
-							resultSet.getString(DBColumnName.CUSTOMERS_HOME_ADDRESS),
 							resultSet.getInt   (DBColumnName.SUBSCRIBERS_ACCOUNT),
-							resultSet.getInt   (DBColumnName.SUBSCRIBERS_PHONE_NUMBER),
-							resultSet.getLong  (DBColumnName.SUBSCRIBERS_TARIFF_PLANS_ID),
-   SubscriberStatus.valueOf(resultSet.getString(DBColumnName.STATUS_STATUS).toUpperCase()),
-				        	resultSet.getDate  (DBColumnName.SUBSCRIBERS_STATUS_DATE)
+							resultSet.getInt   (DBColumnName.SUBSCRIBERS_PHONE),
+							resultSet.getDate  (DBColumnName.SUBSCRIBERS_STATUS_DATE),
+   SubscriberStatus.valueOf(resultSet.getString(DBColumnName.STATUSES_STATUS).toUpperCase()),
+							resultSet.getLong  (DBColumnName.SUBSCRIBERS_PLAN_ID),
+							resultSet.getLong  (DBColumnName.SUBSCRIBERS_USER_ID)
 												);
 		return subscriber;
 	}

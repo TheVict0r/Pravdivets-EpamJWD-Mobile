@@ -37,11 +37,11 @@ public class GoToProfilePageCommand implements Command{
 		case CONSULTANT:
 			result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 			break;
-		case CUSTOMER:
+		case SUBSCRIBER:
 			result = new RouteHelper(PagePath.CUSTOMER_REDIRECT, RouteMethod.REDIRECT);
 			break;
 		default:
-			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;
 	}

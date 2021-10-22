@@ -44,8 +44,8 @@ public class CheckSubscriberByPassportCommand implements Command {
 			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
 			request.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
 			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
-			if (subscriberService.isNewSubscriber(passport)) {
-				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.NEW);
+			if (subscriberService.isNewCustomer(passport)) {
+				request.setAttribute(AttributeName.CUSTOMER, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			} else if (subscriberService.isDebtor(passport)) {
 				List<Subscriber> debtSubscribers = subscriberService.findSubscribersListWithDebts(passport);
@@ -59,7 +59,7 @@ public class CheckSubscriberByPassportCommand implements Command {
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to check the passport" + passport, e);
-			result = new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 			// подумай - может ещё куда-то послать? Напр., на ту же страницу но с указанием
 			// ошибки
 		}

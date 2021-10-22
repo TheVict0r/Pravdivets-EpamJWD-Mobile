@@ -100,7 +100,7 @@ public class LoginCommand implements Command {
 		}
 		String path = null;
 		switch (role) {
-		case CUSTOMER:
+		case SUBSCRIBER:
 			path = PagePath.CUSTOMER_REDIRECT;
 			break;
 		case CONSULTANT:

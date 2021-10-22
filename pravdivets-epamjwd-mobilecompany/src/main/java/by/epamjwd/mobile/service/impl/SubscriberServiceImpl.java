@@ -1,14 +1,19 @@
 package by.epamjwd.mobile.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.service.PlanService;
+import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.InputValueChecker;
@@ -110,7 +115,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public boolean isNewSubscriber(String passport) throws ServiceException {
+	public boolean isNewCustomer(String passport) throws ServiceException {
 		List<Subscriber> result = findSubscriberListByPassport(passport);
 		return result.isEmpty();
 	}
@@ -135,6 +140,48 @@ public class SubscriberServiceImpl implements SubscriberService {
 			}
 		}
 		return subscribersWithDebts;
+	}
+
+	@Override
+	public void addNewSubscriber(String passport, int phoneNumber, long plan_id, String firstName, String middleName,
+			String lastName, String homeAddress, String email) throws ServiceException {
+
+		ServiceProvider serviceProvider = ServiceProvider.getInstance();
+		PlanService planService = serviceProvider.getPlanService();
+		Date currentDate = new Date();
+		
+		Plan plan = planService.findPlanByID(plan_id);
+
+		
+		Subscriber newSubscriber = new Subscriber();
+		newSubscriber.setFirstName(firstName);
+		newSubscriber.setMiddleName(middleName);
+		newSubscriber.setLastName(lastName);
+		newSubscriber.setPassportNumber(passport);
+		newSubscriber.setEmail(email);
+		newSubscriber.setHomeAddress(homeAddress);
+
+		//дублирование кода
+		newSubscriber.setContractDate(currentDate);
+		newSubscriber.setCheckingAccountAmount(plan.getUpfrontPayment());
+		newSubscriber.setPhoneNumber(phoneNumber);
+		newSubscriber.setPlanId(plan_id);
+		newSubscriber.setStatus(SubscriberStatus.ACTIVE);
+		newSubscriber.setStatusDate(currentDate);			
+	
+	
+	
+	//создать нового Subscriber и добавить его в таблицы Users, Customers и Subscribers
+
+		
+		
+	}
+
+	@Override
+	public void addNewSubscriberToExistingCustomer(String passport, int phoneNumber, long plan_id)
+			throws ServiceException {
+		//Subscriber subscriberDao.findSubscriberListByPassport(passport).get(0);
+		
 	}
 
 	

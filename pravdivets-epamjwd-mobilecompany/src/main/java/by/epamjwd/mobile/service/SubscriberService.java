@@ -15,10 +15,13 @@ public interface SubscriberService {
 	List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName)
 			throws ServiceException;
 	List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException;
-	boolean isNewSubscriber(String passport) throws ServiceException;
+	boolean isNewCustomer(String passport) throws ServiceException;
 	boolean isDebtor(String passport) throws ServiceException;
 	List<Subscriber> findSubscribersListWithDebts(String passport) throws ServiceException;
 	boolean isPhoneNumberAvailable(int phoneNumber) throws ServiceException;
+	void addNewSubscriber(String passport, int phoneNumber, long plan_id, String firstName, String middleName,
+			String lastName, String homeAddress, String email) throws ServiceException;
+	void addNewSubscriberToExistingCustomer(String passport, int phoneNumber, long plan_id)throws ServiceException;
 	
 	
 }

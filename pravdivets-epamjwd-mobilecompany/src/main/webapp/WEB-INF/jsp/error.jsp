@@ -18,14 +18,14 @@
 	<jsp:include page="components/header.jsp" />
 
 	<div>
-		<img src="pic/404.jpg" class="img-fluid" alt="mobile">
+		<img src="pic/error.jpg" class="img-fluid" alt="mobile">
 	</div>
 
 
 	<div
 		class="container row align-content-center col-sm-8 mx-auto flex-grow-1 gap-2">
 
-		<span class="display-2 text-left text-danger d-flex align-items-center">- 404 -</span>
+		<span class="display-2 text-left text-danger d-flex align-items-center">- ERROR -</span>
 		<span class="display-6 text-left d-flex align-items-center">Something went wrong, sorry :(</span>
 		<span class="display-6 text-left d-flex align-items-center">Никогда такого не было, и вот опять!</span>
 

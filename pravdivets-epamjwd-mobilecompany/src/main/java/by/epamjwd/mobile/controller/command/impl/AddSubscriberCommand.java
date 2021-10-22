@@ -32,9 +32,8 @@ public class AddSubscriberCommand implements Command{
 		
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
-		PlanService planService = serviceProvider.getPlanService();
 
-		String subscriberType = request.getParameter(ParameterName.SUBSCRIBER_TYPE);
+		String customer = request.getParameter(ParameterName.CUSTOMER);
 		
 		String passport = request.getParameter(ParameterName.PASSPORT);
 		int phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE_NUMBER));
@@ -45,54 +44,35 @@ public class AddSubscriberCommand implements Command{
 		String lastName = null;
 		String homeAddress = null;
 		String email = null;
-		Plan plan = null;
 		
-		Date currentDate = new Date();
-		
-		try {
-			plan = planService.findPlanByID(plan_id);
-		} catch (ServiceException e1) {
-			LOGGER.error("Fail to obtain tariff plan by ID - " + plan_id,  e1);
-			return new RouteHelper(PagePath.ERROR_404, RouteMethod.FORWARD);
-		}
-		
-		if(subscriberType.equals(ParameterValue.NEW_SUBSCRIBER)) {
+		if(customer.equals(ParameterValue.NEW)) {
 			firstName = request.getParameter(ParameterName.FIRST_NAME);
 			middleName = request.getParameter(ParameterName.MIDDLE_NAME);
 			lastName = request.getParameter(ParameterName.LAST_NAME);
 			homeAddress = request.getParameter(ParameterName.HOME_ADDRESS);
 			email = request.getParameter(ParameterName.EMAIL);
 			
-			Subscriber newSubscriber = new Subscriber();
-				newSubscriber.setFirstName(firstName);
-				newSubscriber.setMiddleName(middleName);
-				newSubscriber.setLastName(lastName);
-				newSubscriber.setPassportNumber(passport);
-				newSubscriber.setEmail(email);
-				newSubscriber.setHomeAddress(homeAddress);
-
-				//дублирование кода
-				newSubscriber.setContractDate(currentDate);
-				newSubscriber.setCheckingAccountAmount(plan.getUpfrontPayment());
-				newSubscriber.setPhoneNumber(phoneNumber);
-				newSubscriber.setPlanId(plan_id);
-				newSubscriber.setStatus(SubscriberStatus.ACTIVE);
-				newSubscriber.setStatusDate(currentDate);			
+//			subscriberService.addNewSubscriber(passport, phoneNumber, plan_id, firstName, 
+//					middleName, lastName, homeAddress, email);
+//			
+		
+		} else if(customer.equals(ParameterValue.CURRENT)) {
 			
 			
-			//subscriberService.addNewCustomer(newSubscriber)
+//			subscriberService.addNewSubscriberToExistingCustomer(passport, phoneNumber, plan_id);
 			
-			//создать нового Subscriber и добавить его в таблицы Users, Customers и Subscribers
-		} else {
-			try {
-				Subscriber currentCustomer = subscriberService.findSubscriberListByPassport(passport).get(0);
-				
-				currentCustomer.setContractDate(currentDate);
-				currentCustomer.setCheckingAccountAmount(plan.getUpfrontPayment());
-				currentCustomer.setPhoneNumber(phoneNumber);
-				currentCustomer.setPlanId(plan_id);
-				currentCustomer.setStatus(SubscriberStatus.ACTIVE);
-				currentCustomer.setStatusDate(currentDate);			
+			
+			
+			
+//			try {
+//				Subscriber currentCustomer = subscriberService.findSubscriberListByPassport(passport).get(0);
+//				
+//				currentCustomer.setContractDate(currentDate);
+//				currentCustomer.setCheckingAccountAmount(plan.getUpfrontPayment());
+//				currentCustomer.setPhoneNumber(phoneNumber);
+//				currentCustomer.setPlanId(plan_id);
+//				currentCustomer.setStatus(SubscriberStatus.ACTIVE);
+//				currentCustomer.setStatusDate(currentDate);			
 				//дублирование кода
 				
 				
@@ -108,23 +88,9 @@ public class AddSubscriberCommand implements Command{
 				//tariff_plan_id (берем из этого класса)
 				//customer_id (получаем по паспорту из этого класса Customer извлекаем customer_id)
 				
-				//subscriberService.addNewSubscriberToExistingCustomer(currentCustomer, phoneNumber, plan_id)
 				
-				System.out.println("СТАРЫЙ - " + currentCustomer);
-			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		
-		System.out.println(firstName);
-		System.out.println(middleName);
-		System.out.println(lastName);
-		System.out.println(homeAddress);
-		System.out.println(email);
-		System.out.println(passport);
-		System.out.println(phoneNumber);
-		System.out.println(plan_id);
 		
 		RouteHelper result = null;
 		
