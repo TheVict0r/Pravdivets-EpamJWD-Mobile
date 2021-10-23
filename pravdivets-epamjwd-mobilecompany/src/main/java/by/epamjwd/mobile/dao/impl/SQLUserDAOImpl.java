@@ -21,7 +21,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	@Override
 	public Optional<User> findUserById(String id) throws DaoException {
 		Optional<User> user = Optional.empty();
-		String query = buildUserSelectQueryByParameter(DBColumnName.USERS_ID);
+		String query = buildFindUserQueryByParameter(DBColumnName.USERS_ID);
 		user = executeQueryForSingleResult(query, id);
 		return user;
 	}
@@ -29,7 +29,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	@Override
 	public Optional<User> findUserByEmail(String email) throws DaoException {
 		Optional<User> user = Optional.empty();
-		String query = buildUserSelectQueryByParameter(DBColumnName.USERS_EMAIL);
+		String query = buildFindUserQueryByParameter(DBColumnName.USERS_EMAIL);
 		user = executeQueryForSingleResult(query, email);
 		return user;
 	}
@@ -37,7 +37,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws DaoException {
 		Optional<User> user = Optional.empty();
-		String query = buildUserSelectQueryByParameter(DBColumnName.USERS_PASSPORT);
+		String query = buildFindUserQueryByParameter(DBColumnName.USERS_PASSPORT);
 		user = executeQueryForSingleResult(query, passport);
 		return user;
 	}
@@ -47,7 +47,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	public List<User> findUsersListByFullName(String firstName, String middleName, String lastName) throws DaoException {
 		List<User> result = null;
 		String query = null;
-		StringBuilder builder = new StringBuilder(buildSelectUserQuery())
+		StringBuilder builder = new StringBuilder(buildFindUserQuery())
 				.append(" WHERE ")
 				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_FIRST_NAME)
 				.append(" = ? AND ")
@@ -71,39 +71,37 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		return result;
 	}
 
-	
-	
 	@Override
-	public Optional<User> findUserByPhoneNumber(int phoneNumber) throws DaoException {
+	public Optional<User> findUserByPhone(String phoneNumber) throws DaoException {
 		Optional<User> user = Optional.empty();
 		
-		String query = new StringBuilder(buildSelectUserQuery())
-				.append(" INNER JOIN ").append(DBTableName.SUBSCRIBERS).append(" ON ")
+		String query = new StringBuilder(buildFindUserQuery())
+				.append(" INNER JOIN ")
+				.append(DBTableName.SUBSCRIBERS)
+				.append(" ON ")
+				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_ID)
+				.append(" = ")
 				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_USER_ID)
-				.append(" = ").append(DBTableName.USERS).append(".").append(DBColumnName.USERS_ID)
-				.append(" WHERE ").append(DBTableName.SUBSCRIBERS).append(".")
-				.append(DBColumnName.SUBSCRIBERS_PHONE).append(" = ?")				
+				.append(" WHERE ")
+				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_PHONE)
+				.append(" = ?")				
 				.toString();
 
 		user = executeQueryForSingleResult(query, phoneNumber);
 		return user;
 	}
 
-
-	private String buildSelectUserQuery(){
-		String query = new StringBuilder("SELECT * , ")
-				.append(DBTableName.ROLES).append(".").append(DBColumnName.ROLES_ROLE)
-				.append(" FROM ").append(DBTableName.USERS).append(" INNER JOIN ").append(DBTableName.ROLES)
-				.append(" ON ").append(DBTableName.USERS).append(".").append(DBColumnName.USERS_ROLE_ID)
-				.append(" = ").append(DBTableName.ROLES).append(".").append(DBColumnName.ROLES_ID).toString();
+	private String buildFindUserQuery(){
+		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.USERS).toString();
 		return query;
 	}
-
 	
-	private String buildUserSelectQueryByParameter(String parameter) {
-		String query = new StringBuilder(buildSelectUserQuery())
-				.append(" WHERE ").append(DBTableName.USERS).append(".")
-				.append(parameter).append(" = ?").toString();
+	private String buildFindUserQueryByParameter(String parameter) {
+		String query = new StringBuilder(buildFindUserQuery())
+				.append(" WHERE ")
+				.append(DBTableName.USERS).append(".").append(parameter)
+				.append(" = ?")
+				.toString();
 		return query;
 	}
 	

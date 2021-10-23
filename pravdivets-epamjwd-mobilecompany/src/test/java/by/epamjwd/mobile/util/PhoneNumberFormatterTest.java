@@ -8,7 +8,7 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class PhoneNumberFormatterTest {
 
-	private static PhoneNumberFormatter formatter;
+	private static PhoneFormatter formatter;
 	
 	private final String goodNumber1 = "258901235";
 	private final String goodNumber2 = "295678901";
@@ -25,37 +25,37 @@ public class PhoneNumberFormatterTest {
 
 	@BeforeClass
 	public static void createPhoneNumberFormatter() {
-		formatter = new PhoneNumberFormatter();
+		formatter = new PhoneFormatter();
 	}
 
 	@Test
 	public void testGoodNumber1() throws ServiceException {
-		Assert.assertEquals(goodNumber1Result, PhoneNumberFormatter.formatPhomeNumber(goodNumber1));
+		Assert.assertEquals(goodNumber1Result, PhoneFormatter.formatPhone(goodNumber1));
 	}
 
 	@Test
 	public void testGoodNumber2() throws ServiceException {
-		Assert.assertEquals(goodNumber2Result, PhoneNumberFormatter.formatPhomeNumber(goodNumber2));
+		Assert.assertEquals(goodNumber2Result, PhoneFormatter.formatPhone(goodNumber2));
 	}
 	
 	@Test
 	public void testGoodNumber3() throws ServiceException {
-		Assert.assertEquals(goodNumber3Result, PhoneNumberFormatter.formatPhomeNumber(goodNumber3));
+		Assert.assertEquals(goodNumber3Result, PhoneFormatter.formatPhone(goodNumber3));
 	}
 	
 	@Test
 	public void testGoodNumber4() throws ServiceException {
-		Assert.assertEquals(goodNumber4Result, PhoneNumberFormatter.formatPhomeNumber(goodNumber4));
+		Assert.assertEquals(goodNumber4Result, PhoneFormatter.formatPhone(goodNumber4));
 	}
 	
 	@Test(expected = ServiceException.class)
 	public void testBadNumber1() throws ServiceException {
-		PhoneNumberFormatter.formatPhomeNumber(badNumber1);
+		PhoneFormatter.formatPhone(badNumber1);
 	}
 	
 	@Test(expected = ServiceException.class)
 	public void testBadNumber2() throws ServiceException {
-		PhoneNumberFormatter.formatPhomeNumber(badNumber2);
+		PhoneFormatter.formatPhone(badNumber2);
 	}
 
 }

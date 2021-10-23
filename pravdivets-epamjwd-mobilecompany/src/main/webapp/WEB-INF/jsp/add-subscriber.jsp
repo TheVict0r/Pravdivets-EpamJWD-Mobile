@@ -30,8 +30,8 @@
 			<input type = "hidden" name = "passport" value = "${requestScope.passport}"/>
 			
 			<c:choose>
-				<c:when test="${requestScope.customer eq 'new'}">
-			<input type = "hidden" name = "customer" value = "new"/>
+				<c:when test="${requestScope.user eq 'new'}">
+			<input type = "hidden" name = "user" value = "new"/>
 					<table>
 						<tr>
 							<td><label for="last_name" class="form-label"><fmt:message
@@ -54,12 +54,6 @@
 								pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"></td>
 						</tr>
 						<tr>
-							<td><label for="home_address" class="form-label"><fmt:message
-										key="add-subscriber.address" />:</label></td>
-							<td><input type="text" class="form-control"
-								name="home_address" id="home_address" required></td>
-						</tr>
-						<tr>
 							<td><label for="email" class="form-label">e-mail:</label></td>
 							<td><input type="email" class="form-control" name="email"
 								id="email" required></td>
@@ -67,7 +61,7 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-			<input type = "hidden" name = "customer" value = "current"/>
+			<input type = "hidden" name = "user" value = "current"/>
 					<div
 						class="row justify-content-center mx-auto text-success text-center fw-normal">
 						<fmt:message key="add-subscriber.current" />
@@ -75,23 +69,19 @@
 					<table class="table">
 						<tr>
 							<td><fmt:message key="add-subscriber.last-name" />:</td>
-							<td>${requestScope.subscriber.lastName}</td>
+							<td>${requestScope.user.lastName}</td>
 						</tr>
 						<tr>
 							<td><fmt:message key="add-subscriber.first-name" />:</td>
-							<td>${requestScope.subscriber.firstName}</td>
+							<td>${requestScope.user.firstName}</td>
 						</tr>
 						<tr>
 							<td><fmt:message key="add-subscriber.middle-name" />:</td>
-							<td>${requestScope.subscriber.middleName}</td>
-						</tr>
-						<tr>
-							<td><fmt:message key="add-subscriber.address" />:</td>
-							<td>${requestScope.subscriber.homeAddress}</td>
+							<td>${requestScope.user.middleName}</td>
 						</tr>
 						<tr>
 							<td>e-mail:</td>
-							<td>${requestScope.subscriber.email}</td>
+							<td>${requestScope.user.email}</td>
 						</tr>
 					</table>
 				</c:otherwise>

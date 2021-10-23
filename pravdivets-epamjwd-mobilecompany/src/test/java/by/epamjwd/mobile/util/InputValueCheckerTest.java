@@ -54,47 +54,47 @@ public class InputValueCheckerTest {
 
 	@Test
 	public void testGoodPhoneNumber25() {
-		Assert.assertTrue(InputValueChecker.isPhoneNumber(goodPhoneNumber25));
+		Assert.assertTrue(InputValueChecker.isPhone(goodPhoneNumber25));
 	}
 	
 	@Test
 	public void testGoodPhoneNumber29() {
-		Assert.assertTrue(InputValueChecker.isPhoneNumber(goodPhoneNumber29));
+		Assert.assertTrue(InputValueChecker.isPhone(goodPhoneNumber29));
 	}
 	
 	@Test
 	public void testGoodPhoneNumber33() {
-		Assert.assertTrue(InputValueChecker.isPhoneNumber(goodPhoneNumber33));
+		Assert.assertTrue(InputValueChecker.isPhone(goodPhoneNumber33));
 	}
 	
 	@Test
 	public void testGoodPhoneNumber44() {
-		Assert.assertTrue(InputValueChecker.isPhoneNumber(goodPhoneNumber44));
+		Assert.assertTrue(InputValueChecker.isPhone(goodPhoneNumber44));
 	}
 	
 	@Test
 	public void testBadPhoneNumber1() {
-		Assert.assertFalse(InputValueChecker.isPhoneNumber(badPhoneNumber1));
+		Assert.assertFalse(InputValueChecker.isPhone(badPhoneNumber1));
 	}
 	
 	@Test
 	public void testBadPhoneNumber2() {
-		Assert.assertFalse(InputValueChecker.isPhoneNumber(badPhoneNumber2));
+		Assert.assertFalse(InputValueChecker.isPhone(badPhoneNumber2));
 	}
 	
 	@Test
 	public void testBadPhoneNumber3() {
-		Assert.assertFalse(InputValueChecker.isPhoneNumber(badPhoneNumber3));
+		Assert.assertFalse(InputValueChecker.isPhone(badPhoneNumber3));
 	}
 	
 	@Test
 	public void testBadPhoneNumber4() {
-		Assert.assertFalse(InputValueChecker.isPhoneNumber(badPhoneNumber4));
+		Assert.assertFalse(InputValueChecker.isPhone(badPhoneNumber4));
 	}
 	
 	@Test
 	public void testBadPhoneNumber5() {
-		Assert.assertFalse(InputValueChecker.isPhoneNumber(badPhoneNumber5));
+		Assert.assertFalse(InputValueChecker.isPhone(badPhoneNumber5));
 	}
 	
 	@Test

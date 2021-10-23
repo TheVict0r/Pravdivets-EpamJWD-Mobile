@@ -7,14 +7,14 @@ import java.util.Map;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class PhoneNumberFormatter {
+public class PhoneFormatter {
 
-	public static String formatPhomeNumber(String phoneNumber) throws ServiceException {
+	public static String formatPhone(String phone) throws ServiceException {
 		
-		char [] phoneChar = phoneNumber.toCharArray();
+		char [] phoneChar = phone.toCharArray();
 		
 		if(phoneChar.length !=9) {
-			throw new ServiceException("the number provided must be 9 digits long only. Cuttent phone number is - " + phoneNumber);
+			throw new ServiceException("the number provided must be 9 digits long only. Cuttent phone number is - " + phone);
 		}
 		
 		return new StringBuilder()
@@ -30,13 +30,13 @@ public class PhoneNumberFormatter {
 
 	}
 	
-	public Map<String, String> provideFormattedPhoneNumbersMap(List<Subscriber> userList) throws ServiceException{
+	public Map<String, String> provideFormattedPhoneMap(List<Subscriber> userList) throws ServiceException{
 		
 		Map<String, String> phoneNumbersMap = new HashMap<>();
 		
 		for(Subscriber abonent : userList) {
-			String key = String.valueOf(abonent.getPhoneNumber());
-			String value = formatPhomeNumber(key);
+			String key = String.valueOf(abonent.getPhone());
+			String value = formatPhone(key);
 			phoneNumbersMap.put(key, value);
 		}
 		

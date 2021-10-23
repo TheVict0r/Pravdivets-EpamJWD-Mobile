@@ -24,6 +24,7 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.HashGenerator;
+import by.epamjwd.mobile.util.InputValueChecker;
 
 public class LoginCommand implements Command {
 
@@ -33,17 +34,15 @@ public class LoginCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
-		SubscriberService subscriberService = provider.getSubscriberService();
 		User user = null;
+		SubscriberService subscriberService = provider.getSubscriberService();
 		Subscriber subscriber = null;
-		
-		String path = null;
 		HttpSession session = request.getSession();
-		HashGenerator hashGenerator = new HashGenerator();
+		String path = null;
 		RouteHelper result = null;
 
 		String login = request.getParameter(ParameterName.LOGIN);
-		String hashPassword = hashGenerator.generateHash(request.getParameter(ParameterName.PASSWORD));
+		String hashPassword = HashGenerator.generateHash(request.getParameter(ParameterName.PASSWORD));
 		
 		if (login == null || request.getParameter(ParameterName.PASSWORD) == null) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
@@ -54,37 +53,30 @@ public class LoginCommand implements Command {
 			Optional<User> userOptional = userService.findUserByLogin(login);
 			if (userOptional.isPresent()) {
 				user = userOptional.get();
-			}
-
-			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhoneNumber(login);
-			if (subscriberOptional.isPresent()) {
-				subscriber = subscriberOptional.get();
-			}
-
-			if(user == null) {
+			} else {
 				path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 			}
 			
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(login);
+			if (subscriberOptional.isPresent()) {
+				subscriber = subscriberOptional.get();
+			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain data for login - " + login, e);
 			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 		}
 		
-		if(!userService.isPasswordValid(user, hashPassword)) {
-			user = null;
-			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
-		}
-		
-		if (user != null) {
+		if(user != null && userService.isPasswordCorrect(user, hashPassword)) {
 			session.setAttribute(AttributeName.USER_ID, user.getId());
 			session.setAttribute(AttributeName.FIRST_NAME, user.getFirstName());
 			session.setAttribute(AttributeName.LAST_NAME, user.getLastName());
 			session.setAttribute(AttributeName.ROLE, user.getRole());
 			path = findPathByUserRole(user.getRole());
 		} else {
+			user = null;
 			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 		}
-		
+
 		if (subscriber != null && user != null) {
 			session.setAttribute(AttributeName.SUBSCRIBER_ID, subscriber.getId());
 			path = PagePath.SUBSCRIBER_REDIRECT;
@@ -101,10 +93,10 @@ public class LoginCommand implements Command {
 		String path = null;
 		switch (role) {
 		case SUBSCRIBER:
-			path = PagePath.CUSTOMER_REDIRECT;
+			path = PagePath.SUBSCRIBER_LIST_REDIRECT;
 			break;
 		case CONSULTANT:
-			path = PagePath.SUBSCRIBER_BASE_REDIRECT;
+			path = PagePath.CONSULTANT_REDIRECT;
 			break;
 		case ADMIN:
 			path = PagePath.ADMIN_REDIRECT;

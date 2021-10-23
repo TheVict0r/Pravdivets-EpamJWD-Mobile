@@ -9,7 +9,9 @@ import java.util.Optional;
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.SubscriberStatus;
+import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.SubscriberDAO;
+import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.PlanService;
@@ -21,38 +23,6 @@ import by.epamjwd.mobile.util.InputValueChecker;
 public class SubscriberServiceImpl implements SubscriberService {
 	DAOProvider provider = DAOProvider.getInstance();
 	SubscriberDAO subscriberDao = provider.getSubscriberDAO();
-
-	@Override
-	public Optional<Subscriber> findSubscriberByPhoneNumber(String phoneString) throws ServiceException {
-		Optional<Subscriber> subscriber = Optional.empty();
-		if (InputValueChecker.isPhoneNumber(phoneString)) {
-			int phoneNumber = Integer.parseInt(phoneString);
-			try {
-				subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber);
-			} catch (DaoException e) {
-				throw new ServiceException(e);
-			} 
-		}
-		return subscriber;
-	}
-	
-	@Override
-	public boolean isPhoneNumberAvailable(int phoneNumber) throws ServiceException {
-		boolean result = false;
-		
-		Optional<Subscriber> subscriber;
-		try {
-			subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-
-		if (subscriber.isEmpty()) {
-			result = true;
-		}
-
-		return result;
-	}
 	
 	@Override
 	public Optional<Subscriber> findSubscriberById(String id) throws ServiceException {
@@ -66,41 +36,19 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 	
 	@Override
-	public List<Subscriber> findSubscriberListByEmail(String email) throws ServiceException {
-		List<Subscriber> subscriberList;
-		try {
-			subscriberList = subscriberDao.findSubscriberListByEmail(email);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		} if (subscriberList.isEmpty()) {
-			throw new ServiceException("Empty subscriber list for e-mail " + email);
+	public Optional<Subscriber> findSubscriberByPhone(String phoneString) throws ServiceException {
+		Optional<Subscriber> subscriber = Optional.empty();
+		if (InputValueChecker.isPhone(phoneString)) {
+			int phoneNumber = Integer.parseInt(phoneString);
+			try {
+				subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			} 
 		}
-		return subscriberList;
-	}
-
-	@Override
-	public List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException {
-		List<Subscriber> subscriberList;
-		try {
-			subscriberList = subscriberDao.findSubscriberListByPassport(passport);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return subscriberList;
+		return subscriber;
 	}
 	
-	@Override
-	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
-		List<Subscriber> subscriberList;
-		try {
-			subscriberList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		} 
-
-		return subscriberList;
-	}
-
 	@Override
 	public List<Subscriber> findSubscriberListByUserId(String id) throws ServiceException {
 		List<Subscriber> subscriberList;
@@ -113,12 +61,78 @@ public class SubscriberServiceImpl implements SubscriberService {
 		}
 		return subscriberList;
 	}
-
+	
+	
 	@Override
-	public boolean isNewCustomer(String passport) throws ServiceException {
-		List<Subscriber> result = findSubscriberListByPassport(passport);
-		return result.isEmpty();
+	public boolean isPhoneAvailable(int phone) throws ServiceException {
+		boolean result = false;
+		
+		Optional<Subscriber> subscriber;
+		try {
+			subscriber = subscriberDao.findSubscriberByPhoneNumber(phone);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+
+		if (subscriber.isEmpty()) {
+			result = true;
+		}
+
+		return result;
 	}
+	
+	
+	
+//	@Override
+//	public List<Subscriber> findSubscriberListByEmail(String email) throws ServiceException {
+//		List<Subscriber> subscriberList;
+//		try {
+//			subscriberList = subscriberDao.findSubscriberListByEmail(email);
+//		} catch (DaoException e) {
+//			throw new ServiceException(e);
+//		} if (subscriberList.isEmpty()) {
+//			throw new ServiceException("Empty subscriber list for e-mail " + email);
+//		}
+//		return subscriberList;
+//	}
+//
+//	
+//	
+	@Override
+	public List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException {
+		List<Subscriber> subscriberList;
+		try {
+			subscriberList = subscriberDao.findSubscriberListByPassport(passport);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return subscriberList;
+	}
+//	
+//	@Override
+//	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
+//		UserDAO userDAO = provider.getUserDAO();
+//		List<User> userList;
+//		try {
+//			userList = userDAO.findUsersListByFullName(firstName, middleName, lastName);
+//		} catch (DaoException e) {
+//			throw new ServiceException(e);
+//		}
+//		
+//		List<Subscriber> subscriberList = new ArrayList<>();
+//		
+//		for(User user : userList) {
+//			subscriberList.addAll(findSubscriberListByUserId(String.valueOf(user.getId())));
+//		}
+//		return subscriberList;
+//	}
+//
+
+//	@Override
+//	public boolean isNewCustomer(String passport) throws ServiceException {
+//		List<Subscriber> result = findSubscriberListByPassport(passport);
+//		return result.isEmpty();
+//	}
 
 	@Override
 	public boolean isDebtor(String passport) throws ServiceException {
@@ -135,7 +149,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		List<Subscriber> subscribersList = findSubscriberListByPassport(passport);
 		List<Subscriber> subscribersWithDebts = new ArrayList<>();
 		for(Subscriber subscriber : subscribersList) {
-			if (subscriber.getCheckingAccountAmount() < 0) {
+			if (subscriber.getAccount() < 0) {
 				subscribersWithDebts.add(subscriber);
 			}
 		}
@@ -154,17 +168,16 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 		
 		Subscriber newSubscriber = new Subscriber();
-		newSubscriber.setFirstName(firstName);
-		newSubscriber.setMiddleName(middleName);
-		newSubscriber.setLastName(lastName);
-		newSubscriber.setPassportNumber(passport);
-		newSubscriber.setEmail(email);
-		newSubscriber.setHomeAddress(homeAddress);
+//		newSubscriber.setFirstName(firstName);
+//		newSubscriber.setMiddleName(middleName);
+//		newSubscriber.setLastName(lastName);
+//		newSubscriber.setPassport(passport);
+//		newSubscriber.setEmail(email);
 
 		//дублирование кода
 		newSubscriber.setContractDate(currentDate);
-		newSubscriber.setCheckingAccountAmount(plan.getUpfrontPayment());
-		newSubscriber.setPhoneNumber(phoneNumber);
+		newSubscriber.setAccount(plan.getUpfrontPayment());
+		newSubscriber.setPhone(phoneNumber);
 		newSubscriber.setPlanId(plan_id);
 		newSubscriber.setStatus(SubscriberStatus.ACTIVE);
 		newSubscriber.setStatusDate(currentDate);			
@@ -178,7 +191,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public void addNewSubscriberToExistingCustomer(String passport, int phoneNumber, long plan_id)
+	public void addOneMorePhoneToCurrentSubscriber(String passport, int phoneNumber, long plan_id)
 			throws ServiceException {
 		//Subscriber subscriberDao.findSubscriberListByPassport(passport).get(0);
 		

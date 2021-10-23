@@ -14,7 +14,7 @@ public class CommandName {
 	public static final String SHOW_FULL_PLAN = "show_full_plan";
 	public static final String SHOW_ALL_SERVICES = "show_all_services";
 	public static final String SHOW_FULL_SERVICE = "show_full_service";
-	public static final String SHOW_CUSTOMER_BY_USER_ID = "show_customer_by_user_id";
+	public static final String SHOW_SUBSCRIBER_LIST_BY_USER_ID = "show_subscriber_list_by_user_id";
 	public static final String SHOW_SUBSCRIBER_LIST_BY_FULL_NAME = "show_subscriber_list_by_full_name";
 	public static final String SHOW_ADMIN = "show_admin";
 	public static final String GO_TO_SUBSCRIBER_BASE = "go_to_subscriber_base";
@@ -26,6 +26,6 @@ public class CommandName {
 	public static final String SHOW_BEST_PLAN = "show_best_plan";
 	public static final String ADD_SUBSCRIBER = "add_subscriber";
 	public static final String GO_TO_ADD_SUBSCRIBER_PAGE = "go_to_add_subscriber_page";
-	public static final String CHECK_SUBSCRIBER_BY_PASSPORT = "check_subscriber_by_passport";
+	public static final String PREPARE_NEW_SUBSCRIBER = "prepare_new_subscriber";
 
 }

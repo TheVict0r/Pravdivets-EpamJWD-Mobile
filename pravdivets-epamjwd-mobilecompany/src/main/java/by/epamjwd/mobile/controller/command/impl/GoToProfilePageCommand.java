@@ -19,8 +19,8 @@ public class GoToProfilePageCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.PASSPORT);
-		session.removeAttribute(AttributeName.PHONE_NUMBER);
-		session.removeAttribute(AttributeName.PHONE_NUMBER_FORMAT);
+		session.removeAttribute(AttributeName.PHONE);
+		session.removeAttribute(AttributeName.PHONE_FORMAT);
 		
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		
@@ -38,7 +38,7 @@ public class GoToProfilePageCommand implements Command{
 			result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 			break;
 		case SUBSCRIBER:
-			result = new RouteHelper(PagePath.CUSTOMER_REDIRECT, RouteMethod.REDIRECT);
+			result = new RouteHelper(PagePath.SUBSCRIBER_LIST_REDIRECT, RouteMethod.REDIRECT);
 			break;
 		default:
 			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);

@@ -15,7 +15,6 @@ public class AttributeName {
 	public static final String EMAIL = "email";
 	public static final String ADMIN = "admin";
 	public static final String CONSULTANT = "consultant";
-	public static final String CUSTOMER = "customer";
 	public static final String SUBSCRIBER = "subscriber";
 	public static final String SUBSCRIBER_ID = "subscriber_id";
 	public static final String SUBSCRIBER_LIST = "subscriber_list";
@@ -24,9 +23,9 @@ public class AttributeName {
 	public static final String PASSPORT = "passport";
 	public static final String ERROR = "error";
 	public static final String DEBT = "debt";
-	public static final String PHONE_NUMBER = "phone_number";
-	public static final String PHONE_NUMBER_FORMAT = "phone_number_format";
-	public static final String PHONE_NUMBERS_MAP = "phone_numbers_map";
+	public static final String PHONE = "phone";
+	public static final String PHONE_FORMAT = "phone_format";
+	public static final String PHONE_MAP = "phone_map";
 	public static final String ROLE = "role";
 	public static final String CALCULATOR_BEST_PLAN = "best_plan";
 	public static final String SESSION_TIME_OUT = "session_time_out";

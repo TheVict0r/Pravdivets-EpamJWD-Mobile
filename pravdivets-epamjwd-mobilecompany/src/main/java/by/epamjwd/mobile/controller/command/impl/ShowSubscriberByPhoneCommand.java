@@ -23,7 +23,7 @@ import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.PhoneNumberFormatter;
+import by.epamjwd.mobile.util.PhoneFormatter;
 
 public class ShowSubscriberByPhoneCommand implements Command {
 	
@@ -39,14 +39,14 @@ public class ShowSubscriberByPhoneCommand implements Command {
 		
 		RouteHelper result = null;
 		try {
-			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhoneNumber(phoneNumber);
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(phoneNumber);
 			
 			if (subscriberOptional.isPresent()) {
 				subscriber = subscriberOptional.get();
 				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 			} else {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
-				request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
+				request.setAttribute(AttributeName.PHONE, phoneNumber);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 			}
 		} catch (ServiceException e) {

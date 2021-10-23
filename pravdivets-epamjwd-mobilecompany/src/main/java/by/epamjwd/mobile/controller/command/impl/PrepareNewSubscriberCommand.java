@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -20,13 +21,14 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
+import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.PhoneNumberFormatter;
-import by.epamjwd.mobile.util.PhoneNumberGenerator;
+import by.epamjwd.mobile.util.PhoneFormatter;
+import by.epamjwd.mobile.util.PhoneGenerator;
 
-public class CheckSubscriberByPassportCommand implements Command {
+public class PrepareNewSubscriberCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(CheckSubscriberByPassportCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(PrepareNewSubscriberCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -34,27 +36,29 @@ public class CheckSubscriberByPassportCommand implements Command {
 		RouteHelper result = null;
 
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
+		UserService userService = serviceProvider.getUserService();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
 		PlanService planService = serviceProvider.getPlanService();
 		try {
-			int phoneNumber = PhoneNumberGenerator.generatePhoneNumber();
-			String phoneNumberFormat = PhoneNumberFormatter.formatPhomeNumber(String.valueOf(phoneNumber));
+			int phone = PhoneGenerator.generatePhone();
+			String phoneFormat = PhoneFormatter.formatPhone(String.valueOf(phone));
 			List<Plan> allPlans = planService.findAllPlans();
 			request.setAttribute(AttributeName.PASSPORT, passport);
-			request.setAttribute(AttributeName.PHONE_NUMBER, phoneNumber);
-			request.setAttribute(AttributeName.PHONE_NUMBER_FORMAT, phoneNumberFormat);
+			request.setAttribute(AttributeName.PHONE, phone);
+			request.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
 			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
-			if (subscriberService.isNewCustomer(passport)) {
-				request.setAttribute(AttributeName.CUSTOMER, AttributeValue.NEW);
+			if (userService.isNewUserSubscriber(passport)) {
+				request.setAttribute(AttributeName.USER, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			} else if (subscriberService.isDebtor(passport)) {
 				List<Subscriber> debtSubscribers = subscriberService.findSubscribersListWithDebts(passport);
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.DEBTOR);
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
+				request.setAttribute(AttributeName.PASSPORT, passport);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 			} else {
-				Subscriber currentSubscriber = subscriberService.findSubscriberListByPassport(passport).get(0);
-				request.setAttribute(AttributeName.SUBSCRIBER, currentSubscriber);
+				User currentUser = userService.findUserByPassport(passport).get();
+				request.setAttribute(AttributeName.USER, currentUser);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			}
 		} catch (ServiceException e) {

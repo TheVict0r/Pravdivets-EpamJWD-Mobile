@@ -20,9 +20,19 @@ public class UserServiceImpl implements UserService {
 		Optional<User>  user = Optional.empty();
 		if (InputValueChecker.isEmail(login)) {
 			user = findUserByEmail(login);
-		} else if (InputValueChecker.isPhoneNumber(login)) {
-			int phoneNumber = Integer.parseInt(login);
-			user = findUserByPhoneNumber(phoneNumber);
+		} else if (InputValueChecker.isPhone(login)) {
+			user = findUserByPhone(login);
+		}
+		return user;
+	}
+	
+	@Override
+	public Optional<User> findUserById(String id) throws ServiceException {
+		Optional<User> user;
+		try {
+			user = userDao.findUserById(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
 		}
 		return user;
 	}
@@ -39,10 +49,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<User>  findUserByPhoneNumber(int phoneNumber) throws ServiceException {
+	public Optional<User> findUserByPassport(String passport) throws ServiceException {
 		Optional<User> user;
 		try {
-			user = userDao.findUserByPhoneNumber(phoneNumber);
+			user = userDao.findUserByPassport(passport);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return user;
+	}
+	
+	@Override
+	public Optional<User> findUserByPhone(String phone) throws ServiceException {
+		Optional<User> user;
+		try {
+			user = userDao.findUserByPhone(phone);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -50,22 +71,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<User>  findUserById(String id) throws ServiceException {
-		Optional<User> user;
-		try {
-			user = userDao.findUserById(id);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return user;
-	}
-
-	@Override
-	public boolean isPasswordValid(User user, String hashPassword) {
+	public boolean isPasswordCorrect(User user, String hashPassword) {
 		if (user == null) {
 			return false;
 		}
 		return user.getPassword().equals(hashPassword);
 	}
 
+	@Override
+	public boolean isNewUserSubscriber(String passport) throws ServiceException {
+		Optional<User> user;
+		try {
+			user = userDao.findUserByPassport(passport);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return user.isEmpty();
+	}
+	
 }

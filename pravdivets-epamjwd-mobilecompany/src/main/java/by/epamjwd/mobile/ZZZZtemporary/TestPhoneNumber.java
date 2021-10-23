@@ -7,7 +7,7 @@ public class TestPhoneNumber {
 
 		String number = "951234567";
 		
-		System.out.println(InputValueChecker.isPhoneNumber(number));
+		System.out.println(InputValueChecker.isPhone(number));
 	}
 
 }

@@ -103,14 +103,14 @@
 		</div>
 		<div>
 		<form class="row mb-2" method="POST"
-			action="controller?command=check_subscriber_by_passport">
+			action="controller?command=prepare_new_subscriber">
 			<label for="passport" class="form-label"><fmt:message
 					key="subscriberbase.passport" /></label>
 			<div class="col-md-3">
 				<input type="text" class="form-control" name="passport"
 					id="passport"
 					placeholder="AB1234567"
-					pattern="^[A-Z]{2}[0-9]{7}$" value="${requestScope.subscriber_list[0].passportNumber}" required>
+					pattern="^[A-Z]{2}[0-9]{7}$" value="${requestScope.passport}" required>
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark"
@@ -121,8 +121,8 @@
 			<div class="col-md-12 fw-normal fs-6 text-danger">
 				<fmt:message key="subscriberbase.debt-found"/><c:forEach var="subscriber"
 						items="${requestScope.subscriber_list}">
-		 <b>${subscriber.checkingAccountAmount/100} <fmt:message key="subscriberbase.rub"/></b>
-		 (<fmt:message key="subscriberbase.phone"/> ${subscriber.phoneNumber})
+		 <b>${subscriber.account/100} <fmt:message key="subscriberbase.rub"/></b>
+		 (<fmt:message key="subscriberbase.phone"/> ${subscriber.phone})
 		</c:forEach> <br/><fmt:message key="subscriberbase.pay-debt"/>
 			</div>
 		</c:if>

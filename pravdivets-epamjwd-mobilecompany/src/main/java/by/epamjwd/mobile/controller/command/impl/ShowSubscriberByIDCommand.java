@@ -23,7 +23,7 @@ import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.PhoneNumberFormatter;
+import by.epamjwd.mobile.util.PhoneFormatter;
 
 public class ShowSubscriberByIDCommand implements Command{
 
@@ -45,6 +45,7 @@ public class ShowSubscriberByIDCommand implements Command{
 		RouteHelper result = null;
 		try {
 			Subscriber subscriber = subscriberService.findSubscriberById(id).get();
+			
 			result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain data for subscriber with ID " + id, e);

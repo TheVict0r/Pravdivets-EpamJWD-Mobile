@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Subscriber extends User implements Identifiable, Serializable{
+public class Subscriber implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = 5046781397740402140L;
 	

@@ -22,17 +22,17 @@
 			<table class="table ">
 				<tr>
 					<td>Номер телефона:</td>
-					<td>${requestScope.phone_number_format}</td>
+					<td>${requestScope.phone_format}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
 					<td>ФИО абонента:</td>
-					<td>${requestScope.subscriber.firstName} ${requestScope.subscriber.middleName} ${requestScope.subscriber.lastName}</td>
+					<td>${requestScope.user.firstName} ${requestScope.user.middleName} ${requestScope.user.lastName}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
 					<td>Номер паспорта:</td>
-					<td>${requestScope.subscriber.passportNumber}</td>
+					<td>${requestScope.user.passport}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
@@ -41,13 +41,8 @@
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
-					<td>Домашний адрес:</td>
-					<td>${requestScope.subscriber.homeAddress}</td>
-					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
-				</tr>
-				<tr>
 					<td>e-mail:</td>
-					<td>${requestScope.subscriber.email}</td>
+					<td>${requestScope.user.email}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
 				</tr>
 				<tr>
@@ -60,7 +55,7 @@
 				</tr>
 				<tr>
 					<td>Текущий баланс:</td>
-					<td>${requestScope.subscriber.checkingAccountAmount/100} руб.</td>
+					<td>${requestScope.subscriber.account/100} руб.</td>
 				</tr>
 				<tr>
 					<td>Статус:</td>

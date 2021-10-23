@@ -16,7 +16,7 @@ public class InputValueChecker {
 		return matcher.find();
 	}
 
-	public static boolean isPhoneNumber(String anyString) {
+	public static boolean isPhone(String anyString) {
 		Pattern validPhoneNumberPattern = Pattern.compile(PHONE_NUMBER_REGEX);
 		Matcher matcher = validPhoneNumberPattern.matcher(anyString);
 		return matcher.find();

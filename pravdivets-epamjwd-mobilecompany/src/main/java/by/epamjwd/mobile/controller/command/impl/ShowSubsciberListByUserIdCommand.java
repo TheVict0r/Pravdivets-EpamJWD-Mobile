@@ -20,9 +20,9 @@ import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowCustomerByUserIdCommand implements Command {
+public class ShowSubsciberListByUserIdCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowCustomerByUserIdCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(ShowSubsciberListByUserIdCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {

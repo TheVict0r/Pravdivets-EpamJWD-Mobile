@@ -6,14 +6,14 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class PhoneNumberGenerator {
+public class PhoneGenerator {
 
 	private final static int OPERATOR_CODE = 550000000; // Let's assume that this mobile operator has the 
 														// code +375 55xxxxxxx
 	private final static int MAX_EXCLUSIVE = 10000000;
 	private final static int MIN_INCLUSIVE =  1000000;
 
-	public static int generatePhoneNumber() throws ServiceException {
+	public static int generatePhone() throws ServiceException {
 
 		int phoneNumber = 0;
 
@@ -23,10 +23,10 @@ public class PhoneNumberGenerator {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 
-		if (subscriberService.isPhoneNumberAvailable(firstNumber)) {
+		if (subscriberService.isPhoneAvailable(firstNumber)) {
 			phoneNumber = firstNumber;
 		} else {
-			generatePhoneNumber();
+			generatePhone();
 		}
 
 		return phoneNumber;

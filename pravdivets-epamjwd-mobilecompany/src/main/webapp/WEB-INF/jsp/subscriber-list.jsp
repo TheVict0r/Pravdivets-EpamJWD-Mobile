@@ -23,10 +23,10 @@
 	</div>
 	<div class="fs-4 fw-bold text-center text-primary flex-grow-1">
 		<c:forEach var="subscriber" items="${requestScope.subscriber_list}">
-			<c:set value="${subscriber.phoneNumber}" var="phone" />
+			<c:set value="${subscriber.phone}" var="phone" />
 			<a
 				href="${pageContext.request.contextPath}/controller?command=show_subscriber_by_id&id=${subscriber.id}">
-				${subscriber.phoneNumber} </a>
+				${subscriber.phone} </a>
 			<br />
 		</c:forEach>
 	</div>

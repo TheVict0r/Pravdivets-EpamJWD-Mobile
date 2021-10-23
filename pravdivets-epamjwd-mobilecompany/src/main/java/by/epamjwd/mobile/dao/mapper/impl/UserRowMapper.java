@@ -12,6 +12,9 @@ public class UserRowMapper implements RowMapper<User>{
 
 	@Override
 	public User map(ResultSet resultSet) throws SQLException {
+		
+		Role userRole = Role.values()[resultSet.getInt(DBColumnName.USERS_ROLE_ID) - 1];
+
 		User user = new User(
 				resultSet.getLong  (DBColumnName.USERS_ID), 
 				resultSet.getString(DBColumnName.USERS_PASSWORD), 
@@ -20,8 +23,10 @@ public class UserRowMapper implements RowMapper<User>{
 				resultSet.getString(DBColumnName.USERS_LAST_NAME), 
 				resultSet.getString(DBColumnName.USERS_PASSPORT), 
 				resultSet.getString(DBColumnName.USERS_EMAIL), 
-   Role.valueOf(resultSet.getString(DBColumnName.ROLES_ROLE).toUpperCase())); 
+				userRole); 
 		return user;
 	}
 
+	
+	
 }
