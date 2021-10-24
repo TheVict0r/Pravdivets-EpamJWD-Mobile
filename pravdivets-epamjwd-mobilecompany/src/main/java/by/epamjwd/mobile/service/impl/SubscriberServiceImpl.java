@@ -109,24 +109,17 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscriberList;
 	}
 //	
-//	@Override
-//	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
-//		UserDAO userDAO = provider.getUserDAO();
-//		List<User> userList;
-//		try {
-//			userList = userDAO.findUsersListByFullName(firstName, middleName, lastName);
-//		} catch (DaoException e) {
-//			throw new ServiceException(e);
-//		}
-//		
-//		List<Subscriber> subscriberList = new ArrayList<>();
-//		
-//		for(User user : userList) {
-//			subscriberList.addAll(findSubscriberListByUserId(String.valueOf(user.getId())));
-//		}
-//		return subscriberList;
-//	}
-//
+	@Override
+	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
+		List<Subscriber> subscriberList;
+		try {
+			subscriberList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return subscriberList;
+	}
+
 
 //	@Override
 //	public boolean isNewCustomer(String passport) throws ServiceException {

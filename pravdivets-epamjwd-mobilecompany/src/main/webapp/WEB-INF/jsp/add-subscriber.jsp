@@ -90,13 +90,13 @@
 				<fmt:message key="add-subscriber.phone-number" />:
 			</div>
 			<div class="row justify-content-center text-primary fs-3 mb-1">
-				${requestScope.phone_number_format}</div>
+				${requestScope.phone_format}</div>
 			<div class="row justify-content-center mb-1">
 				<a class="btn btn-outline-dark"
-					href="${pageContext.request.contextPath}/controller?command=check_subscriber_by_passport&passport=${requestScope.passport}"><fmt:message
+					href="${pageContext.request.contextPath}/controller?command=prepare_new_subscriber&passport=${requestScope.passport}"><fmt:message
 						key="add-subscriber.reload" /></a>
 			</div>
-			<input type = "hidden" name = "phone_number" value = "${requestScope.phone_number}"/>
+			<input type = "hidden" name = "phone_number" value = "${requestScope.phone}"/>
 			
 			<div class="row justify-content-center mb-3">
 				<fmt:message key="add-subscriber.plan" />:

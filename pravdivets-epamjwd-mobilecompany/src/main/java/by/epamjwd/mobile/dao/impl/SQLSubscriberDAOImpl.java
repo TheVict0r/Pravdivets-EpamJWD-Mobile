@@ -80,21 +80,30 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws DaoException {
-		//переделать на прямой запрос в БД - без привлечения UserDAO
+		List<Subscriber> result = null;
+		String query = null;
 		
-		DAOProvider provider = DAOProvider.getInstance();
-		UserDAO userDAO = provider.getUserDAO();
-		List<User> userList = userDAO.findUsersListByFullName(firstName, middleName, lastName);
+		StringBuilder builder = new StringBuilder(buildFindSubscriberQueryByUserParameter(DBColumnName.USERS_FIRST_NAME))
+				.append(" AND ")
+				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME);
 		
-		List<Subscriber> subscriberList = new ArrayList<>();
-		
-		for(User user : userList) {
-			subscriberList.addAll(findSubscriberListByUserId(String.valueOf(user.getId())));
+		if("".equals(middleName)) {
+			query = builder
+					.append(" = ?")
+					.toString();
+			result = executeQuery(query, firstName,  lastName);
+		} else {
+			query = builder
+					.append(" = ? AND ")
+					.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME)
+					.append(" = ?")
+					.toString();
+			result = executeQuery(query, firstName,  lastName, middleName);
 		}
-		return subscriberList;
-	}
+				
+		return result;
+	}		
 	
-
 	
 //	@Override
 //	public void registration(Abonent newAbonent) {
