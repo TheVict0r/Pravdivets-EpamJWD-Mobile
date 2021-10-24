@@ -2,8 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" />
+<%@ page isELIgnored="false" %>
+<%@ page session="true" %>
+<!--fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" /-->
+<fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="language" />
 
 
@@ -45,10 +47,10 @@
 				</ul>
 				<div class="navbar actions text-end">
 					<ul class="navbar-nav me-auto">
-						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&language=ru">RU</a>
+						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&sessionLocale=ru">RU</a>
 						</li>
 					<li class="nav-link text-primary fw-bold">|</li>	
-						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&language=en">EN</a>
+						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&sessionLocale=en">EN</a>
 						</li>
 					</ul>
 					<c:choose>
