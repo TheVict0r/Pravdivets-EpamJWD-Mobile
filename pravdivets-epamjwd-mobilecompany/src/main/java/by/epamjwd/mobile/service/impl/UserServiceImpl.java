@@ -78,15 +78,4 @@ public class UserServiceImpl implements UserService {
 		return user.getPassword().equals(hashPassword);
 	}
 
-	@Override
-	public boolean isNewUserSubscriber(String passport) throws ServiceException {
-		Optional<User> user;
-		try {
-			user = userDao.findUserByPassport(passport);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return user.isEmpty();
-	}
-	
 }

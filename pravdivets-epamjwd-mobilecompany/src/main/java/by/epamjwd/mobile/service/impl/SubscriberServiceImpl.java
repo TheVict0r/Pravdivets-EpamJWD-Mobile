@@ -121,15 +121,15 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 
-//	@Override
-//	public boolean isNewCustomer(String passport) throws ServiceException {
-//		List<Subscriber> result = findSubscriberListByPassport(passport);
-//		return result.isEmpty();
-//	}
+	@Override
+	public boolean isNewUserSubscriber(String passport) throws ServiceException {
+		List<Subscriber> result = findSubscriberListByPassport(passport);
+		return result.isEmpty();
+	}
 
 	@Override
 	public boolean isDebtor(String passport) throws ServiceException {
-		List<Subscriber> subscribersWithDebts = findSubscribersListWithDebts(passport);
+		List<Subscriber> subscribersWithDebts = findSubscriberListWithDebts(passport);
 		boolean result = true;
 		if (subscribersWithDebts.isEmpty()) {
 			result = false;
@@ -138,7 +138,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public List<Subscriber> findSubscribersListWithDebts(String passport) throws ServiceException {
+	public List<Subscriber> findSubscriberListWithDebts(String passport) throws ServiceException {
 		List<Subscriber> subscribersList = findSubscriberListByPassport(passport);
 		List<Subscriber> subscribersWithDebts = new ArrayList<>();
 		for(Subscriber subscriber : subscribersList) {

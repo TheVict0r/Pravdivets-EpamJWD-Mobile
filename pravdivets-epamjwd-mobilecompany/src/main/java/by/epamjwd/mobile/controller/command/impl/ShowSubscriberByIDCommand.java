@@ -48,7 +48,7 @@ public class ShowSubscriberByIDCommand implements Command{
 			
 			result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 		} catch (ServiceException | NoSuchElementException e) {
-			LOGGER.error("Unable to obtain data for subscriber with ID " + id, e);
+			LOGGER.error("Error in getting subscriber data for ID " + id, e);
 			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;

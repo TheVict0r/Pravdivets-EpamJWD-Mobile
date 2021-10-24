@@ -14,5 +14,4 @@ public interface UserService {
 	Optional<User> findUserByEmail(String email) throws ServiceException;
 	Optional<User> findUserByPhone(String phoneNumber) throws ServiceException;
 	boolean isPasswordCorrect(User user, String password);
-	boolean isNewUserSubscriber(String passport) throws ServiceException;
 }

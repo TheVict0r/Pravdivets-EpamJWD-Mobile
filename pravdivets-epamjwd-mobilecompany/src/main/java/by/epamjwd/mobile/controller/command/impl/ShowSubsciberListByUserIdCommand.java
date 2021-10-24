@@ -37,7 +37,7 @@ public class ShowSubsciberListByUserIdCommand implements Command {
 			List<Subscriber> subscriberList = subscriberService.findSubscriberListByUserId(id);
 			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, subscriberList);
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain subscriber user data for ID " + id, e);
+			LOGGER.error("Error in getting subscriber data for ID - " + id, e);
 			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;

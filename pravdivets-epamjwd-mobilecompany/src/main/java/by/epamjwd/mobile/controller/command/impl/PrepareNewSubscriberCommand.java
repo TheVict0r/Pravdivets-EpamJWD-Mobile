@@ -47,17 +47,19 @@ public class PrepareNewSubscriberCommand implements Command {
 			request.setAttribute(AttributeName.PHONE, phone);
 			request.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
 			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
-			if (userService.isNewUserSubscriber(passport)) {
+			if (subscriberService.isNewUserSubscriber(passport)) {
 				request.setAttribute(AttributeName.USER, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			} else if (subscriberService.isDebtor(passport)) {
-				List<Subscriber> debtSubscribers = subscriberService.findSubscribersListWithDebts(passport);
+				List<Subscriber> debtSubscribers = subscriberService.findSubscriberListWithDebts(passport);
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.DEBTOR);
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
 				request.setAttribute(AttributeName.PASSPORT, passport);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 			} else {
 				User currentUser = userService.findUserByPassport(passport).get();
+				//we are pretty sure that currentUser != null because of check in the first "if"
+				//subscriberService.isNewUserSubscriber(passport)
 				request.setAttribute(AttributeName.USER, currentUser);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
 			}

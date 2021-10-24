@@ -18,9 +18,9 @@
 	<jsp:include page="components/header.jsp" />
 
 	<div
-		class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fw-light py-4 flex-grow-1">
+		class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fw-light py-3 flex-grow-1">
 
-		<div class="display-4 text-start mb-5 flex-grow-1">
+		<div class="display-4 text-start mb-4 flex-grow-1">
 			<fmt:message key="subscriberbase.title" />
 		</div>
 		<div>
@@ -57,7 +57,34 @@
 		</div>
 
 
-		<div class="mb-5">
+		<form class="row mb-3" method="POST"
+			action="controller?command=show_subscriber_list_by_passport">
+			<label for="passport" class="form-label"><fmt:message
+					key="subscriberbase.by-passport" /></label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" name="passport"
+					id="passport"
+					placeholder="AB1234567"
+					pattern="^[A-Z]{2}[0-9]{7}$" value="${requestScope.passport}" required>
+			</div>
+			<div class="col-md-2">
+				<input type="submit" class="btn btn-outline-dark"
+					value="OK">
+			</div>
+		</form>
+
+				<div class="col-md-12 mb-2">
+			<c:if test="${requestScope.error eq 'wrong_passport'}">
+				<span class="fw-normal fs-6 text-danger"> <fmt:message
+						key="subscriberbase.null-subscriber" /> <c:remove
+						var="error" />
+				</span>
+			</c:if>
+		</div>
+
+
+
+		<div class="mb-4">
 		<form class="row mb-2" method="POST"
 			action="controller?command=show_subscriber_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message
