@@ -123,25 +123,21 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	@Override
 	public boolean isNewUserSubscriber(String passport) throws ServiceException {
-		List<Subscriber> result = findSubscriberListByPassport(passport);
-		return result.isEmpty();
+		List<Subscriber> subscribers = findSubscriberListByPassport(passport);
+		return subscribers.isEmpty();
 	}
 
 	@Override
 	public boolean isDebtor(String passport) throws ServiceException {
 		List<Subscriber> subscribersWithDebts = findSubscriberListWithDebts(passport);
-		boolean result = true;
-		if (subscribersWithDebts.isEmpty()) {
-			result = false;
-		}
-		return result;
+		return subscribersWithDebts.size() > 0;
 	}
 
 	@Override
 	public List<Subscriber> findSubscriberListWithDebts(String passport) throws ServiceException {
-		List<Subscriber> subscribersList = findSubscriberListByPassport(passport);
+		List<Subscriber> subscribers = findSubscriberListByPassport(passport);
 		List<Subscriber> subscribersWithDebts = new ArrayList<>();
-		for(Subscriber subscriber : subscribersList) {
+		for(Subscriber subscriber : subscribers) {
 			if (subscriber.getAccount() < 0) {
 				subscribersWithDebts.add(subscriber);
 			}

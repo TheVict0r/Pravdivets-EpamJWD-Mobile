@@ -9,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -18,10 +17,8 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
-import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class ShowSubscriberListByPassportCommand implements Command{
@@ -40,13 +37,13 @@ public class ShowSubscriberListByPassportCommand implements Command{
 			if(subscriberList.isEmpty()) {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PASSPORT);
 				request.setAttribute(AttributeName.PASSPORT, passport);
-			result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);	
+				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);	
 			} else if(subscriberList.size() == 1) {
 				Subscriber subscriber = subscriberList.get(0);
 				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 			} else {
-			request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscriberList);
-			result = new RouteHelper(PagePath.SUBSCRIBER_LIST, RouteMethod.FORWARD);
+				request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscriberList);
+				result = new RouteHelper(PagePath.SUBSCRIBER_LIST, RouteMethod.FORWARD);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error in getting subscriber data for passport - " + passport, e);
