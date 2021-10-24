@@ -14,6 +14,7 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.SubscriberService;
@@ -27,7 +28,8 @@ public class ShowSubscriberListByUserIdCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		String id = String.valueOf(session.getAttribute(AttributeName.USER_ID));
+		long id;
+		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.USER_ID));
 		
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();

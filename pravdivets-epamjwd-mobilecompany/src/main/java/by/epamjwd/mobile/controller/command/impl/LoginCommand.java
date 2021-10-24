@@ -57,7 +57,7 @@ public class LoginCommand implements Command {
 				path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 			}
 			
-			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(login);
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhoneString(login);
 			if (subscriberOptional.isPresent()) {
 				subscriber = subscriberOptional.get();
 			}

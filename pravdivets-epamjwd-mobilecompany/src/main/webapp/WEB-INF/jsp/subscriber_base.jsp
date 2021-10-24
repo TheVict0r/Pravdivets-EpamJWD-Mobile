@@ -31,7 +31,7 @@
 
 		<form class="row mb-3" method="POST"
 			action="controller?command=show_subscriber_by_phone">
-			<label for="phoneNumber" class="form-label"><fmt:message
+			<label for="phone" class="form-label"><fmt:message
 					key="subscriberbase.by-phone" /> <span
 				class="fs-6 fst-italic">(<fmt:message
 						key="subscriberbase.nine-digits" /> <b>55xxxxxxx, 25xxxxxxx,
@@ -39,7 +39,7 @@
 			</span></label>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="phoneNumber"
-					name="phone_number" value="${requestScope.phone_number}"
+					name="phone" value="${requestScope.phone}"
 					placeholder="551234567" pattern="^(25|29|33|44|55)[0-9]{7}$" required>
 			</div>
 			<div class="col-md-1">

@@ -14,6 +14,7 @@ import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
@@ -34,23 +35,26 @@ public class ShowSubscriberByPhoneCommand implements Command {
 
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
-		String phoneNumber = request.getParameter(ParameterName.PHONE_NUMBER);
+		int phone;
+		phone = NumericParser.parseIntValue(request.getParameter(ParameterName.PHONE));
+
+		
 		Subscriber subscriber = null;
 		
 		RouteHelper result = null;
 		try {
-			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(phoneNumber);
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(phone);
 			
 			if (subscriberOptional.isPresent()) {
 				subscriber = subscriberOptional.get();
 				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 			} else {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
-				request.setAttribute(AttributeName.PHONE, phoneNumber);
+				request.setAttribute(AttributeName.PHONE, phone);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain data for phone number " + phoneNumber, e);
+			LOGGER.error("Unable to obtain data for phone number " + phone, e);
 			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		return result;

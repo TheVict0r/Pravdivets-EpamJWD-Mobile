@@ -41,7 +41,7 @@ public class PrepareNewSubscriberCommand implements Command {
 		PlanService planService = serviceProvider.getPlanService();
 		try {
 			int phone = PhoneGenerator.generatePhone();
-			String phoneFormat = PhoneFormatter.formatPhone(String.valueOf(phone));
+			String phoneFormat = PhoneFormatter.formatPhone(phone);
 			List<Plan> allPlans = planService.findAllPlans();
 			request.setAttribute(AttributeName.PASSPORT, passport);
 			request.setAttribute(AttributeName.PHONE, phone);

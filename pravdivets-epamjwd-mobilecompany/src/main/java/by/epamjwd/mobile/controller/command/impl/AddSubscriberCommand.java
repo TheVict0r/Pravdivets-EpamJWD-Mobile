@@ -36,7 +36,7 @@ public class AddSubscriberCommand implements Command{
 		String customer = request.getParameter(ParameterName.CUSTOMER);
 		
 		String passport = request.getParameter(ParameterName.PASSPORT);
-		int phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE_NUMBER));
+		int phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE));
 		long plan_id = Long.parseLong(request.getParameter(ParameterName.PLAN_ID));
 
 		String firstName = null;

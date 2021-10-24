@@ -15,6 +15,7 @@ import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -35,11 +36,12 @@ public class ShowSubscriberByIDCommand implements Command{
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 		HttpSession session = request.getSession();
-		String id = null;
-			id = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_ID));
+		 
+		long id;
+		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.SUBSCRIBER_ID));
 			
-			if (id.equals("null")) {
-				id = request.getParameter(ParameterName.ID);
+			if (id == -1) {
+				id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
 			}
 			
 		RouteHelper result = null;

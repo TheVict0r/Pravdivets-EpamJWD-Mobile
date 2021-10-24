@@ -57,7 +57,7 @@ public class SubscriberCommandHelper {
 
 		request.setAttribute(AttributeName.SUBSCRIBER, subscriber);
 		
-		String phone = String.valueOf(subscriber.getPhone());
+		int phone = subscriber.getPhone();
 		String phoneFormat = PhoneFormatter.formatPhone(phone);
 		request.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
 

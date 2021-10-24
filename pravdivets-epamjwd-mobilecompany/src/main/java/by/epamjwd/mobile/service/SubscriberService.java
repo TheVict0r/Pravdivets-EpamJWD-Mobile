@@ -8,9 +8,10 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface SubscriberService {
 
-	Optional<Subscriber> findSubscriberById(String id) throws ServiceException;
-	Optional<Subscriber> findSubscriberByPhone(String phone) throws ServiceException;
-	List<Subscriber> findSubscriberListByUserId(String id) throws ServiceException;
+	Optional<Subscriber> findSubscriberById(long id) throws ServiceException;
+	Optional<Subscriber> findSubscriberByPhone(int phone) throws ServiceException;
+	Optional<Subscriber> findSubscriberByPhoneString(String phoneString) throws ServiceException;
+	List<Subscriber> findSubscriberListByUserId(long id) throws ServiceException;
 	List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException;
 	List<Subscriber> findSubscriberListWithDebts(String passport) throws ServiceException;
 	List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName)
@@ -20,11 +21,11 @@ public interface SubscriberService {
 //	List<Subscriber> findSubscriberListByEmail(String email) throws ServiceException;
 	
 	boolean isDebtor(String passport) throws ServiceException;
-	boolean isPhoneAvailable(int phoneNumber) throws ServiceException;
+	boolean isPhoneAvailable(int phone) throws ServiceException;
 	boolean isNewUserSubscriber(String passport) throws ServiceException;
-	void addNewSubscriber(String passport, int phoneNumber, long plan_id, String firstName, String middleName,
-			String lastName, String homeAddress, String email) throws ServiceException;
-	void addOneMorePhoneToCurrentSubscriber(String passport, int phoneNumber, long plan_id)throws ServiceException;
+	void addNewSubscriber(String passport, int phone, long plan_id, String firstName, String middleName,
+			String lastName, String email) throws ServiceException;
+	void addOneMorePhoneToCurrentSubscriber(String passport, int phone, long plan_id)throws ServiceException;
 	
 	
 }

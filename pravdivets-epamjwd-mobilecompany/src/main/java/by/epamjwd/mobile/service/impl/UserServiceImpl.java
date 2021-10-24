@@ -21,13 +21,14 @@ public class UserServiceImpl implements UserService {
 		if (InputValueChecker.isEmail(login)) {
 			user = findUserByEmail(login);
 		} else if (InputValueChecker.isPhone(login)) {
-			user = findUserByPhone(login);
+			int phone = Integer.parseInt(login);
+			user = findUserByPhone(phone);
 		}
 		return user;
 	}
 	
 	@Override
-	public Optional<User> findUserById(String id) throws ServiceException {
+	public Optional<User> findUserById(long id) throws ServiceException {
 		Optional<User> user;
 		try {
 			user = userDao.findUserById(id);
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Optional<User> findUserByPhone(String phone) throws ServiceException {
+	public Optional<User> findUserByPhone(int phone) throws ServiceException {
 		Optional<User> user;
 		try {
 			user = userDao.findUserByPhone(phone);

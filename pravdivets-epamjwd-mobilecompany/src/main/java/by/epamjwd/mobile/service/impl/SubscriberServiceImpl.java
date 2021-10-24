@@ -25,7 +25,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	SubscriberDAO subscriberDao = provider.getSubscriberDAO();
 	
 	@Override
-	public Optional<Subscriber> findSubscriberById(String id) throws ServiceException {
+	public Optional<Subscriber> findSubscriberById(long id) throws ServiceException {
 		Optional<Subscriber> subscriber;
 		try {
 			subscriber = subscriberDao.findSubscriberById(id);
@@ -36,21 +36,31 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 	
 	@Override
-	public Optional<Subscriber> findSubscriberByPhone(String phoneString) throws ServiceException {
+	public Optional<Subscriber> findSubscriberByPhone(int phone) throws ServiceException {
 		Optional<Subscriber> subscriber = Optional.empty();
-		if (InputValueChecker.isPhone(phoneString)) {
-			int phoneNumber = Integer.parseInt(phoneString);
 			try {
-				subscriber = subscriberDao.findSubscriberByPhoneNumber(phoneNumber);
+				subscriber = subscriberDao.findSubscriberByPhoneNumber(phone);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			} 
+		
+		return subscriber;
+	}
+
+	@Override
+	public Optional<Subscriber> findSubscriberByPhoneString(String phoneString) throws ServiceException {
+		Optional<Subscriber> subscriber = Optional.empty();
+		if (InputValueChecker.isPhone(phoneString)) {
+			int phoneInt = Integer.parseInt(phoneString);
+			subscriber = findSubscriberByPhone(phoneInt);
 		}
 		return subscriber;
 	}
+
+	
 	
 	@Override
-	public List<Subscriber> findSubscriberListByUserId(String id) throws ServiceException {
+	public List<Subscriber> findSubscriberListByUserId(long id) throws ServiceException {
 		List<Subscriber> subscriberList;
 		try {
 			subscriberList = subscriberDao.findSubscriberListByUserId(id);
@@ -146,8 +156,8 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public void addNewSubscriber(String passport, int phoneNumber, long plan_id, String firstName, String middleName,
-			String lastName, String homeAddress, String email) throws ServiceException {
+	public void addNewSubscriber(String passport, int phone, long plan_id, String firstName, String middleName,
+			String lastName, String email) throws ServiceException {
 
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		PlanService planService = serviceProvider.getPlanService();
@@ -166,7 +176,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		//дублирование кода
 		newSubscriber.setContractDate(currentDate);
 		newSubscriber.setAccount(plan.getUpfrontPayment());
-		newSubscriber.setPhone(phoneNumber);
+		newSubscriber.setPhone(phone);
 		newSubscriber.setPlanId(plan_id);
 		newSubscriber.setStatus(SubscriberStatus.ACTIVE);
 		newSubscriber.setStatusDate(currentDate);			
@@ -186,5 +196,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 		
 	}
 
-	
+	public static void main(String[] args) {
+
+		long id = Long.parseLong("null");
+		
+		System.out.println(id);
+		
+	}
 }

@@ -32,13 +32,13 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	}
 
 	@Override
-	public Optional<Subscriber> findSubscriberById(String id) throws DaoException {
+	public Optional<Subscriber> findSubscriberById(long id) throws DaoException {
 		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_ID);
 		return executeQueryForSingleResult(query, id);
 	}
 	
 	@Override
-	public List<Subscriber> findSubscriberListByUserId(String userId) throws DaoException {
+	public List<Subscriber> findSubscriberListByUserId(long userId) throws DaoException {
 		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_USER_ID);
 		return executeQuery(query, userId);
 	}
