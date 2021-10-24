@@ -30,40 +30,40 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><fmt:message key="plan.upfront.payment"/></td>
+					<td><fmt:message key="plan.upfront-payment"/></td>
 					<td>${plan.upfrontPayment/100} <fmt:message key="plan.rub"/></td>
 				</tr>
 				<tr>
-					<td><fmt:message key="plan.regular.payment"/></td>
-					<td>${plan.regularPayment/100} <fmt:message key="plan.rub.month"/></td>
+					<td><fmt:message key="plan.regular-payment"/></td>
+					<td>${plan.regularPayment/100} <fmt:message key="plan.rub-month"/></td>
 				</tr>
 				<tr>
-					<td><fmt:message key="plan.price.within.network"/></td>
-					<td>${plan.priceWithinNetwork/100} <fmt:message key="plan.rub.min"/></td>
+					<td><fmt:message key="plan.price-within-network"/></td>
+					<td>${plan.priceWithinNetwork/100} <fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
-					<td><fmt:message key="plan.price.other.networks"/></td>
-					<td>${plan.priceOtherNetworks/100} <fmt:message key="plan.rub.min"/></td>
+					<td><fmt:message key="plan.price-other-networks"/></td>
+					<td>${plan.priceOtherNetworks/100} <fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
-					<td><fmt:message key="plan.price.abroad"/></td>
-					<td>${plan.priceAbroad/100} <fmt:message key="plan.rub.min"/></td>
+					<td><fmt:message key="plan.price-abroad"/></td>
+					<td>${plan.priceAbroad/100} <fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
-					<td><fmt:message key="plan.price.videocalls"/></td>
-					<td>${plan.priceVideocall/100} <fmt:message key="plan.rub.min"/></td>
+					<td><fmt:message key="plan.price-videocalls"/></td>
+					<td>${plan.priceVideocall/100} <fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
 					<td>SMS</td>
-					<td>${plan.priceSMS/100} <fmt:message key="plan.rub.unit"/></td>
+					<td>${plan.priceSMS/100} <fmt:message key="plan.rub-unit"/></td>
 				</tr>
 				<tr>
 					<td>MMS</td>
-					<td>${plan.priceMMS/100} <fmt:message key="plan.rub.unit"/></td>
+					<td>${plan.priceMMS/100} <fmt:message key="plan.rub-unit"/></td>
 				</tr>
 				<tr>
-					<td><fmt:message key="plan.price.internet"/></td>
-					<td>${plan.priceInternet/100} <fmt:message key="plan.rub.mb"/></td>
+					<td><fmt:message key="plan.price-internet"/></td>
+					<td>${plan.priceInternet/100} <fmt:message key="plan.rub-mb"/></td>
 				</tr>
 			</tbody>
 		</table>
