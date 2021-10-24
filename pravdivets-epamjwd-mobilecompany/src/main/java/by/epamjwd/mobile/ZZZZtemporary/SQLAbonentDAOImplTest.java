@@ -12,11 +12,11 @@ public class SQLAbonentDAOImplTest {
 		SQLSubscriberDAOImpl ab = new SQLSubscriberDAOImpl();
 		
 		//System.out.println(ab.getAbonentByPhoneNumber(442532486));
-		List<Subscriber> abList = ab.findSubscriberListByEmail("abonent9@mail.ru");
+		//List<Subscriber> abList = ab.findSubscriberListByEmail("abonent9@mail.ru");
 		
-		for(Subscriber abonent : abList) {
-			System.out.println(abonent);
-		}
+//		for(Subscriber abonent : abList) {
+//			System.out.println(abonent);
+//		}
 
 	}
 

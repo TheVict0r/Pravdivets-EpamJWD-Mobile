@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.controller.command.impl.ShowSubsciberListByUserIdCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByUserIdCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
@@ -53,7 +53,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_FULL_PLAN, new ShowFullPlanCommand());
 		allCommands.put(CommandName.SHOW_ALL_SERVICES, new ShowAllServicesCommand());
 		allCommands.put(CommandName.SHOW_FULL_SERVICE, new ShowFullServiceCommand());
-		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID, new ShowSubsciberListByUserIdCommand());
+		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID, new ShowSubscriberListByUserIdCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME, new ShowSubscriberListByFullNameCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_PASSPORT, new ShowSubscriberListByPassportCommand());
 		allCommands.put(CommandName.SHOW_ADMIN, new ShowAdminCommand());
