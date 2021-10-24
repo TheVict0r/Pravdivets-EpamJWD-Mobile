@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page isELIgnored="false" %>
-<%@ page session="true" %>
-<!--fmt:setLocale value="${sessionScope.locale != null ? sessionScope.locale : 'ru'}" /-->
-<fmt:setLocale value="${sessionScope.lang}"/>
+
+<fmt:setLocale value="${sessionScope.lang != null ? sessionScope.lang : 'ru'}" />
 <fmt:setBundle basename="language" />
 <!DOCTYPE html>
 <html lang="${sessionScope.lang}">
