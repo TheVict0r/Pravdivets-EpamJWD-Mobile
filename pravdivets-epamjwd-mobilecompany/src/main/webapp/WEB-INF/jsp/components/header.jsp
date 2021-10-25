@@ -6,7 +6,6 @@
 <%@ page session="true" %>
 <fmt:setLocale value="${sessionScope.session_locale != null ? sessionScope.session_locale : 'ru'}" />
 <fmt:setBundle basename="language" />
-
 <!-- bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
