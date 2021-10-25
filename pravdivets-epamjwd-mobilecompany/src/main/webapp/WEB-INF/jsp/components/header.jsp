@@ -44,11 +44,22 @@
 				</ul>
 				<div class="navbar actions text-end">
 					<ul class="navbar-nav me-auto">
-						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=ru">RU</a>
+					<c:choose>
+						<c:when test="${sessionScope.session_locale == 'ru'}">
+						<li class="nav-item "><a class="nav-link fw-bold text-dark text-decoration-underline" href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=ru">RU</a>
 						</li>
-					<li class="nav-link text-primary fw-bold">|</li>	
-						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=en">EN</a>
+						<li class="nav-link text-primary fw-bold">|</li>	
+						<li class="nav-item "><a class="nav-link " href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=en">EN</a>
 						</li>
+						</c:when>
+						<c:otherwise>
+						<li class="nav-item "><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=ru">RU</a>
+						</li>
+						<li class="nav-link text-primary fw-bold">|</li>	
+						<li class="nav-item "><a class="nav-link fw-bold text-dark text-decoration-underline" href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=en">EN</a>
+						</li>
+						</c:otherwise>
+						</c:choose>
 					</ul>
 					<c:choose>
 						<c:when test="${sessionScope.last_name == null}">
@@ -61,8 +72,7 @@
 									role="button" href="#"><fmt:message key="header.register" /></a></li>
 							</ul>
 						</c:when>
-
-						<c:when test="${sessionScope.last_name != null}">
+						<c:otherwise>
 							<ul class="navbar-nav me-auto">
 								<li class="nav-item fw-bold">
 										<a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
@@ -73,7 +83,7 @@
 												key="header.sign-out" /></a>
 								</li>
 							</ul>
-						</c:when>
+						</c:otherwise>
 					</c:choose>
 
 
