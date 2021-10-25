@@ -75,7 +75,7 @@
 						<c:otherwise>
 							<ul class="navbar-nav me-auto">
 								<li class="nav-item fw-bold">
-										<a class="nav-link" href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
+										<a class="nav-link text-dark" href="${pageContext.request.contextPath}/controller?command=go_to_profile_page"
 										>${sessionScope.first_name}	${sessionScope.last_name}</a>
 								</li>
 								<li class="nav-item"> <a class="btn btn-primary me-2"

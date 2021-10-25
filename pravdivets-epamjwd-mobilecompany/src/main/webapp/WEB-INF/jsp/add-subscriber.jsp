@@ -5,8 +5,7 @@
 <fmt:setLocale value="${sessionScope.session_locale != null ? sessionScope.session_locale : 'ru'}" />
 <fmt:setBundle basename="language" />
 <!DOCTYPE html>
-<html lang="${sessionScope.lang}">
-
+<html lang="${sessionScope.session_locale}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
