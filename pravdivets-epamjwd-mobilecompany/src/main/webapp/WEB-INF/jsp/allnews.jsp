@@ -20,7 +20,7 @@
 		<img src="pic/news.jpg" class="img-fluid" alt="mobile">
 	</div>
 
-			<div class="row display-4 justify-content-center py-4 mx-auto ">Новости</div>
+			<div class="row display-4 justify-content-center py-4 mx-auto "><fmt:message key="allnews.news"/></div>
 			<div class="tab-pane tab-content col-xs-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 mx-auto">
 	
 		<c:forEach var="article" items="${requestScope.news}">
@@ -29,7 +29,7 @@
 				<p>
 					${article.lead} <br /> <a
 						href="${pageContext.request.contextPath}/controller?command=show_full_article&id=${article.id}"
-						class="card-link">Подробнее</a>
+						class="card-link"><fmt:message key="allnews.detais"/></a>
 				</p>
 			
 			<br />

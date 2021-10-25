@@ -48,13 +48,13 @@
 				<div class="navbar actions text-end">
 					<ul class="navbar-nav me-auto">
 						<c:choose>
-							<c:when test="${sessionScope.session_locale == 'ru'}">
+							<c:when test="${sessionScope.session_locale == 'ru' || sessionScope.session_locale == null}">
 								<li class="nav-item "><a
 									class="nav-link fw-bold text-dark text-decoration-underline"
 									href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=ru">RU</a>
 								</li>
 								<li class="nav-link text-primary fw-bold">|</li>
-								<li class="nav-item "><a class="nav-link "
+								<li class="nav-item "><a class="nav-link me-md-3"
 									href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=en">EN</a>
 								</li>
 							</c:when>
@@ -64,7 +64,7 @@
 								</li>
 								<li class="nav-link text-primary fw-bold">|</li>
 								<li class="nav-item "><a
-									class="nav-link fw-bold text-dark text-decoration-underline"
+									class="nav-link fw-bold text-dark text-decoration-underline me-md-3"
 									href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=en">EN</a>
 								</li>
 							</c:otherwise>
@@ -75,21 +75,19 @@
 					<div class="navbar actions text-end">
 					<c:choose>
 						<c:when test="${sessionScope.last_name == null}">
-							<div class="row justify-content-end">
-								
-								<div class=""><a
-									class="btn btn-outline-primary col-7 mb-2"
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<a
+									class="btn btn-outline-primary me-md-1" type="button"
 									href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message
-											key="header.sign-in" /></a></div>
-											
-								<div class=""><a 
-									class="btn btn-primary col-7" role="button" 
-									href="#"><fmt:message key="header.register" /></a></div>
+											key="header.sign-in" /></a>
+								<a 
+									class="btn btn-primary" type="button" 
+									href="#"><fmt:message key="header.register" /></a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<ul class="navbar-nav me-auto">
-								<li class="nav-item fw-bold"><a class="nav-link text-dark"
+								<li class="nav-item fw-bold"><a class="nav-link text-dark me-md-3"
 									href="${pageContext.request.contextPath}/controller?command=go_to_profile_page">${sessionScope.first_name}
 										${sessionScope.last_name}</a></li>
 								<li class="nav-item"><a class="btn btn-primary me-2"

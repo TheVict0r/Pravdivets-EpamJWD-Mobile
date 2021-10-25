@@ -15,8 +15,8 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
-		<span class="fs-4 fw-light text-center">Пожалуйста, выберите
-			тот номер телефона, <br />по которому Вы желаете получить информацию:
+		<span class="fs-4 fw-light text-center">
+		<fmt:message key="subscriber-list.message1"/><br/><fmt:message key="subscriber-list.message2"/>:
 		</span>
 	</div>
 	<div class="fs-4 fw-bold text-center text-primary flex-grow-1">

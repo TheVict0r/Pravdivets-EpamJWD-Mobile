@@ -19,7 +19,7 @@
 	<div class="col-sm" id="promo">
 		<img src="pic/article.jpg" class="img-fluid" alt="mobile">
 	</div>
-		<div class="row display-4 justify-content-center py-4 mx-auto ">Услуги</div>
+		<div class="row display-4 justify-content-center py-4 mx-auto "><fmt:message key="allservices.services"/></div>
 		<div class="tab-pane tab-content col-xs-12 col-sm-11 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
 						<div class="row py-4">
 							<c:forEach var="service" items="${requestScope.all_services}">
@@ -29,10 +29,10 @@
 											<div class="mb-4">
 												<h3>${service.name}</h3>
 												<span class="display-4">${service.tarif/100}</span> <span
-													class="display-6">руб.</span>
+													class="display-6"><fmt:message key="allservices.rub"/></span>
 											</div>
 											<div class="mt-auto">
-												<a href="${pageContext.request.contextPath}/controller?command=show_full_service&id=${service.id}" class="btn btn-lg btn-outline-primary">Подробнее</a>
+												<a href="${pageContext.request.contextPath}/controller?command=show_full_service&id=${service.id}" class="btn btn-lg btn-outline-primary"><fmt:message key="allservices.detais"/></a>
 											</div>
 										</div>
 									</div>
