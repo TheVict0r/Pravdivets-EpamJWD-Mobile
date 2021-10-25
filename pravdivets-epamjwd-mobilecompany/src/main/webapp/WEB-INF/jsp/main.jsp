@@ -66,10 +66,10 @@
 					</p>
 				</div>
 			</c:forEach>
-		</div>
-		<form class=" d-grid gap-2 col-4" action="controller" method="GET">
-			<input type="hidden" name="command" value="provide_news" /> <input
-				type="hidden" name="path" value="all_news" /> <input type="submit"
+		</div>	
+		<form class="d-grid col-4" method="GET">
+		<input type="hidden" name="command" value ="show_all_news">
+			 <input type="submit"
 				value="<fmt:message key="main.all-news"/>" class="btn btn-outline-primary " />
 		</form>
 	</div>
