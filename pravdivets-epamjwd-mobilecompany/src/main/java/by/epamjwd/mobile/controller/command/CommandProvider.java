@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByUserIdCommand;
+import by.epamjwd.mobile.controller.command.impl.SwitchLocaleCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
@@ -67,6 +68,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.ADD_SUBSCRIBER, new AddSubscriberCommand());
 		allCommands.put(CommandName.GO_TO_ADD_SUBSCRIBER_PAGE, new GoToAddSubscriberPageCommand());
 		allCommands.put(CommandName.PREPARE_NEW_SUBSCRIBER, new PrepareNewSubscriberCommand());
+		allCommands.put(CommandName.SWITCH_LOCALE, new SwitchLocaleCommand());
 	}
 
     public static CommandProvider getInstance() {

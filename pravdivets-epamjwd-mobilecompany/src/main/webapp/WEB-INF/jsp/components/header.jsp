@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page isELIgnored="false" %>
 <%@ page session="true" %>
-<fmt:setLocale value="${sessionScope.lang != null ? sessionScope.lang : 'ru'}" />
+<fmt:setLocale value="${sessionScope.session_locale != null ? sessionScope.session_locale : 'ru'}" />
 <fmt:setBundle basename="language" />
 
 <!-- bootstrap CSS -->
@@ -44,10 +44,10 @@
 				</ul>
 				<div class="navbar actions text-end">
 					<ul class="navbar-nav me-auto">
-						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&sessionLocale=ru">RU</a>
+						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=ru">RU</a>
 						</li>
 					<li class="nav-link text-primary fw-bold">|</li>	
-						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?${pageContext.request.queryString}&sessionLocale=en">EN</a>
+						<li class="nav-item fw-bold"><a class="nav-link" href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=en">EN</a>
 						</li>
 					</ul>
 					<c:choose>

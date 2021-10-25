@@ -21,4 +21,6 @@ public class ParameterName {
 	public static final String CALCULATOR_INTERNET = "internet";
 	public static final String CUSTOMER = "customer";
 	public static final String PLAN_ID = "plan_id";
+	public static final String HEADER_REFER = "referer";
+	public static final String SESSION_LOCALE = "session_locale";
 }

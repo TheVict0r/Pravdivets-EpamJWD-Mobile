@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:setLocale value="${sessionScope.lang != null ? sessionScope.lang : 'ru'}" />
+<fmt:setLocale value="${sessionScope.session_locale != null ? sessionScope.session_locale : 'ru'}" />
 <fmt:setBundle basename="language" />
 <!DOCTYPE html>
 <html lang="${sessionScope.lang}">
