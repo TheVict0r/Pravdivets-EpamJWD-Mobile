@@ -1,10 +1,10 @@
 package by.epamjwd.mobile.controller.command;
 
-
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,26 +26,11 @@ public class SubscriberCommandHelper {
 
 	private final static Logger LOGGER = LogManager.getLogger(SubscriberCommandHelper.class);
 
-	
 	private SubscriberCommandHelper() {
-
 	}
 
 	public static SubscriberCommandHelper getInstance() {
 		return Holder.INSTANCE;
-	}
-
-	public RouteHelper handleSubscribersList(HttpServletRequest request, List<Subscriber> subscribersList)
-			throws ServiceException {
-		RouteHelper result = null;
-		if (subscribersList.size() == 1) {
-			Subscriber subscriber = subscribersList.get(0);
-			result = handleSubscriber(request, subscriber);
-		} else {
-			request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscribersList);
-			result = new RouteHelper(PagePath.SUBSCRIBER_LIST, RouteMethod.FORWARD);
-		}
-		return result;
 	}
 
 	public RouteHelper handleSubscriber(HttpServletRequest request, Subscriber subscriber) throws ServiceException {
@@ -56,7 +41,7 @@ public class SubscriberCommandHelper {
 		UserService userService = provider.getUserService();
 
 		request.setAttribute(AttributeName.SUBSCRIBER, subscriber);
-		
+
 		int phone = subscriber.getPhone();
 		String phoneFormat = PhoneFormatter.formatPhone(phone);
 		request.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
@@ -70,17 +55,42 @@ public class SubscriberCommandHelper {
 			LOGGER.error("Can't find user for phone number - " + phone);
 			return new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
-
-
 		Plan plan = planService.findPlanByID(subscriber.getPlanId());
 		request.setAttribute(AttributeName.PLAN, plan);
 		result = new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
 
 		return result;
-	}	
-	
-	
-	
+	}
+
+	public RouteHelper handleSubscriberListForward(HttpServletRequest request, List<Subscriber> subscriberList)
+			throws ServiceException {
+		RouteHelper result = null;
+		if (subscriberList.size() == 1) {
+			Subscriber subscriber = subscriberList.get(0);
+			result = handleSubscriber(request, subscriber);
+		} else {
+			request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscriberList);
+			result = new RouteHelper(PagePath.SUBSCRIBER_LIST, RouteMethod.FORWARD);
+		}
+		return result;
+	}
+
+	public RouteHelper handleSubscriberListRedirect(HttpServletRequest request, List<Subscriber> subscriberList)
+			throws ServiceException {
+		HttpSession session = request.getSession();
+		RouteHelper result = null;
+		if (subscriberList.size() == 1) {
+			Subscriber subscriber = subscriberList.get(0);
+			session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
+			result = new RouteHelper(PagePath.SUBSCRIBER_SESSION_REDIRECT, RouteMethod.REDIRECT);
+		} else {
+			long userId = subscriberList.get(0).getUserId();
+			session.setAttribute(AttributeName.SUBSCRIBER_USER_ID, userId);
+			result = new RouteHelper(PagePath.SUBSCRIBER_LIST_REDIRECT, RouteMethod.REDIRECT);
+		}
+		return result;
+	}
+
 	private static class Holder {
 		static final SubscriberCommandHelper INSTANCE = new SubscriberCommandHelper();
 	}

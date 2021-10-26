@@ -29,7 +29,7 @@ public class ShowSubscriberListByUserIdCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		long id;
-		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.USER_ID));
+		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.SUBSCRIBER_USER_ID));
 		
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
@@ -37,7 +37,7 @@ public class ShowSubscriberListByUserIdCommand implements Command {
 		RouteHelper result = null;
 		try {
 			List<Subscriber> subscriberList = subscriberService.findSubscriberListByUserId(id);
-			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, subscriberList);
+			result = SubscriberCommandHelper.getInstance().handleSubscriberListForward(request, subscriberList);
 		} catch (ServiceException e) {
 			LOGGER.error("Error in getting subscriber data for ID - " + id, e);
 			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);

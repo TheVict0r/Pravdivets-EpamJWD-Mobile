@@ -21,6 +21,8 @@ public class GoToProfilePageCommand implements Command{
 		session.removeAttribute(AttributeName.PASSPORT);
 		session.removeAttribute(AttributeName.PHONE);
 		session.removeAttribute(AttributeName.PHONE_FORMAT);
+		session.removeAttribute(AttributeName.SUBSCRIBER);
+		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
 		
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		

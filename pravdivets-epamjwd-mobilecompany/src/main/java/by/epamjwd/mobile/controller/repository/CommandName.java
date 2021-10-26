@@ -29,5 +29,6 @@ public class CommandName {
 	public static final String GO_TO_ADD_SUBSCRIBER_PAGE = "go_to_add_subscriber_page";
 	public static final String PREPARE_NEW_SUBSCRIBER = "prepare_new_subscriber";
 	public static final String SWITCH_LOCALE = "switch_locale";
+	public static final String SHOW_SUBSCRIBER_FROM_SESSION = "show_subscriber_from_session";
 
 }

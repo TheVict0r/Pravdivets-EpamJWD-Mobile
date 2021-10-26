@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +30,7 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 
@@ -40,13 +42,14 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 		
 		try {
 			subscriberList = subscriberService.findSubscriberListByFullName(firstName, middleName, lastName);
-			result = SubscriberCommandHelper.getInstance().handleSubscribersList(request, subscriberList);
 			if (subscriberList.isEmpty()) {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_NAME);
 				request.setAttribute(AttributeName.FIRST_NAME, firstName);
 				request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
 				request.setAttribute(AttributeName.LAST_NAME, lastName);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+			}else {
+				result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request, subscriberList);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error in getting subscriber data for  " + firstName + " " + middleName + " " + lastName, e);

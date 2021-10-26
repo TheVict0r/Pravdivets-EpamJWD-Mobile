@@ -37,7 +37,7 @@
 						29xxxxxxx, 33xxxxxxx, 44xxxxxxx</b>)
 			</span></label>
 			<div class="col-md-3">
-				<input type="text" class="form-control" id="phoneNumber"
+				<input type="text" class="form-control" id="phone"
 					name="phone" value="${requestScope.phone}"
 					placeholder="551234567" pattern="^(25|29|33|44|55)[0-9]{7}$" required>
 			</div>

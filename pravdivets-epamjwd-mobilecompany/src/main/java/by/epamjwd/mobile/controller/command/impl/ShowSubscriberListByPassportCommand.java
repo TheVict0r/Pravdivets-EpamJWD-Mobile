@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +27,7 @@ public class ShowSubscriberListByPassportCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		String passport = request.getParameter(ParameterName.PASSPORT);
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
@@ -38,12 +40,8 @@ public class ShowSubscriberListByPassportCommand implements Command{
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PASSPORT);
 				request.setAttribute(AttributeName.PASSPORT, passport);
 				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);	
-			} else if(subscriberList.size() == 1) {
-				Subscriber subscriber = subscriberList.get(0);
-				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 			} else {
-				request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscriberList);
-				result = new RouteHelper(PagePath.SUBSCRIBER_LIST, RouteMethod.FORWARD);
+				result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request, subscriberList);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error in getting subscriber data for passport - " + passport, e);

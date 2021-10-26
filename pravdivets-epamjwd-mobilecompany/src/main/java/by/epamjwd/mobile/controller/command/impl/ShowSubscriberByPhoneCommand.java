@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +33,7 @@ public class ShowSubscriberByPhoneCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-
+		HttpSession session = request.getSession();
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 		int phone;
@@ -47,7 +48,8 @@ public class ShowSubscriberByPhoneCommand implements Command {
 			
 			if (subscriberOptional.isPresent()) {
 				subscriber = subscriberOptional.get();
-				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+				session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
+				result = new RouteHelper(PagePath.SUBSCRIBER_SESSION_REDIRECT, RouteMethod.REDIRECT);
 			} else {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
 				request.setAttribute(AttributeName.PHONE, phone);
