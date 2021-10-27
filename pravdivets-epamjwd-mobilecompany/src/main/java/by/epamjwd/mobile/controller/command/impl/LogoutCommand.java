@@ -15,9 +15,6 @@ public class LogoutCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.removeAttribute(AttributeName.FIRST_NAME);
-		session.removeAttribute(AttributeName.LAST_NAME);
-		session.removeAttribute(AttributeName.USER_ID);
 		session.invalidate();
 		RouteHelper result = null;
 		result = new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
