@@ -28,9 +28,9 @@ public class ShowSubscriberListByUserIdCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		
 		long id;
 		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.SUBSCRIBER_USER_ID));
-		
 		if (id == -1) {
 			id = NumericParser.parseLongValue(session.getAttribute(AttributeName.USER_ID));
 		}

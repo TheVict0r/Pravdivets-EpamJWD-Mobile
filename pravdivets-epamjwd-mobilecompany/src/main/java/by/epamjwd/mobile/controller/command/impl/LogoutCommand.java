@@ -20,7 +20,7 @@ public class LogoutCommand implements Command {
 		session.removeAttribute(AttributeName.USER_ID);
 		session.invalidate();
 		RouteHelper result = null;
-		result = new RouteHelper(PagePath.LOGIN, RouteMethod.FORWARD);
+		result = new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		return result;
 	}
 

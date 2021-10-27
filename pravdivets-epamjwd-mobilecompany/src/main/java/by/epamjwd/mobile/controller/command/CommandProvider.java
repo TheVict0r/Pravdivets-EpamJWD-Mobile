@@ -88,12 +88,6 @@ public class CommandProvider {
 			LOGGER.error("Null value instead of command", e);
 			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
 		}
-		//возможно отсечётся через web.xml
-		if (command == null) {
-			LOGGER.error("Nonexistent command name - " + commandName);
-			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
-		}
-		
 		return command;
 	}
 
