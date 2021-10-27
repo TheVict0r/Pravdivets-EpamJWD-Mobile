@@ -15,53 +15,53 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div class="container text-center mx-auto flex-grow-1">
-		<span class="fs-6 fw-bold text-secondary ">Информация об абоненте:</span>
+		<span class="display-5 fw-light"><fmt:message key="subscriber.title"/></span>
 	</div>
 		<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-7 fs-6 fw-light flex-grow-1">
 			<table class="table ">
 				<tr>
-					<td>Номер телефона:</td>
+					<td><fmt:message key="subscriber.phone"/></td>
 					<td>${requestScope.phone_format}</td>
-					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
-					<td>ФИО абонента:</td>
+					<td><fmt:message key="subscriber.name"/></td>
 					<td>${requestScope.user.firstName} ${requestScope.user.middleName} ${requestScope.user.lastName}</td>
-					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
-					<td>Номер паспорта:</td>
+					<td><fmt:message key="subscriber.passport"/></td>
 					<td>${requestScope.user.passport}</td>
-					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
-					<td>Тарифный план: </td>
+					<td><fmt:message key="subscriber.plan"/></td>
 					<td>${requestScope.plan.name}</td>
-					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
 					<td>e-mail:</td>
 					<td>${requestScope.user.email}</td>
-					<td><a class="login btn btn-outline-primary btn-sm" href="#">Изменить</a></td>
+					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
-					<td>Дата заключения договора:</td>
+					<td><fmt:message key="subscriber.contract-date"/></td>
 					<td>${requestScope.subscriber.contractDate}</td>
 				</tr>
 				<tr>
-					<td>Лицевой счет №:</td>
+					<td><fmt:message key="subscriber.account-number"/></td>
 					<td>${requestScope.subscriber.id}</td>
 				</tr>
 				<tr>
-					<td>Текущий баланс:</td>
+					<td><fmt:message key="subscriber.account-amount"/></td>
 					<td>${requestScope.subscriber.account/100} руб.</td>
 				</tr>
 				<tr>
-					<td>Статус:</td>
+					<td><fmt:message key="subscriber.status"/></td>
 					<td>${requestScope.subscriber.status.statusName}</td>
 				</tr>
 				<tr>
-					<td>Дата выставления статуса:</td>
+					<td><fmt:message key="subscriber.status-date"/></td>
 					<td>${requestScope.subscriber.statusDate}</td>
 				</tr>
 			</table>
