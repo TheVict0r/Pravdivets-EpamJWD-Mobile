@@ -12,7 +12,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
-import by.epamjwd.mobile.controller.command.impl.GoToSubscriberВaseCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToSubscriberВasePageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByFullNameCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByPassportCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullArticleCommand;
@@ -59,7 +59,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME, new ShowSubscriberListByFullNameCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_PASSPORT, new ShowSubscriberListByPassportCommand());
 		allCommands.put(CommandName.SHOW_ADMIN, new ShowAdminCommand());
-		allCommands.put(CommandName.GO_TO_SUBSCRIBER_BASE, new GoToSubscriberВaseCommand());
+		allCommands.put(CommandName.GO_TO_SUBSCRIBER_BASE_PAGE, new GoToSubscriberВasePageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_PAGE, new GoToSubscriberPageCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_BY_PHONE, new ShowSubscriberByPhoneCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_BY_ID, new ShowSubscriberByIDCommand());

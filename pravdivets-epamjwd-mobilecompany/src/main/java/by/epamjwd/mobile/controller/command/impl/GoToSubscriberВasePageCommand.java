@@ -12,7 +12,7 @@ import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToSubscriberВaseCommand implements Command{
+public class GoToSubscriberВasePageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
