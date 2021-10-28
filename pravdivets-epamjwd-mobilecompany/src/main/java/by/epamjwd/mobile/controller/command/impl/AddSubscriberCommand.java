@@ -94,7 +94,7 @@ public class AddSubscriberCommand implements Command{
 		
 		RouteHelper result = null;
 		
-		result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+		result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 		
 		return result;
 	}

@@ -38,7 +38,7 @@ public class ShowSubscriberListByPassportCommand implements Command{
 			if(subscriberList.isEmpty()) {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PASSPORT);
 				request.setAttribute(AttributeName.PASSPORT, passport);
-				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);	
+				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);	
 			} else {
 				result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request, subscriberList);
 			}

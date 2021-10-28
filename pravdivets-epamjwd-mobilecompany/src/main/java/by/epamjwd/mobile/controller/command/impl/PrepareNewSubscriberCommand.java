@@ -55,7 +55,7 @@ public class PrepareNewSubscriberCommand implements Command {
 				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.DEBTOR);
 				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
 				request.setAttribute(AttributeName.PASSPORT, passport);
-				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 			} else {
 				User currentUser = userService.findUserByPassport(passport).get();
 				//we are pretty sure that currentUser != null because of check in the first "if"

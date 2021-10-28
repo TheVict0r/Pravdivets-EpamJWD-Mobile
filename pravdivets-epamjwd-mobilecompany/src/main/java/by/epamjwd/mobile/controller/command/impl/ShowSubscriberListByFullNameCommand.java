@@ -46,7 +46,7 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 				request.setAttribute(AttributeName.FIRST_NAME, firstName);
 				request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
 				request.setAttribute(AttributeName.LAST_NAME, lastName);
-				result = new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 			}else {
 				result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request, subscriberList);
 			}

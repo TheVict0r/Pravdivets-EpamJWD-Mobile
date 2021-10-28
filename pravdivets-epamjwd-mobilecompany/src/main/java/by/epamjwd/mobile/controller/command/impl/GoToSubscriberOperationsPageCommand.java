@@ -12,13 +12,13 @@ import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToSubscriberВasePageCommand implements Command{
+public class GoToSubscriberOperationsPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		SubscriberCommandHelper.getInstance().removeSubscriberAttributesFromSession(session);
-		return new RouteHelper(PagePath.SUBSCRIBER_BASE, RouteMethod.FORWARD);
+		return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 	}
 
 }
