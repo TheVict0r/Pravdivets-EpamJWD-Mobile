@@ -55,15 +55,11 @@ public class AddSubscriberCommand implements Command{
 				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
 				result = RouteHelper.ERROR;
 			}
-			
-		
 		} else {
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
+			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
 			long userId = currentUser.getId();
 			subscriberService.addNewSubscriberToExistingUser(phone, planId, userId);
-			
-			
-			
 			
 //			try {
 //				Subscriber currentCustomer = subscriberService.findSubscriberListByPassport(passport).get(0);
@@ -91,9 +87,6 @@ public class AddSubscriberCommand implements Command{
 				
 				
 		}
-		
-		
-		
 		
 		result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 		
