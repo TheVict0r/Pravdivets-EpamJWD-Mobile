@@ -17,9 +17,11 @@ public class AttributeName {
 	public static final String CONSULTANT = "consultant";
 	public static final String SUBSCRIBER = "subscriber";
 	public static final String SUBSCRIBER_ID = "subscriber_id";
+	public static final String SUBSCRIBER_DEBTOR = "subscriber_debtor";
 	public static final String SUBSCRIBER_LIST = "subscriber_list";
 	public static final String SUBSCRIBER_USER_ID = "subscriber_user_id";
 	public static final String SUBSCRIBER_USER = "subscriber_user";
+	public static final String SUBSCRIBER_USER_FLAG = "subscriber_user_flag";
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
 	public static final String PASSPORT = "passport";

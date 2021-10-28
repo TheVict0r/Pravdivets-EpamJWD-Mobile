@@ -8,11 +8,12 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToSubscriberPageCommand implements Command {
+public class GoToErrorPageCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		return new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
+		
+		return new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 	}
 
 }

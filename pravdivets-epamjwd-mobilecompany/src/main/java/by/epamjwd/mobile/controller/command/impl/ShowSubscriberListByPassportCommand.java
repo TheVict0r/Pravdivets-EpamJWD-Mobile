@@ -44,7 +44,7 @@ public class ShowSubscriberListByPassportCommand implements Command{
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error in getting subscriber data for passport - " + passport, e);
-			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
+			result = RouteHelper.ERROR;
 		}
 		return result;	
 	}

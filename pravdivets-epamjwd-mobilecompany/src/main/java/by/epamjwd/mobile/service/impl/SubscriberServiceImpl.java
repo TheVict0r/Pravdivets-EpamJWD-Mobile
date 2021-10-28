@@ -132,7 +132,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 
 	@Override
-	public boolean isNewUserSubscriber(String passport) throws ServiceException {
+	public boolean isNewSubscriberUser(String passport) throws ServiceException {
 		List<Subscriber> subscribers = findSubscriberListByPassport(passport);
 		return subscribers.isEmpty();
 	}
@@ -155,9 +155,10 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscribersWithDebts;
 	}
 
+
 	@Override
-	public void addNewSubscriber(String passport, int phone, long plan_id, String firstName, String middleName,
-			String lastName, String email) throws ServiceException {
+	public void addNewSubscriber(String firstName, String middleName, String lastName, 
+			String passport, String email, int phone, long plan_id) throws ServiceException {
 
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		PlanService planService = serviceProvider.getPlanService();
@@ -190,17 +191,10 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public void addOneMorePhoneToCurrentSubscriber(String passport, int phoneNumber, long plan_id)
-			throws ServiceException {
-		//Subscriber subscriberDao.findSubscriberListByPassport(passport).get(0);
+	public void addNewSubscriberToExistingUser(int phone, long planId, long userId) {
+		// TODO Auto-generated method stub
 		
 	}
 
-	public static void main(String[] args) {
 
-		long id = Long.parseLong("null");
-		
-		System.out.println(id);
-		
-	}
 }

@@ -15,6 +15,7 @@ import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -91,13 +92,13 @@ public class SubscriberCommandHelper {
 	}
 
 	public void removeSubscriberAttributesFromSession(HttpSession session) {
-		session.removeAttribute(AttributeName.PASSPORT);
-		session.removeAttribute(AttributeName.PHONE);
-		session.removeAttribute(AttributeName.PHONE_FORMAT);
-		session.removeAttribute(AttributeName.PLAN);
 		session.removeAttribute(AttributeName.SUBSCRIBER);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER);
+		session.removeAttribute(AttributeName.PHONE);
+		session.removeAttribute(AttributeName.PHONE_FORMAT);
+		session.removeAttribute(AttributeName.PLAN);
+		session.removeAttribute(AttributeName.ALL_PLANS);
 	}
 	
 	private static class Holder {

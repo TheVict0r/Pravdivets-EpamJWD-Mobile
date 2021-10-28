@@ -1,7 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,17 +7,15 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Plan;
-import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.SubscriberStatus;
+import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.controller.repository.ParameterValue;
-import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -29,37 +25,42 @@ public class AddSubscriberCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		
+		HttpSession session = request.getSession();
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
 
-		String customer = request.getParameter(ParameterName.CUSTOMER);
+		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
+		session.removeAttribute(AttributeName.PASSPORT);
 		
-		String passport = request.getParameter(ParameterName.PASSPORT);
-		int phoneNumber = Integer.parseInt(request.getParameter(ParameterName.PHONE));
-		long plan_id = Long.parseLong(request.getParameter(ParameterName.PLAN_ID));
-
-		String firstName = null;
-		String middleName = null;
-		String lastName = null;
-		String homeAddress = null;
-		String email = null;
+		int phone = Integer.parseInt(String.valueOf(session.getAttribute(AttributeName.PHONE)));
+		session.removeAttribute(AttributeName.PHONE);
 		
-		if(customer.equals(ParameterValue.NEW)) {
-			firstName = request.getParameter(ParameterName.FIRST_NAME);
-			middleName = request.getParameter(ParameterName.MIDDLE_NAME);
-			lastName = request.getParameter(ParameterName.LAST_NAME);
-			homeAddress = request.getParameter(ParameterName.HOME_ADDRESS);
-			email = request.getParameter(ParameterName.EMAIL);
-			
-//			subscriberService.addNewSubscriber(passport, phoneNumber, plan_id, firstName, 
-//					middleName, lastName, homeAddress, email);
-//			
+		long planId = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
 		
-		} else if(customer.equals(ParameterValue.CURRENT)) {
+		String subscriberUserFlag = (String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG)));
+		session.removeAttribute(AttributeName.SUBSCRIBER_USER_FLAG);
+		
+		RouteHelper result = null;
+		
+		if(subscriberUserFlag.equals(AttributeValue.NEW)) {
+			String firstName = request.getParameter(ParameterName.FIRST_NAME);
+			String middleName = request.getParameter(ParameterName.MIDDLE_NAME);
+			String lastName = request.getParameter(ParameterName.LAST_NAME);
+			String email = request.getParameter(ParameterName.EMAIL);
 			
+			try {
+				subscriberService.addNewSubscriber(firstName, 
+						middleName, lastName, passport, email, phone, planId);
+			} catch (ServiceException e) {
+				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
+				result = RouteHelper.ERROR;
+			}
 			
-//			subscriberService.addNewSubscriberToExistingCustomer(passport, phoneNumber, plan_id);
+		
+		} else {
+			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
+			long userId = currentUser.getId();
+			subscriberService.addNewSubscriberToExistingUser(phone, planId, userId);
 			
 			
 			
@@ -92,7 +93,7 @@ public class AddSubscriberCommand implements Command{
 		}
 		
 		
-		RouteHelper result = null;
+		
 		
 		result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 		

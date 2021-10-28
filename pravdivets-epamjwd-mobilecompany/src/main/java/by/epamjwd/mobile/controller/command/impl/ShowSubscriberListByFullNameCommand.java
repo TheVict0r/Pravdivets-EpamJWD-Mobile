@@ -52,7 +52,7 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error in getting subscriber data for  " + firstName + " " + middleName + " " + lastName, e);
-			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
+			result = RouteHelper.ERROR;
 		}
 		return result;
 	}

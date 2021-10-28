@@ -136,17 +136,17 @@
 				<input type="text" class="form-control" name="passport"
 					id="passport"
 					placeholder="AB1234567"
-					pattern="^[A-Z]{2}[0-9]{7}$" value="${requestScope.passport}" required>
+					pattern="^[A-Z]{2}[0-9]{7}$" value="${sessionScope.passport}" required>
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark"
 					value="<fmt:message key="subscriberbase.next"/>">
 			</div>
 		</form>
-		<c:if test="${requestScope.subscriber eq 'debtor'}">
+		<c:if test="${sessionScope.subscriber_debtor eq 'debtor'}">
 			<div class="col-md-12 fw-normal fs-6 text-danger">
 				<fmt:message key="subscriberbase.debt-found"/><c:forEach var="subscriber"
-						items="${requestScope.subscriber_list}">
+						items="${sessionScope.subscriber_list}">
 		 <b>${subscriber.account/100} <fmt:message key="subscriberbase.rub"/></b>
 		 (<fmt:message key="subscriberbase.phone"/> ${subscriber.phone})
 		</c:forEach> <br/><fmt:message key="subscriberbase.pay-debt"/>

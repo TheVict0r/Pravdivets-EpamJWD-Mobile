@@ -1,7 +1,12 @@
 package by.epamjwd.mobile.controller;
 
+import by.epamjwd.mobile.controller.repository.PagePath;
+
 public class RouteHelper {
 
+	
+	public static final RouteHelper ERROR = new RouteHelper(PagePath.ERROR_REDIRECT, RouteMethod.REDIRECT);
+	
 	/**
      * Path to resulting resource.
      */

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,10 @@ public class PrepareNewSubscriberCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.removeAttribute(AttributeName.SUBSCRIBER_DEBTOR);
+		session.removeAttribute(AttributeName.SUBSCRIBER_LIST);
+		
 		String passport = request.getParameter(ParameterName.PASSPORT);
 		RouteHelper result = null;
 
@@ -43,29 +48,27 @@ public class PrepareNewSubscriberCommand implements Command {
 			int phone = PhoneGenerator.generatePhone();
 			String phoneFormat = PhoneFormatter.formatPhone(phone);
 			List<Plan> allPlans = planService.findAllPlans();
-			request.setAttribute(AttributeName.PASSPORT, passport);
-			request.setAttribute(AttributeName.PHONE, phone);
-			request.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
-			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
-			if (subscriberService.isNewUserSubscriber(passport)) {
-				request.setAttribute(AttributeName.USER, AttributeValue.NEW);
-				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
-			} else if (subscriberService.isDebtor(passport)) {
+			session.setAttribute(AttributeName.PASSPORT, passport);
+			session.setAttribute(AttributeName.PHONE, phone);
+			session.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
+			session.setAttribute(AttributeName.ALL_PLANS, allPlans);
+			
+			if (subscriberService.isDebtor(passport)) {
 				List<Subscriber> debtSubscribers = subscriberService.findSubscriberListWithDebts(passport);
-				request.setAttribute(AttributeName.SUBSCRIBER, AttributeValue.DEBTOR);
-				request.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
-				request.setAttribute(AttributeName.PASSPORT, passport);
-				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
-			} else {
+				session.setAttribute(AttributeName.SUBSCRIBER_DEBTOR, AttributeValue.DEBTOR);
+				session.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
+				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+			} else if (subscriberService.isNewSubscriberUser(passport)) {
+				session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
+				result = new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+			} else { //so this subscriber already has another phone number as well as User data 
 				User currentUser = userService.findUserByPassport(passport).get();
-				//we are pretty sure that currentUser != null because of check in the first "if"
-				//subscriberService.isNewUserSubscriber(passport)
-				request.setAttribute(AttributeName.USER, currentUser);
-				result = new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
+				session.setAttribute(AttributeName.SUBSCRIBER_USER, currentUser);
+				result = new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to check the passport" + passport, e);
-			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
+			result = RouteHelper.ERROR;
 			// подумай - может ещё куда-то послать? Напр., на ту же страницу но с указанием
 			// ошибки
 		}

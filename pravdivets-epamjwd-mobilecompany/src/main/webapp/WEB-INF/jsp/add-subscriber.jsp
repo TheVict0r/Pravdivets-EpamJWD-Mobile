@@ -22,14 +22,13 @@
 		<form method="post" action=controller?command=add_subscriber>
 			<div class="row justify-content-center fs-2">
 				<fmt:message key="add-subscriber.passport" />
-				: ${requestScope.passport}
+				: ${sessionScope.passport}
 			</div>
 			
-			<input type = "hidden" name = "passport" value = "${requestScope.passport}"/>
+			<input type = "hidden" name = "passport" value = "${sessionScope.passport}"/>
 			
 			<c:choose>
-				<c:when test="${requestScope.user eq 'new'}">
-			<input type = "hidden" name = "user" value = "new"/>
+				<c:when test="${sessionScope.subscriber_user_flag eq 'new'}">
 					<table>
 						<tr>
 							<td><label for="last_name" class="form-label"><fmt:message
@@ -59,7 +58,6 @@
 					</table>
 				</c:when>
 				<c:otherwise>
-			<input type = "hidden" name = "user" value = "current"/>
 					<div
 						class="row justify-content-center mx-auto text-success text-center fw-normal">
 						<fmt:message key="add-subscriber.current" />
@@ -67,19 +65,19 @@
 					<table class="table">
 						<tr>
 							<td><fmt:message key="add-subscriber.last-name" />:</td>
-							<td>${requestScope.user.lastName}</td>
+							<td>${sessionScope.subscriber_user.lastName}</td>
 						</tr>
 						<tr>
 							<td><fmt:message key="add-subscriber.first-name" />:</td>
-							<td>${requestScope.user.firstName}</td>
+							<td>${sessionScope.subscriber_user.firstName}</td>
 						</tr>
 						<tr>
 							<td><fmt:message key="add-subscriber.middle-name" />:</td>
-							<td>${requestScope.user.middleName}</td>
+							<td>${sessionScope.subscriber_user.middleName}</td>
 						</tr>
 						<tr>
 							<td>e-mail:</td>
-							<td>${requestScope.user.email}</td>
+							<td>${sessionScope.subscriber_user.email}</td>
 						</tr>
 					</table>
 				</c:otherwise>
@@ -88,18 +86,18 @@
 				<fmt:message key="add-subscriber.phone-number" />:
 			</div>
 			<div class="row justify-content-center text-primary fs-3 mb-1">
-				${requestScope.phone_format}</div>
+				${sessionScope.phone_format}</div>
 			<div class="row justify-content-center mb-1">
 				<a class="btn btn-outline-dark"
-					href="${pageContext.request.contextPath}/controller?command=prepare_new_subscriber&passport=${requestScope.passport}"><fmt:message
+					href="${pageContext.request.contextPath}/controller?command=prepare_new_subscriber&passport=${sessionScope.passport}"><fmt:message
 						key="add-subscriber.reload" /></a>
 			</div>
-			<input type = "hidden" name = "phone_number" value = "${requestScope.phone}"/>
+			<input type = "hidden" name = "phone_number" value = "${sessionScope.phone}"/>
 			
 			<div class="row justify-content-center mb-3">
 				<fmt:message key="add-subscriber.plan" />:
 				<select class="form-select form-select-sm" id="plan" name="plan_id">
-				<c:forEach var="plan" items="${requestScope.all_plans}">
+				<c:forEach var="plan" items="${sessionScope.all_plans}">
 					<option value="${plan.id}">${plan.name}</option>
 				</c:forEach>
 				</select>
@@ -108,7 +106,7 @@
 				<div class="row justify-content-between">
 					<div class="col-4">
 						<a class="btn btn-outline-dark"
-							href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_base"><fmt:message
+							href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page"><fmt:message
 								key="add-subscriber.back" /></a>
 					</div>
 					<div class="col-4">

@@ -22,10 +22,10 @@ public interface SubscriberService {
 	
 	boolean isDebtor(String passport) throws ServiceException;
 	boolean isPhoneAvailable(int phone) throws ServiceException;
-	boolean isNewUserSubscriber(String passport) throws ServiceException;
-	void addNewSubscriber(String passport, int phone, long plan_id, String firstName, String middleName,
-			String lastName, String email) throws ServiceException;
-	void addOneMorePhoneToCurrentSubscriber(String passport, int phone, long plan_id)throws ServiceException;
+	boolean isNewSubscriberUser(String passport) throws ServiceException;
+	void addNewSubscriber(String firstName, String middleName, String lastName, String passport, String email,
+			int phone, long plan_id)throws ServiceException;
+	void addNewSubscriberToExistingUser(int phone, long planId, long userId);
 	
 	
 }
