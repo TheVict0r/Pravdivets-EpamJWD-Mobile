@@ -13,8 +13,7 @@ public class PagePath {
 	public static final String LOGIN = "WEB-INF/jsp/login.jsp";
 	public static final String LOGIN_REDIRECT = "/controller?command=go_to_login_page";
 	public static final String SUBSCRIBER = "WEB-INF/jsp/subscriber.jsp";
-	public static final String SUBSCRIBER_REDIRECT = "/controller?command=show_subscriber_by_id";
-	public static final String SUBSCRIBER_SESSION_REDIRECT = "/controller?command=show_subscriber_from_session";
+	public static final String SUBSCRIBER_REDIRECT = "/controller?command=go_to_subscriber_page";
 	public static final String SUBSCRIBER_LIST = "WEB-INF/jsp/subscriber-list.jsp";
 	public static final String SUBSCRIBER_LIST_REDIRECT = "/controller?command=show_subscriber_list_by_user_id";
 	public static final String SUBSCRIBER_BASE = "WEB-INF/jsp/subscriber_base.jsp";

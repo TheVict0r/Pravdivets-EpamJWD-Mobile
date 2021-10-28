@@ -21,48 +21,48 @@
 			<table class="table ">
 				<tr>
 					<td><fmt:message key="subscriber.phone"/></td>
-					<td>${requestScope.phone_format}</td>
+					<td>${sessionScope.phone_format}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.name"/></td>
-					<td>${requestScope.user.firstName} ${requestScope.user.middleName} ${requestScope.user.lastName}</td>
+					<td>${sessionScope.subscriber_user.firstName} ${sessionScope.subscriber_user.middleName} ${sessionScope.subscriber_user.lastName}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.passport"/></td>
-					<td>${requestScope.user.passport}</td>
+					<td>${sessionScope.subscriber_user.passport}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.plan"/></td>
-					<td>${requestScope.plan.name}</td>
+					<td>${sessionScope.plan.name}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
 					<td>e-mail:</td>
-					<td>${requestScope.user.email}</td>
+					<td>${sessionScope.subscriber_user.email}</td>
 					<td><a class="login btn btn-outline-primary btn-sm" href="#"><fmt:message key="subscriber.edit"/></a></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.contract-date"/></td>
-					<td>${requestScope.subscriber.contractDate}</td>
+					<td>${sessionScope.subscriber.contractDate}</td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.account-number"/></td>
-					<td>${requestScope.subscriber.id}</td>
+					<td>${sessionScope.subscriber.id}</td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.account-amount"/></td>
-					<td>${requestScope.subscriber.account/100} руб.</td>
+					<td>${sessionScope.subscriber.account/100} руб.</td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.status"/></td>
-					<td>${requestScope.subscriber.status.statusName}</td>
+					<td>${sessionScope.subscriber.status.statusName}</td>
 				</tr>
 				<tr>
 					<td><fmt:message key="subscriber.status-date"/></td>
-					<td>${requestScope.subscriber.statusDate}</td>
+					<td>${sessionScope.subscriber.statusDate}</td>
 				</tr>
 			</table>
 		</div>

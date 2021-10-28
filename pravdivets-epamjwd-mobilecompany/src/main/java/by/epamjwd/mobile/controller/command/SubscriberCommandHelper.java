@@ -35,29 +35,29 @@ public class SubscriberCommandHelper {
 
 	public RouteHelper handleSubscriber(HttpServletRequest request, Subscriber subscriber) throws ServiceException {
 		RouteHelper result = null;
-
+		HttpSession session = request.getSession();
 		ServiceProvider provider = ServiceProvider.getInstance();
 		PlanService planService = provider.getPlanService();
 		UserService userService = provider.getUserService();
 
-		request.setAttribute(AttributeName.SUBSCRIBER, subscriber);
+		session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
 
 		int phone = subscriber.getPhone();
 		String phoneFormat = PhoneFormatter.formatPhone(phone);
-		request.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
+		session.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
 
 		Optional<User> userOptional = userService.findUserByPhone(phone);
-		User user = null;
+		User subscriberUser = null;
 		if (userOptional.isPresent()) {
-			user = userOptional.get();
-			request.setAttribute(AttributeName.USER, user);
+			subscriberUser = userOptional.get();
+			session.setAttribute(AttributeName.SUBSCRIBER_USER, subscriberUser);
 		} else {
 			LOGGER.error("Can't find user for phone number - " + phone);
 			return new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 		}
 		Plan plan = planService.findPlanByID(subscriber.getPlanId());
-		request.setAttribute(AttributeName.PLAN, plan);
-		result = new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
+		session.setAttribute(AttributeName.PLAN, plan);
+		result = new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 
 		return result;
 	}
@@ -81,8 +81,7 @@ public class SubscriberCommandHelper {
 		RouteHelper result = null;
 		if (subscriberList.size() == 1) {
 			Subscriber subscriber = subscriberList.get(0);
-			session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
-			result = new RouteHelper(PagePath.SUBSCRIBER_SESSION_REDIRECT, RouteMethod.REDIRECT);
+			result = handleSubscriber(request, subscriber);
 		} else {
 			long userId = subscriberList.get(0).getUserId();
 			session.setAttribute(AttributeName.SUBSCRIBER_USER_ID, userId);
@@ -91,6 +90,16 @@ public class SubscriberCommandHelper {
 		return result;
 	}
 
+	public void removeSubscriberAttributesFromSession(HttpSession session) {
+		session.removeAttribute(AttributeName.PASSPORT);
+		session.removeAttribute(AttributeName.PHONE);
+		session.removeAttribute(AttributeName.PHONE_FORMAT);
+		session.removeAttribute(AttributeName.PLAN);
+		session.removeAttribute(AttributeName.SUBSCRIBER);
+		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
+		session.removeAttribute(AttributeName.SUBSCRIBER_USER);
+	}
+	
 	private static class Holder {
 		static final SubscriberCommandHelper INSTANCE = new SubscriberCommandHelper();
 	}

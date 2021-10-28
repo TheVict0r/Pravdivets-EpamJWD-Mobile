@@ -19,6 +19,7 @@ public class CommandName {
 	public static final String SHOW_SUBSCRIBER_LIST_PASSPORT = "show_subscriber_list_by_passport";
 	public static final String SHOW_ADMIN = "show_admin";
 	public static final String GO_TO_SUBSCRIBER_BASE = "go_to_subscriber_base";
+	public static final String GO_TO_SUBSCRIBER_PAGE = "go_to_subscriber_page";
 	public static final String SHOW_SUBSCRIBER_BY_PHONE = "show_subscriber_by_phone";
 	public static final String SHOW_SUBSCRIBER_BY_ID = "show_subscriber_by_id";
 	public static final String GO_TO_PROFILE_PAGE = "go_to_profile_page";
@@ -29,6 +30,5 @@ public class CommandName {
 	public static final String GO_TO_ADD_SUBSCRIBER_PAGE = "go_to_add_subscriber_page";
 	public static final String PREPARE_NEW_SUBSCRIBER = "prepare_new_subscriber";
 	public static final String SWITCH_LOCALE = "switch_locale";
-	public static final String SHOW_SUBSCRIBER_FROM_SESSION = "show_subscriber_from_session";
 
 }

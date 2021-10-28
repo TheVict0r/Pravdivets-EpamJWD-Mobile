@@ -30,7 +30,6 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 

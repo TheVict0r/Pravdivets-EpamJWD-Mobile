@@ -27,7 +27,6 @@ public class ShowSubscriberListByPassportCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
 		String passport = request.getParameter(ParameterName.PASSPORT);
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();

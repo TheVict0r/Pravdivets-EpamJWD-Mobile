@@ -18,6 +18,8 @@ public class AttributeName {
 	public static final String SUBSCRIBER = "subscriber";
 	public static final String SUBSCRIBER_ID = "subscriber_id";
 	public static final String SUBSCRIBER_LIST = "subscriber_list";
+	public static final String SUBSCRIBER_USER_ID = "subscriber_user_id";
+	public static final String SUBSCRIBER_USER = "subscriber_user";
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
 	public static final String PASSPORT = "passport";
@@ -30,6 +32,5 @@ public class AttributeName {
 	public static final String CALCULATOR_BEST_PLAN = "best_plan";
 	public static final String SESSION_TIME_OUT = "session_time_out";
 	public static final String SESSION_LOCALE = "session_locale";
-	public static final String SUBSCRIBER_USER_ID = "subscriber_user_id";
 
 }

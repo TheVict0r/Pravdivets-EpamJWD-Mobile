@@ -9,6 +9,7 @@ import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -18,11 +19,7 @@ public class GoToProfilePageCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.removeAttribute(AttributeName.PASSPORT);
-		session.removeAttribute(AttributeName.PHONE);
-		session.removeAttribute(AttributeName.PHONE_FORMAT);
-		session.removeAttribute(AttributeName.SUBSCRIBER);
-		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
+		SubscriberCommandHelper.getInstance().removeSubscriberAttributesFromSession(session);
 		
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		

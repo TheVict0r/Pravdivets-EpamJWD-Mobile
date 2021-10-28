@@ -33,7 +33,6 @@ public class ShowSubscriberByPhoneCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 		int phone;
@@ -48,8 +47,7 @@ public class ShowSubscriberByPhoneCommand implements Command {
 			
 			if (subscriberOptional.isPresent()) {
 				subscriber = subscriberOptional.get();
-				session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
-				result = new RouteHelper(PagePath.SUBSCRIBER_SESSION_REDIRECT, RouteMethod.REDIRECT);
+				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 			} else {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
 				request.setAttribute(AttributeName.PHONE, phone);

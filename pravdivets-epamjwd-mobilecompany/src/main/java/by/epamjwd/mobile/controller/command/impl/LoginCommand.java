@@ -15,6 +15,7 @@ import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -24,7 +25,6 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.HashGenerator;
-import by.epamjwd.mobile.util.InputValueChecker;
 
 public class LoginCommand implements Command {
 
@@ -51,18 +51,18 @@ public class LoginCommand implements Command {
 
 		try {
 			Optional<User> userOptional = userService.findUserByLogin(login);
-			if (userOptional.isPresent()) {
+			if (userOptional.isPresent()) { 
 				user = userOptional.get();
 			} else {
 				path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 			}
 			
 			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhoneString(login);
-			if (subscriberOptional.isPresent()) {
+			if (subscriberOptional.isPresent()) { //false means login is an e-mail, not a phone number
 				subscriber = subscriberOptional.get();
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain data for login - " + login, e);
+			LOGGER.error("Unable to obtain user data for login - " + login, e);
 			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 		}
 		
@@ -78,14 +78,20 @@ public class LoginCommand implements Command {
 		}
 
 		if (subscriber != null && user != null) {
-			session.setAttribute(AttributeName.SUBSCRIBER_ID, subscriber.getId());
-			path = PagePath.SUBSCRIBER_REDIRECT;
+			try {
+				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+			} catch (ServiceException e) {
+				LOGGER.error("Error in handling subscriber with ID - " + subscriber.getId(), e);
+				result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
+			}
+		} else {
+			result = new RouteHelper(path, RouteMethod.REDIRECT);
 		}
 		
-		result = new RouteHelper(path, RouteMethod.REDIRECT);
 		return result;
 	}
 
+	
 	private String findPathByUserRole(Role role) {
 		if (role == null) {
 			return PagePath.LOGIN_REDIRECT;
@@ -93,7 +99,7 @@ public class LoginCommand implements Command {
 		String path = null;
 		switch (role) {
 		case SUBSCRIBER:
-			path = PagePath.SUBSCRIBER_LIST_REDIRECT;
+			path = PagePath.SUBSCRIBER_LIST_REDIRECT; //as subscriber may have few phone numbers
 			break;
 		case CONSULTANT:
 			path = PagePath.CONSULTANT_REDIRECT;
