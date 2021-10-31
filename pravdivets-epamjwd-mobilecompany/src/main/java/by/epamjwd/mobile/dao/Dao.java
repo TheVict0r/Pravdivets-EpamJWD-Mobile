@@ -18,6 +18,16 @@ public interface Dao<T> {
     List<T> findAll() throws DaoException;
 
     /**
+     * Method to get entity object from table by ID 
+     * where ID is in descending order
+     *
+     * @param id ID of entity to find
+     * @return optional Entity object from table
+     * @throws DaoException
+     */
+    List<T> findALLDescending() throws DaoException;
+    
+    /**
      * Method to get entity object from table by ID
      *
      * @param id ID of entity to find
@@ -32,6 +42,10 @@ public interface Dao<T> {
      * @param item entity object to save
      * @throws DaoException
      */
+
+    
+    
+    
     long save(T item) throws DaoException;
 
     /**
@@ -41,6 +55,7 @@ public interface Dao<T> {
      * @throws DaoException
      */
     void removeById(long id) throws DaoException;
+
 
 	
 }

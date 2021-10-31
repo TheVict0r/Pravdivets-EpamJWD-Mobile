@@ -125,4 +125,5 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
         }
         return entities;
     }
+
 }

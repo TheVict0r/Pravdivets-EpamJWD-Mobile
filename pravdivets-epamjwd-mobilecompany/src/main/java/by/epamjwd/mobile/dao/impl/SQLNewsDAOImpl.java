@@ -21,7 +21,7 @@ public class SQLNewsDAOImpl extends AbstractDao<NewsArticle> implements NewsDAO 
 
 	@Override
 	public List<NewsArticle> getAllNews() throws DaoException {
-		return findAll();
+		return findALLDescending();
 	}
 
 	@Override

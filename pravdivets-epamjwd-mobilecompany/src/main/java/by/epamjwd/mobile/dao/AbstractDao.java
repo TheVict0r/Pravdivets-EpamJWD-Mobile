@@ -22,6 +22,12 @@ public abstract class AbstractDao<T extends Identifiable> extends AbstractQueryE
     }
 
     @Override
+    public List<T> findALLDescending() throws DaoException {
+    	String query = "SELECT * FROM " + tableName + " ORDER BY id DESC";
+    	return executeQuery(query);
+    }
+    
+    @Override
     public Optional<T> findById(long id) throws DaoException {
         String query = "SELECT * FROM " + tableName + " WHERE id=?";
         return executeQueryForSingleResult(query, id);
