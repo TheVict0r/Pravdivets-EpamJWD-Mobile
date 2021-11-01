@@ -21,7 +21,8 @@
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-2">
 		<span class="display-6 text-left d-flex align-items-center">${requestScope.article.title}</span>
 		 <span class="display-7 text-left d-flex"><em> ${requestScope.article.date}</em></span>
-		<p>${requestScope.article.text}</p>
+		<span>${requestScope.article.lead}</span>
+		<span>${requestScope.article.text}</span>
 	</div>
 	<br/>
 	<jsp:include page="components/footer.jsp" />
