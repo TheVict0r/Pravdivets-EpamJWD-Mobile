@@ -8,6 +8,7 @@ import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.HashGenerator;
 import by.epamjwd.mobile.util.InputValueChecker;
 
 public class UserServiceImpl implements UserService {
@@ -72,11 +73,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean isPasswordCorrect(User user, String hashPassword) {
+	public boolean isPasswordCorrect(User user, String password) {
 		if (user == null) {
 			return false;
 		}
-		return user.getPassword().equals(hashPassword);
+		return user.getPassword().equals(HashGenerator.generateHash(password));
 	}
 
 }

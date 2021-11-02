@@ -42,7 +42,6 @@ public class LoginCommand implements Command {
 		RouteHelper result = null;
 
 		String login = request.getParameter(ParameterName.LOGIN);
-		String hashPassword = HashGenerator.generateHash(request.getParameter(ParameterName.PASSWORD));
 		
 		if (login == null || request.getParameter(ParameterName.PASSWORD) == null) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
@@ -66,7 +65,7 @@ public class LoginCommand implements Command {
 			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
 		}
 		
-		if(user != null && userService.isPasswordCorrect(user, hashPassword)) {
+		if(user != null && userService.isPasswordCorrect(user, request.getParameter(ParameterName.PASSWORD))) {
 			session.setAttribute(AttributeName.USER_ID, user.getId());
 			session.setAttribute(AttributeName.FIRST_NAME, user.getFirstName());
 			session.setAttribute(AttributeName.LAST_NAME, user.getLastName());
