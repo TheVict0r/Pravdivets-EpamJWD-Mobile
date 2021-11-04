@@ -20,34 +20,41 @@
 	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>
+			<div class="row justify-content-center fs-6 ">
+				<fmt:message key="add-subscriber.phone-number" />:
+			</div>
+			<div class="row justify-content-center text-primary fs-3 mb-1">
+				${sessionScope.phone_format}</div>
+			<div class="row justify-content-center mb-1">
+				<a class="btn btn-outline-dark"
+					href="${pageContext.request.contextPath}/controller?command=prepare_new_subscriber&passport=${sessionScope.passport}"><fmt:message
+						key="add-subscriber.reload" /></a>
+			</div>
 			<div class="row justify-content-center fs-2">
 				<fmt:message key="add-subscriber.passport" />
 				: ${sessionScope.passport}
 			</div>
-			
-			<input type = "hidden" name = "passport" value = "${sessionScope.passport}"/>
-			
 			<c:choose>
 				<c:when test="${sessionScope.subscriber_user_flag eq 'new'}">
 					<table>
 						<tr>
-							<td><label for="last_name" class="form-label"><fmt:message
+							<td><label for="subscriber_user_last_name" class="form-label"><fmt:message
 										key="add-subscriber.last-name" />:</label></td>
-							<td><input type="text" class="form-control" name="last_name"
-								id="last_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
+							<td><input type="text" class="form-control" name="subscriber_user_last_name"
+								id="subscriber_user_last_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
 						</tr>
 						<tr>
-							<td><label for="first_name" class="form-label"><fmt:message
+							<td><label for="subscriber_user_first_name" class="form-label"><fmt:message
 										key="add-subscriber.first-name" />:</label></td>
 							<td><input type="text" class="form-control"
-								name="first_name" id="first_name"
+								name="subscriber_user_first_name" id="subscriber_user_first_name"
 								pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
 						</tr>
 						<tr>
-							<td><label for="middle_name" class="form-label"><fmt:message
+							<td><label for="subscriber_user_middle_name" class="form-label"><fmt:message
 										key="add-subscriber.middle-name" />:</label></td>
 							<td><input type="text" class="form-control"
-								name="middle_name" id="middle_name"
+								name="subscriber_user_middle_name" id="subscriber_user_middle_name"
 								pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"></td>
 						</tr>
 						<tr>
@@ -82,17 +89,6 @@
 					</table>
 				</c:otherwise>
 			</c:choose>
-			<div class="row justify-content-center fs-6 ">
-				<fmt:message key="add-subscriber.phone-number" />:
-			</div>
-			<div class="row justify-content-center text-primary fs-3 mb-1">
-				${sessionScope.phone_format}</div>
-			<div class="row justify-content-center mb-1">
-				<a class="btn btn-outline-dark"
-					href="${pageContext.request.contextPath}/controller?command=prepare_new_subscriber&passport=${sessionScope.passport}"><fmt:message
-						key="add-subscriber.reload" /></a>
-			</div>
-			<input type = "hidden" name = "phone_number" value = "${sessionScope.phone}"/>
 			
 			<div class="row justify-content-center mb-3">
 				<fmt:message key="add-subscriber.plan" />:

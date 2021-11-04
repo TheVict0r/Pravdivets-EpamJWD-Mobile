@@ -43,11 +43,10 @@ public class AddSubscriberCommand implements Command{
 		RouteHelper result = null;
 		
 		if(subscriberUserFlag.equals(AttributeValue.NEW)) {
-			String firstName = request.getParameter(ParameterName.FIRST_NAME);
-			String middleName = request.getParameter(ParameterName.MIDDLE_NAME);
-			String lastName = request.getParameter(ParameterName.LAST_NAME);
+			String firstName = request.getParameter(ParameterName.SUBSCRIBER_USER_FIRST_NAME);
+			String middleName = request.getParameter(ParameterName.SUBSCRIBER_USER_MIDDLE_NAME);
+			String lastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
 			String email = request.getParameter(ParameterName.EMAIL);
-			
 			try {
 				subscriberService.addNewSubscriber(firstName, 
 						middleName, lastName, passport, email, phone, planId);
@@ -59,7 +58,12 @@ public class AddSubscriberCommand implements Command{
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
 			long userId = currentUser.getId();
-			subscriberService.addNewSubscriberToExistingUser(phone, planId, userId);
+			try {
+				subscriberService.addNewSubscriberToExistingUser(phone, planId, userId);
+			} catch (ServiceException e) {
+				LOGGER.error("Error when adding a new subscriber to existing user with passport number - " + passport, e);
+				result = RouteHelper.ERROR;
+			}
 			
 //			try {
 //				Subscriber currentCustomer = subscriberService.findSubscriberListByPassport(passport).get(0);

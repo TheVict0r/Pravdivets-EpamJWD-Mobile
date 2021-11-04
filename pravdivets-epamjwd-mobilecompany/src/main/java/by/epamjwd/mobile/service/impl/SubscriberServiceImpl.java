@@ -1,6 +1,8 @@
 package by.epamjwd.mobile.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -191,10 +193,25 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public void addNewSubscriberToExistingUser(int phone, long planId, long userId) {
-		// TODO Auto-generated method stub
+	public void addNewSubscriberToExistingUser(int phone, long planId, long userId) throws ServiceException {
+		ServiceProvider serviceProvider = ServiceProvider.getInstance();	
+		PlanService planService = serviceProvider.getPlanService();
+		Plan plan = planService.findPlanByID(planId);
+		double account = plan.getUpfrontPayment();
+		
+		String contractDate = provideCurrentDate();
+		String statusDate = provideCurrentDate();
+
+		
 		
 	}
 
 
+	private String provideCurrentDate() {
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String currentDate = formatter.format(calendar.getTime());	
+		return currentDate;
+	}
+	
 }
