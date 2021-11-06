@@ -32,7 +32,18 @@ public class InputDataValidator {
 		String passport = user.getPassport();
 		String email = user.getEmail();
 		Role role = user.getRole();
-				
+		
+		boolean result = false;
+		
+		result = id >=0 &&
+				 isName(firstName) &&
+				 (isName(middleName) || middleName.isBlank()) &&
+				 isName(lastName) &&
+				 isPassport(passport) &&
+				 isEmail(email) &&
+				 role != null;
+		
+		return result;
 	}
 	
 	public static boolean isSubscriberValid(Subscriber subscriber) {
@@ -49,14 +60,10 @@ public class InputDataValidator {
 		long planId = subscriber.getPlanId();
 		long userId = subscriber.getUserId();
 
-		
+		boolean result = false;
+
 		
 	}
-	
-
-	
-	
-	
 	
 	
 	public static boolean isEmail(String anyString) {
