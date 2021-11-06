@@ -8,8 +8,8 @@ import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.service.validation.InputDataValidator;
 import by.epamjwd.mobile.util.HashGenerator;
-import by.epamjwd.mobile.util.InputValueChecker;
 
 public class UserServiceImpl implements UserService {
 
@@ -19,9 +19,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findUserByLogin(String login) throws ServiceException {
 		Optional<User>  user = Optional.empty();
-		if (InputValueChecker.isEmail(login)) {
+		if (InputDataValidator.isEmail(login)) {
 			user = findUserByEmail(login);
-		} else if (InputValueChecker.isPhone(login)) {
+		} else if (InputDataValidator.isPhone(login)) {
 			int phone = Integer.parseInt(login);
 			user = findUserByPhone(phone);
 		}

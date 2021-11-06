@@ -1,15 +1,64 @@
-package by.epamjwd.mobile.util;
+package by.epamjwd.mobile.service.validation;
 
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InputValueChecker {
+import by.epamjwd.mobile.bean.Role;
+import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.SubscriberStatus;
+import by.epamjwd.mobile.bean.User;
 
+public class InputDataValidator {
+
+	private InputDataValidator() {
+	}
+	
 	public static final String EMAIL_REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 	public static final String PHONE_NUMBER_REGEX = "^(25|29|33|44|55)[0-9]{7}$";
 	public static final String NAME_REGEX = "^[A-ZА-ЯЁ][a-zа-яё\\-]+$";
 	public static final String PASSPORT_REGEX = "^[A-Z]{2}[0-9]{7}$";
 
+	
+	public static boolean isUserValid(User user) {
+		if (user == null) {
+            return false;
+        }
+		
+		long id = user.getId();
+		String firstName = user.getFirstName();
+		String middleName = user.getMiddleName();
+		String lastName = user.getLastName();
+		String passport = user.getPassport();
+		String email = user.getEmail();
+		Role role = user.getRole();
+				
+	}
+	
+	public static boolean isSubscriberValid(Subscriber subscriber) {
+		if (subscriber == null) {
+            return false;
+        }
+		
+		long id = subscriber.getId();
+		Date contractDate = subscriber.getContractDate(); 
+		int account = subscriber.getAccount(); 
+		int phone = subscriber.getPhone();
+		Date statusDate = subscriber.getStatusDate();
+		SubscriberStatus status = subscriber.getStatus();
+		long planId = subscriber.getPlanId();
+		long userId = subscriber.getUserId();
+
+		
+		
+	}
+	
+
+	
+	
+	
+	
+	
 	public static boolean isEmail(String anyString) {
 		Pattern validEmailPattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = validEmailPattern.matcher(anyString);

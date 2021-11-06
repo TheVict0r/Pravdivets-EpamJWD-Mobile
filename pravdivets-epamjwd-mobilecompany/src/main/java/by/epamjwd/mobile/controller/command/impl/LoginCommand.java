@@ -43,7 +43,8 @@ public class LoginCommand implements Command {
 
 		String login = request.getParameter(ParameterName.LOGIN);
 		
-		if (login == null || request.getParameter(ParameterName.PASSWORD) == null) {
+		if (login == null || request.getParameter(ParameterName.PASSWORD) == null 
+				|| request.getParameter(ParameterName.PASSWORD).isEmpty()) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}

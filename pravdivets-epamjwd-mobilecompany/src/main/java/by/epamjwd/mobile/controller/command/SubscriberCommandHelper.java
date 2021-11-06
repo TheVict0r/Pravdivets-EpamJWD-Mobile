@@ -15,7 +15,6 @@ import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
-import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -54,7 +53,7 @@ public class SubscriberCommandHelper {
 			session.setAttribute(AttributeName.SUBSCRIBER_USER, subscriberUser);
 		} else {
 			LOGGER.error("Can't find user for phone number - " + phone);
-			return new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
+			return RouteHelper.ERROR;
 		}
 		Plan plan = planService.findPlanByID(subscriber.getPlanId());
 		session.setAttribute(AttributeName.PLAN, plan);

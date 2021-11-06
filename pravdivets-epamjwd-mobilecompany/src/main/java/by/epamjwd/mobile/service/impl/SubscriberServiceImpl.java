@@ -20,7 +20,7 @@ import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.InputValueChecker;
+import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class SubscriberServiceImpl implements SubscriberService {
 	DAOProvider provider = DAOProvider.getInstance();
@@ -52,7 +52,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public Optional<Subscriber> findSubscriberByPhoneString(String phoneString) throws ServiceException {
 		Optional<Subscriber> subscriber = Optional.empty();
-		if (InputValueChecker.isPhone(phoneString)) {
+		if (InputDataValidator.isPhone(phoneString)) {
 			int phoneInt = Integer.parseInt(phoneString);
 			subscriber = findSubscriberByPhone(phoneInt);
 		}
@@ -159,59 +159,22 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 
 	@Override
-	public void addNewSubscriber(String firstName, String middleName, String lastName, 
-			String passport, String email, int phone, long plan_id) throws ServiceException {
+	public void addNewSubscriber(User user, Subscriber subscriber) throws ServiceException {
 
-		ServiceProvider serviceProvider = ServiceProvider.getInstance();
-		PlanService planService = serviceProvider.getPlanService();
-		Date currentDate = new Date();
-		
-		Plan plan = planService.findPlanByID(plan_id);
-
-		
-		Subscriber newSubscriber = new Subscriber();
-//		newSubscriber.setFirstName(firstName);
-//		newSubscriber.setMiddleName(middleName);
-//		newSubscriber.setLastName(lastName);
-//		newSubscriber.setPassport(passport);
-//		newSubscriber.setEmail(email);
-
-		//дублирование кода
-		newSubscriber.setContractDate(currentDate);
-		newSubscriber.setAccount(plan.getUpfrontPayment());
-		newSubscriber.setPhone(phone);
-		newSubscriber.setPlanId(plan_id);
-		newSubscriber.setStatus(SubscriberStatus.ACTIVE);
-		newSubscriber.setStatusDate(currentDate);			
-	
-	
-	
-	//создать нового Subscriber и добавить его в таблицы Users, Customers и Subscribers
-
+		System.out.println(user);
+		System.out.println(subscriber);
 		
 		
 	}
 
 	@Override
-	public void addNewSubscriberToExistingUser(int phone, long planId, long userId) throws ServiceException {
-		ServiceProvider serviceProvider = ServiceProvider.getInstance();	
-		PlanService planService = serviceProvider.getPlanService();
-		Plan plan = planService.findPlanByID(planId);
-		double account = plan.getUpfrontPayment();
-		
-		String contractDate = provideCurrentDate();
-		String statusDate = provideCurrentDate();
+	public void addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
 
-		
+		System.out.println(subscriber);
+
 		
 	}
 
 
-	private String provideCurrentDate() {
-		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String currentDate = formatter.format(calendar.getTime());	
-		return currentDate;
-	}
 	
 }
