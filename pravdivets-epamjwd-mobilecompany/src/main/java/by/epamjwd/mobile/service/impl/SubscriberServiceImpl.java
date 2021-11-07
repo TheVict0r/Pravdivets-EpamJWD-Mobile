@@ -1,23 +1,14 @@
 package by.epamjwd.mobile.service.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.SubscriberDAO;
-import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
-import by.epamjwd.mobile.service.PlanService;
-import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
@@ -161,8 +152,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public void addNewSubscriber(User user, Subscriber subscriber) throws ServiceException {
 
-		System.out.println(user);
-		System.out.println(subscriber);
+		if (InputDataValidator.isUserValid(user) && InputDataValidator.isSubscriberValid(subscriber)) {
+
+			
+			
+		}
 		
 		
 	}
@@ -170,11 +164,17 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public void addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
 
-		System.out.println(subscriber);
-
+		//подумай - что должен возвращать этот метод?  (long ID можа быць)
 		
+		if (InputDataValidator.isSubscriberValid(subscriber)) {
+
+			try {
+				subscriberDao.addNewSubscriberToExistingUser(subscriber);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
+		}
+
 	}
 
-
-	
 }

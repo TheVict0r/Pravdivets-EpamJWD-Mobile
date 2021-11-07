@@ -155,4 +155,11 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	}
 
 
+	@Override
+	public void addNewSubscriberToExistingUser(Subscriber subscriber) throws DaoException {
+		// УЖЕ НАПИШИ ЭТОТ МЕТОД, БЛИН!!!
+		
+	}
+
+
 }
