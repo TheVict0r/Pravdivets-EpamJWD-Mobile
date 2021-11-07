@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class IsEmailTest {
 
-	private final String goodEmail1 = "chuck_norris@mail.ru";
+	private final String goodEmail1 = "Chuck_Norris@mail.ru";
 	private final String goodEmail2 = "j.c.van-damme@mail.ru";
 	private final String goodEmail3 = "panin@google.com";
 	private final String goodEmail4 = "DooM-2@idsoftware.com";

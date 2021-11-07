@@ -2,10 +2,10 @@
 <Configuration>
     <Properties>
         <Property name="property_console">
-            %d{HH:mm:ss} %-5level %logger{1} - %msg%n
+            %d{HH:mm:ss} %-5level %logger{3} line %L - %msg%n
         </Property>
         <Property name="property_file">
-            %d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{6} - %msg%n
+            %d{yyyy-MM-dd HH:mm:ss} %-5level [%t] %logger{5} line %L - %msg%n
         </Property>
     </Properties>
     <Appenders>
@@ -18,11 +18,11 @@
             <Policies>
                 <SizeBasedTriggeringPolicy size="100 K"/>
             </Policies>
-            <DefaultRolloverStrategy max="10"/>
+            <DefaultRolloverStrategy max="20"/>
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="all">
+        <Root level="ERROR">
             <AppenderRef ref="File"/>
             <AppenderRef ref="Console"/>
         </Root>
