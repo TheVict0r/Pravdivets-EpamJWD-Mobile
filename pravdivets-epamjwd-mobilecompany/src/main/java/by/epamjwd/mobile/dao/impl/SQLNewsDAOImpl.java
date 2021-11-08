@@ -25,7 +25,7 @@ public class SQLNewsDAOImpl extends AbstractDao<NewsArticle> implements NewsDAO 
 	}
 
 	@Override
-	public Optional<NewsArticle> getArticleByID(int id) throws DaoException {
+	public Optional<NewsArticle> getArticleByID(long id) throws DaoException {
 		return findById(id);
 	}
 

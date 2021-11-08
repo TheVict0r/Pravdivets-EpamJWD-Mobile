@@ -10,7 +10,7 @@ public interface NewsService {
 
 	public List<NewsArticle> findAllNews() throws ServiceException;
 	
-	public Optional<NewsArticle> findArticleByID(int id) throws ServiceException;
+	public Optional<NewsArticle> findArticleByID(long id) throws ServiceException;
 	
 	
 }

@@ -25,7 +25,7 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public Optional<NewsArticle> findArticleByID(int id) throws ServiceException {
+	public Optional<NewsArticle> findArticleByID(long id) throws ServiceException {
 		try {
 			return newsDao.getArticleByID(id);
 		} catch (DaoException e) {
