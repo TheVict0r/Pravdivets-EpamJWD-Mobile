@@ -3,8 +3,6 @@ package by.epamjwd.mobile.dao;
 import java.util.List;
 import java.util.Optional;
 
-import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.dao.exception.DaoException;
 
 public interface Dao<T> {
@@ -42,10 +40,6 @@ public interface Dao<T> {
      * @param item entity object to save
      * @throws DaoException
      */
-
-    
-    
-    
     long save(T item) throws DaoException;
 
     /**

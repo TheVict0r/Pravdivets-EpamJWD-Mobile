@@ -16,15 +16,12 @@ import by.epamjwd.mobile.bean.Identifiable;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 import by.epamjwd.mobile.dao.exception.DaoException;
-import by.epamjwd.mobile.dao.impl.SQLUserDAOImpl;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
 
 public abstract class AbstractQueryExecutor<T extends Identifiable> {
 	private final static Logger LOGGER = LogManager.getLogger(AbstractQueryExecutor.class);
 
 	public final static String BASE_NAME = "db";
-	// CHECK CODE DUPLICATION FOR "BASE_NAME" WITH LISTENER
-
 	
     private final RowMapper<T> rowMapper;
 
@@ -102,14 +99,7 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 		} catch (NullPointerException e) {
 			LOGGER.error("NullPointerException in ConnectionPool", e);
 			throw new DaoException("NullPointerException in ConnectionPool", e);
-		} finally {
-			try {
-				pool.releaseConnection(connection);
-			} catch (ConnectionPoolException e) {
-				LOGGER.error("Unable to release connection", e);
-				throw new DaoException("Unable to release connection", e);
-			}
-		}
+		} 
 	}
 
     private List<T> createEntitiesList(ResultSet resultSet) throws DaoException {

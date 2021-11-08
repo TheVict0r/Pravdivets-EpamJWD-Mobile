@@ -34,8 +34,6 @@ import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 public final class ConnectionPool {
 
-	//public final static String BASE_NAME = "db";
-	
 	private static final int DEFAULT_POOL_SIZE = 5;
 	private BlockingQueue<Connection> connectionQueue;
 	private BlockingQueue<Connection> givenAwayConQueue;

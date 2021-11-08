@@ -14,6 +14,8 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class SubscriberServiceImpl implements SubscriberService {
+	private static final long ERROR_ID = -1;
+	
 	DAOProvider provider = DAOProvider.getInstance();
 	SubscriberDAO subscriberDao = provider.getSubscriberDAO();
 	
@@ -162,18 +164,20 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	@Override
-	public void addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
+	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
 
-		//подумай - что должен возвращать этот метод?  (long ID можа быць)
+		long resultId = ERROR_ID;
 		
 		if (InputDataValidator.isSubscriberValid(subscriber)) {
 
 			try {
-				subscriberDao.addNewSubscriberToExistingUser(subscriber);
+				resultId = subscriberDao.addNewSubscriberToExistingUser(subscriber);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
 		}
+		
+		return resultId;
 
 	}
 

@@ -31,5 +31,6 @@ public class PagePath {
 	public static final String ERROR_REDIRECT = "/controller?command=go_to_error_page";
 	public static final String ADD_SUBSCRIBER = "WEB-INF/jsp/add-subscriber.jsp";
 	public static final String ADD_SUBSCRIBER_REDIRECT = "/controller?command=go_to_add_subscriber_page";
+	public static final String NEW_SUBSCRIBER_REDIRECT = "/controller?command=show_subscriber_by_id";
 
 }

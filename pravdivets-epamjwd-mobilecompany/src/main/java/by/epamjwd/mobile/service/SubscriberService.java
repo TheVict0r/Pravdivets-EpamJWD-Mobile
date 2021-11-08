@@ -25,7 +25,7 @@ public interface SubscriberService {
 	boolean isPhoneAvailable(int phone) throws ServiceException;
 	boolean isNewSubscriberUser(String passport) throws ServiceException;
 	void addNewSubscriber(User user, Subscriber subscriber)throws ServiceException;
-	void addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException;
+	long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException;
 	
 	
 }

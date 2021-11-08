@@ -51,6 +51,8 @@ public class AddSubscriberCommand implements Command{
 		String subscriberUserFlag = (String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG)));
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_FLAG);
 		
+		long subscriberId = -1L; 
+		
 		RouteHelper result = null;
 		
 		if(subscriberUserFlag.equals(AttributeValue.NEW)) {
@@ -71,19 +73,17 @@ public class AddSubscriberCommand implements Command{
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
 			long userId = currentUser.getId();
-			
 			try {
 				Subscriber subscriber = this.buildSubscriber(phone, planId, userId);
-				subscriberService.addNewSubscriberToExistingUser(subscriber);
+				subscriberId = subscriberService.addNewSubscriberToExistingUser(subscriber);
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber to existing user with passport number - " + passport, e);
 				result = RouteHelper.ERROR;
 			}
-			
-				
 		}
 		
-		result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
+		session.setAttribute(AttributeName.SUBSCRIBER_ID, subscriberId);
+		result = new RouteHelper(PagePath.NEW_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 		
 		return result;
 	}
