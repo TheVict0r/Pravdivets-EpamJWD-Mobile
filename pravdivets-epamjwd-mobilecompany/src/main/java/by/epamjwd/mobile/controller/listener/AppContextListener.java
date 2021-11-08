@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
+import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 
 public class AppContextListener implements ServletContextListener  {
@@ -19,7 +20,12 @@ public class AppContextListener implements ServletContextListener  {
 	public void contextInitialized(ServletContextEvent sce) {
 		ConnectionPool pool = null;
 			pool = ConnectionPool.getInstance();
-			pool.initPoolData(BASE_NAME);
+			try {
+				pool.initPoolData(BASE_NAME);
+			} catch (ConnectionPoolException e) {
+				LOGGER.error("Unable to initialize connection pool", e);
+				throw new RuntimeException("Unable to initialize connection pool.", e);
+			}
 	}
 	
 	
@@ -27,7 +33,12 @@ public class AppContextListener implements ServletContextListener  {
 	public void contextDestroyed(ServletContextEvent sce) {
 		ConnectionPool pool = null;
 		pool = ConnectionPool.getInstance();
-		pool.dispose();
+		try {
+			pool.dispose();
+		} catch (ConnectionPoolException e) {
+			LOGGER.error("Unable to dispose connection pool", e);
+			throw new RuntimeException("Unable to dispose connection pool.", e);
+		}
 		
 		
 	}

@@ -18,14 +18,14 @@ public class ConnectionPoolMain {
 	public static final String SELECT_FROM_NEWS = "SELECT * FROM NEWS";
 	static Logger logger = LogManager.getLogger(ConnectionPool.class);
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ConnectionPoolException {
 		
 		//printTable(SELECT_FROM_REGIONS);
 		printTable(SELECT_FROM_NEWS);
 		
 	}
 
-	public static void printTable(String sqlRequest) {
+	public static void printTable(String sqlRequest) throws ConnectionPoolException {
 		ConnectionPool pool = null;
 		Connection connection = null;
 		Statement statement = null;
