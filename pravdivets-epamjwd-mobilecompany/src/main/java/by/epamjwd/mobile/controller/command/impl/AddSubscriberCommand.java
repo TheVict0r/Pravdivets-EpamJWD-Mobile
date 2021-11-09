@@ -1,6 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,7 @@ public class AddSubscriberCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
+		UserService userService = serviceProvider.getUserService();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
 		CustomerService customerService = serviceProvider.getCustomerService();
 
@@ -65,16 +67,30 @@ public class AddSubscriberCommand implements Command{
 			String lastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
 			String email = request.getParameter(ParameterName.EMAIL);
 			
+			Optional<User> optionalUser = Optional.empty();
+			try {
+				optionalUser = userService.findUserByEmail(email);
+			} catch (ServiceException e1) {
+				LOGGER.error("Error when checking user existence by e-mail " + email, e1);
+				result = RouteHelper.ERROR;
+			}
+			if(optionalUser.isPresent()) {
+				session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
+				//и ещё один аттрибут про ошибку запихни а также придумай, что делать с ФИО и e-mail
+				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT); 
+			}
+			
 			try {
 				User user = this.buildUser(firstName, middleName, lastName, passport, email);
 				Subscriber subscriber = this.buildSubscriber(phone, planId, EMPTY_ID);
 				subscriberId = customerService.addNewCustomer(user, subscriber);
-				
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
 				result = RouteHelper.ERROR;
 			}
-		} else {
+			
+			
+		} else  {
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
 			long userId = currentUser.getId();
