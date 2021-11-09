@@ -167,7 +167,7 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 						   subscriber.getAccount(), 
 						   subscriber.getPhone(), 
 						   subscriber.getStatusDate(), 
-						  (subscriber.getStatus().ordinal() + 1), 
+						  (subscriber.getStatus().ordinal() + 1), //as status id in database begins from 1, not from 0
 						   subscriber.getPlanId(), 
 						   subscriber.getUserId()};
 				

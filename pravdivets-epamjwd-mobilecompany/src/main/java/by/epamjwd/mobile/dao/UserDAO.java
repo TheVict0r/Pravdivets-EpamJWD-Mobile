@@ -22,5 +22,6 @@ public interface UserDAO {
 	Optional<User> findUserById(long id) throws DaoException;
 	Optional<User> findUserByPassport(String passport) throws DaoException;
 	List<User> findUsersListByFullName(String firstName, String middleName, String lastName) throws DaoException;
+	long addUser(User user) throws DaoException;
 	
 }

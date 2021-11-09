@@ -25,6 +25,7 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
+import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.DateProvider;
 
@@ -65,6 +66,12 @@ public class AddSubscriberCommand implements Command{
 				User user = this.buildUser(firstName, middleName, lastName, passport, email);
 				Subscriber subscriber = this.buildSubscriber(phone, planId, EMPTY_ID);
 				subscriberService.addNewSubscriber(user, subscriber);
+				//maybe customerService.addNewCustomer(user, subscriber);
+				
+//				UserService userService = serviceProvider.getUserService();
+//				long userId = userService.addUser(user);
+//				System.out.println(userId);
+				
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
 				result = RouteHelper.ERROR;
