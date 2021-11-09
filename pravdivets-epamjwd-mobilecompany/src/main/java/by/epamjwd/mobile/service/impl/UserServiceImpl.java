@@ -76,6 +76,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean isPasswordCorrect(User user, String password) {
 		boolean result = false;
+		if(password.isBlank() || password == null || user == null) {
+			return false;
+		}
+		
 		if (InputDataValidator.isUserValid(user)) {
 			result = HashGenerator.generateHash(password).equals(user.getPassword());
 		}

@@ -21,6 +21,7 @@ import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO{
+	private static final long ERROR_ID = -1;
 
 	private final static Logger LOGGER = LogManager.getLogger(SQLCustomerDAOImpl.class);
 
@@ -31,7 +32,7 @@ public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO
 
 	@Override
 	public long addNewCustomer(User user, Subscriber subscriber) throws DaoException {
-		long subscriberID = -1L;
+		long subscriberID = ERROR_ID;
 		long userID;
 		
 		Connection connection = null;
