@@ -16,8 +16,6 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 
 	private final static String ADD_NEW_USER = "INSERT INTO `mobile`.`users` (`first_name`, `middle_name`, `last_name`, `passport`, `email`, `role_id`) VALUES (?, ?, ?, ?, ?, ?)";
 			
-	
-	
 	public SQLUserDAOImpl() {
         super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
 	}

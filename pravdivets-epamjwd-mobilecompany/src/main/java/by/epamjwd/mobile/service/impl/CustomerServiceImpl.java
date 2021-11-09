@@ -10,7 +10,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class CustomerServiceImpl implements CustomerService  {
-
 	private static final long ERROR_ID = -1L;
 	
 	DAOProvider provider = DAOProvider.getInstance();

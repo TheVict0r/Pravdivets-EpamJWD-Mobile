@@ -10,9 +10,9 @@ import by.epamjwd.mobile.dao.exception.DaoException;
 
 public class SQLCustomerDAOImpl implements CustomerDAO{
 
-	DAOProvider provider = DAOProvider.getInstance();
-	UserDAO userDAO = provider.getUserDAO();
-	SubscriberDAO subscriberDAO = provider.getSubscriberDAO();
+	//DAOProvider provider = DAOProvider.getInstance();
+	UserDAO userDAO = new SQLUserDAOImpl();
+	SubscriberDAO subscriberDAO = new SQLSubscriberDAOImpl();
 	
 	
 	@Override
