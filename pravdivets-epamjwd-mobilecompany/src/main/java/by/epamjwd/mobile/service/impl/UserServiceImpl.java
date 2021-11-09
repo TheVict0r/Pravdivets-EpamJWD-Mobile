@@ -79,13 +79,11 @@ public class UserServiceImpl implements UserService {
 		if (InputDataValidator.isUserValid(user)) {
 			result = user.getPassword().equals(HashGenerator.generateHash(password));
 		}
-		
-		//result = user.getPassword().equals(HashGenerator.generateHash(password));
 		return result;
 	}
 
 	@Override
-	public long addUser(User user) throws ServiceException {
+	public long addNewUser(User user) throws ServiceException {
 		long userId = ERROR_ID;
 		if (InputDataValidator.isUserValid(user)) {
 			try {

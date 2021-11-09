@@ -3,6 +3,7 @@ package by.epamjwd.mobile.dao;
 import by.epamjwd.mobile.dao.impl.SQLSubscriberDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLAdminDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLConsultantDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLCustomerDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLPlanDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLServiceDAOImpl;
@@ -15,6 +16,7 @@ public class DAOProvider {
 	private ConsultantDAO consultantDAO = new SQLConsultantDAOImpl();
 	private NewsDAO newsDao             = new SQLNewsDAOImpl();
 	private UserDAO userDAO             = new SQLUserDAOImpl();
+	private CustomerDAO customerDAO     = new SQLCustomerDAOImpl();
 	private PlanDAO planDAO 			= new SQLPlanDAOImpl();
 	private ServiceDAO serviceDAO 		= new SQLServiceDAOImpl();
 	
@@ -52,6 +54,10 @@ public class DAOProvider {
 		return userDAO;
 	}
 
+	public CustomerDAO getCustomerDAO() {
+		return customerDAO;
+	}
+	
 	public PlanDAO getPlanDAO() {
 		return planDAO;
 	}

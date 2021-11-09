@@ -122,8 +122,6 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 			   (user.getRole().ordinal() + 1) }; //as role id in database begins from 1, not from 0
 		userId = executeInsertQuery(ADD_NEW_USER, params);
 		
-		System.out.println(userId);
-		
 		return userId;
 	}
 	

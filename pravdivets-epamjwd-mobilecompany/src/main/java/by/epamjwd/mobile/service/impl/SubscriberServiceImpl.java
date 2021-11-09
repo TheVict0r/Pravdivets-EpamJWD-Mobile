@@ -152,18 +152,6 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 
 	@Override
-	public void addNewSubscriber(User user, Subscriber subscriber) throws ServiceException {
-
-		if (InputDataValidator.isUserValid(user) && InputDataValidator.isSubscriberValid(subscriber)) {
-
-			
-			
-		}
-		
-		
-	}
-
-	@Override
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
 
 		long resultId = ERROR_ID;

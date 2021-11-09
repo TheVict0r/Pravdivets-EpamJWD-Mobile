@@ -22,6 +22,7 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
+import by.epamjwd.mobile.service.CustomerService;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
@@ -33,6 +34,7 @@ public class AddSubscriberCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
 	private final static String EMPTY_STRING = "";
 	private final static long EMPTY_ID = 0L;
+	private final static long ERROR_ID = -1L;
 	
 	
 	@Override
@@ -40,6 +42,7 @@ public class AddSubscriberCommand implements Command{
 		HttpSession session = request.getSession();
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
+		CustomerService customerService = serviceProvider.getCustomerService();
 
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
 		session.removeAttribute(AttributeName.PASSPORT);
@@ -52,7 +55,7 @@ public class AddSubscriberCommand implements Command{
 		String subscriberUserFlag = (String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG)));
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_FLAG);
 		
-		long subscriberId = -1L; 
+		long subscriberId = ERROR_ID; 
 		
 		RouteHelper result = null;
 		
@@ -65,12 +68,7 @@ public class AddSubscriberCommand implements Command{
 			try {
 				User user = this.buildUser(firstName, middleName, lastName, passport, email);
 				Subscriber subscriber = this.buildSubscriber(phone, planId, EMPTY_ID);
-				subscriberService.addNewSubscriber(user, subscriber);
-				//maybe customerService.addNewCustomer(user, subscriber);
-				
-//				UserService userService = serviceProvider.getUserService();
-//				long userId = userService.addUser(user);
-//				System.out.println(userId);
+				subscriberId = customerService.addNewCustomer(user, subscriber);
 				
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
