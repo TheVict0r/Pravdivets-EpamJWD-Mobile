@@ -8,12 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.controller.listener.AppContextListener;
 import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.CustomerDAO;
-import by.epamjwd.mobile.dao.DAOProvider;
-import by.epamjwd.mobile.dao.SubscriberDAO;
-import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 import by.epamjwd.mobile.dao.exception.DaoException;

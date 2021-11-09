@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public Optional<User> findUserById(long id) throws ServiceException {
-		Optional<User> user;
+		Optional<User> user = Optional.empty();
 		try {
 			user = userDao.findUserById(id);
 		} catch (DaoException e) {
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Optional<User> findUserByEmail(String email) throws ServiceException {
-		Optional<User> user;
+		Optional<User> user = Optional.empty();
 		try {
 			user = userDao.findUserByEmail(email);
 		} catch (DaoException e) {
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws ServiceException {
-		Optional<User> user;
+		Optional<User> user = Optional.empty();
 		try {
 			user = userDao.findUserByPassport(passport);
 		} catch (DaoException e) {
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public Optional<User> findUserByPhone(int phone) throws ServiceException {
-		Optional<User> user;
+		Optional<User> user = Optional.empty();
 		try {
 			user = userDao.findUserByPhone(phone);
 		} catch (DaoException e) {
