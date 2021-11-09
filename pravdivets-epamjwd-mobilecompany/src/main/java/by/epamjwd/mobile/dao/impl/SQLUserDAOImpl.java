@@ -14,7 +14,7 @@ import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 
-	private final static String ADD_NEW_USER = "INSERT INTO `mobile`.`users` (`first_name`, `middle_name`, `last_name`, `passport`, `email`, `role_id`) VALUES (?, ?, ?, ?, ?, ?)";
+	public final static String ADD_NEW_USER = "INSERT INTO `mobile`.`users` (`first_name`, `middle_name`, `last_name`, `passport`, `email`, `role_id`) VALUES (?, ?, ?, ?, ?, ?)";
 			
 	public SQLUserDAOImpl() {
         super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
@@ -111,13 +111,8 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	public long addUser(User user) throws DaoException {
 		long userId;
 		
-		Object[] params = {
-				user.getFirstName(), 
-				user.getMiddleName(), 
-				user.getLastName(), 
-				user.getPassport(), 
-				user.getEmail(), 
-			   (user.getRole().ordinal() + 1) }; //as role id in database begins from 1, not from 0
+		Object[] params = SQLParametersHelper.provideUserParameters(user);
+			
 		userId = executeInsertQuery(ADD_NEW_USER, params);
 		
 		return userId;

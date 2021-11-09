@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 	public boolean isPasswordCorrect(User user, String password) {
 		boolean result = false;
 		if (InputDataValidator.isUserValid(user)) {
-			result = user.getPassword().equals(HashGenerator.generateHash(password));
+			result = HashGenerator.generateHash(password).equals(user.getPassword());
 		}
 		return result;
 	}
