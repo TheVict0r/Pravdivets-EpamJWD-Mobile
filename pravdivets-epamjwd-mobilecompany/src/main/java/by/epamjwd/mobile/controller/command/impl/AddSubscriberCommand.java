@@ -29,7 +29,6 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.DateProvider;
 
 public class AddSubscriberCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
@@ -61,25 +60,24 @@ public class AddSubscriberCommand implements Command{
 		
 		RouteHelper result = null;
 		
-		if(subscriberUserFlag.equals(AttributeValue.NEW)) {
+		if (subscriberUserFlag.equals(AttributeValue.NEW)) {
 			String firstName = request.getParameter(ParameterName.SUBSCRIBER_USER_FIRST_NAME);
 			String middleName = request.getParameter(ParameterName.SUBSCRIBER_USER_MIDDLE_NAME);
 			String lastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
 			String email = request.getParameter(ParameterName.EMAIL);
-			
-			Optional<User> optionalUser = Optional.empty();
+
 			try {
-				optionalUser = userService.findUserByEmail(email);
+				if (userService.findUserByEmail(email).isPresent()) {
+					session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
+					// и ещё один аттрибут про ошибку запихни а также придумай, что делать с ФИО и
+					// e-mail
+					return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+				}
 			} catch (ServiceException e1) {
-				LOGGER.error("Error when checking user existence by e-mail " + email, e1);
+				LOGGER.error("Error when verifying the existence of a user by e-mail " + email, e1);
 				result = RouteHelper.ERROR;
 			}
-			if(optionalUser.isPresent()) {
-				session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
-				//и ещё один аттрибут про ошибку запихни а также придумай, что делать с ФИО и e-mail
-				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT); 
-			}
-			
+
 			try {
 				User user = this.buildUser(firstName, middleName, lastName, passport, email);
 				Subscriber subscriber = this.buildSubscriber(phone, planId, EMPTY_ID);
@@ -88,8 +86,7 @@ public class AddSubscriberCommand implements Command{
 				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
 				result = RouteHelper.ERROR;
 			}
-			
-			
+
 		} else  {
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
