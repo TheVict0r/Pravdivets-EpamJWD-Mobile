@@ -31,5 +31,11 @@ public class CommandName {
 	public static final String PREPARE_NEW_SUBSCRIBER = "prepare_new_subscriber";
 	public static final String SWITCH_LOCALE = "switch_locale";
 	public static final String GO_TO_ERROR_PAGE = "go_to_error_page";
+	public static final String EDIT_PERSONAL_DATA = "edit_personal_data";
+	public static final String CHANGE_PHONE = "change_phone";
+	public static final String CHANGE_PLAN = "change_plan";
+	public static final String PREPARE_EDIT_PERSONAL_DATA = "prepare_edit_personal_data";
+	public static final String PREPARE_CHANGE_PHONE = "prepare_change_phone";
+	public static final String PREPARE_CHANGE_PLAN = "prepare_change_plan";
 
 }

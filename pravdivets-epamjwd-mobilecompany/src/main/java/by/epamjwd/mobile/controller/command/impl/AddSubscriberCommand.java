@@ -46,30 +46,26 @@ public class AddSubscriberCommand implements Command{
 		CustomerService customerService = serviceProvider.getCustomerService();
 
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
-		
 		int phone = NumericParser.parseIntValue(session.getAttribute(AttributeName.PHONE));
-		
 		long planId = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
-		
 		String subscriberUserFlag = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG));
 		
 		long subscriberId = ERROR_ID; 
-		
 		RouteHelper result = null;
 		
 		if (subscriberUserFlag.equals(AttributeValue.NEW)) {
-			String firstName = request.getParameter(ParameterName.SUBSCRIBER_USER_FIRST_NAME);
-			String middleName = request.getParameter(ParameterName.SUBSCRIBER_USER_MIDDLE_NAME);
-			String lastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
-			String email = request.getParameter(ParameterName.EMAIL);
+				String firstName = request.getParameter(ParameterName.SUBSCRIBER_USER_FIRST_NAME);
+				String middleName = request.getParameter(ParameterName.SUBSCRIBER_USER_MIDDLE_NAME);
+				String lastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
+				String email = request.getParameter(ParameterName.EMAIL);
 
 			try {
 				if (userService.findUserByEmail(email).isPresent()) {
-					session.setAttribute(AttributeName.SUBSCRIBER_USER_FIRST_NAME, firstName);
-					session.setAttribute(AttributeName.SUBSCRIBER_USER_MIDDLE_NAME, middleName);
-					session.setAttribute(AttributeName.SUBSCRIBER_USER_LAST_NAME, lastName);
-					session.setAttribute(AttributeName.EMAIL, email);
-					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_EMAIL);
+						session.setAttribute(AttributeName.ERROR, AttributeValue.BOOKED_EMAIL);
+						session.setAttribute(AttributeName.SUBSCRIBER_USER_FIRST_NAME, firstName);
+						session.setAttribute(AttributeName.SUBSCRIBER_USER_MIDDLE_NAME, middleName);
+						session.setAttribute(AttributeName.SUBSCRIBER_USER_LAST_NAME, lastName);
+						session.setAttribute(AttributeName.EMAIL, email);
 					return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 				}
 			} catch (ServiceException e1) {
@@ -91,7 +87,6 @@ public class AddSubscriberCommand implements Command{
 		} else  {
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
-			
 			removeUnusedAttributes(session);
 			
 			long userId = currentUser.getId();

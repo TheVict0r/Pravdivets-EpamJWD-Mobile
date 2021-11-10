@@ -38,5 +38,6 @@ public class AttributeName {
 	public static final String CALCULATOR_BEST_PLAN = "best_plan";
 	public static final String SESSION_TIME_OUT = "session_time_out";
 	public static final String SESSION_LOCALE = "session_locale";
+	public static final String ACTIVATE_EDIT = "activate_edit";
 
 }

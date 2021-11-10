@@ -23,9 +23,15 @@ import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
+import by.epamjwd.mobile.controller.command.impl.PrepareChangePhoneCommand;
+import by.epamjwd.mobile.controller.command.impl.PrepareChangePlanCommand;
+import by.epamjwd.mobile.controller.command.impl.PrepareEditPersonalDataCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangePlanCommand;
+import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
 import by.epamjwd.mobile.controller.command.impl.PrepareNewSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToAddSubscriberPageCommand;
@@ -73,6 +79,12 @@ public class CommandProvider {
 		allCommands.put(CommandName.ADD_SUBSCRIBER, new AddSubscriberCommand());
 		allCommands.put(CommandName.PREPARE_NEW_SUBSCRIBER, new PrepareNewSubscriberCommand());
 		allCommands.put(CommandName.SWITCH_LOCALE, new SwitchLocaleCommand());
+		allCommands.put(CommandName.EDIT_PERSONAL_DATA, new EditPersonalDataCommand());
+		allCommands.put(CommandName.CHANGE_PHONE, new ChangePhoneCommand());
+		allCommands.put(CommandName.CHANGE_PLAN, new ChangePlanCommand());
+		allCommands.put(CommandName.PREPARE_EDIT_PERSONAL_DATA, new PrepareEditPersonalDataCommand());
+		allCommands.put(CommandName.PREPARE_CHANGE_PHONE, new PrepareChangePhoneCommand());
+		allCommands.put(CommandName.PREPARE_CHANGE_PLAN, new PrepareChangePlanCommand());
 	}
 
     public static CommandProvider getInstance() {

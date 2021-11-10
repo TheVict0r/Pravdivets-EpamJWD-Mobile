@@ -72,14 +72,12 @@
 								</td>
 						</tr>
 					</table>
-
-					<c:if test="${sessionScope.error eq 'wrong_email'}">
+					<c:if test="${sessionScope.error eq 'booked_email'}">
 						<p class="row justify-content-center mx-auto text-success text-danger fw-normal">
-							<fmt:message key="add-subscriber.wrong-email" />
+							<fmt:message key="add-subscriber.booked-email" />
 						</p>
 						<c:remove var="error" />
 					</c:if>
-
 				</c:when>
 				<c:otherwise>
 					<div
