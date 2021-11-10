@@ -36,33 +36,50 @@
 			</div>
 			<c:choose>
 				<c:when test="${sessionScope.subscriber_user_flag eq 'new'}">
+
 					<table>
 						<tr>
 							<td><label for="subscriber_user_last_name" class="form-label"><fmt:message
 										key="add-subscriber.last-name" />:</label></td>
 							<td><input type="text" class="form-control" name="subscriber_user_last_name"
-								id="subscriber_user_last_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
+								id="subscriber_user_last_name" pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" value="${sessionScope.subscriber_user_last_name}" required>
+								<c:remove var="subscriber_user_last_name" />
+								</td>
 						</tr>
 						<tr>
 							<td><label for="subscriber_user_first_name" class="form-label"><fmt:message
 										key="add-subscriber.first-name" />:</label></td>
 							<td><input type="text" class="form-control"
 								name="subscriber_user_first_name" id="subscriber_user_first_name"
-								pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required></td>
+								pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" value="${sessionScope.subscriber_user_first_name}" required>
+								<c:remove var="subscriber_user_first_name" />
+								</td>
 						</tr>
 						<tr>
 							<td><label for="subscriber_user_middle_name" class="form-label"><fmt:message
 										key="add-subscriber.middle-name" />:</label></td>
 							<td><input type="text" class="form-control"
 								name="subscriber_user_middle_name" id="subscriber_user_middle_name"
-								pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"></td>
+								pattern="^[A-ZА-ЯЁ][a-zа-яё]+$" value="${sessionScope.subscriber_user_middle_name}">
+								<c:remove var="subscriber_user_middle_name" />
+								</td>
 						</tr>
 						<tr>
 							<td><label for="email" class="form-label">e-mail:</label></td>
 							<td><input type="email" class="form-control" name="email"
-								id="email" required></td>
+								id="email" value="${sessionScope.email}" required>
+								<c:remove var="email" />
+								</td>
 						</tr>
 					</table>
+
+					<c:if test="${sessionScope.error eq 'wrong_email'}">
+						<p class="row justify-content-center mx-auto text-success text-danger fw-normal">
+							<fmt:message key="add-subscriber.wrong-email" />
+						</p>
+						<c:remove var="error" />
+					</c:if>
+
 				</c:when>
 				<c:otherwise>
 					<div

@@ -54,20 +54,20 @@ public class PrepareNewSubscriberCommand implements Command {
 			session.setAttribute(AttributeName.ALL_PLANS, allPlans);
 			
 			if (subscriberService.isDebtor(passport)) {
-				List<Subscriber> debtSubscribers = subscriberService.findSubscriberListWithDebts(passport);
+				List<Subscriber> subscribersDebtors = subscriberService.findSubscribersDebtors(passport);
 				session.setAttribute(AttributeName.SUBSCRIBER_DEBTOR, AttributeValue.DEBTOR);
-				session.setAttribute(AttributeName.SUBSCRIBER_LIST, debtSubscribers);
+				session.setAttribute(AttributeName.SUBSCRIBER_LIST, subscribersDebtors);
 				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 			} else if (subscriberService.isNewSubscriberUser(passport)) {
 				session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
-			} else { //so this subscriber already has another phone number as well as User data 
+			} else { //so this subscriber already has another phone number as well as User data and is not debtor
 				User currentUser = userService.findUserByPassport(passport).get();
 				session.setAttribute(AttributeName.SUBSCRIBER_USER, currentUser);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to check the passport" + passport, e);
+			LOGGER.error("Unable to check the passport for new subscriber - " + passport, e);
 			result = RouteHelper.ERROR;
 			// подумай - может ещё куда-то послать? Напр., на ту же страницу но с указанием
 			// ошибки

@@ -133,12 +133,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	@Override
 	public boolean isDebtor(String passport) throws ServiceException {
-		List<Subscriber> subscribersWithDebts = findSubscriberListWithDebts(passport);
+		List<Subscriber> subscribersWithDebts = findSubscribersDebtors(passport);
 		return subscribersWithDebts.size() > 0;
 	}
 
 	@Override
-	public List<Subscriber> findSubscriberListWithDebts(String passport) throws ServiceException {
+	public List<Subscriber> findSubscribersDebtors(String passport) throws ServiceException {
 		List<Subscriber> subscribers = findSubscriberListByPassport(passport);
 		List<Subscriber> subscribersWithDebts = new ArrayList<>();
 		for(Subscriber subscriber : subscribers) {

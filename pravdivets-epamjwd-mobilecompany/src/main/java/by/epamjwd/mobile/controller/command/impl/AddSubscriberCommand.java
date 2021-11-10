@@ -46,15 +46,12 @@ public class AddSubscriberCommand implements Command{
 		CustomerService customerService = serviceProvider.getCustomerService();
 
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
-		session.removeAttribute(AttributeName.PASSPORT);
 		
-		int phone = Integer.parseInt(String.valueOf(session.getAttribute(AttributeName.PHONE)));
-		session.removeAttribute(AttributeName.PHONE);
+		int phone = NumericParser.parseIntValue(session.getAttribute(AttributeName.PHONE));
 		
 		long planId = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
 		
-		String subscriberUserFlag = (String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG)));
-		session.removeAttribute(AttributeName.SUBSCRIBER_USER_FLAG);
+		String subscriberUserFlag = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG));
 		
 		long subscriberId = ERROR_ID; 
 		
@@ -68,15 +65,19 @@ public class AddSubscriberCommand implements Command{
 
 			try {
 				if (userService.findUserByEmail(email).isPresent()) {
-					session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
-					// и ещё один аттрибут про ошибку запихни а также придумай, что делать с ФИО и
-					// e-mail
+					session.setAttribute(AttributeName.SUBSCRIBER_USER_FIRST_NAME, firstName);
+					session.setAttribute(AttributeName.SUBSCRIBER_USER_MIDDLE_NAME, middleName);
+					session.setAttribute(AttributeName.SUBSCRIBER_USER_LAST_NAME, lastName);
+					session.setAttribute(AttributeName.EMAIL, email);
+					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_EMAIL);
 					return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 				}
 			} catch (ServiceException e1) {
 				LOGGER.error("Error when verifying the existence of a user by e-mail " + email, e1);
 				result = RouteHelper.ERROR;
 			}
+
+			removeUnusedAttributes(session);
 
 			try {
 				User user = this.buildUser(firstName, middleName, lastName, passport, email);
@@ -90,6 +91,9 @@ public class AddSubscriberCommand implements Command{
 		} else  {
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
+			
+			removeUnusedAttributes(session);
+			
 			long userId = currentUser.getId();
 			try {
 				Subscriber subscriber = this.buildSubscriber(phone, planId, userId);
@@ -124,6 +128,13 @@ public class AddSubscriberCommand implements Command{
 				new Date(), SubscriberStatus.ACTIVE, planId, userId);
 		
 		return subscriber;
+	}
+	
+	private void removeUnusedAttributes(HttpSession session) {
+		session.removeAttribute(AttributeName.SUBSCRIBER_USER_FLAG);
+		session.removeAttribute(AttributeName.PASSPORT);
+		session.removeAttribute(AttributeName.PHONE);
+
 	}
 	
 }
