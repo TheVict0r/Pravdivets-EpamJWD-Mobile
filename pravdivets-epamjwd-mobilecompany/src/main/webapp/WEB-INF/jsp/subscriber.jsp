@@ -48,7 +48,7 @@
 							name="subscriber_user_last_name" id="subscriber_user_last_name"
 							pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$"
 							value="${sessionScope.subscriber_user.lastName}" required>
-							<c:remove var="subscriber_user_last_name" /></td>
+							</td>
 					</tr>
 					<tr>
 						<td><label for="subscriber_user_first_name"
@@ -58,7 +58,7 @@
 							name="subscriber_user_first_name" id="subscriber_user_first_name"
 							pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$"
 							value="${sessionScope.subscriber_user.firstName}" required>
-							<c:remove var="subscriber_user_first_name" /></td>
+							</td>
 					</tr>
 					<tr>
 						<td><label for="subscriber_user_middle_name"
@@ -67,14 +67,20 @@
 						<td><input type="text" class="form-control"
 							name="subscriber_user_middle_name"
 							id="subscriber_user_middle_name" pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"
-							value="${sessionScope.subscriber_user.middleName}"> <c:remove
-								var="subscriber_user_middle_name" /></td>
+							value="${sessionScope.subscriber_user.middleName}"></td>
+					</tr>
+					<tr>
+						<td><label for="passport" class="form-label"><fmt:message
+									key="add-subscriber.passport" />:</label></td>
+						<td><input type="passport" class="form-control" name="passport"
+							id="email" value="${sessionScope.subscriber_user.passport}" required>
+							</td>
 					</tr>
 					<tr>
 						<td><label for="email" class="form-label">e-mail:</label></td>
 						<td><input type="email" class="form-control" name="email"
 							id="email" value="${sessionScope.subscriber_user.email}" required>
-							<c:remove var="email" /></td>
+							</td>
 					</tr>
 					<tr>
 					<td></td>
