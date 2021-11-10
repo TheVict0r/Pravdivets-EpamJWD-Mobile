@@ -72,7 +72,7 @@
 					<tr>
 						<td><label for="passport" class="form-label"><fmt:message
 									key="add-subscriber.passport" />:</label></td>
-						<td><input type="passport" class="form-control" name="passport"
+						<td><input type="text" class="form-control" name="passport"
 							id="email" value="${sessionScope.subscriber_user.passport}" required>
 							</td>
 					</tr>
@@ -85,7 +85,7 @@
 					<tr>
 					<td></td>
 					<td><a class="login btn btn-outline-dark btn-sm"
-						href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_page"><fmt:message
+						href="${pageContext.request.contextPath}/controller?command=cancel_edit_subscriber_data"><fmt:message
 								key="subscriber.cancel" /></a></td>
 					<td><a class="login btn btn-primary btn-sm"
 						href="${pageContext.request.contextPath}/controller?command=edit_personal_data"><fmt:message
@@ -98,19 +98,17 @@
 						<td>${sessionScope.subscriber_user.firstName}
 							${sessionScope.subscriber_user.middleName}
 							${sessionScope.subscriber_user.lastName}</td>
-						<td><a class="login btn btn-outline-primary btn-sm"
-							href="${pageContext.request.contextPath}/controller?command=prepare_edit_personal_data"><fmt:message
-									key="subscriber.edit-personal-data" /></a></td>
 					</tr>
 					<tr>
 						<td><fmt:message key="subscriber.passport" /></td>
 						<td>${sessionScope.subscriber_user.passport}</td>
-						<td></td>
 					</tr>
 					<tr>
 						<td>e-mail:</td>
 						<td>${sessionScope.subscriber_user.email}</td>
-						<td></td>
+						<td><a class="login btn btn-outline-primary btn-sm"
+							href="${pageContext.request.contextPath}/controller?command=prepare_edit_personal_data"><fmt:message
+									key="subscriber.edit-personal-data" /></a></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

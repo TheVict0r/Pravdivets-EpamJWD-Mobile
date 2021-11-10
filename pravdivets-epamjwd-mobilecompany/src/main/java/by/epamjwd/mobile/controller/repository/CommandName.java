@@ -37,5 +37,6 @@ public class CommandName {
 	public static final String PREPARE_EDIT_PERSONAL_DATA = "prepare_edit_personal_data";
 	public static final String PREPARE_CHANGE_PHONE = "prepare_change_phone";
 	public static final String PREPARE_CHANGE_PLAN = "prepare_change_plan";
+	public static final String CANCEL_EDIT_SUBSCRIBER_DATA = "cancel_edit_subscriber_data";
 
 }

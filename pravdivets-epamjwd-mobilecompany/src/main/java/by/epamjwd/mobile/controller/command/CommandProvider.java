@@ -29,6 +29,7 @@ import by.epamjwd.mobile.controller.command.impl.PrepareEditPersonalDataCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
+import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
@@ -85,6 +86,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.PREPARE_EDIT_PERSONAL_DATA, new PrepareEditPersonalDataCommand());
 		allCommands.put(CommandName.PREPARE_CHANGE_PHONE, new PrepareChangePhoneCommand());
 		allCommands.put(CommandName.PREPARE_CHANGE_PLAN, new PrepareChangePlanCommand());
+		allCommands.put(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA, new CancelEditSubscriberDataCommand());
 	}
 
     public static CommandProvider getInstance() {
