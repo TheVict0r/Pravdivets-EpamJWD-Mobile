@@ -41,10 +41,50 @@
 			</tr>
 			<c:choose>
 				<c:when test="${sessionScope.activate_edit eq 'personal_data'}">
-					<td>ПЕРСОНАЛ ДЖЫЗУС!!!</td>
-					<td><a class="login btn btn-outline-primary btn-sm"
+					<tr>
+						<td><label for="subscriber_user_last_name" class="form-label"><fmt:message
+									key="add-subscriber.last-name" />:</label></td>
+						<td><input type="text" class="form-control"
+							name="subscriber_user_last_name" id="subscriber_user_last_name"
+							pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$"
+							value="${sessionScope.subscriber_user.lastName}" required>
+							<c:remove var="subscriber_user_last_name" /></td>
+					</tr>
+					<tr>
+						<td><label for="subscriber_user_first_name"
+							class="form-label"><fmt:message
+									key="add-subscriber.first-name" />:</label></td>
+						<td><input type="text" class="form-control"
+							name="subscriber_user_first_name" id="subscriber_user_first_name"
+							pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$"
+							value="${sessionScope.subscriber_user.firstName}" required>
+							<c:remove var="subscriber_user_first_name" /></td>
+					</tr>
+					<tr>
+						<td><label for="subscriber_user_middle_name"
+							class="form-label"><fmt:message
+									key="add-subscriber.middle-name" />:</label></td>
+						<td><input type="text" class="form-control"
+							name="subscriber_user_middle_name"
+							id="subscriber_user_middle_name" pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"
+							value="${sessionScope.subscriber_user.middleName}"> <c:remove
+								var="subscriber_user_middle_name" /></td>
+					</tr>
+					<tr>
+						<td><label for="email" class="form-label">e-mail:</label></td>
+						<td><input type="email" class="form-control" name="email"
+							id="email" value="${sessionScope.subscriber_user.email}" required>
+							<c:remove var="email" /></td>
+					</tr>
+					<tr>
+					<td></td>
+					<td><a class="login btn btn-outline-dark btn-sm"
+						href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_page"><fmt:message
+								key="subscriber.cancel" /></a></td>
+					<td><a class="login btn btn-primary btn-sm"
 						href="${pageContext.request.contextPath}/controller?command=edit_personal_data"><fmt:message
 								key="subscriber.edit" /></a></td>
+					</tr>
 				</c:when>
 				<c:otherwise>
 					<tr>
