@@ -189,7 +189,7 @@
 			</tr>
 			<tr>
 				<td><fmt:message key="subscriber.account-amount" /></td>
-				<td>${sessionScope.subscriber.account/100}руб.</td>
+				<td>${sessionScope.subscriber.account/100} <fmt:message key="subscriber.rub" /></td>
 				<td></td>
 			</tr>
 			<tr>
