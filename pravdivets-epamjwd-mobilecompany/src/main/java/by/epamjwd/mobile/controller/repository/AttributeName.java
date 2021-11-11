@@ -39,5 +39,7 @@ public class AttributeName {
 	public static final String SESSION_TIME_OUT = "session_time_out";
 	public static final String SESSION_LOCALE = "session_locale";
 	public static final String ACTIVATE_EDIT = "activate_edit";
+	public static final String NEW_PHONE_FORMAT = "new_phone_format";
+	public static final String NEW_PHONE = "new_phone";
 
 }

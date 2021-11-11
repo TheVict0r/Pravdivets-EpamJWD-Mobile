@@ -99,5 +99,13 @@ public class UserServiceImpl implements UserService {
 		return userId;
 	}
 
+	@Override
+	public User updateUser(User user) throws ServiceException {
+		if (InputDataValidator.isUserValid(user)) {
+			userDao.updateUser(user);
+		}
+
+	}
+
 	
 }

@@ -98,6 +98,9 @@ public class SubscriberCommandHelper {
 		session.removeAttribute(AttributeName.PHONE_FORMAT);
 		session.removeAttribute(AttributeName.PLAN);
 		session.removeAttribute(AttributeName.ALL_PLANS);
+		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
+		session.removeAttribute(AttributeName.NEW_PHONE_FORMAT);
+		session.removeAttribute(AttributeName.NEW_PHONE);
 	}
 	
 	private static class Holder {

@@ -16,6 +16,10 @@ public class CancelEditSubscriberDataCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
+		session.removeAttribute(AttributeName.NEW_PHONE_FORMAT);
+		session.removeAttribute(AttributeName.NEW_PHONE);
+		session.removeAttribute(AttributeName.ALL_PLANS);
+		
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 	}
 
