@@ -11,12 +11,12 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class PrepareChangePhoneCommand implements Command{
+public class ChangePlanPreparationCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();		
-		session.setAttribute(AttributeName.ACTIVATE_EDIT, AttributeValue.PHONE);
+		session.setAttribute(AttributeName.ACTIVATE_EDIT, AttributeValue.PLAN);
 
 		
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);

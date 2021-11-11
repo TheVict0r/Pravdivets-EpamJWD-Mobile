@@ -23,9 +23,9 @@ import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
-import by.epamjwd.mobile.controller.command.impl.PrepareChangePhoneCommand;
-import by.epamjwd.mobile.controller.command.impl.PrepareChangePlanCommand;
-import by.epamjwd.mobile.controller.command.impl.PrepareEditPersonalDataCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangePhonePreparationCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangePlanPreparationCommand;
+import by.epamjwd.mobile.controller.command.impl.EditPersonalDataPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
@@ -33,7 +33,7 @@ import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand
 import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
-import by.epamjwd.mobile.controller.command.impl.PrepareNewSubscriberCommand;
+import by.epamjwd.mobile.controller.command.impl.AddNewSubscriberPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
@@ -78,14 +78,14 @@ public class CommandProvider {
 		allCommands.put(CommandName.CALCULATOR, new CalculatorCommand());
 		allCommands.put(CommandName.SHOW_BEST_PLAN, new ShowBestPlanCommand());
 		allCommands.put(CommandName.ADD_SUBSCRIBER, new AddSubscriberCommand());
-		allCommands.put(CommandName.PREPARE_NEW_SUBSCRIBER, new PrepareNewSubscriberCommand());
+		allCommands.put(CommandName.ADD_NEW_SUBSCRIBER_PREPARATION, new AddNewSubscriberPreparationCommand());
 		allCommands.put(CommandName.SWITCH_LOCALE, new SwitchLocaleCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA, new EditPersonalDataCommand());
 		allCommands.put(CommandName.CHANGE_PHONE, new ChangePhoneCommand());
 		allCommands.put(CommandName.CHANGE_PLAN, new ChangePlanCommand());
-		allCommands.put(CommandName.PREPARE_EDIT_PERSONAL_DATA, new PrepareEditPersonalDataCommand());
-		allCommands.put(CommandName.PREPARE_CHANGE_PHONE, new PrepareChangePhoneCommand());
-		allCommands.put(CommandName.PREPARE_CHANGE_PLAN, new PrepareChangePlanCommand());
+		allCommands.put(CommandName.EDIT_PERSONAL_DATA_PREPARATION, new EditPersonalDataPreparationCommand());
+		allCommands.put(CommandName.CHANGE_PHONE_PREPARATION, new ChangePhonePreparationCommand());
+		allCommands.put(CommandName.CHANGE_PLAN_PREPARATION, new ChangePlanPreparationCommand());
 		allCommands.put(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA, new CancelEditSubscriberDataCommand());
 	}
 

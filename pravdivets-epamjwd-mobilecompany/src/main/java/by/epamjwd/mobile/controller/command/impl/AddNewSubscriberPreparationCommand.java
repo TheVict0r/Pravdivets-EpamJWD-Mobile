@@ -27,9 +27,9 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.PhoneFormatter;
 import by.epamjwd.mobile.util.PhoneGenerator;
 
-public class PrepareNewSubscriberCommand implements Command {
+public class AddNewSubscriberPreparationCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(PrepareNewSubscriberCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(AddNewSubscriberPreparationCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
