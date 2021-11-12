@@ -168,4 +168,15 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	}
 
+	@Override
+	public void updateSubscriber(Subscriber subscriber) throws ServiceException {
+		if (InputDataValidator.isSubscriberValid(subscriber)) {
+			try {
+				subscriberDao.updateSubscriber(subscriber);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
+		}
+	}
+
 }

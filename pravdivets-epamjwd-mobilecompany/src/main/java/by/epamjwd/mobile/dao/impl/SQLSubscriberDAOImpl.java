@@ -20,7 +20,8 @@ import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements SubscriberDAO{
 
-	public static final String ADD_SUBSCRIBER_TO_EXISTING_USER = "INSERT INTO `mobile`.`subscribers` (`contract_date`, `account`, `phone`, `status_date`, `status_id`,  `plan_id`, `user_id`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public static final String ADD_SUBSCRIBER_TO_EXISTING_USER = "INSERT INTO subscribers (contract_date, account, phone, status_date, status_id, plan_id`, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public static final String UPDATE_SUBSCRIBER = "UPDATE subscribers SET phone=?, status_date=?, status_id=?, plan_id=? WHERE id=?";
 
 	public SQLSubscriberDAOImpl() {
         super(RowMapperFactory.getInstance().getSubscriberRowMapper(), DBTableName.SUBSCRIBERS);
@@ -161,11 +162,19 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws DaoException {
 		long subscriderId;
 		
-		Object[] params = SQLParametersHelper.provideSubscriberParameters(subscriber);
+		Object[] params = SQLParametersHelper.provideNewSubscriberParameters(subscriber);
 				
 		subscriderId = executeInsertQuery(ADD_SUBSCRIBER_TO_EXISTING_USER, params);
 		return subscriderId;
 	}
 
+	@Override
+	public void updateSubscriber(Subscriber subscriber) throws DaoException {
+		Object[] params = SQLParametersHelper.provideUpdateSubscriberParameters(subscriber);
+		executeUpdateQuery(UPDATE_SUBSCRIBER, params);
+	}
 
+
+	
+	
 }

@@ -100,11 +100,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(User user) throws ServiceException {
+	public void updateUser(User user) throws ServiceException {
 		if (InputDataValidator.isUserValid(user)) {
-			userDao.updateUser(user);
+			try {
+				userDao.updateUser(user);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
 		}
-
 	}
 
 	

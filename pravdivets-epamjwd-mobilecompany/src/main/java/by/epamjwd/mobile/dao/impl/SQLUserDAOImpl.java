@@ -14,7 +14,8 @@ import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 
-	public final static String ADD_NEW_USER = "INSERT INTO `mobile`.`users` (`first_name`, `middle_name`, `last_name`, `passport`, `email`, `role_id`) VALUES (?, ?, ?, ?, ?, ?)";
+	public final static String ADD_NEW_USER = "INSERT INTO users (first_name, middle_name, last_name, passport, email, role_id) VALUES (?, ?, ?, ?, ?, ?)";
+	public final static String UPDATE_USER = "UPDATE users SET first_name=?, middle_name=?, last_name=?, passport=?, email=? WHERE id=?";
 			
 	public SQLUserDAOImpl() {
         super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
@@ -111,13 +112,20 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	public long addUser(User user) throws DaoException {
 		long userId;
 		
-		Object[] params = SQLParametersHelper.provideUserParameters(user);
+		Object[] params = SQLParametersHelper.provideNewUserParameters(user);
 			
 		userId = executeInsertQuery(ADD_NEW_USER, params);
 		
 		return userId;
 	}
 	
+
+	@Override
+	public void updateUser(User user) throws DaoException {
+		Object[] params = SQLParametersHelper.provideUpdateUserParameters(user);
+		executeUpdateQuery(UPDATE_USER, params);
+	}
+
 	
 	
 	@Override
@@ -176,6 +184,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 	
 	

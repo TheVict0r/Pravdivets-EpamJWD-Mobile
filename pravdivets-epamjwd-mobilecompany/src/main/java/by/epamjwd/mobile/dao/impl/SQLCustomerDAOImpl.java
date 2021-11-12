@@ -35,10 +35,10 @@ public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO
 		try {
 			connection = ConnectionPool.getInstance().takeConnection();
 			connection.setAutoCommit(false);
-			Object[] userParameters = SQLParametersHelper.provideUserParameters(user);
+			Object[] userParameters = SQLParametersHelper.provideNewUserParameters(user);
 			userID = executeInsertQuery(SQLUserDAOImpl.ADD_NEW_USER, userParameters);
 			subscriber.setUserId(userID);
-			Object[] subscriberParameters = SQLParametersHelper.provideSubscriberParameters(subscriber);
+			Object[] subscriberParameters = SQLParametersHelper.provideNewSubscriberParameters(subscriber);
 			subscriberID = executeInsertQuery(SQLSubscriberDAOImpl.ADD_SUBSCRIBER_TO_EXISTING_USER,
 					subscriberParameters);
 			connection.commit();
