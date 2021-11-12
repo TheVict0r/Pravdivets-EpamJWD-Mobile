@@ -19,6 +19,7 @@ import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.util.PhoneFormatter;
 
 public class ChangePhoneCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(EditPersonalDataCommand.class);
@@ -35,8 +36,7 @@ public class ChangePhoneCommand implements Command{
 		long subscriberID = subscriber.getId();
 		subscriber.setPhone(newPhone);
 		
-		ServiceProvider provider = ServiceProvider.getInstance();
-		SubscriberService subscriberService = provider.getSubscriberService();
+		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		try {
 			subscriberService.updateSubscriber(subscriber);
 		} catch (ServiceException e) {
@@ -44,12 +44,13 @@ public class ChangePhoneCommand implements Command{
 			return RouteHelper.ERROR;
 		}
 		
-		
 		try {
 			Optional <Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
 			if(updatedSubscriberOptional.isPresent()) {
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
-				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
+				int newPhoneFromDatabase = updatedSubscriber.getPhone();
+				String newPhoneFormat =  PhoneFormatter.formatPhone(newPhoneFromDatabase);
+				session.setAttribute(AttributeName.PHONE_FORMAT, newPhoneFormat);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error retrieving updated subscriber", e);

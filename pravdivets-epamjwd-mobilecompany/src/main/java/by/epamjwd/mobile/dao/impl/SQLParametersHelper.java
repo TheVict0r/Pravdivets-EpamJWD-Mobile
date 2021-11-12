@@ -60,7 +60,6 @@ public class SQLParametersHelper {
 				  (subscriber.getStatus().ordinal() + 1), //as status id in database begins from 1, not from 0
 				   subscriber.getPlanId(),
 				   subscriber.getId()}; 
-
 		return subscriberParameters;
 	}
 

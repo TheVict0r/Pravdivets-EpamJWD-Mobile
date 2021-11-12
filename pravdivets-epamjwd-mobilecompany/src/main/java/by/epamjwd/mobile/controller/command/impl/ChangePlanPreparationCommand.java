@@ -33,10 +33,9 @@ public class ChangePlanPreparationCommand implements Command {
 		session.setAttribute(AttributeName.ACTIVATE_EDIT, AttributeValue.PLAN);
 
 		Subscriber subscriber = (Subscriber) session.getAttribute(AttributeName.SUBSCRIBER);
-		Long currentPlanId = subscriber.getPlanId();
+		long currentPlanId = subscriber.getPlanId();
 
-		ServiceProvider serviceProvider = ServiceProvider.getInstance();
-		PlanService planService = serviceProvider.getPlanService();
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
 
 		Plan currentPlan;
 		try {

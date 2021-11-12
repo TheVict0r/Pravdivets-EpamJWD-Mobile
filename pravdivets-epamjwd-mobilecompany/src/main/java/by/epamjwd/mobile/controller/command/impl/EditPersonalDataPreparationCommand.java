@@ -17,8 +17,6 @@ public class EditPersonalDataPreparationCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();	
 		session.setAttribute(AttributeName.ACTIVATE_EDIT, AttributeValue.PERSONAL_DATA);
-		
-		
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 	}
 
