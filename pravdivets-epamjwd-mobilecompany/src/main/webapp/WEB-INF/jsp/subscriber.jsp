@@ -20,7 +20,7 @@
 				key="subscriber.title" /></span>
 	</div>
 	<div
-		class="container col-sm-12 col-md-10 col-lg-9 col-xl-7 py-3 fs-6 fw-light flex-grow-1">
+		class="container col-sm-12 col-md-12 col-lg-8 col-xl-7 py-3 fs-6 fw-light flex-grow-1">
 		<table class="table">
 			<c:choose>
 				<c:when test="${sessionScope.activate_edit eq 'phone'}">
@@ -197,16 +197,21 @@
 				<c:choose>
 					<c:when test="${sessionScope.activate_edit eq 'status'}">
 					<tr class="fw-normal table-secondary">
-					<td><fmt:message key="subscriber.status" /></td>
+					<td><fmt:message key="subscriber.current-status" /></td>
 					<td>${sessionScope.subscriber.status.statusName}</td>
 					<td></td>
 				</tr>
 					<tr class="fw-normal table-secondary">
-				<td>НЬЮ СТАТУС НАЗВА</td>
-				<td>СПИСОК</td>
-				<td></td>
+				<td><fmt:message key="subscriber.new-status"/></td>
+						<td><select class="form-select form-select-sm" id="new_status" name="new_status">
+									<option value="0"> <fmt:message key="subscriber.status-active"/> </option>
+									<option value="1"> <fmt:message key="subscriber.status-semi-blocked"/> </option>
+									<option value="2"> <fmt:message key="subscriber.status-blocked"/> </option>
+									<option value="3"> <fmt:message key="subscriber.status-deactivated"/> </option>
+									<option value="4"> <fmt:message key="subscriber.status-paused"/> </option>
+						</select></td>
+					<td></td>
 				</tr>
-				
 					<tr class="fw-normal table-secondary">
 						<td></td>
 						<td><a class="btn btn-secondary btn-sm"
@@ -216,7 +221,6 @@
 							value="<fmt:message key="subscriber.edit"/>"></td>
 					</tr>
 					</c:when>
-					
 					<c:otherwise>
 				<tr>
 					<td><fmt:message key="subscriber.status" /></td>
@@ -228,15 +232,17 @@
 					</c:otherwise>
 				</c:choose>
 				</form>
-				
-				
-				
 			<tr>
 				<td><fmt:message key="subscriber.status-date" /></td>
 				<td>${sessionScope.subscriber.statusDate}</td>
 				<td></td>
 			</tr>
 		</table>
+		
+		<a class="btn btn-primary btn-sm"
+		href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+		<fmt:message key="subscriber.operations-page" /></a>
+		
 	</div>
 	<jsp:include page="components/footer.jsp" />
 </body>

@@ -25,4 +25,5 @@ public class ParameterName {
 	public static final String HEADER_REFER = "referer";
 	public static final String SESSION_LOCALE = "session_locale";
 	public static final String CUSTOMER = "customer";
+	public static final String NEW_STATUS = "new_status";
 }

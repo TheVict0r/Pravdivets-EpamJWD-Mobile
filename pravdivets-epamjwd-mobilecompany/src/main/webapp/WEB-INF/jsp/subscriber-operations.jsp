@@ -17,7 +17,7 @@
 	<jsp:include page="components/header.jsp" />
 
 	<div
-		class="container col-sm-12 col-md-10 col-lg-9 col-xl-9 fw-light py-3 flex-grow-1">
+		class="container col-sm-12 col-md-10 col-lg-8 col-xl-7 fw-light py-3 flex-grow-1">
 
 		<div class="display-4 text-start mb-4 flex-grow-1">
 			<fmt:message key="subscriberbase.title" />
