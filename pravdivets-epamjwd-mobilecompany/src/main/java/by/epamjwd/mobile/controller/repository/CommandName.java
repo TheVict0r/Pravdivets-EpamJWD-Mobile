@@ -38,5 +38,7 @@ public class CommandName {
 	public static final String CHANGE_PHONE_PREPARATION = "change_phone_preparation";
 	public static final String CHANGE_PLAN_PREPARATION = "change_plan_preparation";
 	public static final String CANCEL_EDIT_SUBSCRIBER_DATA = "cancel_edit_subscriber_data";
+	public static final String CHANGE_STATUS = "change_status";
+	public static final String CHANGE_STATUS_PREPARATION = "change_status_preparation";
 
 }

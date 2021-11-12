@@ -14,6 +14,7 @@ public class AttributeValue {
 	public static final String PERSONAL_DATA = "personal_data";
 	public static final String PLAN = "plan";
 	public static final String PHONE = "phone";
+	public static final Object STATUS = "status";
 
 
 }

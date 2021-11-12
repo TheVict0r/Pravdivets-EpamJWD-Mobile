@@ -25,6 +25,8 @@ import by.epamjwd.mobile.controller.command.impl.GoToSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhonePreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanPreparationCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangeStatusCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangeStatusPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
@@ -81,11 +83,13 @@ public class CommandProvider {
 		allCommands.put(CommandName.ADD_NEW_SUBSCRIBER_PREPARATION, new AddNewSubscriberPreparationCommand());
 		allCommands.put(CommandName.SWITCH_LOCALE, new SwitchLocaleCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA, new EditPersonalDataCommand());
+		allCommands.put(CommandName.EDIT_PERSONAL_DATA_PREPARATION, new EditPersonalDataPreparationCommand());
 		allCommands.put(CommandName.CHANGE_PHONE, new ChangePhoneCommand());
 		allCommands.put(CommandName.CHANGE_PLAN, new ChangePlanCommand());
-		allCommands.put(CommandName.EDIT_PERSONAL_DATA_PREPARATION, new EditPersonalDataPreparationCommand());
 		allCommands.put(CommandName.CHANGE_PHONE_PREPARATION, new ChangePhonePreparationCommand());
 		allCommands.put(CommandName.CHANGE_PLAN_PREPARATION, new ChangePlanPreparationCommand());
+		allCommands.put(CommandName.CHANGE_STATUS, new ChangeStatusCommand());
+		allCommands.put(CommandName.CHANGE_STATUS_PREPARATION, new ChangeStatusPreparationCommand());
 		allCommands.put(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA, new CancelEditSubscriberDataCommand());
 	}
 

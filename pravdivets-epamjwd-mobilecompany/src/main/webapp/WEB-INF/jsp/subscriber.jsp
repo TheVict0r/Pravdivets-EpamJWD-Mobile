@@ -192,11 +192,45 @@
 				<td>${sessionScope.subscriber.account/100} <fmt:message key="subscriber.rub" /></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td><fmt:message key="subscriber.status" /></td>
-				<td>${sessionScope.subscriber.status.statusName}</td>
+	
+				<form method="post" action=controller?command=change_status>
+				<c:choose>
+					<c:when test="${sessionScope.activate_edit eq 'status'}">
+					<tr class="fw-normal table-secondary">
+					<td><fmt:message key="subscriber.status" /></td>
+					<td>${sessionScope.subscriber.status.statusName}</td>
+					<td></td>
+				</tr>
+					<tr class="fw-normal table-secondary">
+				<td>НЬЮ СТАТУС НАЗВА</td>
+				<td>СПИСОК</td>
 				<td></td>
-			</tr>
+				</tr>
+				
+					<tr class="fw-normal table-secondary">
+						<td></td>
+						<td><a class="btn btn-secondary btn-sm"
+							href="${pageContext.request.contextPath}/controller?command=cancel_edit_subscriber_data"><fmt:message
+									key="subscriber.cancel" /></a></td>
+						<td><input type="submit" class="btn btn-primary btn-sm"
+							value="<fmt:message key="subscriber.edit"/>"></td>
+					</tr>
+					</c:when>
+					
+					<c:otherwise>
+				<tr>
+					<td><fmt:message key="subscriber.status" /></td>
+					<td>${sessionScope.subscriber.status.statusName}</td>
+						<td><a class="login btn btn-outline-primary btn-sm"
+							href="${pageContext.request.contextPath}/controller?command=change_status_preparation"><fmt:message
+									key="subscriber.edit" /></a></td>
+				</tr>
+					</c:otherwise>
+				</c:choose>
+				</form>
+				
+				
+				
 			<tr>
 				<td><fmt:message key="subscriber.status-date" /></td>
 				<td>${sessionScope.subscriber.statusDate}</td>
