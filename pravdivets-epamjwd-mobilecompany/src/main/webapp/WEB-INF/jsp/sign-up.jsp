@@ -59,17 +59,17 @@
 					<td><label for="password" class="form-label"><fmt:message
 								key="sign-up.password1" /></label></td>
 					<td><input type="password" class="form-control"
-						name="password" value="${sessionScope.password}" id="password"
+						name="password1" value="${sessionScope.password1}" id="password"
 						required></td>
-					<c:remove var="password"/>
+					<c:remove var="password1"/>
 				</tr>
 				<tr >
 					<td><label for="password" class="form-label "><fmt:message
 								key="sign-up.password2" /></label></td>
 					<td><input type="password" class="form-control "
-						name="password" value="${sessionScope.password}" id="password"
+						name="password2" value="${sessionScope.password2}" id="password"
 						required></td>
-					<c:remove var="password"/>
+					<c:remove var="password2"/>
 				</tr>
 				<tr >
 					<td></td>

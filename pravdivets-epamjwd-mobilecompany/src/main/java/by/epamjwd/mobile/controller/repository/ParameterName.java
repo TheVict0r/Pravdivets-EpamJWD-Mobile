@@ -26,4 +26,6 @@ public class ParameterName {
 	public static final String SESSION_LOCALE = "session_locale";
 	public static final String CUSTOMER = "customer";
 	public static final String NEW_STATUS = "new_status";
+	public static final String PASSWORD1 = "password1";
+	public static final String PASSWORD2 = "password2";
 }
