@@ -42,5 +42,7 @@ public class CommandName {
 	public static final String CHANGE_STATUS_PREPARATION = "change_status_preparation";
 	public static final String GO_TO_SUBSCRIBER_SERVICES_PAGE = "go_to_subscriber_services_page";
 	public static final String GO_TO_SUBSCRIBER_BILLS_PAGE = "go_to_subscriber_bills_page";
+	public static final String GO_TO_SIGNUP_PAGE = "go_to_signup_page";
+	public static final String SIGNUP = "signup";
 
 }

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByUserIdCommand;
+import by.epamjwd.mobile.controller.command.impl.SignupCommand;
 import by.epamjwd.mobile.controller.command.impl.SwitchLocaleCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
@@ -21,6 +22,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToLoginPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToSignupPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberBillsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberServicesPageCommand;
@@ -58,6 +60,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
 		allCommands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPageCommand());
 		allCommands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
+		allCommands.put(CommandName.GO_TO_SIGNUP_PAGE, new GoToSignupPageCommand());
+		allCommands.put(CommandName.SIGNUP, new SignupCommand());
 		allCommands.put(CommandName.EDIT_PROFILE, new EditProfileCommand());
 		allCommands.put(CommandName.LOGIN, new LoginCommand());
 		allCommands.put(CommandName.LOGOUT, new LogoutCommand());

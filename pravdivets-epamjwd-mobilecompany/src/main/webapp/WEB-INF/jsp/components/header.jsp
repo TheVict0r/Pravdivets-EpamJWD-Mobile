@@ -82,7 +82,7 @@
 											key="header.sign-in" /></a>
 								<a 
 									class="btn btn-primary" type="button" 
-									href="#"><fmt:message key="header.register" /></a>
+									href="${pageContext.request.contextPath}/controller?command=go_to_signup_page"><fmt:message key="header.sign-up" /></a>
 							</div>
 						</c:when>
 						<c:otherwise>
