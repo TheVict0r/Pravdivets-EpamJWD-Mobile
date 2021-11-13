@@ -51,6 +51,7 @@ public class ChangePlanCommand implements Command{
 			Optional <Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
 			if(updatedSubscriberOptional.isPresent()) {
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
+				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
 				PlanService planService = ServiceProvider.getInstance().getPlanService();
 				Plan newPlanFomDataBase = planService.findPlanByID(updatedSubscriber.getPlanId());
 				session.setAttribute(AttributeName.PLAN, newPlanFomDataBase);

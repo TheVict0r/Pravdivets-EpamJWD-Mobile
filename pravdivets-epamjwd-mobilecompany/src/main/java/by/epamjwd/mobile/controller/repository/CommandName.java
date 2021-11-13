@@ -40,5 +40,7 @@ public class CommandName {
 	public static final String CANCEL_EDIT_SUBSCRIBER_DATA = "cancel_edit_subscriber_data";
 	public static final String CHANGE_STATUS = "change_status";
 	public static final String CHANGE_STATUS_PREPARATION = "change_status_preparation";
+	public static final String GO_TO_SUBSCRIBER_SERVICES_PAGE = "go_to_subscriber_services_page";
+	public static final String GO_TO_SUBSCRIBER_BILLS_PAGE = "go_to_subscriber_bills_page";
 
 }

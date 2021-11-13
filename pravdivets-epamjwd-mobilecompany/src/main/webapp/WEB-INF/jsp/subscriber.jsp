@@ -137,8 +137,6 @@
 				</c:otherwise>
 			</c:choose>
 		</form >
-		
-		
 			<form method="post" action=controller?command=change_plan>
 			<c:choose>
 				<c:when test="${sessionScope.activate_edit eq 'plan'}">
@@ -177,16 +175,6 @@
 				</c:otherwise>
 			</c:choose>
 			</form>
-			<tr>
-				<td><fmt:message key="subscriber.contract-date" /></td>
-				<td>${sessionScope.subscriber.contractDate}</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><fmt:message key="subscriber.account-number" /></td>
-				<td>${sessionScope.subscriber.id}</td>
-				<td></td>
-			</tr>
 			<tr>
 				<td><fmt:message key="subscriber.account-amount" /></td>
 				<td>${sessionScope.subscriber.account/100} <fmt:message key="subscriber.rub" /></td>
@@ -233,9 +221,23 @@
 				</c:choose>
 				</form>
 			<tr>
-				<td><fmt:message key="subscriber.status-date" /></td>
+				<td><fmt:message key="subscriber.status-date"/></td>
 				<td>${sessionScope.subscriber.statusDate}</td>
 				<td></td>
+			</tr>
+			<tr>
+			<td><fmt:message key="subscriber.services"/></td>
+			<td><a class="btn btn-outline-dark btn-sm"
+		href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_services_page">
+		<fmt:message key="subscriber.services-page"/></a></td>
+		<td></td>
+			</tr>
+			<tr>
+			<td><fmt:message key="subscriber.bills"/></td>
+			<td><a class="btn btn-outline-dark btn-sm"
+		href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_bills_page">
+		<fmt:message key="subscriber.bills-page" /></a></td>
+		<td></td>
 			</tr>
 		</table>
 		

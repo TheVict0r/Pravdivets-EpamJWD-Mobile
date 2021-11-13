@@ -48,6 +48,7 @@ public class ChangePhoneCommand implements Command{
 			Optional <Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
 			if(updatedSubscriberOptional.isPresent()) {
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
+				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
 				int newPhoneFromDatabase = updatedSubscriber.getPhone();
 				String newPhoneFormat =  PhoneFormatter.formatPhone(newPhoneFromDatabase);
 				session.setAttribute(AttributeName.PHONE_FORMAT, newPhoneFormat);
