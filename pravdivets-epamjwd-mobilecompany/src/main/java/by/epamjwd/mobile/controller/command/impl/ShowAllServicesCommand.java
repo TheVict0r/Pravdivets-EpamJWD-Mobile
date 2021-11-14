@@ -26,8 +26,7 @@ public class ShowAllServicesCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ServiceProvider provider = ServiceProvider.getInstance();
-		ServiceService serviceService = provider.getServiceService();
+		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
 		RouteHelper result = null;
 		try {
 			List<Service> serviceList = serviceService.findAllServices();
