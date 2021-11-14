@@ -26,8 +26,6 @@
 		<div class="container text-center fs-3 fw-normal mx-auto flex-grow-1">
 		<fmt:message key="subscriber.account-number"/> ${sessionScope.subscriber.id}</div>
 	
-	
-	
 	  <div class="container text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 fw-light flex-grow-1">
 		<table class="table">
 					<tr>
