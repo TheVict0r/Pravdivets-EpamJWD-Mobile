@@ -19,26 +19,53 @@
 		<span class="display-5 fw-light"><fmt:message
 				key="subscriber.bills" /></span>
 	</div>
-	<div class="container col-sm-12 col-md-12 col-lg-8 col-xl-7 py-3 fs-6 flex-grow-1">
+	
+		<div class="container text-center fs-3 fw-normal mx-auto flex-grow-1">
+		${sessionScope.phone_format}</div>
+	
+		<div class="container text-center fs-3 fw-normal mx-auto flex-grow-1">
+		<fmt:message key="subscriber.account-number"/> ${sessionScope.subscriber.id}</div>
+	
+	
+	
+	  <div class="container text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 fw-light flex-grow-1">
 		<table class="table">
-					<tr class="fw-bold ">
-						<td><fmt:message key="subscriber.name" /></td>
-						<td>${sessionScope.subscriber_user.firstName}
-							${sessionScope.subscriber_user.middleName}
-							${sessionScope.subscriber_user.lastName}</td>
-							<td></td>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
 					</tr>
-					<tr class="fw-bold">
-						<td><fmt:message key="subscriber.phone" /></td>
-						<td>${sessionScope.phone_format}</td>
-						<td></td>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
 					</tr>
-					<tr class="fw-bold">
-				<td><fmt:message key="subscriber.account-number" /></td>
-				<td>${sessionScope.subscriber.id}</td>
-				<td></td>
-			</tr>
-					
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
+					</tr>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
+					</tr>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
+					</tr>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
+					</tr>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
+					</tr>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
+					</tr>
+					<tr>
+					<td>ТУТ СЧЕТА</td>
+					<td></td>
+					</tr>
 					<tr>
 					<td>ТУТ СЧЕТА</td>
 					<td></td>
