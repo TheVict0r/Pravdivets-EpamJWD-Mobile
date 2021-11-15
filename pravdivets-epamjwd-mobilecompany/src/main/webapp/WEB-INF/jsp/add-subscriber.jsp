@@ -27,7 +27,7 @@
 				${sessionScope.phone_format}</div>
 			<div class="row justify-content-center mb-1">
 				<a class="btn btn-outline-dark"
-					href="${pageContext.request.contextPath}/controller?command=prepare_new_subscriber&passport=${sessionScope.passport}"><fmt:message
+					href="${pageContext.request.contextPath}/controller?command=add_subscriber_preparation&passport=${sessionScope.passport}"><fmt:message
 						key="add-subscriber.reload" /></a>
 			</div>
 			<div class="row justify-content-center fs-2">

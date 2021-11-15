@@ -39,7 +39,7 @@ import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand
 import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
-import by.epamjwd.mobile.controller.command.impl.AddNewSubscriberPreparationCommand;
+import by.epamjwd.mobile.controller.command.impl.AddSubscriberPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
@@ -88,7 +88,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.CALCULATOR, new CalculatorCommand());
 		allCommands.put(CommandName.SHOW_BEST_PLAN, new ShowBestPlanCommand());
 		allCommands.put(CommandName.ADD_SUBSCRIBER, new AddSubscriberCommand());
-		allCommands.put(CommandName.ADD_NEW_SUBSCRIBER_PREPARATION, new AddNewSubscriberPreparationCommand());
+		allCommands.put(CommandName.ADD_SUBSCRIBER_PREPARATION, new AddSubscriberPreparationCommand());
 		allCommands.put(CommandName.SWITCH_LOCALE, new SwitchLocaleCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA, new EditPersonalDataCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA_PREPARATION, new EditPersonalDataPreparationCommand());

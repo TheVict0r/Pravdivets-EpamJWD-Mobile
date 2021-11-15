@@ -86,6 +86,7 @@ public class AddSubscriberCommand implements Command{
 
 		} else  {
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
+			
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
 			removeUnusedAttributes(session);
 			

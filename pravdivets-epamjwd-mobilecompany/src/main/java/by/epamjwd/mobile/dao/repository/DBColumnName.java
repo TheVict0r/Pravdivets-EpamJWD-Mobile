@@ -49,7 +49,6 @@ public class DBColumnName {
     public static final String BILLS_SUBSCRIBER_ID = "subscriber_id";
     public static final String BILLS_DATE = "date";
     public static final String BILLS_AMOUNT = "amount";
-    public static final String BILLS_PAYED = "payed";
 	  
     public static final String NEWS_ID = "id";
     public static final String NEWS_DATE = "date";

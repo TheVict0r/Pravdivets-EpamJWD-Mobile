@@ -28,7 +28,7 @@ public class CommandName {
 	public static final String SHOW_BEST_PLAN = "show_best_plan";
 	public static final String ADD_SUBSCRIBER = "add_subscriber";
 	public static final String GO_TO_ADD_SUBSCRIBER_PAGE = "go_to_add_subscriber_page";
-	public static final String ADD_NEW_SUBSCRIBER_PREPARATION = "add_new_subscriber_preparation";
+	public static final String ADD_SUBSCRIBER_PREPARATION = "add_subscriber_preparation";
 	public static final String SWITCH_LOCALE = "switch_locale";
 	public static final String GO_TO_ERROR_PAGE = "go_to_error_page";
 	public static final String EDIT_PERSONAL_DATA = "edit_personal_data";

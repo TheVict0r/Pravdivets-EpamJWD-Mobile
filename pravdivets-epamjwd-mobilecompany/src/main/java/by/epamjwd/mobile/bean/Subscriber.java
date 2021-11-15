@@ -18,7 +18,7 @@ public class Subscriber implements Identifiable, Serializable{
 	private long planId;
 	private long userId;
 
-	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+	private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 	
 	
 	public Subscriber() {
@@ -37,10 +37,6 @@ public class Subscriber implements Identifiable, Serializable{
 		this.planId = planId;
 		this.userId = userId;
 	}
-
-
-
-
 
 
 	public long getId() {

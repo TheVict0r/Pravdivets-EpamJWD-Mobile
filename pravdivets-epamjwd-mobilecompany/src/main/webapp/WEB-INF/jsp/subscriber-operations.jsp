@@ -129,7 +129,7 @@
 		</div>
 		<div>
 		<form class="row mb-2" method="POST"
-			action="controller?command=add_new_subscriber_preparation">
+			action="controller?command=add_subscriber_preparation">
 			<label for="passport" class="form-label"><fmt:message
 					key="subscriberbase.passport" /></label>
 			<div class="col-md-3">
