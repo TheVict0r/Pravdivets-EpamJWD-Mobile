@@ -2,6 +2,7 @@ package by.epamjwd.mobile.service;
 
 import by.epamjwd.mobile.service.impl.SubscriberServiceImpl;
 import by.epamjwd.mobile.service.impl.AdminServiceImpl;
+import by.epamjwd.mobile.service.impl.BillServiceImpl;
 import by.epamjwd.mobile.service.impl.ConsultantServiceImpl;
 import by.epamjwd.mobile.service.impl.CustomerServiceImpl;
 import by.epamjwd.mobile.service.impl.NewsServiceImpl;
@@ -19,6 +20,7 @@ public class ServiceProvider {
 	private NewsService newsService             = new NewsServiceImpl();
 	private PlanService planService             = new PlanServiceImpl();
 	private ServiceService serviceService       = new ServiceServiceImpl();
+	private BillService billService             = new BillServiceImpl();
 
 	private ServiceProvider() {
 		
@@ -64,6 +66,10 @@ public class ServiceProvider {
 		return serviceService;
 	}
 
+	public BillService getBillService() {
+		return billService;
+	}
+	
 
 	
 }

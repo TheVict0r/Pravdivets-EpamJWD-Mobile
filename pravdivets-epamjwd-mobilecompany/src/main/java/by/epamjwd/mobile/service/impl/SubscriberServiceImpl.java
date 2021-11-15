@@ -15,8 +15,7 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 public class SubscriberServiceImpl implements SubscriberService {
 	private static final long ERROR_ID = -1;
 	
-	DAOProvider provider = DAOProvider.getInstance();
-	SubscriberDAO subscriberDao = provider.getSubscriberDAO();
+	SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
 	
 	@Override
 	public Optional<Subscriber> findSubscriberById(long id) throws ServiceException {

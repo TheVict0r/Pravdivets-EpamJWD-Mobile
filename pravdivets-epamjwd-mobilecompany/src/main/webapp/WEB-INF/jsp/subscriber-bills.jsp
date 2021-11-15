@@ -26,48 +26,23 @@
 		<div class="container text-center fs-3 fw-normal mx-auto flex-grow-1">
 		<fmt:message key="subscriber.account-number"/> ${sessionScope.subscriber.id}</div>
 	
-	  <div class="container text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 fw-light flex-grow-1">
-		<table class="table">
+	  <div class="container text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 flex-grow-1">
+		<table class="table table-striped">
+					<thead class="fw-bold">
 					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
+					<td><fmt:message key="subscriber.bill-number"/></td>
+					<td><fmt:message key="subscriber.bill-date"/></td>
+					<td><fmt:message key="subscriber.bill-sum"/></td>
 					</tr>
+					</thead>
+					
+					<c:forEach var="bill" items="${sessionScope.bill_list}">
 					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
+					<td>${bill.id}</td>
+					<td>${bill.date}</td>
+					<td>${bill.amount/100} <fmt:message key="subscriber.rub"/></td>
 					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
-					<tr>
-					<td>ТУТ СЧЕТА</td>
-					<td></td>
-					</tr>
+					</c:forEach>
 		</table>
 		
 		<a class="btn btn-primary btn-sm"

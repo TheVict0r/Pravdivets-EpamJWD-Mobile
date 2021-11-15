@@ -8,7 +8,7 @@ import by.epamjwd.mobile.dao.exception.DaoException;
 public interface BillDAO {
 	
 
-	List<Bill> getBillListBySubscriberID(int subscriberID) throws DaoException;
+	List<Bill> getBillListBySubscriberID(long subscriberID) throws DaoException;
 
 	
 }
