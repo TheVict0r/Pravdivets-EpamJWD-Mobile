@@ -22,7 +22,7 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 	private final static Logger LOGGER = LogManager.getLogger(AbstractQueryExecutor.class);
 
 	public final static String BASE_NAME = "db";
-	public final static int PREPARED_STATEMENT_PARAMETER_FIRST_INDEX = 1;
+	public final static int PREPARED_STATEMENT_PARAMETER_INDEX_SHIFT = 1;
 	
     private final RowMapper<T> rowMapper;
 
@@ -128,7 +128,7 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			for (int i = 0; i < params.length; i++) {
-				preparedStatement.setObject(i + PREPARED_STATEMENT_PARAMETER_FIRST_INDEX, params[i]);
+				preparedStatement.setObject(i + PREPARED_STATEMENT_PARAMETER_INDEX_SHIFT, params[i]);
 			}
 			return preparedStatement;
 		} catch (SQLException e) {
