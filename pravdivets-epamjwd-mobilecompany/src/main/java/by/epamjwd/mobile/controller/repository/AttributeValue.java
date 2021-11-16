@@ -14,7 +14,11 @@ public class AttributeValue {
 	public static final String PERSONAL_DATA = "personal_data";
 	public static final String PLAN = "plan";
 	public static final String PHONE = "phone";
-	public static final Object STATUS = "status";
+	public static final String STATUS = "status";
+	public static final String MISSMATCHED_PASSWORDS = "missmatched_passwords";
+	public static final String NO_USER = "no_user";
+	public static final String ALREADY_SIGNEDUP = "already_signedup";
+	public static final String INCORRECT_PASSWORDS = "incorrect_password";
 
 
 }

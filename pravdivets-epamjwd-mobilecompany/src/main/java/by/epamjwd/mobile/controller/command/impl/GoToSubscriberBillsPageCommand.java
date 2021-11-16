@@ -37,15 +37,7 @@ public class GoToSubscriberBillsPageCommand implements Command {
 		
 		try {
 			billList = billService.getBillListBySubscriberID(subscriberID);
-			
-			
-			
-			
 			session.setAttribute(AttributeName.BILL_LIST, billList);
-			
-			
-			
-			
 		} catch (ServiceException e) {
 			LOGGER.error("Error during recieving bills data for subscriber with ID" + subscriberID, e);
 			return RouteHelper.ERROR;

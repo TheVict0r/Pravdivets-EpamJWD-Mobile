@@ -14,6 +14,7 @@ public class IsNameTest {
 	private final String badName3 = " Peterson";
 	private final String badName4 = "Peterson ";
 	private final String badName5 = "pEterson";
+	private final String badName6 = "Петеrson";
 
 	@Test
 	public void testGoodName1() {
@@ -53,6 +54,11 @@ public class IsNameTest {
 	@Test
 	public void testBadName5() {
 		Assert.assertFalse(InputDataValidator.isName(badName5));
+	}
+	
+	@Test
+	public void testBadName6() {
+		Assert.assertFalse(InputDataValidator.isName(badName6));
 	}
 	
 }

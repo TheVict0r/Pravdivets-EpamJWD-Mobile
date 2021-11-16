@@ -92,19 +92,19 @@
 				<input type="text" class="form-control" id="lastName"
 					name="last_name" value="${requestScope.last_name}"
 					placeholder="<fmt:message key="subscriberbase.last-name"/>"
-					pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
+					pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" required>
 			</div>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="firstName"
 					name="first_name" value="${requestScope.first_name}"
 					placeholder="<fmt:message key="subscriberbase.first-name"/>"
-					pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$" required>
+					pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" required>
 			</div>
 			<div class="col-md-3">
 				<input type="text" class="form-control" id="middleName"
 					name="middle_name" value="${requestScope.middle_name}"
 					placeholder="<fmt:message key="subscriberbase.middle-name"/>"
-					pattern="^[A-ZА-ЯЁ][a-zа-яё]+$">
+					pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$">
 			</div>
 			<div class="col-md-1">
 				<input type="submit" class="btn btn-outline-dark" value="OK">

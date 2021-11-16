@@ -18,7 +18,7 @@ public interface UserDAO {
 	void changePhoneNumber(String oldPhoneNumber, String newPhoneNumber);
 	void pause();
 	Optional<User> findUserByEmail(String email) throws DaoException;
-	Optional<User> findUserByPhone(int phoneNumber) throws DaoException;
+	Optional<User> findUserByPhone(String phone) throws DaoException;
 	Optional<User> findUserById(long id) throws DaoException;
 	Optional<User> findUserByPassport(String passport) throws DaoException;
 	List<User> findUsersListByFullName(String firstName, String middleName, String lastName) throws DaoException;

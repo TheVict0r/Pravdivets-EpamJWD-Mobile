@@ -19,18 +19,35 @@
 
 		<div class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
 		<fmt:message key="sign-up.lead"/>
-		</div> 
-		
-		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
+		</div>
+
+	<div
+		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
+		<c:if test="${sessionScope.error eq 'missmatched_passwords'}">
+			<p>
+				<fmt:message key="sign-up.missmatched-passwords" />
+			</p>
+		</c:if>
+		<c:if test="${sessionScope.error eq 'incorrect_password'}">
+			<p>
+		<fmt:message key="sign-up.incorrect-password" />
+			</p></c:if>
+		<c:if test="${sessionScope.error eq 'already_signedup'}">
+			<p>
+		<fmt:message key="sign-up.already-signed-up" />
+			</p></c:if>
+		<c:if test="${sessionScope.error eq 'no_user'}">
+			<p>
+		<fmt:message key="sign-up.no-user" />
+			</p></c:if>
+		<c:remove var="error" />
+	</div>
+
+	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		
 		<form method="POST" action="controller?command=signup">
-			<table>
-				<c:if test="${sessionScope.error eq 'error_login'}">
-					<p class="text-danger">
-						<fmt:message key="login.check-data" />
-					</p>
-					<c:remove var="error" />
-				</c:if>
+			
+				<table>
 				<tr>
 					<td><label for="phone" class="form-label"> <fmt:message
 								key="sign-up.phone" /> <span
@@ -41,34 +58,22 @@
 						placeholder="551234567" pattern="^(25|29|33|44|55)[0-9]{7}$" required></td>
 					<c:remove var="phone" />
 				</tr>
-				
 				<tr>
-				<td>
-				<label for="passport" class="form-label"><fmt:message
-					key="sign-up.passport" /></label>
-					</td>
-			<td>
-				<input type="text" class="form-control" name="passport"
-					id="passport" placeholder="AB1234567" pattern="^[A-Z]{2}[0-9]{7}$" 
-					value="${requestScope.passport}" required>
-			</td>
-				</tr>
-				
-				
-				<tr>
-					<td><label for="password" class="form-label"><fmt:message
-								key="sign-up.password1" /></label></td>
+					<td><label for="password1" class="form-label"><fmt:message
+								key="sign-up.password1" />
+								<span class="text-primary fw-bold fs-5 ">**</span>
+								</label></td>
 					<td><input type="password" class="form-control"
-						name="password1" value="${sessionScope.password1}" id="password"
-						required></td>
+						name="password1" id="password1"
+						 required minlength="8"></td>
 					<c:remove var="password1"/>
 				</tr>
 				<tr >
-					<td><label for="password" class="form-label "><fmt:message
+					<td><label for="password2" class="form-label "><fmt:message
 								key="sign-up.password2" /></label></td>
 					<td><input type="password" class="form-control "
-						name="password2" value="${sessionScope.password2}" id="password"
-						required></td>
+						name="password2" id="password2"
+						 required minlength="8"></td>
 					<c:remove var="password2"/>
 				</tr>
 				<tr >
@@ -80,14 +85,21 @@
 		</form>
 	</div>
 		
-		<div class="row fw-light row justify-content-center mx-auto flex-grow-1">
+		<div class="row fw-light row justify-content-center mx-auto ">
 		<span>
 			<span class="text-primary fw-bold fs-5 ">*</span>
 			<fmt:message key="login.number-format" />
 			<b><i>55xxxxxxx, 25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
 		</span>
 	</div>
+		<div class="row fw-light row justify-content-center mx-auto mb-5">
+		<span>
+			<span class="text-primary fw-bold fs-5 ">**</span>
+			<fmt:message key="sign-up.password-instruction" />
+		</span>
+	</div>
 		
-	<jsp:include page="components/footer.jsp" />
+	<jsp:include page="components/footer.jsp"/>
+	<script src="js/login.js"></script>
 </body>
 </html>

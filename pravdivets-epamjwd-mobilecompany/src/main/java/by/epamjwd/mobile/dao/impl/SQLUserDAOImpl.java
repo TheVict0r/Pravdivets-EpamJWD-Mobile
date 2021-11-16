@@ -75,7 +75,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	}
 
 	@Override
-	public Optional<User> findUserByPhone(int phoneNumber) throws DaoException {
+	public Optional<User> findUserByPhone(String phone) throws DaoException {
 		Optional<User> user = Optional.empty();
 		
 		String query = new StringBuilder(buildFindUserQuery())
@@ -90,7 +90,7 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 				.append(" = ?")				
 				.toString();
 
-		user = executeQueryForSingleResult(query, phoneNumber);
+		user = executeQueryForSingleResult(query, phone);
 		return user;
 	}
 

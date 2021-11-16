@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
 	IsEmailTest.class, 
 	IsNameTest.class,
 	IsPassportTest.class,
+	IsPasswordTest.class,
 	IsPhoneTest.class,
 	IsSubscriberValidTest.class,
 	IsUserValidTest.class

@@ -23,8 +23,7 @@ public class UserServiceImpl implements UserService {
 		if (InputDataValidator.isEmail(login)) {
 			user = findUserByEmail(login);
 		} else if (InputDataValidator.isPhone(login)) {
-			int phone = Integer.parseInt(login);
-			user = findUserByPhone(phone);
+			user = findUserByPhone(login);
 		}
 		return user;
 	}
@@ -63,12 +62,14 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Optional<User> findUserByPhone(int phone) throws ServiceException {
+	public Optional<User> findUserByPhone(String phone) throws ServiceException {
 		Optional<User> user = Optional.empty();
-		try {
-			user = userDao.findUserByPhone(phone);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
+		if (InputDataValidator.isPhone(phone)) {
+			try {
+				user = userDao.findUserByPhone(phone);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
 		}
 		return user;
 	}
@@ -86,6 +87,27 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	@Override
+	public boolean isPhoneExist(String phone) throws ServiceException {
+		return findUserByPhone(phone).isPresent();
+	}	
+	
+	@Override
+	public boolean isPasswordCorrect(String password) {
+		return InputDataValidator.isPassword(password);
+	}	
+	
+	@Override
+	public boolean isSignupRequired(String phone) throws ServiceException {
+		boolean result = false;
+		Optional<User> userOptional = findUserByPhone(phone);
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			result = user.getPassword().isEmpty();
+		}
+		return result;
+	}	
+	
 	@Override
 	public long addNewUser(User user) throws ServiceException {
 		long userId = ERROR_ID;
@@ -107,6 +129,17 @@ public class UserServiceImpl implements UserService {
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
+		}
+	}
+
+	@Override
+	public void signup(String phone, String password) throws ServiceException {
+		Optional<User> userOptional = findUserByPhone(phone);
+		if(userOptional.isPresent()) {
+			User user = userOptional.get();
+			String passwordHash = HashGenerator.generateHash(password);
+			user.setPassword(passwordHash);
+			updateUser(user);
 		}
 	}
 

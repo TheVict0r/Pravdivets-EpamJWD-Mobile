@@ -16,8 +16,9 @@ public class InputDataValidator {
 	
 	public static final String EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
 	public static final String PHONE_NUMBER_REGEX = "^(25|29|33|44|55)[0-9]{7}$";
-	public static final String NAME_REGEX = "^[A-ZА-ЯЁ][a-zа-яё\\-]+$";
+	public static final String NAME_REGEX = "^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$";
 	public static final String PASSPORT_REGEX = "^[A-Z]{2}[0-9]{7}$";
+	public static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$";
 	public static final    int DELAY_TIME = 1;
 
 	
@@ -90,6 +91,13 @@ public class InputDataValidator {
 		return doesMatchePattern(passport, PASSPORT_REGEX);
 		
 	}
+
+	public static boolean isPassword(String password) {
+		return doesMatchePattern(password, PASSWORD_REGEX);
+		
+	}
+	
+	
 	
 	private static boolean doesMatchePattern(String anyString, String regex) {
 		Pattern pattern = Pattern.compile(regex);

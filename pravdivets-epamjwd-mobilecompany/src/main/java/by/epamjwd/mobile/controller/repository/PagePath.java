@@ -34,6 +34,7 @@ public class PagePath {
 	public static final String NEW_SUBSCRIBER_REDIRECT = "/controller?command=show_subscriber_by_id";
 	public static final String SUBSCRIBER_SERVICES = "WEB-INF/jsp/subscriber-services.jsp";
 	public static final String SUBSCRIBER_BILLS = "WEB-INF/jsp/subscriber-bills.jsp";
-	public static final String SIGNUP = "WEB-INF/jsp/sign-up.jsp";;
+	public static final String SIGNUP = "WEB-INF/jsp/sign-up.jsp";
+	public static final String SIGNUP_REDIRECT = "/controller?command=go_to_signup_page";
 
 }

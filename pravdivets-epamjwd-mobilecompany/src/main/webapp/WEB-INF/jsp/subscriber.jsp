@@ -64,7 +64,7 @@
 									key="add-subscriber.last-name" />:</label></td>
 						<td><input type="text" class="form-control"
 							name="subscriber_user_last_name" id="subscriber_user_last_name"
-							pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$"
+							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.subscriber_user.lastName}" required>
 						</td>
 						<td></td>
@@ -75,7 +75,7 @@
 									key="add-subscriber.first-name" />:</label></td>
 						<td><input type="text" class="form-control"
 							name="subscriber_user_first_name" id="subscriber_user_first_name"
-							pattern="^[A-ZА-ЯЁ][a-zа-яё\-]+$"
+							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.subscriber_user.firstName}" required>
 						</td>
 						<td></td>
@@ -86,7 +86,8 @@
 									key="add-subscriber.middle-name" />:</label></td>
 						<td><input type="text" class="form-control"
 							name="subscriber_user_middle_name"
-							id="subscriber_user_middle_name" pattern="^[A-ZА-ЯЁ][a-zа-яё]+$"
+							id="subscriber_user_middle_name" 
+							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.subscriber_user.middleName}"></td>
 						<td></td>
 					</tr>

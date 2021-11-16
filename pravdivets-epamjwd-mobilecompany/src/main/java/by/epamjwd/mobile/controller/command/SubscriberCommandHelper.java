@@ -46,7 +46,7 @@ public class SubscriberCommandHelper {
 		String phoneFormat = PhoneFormatter.formatPhone(phone);
 		session.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
 
-		Optional<User> userOptional = userService.findUserByPhone(phone);
+		Optional<User> userOptional = userService.findUserByPhone(String.valueOf(phone));
 		User subscriberUser = null;
 		if (userOptional.isPresent()) {
 			subscriberUser = userOptional.get();
@@ -101,6 +101,8 @@ public class SubscriberCommandHelper {
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		session.removeAttribute(AttributeName.NEW_PHONE_FORMAT);
 		session.removeAttribute(AttributeName.NEW_PHONE);
+		session.removeAttribute(AttributeName.ALL_SERVICES);
+		session.removeAttribute(AttributeName.BILL_LIST);
 	}
 	
 	private static class Holder {
