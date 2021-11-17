@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -17,7 +20,8 @@ import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class SignupCommand implements Command{
-
+	private final static Logger LOGGER = LogManager.getLogger(SignupCommand.class);
+	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String phone     = request.getParameter(ParameterName.PHONE);
@@ -39,6 +43,12 @@ public class SignupCommand implements Command{
 			if(userService.doesPhoneExist(phone)) {
 				if(userService.isSignupRequired(phone)) {
 					userService.signup(phone, password1);
+					
+					// загрузить Абонента по номеру телефона 
+					// или кинуть на login page 
+					// и забросить сообщение, что регистрация прошла успешно
+					
+					
 				} else {
 					return provideErrorMessage(session, phone, AttributeValue.ALREADY_SIGNED_UP);
 				}
@@ -46,12 +56,10 @@ public class SignupCommand implements Command{
 				return provideErrorMessage(session, phone, AttributeValue.NO_USER);
 			}
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Error when signing up command for phone - " + phone, e);
+			return RouteHelper.ERROR;
 		}
-		
-		return new RouteHelper(PagePath.SIGNUP, RouteMethod.FORWARD);
-
+		return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 	}
 
 	private RouteHelper provideErrorMessage(HttpSession session, String phone, String attributeValue) {
