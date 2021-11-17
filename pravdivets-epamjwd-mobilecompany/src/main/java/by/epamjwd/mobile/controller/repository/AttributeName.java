@@ -42,5 +42,6 @@ public class AttributeName {
 	public static final String NEW_PHONE_FORMAT = "new_phone_format";
 	public static final String NEW_PHONE = "new_phone";
 	public static final String BILL_LIST = "bill_list";
+	public static final String SIGN_UP = "sign_up";
 
 }

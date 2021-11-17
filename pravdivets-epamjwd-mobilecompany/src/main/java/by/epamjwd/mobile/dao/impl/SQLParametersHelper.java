@@ -15,6 +15,7 @@ public class SQLParametersHelper {
 	
 	public static Object[] provideUserParameters(User user) {
 		Object[] userParameters = {
+				user.getPassword(),
 				user.getFirstName(), 
 				user.getMiddleName(), 
 				user.getLastName(), 

@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService {
 		Optional<User> userOptional = findUserByPhone(phone);
 		if (userOptional.isPresent()) {
 			User user = userOptional.get();
-			result = user.getPassword().isEmpty();
+			result = user.getPassword() == null;
 		}
 		return result;
 	}	

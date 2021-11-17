@@ -22,6 +22,14 @@
 			<c:remove var="session_time_out" />
 		</c:if>
 	</div>
+	<div class="row align-content-center mx-auto flex-grow-1">
+		<c:if test="${sessionScope.sign_up eq 'true'}">
+			<p class="text-success fs-5 ">
+				<fmt:message key="login.sign-up" />
+			</p>
+			<c:remove var="sign_up" />
+		</c:if>
+	</div>
 		<div class="row justify-content-center display-4  mx-auto mb-5 "><fmt:message key="login.sign-in"/></div>
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=login">
