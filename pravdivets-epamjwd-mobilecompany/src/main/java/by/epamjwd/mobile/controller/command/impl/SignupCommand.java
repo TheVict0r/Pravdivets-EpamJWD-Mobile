@@ -44,10 +44,11 @@ public class SignupCommand implements Command{
 				if(userService.isSignupRequired(phone)) {
 					userService.signup(phone, password1);
 					
+					//To Do
 					// загрузить Абонента по номеру телефона 
 					// или кинуть на login page 
 					// и забросить сообщение, что регистрация прошла успешно
-					
+					// ДОБАВИТЬ ПОДТВЕРЖДЕНИЕ ПО E-MAIL
 					
 				} else {
 					return provideErrorMessage(session, phone, AttributeValue.ALREADY_SIGNED_UP);
