@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean isPhoneExist(String phone) throws ServiceException {
+	public boolean doesPhoneExist(String phone) throws ServiceException {
 		return findUserByPhone(phone).isPresent();
 	}	
 	

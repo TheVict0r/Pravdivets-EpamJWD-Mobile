@@ -28,40 +28,36 @@ public class SignupCommand implements Command{
 		HttpSession session = request.getSession();
 		
 		if(!password1.equals(password2)) {
-			session.setAttribute(AttributeName.PHONE, phone);
-			session.setAttribute(AttributeName.ERROR, AttributeValue.MISSMATCHED_PASSWORDS);
-			return new RouteHelper(PagePath.SIGNUP_REDIRECT, RouteMethod.REDIRECT);
+			return provideErrorMessage(session, phone, AttributeValue.MISSMATCHED_PASSWORDS);
 		}
 		
 		if(!userService.isPasswordCorrect(password1)) {
-			session.setAttribute(AttributeName.PHONE, phone);
-			session.setAttribute(AttributeName.ERROR, AttributeValue.INCORRECT_PASSWORDS);
-			return new RouteHelper(PagePath.SIGNUP_REDIRECT, RouteMethod.REDIRECT);
+			return provideErrorMessage(session, phone, AttributeValue.INCORRECT_PASSWORD);
 		}
 		
-		
 		try {
-			if(userService.isPhoneExist(phone)) {
+			if(userService.doesPhoneExist(phone)) {
 				if(userService.isSignupRequired(phone)) {
 					userService.signup(phone, password1);
 				} else {
-					session.setAttribute(AttributeName.PHONE, phone);
-					session.setAttribute(AttributeName.ERROR, AttributeValue.ALREADY_SIGNEDUP);
-					return new RouteHelper(PagePath.SIGNUP_REDIRECT, RouteMethod.REDIRECT);
+					return provideErrorMessage(session, phone, AttributeValue.ALREADY_SIGNED_UP);
 				}
 			} else {
-				session.setAttribute(AttributeName.PHONE, phone);
-				session.setAttribute(AttributeName.ERROR, AttributeValue.NO_USER);
-				return new RouteHelper(PagePath.SIGNUP_REDIRECT, RouteMethod.REDIRECT);
+				return provideErrorMessage(session, phone, AttributeValue.NO_USER);
 			}
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-			
 		return new RouteHelper(PagePath.SIGNUP, RouteMethod.FORWARD);
 
 	}
 
+	private RouteHelper provideErrorMessage(HttpSession session, String phone, String attributeValue) {
+		session.setAttribute(AttributeName.PHONE, phone);
+		session.setAttribute(AttributeName.ERROR, attributeValue);
+		return new RouteHelper(PagePath.SIGNUP_REDIRECT, RouteMethod.REDIRECT);
+	}
+	
 }

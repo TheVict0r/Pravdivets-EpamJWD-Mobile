@@ -17,7 +17,7 @@ public interface UserService {
 	long addNewUser(User user) throws ServiceException;
 	void updateUser(User user) throws ServiceException;
 	boolean isSignupRequired(String phone) throws ServiceException;
-	boolean isPhoneExist(String phoneString) throws ServiceException;
+	boolean doesPhoneExist(String phoneString) throws ServiceException;
 	void signup(String phone, String password1) throws ServiceException;
 	boolean isPasswordCorrect(String password);
 }

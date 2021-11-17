@@ -32,7 +32,7 @@
 			<p>
 		<fmt:message key="sign-up.incorrect-password" />
 			</p></c:if>
-		<c:if test="${sessionScope.error eq 'already_signedup'}">
+		<c:if test="${sessionScope.error eq 'already_signed_up'}">
 			<p>
 		<fmt:message key="sign-up.already-signed-up" />
 			</p></c:if>
