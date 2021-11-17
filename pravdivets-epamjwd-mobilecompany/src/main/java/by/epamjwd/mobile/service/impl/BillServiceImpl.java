@@ -22,6 +22,9 @@ public class BillServiceImpl implements BillService{
 		
 		try {
 			billsList = billDao.getBillListBySubscriberID(subscriberID);
+			if(billsList.isEmpty()) {
+				billsList.add(new Bill());
+			}
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		} if (billsList.isEmpty()) {

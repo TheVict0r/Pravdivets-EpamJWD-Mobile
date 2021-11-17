@@ -13,20 +13,23 @@
 <link rel="shortcut icon" href="pic/mobile.ico" />
 <title>mobile</title>
 </head>
-<body class="vh-100 d-flex flex-column justify-content-center bg-light">
+<body class="bg-light">
+		<div class="container text-center mx-auto">
 	<jsp:include page="components/header.jsp" />
-	<div class="container text-center mx-auto flex-grow-1">
+	</div>
+	
+	<div class="container text-center mx-auto align-items-start">
 		<span class="display-5 fw-light"><fmt:message
 				key="subscriber.bills" /></span>
 	</div>
 	
-		<div class="container text-center fs-3 fw-normal mx-auto flex-grow-1">
+		<div class="container text-center fs-3 fw-normal mx-auto align-items-start">
 		${sessionScope.phone_format}</div>
 	
-		<div class="container text-center fs-3 fw-normal mx-auto flex-grow-1">
+		<div class="container text-center fs-3 fw-normal mx-auto align-items-start">
 		<fmt:message key="subscriber.account-number"/> ${sessionScope.subscriber.id}</div>
 	
-	  <div class="container text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 flex-grow-1">
+	  <div class="container text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 align-items-start">
 		<table class="table table-striped">
 					<thead class="fw-bold">
 					<tr>
@@ -45,11 +48,13 @@
 					</c:forEach>
 		</table>
 		
-		<a class="btn btn-primary btn-sm"
+		<a class="btn btn-primary btn-sm align-items-end "
 		href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_page">
 		<fmt:message key="subscriber.back" /></a>
 		
 	</div>
-	<jsp:include page="components/footer.jsp" />
+	<div class="justify-content-center align-items-end ">
+	<jsp:include page="components/footer.jsp"/>
+	</div>
 </body>
 </html>
