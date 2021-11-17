@@ -23,23 +23,20 @@
 
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
+		<p>
 		<c:if test="${sessionScope.error eq 'missmatched_passwords'}">
-			<p>
-				<fmt:message key="sign-up.missmatched-passwords" />
-			</p>
+			<fmt:message key="sign-up.missmatched-passwords" />
 		</c:if>
 		<c:if test="${sessionScope.error eq 'incorrect_password'}">
-			<p>
-		<fmt:message key="sign-up.incorrect-password" />
-			</p></c:if>
+			<fmt:message key="sign-up.incorrect-password" />
+		</c:if>
 		<c:if test="${sessionScope.error eq 'already_signed_up'}">
-			<p>
-		<fmt:message key="sign-up.already-signed-up" />
-			</p></c:if>
+			<fmt:message key="sign-up.already-signed-up" />
+		</c:if>
 		<c:if test="${sessionScope.error eq 'no_user'}">
-			<p>
-		<fmt:message key="sign-up.no-user" />
-			</p></c:if>
+			<fmt:message key="sign-up.no-user" />
+		</c:if>
+		</p>
 		<c:remove var="error" />
 	</div>
 
