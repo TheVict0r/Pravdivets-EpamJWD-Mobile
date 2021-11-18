@@ -30,18 +30,6 @@ public class PhoneFormatter {
 
 	}
 	
-//	public Map<Integer, String> provideFormattedPhoneMap(List<Subscriber> userList) throws ServiceException{
-//		
-//		Map<Integer, String> phoneNumbersMap = new HashMap<>();
-//		
-//		for(Subscriber abonent : userList) {
-//			int key = abonent.getPhone();
-//			String value = formatPhone(key);
-//			phoneNumbersMap.put(key, value);
-//		}
-//		
-//		return phoneNumbersMap;
-//	}
 	
 	
 }
