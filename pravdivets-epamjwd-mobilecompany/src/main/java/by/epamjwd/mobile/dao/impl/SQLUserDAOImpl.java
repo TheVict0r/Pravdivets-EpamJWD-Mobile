@@ -14,7 +14,7 @@ import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 
-	public final static String ADD_NEW_USER = "INSERT INTO users (first_name, middle_name, last_name, passport, email, role_id) VALUES (?, ?, ?, ?, ?, ?)";
+	public final static String ADD_NEW_USER = "INSERT INTO users (password, first_name, middle_name, last_name, passport, email, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	public final static String UPDATE_USER = "UPDATE users SET password=?, first_name=?, middle_name=?, last_name=?, passport=?, email=? WHERE id=?";
 			
 	public SQLUserDAOImpl() {

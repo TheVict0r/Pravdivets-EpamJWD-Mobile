@@ -32,7 +32,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class AddSubscriberCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
-	private final static String EMPTY_STRING = "";
 	private final static long EMPTY_ID = 0L;
 	private final static long ERROR_ID = -1L;
 	
@@ -109,7 +108,7 @@ public class AddSubscriberCommand implements Command{
 	private User buildUser(String firstName, String middleName, String lastName, 
 			String passport, String email) {
 		User user = null;
-		user = new User(EMPTY_ID, EMPTY_STRING, firstName, middleName, lastName, 
+		user = new User(EMPTY_ID, null, firstName, middleName, lastName, 
 						passport, email, Role.SUBSCRIBER);
 		return user;
 	}
