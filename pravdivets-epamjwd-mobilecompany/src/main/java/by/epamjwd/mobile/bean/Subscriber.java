@@ -12,7 +12,7 @@ public class Subscriber implements Identifiable, Serializable{
 	private long id;
 	private Date contractDate;
 	private int account;
-	private int phone;
+	private String phone;
 	private Date statusDate;
 	private SubscriberStatus status;
 	private long planId;
@@ -25,7 +25,7 @@ public class Subscriber implements Identifiable, Serializable{
 		
 	}
 	
-	public Subscriber(long id, Date contractDate, int account, int phone, Date statusDate, SubscriberStatus status,
+	public Subscriber(long id, Date contractDate, int account, String phone, Date statusDate, SubscriberStatus status,
 			long planId, long userId) {
 		super();
 		this.id = id;
@@ -63,11 +63,11 @@ public class Subscriber implements Identifiable, Serializable{
 		this.account = account;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -103,14 +103,18 @@ public class Subscriber implements Identifiable, Serializable{
 		this.userId = userId;
 	}
 
+
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + account;
 		result = prime * result + ((contractDate == null) ? 0 : contractDate.hashCode());
+		result = prime * result + ((formatter == null) ? 0 : formatter.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + phone;
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + (int) (planId ^ (planId >>> 32));
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((statusDate == null) ? 0 : statusDate.hashCode());
@@ -122,7 +126,7 @@ public class Subscriber implements Identifiable, Serializable{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -134,9 +138,17 @@ public class Subscriber implements Identifiable, Serializable{
 				return false;
 		} else if (!contractDate.equals(other.contractDate))
 			return false;
+		if (formatter == null) {
+			if (other.formatter != null)
+				return false;
+		} else if (!formatter.equals(other.formatter))
+			return false;
 		if (id != other.id)
 			return false;
-		if (phone != other.phone)
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
 			return false;
 		if (planId != other.planId)
 			return false;

@@ -45,7 +45,7 @@ public class AddSubscriberPreparationCommand implements Command {
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
 		PlanService planService = serviceProvider.getPlanService();
 		try {
-			int phone = PhoneGenerator.generatePhone();
+			String phone = PhoneGenerator.generatePhone();
 			String phoneFormat = PhoneFormatter.formatPhone(phone);
 			List<Plan> allPlans = planService.findAllPlans();
 			session.setAttribute(AttributeName.PASSPORT, passport);

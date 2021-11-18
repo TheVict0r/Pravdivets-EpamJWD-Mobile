@@ -10,8 +10,7 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public interface SubscriberService {
 
 	Optional<Subscriber> findSubscriberById(long id) throws ServiceException;
-	Optional<Subscriber> findSubscriberByPhone(int phone) throws ServiceException;
-	Optional<Subscriber> findSubscriberByPhoneString(String phoneString) throws ServiceException;
+	Optional<Subscriber> findSubscriberByPhone(String phone) throws ServiceException;
 	List<Subscriber> findSubscriberListByUserId(long id) throws ServiceException;
 	List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException;
 	List<Subscriber> findSubscribersDebtors(String passport) throws ServiceException;
@@ -22,7 +21,7 @@ public interface SubscriberService {
 //	List<Subscriber> findSubscriberListByEmail(String email) throws ServiceException;
 	
 	boolean isDebtor(String passport) throws ServiceException;
-	boolean isPhoneAvailable(int phone) throws ServiceException;
+	boolean isPhoneAvailable(String phone) throws ServiceException;
 	boolean isNewSubscriberUser(String passport) throws ServiceException;
 	long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException;
 	void updateSubscriber(Subscriber subscriber) throws ServiceException;

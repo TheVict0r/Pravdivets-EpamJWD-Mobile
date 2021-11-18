@@ -53,7 +53,7 @@ public class InputDataValidator {
         }
 		long id = subscriber.getId();
 		Date contractDate = subscriber.getContractDate(); 
-		int phone = subscriber.getPhone();
+		String phone = subscriber.getPhone();
 		Date statusDate = subscriber.getStatusDate();
 		SubscriberStatus status = subscriber.getStatus();
 		long planId = subscriber.getPlanId();
@@ -66,7 +66,7 @@ public class InputDataValidator {
 				id >= 0 &&
 				contractDate != null &&
 			    contractDate.before(currentDelayed) && 
-				isPhone(String.valueOf(phone)) &&
+				isPhone(phone) &&
 				statusDate != null &&
 			    statusDate.before(currentDelayed) && 
 				status != null &&

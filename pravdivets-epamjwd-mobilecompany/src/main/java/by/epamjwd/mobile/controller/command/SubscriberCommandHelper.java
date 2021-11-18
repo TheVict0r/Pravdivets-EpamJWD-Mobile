@@ -42,7 +42,7 @@ public class SubscriberCommandHelper {
 
 		session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
 
-		int phone = subscriber.getPhone();
+		String phone = subscriber.getPhone();
 		String phoneFormat = PhoneFormatter.formatPhone(phone);
 		session.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
 

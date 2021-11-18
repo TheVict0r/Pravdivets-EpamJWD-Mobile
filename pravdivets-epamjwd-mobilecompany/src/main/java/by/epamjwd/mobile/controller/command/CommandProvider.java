@@ -28,6 +28,7 @@ import by.epamjwd.mobile.controller.command.impl.GoToSubscriberBillsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberServicesPageCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
+import by.epamjwd.mobile.controller.command.impl.PasswordRepair1SendCodeCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhonePreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangeStatusCommand;
@@ -101,6 +102,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.CHANGE_STATUS, new ChangeStatusCommand());
 		allCommands.put(CommandName.CHANGE_STATUS_PREPARATION, new ChangeStatusPreparationCommand());
 		allCommands.put(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA, new CancelEditSubscriberDataCommand());
+		allCommands.put(CommandName.PASSWORD_REPAIR1_SEND_CODE, new PasswordRepair1SendCodeCommand());
 	}
 
     public static CommandProvider getInstance() {

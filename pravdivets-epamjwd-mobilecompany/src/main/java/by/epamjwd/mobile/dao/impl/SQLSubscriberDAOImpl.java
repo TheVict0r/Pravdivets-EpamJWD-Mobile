@@ -29,9 +29,9 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 
 
 	@Override
-	public Optional<Subscriber> findSubscriberByPhoneNumber(int phoneNumber) throws DaoException {
+	public Optional<Subscriber> findSubscriberByPhone(String phone) throws DaoException {
 		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_PHONE);
-		return executeQueryForSingleResult(query, phoneNumber);
+		return executeQueryForSingleResult(query, phone);
 	}
 
 	@Override

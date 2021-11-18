@@ -46,7 +46,7 @@ public class AddSubscriberCommand implements Command{
 		CustomerService customerService = serviceProvider.getCustomerService();
 
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
-		int phone = NumericParser.parseIntValue(session.getAttribute(AttributeName.PHONE));
+		String phone = (String)session.getAttribute(AttributeName.PHONE);
 		long planId = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
 		String subscriberUserFlag = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG));
 		
@@ -114,7 +114,7 @@ public class AddSubscriberCommand implements Command{
 		return user;
 	}
 	
-	private Subscriber buildSubscriber(int phone, long planId, long userId) throws ServiceException {
+	private Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException {
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();	
 		PlanService planService = serviceProvider.getPlanService();
 		Plan plan = planService.findPlanByID(planId);

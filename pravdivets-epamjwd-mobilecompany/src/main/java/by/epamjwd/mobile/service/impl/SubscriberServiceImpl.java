@@ -29,28 +29,19 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 	
 	@Override
-	public Optional<Subscriber> findSubscriberByPhone(int phone) throws ServiceException {
+	public Optional<Subscriber> findSubscriberByPhone(String phone) throws ServiceException {
 		Optional<Subscriber> subscriber = Optional.empty();
-			try {
-				subscriber = subscriberDao.findSubscriberByPhoneNumber(phone);
+			
+		if(InputDataValidator.isPhone(phone)) {
+		try {
+				subscriber = subscriberDao.findSubscriberByPhone(phone);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			} 
-		
-		return subscriber;
-	}
-
-	@Override
-	public Optional<Subscriber> findSubscriberByPhoneString(String phoneString) throws ServiceException {
-		Optional<Subscriber> subscriber = Optional.empty();
-		if (InputDataValidator.isPhone(phoneString)) {
-			int phoneInt = Integer.parseInt(phoneString);
-			subscriber = findSubscriberByPhone(phoneInt);
 		}
 		return subscriber;
 	}
 
-	
 	
 	@Override
 	public List<Subscriber> findSubscriberListByUserId(long id) throws ServiceException {
@@ -67,12 +58,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 	
 	
 	@Override
-	public boolean isPhoneAvailable(int phone) throws ServiceException {
+	public boolean isPhoneAvailable(String phone) throws ServiceException {
 		boolean result = false;
 		
 		Optional<Subscriber> subscriber;
 		try {
-			subscriber = subscriberDao.findSubscriberByPhoneNumber(phone);
+			subscriber = subscriberDao.findSubscriberByPhone(phone);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

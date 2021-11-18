@@ -13,23 +13,22 @@ public class PhoneGenerator {
 	private final static int MAX_EXCLUSIVE = 10000000;
 	private final static int MIN_INCLUSIVE =  1000000;
 
-	public static int generatePhone() throws ServiceException {
+	public static String generatePhone() throws ServiceException {
 
-		int phoneNumber = 0;
+		String phone = "";
 
 		Random random = new Random();
-		int firstNumber = OPERATOR_CODE + (random.nextInt(MAX_EXCLUSIVE - MIN_INCLUSIVE) + MIN_INCLUSIVE);
+		String candidatePhone = String.valueOf(OPERATOR_CODE + (random.nextInt(MAX_EXCLUSIVE - MIN_INCLUSIVE) + MIN_INCLUSIVE));
 
-		ServiceProvider provider = ServiceProvider.getInstance();
-		SubscriberService subscriberService = provider.getSubscriberService();
+		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 
-		if (subscriberService.isPhoneAvailable(firstNumber)) {
-			phoneNumber = firstNumber;
+		if (subscriberService.isPhoneAvailable(candidatePhone)) {
+			phone = candidatePhone;
 		} else {
 			generatePhone();
 		}
 
-		return phoneNumber;
+		return phone;
 	}
 
 }

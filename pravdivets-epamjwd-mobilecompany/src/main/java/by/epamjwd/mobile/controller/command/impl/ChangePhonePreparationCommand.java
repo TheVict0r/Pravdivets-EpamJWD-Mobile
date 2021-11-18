@@ -28,7 +28,7 @@ public class ChangePhonePreparationCommand implements Command{
 		RouteHelper result = null;
 
 		
-		int newPhone;
+		String newPhone;
 		String newPhoneFormat;
 		try {
 			newPhone = PhoneGenerator.generatePhone();

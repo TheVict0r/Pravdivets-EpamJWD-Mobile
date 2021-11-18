@@ -20,7 +20,7 @@ public class SubscriberRowMapper implements RowMapper<Subscriber> {
 							resultSet.getLong  (DBColumnName.SUBSCRIBERS_ID),
 							resultSet.getDate  (DBColumnName.SUBSCRIBERS_CONTRACT_DATE),
 							resultSet.getInt   (DBColumnName.SUBSCRIBERS_ACCOUNT),
-							resultSet.getInt   (DBColumnName.SUBSCRIBERS_PHONE),
+							resultSet.getString   (DBColumnName.SUBSCRIBERS_PHONE),
 							resultSet.getDate  (DBColumnName.SUBSCRIBERS_STATUS_DATE),
 							status,
 							resultSet.getLong  (DBColumnName.SUBSCRIBERS_PLAN_ID),

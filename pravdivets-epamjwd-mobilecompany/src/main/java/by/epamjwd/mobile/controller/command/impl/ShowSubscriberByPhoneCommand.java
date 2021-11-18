@@ -35,10 +35,8 @@ public class ShowSubscriberByPhoneCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
-		int phone;
-		phone = NumericParser.parseIntValue(request.getParameter(ParameterName.PHONE));
+		String phone = request.getParameter(ParameterName.PHONE);
 
-		
 		Subscriber subscriber = null;
 		
 		RouteHelper result = null;

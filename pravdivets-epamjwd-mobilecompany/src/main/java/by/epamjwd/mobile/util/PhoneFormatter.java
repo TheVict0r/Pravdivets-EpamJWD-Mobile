@@ -9,11 +9,9 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class PhoneFormatter {
 
-	public static String formatPhone(int phone) throws ServiceException {
+	public static String formatPhone(String phone) throws ServiceException {
 		
-		String phoneString = String.valueOf(phone);
-		
-		char [] phoneChar = phoneString.toCharArray();
+		char [] phoneChar = phone.toCharArray();
 		
 		if(phoneChar.length !=9) {
 			throw new ServiceException("the number provided must be 9 digits long only. Cuttent phone number is - " + phone);
@@ -32,18 +30,18 @@ public class PhoneFormatter {
 
 	}
 	
-	public Map<Integer, String> provideFormattedPhoneMap(List<Subscriber> userList) throws ServiceException{
-		
-		Map<Integer, String> phoneNumbersMap = new HashMap<>();
-		
-		for(Subscriber abonent : userList) {
-			int key = abonent.getPhone();
-			String value = formatPhone(key);
-			phoneNumbersMap.put(key, value);
-		}
-		
-		return phoneNumbersMap;
-	}
+//	public Map<Integer, String> provideFormattedPhoneMap(List<Subscriber> userList) throws ServiceException{
+//		
+//		Map<Integer, String> phoneNumbersMap = new HashMap<>();
+//		
+//		for(Subscriber abonent : userList) {
+//			int key = abonent.getPhone();
+//			String value = formatPhone(key);
+//			phoneNumbersMap.put(key, value);
+//		}
+//		
+//		return phoneNumbersMap;
+//	}
 	
 	
 }

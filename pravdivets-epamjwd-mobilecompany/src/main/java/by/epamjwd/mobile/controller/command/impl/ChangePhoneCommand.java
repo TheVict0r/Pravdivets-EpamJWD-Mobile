@@ -29,7 +29,7 @@ public class ChangePhoneCommand implements Command{
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		session.removeAttribute(AttributeName.NEW_PHONE_FORMAT);
-		int newPhone = NumericParser.parseIntValue(session.getAttribute(AttributeName.NEW_PHONE));
+		String newPhone = (String)session.getAttribute(AttributeName.NEW_PHONE);
 		session.removeAttribute(AttributeName.NEW_PHONE);
 
 		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
@@ -49,7 +49,7 @@ public class ChangePhoneCommand implements Command{
 			if(updatedSubscriberOptional.isPresent()) {
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
 				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
-				int newPhoneFromDatabase = updatedSubscriber.getPhone();
+				String newPhoneFromDatabase = updatedSubscriber.getPhone();
 				String newPhoneFormat =  PhoneFormatter.formatPhone(newPhoneFromDatabase);
 				session.setAttribute(AttributeName.PHONE_FORMAT, newPhoneFormat);
 			}
