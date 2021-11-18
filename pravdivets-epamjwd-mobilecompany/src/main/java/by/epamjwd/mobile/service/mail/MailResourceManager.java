@@ -4,15 +4,22 @@ import java.util.ResourceBundle;
 
 public class MailResourceManager {
 
-	private final static MailResourceManager instance = new MailResourceManager();
-
-	public static MailResourceManager getInstance() {
-		return instance;
+	private static final String MAIL_BUNDLE_NAME = "mail";
+	
+	private MailResourceManager() {
 	}
 	
-	private ResourceBundle bundle = ResourceBundle.getBundle("mail");
-	//HARDCODE
+	private static class Holder{
+		private final static MailResourceManager INSTANCE = new MailResourceManager();
+		
+	}
 	
+
+	public static MailResourceManager getInstance() {
+		return Holder.INSTANCE;
+	}
+	
+	private ResourceBundle bundle = ResourceBundle.getBundle(MAIL_BUNDLE_NAME);
 	
 	public String getValue(String key) {
 		return bundle.getString(key);

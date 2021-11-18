@@ -20,18 +20,18 @@ import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.PhoneFormatter;
 
-public class PasswordRepair1SendCodeCommand implements Command{
+public class PasswordRepair1SendCodeCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(PasswordRepair1SendCodeCommand.class);
-	
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		String phone = request.getParameter(ParameterName.PHONE);
-		
+		session.setAttribute(AttributeName.PHONE, phone);
+
 		try {
-			if(!userService.doesPhoneExist(phone)) {
-				session.setAttribute(AttributeName.PHONE, phone);
+			if (!userService.doesPhoneExist(phone)) {
 				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
 				return new RouteHelper(PagePath.PASSWORD_REPAIR_REDIRECT, RouteMethod.REDIRECT);
 			}
@@ -39,19 +39,15 @@ public class PasswordRepair1SendCodeCommand implements Command{
 			LOGGER.error("Error while checking does phone exist - " + phone + e1);
 			return RouteHelper.ERROR;
 		}
-		
-		String phoneFormat = PhoneFormatter.formatPhone(phone);
-		session.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
+
 		try {
-			int code = userService.sendCodeByMail(phone);
+			int repairCode = userService.sendCodeByMail(phone);
+			session.setAttribute(AttributeName.REPAIR_CODE, repairCode);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while sending an authentication code to " + phone + e);
 			return RouteHelper.ERROR;
 		}
-		
-		
-		System.out.println("ПХОН - " + phoneFormat);
-		
+
 		return new RouteHelper(PagePath.PASSWORD_REPAIR_REDIRECT, RouteMethod.REDIRECT);
 	}
 

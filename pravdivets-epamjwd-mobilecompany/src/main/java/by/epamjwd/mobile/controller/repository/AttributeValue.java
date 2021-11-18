@@ -19,6 +19,7 @@ public class AttributeValue {
 	public static final String NO_USER = "no_user";
 	public static final String ALREADY_SIGNED_UP = "already_signed_up";
 	public static final String INCORRECT_PASSWORD = "incorrect_password";
+	public static final String MISSMATCHED_CODES = "missmatched_codes";
 
 
 }

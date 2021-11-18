@@ -46,5 +46,6 @@ public class CommandName {
 	public static final String SIGNUP = "signup";
 	public static final String GO_TO_PASSWORD_REPAIR_PAGE = "go_to_password_repair_page";
 	public static final String PASSWORD_REPAIR1_SEND_CODE = "password_repair1_send_code";
+	public static final String PASSWORD_REPAIR2_ENTER_CODE = "password_repair2_enter_code";
 
 }

@@ -36,12 +36,12 @@ public class MailCodeManager {
 	
 	public int sendGenereatedCodeByMail(String userMail) throws ServiceException {
 		int code = generateCode(); 
-		sendStringValueByMail(userMail, String.valueOf(code));
+		sendTextByMail(userMail, String.valueOf(code));
 		return code;
 	}
 	
 	
-	private void sendStringValueByMail(String usersMail, String value) throws ServiceException {
+	private void sendTextByMail(String usersMail, String text) throws ServiceException {
 
 		MailResourceManager emailResourceManager = MailResourceManager.getInstance();
 
@@ -71,7 +71,7 @@ public class MailCodeManager {
 			message.setFrom(new InternetAddress(emailFrom));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usersMail));
 			message.setSubject("mobile - access code");
-			message.setText(value);
+			message.setText(text);
 
 			Transport.send(message);
 

@@ -8,6 +8,7 @@ import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.service.mail.MailCodeManager;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 import by.epamjwd.mobile.util.HashGenerator;
 
@@ -145,14 +146,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int sendCodeByMail(String phone) throws ServiceException {
+		int result = 0;
 		if(InputDataValidator.isPhone(phone)) {
 			try {
-				userDao.findUserByPhone(phone);
+				Optional<User> userOptional = userDao.findUserByPhone(phone);
+				if(userOptional.isPresent()) {
+					User user = userOptional.get();
+					result = MailCodeManager.getInstance().sendGenereatedCodeByMail(user.getEmail());
+				}
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
 		}
-		return 99;
+		return result;
 	}
 
 	

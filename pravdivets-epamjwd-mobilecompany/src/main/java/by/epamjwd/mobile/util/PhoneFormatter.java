@@ -1,11 +1,5 @@
 package by.epamjwd.mobile.util;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class PhoneFormatter {

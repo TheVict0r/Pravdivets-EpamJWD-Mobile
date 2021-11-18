@@ -19,9 +19,11 @@
 	<div class="row justify-content-center display-4  mx-auto mb-4 ">
 		<fmt:message key="sign-up.title" />
 	</div>
-	<div
-		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
+	<div class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
+	<c:if test="${sessionScope.repair_password == null}">
+		
 		<fmt:message key="sign-up.lead" />
+		</c:if>
 	</div>
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
@@ -43,6 +45,17 @@
 		</p>
 		<c:remove var="error" />
 	</div>
+
+	<div
+		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-success fw-normal">
+		<p>
+			<c:if test="${sessionScope.repair_password == 'true'}">
+				<fmt:message key="sign-up.repair-password" />
+				<c:remove var="repair_password" />
+			</c:if>
+		</p>
+	</div>
+
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=signup">
 			<table>
