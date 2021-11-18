@@ -20,4 +20,5 @@ public interface UserService {
 	boolean doesPhoneExist(String phoneString) throws ServiceException;
 	void signup(String phone, String password1) throws ServiceException;
 	boolean isPasswordCorrect(String password);
+	int sendCodeByMail(String phone) throws ServiceException;
 }

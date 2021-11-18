@@ -19,8 +19,14 @@
 	<div class="row justify-content-center display-4 py-5 mx-auto ">
 		<fmt:message key="password-repair.title" />
 	</div>
-	<div class="row justify-content-center mx-auto fw-light ">
 
+	<div class="row align-content-center mx-auto text-danger mb-2">
+		<c:if test="${sessionScope.error == 'wrong_phone'}">
+			<fmt:message key="password-repair.check-phone" />
+			<c:remove var="error" />
+		</c:if>
+	</div>
+	<div class="row justify-content-center mx-auto fw-light ">
 		<form id="confirmation-code" method="POST"
 			action="controller?command=password_repair1_send_code">
 			<table>
@@ -29,14 +35,15 @@
 								key="login.phone-number" />:
 					</label></td>
 					<td><input type="text" class="form-control mb-1" name="phone"
-						id="phone" pattern="^(25|29|33|44|55)[0-9]{7}$" required></td>
+						value="${sessionScope.phone}" id="phone"
+						pattern="^(25|29|33|44|55)[0-9]{7}$" required></td>
 				</tr>
 			</table>
 		</form>
 	</div>
 	<div class="row fw-light justify-content-center mx-auto mb-5">
-		<span> <fmt:message key="login.number-format" /> <b><i>55xxxxxxx, 25xxxxxxx,
-					29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
+		<span> <fmt:message key="login.number-format" /> <b><i>55xxxxxxx,
+					25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
 		</span>
 	</div>
 

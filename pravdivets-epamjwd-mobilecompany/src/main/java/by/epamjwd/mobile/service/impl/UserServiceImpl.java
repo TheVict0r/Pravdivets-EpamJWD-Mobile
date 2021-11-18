@@ -143,5 +143,17 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public int sendCodeByMail(String phone) throws ServiceException {
+		if(InputDataValidator.isPhone(phone)) {
+			try {
+				userDao.findUserByPhone(phone);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
+		}
+		return 99;
+	}
+
 	
 }

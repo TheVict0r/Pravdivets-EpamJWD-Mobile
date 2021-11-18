@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.service.validation.mail;
+package by.epamjwd.mobile.service.mail;
 
 import java.util.ResourceBundle;
 

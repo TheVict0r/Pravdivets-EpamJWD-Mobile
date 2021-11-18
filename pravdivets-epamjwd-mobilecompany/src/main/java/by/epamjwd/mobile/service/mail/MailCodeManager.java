@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.service.validation.mail;
+package by.epamjwd.mobile.service.mail;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -12,6 +12,8 @@ import javax.mail.internet.MimeMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.epamjwd.mobile.service.exception.ServiceException;
+
 import java.util.Properties;
 
 public class MailCodeManager {
@@ -19,16 +21,34 @@ public class MailCodeManager {
 	final static int CODE_MIN_VALUE = 1000;
 	final static int CODE_MAX_VALUE = 9999;
 
-	private final static Logger LOGGER = LogManager.getLogger();
+	
+	private MailCodeManager() {
+	}
 
-	public void sendAuthenticationCodeByMail(String usersMail, String authenticationCode) {
+	private static class Holder{
+		static final MailCodeManager INSTANCE = new MailCodeManager();
+	}
+	
+	public static MailCodeManager getInstance() {
+		return Holder.INSTANCE;
+	}
+	
+	
+	public int sendGenereatedCodeByMail(String userMail) throws ServiceException {
+		int code = generateCode(); 
+		sendStringValueByMail(userMail, String.valueOf(code));
+		return code;
+	}
+	
+	
+	private void sendStringValueByMail(String usersMail, String value) throws ServiceException {
 
 		MailResourceManager emailResourceManager = MailResourceManager.getInstance();
 
 		String host = emailResourceManager.getValue(MailParameter.MAIL_HOST);
 		String port = emailResourceManager.getValue(MailParameter.MAIL_PORT);
 		String auth = emailResourceManager.getValue(MailParameter.MAIL_AUTH);
-		String tls = emailResourceManager.getValue(MailParameter.MAIL_TLS);
+		String tls  = emailResourceManager.getValue(MailParameter.MAIL_TLS);
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", host);
@@ -51,22 +71,18 @@ public class MailCodeManager {
 			message.setFrom(new InternetAddress(emailFrom));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usersMail));
 			message.setSubject("mobile - access code");
-			message.setText(authenticationCode);
+			message.setText(value);
 
 			Transport.send(message);
 
 		} catch (MessagingException e) {
-			LOGGER.error("Error while sending an authentication code to " + usersMail + e);
+			throw new ServiceException(e);
 		}
 	}
 
-	public String generateAuthenticationCode() {
-		String authenticationCode = "";
-
-		Integer codeInt = (int) (Math.random() * (CODE_MAX_VALUE - CODE_MIN_VALUE + 1) + CODE_MIN_VALUE);
-
-		authenticationCode = codeInt.toString();
-		return authenticationCode;
+	private int generateCode() {
+		int code = (int) (Math.random() * (CODE_MAX_VALUE - CODE_MIN_VALUE + 1) + CODE_MIN_VALUE);
+		return code;
 	}
 
 }
