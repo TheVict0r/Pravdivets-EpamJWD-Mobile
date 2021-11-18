@@ -71,7 +71,7 @@
 			</table>
 		</form>
 	</div>
-	<div class="row fw-light row justify-content-center mx-auto flex-grow-1">
+	<div class="row fw-light justify-content-center mx-auto flex-grow-1">
 		<span>
 			<span class="text-primary fw-bold fs-5 ">*</span>
 			<fmt:message key="login.number-format" />
