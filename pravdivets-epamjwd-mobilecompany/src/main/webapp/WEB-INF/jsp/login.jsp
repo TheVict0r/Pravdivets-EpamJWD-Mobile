@@ -56,6 +56,7 @@
 						name="password" value="${sessionScope.password}" id="password"
 						required></td>
 					<c:remove var="password"/>
+					<td><a	href="${pageContext.request.contextPath}/controller?command=go_to_password_repair_page" class="card-link"><fmt:message key="login.forgot-password"/></a></td>
 				</tr>
 				<tr>
 					<td></td>

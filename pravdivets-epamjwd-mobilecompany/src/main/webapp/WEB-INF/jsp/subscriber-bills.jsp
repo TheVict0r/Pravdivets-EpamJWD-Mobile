@@ -31,13 +31,13 @@
 		${sessionScope.subscriber.id}
 	</div>
 
-	<div class="text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 mx-auto align-items-start flex-grow-1">
+	<div class="text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 mx-auto flex-grow-1">
 		<table class="table table-striped">
 			<thead class="fw-bold">
 				<tr>
 					<td><fmt:message key="subscriber.bill-number" /></td>
 					<td><fmt:message key="subscriber.bill-date" /></td>
-					<td><fmt:message key="subscriber.bill-sum" /></td>
+					<td class="text-end"><fmt:message key="subscriber.bill-sum" /></td>
 				</tr>
 			</thead>
 
@@ -45,7 +45,7 @@
 				<tr>
 					<td>${bill.id}</td>
 					<td>${bill.date}</td>
-					<td>${bill.amount/100}<fmt:message key="subscriber.rub" /></td>
+					<td class="text-end">${bill.amount/100} <fmt:message key="subscriber.rub" /></td>
 				</tr>
 			</c:forEach>
 		</table>

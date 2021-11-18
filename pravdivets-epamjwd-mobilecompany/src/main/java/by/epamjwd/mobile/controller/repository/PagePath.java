@@ -36,5 +36,6 @@ public class PagePath {
 	public static final String SUBSCRIBER_BILLS = "WEB-INF/jsp/subscriber-bills.jsp";
 	public static final String SIGNUP = "WEB-INF/jsp/sign-up.jsp";
 	public static final String SIGNUP_REDIRECT = "/controller?command=go_to_signup_page";
+	public static final String PASSWORD_REPAIR = "WEB-INF/jsp/password-repair.jsp";
 
 }

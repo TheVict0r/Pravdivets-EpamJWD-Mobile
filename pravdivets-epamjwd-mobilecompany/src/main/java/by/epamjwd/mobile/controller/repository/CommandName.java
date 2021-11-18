@@ -44,5 +44,6 @@ public class CommandName {
 	public static final String GO_TO_SUBSCRIBER_BILLS_PAGE = "go_to_subscriber_bills_page";
 	public static final String GO_TO_SIGNUP_PAGE = "go_to_signup_page";
 	public static final String SIGNUP = "signup";
+	public static final String GO_TO_PASSWORD_REPAIR_PAGE = "go_to_password_repair_page";
 
 }

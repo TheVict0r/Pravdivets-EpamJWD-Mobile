@@ -21,6 +21,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToLoginPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToPasswordRepairPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSignupPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberBillsPageCommand;
@@ -60,6 +61,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.NO_SUCH_COMMAND, new NoSuchCommand());
 		allCommands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPageCommand());
 		allCommands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
+		allCommands.put(CommandName.GO_TO_PASSWORD_REPAIR_PAGE, new GoToPasswordRepairPageCommand());
 		allCommands.put(CommandName.GO_TO_SIGNUP_PAGE, new GoToSignupPageCommand());
 		allCommands.put(CommandName.SIGNUP, new SignupCommand());
 		allCommands.put(CommandName.EDIT_PROFILE, new EditProfileCommand());
