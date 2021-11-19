@@ -25,19 +25,18 @@
 		<p>
 			<c:choose>
 				<c:when test="${sessionScope.error == 'missmatched_passwords'}">
-					<fmt:message key="sign-up.missmatched-passwords" />
+					<fmt:message key="change-password.missmatched-passwords" />
 				</c:when>
 				<c:when test="${sessionScope.error == 'incorrect_password'}">
-					<fmt:message key="sign-up.incorrect-password" />
+					<fmt:message key="change-password.incorrect-password" />
 				</c:when>
 				<c:when test="${sessionScope.error == 'no_user'}">
-					<fmt:message key="sign-up.no-user" />
+					<fmt:message key="change-password.no-user" />
 				</c:when>
 			</c:choose>
 		</p>
 		<c:remove var="error" />
 	</div>
-
 
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=change_password">
@@ -67,7 +66,7 @@
 		</div>
 	<div class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-5">
 		<span> <span class="text-primary fw-bold fs-5 ">*</span> <fmt:message
-				key="sign-up.password-instruction" />
+				key="change-password.password-instruction" />
 		</span>
 	</div>
 	<jsp:include page="components/footer.jsp" />

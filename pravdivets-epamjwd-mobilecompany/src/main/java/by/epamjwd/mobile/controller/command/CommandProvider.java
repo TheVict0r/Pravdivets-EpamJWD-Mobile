@@ -43,6 +43,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
 import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangePasswordCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
@@ -111,12 +112,13 @@ public class CommandProvider {
 		allCommands.put(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA, new CancelEditSubscriberDataCommand());
 		allCommands.put(CommandName.PASSWORD_REPAIR1_SEND_CODE, new PasswordRepair1SendCodeCommand());
 		allCommands.put(CommandName.PASSWORD_REPAIR2_ENTER_CODE, new PasswordRepair2EnterCodeCommand());
-		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
 		allCommands.put(CommandName.CHECK_PHONE, new CheckPhoneCommand());
 		allCommands.put(CommandName.GO_TO_PHONE_REQUEST_PAGE, new GoToPhoneRequestPageCommand());
 		allCommands.put(CommandName.GO_TO_CODE_REQUEST_PAGE, new GoToCodeRequestPageCommand());
 		allCommands.put(CommandName.SEND_CODE, new SendCodeCommand());
 		allCommands.put(CommandName.NEW_PASSWORD, new NewPasswordCommand());
+		allCommands.put(CommandName.CHANGE_PASSWORD, new ChangePasswordCommand());
+		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
 	}
 
     public static CommandProvider getInstance() {

@@ -23,11 +23,11 @@
 		</c:if>
 	</div>
 	<div class="row align-content-center mx-auto flex-grow-1">
-		<c:if test="${sessionScope.sign_up eq 'true'}">
+		<c:if test="${sessionScope.change_password == 'true'}">
 			<p class="text-success fs-5 ">
-				<fmt:message key="login.sign-up" />
+				<fmt:message key="login.change-password" />
 			</p>
-			<c:remove var="sign_up" />
+			<c:remove var="change_password" />
 		</c:if>
 	</div>
 		<div class="row justify-content-center display-4  mx-auto mb-5 "><fmt:message key="login.sign-in"/></div>
