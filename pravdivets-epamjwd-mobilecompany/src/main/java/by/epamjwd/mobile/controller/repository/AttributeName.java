@@ -44,6 +44,6 @@ public class AttributeName {
 	public static final String BILL_LIST = "bill_list";
 	public static final String SIGN_UP = "sign_up";
 	public static final String REPAIR_CODE = "repair_code";
-	public static final String REPAIR_PASSWORD = "repair_password";
+	public static final String MODE = "mode";
 
 }

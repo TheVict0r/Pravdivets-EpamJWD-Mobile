@@ -17,22 +17,26 @@
 	<jsp:include page="components/header.jsp" />
 
 	<div class="row justify-content-center display-4 py-5 mx-auto ">
-		<fmt:message key="password-repair.title" />
+	<c:choose>
+	<c:when test="${sessionScope.mode == 'password_repair' }">
+	
+		<fmt:message key="code-sending.password-repair-title" />
+	
+	</c:when>
+	<c:otherwise>
+	
+	
+	</c:otherwise>
+	
+	</c:choose>
 	</div>
 
 	<div class="row align-content-center mx-auto text-danger mb-2">
 		<c:if test="${sessionScope.error == 'wrong_phone'}">
-			<fmt:message key="password-repair.check-phone" />
+			<fmt:message key="code-sending.check-phone" />
 			<c:remove var="error" />
 		</c:if>
 	</div>
-	<div class="row align-content-center mx-auto text-danger mb-2">
-		<c:if test="${sessionScope.error == 'missmatched_codes'}">
-			<fmt:message key="password-repair.missmatched-codes" />
-			<c:remove var="error" />
-		</c:if>
-	</div>
-	<c:if test="${sessionScope.repair_code == null}">
 	<div class="row justify-content-center mx-auto fw-light ">
 		<form id="send-confirmation-code" method="POST"
 			action="controller?command=password_repair1_send_code">
@@ -56,47 +60,18 @@
 
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 ">
-		<fmt:message key="password-repair.lead" />
+		<fmt:message key="code-sending.lead" />
 	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<table>
 			<tr>
 				<td></td>
 				<td><input type="submit" class="btn btn-outline-dark"
-					value="<fmt:message key = "password-repair.get-code"/>"
+					value="<fmt:message key = "code-sending.get-code"/>"
 					form="send-confirmation-code"></td>
 			</tr>
 		</table>
 	</div>
-	</c:if>
-	
-	<c:if test="${sessionScope.repair_code != null}">
-	
-		<div
-		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
-		<fmt:message key="password-repair.lead-2" />
-	</div>
-	
-	
-		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
-		<form method="POST"
-			action="controller?command=password_repair2_enter_code">
-			<table>
-				<tr>
-					<td><label for="entered_code" class="form-label"> <fmt:message
-								key="password-repair.enter-code" />:
-					</label></td>
-					<td><input type="text" class="form-control mb-1" name="entered_code"
-						 id="entered_code" placeholder="1234" pattern="^[0-9]{4}$" required></td>
-				</tr>
-				<tr>
-				<td></td>
-				<td><input type="submit" class="btn btn-outline-dark" value="OK"></td>
-			</tr>
-			</table>
-		</form>
-		</div>
-	</c:if>
 	
 	<jsp:include page="components/footer.jsp" />
 </body>

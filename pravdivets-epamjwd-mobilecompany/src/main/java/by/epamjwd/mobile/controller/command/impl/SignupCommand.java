@@ -58,6 +58,7 @@ public class SignupCommand implements Command{
 			LOGGER.error("Error when signing up command for phone - " + phone, e);
 			return RouteHelper.ERROR;
 		}
+		session.removeAttribute(AttributeName.MODE);
 		return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 	}
 

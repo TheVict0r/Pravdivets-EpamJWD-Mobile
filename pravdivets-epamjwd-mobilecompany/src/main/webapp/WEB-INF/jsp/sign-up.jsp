@@ -16,15 +16,22 @@
 <body class="d-flex flex-column min-vh-100 fw-light bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div class="mb-4 "></div>
+	<c:choose> 
+	<c:when test="${sessionScope.mode == 'sign_up'}">
 	<div class="row justify-content-center display-4  mx-auto mb-4 ">
 		<fmt:message key="sign-up.title" />
 	</div>
 	<div class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
-	<c:if test="${sessionScope.repair_password == null}">
 		
 		<fmt:message key="sign-up.lead" />
-		</c:if>
 	</div>
+	</c:when>
+		<c:when test="${sessionScope.mode == 'password_repair'}">
+		<div class="row justify-content-center display-4  mx-auto mb-4 ">
+		<fmt:message key="code-sending.password-repair-title" />
+	</div>
+	</c:when>
+		</c:choose>
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
 		<p>
@@ -49,7 +56,7 @@
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-success fw-normal">
 		<p>
-			<c:if test="${sessionScope.repair_password == 'true'}">
+			<c:if test="${sessionScope.mode == 'password_repair'}">
 				<fmt:message key="sign-up.repair-password" />
 				<c:remove var="repair_password" />
 			</c:if>
