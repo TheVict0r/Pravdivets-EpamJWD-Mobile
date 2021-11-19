@@ -10,45 +10,32 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
-import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
-import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.PhoneFormatter;
 
-public class PasswordRepair1SendCodeCommand implements Command {
-	private final static Logger LOGGER = LogManager.getLogger(PasswordRepair1SendCodeCommand.class);
+public class SendCodeCommand implements Command{
 
+	private final static Logger LOGGER = LogManager.getLogger(SendCodeCommand.class);
+	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		String phone = (String)session.getAttribute(AttributeName.PHONE);
+		
 		UserService userService = ServiceProvider.getInstance().getUserService();
-		String phone = request.getParameter(ParameterName.PHONE);
-		session.setAttribute(AttributeName.PHONE, phone);
 
 		try {
-			if (!userService.doesPhoneExist(phone)) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
-				return new RouteHelper(PagePath.PASSWORD_REPAIR_REDIRECT, RouteMethod.REDIRECT);
-			}
-		} catch (ServiceException e1) {
-			LOGGER.error("Error while checking does phone exist - " + phone + e1);
-			return RouteHelper.ERROR;
-		}
-
-		try {
-			int repairCode = userService.sendCodeByMail(phone);
-			session.setAttribute(AttributeName.CODE, repairCode);
+			int code = userService.sendCodeByMail(phone);
+			session.setAttribute(AttributeName.CODE, code);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while sending an authentication code to " + phone + e);
 			return RouteHelper.ERROR;
 		}
-
-		return new RouteHelper(PagePath.PASSWORD_REPAIR_REDIRECT, RouteMethod.REDIRECT);
+		
+		return new RouteHelper(PagePath.CODE_REQUEST_REDIRECT, RouteMethod.REDIRECT);
 	}
 
 }

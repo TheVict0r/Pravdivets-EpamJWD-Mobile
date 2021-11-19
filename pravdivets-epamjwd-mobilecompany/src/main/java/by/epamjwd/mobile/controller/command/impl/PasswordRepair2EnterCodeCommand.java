@@ -28,8 +28,8 @@ public class PasswordRepair2EnterCodeCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Integer repairCode = (Integer)session.getAttribute(AttributeName.REPAIR_CODE);
-		session.removeAttribute(AttributeName.REPAIR_CODE);
+		Integer repairCode = (Integer)session.getAttribute(AttributeName.CODE);
+		session.removeAttribute(AttributeName.CODE);
 		int enteredCode = NumericParser.parseIntValue(request.getParameter(ParameterName.ENTERED_CODE));
 		
 		if (repairCode == enteredCode) {

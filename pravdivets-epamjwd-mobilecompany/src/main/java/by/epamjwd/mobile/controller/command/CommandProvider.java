@@ -13,6 +13,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
+import by.epamjwd.mobile.controller.command.impl.NewPasswordCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByFullNameCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByPassportCommand;
@@ -22,6 +23,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToLoginPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToPasswordRepairPageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToPhoneRequestPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSignupPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberBillsPageCommand;
@@ -30,10 +32,12 @@ import by.epamjwd.mobile.controller.command.impl.GoToSubscriberServicesPageComma
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.PasswordRepair1SendCodeCommand;
 import by.epamjwd.mobile.controller.command.impl.PasswordRepair2EnterCodeCommand;
+import by.epamjwd.mobile.controller.command.impl.SendCodeCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhonePreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangeStatusCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangeStatusPreparationCommand;
+import by.epamjwd.mobile.controller.command.impl.CheckPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
@@ -47,6 +51,7 @@ import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToChangePasswordPageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToCodeRequestPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToErrorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
@@ -107,6 +112,11 @@ public class CommandProvider {
 		allCommands.put(CommandName.PASSWORD_REPAIR1_SEND_CODE, new PasswordRepair1SendCodeCommand());
 		allCommands.put(CommandName.PASSWORD_REPAIR2_ENTER_CODE, new PasswordRepair2EnterCodeCommand());
 		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
+		allCommands.put(CommandName.CHECK_PHONE, new CheckPhoneCommand());
+		allCommands.put(CommandName.GO_TO_PHONE_REQUEST_PAGE, new GoToPhoneRequestPageCommand());
+		allCommands.put(CommandName.GO_TO_CODE_REQUEST_PAGE, new GoToCodeRequestPageCommand());
+		allCommands.put(CommandName.SEND_CODE, new SendCodeCommand());
+		allCommands.put(CommandName.NEW_PASSWORD, new NewPasswordCommand());
 	}
 
     public static CommandProvider getInstance() {

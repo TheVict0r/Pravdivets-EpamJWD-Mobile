@@ -40,5 +40,9 @@ public class PagePath {
 	public static final String PASSWORD_REPAIR_REDIRECT = "/controller?command=go_to_password_repair_page";
 	public static final String CHANGE_PASSWORD_REDIRECT = "/controller?command=go_to_change_password_page";
 	public static final String CHANGE_PASSWORD = "WEB-INF/jsp/change-password.jsp";
+	public static final String PHONE_REQUEST = "WEB-INF/jsp/phone-request.jsp";
+	public static final String PHONE_REQUEST_REDIRECT = "/controller?command=go_to_phone_request_page";
+	public static final String CODE_REQUEST = "WEB-INF/jsp/code-request.jsp";
+	public static final String CODE_REQUEST_REDIRECT = "/controller?command=go_to_code_request_page";
 
 }
