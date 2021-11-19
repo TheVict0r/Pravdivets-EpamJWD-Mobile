@@ -45,7 +45,6 @@ public class SignupCommand implements Command{
 					userService.signup(phone, password1);
 					session.setAttribute(AttributeName.SIGN_UP, AttributeValue.TRUE);
 
-
 					// ДОБАВИТЬ ПОДТВЕРЖДЕНИЕ ПО E-MAIL
 					
 				} else {
