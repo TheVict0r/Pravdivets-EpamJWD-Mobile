@@ -16,13 +16,10 @@
 <body class="d-flex flex-column min-vh-100 fw-light bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div class="mb-4 "></div>
-	<div class="row justify-content-center display-4  mx-auto mb-4 ">
-		<fmt:message key="sign-up.title" />
+	<div class="row justify-content-center display-4  mx-auto mb-4 py-5">
+		<fmt:message key="change-password.title" />
 	</div>
-	<div class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
-		
-		<fmt:message key="sign-up.lead" />
-	</div>
+
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
 		<p>
@@ -33,9 +30,6 @@
 				<c:when test="${sessionScope.error == 'incorrect_password'}">
 					<fmt:message key="sign-up.incorrect-password" />
 				</c:when>
-				<c:when test="${sessionScope.error == 'already_signed_up'}">
-					<fmt:message key="sign-up.already-signed-up" />
-				</c:when>
 				<c:when test="${sessionScope.error == 'no_user'}">
 					<fmt:message key="sign-up.no-user" />
 				</c:when>
@@ -43,22 +37,15 @@
 		</p>
 		<c:remove var="error" />
 	</div>
+
+
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
-		<form method="POST" action="controller?command=signup">
+		<form method="POST" action="controller?command=change_password">
 			<table>
-				<tr>
-					<td><label for="phone" class="form-label"> <fmt:message
-								key="sign-up.phone" /> <span class="text-primary fw-bold fs-5 ">*</span>
-					</label></td>
-					<td><input type="text" class="form-control" name="phone"
-						value="${sessionScope.phone}" id="phone" placeholder="551234567"
-						pattern="^(25|29|33|44|55)[0-9]{7}$" required></td>
-					<c:remove var="phone" />
-				</tr>
 				<tr>
 					<td><label for="password1" class="form-label"><fmt:message
 								key="sign-up.password1" /> <span
-							class="text-primary fw-bold fs-5 ">**</span> </label></td>
+							class="text-primary fw-bold fs-5 ">*</span> </label></td>
 					<td><input type="password" class="form-control"
 						name="password1" id="password1" required minlength="8"></td>
 					<c:remove var="password1" />
@@ -66,7 +53,7 @@
 				<tr>
 					<td><label for="password2" class="form-label "><fmt:message
 								key="sign-up.password2" /></label></td>
-					<td><input type="password" class="form-control "
+					<td><input type="password" class="form-control mb-1"
 						name="password2" id="password2" required minlength="8"></td>
 					<c:remove var="password2" />
 				</tr>
@@ -77,15 +64,9 @@
 				</tr>
 			</table>
 		</form>
-	</div>
-	<div class="row fw-light row justify-content-center mx-auto ">
+		</div>
+	<div class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-5">
 		<span> <span class="text-primary fw-bold fs-5 ">*</span> <fmt:message
-				key="login.number-format" /> <b><i>55xxxxxxx, 25xxxxxxx,
-					29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b>
-		</span>
-	</div>
-	<div class="row fw-light row justify-content-center mx-auto mb-5">
-		<span> <span class="text-primary fw-bold fs-5 ">**</span> <fmt:message
 				key="sign-up.password-instruction" />
 		</span>
 	</div>

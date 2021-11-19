@@ -8,11 +8,13 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToCodeConfirmationPageCommand implements Command{
+public class ChangePasswordCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		return new RouteHelper(PagePath.CODE_CONFIRMATION, RouteMethod.FORWARD);
+
+		
+		return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 	}
 
 }

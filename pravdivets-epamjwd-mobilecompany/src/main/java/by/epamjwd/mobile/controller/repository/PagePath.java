@@ -36,10 +36,9 @@ public class PagePath {
 	public static final String SUBSCRIBER_BILLS = "WEB-INF/jsp/subscriber-bills.jsp";
 	public static final String SIGNUP = "WEB-INF/jsp/sign-up.jsp";
 	public static final String SIGNUP_REDIRECT = "/controller?command=go_to_signup_page";
-	public static final String CODE_SENDING = "WEB-INF/jsp/code-sending.jsp";
+	public static final String PASSWORD_REPAIR = "WEB-INF/jsp/password-repair.jsp";
 	public static final String PASSWORD_REPAIR_REDIRECT = "/controller?command=go_to_password_repair_page";
-	public static final String CODE_CONFIRMATION_REDIRECT = "/controller?command=go_to_code_confirmation_page";
-	public static final String CODE_CONFIRMATION = "WEB-INF/jsp/code-confirmation.jsp";
 	public static final String CHANGE_PASSWORD_REDIRECT = "/controller?command=go_to_change_password_page";
+	public static final String CHANGE_PASSWORD = "WEB-INF/jsp/change-password.jsp";
 
 }

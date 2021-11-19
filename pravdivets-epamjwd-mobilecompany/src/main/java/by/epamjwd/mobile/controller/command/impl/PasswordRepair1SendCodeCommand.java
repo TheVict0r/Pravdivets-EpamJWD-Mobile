@@ -48,7 +48,7 @@ public class PasswordRepair1SendCodeCommand implements Command {
 			return RouteHelper.ERROR;
 		}
 
-		return new RouteHelper(PagePath.CODE_CONFIRMATION_REDIRECT, RouteMethod.REDIRECT);
+		return new RouteHelper(PagePath.PASSWORD_REPAIR_REDIRECT, RouteMethod.REDIRECT);
 	}
 
 }

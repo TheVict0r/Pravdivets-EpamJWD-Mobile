@@ -47,7 +47,6 @@ import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToChangePasswordPageCommand;
-import by.epamjwd.mobile.controller.command.impl.GoToCodeConfirmationPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToErrorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
@@ -107,7 +106,6 @@ public class CommandProvider {
 		allCommands.put(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA, new CancelEditSubscriberDataCommand());
 		allCommands.put(CommandName.PASSWORD_REPAIR1_SEND_CODE, new PasswordRepair1SendCodeCommand());
 		allCommands.put(CommandName.PASSWORD_REPAIR2_ENTER_CODE, new PasswordRepair2EnterCodeCommand());
-		allCommands.put(CommandName.GO_TO_CODE_CONFIRMATION_PAGE, new GoToCodeConfirmationPageCommand());
 		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
 	}
 

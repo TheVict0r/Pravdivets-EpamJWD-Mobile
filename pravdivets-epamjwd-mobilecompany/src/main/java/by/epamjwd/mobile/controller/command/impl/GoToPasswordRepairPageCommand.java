@@ -15,9 +15,7 @@ public class GoToPasswordRepairPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		session.setAttribute(AttributeName.MODE, AttributeValue.PASSWORD_REPAIR);
-		return new RouteHelper(PagePath.CODE_SENDING, RouteMethod.FORWARD);
+		return new RouteHelper(PagePath.PASSWORD_REPAIR, RouteMethod.FORWARD);
 	}
 
 }

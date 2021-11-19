@@ -54,7 +54,6 @@ public class PasswordRepair2EnterCodeCommand implements Command{
 			return new RouteHelper(PagePath.PASSWORD_REPAIR_REDIRECT, RouteMethod.REDIRECT);
 		}
 		
-		session.setAttribute(AttributeName.MODE, AttributeValue.PASSWORD_REPAIR);
 		return new RouteHelper(PagePath.CHANGE_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 	}
 

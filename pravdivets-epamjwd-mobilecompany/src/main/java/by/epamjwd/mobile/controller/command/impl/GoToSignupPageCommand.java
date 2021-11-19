@@ -15,8 +15,6 @@ public class GoToSignupPageCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		session.setAttribute(AttributeName.MODE, AttributeValue.SIGN_UP);
 		return new RouteHelper(PagePath.SIGNUP, RouteMethod.FORWARD);
 	}
 

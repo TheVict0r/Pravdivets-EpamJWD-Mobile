@@ -12,7 +12,7 @@ public class GoToChangePasswordPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		return new RouteHelper(PagePath.SIGNUP, RouteMethod.FORWARD);
+		return new RouteHelper(PagePath.CHANGE_PASSWORD, RouteMethod.FORWARD);
 	}
 
 }
