@@ -48,7 +48,6 @@ public class CheckPhoneCommand implements Command{
 			return RouteHelper.ERROR;
 		}
 
-		session.removeAttribute(AttributeName.MODE);
 		return result;
 	}
 

@@ -1,7 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -25,10 +22,8 @@ public class ChangePasswordCommand implements Command{
 
 	private final static Logger LOGGER = LogManager.getLogger(ChangePasswordCommand.class);
 
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-
 		HttpSession session = request.getSession();
 		String phone = (String)session.getAttribute(AttributeName.PHONE);
 		String password1 = request.getParameter(ParameterName.PASSWORD1);
@@ -43,25 +38,16 @@ public class ChangePasswordCommand implements Command{
 			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
 		}
 
-		
 		try {
-//			Optional<User> userOptional = userService.findUserByPhone(phone);
-//			if(userOptional.isPresent()) {
-//				User user = userOptional.get();
-//				user.setPassword(null); // НОВЫЙ ПАРОЛЬ СЮДА но надо ЗАХЕШИРОВАТЬ
-//				userService.updateUser(user);
-				userService.updatePassword(phone, password1);// - может этого переименовать
-//			} else {
-//				LOGGER.error("Error while searching user by phone - " + phone);
-//				return RouteHelper.ERROR;
-//			}
+			userService.updatePassword(phone, password1);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while updating user's password. Users phone - " + phone + e);
 			return RouteHelper.ERROR;
 		}
 		
-		
 		session.setAttribute(AttributeName.CHANGE_PASSWORD, AttributeValue.TRUE);
+		session.removeAttribute(AttributeName.PHONE);
+		session.removeAttribute(AttributeName.MODE);
 		return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 	}
 

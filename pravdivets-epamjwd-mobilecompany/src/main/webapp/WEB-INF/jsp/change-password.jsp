@@ -37,7 +37,6 @@
 		</p>
 		<c:remove var="error" />
 	</div>
-
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=change_password">
 			<table>

@@ -18,15 +18,12 @@
 	<div class="row justify-content-center display-4 py-5 mx-auto ">
 		<fmt:message key="code-request.title" />
 	</div>
-	
 		<div class="row align-content-center mx-auto text-danger mb-2">
 		<c:if test="${sessionScope.error == 'missmatched_codes'}">
 			<fmt:message key="code-request.missmatched-codes" />
 			<c:remove var="error" />
 		</c:if>
 	</div>
-	
-	
 	<c:if test="${sessionScope.code == null}">
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 				<div
@@ -40,7 +37,6 @@
 				</div>
 		</div>
 	</c:if>
-
 	<c:if test="${sessionScope.code != null}">
 		<div
 			class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
@@ -67,7 +63,6 @@
 			</form>
 		</div>
 	</c:if>
-
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>
