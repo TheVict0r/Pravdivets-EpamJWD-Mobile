@@ -22,6 +22,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToLoginPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToPasswordRepairPageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToPhoneRequestPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSignupPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToSubscriberBillsPageCommand;
@@ -107,6 +108,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA, new CancelEditSubscriberDataCommand());
 		allCommands.put(CommandName.CHECK_PHONE, new CheckPhoneCommand());
 		allCommands.put(CommandName.GO_TO_CODE_SEND_PAGE, new GoToCodeSendPageCommand());
+		allCommands.put(CommandName.GO_TO_PHONE_REQUEST_PAGE, new GoToPhoneRequestPageCommand());
 		allCommands.put(CommandName.GO_TO_CODE_RETURN_PAGE, new GoToCodeReturnPageCommand());
 		allCommands.put(CommandName.CODE_SEND, new CodeSendCommand());
 		allCommands.put(CommandName.CODE_RETURN, new CodeReturnCommand());

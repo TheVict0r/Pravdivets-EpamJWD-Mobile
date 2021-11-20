@@ -16,17 +16,17 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div class="row justify-content-center display-4 py-5 mx-auto ">
-		<fmt:message key="code-request.title" />
+		<fmt:message key="code-return.title" />
 	</div>
 		<div class="row align-content-center mx-auto text-danger mb-2">
 		<c:if test="${sessionScope.error == 'missmatched_codes'}">
-			<fmt:message key="code-request.missmatched-codes" />
+			<fmt:message key="code-return.missmatched-codes" />
 			<c:remove var="error" />
 		</c:if>
 	</div>
 		<div
 			class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
-			<fmt:message key="password-repair.lead-2" />
+			<fmt:message key="code-return.lead" />
 		</div>
 
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
@@ -35,7 +35,7 @@
 				<table>
 					<tr>
 						<td><label for="entered_code" class="form-label"> <fmt:message
-									key="password-repair.enter-code" />:
+									key="code-return.enter-code" />:
 						</label></td>
 						<td><input type="text" class="form-control mb-1"
 							name="entered_code" id="entered_code" placeholder="1234"

@@ -16,17 +16,17 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div class="row justify-content-center display-4 py-5 mx-auto ">
-		<fmt:message key="code-request.title" />
+		<fmt:message key="code-send.title" />
 	</div>
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 				<div
 					class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5">
-					<fmt:message key="code-request.lead" />
+					<fmt:message key="code-send.lead" />
 				</div>
 				<div class="justify-content-center text-center mx-auto">
 					<a class="btn btn-outline-dark" 
 					href="${pageContext.request.contextPath}/controller?command=code_send">
-						<fmt:message key = "code-request.get-code"/></a>
+						<fmt:message key = "code-send.get-code"/></a>
 				</div>
 		</div>
 	<jsp:include page="components/footer.jsp" />

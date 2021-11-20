@@ -17,7 +17,7 @@
 	<jsp:include page="components/header.jsp" />
 	<div class="mb-4 "></div>
 	<div class="row justify-content-center display-4  mx-auto mb-4 py-5">
-		<fmt:message key="change-password.title" />
+		<fmt:message key="new-password.title" />
 	</div>
 
 	<div
@@ -25,13 +25,13 @@
 		<p>
 			<c:choose>
 				<c:when test="${sessionScope.error == 'missmatched_passwords'}">
-					<fmt:message key="change-password.missmatched-passwords" />
+					<fmt:message key="new-password.missmatched-passwords" />
 				</c:when>
 				<c:when test="${sessionScope.error == 'incorrect_password'}">
-					<fmt:message key="change-password.incorrect-password" />
+					<fmt:message key="new-password.incorrect-password" />
 				</c:when>
 				<c:when test="${sessionScope.error == 'no_user'}">
-					<fmt:message key="change-password.no-user" />
+					<fmt:message key="new-password.no-user" />
 				</c:when>
 			</c:choose>
 		</p>
@@ -42,7 +42,7 @@
 			<table>
 				<tr>
 					<td><label for="password1" class="form-label"><fmt:message
-								key="sign-up.password1" /> <span
+								key="new-password.password1" /> <span
 							class="text-primary fw-bold fs-5 ">*</span> </label></td>
 					<td><input type="password" class="form-control"
 						name="password1" id="password1" required minlength="8"></td>
@@ -50,7 +50,7 @@
 				</tr>
 				<tr>
 					<td><label for="password2" class="form-label "><fmt:message
-								key="sign-up.password2" /></label></td>
+								key="new-password.password2" /></label></td>
 					<td><input type="password" class="form-control mb-1"
 						name="password2" id="password2" required minlength="8"></td>
 					<c:remove var="password2" />
@@ -65,7 +65,7 @@
 		</div>
 	<div class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-5">
 		<span> <span class="text-primary fw-bold fs-5 ">*</span> <fmt:message
-				key="change-password.password-instruction" />
+				key="new-password.password-instruction" />
 		</span>
 	</div>
 	<jsp:include page="components/footer.jsp" />

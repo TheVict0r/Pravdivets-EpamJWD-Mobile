@@ -35,7 +35,7 @@
 	</c:choose>
 	<c:if test="${sessionScope.error == 'wrong_phone'}">
 		<div class="row align-content-center mx-auto text-danger mb-2">
-			<fmt:message key="password-repair.check-phone" />
+			<fmt:message key="phone-request.check-phone" />
 			<c:remove var="error" />
 		</div>
 	</c:if>

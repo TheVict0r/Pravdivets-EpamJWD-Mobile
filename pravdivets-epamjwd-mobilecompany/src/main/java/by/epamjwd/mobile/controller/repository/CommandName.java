@@ -51,5 +51,6 @@ public class CommandName {
 	public static final String CODE_SEND = "code_send";
 	public static final String CODE_RETURN = "code_return";
 	public static final String GO_TO_CODE_RETURN_PAGE = "go_to_code_return_page";
+	public static final String GO_TO_PHONE_REQUEST_PAGE = "go_to_phone_request_page";
 
 }
