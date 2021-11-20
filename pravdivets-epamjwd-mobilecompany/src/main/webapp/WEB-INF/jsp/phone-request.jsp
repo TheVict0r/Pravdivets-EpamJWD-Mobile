@@ -18,7 +18,7 @@
 	<c:choose>
 		<c:when test="${sessionScope.mode == 'sign_up'}">
 			<div class="mb-5 "></div>
-			<div class="row justify-content-center display-4 mx-auto mb-5 py-5">
+			<div class="row justify-content-center display-4 mx-auto mb-3 py-5">
 				<fmt:message key="sign-up.title" />
 			</div>
 			<div
@@ -39,7 +39,13 @@
 			<c:remove var="error" />
 		</div>
 	</c:if>
-
+	<c:if test="${sessionScope.error == 'already_signed_up'}">
+		<div class="row align-content-center mx-auto text-danger mb-2">
+			<span><fmt:message key="phone-request.already-signed-up" />
+			<a	href="${pageContext.request.contextPath}/controller?command=go_to_password_repair_page" class="card-link"><fmt:message key="login.forgot-password"/></a>
+			<c:remove var="error" /> </span>
+		</div>
+	</c:if>
 	<div class="row justify-content-center mx-auto fw-light">
 		<form id="check-phone" method="POST"
 			action="controller?command=check_phone">
@@ -63,7 +69,6 @@
 		<span> <fmt:message key="login.number-format" /> <b><i>55xxxxxxx,
 					25xxxxxxx, 29xxxxxxx, 33xxxxxxx, 44xxxxxxx</i></b></span>
 	</div>
-
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

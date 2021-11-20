@@ -27,25 +27,35 @@ public class CheckPhoneCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		UserService userService = ServiceProvider.getInstance().getUserService();
+		
 		String phone = request.getParameter(ParameterName.PHONE);
 		session.setAttribute(AttributeName.PHONE, phone);
-
+		String mode = (String)session.getAttribute(AttributeName.MODE);
+		
 		RouteHelper result;
 		
 		try {
 			if (userService.doesPhoneExist(phone)) {
+				if(AttributeValue.SIGN_UP.equals(mode) && !userService.isSignupRequired(phone)) {
+					return provideErrorMessage(session, AttributeValue.ALREADY_SIGNED_UP);
+				}
 				result = new RouteHelper(PagePath.CODE_REQUEST_REDIRECT, RouteMethod.REDIRECT);
 			} else {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
-				result = new RouteHelper(PagePath.PHONE_REQUEST_REDIRECT, RouteMethod.REDIRECT);
+				return provideErrorMessage(session, AttributeValue.WRONG_PHONE);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error while checking does phone exist - " + phone + e);
 			return RouteHelper.ERROR;
 		}
 
+		session.removeAttribute(AttributeName.MODE);
 		return result;
-	
 	}
 
+	
+	private RouteHelper provideErrorMessage(HttpSession session, String attributeValue) {
+		session.setAttribute(AttributeName.ERROR, attributeValue);
+		return new RouteHelper(PagePath.PHONE_REQUEST_REDIRECT, RouteMethod.REDIRECT);
+	}
+	
 }

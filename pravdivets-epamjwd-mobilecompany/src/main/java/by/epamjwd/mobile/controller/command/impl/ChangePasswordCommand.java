@@ -36,25 +36,25 @@ public class ChangePasswordCommand implements Command{
 		UserService userService = ServiceProvider.getInstance().getUserService();
 
 		if(!password1.equals(password2)) {
-			return provideErrorMessage(session, phone, AttributeValue.MISSMATCHED_PASSWORDS);
+			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);
 		}
 		
 		if(!userService.isPasswordCorrect(password1)) {
-			return provideErrorMessage(session, phone, AttributeValue.INCORRECT_PASSWORD);
+			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
 		}
 
 		
 		try {
-			Optional<User> userOptional = userService.findUserByPhone(phone);
-			if(userOptional.isPresent()) {
-				User user = userOptional.get();
-				user.setPassword(null); // НОВЫЙ ПАРОЛЬ СЮДА но надо ЗАХЕШИРОВАТЬ
-				userService.updateUser(user);
-				//userService.signup(phone, password1); - может этого переименовать
-			} else {
-				LOGGER.error("Error while searching user by phone - " + phone);
-				return RouteHelper.ERROR;
-			}
+//			Optional<User> userOptional = userService.findUserByPhone(phone);
+//			if(userOptional.isPresent()) {
+//				User user = userOptional.get();
+//				user.setPassword(null); // НОВЫЙ ПАРОЛЬ СЮДА но надо ЗАХЕШИРОВАТЬ
+//				userService.updateUser(user);
+				userService.updatePassword(phone, password1);// - может этого переименовать
+//			} else {
+//				LOGGER.error("Error while searching user by phone - " + phone);
+//				return RouteHelper.ERROR;
+//			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error while updating user's password. Users phone - " + phone + e);
 			return RouteHelper.ERROR;
@@ -66,8 +66,7 @@ public class ChangePasswordCommand implements Command{
 	}
 
 	
-	private RouteHelper provideErrorMessage(HttpSession session, String phone, String attributeValue) {
-		session.setAttribute(AttributeName.PHONE, phone);
+	private RouteHelper provideErrorMessage(HttpSession session, String attributeValue) {
 		session.setAttribute(AttributeName.ERROR, attributeValue);
 		return new RouteHelper(PagePath.CHANGE_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 	}

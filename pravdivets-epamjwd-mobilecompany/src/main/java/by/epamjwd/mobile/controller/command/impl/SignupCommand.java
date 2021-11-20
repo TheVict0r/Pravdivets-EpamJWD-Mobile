@@ -42,7 +42,7 @@ public class SignupCommand implements Command{
 		try {
 			if(userService.doesPhoneExist(phone)) {
 				if(userService.isSignupRequired(phone)) {
-					userService.signup(phone, password1);
+					userService.updatePassword(phone, password1);
 					session.setAttribute(AttributeName.SIGN_UP, AttributeValue.TRUE);
 
 					// ДОБАВИТЬ ПОДТВЕРЖДЕНИЕ ПО E-MAIL

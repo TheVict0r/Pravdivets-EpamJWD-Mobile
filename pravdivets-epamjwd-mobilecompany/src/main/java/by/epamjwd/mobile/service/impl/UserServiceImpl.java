@@ -134,7 +134,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void signup(String phone, String password) throws ServiceException {
+	public void updatePassword(String phone, String password) throws ServiceException {
 		Optional<User> userOptional = findUserByPhone(phone);
 		if(userOptional.isPresent()) {
 			User user = userOptional.get();
