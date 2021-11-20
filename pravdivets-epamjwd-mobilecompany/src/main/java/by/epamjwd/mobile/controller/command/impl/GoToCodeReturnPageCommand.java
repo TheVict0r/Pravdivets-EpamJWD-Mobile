@@ -8,11 +8,11 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToCodeRequestPageCommand implements Command{
+public class GoToCodeReturnPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		return new RouteHelper(PagePath.CODE_REQUEST, RouteMethod.FORWARD);
+		return new RouteHelper(PagePath.CODE_RETURN, RouteMethod.FORWARD);
 	}
 
 }

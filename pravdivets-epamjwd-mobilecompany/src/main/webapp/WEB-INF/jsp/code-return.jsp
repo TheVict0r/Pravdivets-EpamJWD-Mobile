@@ -24,20 +24,6 @@
 			<c:remove var="error" />
 		</c:if>
 	</div>
-	<c:if test="${sessionScope.code == null}">
-		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
-				<div
-					class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5">
-					<fmt:message key="code-request.lead" />
-				</div>
-				<div class="justify-content-center text-center mx-auto">
-					<a class="btn btn-outline-dark" 
-					href="${pageContext.request.contextPath}/controller?command=send_code">
-						<fmt:message key = "code-request.get-code"/></a>
-				</div>
-		</div>
-	</c:if>
-	<c:if test="${sessionScope.code != null}">
 		<div
 			class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
 			<fmt:message key="password-repair.lead-2" />
@@ -45,7 +31,7 @@
 
 		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 			<form method="POST"
-				action="controller?command=new_password">
+				action="controller?command=code_return">
 				<table>
 					<tr>
 						<td><label for="entered_code" class="form-label"> <fmt:message
@@ -62,7 +48,6 @@
 				</table>
 			</form>
 		</div>
-	</c:if>
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

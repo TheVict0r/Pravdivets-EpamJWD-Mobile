@@ -43,17 +43,13 @@ public class CommandName {
 	public static final String GO_TO_SUBSCRIBER_SERVICES_PAGE = "go_to_subscriber_services_page";
 	public static final String GO_TO_SUBSCRIBER_BILLS_PAGE = "go_to_subscriber_bills_page";
 	public static final String GO_TO_SIGNUP_PAGE = "go_to_signup_page";
-	public static final String SIGNUP = "signup";
 	public static final String GO_TO_PASSWORD_REPAIR_PAGE = "go_to_password_repair_page";
-	public static final String PASSWORD_REPAIR1_SEND_CODE = "password_repair1_send_code";
-	public static final String PASSWORD_REPAIR2_ENTER_CODE = "password_repair2_enter_code";
-	public static final String GO_TO_CODE_CONFIRMATION_PAGE = "go_to_code_confirmation_page";
-	public static final String CHANGE_PASSWORD = "change_password";
-	public static final String GO_TO_CHANGE_PASSWORD_PAGE = "go_to_change_password_page";
-	public static final String CHECK_PHONE = "check_phone";
-	public static final String GO_TO_PHONE_REQUEST_PAGE = "go_to_phone_request_page";
-	public static final String GO_TO_CODE_REQUEST_PAGE = "go_to_code_request_page";
-	public static final String SEND_CODE = "send_code";
 	public static final String NEW_PASSWORD = "new_password";
+	public static final String GO_TO_NEW_PASSWORD_PAGE = "go_to_new_password_page";
+	public static final String CHECK_PHONE = "check_phone";
+	public static final String GO_TO_CODE_SEND_PAGE = "go_to_code_send_page";
+	public static final String CODE_SEND = "code_send";
+	public static final String CODE_RETURN = "code_return";
+	public static final String GO_TO_CODE_RETURN_PAGE = "go_to_code_return_page";
 
 }

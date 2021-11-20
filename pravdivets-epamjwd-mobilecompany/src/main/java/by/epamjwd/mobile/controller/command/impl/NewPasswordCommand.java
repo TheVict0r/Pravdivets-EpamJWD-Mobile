@@ -10,31 +10,53 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
+import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.UserService;
+import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class NewPasswordCommand implements Command{
-	
+
+	private final static Logger LOGGER = LogManager.getLogger(NewPasswordCommand.class);
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Integer sentCode = (Integer)session.getAttribute(AttributeName.CODE);
-		session.removeAttribute(AttributeName.CODE);
-		int enteredCode = NumericParser.parseIntValue(request.getParameter(ParameterName.ENTERED_CODE));
-		
-		RouteHelper result;
-		
-		if (sentCode == enteredCode) {
-			result = new RouteHelper(PagePath.CHANGE_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
-		}else {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.MISSMATCHED_CODES);
-			result = new RouteHelper(PagePath.CODE_REQUEST_REDIRECT, RouteMethod.REDIRECT);
+		String phone = (String)session.getAttribute(AttributeName.PHONE);
+		String password1 = request.getParameter(ParameterName.PASSWORD1);
+		String password2 = request.getParameter(ParameterName.PASSWORD2);
+		UserService userService = ServiceProvider.getInstance().getUserService();
+
+		if(!password1.equals(password2)) {
+			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);
 		}
 		
-		return result;
+		if(!userService.isPasswordCorrect(password1)) {
+			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
+		}
+
+		try {
+			userService.updatePassword(phone, password1);
+		} catch (ServiceException e) {
+			LOGGER.error("Error while updating user's password. Users phone - " + phone + e);
+			return RouteHelper.ERROR;
+		}
+		
+		session.setAttribute(AttributeName.CHANGE_PASSWORD, AttributeValue.TRUE);
+		session.removeAttribute(AttributeName.PHONE);
+		session.removeAttribute(AttributeName.MODE);
+		return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 	}
 
+	
+	private RouteHelper provideErrorMessage(HttpSession session, String attributeValue) {
+		session.setAttribute(AttributeName.ERROR, attributeValue);
+		return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
+	}
+
+	
+	
 }

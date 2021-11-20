@@ -38,11 +38,13 @@ public class PagePath {
 	public static final String SIGNUP_REDIRECT = "/controller?command=go_to_signup_page";
 	public static final String PASSWORD_REPAIR = "WEB-INF/jsp/password-repair.jsp";
 	public static final String PASSWORD_REPAIR_REDIRECT = "/controller?command=go_to_password_repair_page";
-	public static final String CHANGE_PASSWORD_REDIRECT = "/controller?command=go_to_change_password_page";
-	public static final String CHANGE_PASSWORD = "WEB-INF/jsp/change-password.jsp";
+	public static final String NEW_PASSWORD_REDIRECT = "/controller?command=go_to_new_password_page";
+	public static final String NEW_PASSWORD = "WEB-INF/jsp/new-password.jsp";
 	public static final String PHONE_REQUEST = "WEB-INF/jsp/phone-request.jsp";
 	public static final String PHONE_REQUEST_REDIRECT = "/controller?command=go_to_phone_request_page";
-	public static final String CODE_REQUEST = "WEB-INF/jsp/code-request.jsp";
-	public static final String CODE_REQUEST_REDIRECT = "/controller?command=go_to_code_request_page";
+	public static final String CODE_SEND_REDIRECT = "/controller?command=go_to_code_send_page";
+	public static final String CODE_SEND = "WEB-INF/jsp/code-send.jsp";
+	public static final String CODE_RETURN = "WEB-INF/jsp/code-return.jsp";
+	public static final String CODE_RETURN_REDIRECT = "/controller?command=go_to_code_return_page";
 
 }

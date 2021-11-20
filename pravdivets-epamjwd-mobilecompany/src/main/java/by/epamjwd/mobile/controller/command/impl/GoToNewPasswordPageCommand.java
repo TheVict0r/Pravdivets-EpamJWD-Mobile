@@ -8,11 +8,11 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToChangePasswordPageCommand implements Command{
+public class GoToNewPasswordPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		return new RouteHelper(PagePath.CHANGE_PASSWORD, RouteMethod.FORWARD);
+		return new RouteHelper(PagePath.NEW_PASSWORD, RouteMethod.FORWARD);
 	}
 
 }

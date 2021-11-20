@@ -16,9 +16,9 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class SendCodeCommand implements Command{
+public class CodeSendCommand implements Command{
 
-	private final static Logger LOGGER = LogManager.getLogger(SendCodeCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(CodeSendCommand.class);
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -35,7 +35,7 @@ public class SendCodeCommand implements Command{
 			return RouteHelper.ERROR;
 		}
 		
-		return new RouteHelper(PagePath.CODE_REQUEST_REDIRECT, RouteMethod.REDIRECT);
+		return new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);
 	}
 
 }

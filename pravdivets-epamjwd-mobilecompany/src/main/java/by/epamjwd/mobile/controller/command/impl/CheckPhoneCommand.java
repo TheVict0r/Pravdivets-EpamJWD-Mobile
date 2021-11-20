@@ -39,7 +39,7 @@ public class CheckPhoneCommand implements Command{
 				if(AttributeValue.SIGN_UP.equals(mode) && !userService.isSignupRequired(phone)) {
 					return provideErrorMessage(session, AttributeValue.ALREADY_SIGNED_UP);
 				}
-				result = new RouteHelper(PagePath.CODE_REQUEST_REDIRECT, RouteMethod.REDIRECT);
+				result = new RouteHelper(PagePath.CODE_SEND_REDIRECT, RouteMethod.REDIRECT);
 			} else {
 				return provideErrorMessage(session, AttributeValue.WRONG_PHONE);
 			}
