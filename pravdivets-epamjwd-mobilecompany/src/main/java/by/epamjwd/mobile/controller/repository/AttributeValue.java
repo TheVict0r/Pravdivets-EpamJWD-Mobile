@@ -22,6 +22,6 @@ public class AttributeValue {
 	public static final String MISSMATCHED_CODES = "missmatched_codes";
 	public static final String PASSWORD_REPAIR = "password_repair";
 	public static final String SIGN_UP = "sign_up";
-
+	public static final String GUEST = "guest";
 
 }

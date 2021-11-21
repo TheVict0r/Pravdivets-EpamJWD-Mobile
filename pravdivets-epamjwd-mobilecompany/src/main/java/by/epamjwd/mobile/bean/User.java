@@ -94,10 +94,6 @@ public class User implements Identifiable, Serializable{
 		this.role = role;
 	}
 
-
-	
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

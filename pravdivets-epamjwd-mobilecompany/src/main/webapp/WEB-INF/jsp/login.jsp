@@ -15,7 +15,7 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div class="row align-content-center mx-auto flex-grow-1">
-		<c:if test="${requestScope.session_time_out eq 'session_time_out'}">
+		<c:if test="${sessionScope.session_time_out eq 'session_time_out'}">
 			<p class="text-danger fs-5 ">
 				<fmt:message key="login.time-out" />
 			</p>
