@@ -30,9 +30,9 @@ xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.co
 		<listener-class>by.epamjwd.mobile.controller.listener.AppContextListener</listener-class>
 	</listener>
   
-	<listener>
+	<!--listener>
 		<listener-class>by.epamjwd.mobile.controller.listener.SessionTimeoutListener</listener-class>
-	</listener>
+	</listener-->
   
     <filter>
 	    <filter-name>CharacterFilter</filter-name>

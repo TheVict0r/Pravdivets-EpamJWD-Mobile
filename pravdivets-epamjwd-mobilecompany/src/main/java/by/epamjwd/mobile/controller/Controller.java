@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.CommandProvider;
 import by.epamjwd.mobile.controller.repository.PagePath;
+import by.epamjwd.mobile.controller.repository.ParameterName;
 
 @WebServlet("/controller")
 public class Controller extends HttpServlet {
@@ -33,7 +34,7 @@ public class Controller extends HttpServlet {
 	private void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String commandName = request.getParameter("command");
+		String commandName = request.getParameter(ParameterName.COMMAND);
 
 		CommandProvider commandProvider = CommandProvider.getInstance();
 		Command command = commandProvider.getCommand(commandName);

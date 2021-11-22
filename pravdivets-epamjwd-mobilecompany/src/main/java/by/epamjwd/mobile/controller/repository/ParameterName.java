@@ -29,4 +29,5 @@ public class ParameterName {
 	public static final String PASSWORD1 = "password1";
 	public static final String PASSWORD2 = "password2";
 	public static final String ENTERED_CODE = "entered_code";
+	public static final String COMMAND = "command";
 }

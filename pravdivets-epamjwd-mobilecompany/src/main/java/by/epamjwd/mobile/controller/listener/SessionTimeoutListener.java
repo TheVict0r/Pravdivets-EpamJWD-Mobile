@@ -17,7 +17,7 @@ public class SessionTimeoutListener implements HttpSessionListener {
 
 	public void sessionCreated(HttpSessionEvent event) {
 		HttpSession session = event.getSession();
-		session.setAttribute(AttributeName.ROLE, AttributeValue.GUEST);
+		//session.setAttribute(AttributeName.ROLE, AttributeValue.GUEST);
 	}
 
 //	public void sessionDestroyed(HttpSessionEvent event) {
