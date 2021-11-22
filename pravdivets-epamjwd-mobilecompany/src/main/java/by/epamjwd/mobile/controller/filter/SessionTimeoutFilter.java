@@ -58,15 +58,13 @@ public class SessionTimeoutFilter implements Filter{
 		guestCommands.add(CommandName.GO_TO_NEW_PASSWORD_PAGE);
 		guestCommands.add(CommandName.GO_TO_PASSWORD_REPAIR_PAGE);
 		
-
 		
-		if(role == null && !commandName.contains(commandName)) {
+		if(role == null && !(guestCommands.contains(commandName))) {
 			session.setAttribute(AttributeName.SESSION_TIME_OUT, AttributeValue.SESSION_TIME_OUT);
-			//response.sendRedirect(request.getContextPath() + PagePath.LOGIN_REDIRECT);
-			request.getRequestDispatcher(PagePath.LOGIN).forward(request, response);
+			response.sendRedirect(request.getContextPath() + PagePath.LOGIN_REDIRECT);
+			return;
 		}
 		
-		//servletResponse = response;
         chain.doFilter(servletRequest, servletResponse);
 	}
 
