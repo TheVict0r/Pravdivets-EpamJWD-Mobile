@@ -32,33 +32,35 @@ public class SessionTimeoutFilter implements Filter{
         Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		String commandName = request.getParameter(ParameterName.COMMAND);
 		
-		Set<String> guestCommands = new HashSet<>();
-		guestCommands.add(CommandName.GO_TO_MAIN_PAGE);
-		guestCommands.add(CommandName.GO_TO_LOGIN_PAGE);
-		guestCommands.add(CommandName.GO_TO_SIGNUP_PAGE);
-		guestCommands.add(CommandName.LOGIN);
-		guestCommands.add(CommandName.SHOW_ALL_NEWS);
-		guestCommands.add(CommandName.SHOW_FULL_ARTICLE);
-		guestCommands.add(CommandName.SHOW_ALL_PLANS);
-		guestCommands.add(CommandName.SHOW_FULL_PLAN);
-		guestCommands.add(CommandName.SHOW_ALL_SERVICES);
-		guestCommands.add(CommandName.SHOW_FULL_SERVICE);
-		guestCommands.add(CommandName.GO_TO_ERROR_PAGE);
-		guestCommands.add(CommandName.GO_TO_CALCULATOR_PAGE);
-		guestCommands.add(CommandName.CALCULATOR);
-		guestCommands.add(CommandName.SHOW_BEST_PLAN);
-		guestCommands.add(CommandName.SWITCH_LOCALE);
-		guestCommands.add(CommandName.CHECK_PHONE);
-		guestCommands.add(CommandName.GO_TO_CODE_SEND_PAGE);
-		guestCommands.add(CommandName.GO_TO_PHONE_REQUEST_PAGE);
-		guestCommands.add(CommandName.GO_TO_CODE_RETURN_PAGE);
-		guestCommands.add(CommandName.CODE_SEND);
-		guestCommands.add(CommandName.CODE_RETURN);
-		guestCommands.add(CommandName.NEW_PASSWORD);
-		guestCommands.add(CommandName.GO_TO_NEW_PASSWORD_PAGE);
-		guestCommands.add(CommandName.GO_TO_PASSWORD_REPAIR_PAGE);
+		Set<String> authorisedCommands = new HashSet<>();
+		authorisedCommands.add(CommandName.EDIT_PROFILE);
+		authorisedCommands.add(CommandName.LOGOUT);
+		authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID);
+		authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME);
+		authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_PASSPORT);
+		authorisedCommands.add(CommandName.SHOW_ADMIN);
+		authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_OPERATIONS_PAGE);
+		authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_PAGE);
+		authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_SERVICES_PAGE);
+		authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_BILLS_PAGE);
+		authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_BY_PHONE);
+		authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_BY_ID);
+		authorisedCommands.add(CommandName.GO_TO_ADD_SUBSCRIBER_PAGE);
+		authorisedCommands.add(CommandName.GO_TO_PROFILE_PAGE);
+		authorisedCommands.add(CommandName.ADD_SUBSCRIBER);
+		authorisedCommands.add(CommandName.ADD_SUBSCRIBER_PREPARATION);
+		authorisedCommands.add(CommandName.EDIT_PERSONAL_DATA);
+		authorisedCommands.add(CommandName.EDIT_PERSONAL_DATA_PREPARATION);
+		authorisedCommands.add(CommandName.CHANGE_PHONE);
+		authorisedCommands.add(CommandName.CHANGE_PHONE_PREPARATION);
+		authorisedCommands.add(CommandName.CHANGE_PLAN);
+		authorisedCommands.add(CommandName.CHANGE_PLAN_PREPARATION);
+		authorisedCommands.add(CommandName.CHANGE_STATUS);
+		authorisedCommands.add(CommandName.CHANGE_STATUS_PREPARATION);
+		authorisedCommands.add(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA);
+
 		
-		if(role == null && !(guestCommands.contains(commandName))) {
+		if( (role == null) &&  (authorisedCommands.contains(commandName)) ) {
 			session.setAttribute(AttributeName.SESSION_TIME_OUT, AttributeValue.SESSION_TIME_OUT);
 			response.sendRedirect(request.getContextPath() + PagePath.LOGIN_REDIRECT);
 			return;

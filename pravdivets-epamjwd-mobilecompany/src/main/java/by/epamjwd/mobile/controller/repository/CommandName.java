@@ -16,7 +16,7 @@ public class CommandName {
 	public static final String SHOW_FULL_SERVICE = "show_full_service";
 	public static final String SHOW_SUBSCRIBER_LIST_BY_USER_ID = "show_subscriber_list_by_user_id";
 	public static final String SHOW_SUBSCRIBER_LIST_BY_FULL_NAME = "show_subscriber_list_by_full_name";
-	public static final String SHOW_SUBSCRIBER_LIST_PASSPORT = "show_subscriber_list_by_passport";
+	public static final String SHOW_SUBSCRIBER_LIST_BY_PASSPORT = "show_subscriber_list_by_passport";
 	public static final String SHOW_ADMIN = "show_admin";
 	public static final String GO_TO_SUBSCRIBER_OPERATIONS_PAGE = "go_to_subscriber_operations_page";
 	public static final String GO_TO_SUBSCRIBER_PAGE = "go_to_subscriber_page";

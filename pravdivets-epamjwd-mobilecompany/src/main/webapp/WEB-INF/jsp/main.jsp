@@ -18,7 +18,7 @@
 
 	<div class="container d-grid gap-4">
 		<div class="col-sm" id="promo">
-			<img src="pic/performance.jpg" class="img-fluid" alt="mobile">
+			<img src="pic/main.jpg" class="img-fluid" alt="mobile">
 		</div>
 		</div>
 		
