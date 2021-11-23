@@ -23,11 +23,7 @@ public class GoToProfilePageCommand implements Command{
 		
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		
-		if(role == null) {
-			request.setAttribute(AttributeName.SESSION_TIME_OUT, AttributeValue.SESSION_TIME_OUT);
-			return new RouteHelper(PagePath.LOGIN, RouteMethod.FORWARD);
-		}
-		
+
 		RouteHelper result;
 		switch (role) {
 		case ADMIN:
@@ -40,7 +36,7 @@ public class GoToProfilePageCommand implements Command{
 			result = new RouteHelper(PagePath.SUBSCRIBER_LIST_REDIRECT, RouteMethod.REDIRECT);
 			break;
 		default:
-			result = new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
+			result = RouteHelper.ERROR;
 		}
 		return result;
 	}
