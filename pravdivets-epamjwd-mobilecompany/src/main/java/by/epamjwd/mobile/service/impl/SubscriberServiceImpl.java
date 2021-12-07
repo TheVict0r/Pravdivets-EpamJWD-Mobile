@@ -92,22 +92,28 @@ public class SubscriberServiceImpl implements SubscriberService {
 //	
 	@Override
 	public List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException {
-		List<Subscriber> subscriberList;
-		try {
-			subscriberList = subscriberDao.findSubscriberListByPassport(passport);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
+		List<Subscriber> subscriberList = new ArrayList<>();
+		if (InputDataValidator.isPassport(passport)) {
+			try {
+				subscriberList = subscriberDao.findSubscriberListByPassport(passport);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
 		}
 		return subscriberList;
 	}
-//	
+
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
-		List<Subscriber> subscriberList;
-		try {
-			subscriberList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
+		List<Subscriber> subscriberList = new ArrayList<>();
+		
+		if (InputDataValidator.isName(lastName) && InputDataValidator.isName(lastName)
+				&& (InputDataValidator.isName(middleName) || middleName.isBlank())) {
+			try {
+				subscriberList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
 		}
 		return subscriberList;
 	}

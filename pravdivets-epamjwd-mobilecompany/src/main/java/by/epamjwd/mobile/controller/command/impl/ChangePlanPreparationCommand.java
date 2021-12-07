@@ -39,7 +39,7 @@ public class ChangePlanPreparationCommand implements Command {
 
 		Plan currentPlan;
 		try {
-			currentPlan = planService.findPlanByID(currentPlanId);
+			currentPlan = planService.findPlanByID(currentPlanId).get();
 		} catch (ServiceException e1) {
 			LOGGER.error("Unable to get current tariff plan by ID" + currentPlanId, e1);
 			return RouteHelper.ERROR_500;

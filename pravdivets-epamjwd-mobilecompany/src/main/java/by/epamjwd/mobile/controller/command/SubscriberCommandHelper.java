@@ -25,7 +25,9 @@ import by.epamjwd.mobile.util.PhoneFormatter;
 public class SubscriberCommandHelper {
 
 	private final static Logger LOGGER = LogManager.getLogger(SubscriberCommandHelper.class);
-
+	private static final int SINGLE_ITEM = 1;
+	private static final int FIRST_ITEM_INDEX = 0;
+	
 	private SubscriberCommandHelper() {
 	}
 
@@ -55,18 +57,22 @@ public class SubscriberCommandHelper {
 			LOGGER.error("Can't find user for phone number - " + phone);
 			return RouteHelper.ERROR;
 		}
-		Plan plan = planService.findPlanByID(subscriber.getPlanId());
+		Optional<Plan> planOptional = planService.findPlanByID(subscriber.getPlanId());
+		if(planOptional.isPresent()) {
+		Plan plan = planOptional.get();
 		session.setAttribute(AttributeName.PLAN, plan);
 		result = new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
-
+		} else {
+			result = RouteHelper.ERROR_404;
+		}
 		return result;
 	}
 
 	public RouteHelper handleSubscriberListForward(HttpServletRequest request, List<Subscriber> subscriberList)
 			throws ServiceException {
 		RouteHelper result = null;
-		if (subscriberList.size() == 1) {
-			Subscriber subscriber = subscriberList.get(0);
+		if (subscriberList.size() == SINGLE_ITEM) {
+			Subscriber subscriber = subscriberList.get(FIRST_ITEM_INDEX);
 			result = handleSubscriber(request, subscriber);
 		} else {
 			request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscriberList);
@@ -79,11 +85,11 @@ public class SubscriberCommandHelper {
 			throws ServiceException {
 		HttpSession session = request.getSession();
 		RouteHelper result = null;
-		if (subscriberList.size() == 1) {
-			Subscriber subscriber = subscriberList.get(0);
+		if (subscriberList.size() == SINGLE_ITEM) {
+			Subscriber subscriber = subscriberList.get(FIRST_ITEM_INDEX);
 			result = handleSubscriber(request, subscriber);
 		} else {
-			long userId = subscriberList.get(0).getUserId();
+			long userId = subscriberList.get(FIRST_ITEM_INDEX).getUserId();
 			session.setAttribute(AttributeName.SUBSCRIBER_USER_ID, userId);
 			result = new RouteHelper(PagePath.SUBSCRIBER_LIST_REDIRECT, RouteMethod.REDIRECT);
 		}

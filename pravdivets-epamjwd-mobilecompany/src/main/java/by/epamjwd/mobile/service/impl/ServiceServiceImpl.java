@@ -25,7 +25,7 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public Optional<Service> findServiceByID(int id) throws ServiceException {
+	public Optional<Service> findServiceByID(long id) throws ServiceException {
 		try {
 			return serviceDao.getServiceByID(id);
 		} catch (DaoException e) {

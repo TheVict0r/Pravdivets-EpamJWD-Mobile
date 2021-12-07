@@ -8,7 +8,7 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface PlanService {
 	List<Plan> findAllPlans() throws ServiceException;
-	Plan findPlanByID(long id) throws ServiceException;
+	Optional<Plan> findPlanByID(long id) throws ServiceException;
 	Plan suggestPlan(int withinNetwork, int otherNetworks, int abroad, int videocall, int sms, int mms,
 			int internet) throws ServiceException;
 }

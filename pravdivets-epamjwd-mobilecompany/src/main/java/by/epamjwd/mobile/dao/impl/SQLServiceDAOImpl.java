@@ -22,7 +22,7 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 	}
 
 	@Override
-	public Optional<Service> getServiceByID(int id) throws DaoException {
+	public Optional<Service> getServiceByID(long id) throws DaoException {
 		return findById(id);
 	}
 

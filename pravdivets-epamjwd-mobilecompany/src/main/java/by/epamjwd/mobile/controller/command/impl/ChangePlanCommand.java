@@ -53,7 +53,7 @@ public class ChangePlanCommand implements Command{
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
 				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
 				PlanService planService = ServiceProvider.getInstance().getPlanService();
-				Plan newPlanFomDataBase = planService.findPlanByID(updatedSubscriber.getPlanId());
+				Plan newPlanFomDataBase = planService.findPlanByID(updatedSubscriber.getPlanId()).get();
 				session.setAttribute(AttributeName.PLAN, newPlanFomDataBase);
 			}
 		} catch (ServiceException e) {

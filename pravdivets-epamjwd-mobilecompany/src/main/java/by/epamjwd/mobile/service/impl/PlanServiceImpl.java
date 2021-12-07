@@ -2,6 +2,7 @@ package by.epamjwd.mobile.service.impl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.dao.DAOProvider;
@@ -26,13 +27,11 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	@Override
-	public Plan findPlanByID(long id) throws ServiceException {
+	public Optional<Plan> findPlanByID(long id) throws ServiceException {
 		try {
-			return tariffsDao.getPlanByID(id).get();
+			return tariffsDao.getPlanByID(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} catch (NoSuchElementException e) {
-			throw new ServiceException("The Optional<Plan> contains null for ID - " + id + e);
 		}
 	}
 

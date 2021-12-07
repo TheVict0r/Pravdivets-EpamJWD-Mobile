@@ -13,6 +13,7 @@ import by.epamjwd.mobile.bean.NewsArticle;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
@@ -30,14 +31,23 @@ public class ShowFullArticleCommand implements Command {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		NewsService newsService = provider.getNewsService();
 
-		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
+		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
+		if(id == NumericParser.INVALID_VALUE) {
+			return RouteHelper.ERROR_404;
+		}
+
 		RouteHelper result = null;
 
 		try {
-			NewsArticle article = newsService.findArticleByID(id).get();
-			request.setAttribute(AttributeName.ARTICLE, article);
-			result = new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
-		} catch (ServiceException | NoSuchElementException e) {
+			Optional<NewsArticle> articleOptional = newsService.findArticleByID(id);
+			if(articleOptional.isPresent()) {
+				NewsArticle article = articleOptional.get();
+				request.setAttribute(AttributeName.ARTICLE, article);
+				result = new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
+			} else {
+				result = RouteHelper.ERROR_404;
+			}
+		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain news article data for ID -  " + id, e);
 			result = RouteHelper.ERROR_500;
 		}

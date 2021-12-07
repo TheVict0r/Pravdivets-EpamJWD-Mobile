@@ -1,6 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
@@ -28,13 +30,22 @@ public class ShowFullServiceCommand implements Command{
 		ServiceProvider provider = ServiceProvider.getInstance();
 		ServiceService serviceService = provider.getServiceService();
 
-		int id = Integer.parseInt(request.getParameter(ParameterName.ID));
+		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
+		if(id == NumericParser.INVALID_VALUE) {
+			return RouteHelper.ERROR_404;
+		}
+
 		RouteHelper result = null;
 		try {
-			Service service = serviceService.findServiceByID(id).get();
-			request.setAttribute(AttributeName.SERVICE, service);
-			result = new RouteHelper(PagePath.SERVICE, RouteMethod.FORWARD);
-		} catch (ServiceException | NoSuchElementException e) {
+			Optional<Service> serviceOptional = serviceService.findServiceByID(id);
+			if (serviceOptional.isPresent()) {
+				Service service = serviceOptional.get();
+				request.setAttribute(AttributeName.SERVICE, service);
+				result = new RouteHelper(PagePath.SERVICE, RouteMethod.FORWARD);
+			} else {
+				result = RouteHelper.ERROR_404;
+			}
+		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain full service data for ID " + id, e);
 			result = RouteHelper.ERROR_500;
 		}

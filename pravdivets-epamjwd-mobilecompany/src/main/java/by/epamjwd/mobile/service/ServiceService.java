@@ -8,7 +8,7 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface ServiceService {
 	
-	public List<Service> findAllServices() throws ServiceException;
-	public Optional<Service> findServiceByID(int id) throws ServiceException;
+	List<Service> findAllServices() throws ServiceException;
+	Optional<Service> findServiceByID(long id) throws ServiceException;
 	
 }

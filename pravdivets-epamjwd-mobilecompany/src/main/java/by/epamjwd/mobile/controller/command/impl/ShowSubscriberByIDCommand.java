@@ -1,6 +1,6 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,21 +10,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.Plan;
-import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.controller.RouteHelper;
-import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
-import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.SubscriberService;
-import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.PhoneFormatter;
 
 public class ShowSubscriberByIDCommand implements Command{
 
@@ -40,19 +34,20 @@ public class ShowSubscriberByIDCommand implements Command{
 		long id;
 		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.SUBSCRIBER_ID));
 			
-			if (id == -1) {
+			if (id == NumericParser.INVALID_VALUE) {
 				id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
 			}
 			
 		RouteHelper result = null;
 		try {
-			Subscriber subscriber = subscriberService.findSubscriberById(id).get();
-			
-			
-			
-			
-			result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
-		} catch (ServiceException | NoSuchElementException e) {
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberById(id);
+			if (subscriberOptional.isPresent()) {
+				Subscriber subscriber = subscriberOptional.get();
+				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+			} else {
+				result = RouteHelper.ERROR_404;
+			}
+		} catch (ServiceException e) {
 			LOGGER.error("Error while getting subscriber data for ID - " + id, e);
 			result = RouteHelper.ERROR_500;
 		}

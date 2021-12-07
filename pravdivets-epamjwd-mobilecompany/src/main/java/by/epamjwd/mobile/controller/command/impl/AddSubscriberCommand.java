@@ -35,7 +35,6 @@ public class AddSubscriberCommand implements Command{
 	private final static long EMPTY_ID = 0L;
 	private final static long ERROR_ID = -1L;
 	
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -77,7 +76,11 @@ public class AddSubscriberCommand implements Command{
 			try {
 				User user = this.buildUser(firstName, middleName, lastName, passport, email);
 				Subscriber subscriber = this.buildSubscriber(phone, planId, EMPTY_ID);
+				if(subscriber != null) {
 				subscriberId = customerService.addNewCustomer(user, subscriber);
+				} else {
+					result = RouteHelper.ERROR_404;
+				}
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
 				result = RouteHelper.ERROR_500;
@@ -92,7 +95,11 @@ public class AddSubscriberCommand implements Command{
 			long userId = currentUser.getId();
 			try {
 				Subscriber subscriber = this.buildSubscriber(phone, planId, userId);
+				if(subscriber != null) {
 				subscriberId = subscriberService.addNewSubscriberToExistingUser(subscriber);
+				} else {
+					result = RouteHelper.ERROR_404;
+				}
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber to existing user with passport number - " + passport, e);
 				result = RouteHelper.ERROR_500;
@@ -114,14 +121,18 @@ public class AddSubscriberCommand implements Command{
 	}
 	
 	private Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException {
+		Subscriber subscriber = null;
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();	
 		PlanService planService = serviceProvider.getPlanService();
-		Plan plan = planService.findPlanByID(planId);
+		Optional<Plan> planOptional = planService.findPlanByID(planId);
+		if (planOptional.isPresent()) {
+		Plan plan = planOptional.get();	
+		
 		int account = plan.getUpfrontPayment();
 		
-		Subscriber subscriber = new Subscriber(EMPTY_ID, new Date(), account, phone, 
+		subscriber = new Subscriber(EMPTY_ID, new Date(), account, phone, 
 				new Date(), SubscriberStatus.ACTIVE, planId, userId);
-		
+		}
 		return subscriber;
 	}
 	
