@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.command.impl;
+package by.epamjwd.mobile.controller.command.impl.transit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

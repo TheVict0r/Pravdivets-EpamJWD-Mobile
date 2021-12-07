@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.command.impl;
+package by.epamjwd.mobile.controller.command.impl.transit;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,11 +8,11 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToAddSubscriberPageCommand implements Command{
+public class GoToPhoneRequestPageCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		return new RouteHelper(PagePath.ADD_SUBSCRIBER, RouteMethod.FORWARD);
+		return new RouteHelper(PagePath.PHONE_REQUEST, RouteMethod.FORWARD);
 	}
 
 }
