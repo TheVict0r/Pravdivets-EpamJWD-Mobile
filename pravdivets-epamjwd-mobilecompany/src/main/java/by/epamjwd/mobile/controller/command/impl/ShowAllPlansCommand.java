@@ -33,7 +33,7 @@ public class ShowAllPlansCommand implements Command {
 			result = new RouteHelper(PagePath.ALL_PLANS, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain all tariff plans list. ", e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 		}
 		return result;
 	}

@@ -12,7 +12,7 @@ public class NoSuchCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response){
-		return RouteHelper.ERROR;
+		return RouteHelper.ERROR_404;
 	}
 
 }

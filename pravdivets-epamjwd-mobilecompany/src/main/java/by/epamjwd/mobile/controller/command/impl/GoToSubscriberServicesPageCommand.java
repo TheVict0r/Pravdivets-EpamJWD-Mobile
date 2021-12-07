@@ -33,7 +33,7 @@ public class GoToSubscriberServicesPageCommand implements Command {
 			result = new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain service list. ", e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 		}
 
 		result = new RouteHelper(PagePath.SUBSCRIBER_SERVICES, RouteMethod.FORWARD);

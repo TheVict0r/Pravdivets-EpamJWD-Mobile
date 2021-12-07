@@ -37,7 +37,7 @@ public class ChangePhonePreparationCommand implements Command{
 			session.setAttribute(AttributeName.NEW_PHONE_FORMAT, newPhoneFormat);
 		} catch (ServiceException e) {
 			LOGGER.error("Error during new phone number generation pricess", e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 		}
 
 		

@@ -32,7 +32,7 @@ public class CodeSendCommand implements Command{
 			session.setAttribute(AttributeName.CODE, code);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while sending an authentication code to " + phone + e);
-			return RouteHelper.ERROR;
+			return RouteHelper.ERROR_500;
 		}
 		
 		return new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);

@@ -42,7 +42,7 @@ public class ChangePlanPreparationCommand implements Command {
 			currentPlan = planService.findPlanByID(currentPlanId);
 		} catch (ServiceException e1) {
 			LOGGER.error("Unable to get current tariff plan by ID" + currentPlanId, e1);
-			return RouteHelper.ERROR;
+			return RouteHelper.ERROR_500;
 		}
 
 		try {
@@ -51,7 +51,7 @@ public class ChangePlanPreparationCommand implements Command {
 			session.setAttribute(AttributeName.ALL_PLANS, allPlans);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to get data for tariff plans", e);
-			return RouteHelper.ERROR;
+			return RouteHelper.ERROR_500;
 		}
 
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);

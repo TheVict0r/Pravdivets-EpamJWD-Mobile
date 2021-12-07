@@ -36,7 +36,7 @@ public class ShowFullServiceCommand implements Command{
 			result = new RouteHelper(PagePath.SERVICE, RouteMethod.FORWARD);
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain full service data for ID " + id, e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 		}
 		return result;
 	}

@@ -82,7 +82,7 @@ public class LoginCommand implements Command {
 				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 			} catch (ServiceException e) {
 				LOGGER.error("Error in handling subscriber with ID - " + subscriber.getId(), e);
-				result = RouteHelper.ERROR;
+				result = RouteHelper.ERROR_500;
 			}
 		} else {
 			result = new RouteHelper(path, RouteMethod.REDIRECT);

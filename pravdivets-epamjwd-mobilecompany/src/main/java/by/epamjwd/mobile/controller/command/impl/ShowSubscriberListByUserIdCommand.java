@@ -41,10 +41,14 @@ public class ShowSubscriberListByUserIdCommand implements Command {
 		RouteHelper result = null;
 		try {
 			List<Subscriber> subscriberList = subscriberService.findSubscriberListByUserId(id);
-			result = SubscriberCommandHelper.getInstance().handleSubscriberListForward(request, subscriberList);
+			if (subscriberList.isEmpty()) {
+				result = RouteHelper.ERROR_404;
+			} else {
+				result = SubscriberCommandHelper.getInstance().handleSubscriberListForward(request, subscriberList);
+			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error in getting subscriber data for ID - " + id, e);
-			result = RouteHelper.ERROR;
+			LOGGER.error("Error in getting subscriber list for ID - " + id, e);
+			result = RouteHelper.ERROR_500;
 		}
 		return result;
 	}

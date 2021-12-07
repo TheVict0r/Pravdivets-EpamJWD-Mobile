@@ -44,7 +44,7 @@ public class ChangePlanCommand implements Command{
 			subscriberService.updateSubscriber(subscriber);
 		} catch (ServiceException e) {
 			LOGGER.error("Error during updating subscriber data", e);
-			return RouteHelper.ERROR;
+			return RouteHelper.ERROR_500;
 		}
 		
 		try {
@@ -58,7 +58,7 @@ public class ChangePlanCommand implements Command{
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error retrieving updated subscriber", e);
-			return  RouteHelper.ERROR;
+			return  RouteHelper.ERROR_500;
 		}		
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 	}

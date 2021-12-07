@@ -39,7 +39,7 @@ public class ShowFullArticleCommand implements Command {
 			result = new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
 		} catch (ServiceException | NoSuchElementException e) {
 			LOGGER.error("Unable to obtain news article data for ID -  " + id, e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 		}
 		return result;
 	}

@@ -42,7 +42,7 @@ public class NewPasswordCommand implements Command{
 			userService.updatePassword(phone, password1);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while updating user's password. Users phone - " + phone + e);
-			return RouteHelper.ERROR;
+			return RouteHelper.ERROR_500;
 		}
 		
 		session.setAttribute(AttributeName.CHANGE_PASSWORD, AttributeValue.TRUE);
@@ -57,6 +57,4 @@ public class NewPasswordCommand implements Command{
 		return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 	}
 
-	
-	
 }

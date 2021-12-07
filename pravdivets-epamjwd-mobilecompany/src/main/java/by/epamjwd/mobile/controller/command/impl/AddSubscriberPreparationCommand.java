@@ -68,7 +68,7 @@ public class AddSubscriberPreparationCommand implements Command {
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to check the passport for new subscriber - " + passport, e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 			// подумай - может ещё куда-то послать? Напр., на ту же страницу но с указанием
 			// ошибки
 		}

@@ -48,10 +48,13 @@ public class ShowSubscriberByIDCommand implements Command{
 		try {
 			Subscriber subscriber = subscriberService.findSubscriberById(id).get();
 			
+			
+			
+			
 			result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 		} catch (ServiceException | NoSuchElementException e) {
-			LOGGER.error("Error in getting subscriber data for ID " + id, e);
-			result = RouteHelper.ERROR;
+			LOGGER.error("Error while getting subscriber data for ID - " + id, e);
+			result = RouteHelper.ERROR_500;
 		}
 		return result;
 	}

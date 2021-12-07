@@ -34,7 +34,7 @@ public class ShowAllNewsCommand implements Command {
 			result = new RouteHelper(PagePath.ALL_NEWS, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain news list. ", e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 		}
 		return result;
 	}

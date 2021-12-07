@@ -43,7 +43,7 @@ public class CalculatorCommand implements Command{
 			bestPlan = planService.suggestPlan(withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain best tariff plan.", e);
-			result = RouteHelper.ERROR;
+			result = RouteHelper.ERROR_500;
 		}
 		session.setAttribute(AttributeName.CALCULATOR_BEST_PLAN, bestPlan);
 		result = new RouteHelper(PagePath.CALCULATOR_RESULT_REDIRECT, RouteMethod.REDIRECT);

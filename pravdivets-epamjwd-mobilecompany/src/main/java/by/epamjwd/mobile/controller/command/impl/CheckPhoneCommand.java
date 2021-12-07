@@ -45,7 +45,7 @@ public class CheckPhoneCommand implements Command{
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error while checking does phone exist - " + phone + e);
-			return RouteHelper.ERROR;
+			return RouteHelper.ERROR_500;
 		}
 
 		return result;
