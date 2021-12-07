@@ -6,6 +6,8 @@ public class RouteHelper {
 
 	
 	public static final RouteHelper ERROR = new RouteHelper(PagePath.ERROR_REDIRECT, RouteMethod.REDIRECT);
+	public static final RouteHelper ERROR_404 = new RouteHelper(PagePath.ERROR_404_REDIRECT, RouteMethod.REDIRECT);
+	public static final RouteHelper ERROR_500 = new RouteHelper(PagePath.ERROR_500_REDIRECT, RouteMethod.REDIRECT);
 	
 	/**
      * Path to resulting resource.

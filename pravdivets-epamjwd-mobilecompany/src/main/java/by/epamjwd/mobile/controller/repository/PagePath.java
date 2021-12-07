@@ -28,7 +28,11 @@ public class PagePath {
 	public static final String CALCULATOR = "WEB-INF/jsp/calculator.jsp";
 	public static final String CALCULATOR_RESULT_REDIRECT = "/controller?command=show_best_plan";
 	public static final String ERROR = "WEB-INF/jsp/error.jsp";
+	public static final String ERROR_404 = "WEB-INF/jsp/error404.jsp";
+	public static final String ERROR_500 = "WEB-INF/jsp/error500.jsp";
 	public static final String ERROR_REDIRECT = "/controller?command=go_to_error_page";
+	public static final String ERROR_404_REDIRECT = "/controller?command=go_to_error_404_page";
+	public static final String ERROR_500_REDIRECT = "/controller?command=go_to_error_500_page";
 	public static final String ADD_SUBSCRIBER = "WEB-INF/jsp/add-subscriber.jsp";
 	public static final String ADD_SUBSCRIBER_REDIRECT = "/controller?command=go_to_add_subscriber_page";
 	public static final String NEW_SUBSCRIBER_REDIRECT = "/controller?command=show_subscriber_by_id";

@@ -51,6 +51,8 @@ import by.epamjwd.mobile.controller.command.impl.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToNewPasswordPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCodeReturnPageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToCodeSendPageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToError404PageCommand;
+import by.epamjwd.mobile.controller.command.impl.GoToError500PageCommand;
 import by.epamjwd.mobile.controller.command.impl.GoToErrorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
@@ -87,6 +89,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_SERVICES_PAGE, new GoToSubscriberServicesPageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_BILLS_PAGE, new GoToSubscriberBillsPageCommand());
 		allCommands.put(CommandName.GO_TO_ERROR_PAGE, new GoToErrorPageCommand());
+		allCommands.put(CommandName.GO_TO_ERROR_404_PAGE, new GoToError404PageCommand());
+		allCommands.put(CommandName.GO_TO_ERROR_500_PAGE, new GoToError500PageCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_BY_PHONE, new ShowSubscriberByPhoneCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_BY_ID, new ShowSubscriberByIDCommand());
 		allCommands.put(CommandName.GO_TO_ADD_SUBSCRIBER_PAGE, new GoToAddSubscriberPageCommand());

@@ -22,9 +22,9 @@
 
 
 	<div
-		class="container row align-content-center col-sm-10 mx-auto flex-grow-1 gap-2">
+		class="container row align-content-center col-sm-100 mx-auto flex-grow-1 gap-2">
 
-		<span class="display-2 text-left text-danger d-flex align-items-center">- ERROR -</span>
+		<span class="display-3 text-left text-danger d-flex align-items-center">- 500 Internal Server Error -</span>
 		<span class="display-6 text-left d-flex align-items-center">Something went wrong, sorry :(</span>
 		<span class="display-6 text-left d-flex align-items-center">Никогда такого не было, и вот опять!</span>
 

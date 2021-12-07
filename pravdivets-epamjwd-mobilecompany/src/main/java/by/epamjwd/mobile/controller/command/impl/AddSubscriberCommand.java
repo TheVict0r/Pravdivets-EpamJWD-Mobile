@@ -69,7 +69,7 @@ public class AddSubscriberCommand implements Command{
 				}
 			} catch (ServiceException e1) {
 				LOGGER.error("Error when verifying the existence of a user by e-mail " + email, e1);
-				result = RouteHelper.ERROR;
+				result = RouteHelper.ERROR_500;
 			}
 
 			removeUnusedAttributes(session);
@@ -80,7 +80,7 @@ public class AddSubscriberCommand implements Command{
 				subscriberId = customerService.addNewCustomer(user, subscriber);
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber with passport number - " + passport, e);
-				result = RouteHelper.ERROR;
+				result = RouteHelper.ERROR_500;
 			}
 
 		} else  {
@@ -95,7 +95,7 @@ public class AddSubscriberCommand implements Command{
 				subscriberId = subscriberService.addNewSubscriberToExistingUser(subscriber);
 			} catch (ServiceException e) {
 				LOGGER.error("Error when adding a new subscriber to existing user with passport number - " + passport, e);
-				result = RouteHelper.ERROR;
+				result = RouteHelper.ERROR_500;
 			}
 		}
 		
