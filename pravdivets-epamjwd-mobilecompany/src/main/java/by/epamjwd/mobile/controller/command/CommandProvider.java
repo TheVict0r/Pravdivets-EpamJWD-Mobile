@@ -2,9 +2,7 @@ package by.epamjwd.mobile.controller.command;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.Optional;
 
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByUserIdCommand;
 import by.epamjwd.mobile.controller.command.impl.SwitchLocaleCommand;
@@ -61,8 +59,6 @@ import by.epamjwd.mobile.controller.command.impl.ShowAllNewsCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
 
 public class CommandProvider {
-
-	private final static Logger LOGGER = LogManager.getLogger(CommandProvider.class);
 
 	private final Map<String, Command> allCommands = new HashMap<>();
 
@@ -127,25 +123,13 @@ public class CommandProvider {
     }
     
 	public Command getCommand(String commandName) {
-		Command command = null;
-		try {
-			command = allCommands.get(commandName);
-		} catch (IllegalArgumentException e) {
-			LOGGER.error("The command does not exist", e);
-			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
-		} catch (NullPointerException e) {
-			LOGGER.error("Null value instead of command", e);
-			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
-		}
-		
-		if (command == null) {
-			LOGGER.error("Illegal comand name - ", commandName);
-			command = allCommands.get(CommandName.NO_SUCH_COMMAND);
-		}
-		
-		return command;
+        return Optional.ofNullable(allCommands.get(commandName)).orElse(allCommands.get(CommandName.NO_SUCH_COMMAND));
 	}
 
+	public void addCommand(String key, Command value) {
+		allCommands.put(key, value);
+	}
+	
 	private static class Holder {
 		static final CommandProvider INSTANCE = new CommandProvider();
 	}
