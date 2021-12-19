@@ -4,11 +4,19 @@ import java.util.ResourceBundle;
 
 public class DBResourceManager {
 	
-	private final static DBResourceManager instance = new DBResourceManager();
 	private ResourceBundle bundle;	
 	
+	
+	private DBResourceManager() {
+	}
+	
+	private static class Holder{
+		static final DBResourceManager instance = new DBResourceManager();
+	}
+	
+	
 	public static DBResourceManager getInstance() {
-		return instance;
+		return Holder.instance;
 	}
 	
 	public void initBundle(String baseName) {
