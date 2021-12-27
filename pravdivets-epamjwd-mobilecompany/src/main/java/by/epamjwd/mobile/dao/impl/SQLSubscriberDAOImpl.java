@@ -20,6 +20,9 @@ import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements SubscriberDAO{
 
+	public final static String COMMA = ", ";
+	public final static String QUESTION_MARK = "=?, ";
+	
 	public static final String ADD_SUBSCRIBER_TO_EXISTING_USER = "INSERT INTO subscribers (contract_date, account, phone, status_date, status_id, plan_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE_SUBSCRIBER = "UPDATE subscribers SET phone=?, status_date=?, status_id=?, plan_id=? WHERE id=?";
 
