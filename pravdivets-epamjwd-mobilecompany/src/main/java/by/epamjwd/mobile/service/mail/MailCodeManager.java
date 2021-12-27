@@ -18,9 +18,15 @@ import java.util.Properties;
 
 public class MailCodeManager {
 
-	final static int CODE_MIN_VALUE = 1000;
-	final static int CODE_MAX_VALUE = 9999;
-
+	final static int CODE_MIN_VALUE =  1000;
+	final static int FOUR_DECIMALS = 10_000;
+	
+	final static String HOST_KEY = "mail.smtp.host";
+	final static String PORT_KEY = "mail.smtp.port";
+	final static String AUTHORIZATION_KEY = "mail.smtp.auth";
+	final static String TLS_KEY = "mail.smtp.starttls.enable";
+	
+	final static String MESSAGE_SUBJECT = "mobile - access code";
 	
 	private MailCodeManager() {
 	}
@@ -43,34 +49,34 @@ public class MailCodeManager {
 	
 	private void sendTextByMail(String usersMail, String text) throws ServiceException {
 
-		MailResourceManager emailResourceManager = MailResourceManager.getInstance();
+		MailResourceManager mailResourceManager = MailResourceManager.getInstance();
 
-		String host = emailResourceManager.getValue(MailParameter.MAIL_HOST);
-		String port = emailResourceManager.getValue(MailParameter.MAIL_PORT);
-		String auth = emailResourceManager.getValue(MailParameter.MAIL_AUTH);
-		String tls  = emailResourceManager.getValue(MailParameter.MAIL_TLS);
+		String host = mailResourceManager.getValue(MailParameter.MAIL_HOST);
+		String port = mailResourceManager.getValue(MailParameter.MAIL_PORT);
+		String auth = mailResourceManager.getValue(MailParameter.MAIL_AUTH);
+		String tls  = mailResourceManager.getValue(MailParameter.MAIL_TLS);
 
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", host);
-		prop.put("mail.smtp.port", port);
-		prop.put("mail.smtp.auth", auth);
-		prop.put("mail.smtp.starttls.enable", tls);
+		Properties properties = new Properties();
+		properties.put(HOST_KEY, host);
+		properties.put(PORT_KEY, port);
+		properties.put(AUTHORIZATION_KEY, auth);
+		properties.put(TLS_KEY, tls);
 
-		String emailFrom = emailResourceManager.getValue(MailParameter.MAIL_FROM);
-		String password = emailResourceManager.getValue(MailParameter.MAIL_PASSWORD);
+		String mailFrom = mailResourceManager.getValue(MailParameter.MAIL_FROM);
+		String password = mailResourceManager.getValue(MailParameter.MAIL_PASSWORD);
 
-		Session session = Session.getInstance(prop, new Authenticator() {
+		Session session = Session.getInstance(properties, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(emailFrom, password);
+				return new PasswordAuthentication(mailFrom, password);
 			}
 		});
-
+		
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(emailFrom));
+			message.setFrom(new InternetAddress(mailFrom));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usersMail));
-			message.setSubject("mobile - access code");
+			message.setSubject(MESSAGE_SUBJECT);
 			message.setText(text);
 
 			Transport.send(message);
@@ -81,7 +87,10 @@ public class MailCodeManager {
 	}
 
 	private int generateCode() {
-		int code = (int) (Math.random() * (CODE_MAX_VALUE - CODE_MIN_VALUE + 1) + CODE_MIN_VALUE);
+		int code = (int) (Math.random() * FOUR_DECIMALS);
+		if (code < CODE_MIN_VALUE) {
+			code += CODE_MIN_VALUE;
+		}
 		return code;
 	}
 

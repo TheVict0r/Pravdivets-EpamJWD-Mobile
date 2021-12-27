@@ -14,9 +14,31 @@ import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 
-	public final static String ADD_NEW_USER = "INSERT INTO users (password, first_name, middle_name, last_name, passport, email, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	public final static String UPDATE_USER = "UPDATE users SET password=?, first_name=?, middle_name=?, last_name=?, passport=?, email=? WHERE id=?";
-			
+	public final static String COMMA = ", ";
+	public final static String QUESTION_MARK = "=?, ";
+	
+	public final static String ADD_NEW_USER = "INSERT INTO " + 
+			 DBTableName.USERS + "(" + 
+			DBColumnName.USERS_PASSWORD + COMMA + 
+			DBColumnName.USERS_FIRST_NAME + COMMA + 
+			DBColumnName.USERS_MIDDLE_NAME + COMMA + 
+			DBColumnName.USERS_LAST_NAME + COMMA + 
+			DBColumnName.USERS_PASSPORT + COMMA + 
+			DBColumnName.USERS_EMAIL + COMMA + 
+			DBColumnName.USERS_ROLE_ID + 
+						") VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+	public final static String UPDATE_USER = "UPDATE " + 
+			DBTableName.USERS + " SET "+ 
+			DBColumnName.USERS_PASSWORD + QUESTION_MARK + 
+			DBColumnName.USERS_FIRST_NAME + QUESTION_MARK + 
+			DBColumnName.USERS_MIDDLE_NAME + QUESTION_MARK +  
+			DBColumnName.USERS_LAST_NAME + QUESTION_MARK + 
+			DBColumnName.USERS_PASSPORT + QUESTION_MARK + 
+			DBColumnName.USERS_EMAIL + "=? " +  
+			"WHERE " + DBColumnName.USERS_ID + "=?";
+
+	
 	public SQLUserDAOImpl() {
         super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
 	}

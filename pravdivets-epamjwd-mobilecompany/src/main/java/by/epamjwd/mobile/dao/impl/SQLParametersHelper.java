@@ -9,6 +9,8 @@ import by.epamjwd.mobile.bean.User;
 
 public class SQLParametersHelper {
 
+	public final static int DATABASE_INDEX_SHIFT = 1; //as indexes in database begins from 1, not from 0
+	
 	private SQLParametersHelper() {
 		
 	}
@@ -26,7 +28,7 @@ public class SQLParametersHelper {
 
 	public static Object[] provideNewUserParameters(User user) {
 		List<Object> paramList = new ArrayList<>(Arrays.asList(provideUserParameters(user)));
-		paramList.add(user.getRole().ordinal() + 1); //as role id in database begins from 1, not from 0
+		paramList.add(user.getRole().ordinal() + DATABASE_INDEX_SHIFT);
 		return paramList.toArray();
 	}
 	
@@ -36,15 +38,13 @@ public class SQLParametersHelper {
 		return paramList.toArray();
 	}
 
-	
-	
 	public static Object[] provideNewSubscriberParameters(Subscriber subscriber) {
 		Object[] subscriberParameters = {
 				   subscriber.getContractDate(), 
 				   subscriber.getAccount(), 
 				   subscriber.getPhone(), 
 				   subscriber.getStatusDate(), 
-				  (subscriber.getStatus().ordinal() + 1), //as status id in database begins from 1, not from 0
+				  (subscriber.getStatus().ordinal() + DATABASE_INDEX_SHIFT), 
 				   subscriber.getPlanId(), 
 				   subscriber.getUserId()};
 
@@ -58,7 +58,7 @@ public class SQLParametersHelper {
 		Object[] subscriberParameters = {
 				   subscriber.getPhone(), 
 				   subscriber.getStatusDate(), 
-				  (subscriber.getStatus().ordinal() + 1), //as status id in database begins from 1, not from 0
+				  (subscriber.getStatus().ordinal() + DATABASE_INDEX_SHIFT), 
 				   subscriber.getPlanId(),
 				   subscriber.getId()}; 
 		return subscriberParameters;
