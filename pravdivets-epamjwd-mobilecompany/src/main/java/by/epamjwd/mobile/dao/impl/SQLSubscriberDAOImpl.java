@@ -1,18 +1,11 @@
 package by.epamjwd.mobile.dao.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.SubscriberDAO;
-import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.AbstractDao;
-import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
@@ -23,7 +16,16 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	public final static String COMMA = ", ";
 	public final static String QUESTION_MARK = "=?, ";
 	
-	public static final String ADD_SUBSCRIBER_TO_EXISTING_USER = "INSERT INTO subscribers (contract_date, account, phone, status_date, status_id, plan_id, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public static final String ADD_SUBSCRIBER_TO_EXISTING_USER = "INSERT INTO " + 
+			 DBTableName.SUBSCRIBERS + " (" + 
+			DBColumnName.SUBSCRIBERS_CONTRACT_DATE + COMMA + 
+			DBColumnName.SUBSCRIBERS_ACCOUNT + COMMA + 
+			DBColumnName.SUBSCRIBERS_PHONE + COMMA + 
+			DBColumnName.SUBSCRIBERS_STATUS_DATE + COMMA + 
+			DBColumnName.SUBSCRIBERS_STATUS_ID + COMMA + 
+			DBColumnName.SUBSCRIBERS_PLAN_ID + COMMA + 
+			DBColumnName.SUBSCRIBERS_USER_ID + ") VALUES (?, ?, ?, ?, ?, ?, ?)";
+	
 	public static final String UPDATE_SUBSCRIBER = "UPDATE subscribers SET phone=?, status_date=?, status_id=?, plan_id=? WHERE id=?";
 
 	public SQLSubscriberDAOImpl() {
@@ -110,19 +112,6 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 		return result;
 	}		
 	
-	
-//	@Override
-//	public void registration(Abonent newAbonent) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public Abonent lookAbonent(int idAbonent) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
 //	@Override
 //	public void activateService(int serviceId) {
 //		// TODO Auto-generated method stub
@@ -141,11 +130,6 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 //		
 //	}
 //
-//	@Override
-//	public void changePhoneNumber(String oldPhoneNumber, String newPhoneNumber) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 //
 //	@Override
 //	public void pause() {

@@ -28,26 +28,31 @@
 			class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto fs-5 mb-3">
 			<fmt:message key="code-return.lead" />
 		</div>
-
-		<div class="row justify-content-center mx-auto fw-light flex-grow-1">
-			<form method="POST"
-				action="controller?command=code_return">
-				<table>
-					<tr>
-						<td><label for="entered_code" class="form-label"> <fmt:message
-									key="code-return.enter-code" />:
-						</label></td>
-						<td><input type="text" class="form-control mb-1"
-							name="entered_code" id="entered_code" placeholder="1234"
-							pattern="^[0-9]{4}$" required></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="submit" class="btn btn-outline-dark" value="OK"></td>
-					</tr>
-				</table>
-			</form>
-		</div>
+	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
+		<form method="POST" action="controller?command=code_return">
+			<table>
+				<tr>
+					<td><label for="entered_code" class="form-label"> <fmt:message
+								key="code-return.enter-code" />:
+					</label></td>
+					<td><input type="text" class="form-control mb-1"
+						name="entered_code" id="entered_code" placeholder="1234"
+						pattern="^[0-9]{4}$" required></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" class="btn btn-outline-dark"
+						value="OK"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div class="justify-content-center text-center mx-auto flex-grow-1">
+		<a class="btn btn-outline-dark"
+			href="${pageContext.request.contextPath}/controller?command=code_send">
+			<fmt:message key="code-return.get-code" />
+		</a>
+	</div>
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

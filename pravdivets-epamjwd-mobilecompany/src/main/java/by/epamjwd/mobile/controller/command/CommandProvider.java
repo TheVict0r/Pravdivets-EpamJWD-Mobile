@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByUserIdCommand;
 import by.epamjwd.mobile.controller.command.impl.SwitchLocaleCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToAddConsultantPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddSubscriberPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeReturnPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeSendPageCommand;
@@ -25,7 +27,6 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberOperation
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberServicesPageCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByPhoneCommand;
-import by.epamjwd.mobile.controller.command.impl.ShowAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.LoginCommand;
 import by.epamjwd.mobile.controller.command.impl.LogoutCommand;
 import by.epamjwd.mobile.controller.command.impl.CodeReturnCommand;
@@ -79,7 +80,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID, new ShowSubscriberListByUserIdCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME, new ShowSubscriberListByFullNameCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_PASSPORT, new ShowSubscriberListByPassportCommand());
-		allCommands.put(CommandName.SHOW_ADMIN, new ShowAdminCommand());
+		allCommands.put(CommandName.GO_TO_ADMIN_PAGE, new GoToAdminPageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_OPERATIONS_PAGE, new GoToSubscriberOperationsPageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_PAGE, new GoToSubscriberPageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_SERVICES_PAGE, new GoToSubscriberServicesPageCommand());
@@ -115,6 +116,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.NEW_PASSWORD, new NewPasswordCommand());
 		allCommands.put(CommandName.GO_TO_NEW_PASSWORD_PAGE, new GoToNewPasswordPageCommand());
 		allCommands.put(CommandName.GO_TO_PASSWORD_REPAIR_PAGE, new GoToPasswordRepairPageCommand());
+		allCommands.put(CommandName.GO_TO_ADD_CONSULTANT_PAGE, new GoToAddConsultantPageCommand());
 
 	}
 

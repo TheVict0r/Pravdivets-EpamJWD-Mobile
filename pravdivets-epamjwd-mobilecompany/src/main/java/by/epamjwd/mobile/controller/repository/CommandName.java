@@ -17,7 +17,7 @@ public class CommandName {
 	public static final String SHOW_SUBSCRIBER_LIST_BY_USER_ID = "show_subscriber_list_by_user_id";
 	public static final String SHOW_SUBSCRIBER_LIST_BY_FULL_NAME = "show_subscriber_list_by_full_name";
 	public static final String SHOW_SUBSCRIBER_LIST_BY_PASSPORT = "show_subscriber_list_by_passport";
-	public static final String SHOW_ADMIN = "show_admin";
+	public static final String GO_TO_ADMIN_PAGE = "go_to_admin_page";
 	public static final String GO_TO_SUBSCRIBER_OPERATIONS_PAGE = "go_to_subscriber_operations_page";
 	public static final String GO_TO_SUBSCRIBER_PAGE = "go_to_subscriber_page";
 	public static final String SHOW_SUBSCRIBER_BY_PHONE = "show_subscriber_by_phone";
@@ -54,5 +54,6 @@ public class CommandName {
 	public static final String CODE_RETURN = "code_return";
 	public static final String GO_TO_CODE_RETURN_PAGE = "go_to_code_return_page";
 	public static final String GO_TO_PHONE_REQUEST_PAGE = "go_to_phone_request_page";
+	public static final String GO_TO_ADD_CONSULTANT_PAGE = "go_to_add_consultant_page";
 
 }

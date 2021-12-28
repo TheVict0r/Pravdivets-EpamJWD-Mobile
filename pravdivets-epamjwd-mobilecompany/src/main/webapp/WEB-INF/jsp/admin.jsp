@@ -18,7 +18,44 @@
 
 	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9  fs-5 fw-light flex-grow-1">
 
-		<h1>ADMIN.jsp</h1>
+			<div class="d-grid gap-3 col-6 py-5 mx-auto">
+			  <a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.subscriber-operations" />
+			</a>
+			  <a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_add_consultant_page">
+				<fmt:message key="admin.add-consultant" />
+			</a>
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.show-edit-consultant" />
+			</a>
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.add-plan" />
+			</a>
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.show-edit-plan" />
+			</a>
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.add-service" />
+			</a>
+						<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.show-edit-service" />
+			</a>
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.add-article" />
+			</a>
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				<fmt:message key="admin.show-edit-article" />
+			</a>
+	</div>
 	</div>
 
 	<jsp:include page="components/footer.jsp" />

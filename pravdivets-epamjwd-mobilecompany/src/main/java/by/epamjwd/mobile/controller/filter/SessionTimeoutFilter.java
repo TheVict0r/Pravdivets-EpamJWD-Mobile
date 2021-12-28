@@ -37,7 +37,7 @@ public class SessionTimeoutFilter implements Filter {
 					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID);
 					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME);
 					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_PASSPORT);
-					authorisedCommands.add(CommandName.SHOW_ADMIN);
+					authorisedCommands.add(CommandName.GO_TO_ADMIN_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_OPERATIONS_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_SERVICES_PAGE);

@@ -20,7 +20,7 @@ public class PagePath {
 	public static final String SUBSCRIBER_OPERATIONS_REDIRECT = "/controller?command=go_to_subscriber_operations_page";
 	public static final String CONSULTANT_REDIRECT = "/controller?command=go_to_subscriber_operations_page";
 	public static final String ADMIN = "WEB-INF/jsp/admin.jsp";
-	public static final String ADMIN_REDIRECT = "/controller?command=show_admin";
+	public static final String ADMIN_REDIRECT = "/controller?command=go_to_admin_page";
 	public static final String ALL_PLANS = "WEB-INF/jsp/allplans.jsp";
 	public static final String PLAN = "WEB-INF/jsp/plan.jsp";
 	public static final String ALL_SERVICES = "WEB-INF/jsp/allservices.jsp";
@@ -50,5 +50,6 @@ public class PagePath {
 	public static final String CODE_SEND = "WEB-INF/jsp/code-send.jsp";
 	public static final String CODE_RETURN = "WEB-INF/jsp/code-return.jsp";
 	public static final String CODE_RETURN_REDIRECT = "/controller?command=go_to_code_return_page";
+	public static final String ADD_CONSULTANT = "WEB-INF/jsp/add-consultant.jsp";
 
 }
