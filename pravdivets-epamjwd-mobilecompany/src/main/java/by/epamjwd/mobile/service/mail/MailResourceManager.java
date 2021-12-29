@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 public class MailResourceManager {
 
 	private static final String MAIL_BUNDLE_NAME = "mail";
+	private ResourceBundle bundle = ResourceBundle.getBundle(MAIL_BUNDLE_NAME);
 	
 	private MailResourceManager() {
 	}
@@ -14,12 +15,10 @@ public class MailResourceManager {
 		
 	}
 	
-
 	public static MailResourceManager getInstance() {
 		return Holder.INSTANCE;
 	}
 	
-	private ResourceBundle bundle = ResourceBundle.getBundle(MAIL_BUNDLE_NAME);
 	
 	public String getValue(String key) {
 		return bundle.getString(key);
