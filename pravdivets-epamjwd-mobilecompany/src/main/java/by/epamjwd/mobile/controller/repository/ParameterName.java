@@ -30,4 +30,15 @@ public class ParameterName {
 	public static final String PASSWORD2 = "password2";
 	public static final String ENTERED_CODE = "entered_code";
 	public static final String COMMAND = "command";
+	public static final String NAME = "name";
+	public static final String DESCRIPTION = "description";
+	public static final String REGULAR_PAYMENT = "regular_payment";
+	public static final String UPFRONT_PAYMENT = "upfront_payment";
+	public static final String WITHIN_NETWORK = "within_network";
+	public static final String OTHER_NETWORKS = "other_networks";
+	public static final String ABROAD = "abroad";
+	public static final String VIDEOCALL = "videocall";
+	public static final String SMS = "sms";
+	public static final String MMS = "mms";
+	public static final String INTERNET = "internet";
 }

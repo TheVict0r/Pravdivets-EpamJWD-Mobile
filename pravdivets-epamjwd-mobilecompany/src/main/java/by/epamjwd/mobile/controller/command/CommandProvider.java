@@ -7,6 +7,7 @@ import java.util.Optional;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByUserIdCommand;
 import by.epamjwd.mobile.controller.command.impl.SwitchLocaleCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddConsultantPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToAddPlanPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCalculatorPageCommand;
@@ -44,6 +45,8 @@ import by.epamjwd.mobile.controller.command.impl.ChangeStatusPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.CheckPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
+import by.epamjwd.mobile.controller.command.impl.AddConsultantCommand;
+import by.epamjwd.mobile.controller.command.impl.AddPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
 import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand;
@@ -117,6 +120,9 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_NEW_PASSWORD_PAGE, new GoToNewPasswordPageCommand());
 		allCommands.put(CommandName.GO_TO_PASSWORD_REPAIR_PAGE, new GoToPasswordRepairPageCommand());
 		allCommands.put(CommandName.GO_TO_ADD_CONSULTANT_PAGE, new GoToAddConsultantPageCommand());
+		allCommands.put(CommandName.GO_TO_ADD_PLAN_PAGE, new GoToAddPlanPageCommand());
+		allCommands.put(CommandName.ADD_PLAN, new AddPlanCommand());
+		allCommands.put(CommandName.ADD_CONSULTANT, new AddConsultantCommand());
 
 	}
 

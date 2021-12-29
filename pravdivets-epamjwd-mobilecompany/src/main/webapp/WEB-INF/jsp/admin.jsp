@@ -32,7 +32,7 @@
 				<fmt:message key="admin.show-edit-consultant" />
 			</a>
 			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				href="${pageContext.request.contextPath}/controller?command=go_to_add_plan_page">
 				<fmt:message key="admin.add-plan" />
 			</a>
 			<a class="btn btn-outline-dark"

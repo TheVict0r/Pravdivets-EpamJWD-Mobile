@@ -51,5 +51,6 @@ public class PagePath {
 	public static final String CODE_RETURN = "WEB-INF/jsp/code-return.jsp";
 	public static final String CODE_RETURN_REDIRECT = "/controller?command=go_to_code_return_page";
 	public static final String ADD_CONSULTANT = "WEB-INF/jsp/add-consultant.jsp";
+	public static final String ADD_PLAN = "WEB-INF/jsp/add-plan.jsp";
 
 }
