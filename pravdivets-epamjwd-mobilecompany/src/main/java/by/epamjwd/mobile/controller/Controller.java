@@ -14,9 +14,8 @@ import by.epamjwd.mobile.controller.command.CommandProvider;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 
-//@WebServlet("/controller")
 public class Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7400324932762736995L;
 
 	public Controller() {
 	}
