@@ -60,7 +60,7 @@
 		</form>
 	</div>
 
-	<div class="d-grid col-3 py-5 mx-auto ">
+	<div class="d-grid col-3 py-4 mx-auto ">
 		<a class="btn btn-outline-dark"
 			href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
 				key="add-subscriber.back" /></a>

@@ -153,7 +153,7 @@
 		</div>
 		<c:if test="${sessionScope.role eq 'ADMIN'}">
 	<div class="d-grid col-1 py-2 mx-start ">
-		<a class="btn btn-outline-dark"
+		<a class="btn btn-primary"
 			href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
 				key="add-subscriber.back" /></a>
 	</div>

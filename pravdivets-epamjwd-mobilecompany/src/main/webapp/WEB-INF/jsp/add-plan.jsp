@@ -31,10 +31,10 @@
 				<tr>
 					<td><label for="description" class="form-label"><fmt:message
 								key="add-plan.description" />:</label></td>
-					<td><input type="text" class="form-control"
-						name="description" id="description" 
-						value="${sessionScope.description}" required>
-						<c:remove var="description" /></td>
+					<td><textarea class="form-control" name="description" id="description"
+							rows="2" cols="40" required>
+						${sessionScope.description} 
+						</textarea> <c:remove var="description" /></td>
 				</tr>
 				<tr>
 					<td><label for="regular_payment" class="form-label"><fmt:message

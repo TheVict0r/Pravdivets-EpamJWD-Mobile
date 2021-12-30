@@ -50,9 +50,11 @@
 					<tr>
 						<td><fmt:message key="subscriber.phone" /></td>
 						<td>${sessionScope.phone_format}</td>
-						<td><a class="btn btn-outline-primary btn-sm"
+				<td><c:if test="${sessionScope.role != 'SUBSCRIBER'}">		
+						<a class="btn btn-outline-primary btn-sm"
 							href="${pageContext.request.contextPath}/controller?command=change_phone_preparation"><fmt:message
-									key="subscriber.edit" /></a></td>
+									key="subscriber.edit" /></a>
+					</c:if></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -123,17 +125,21 @@
 						<td>${sessionScope.subscriber_user.firstName}
 							${sessionScope.subscriber_user.middleName}
 							${sessionScope.subscriber_user.lastName}</td>
+							<td></td>
 					</tr>
 					<tr>
 						<td><fmt:message key="subscriber.passport" /></td>
 						<td>${sessionScope.subscriber_user.passport}</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>e-mail:</td>
 						<td>${sessionScope.subscriber_user.email}</td>
-						<td><a class="login btn btn-outline-primary btn-sm"
+						<td><c:if test="${sessionScope.role != 'SUBSCRIBER'}">	
+						<a class="login btn btn-outline-primary btn-sm"
 							href="${pageContext.request.contextPath}/controller?command=edit_personal_data_preparation"><fmt:message
-									key="subscriber.edit-personal-data" /></a></td>
+									key="subscriber.edit-personal-data" /></a>
+						</c:if></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -221,9 +227,11 @@
 				<tr>
 					<td><fmt:message key="subscriber.status" /></td>
 					<td>${sessionScope.subscriber.status.statusName}</td>
-						<td><a class="login btn btn-outline-primary btn-sm"
+					<td><c:if test="${sessionScope.role != 'SUBSCRIBER'}">
+						<a class="login btn btn-outline-primary btn-sm"
 							href="${pageContext.request.contextPath}/controller?command=change_status_preparation"><fmt:message
-									key="subscriber.edit" /></a></td>
+									key="subscriber.edit" /></a>
+					</c:if></td>
 				</tr>
 					</c:otherwise>
 				</c:choose>
@@ -241,11 +249,11 @@
 		<td></td>
 			</tr>
 		</table>
-		
+		<c:if test="${sessionScope.role != 'SUBSCRIBER'}">
 		<a class="btn btn-primary btn-sm"
 		href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
 		<fmt:message key="subscriber.operations-page" /></a>
-		
+		</c:if>
 	</div>
 	<jsp:include page="components/footer.jsp" />
 </body>
