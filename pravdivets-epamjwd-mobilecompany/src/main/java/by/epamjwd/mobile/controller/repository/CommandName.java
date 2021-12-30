@@ -58,5 +58,9 @@ public class CommandName {
 	public static final String GO_TO_ADD_PLAN_PAGE = "go_to_add_plan_page";
 	public static final String ADD_PLAN = "add_plan";
 	public static final String ADD_CONSULTANT = "add_consultant";
+	public static final String GO_TO_ADD_SERVICE_PAGE = "go_to_add_service_page";
+	public static final String ADD_SERVICE = "add_service";
+	public static final String GO_TO_ADD_ARTICLE_PAGE = "go_to_add_article_page";
+	public static final String ADD_ARTICLE = "add_article";
 
 }

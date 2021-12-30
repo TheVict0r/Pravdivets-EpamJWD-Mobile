@@ -41,4 +41,8 @@ public class ParameterName {
 	public static final String SMS = "sms";
 	public static final String MMS = "mms";
 	public static final String INTERNET = "internet";
+	public static final String TARIFF = "tariff";
+	public static final String TITLE = "title";
+	public static final String LEAD = "lead";
+	public static final String TEXT = "text";
 }

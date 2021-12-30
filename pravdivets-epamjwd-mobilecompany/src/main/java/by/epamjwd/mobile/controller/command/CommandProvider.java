@@ -6,8 +6,10 @@ import java.util.Optional;
 
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByUserIdCommand;
 import by.epamjwd.mobile.controller.command.impl.SwitchLocaleCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToAddArticlePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddConsultantPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddPlanPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToAddServicePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCalculatorPageCommand;
@@ -45,8 +47,10 @@ import by.epamjwd.mobile.controller.command.impl.ChangeStatusPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.CheckPhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberByIDCommand;
+import by.epamjwd.mobile.controller.command.impl.AddArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.AddConsultantCommand;
 import by.epamjwd.mobile.controller.command.impl.AddPlanCommand;
+import by.epamjwd.mobile.controller.command.impl.AddServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
 import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand;
@@ -123,6 +127,11 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_ADD_PLAN_PAGE, new GoToAddPlanPageCommand());
 		allCommands.put(CommandName.ADD_PLAN, new AddPlanCommand());
 		allCommands.put(CommandName.ADD_CONSULTANT, new AddConsultantCommand());
+		allCommands.put(CommandName.ADD_SERVICE, new AddServiceCommand());
+		allCommands.put(CommandName.GO_TO_ADD_SERVICE_PAGE, new GoToAddServicePageCommand());
+		allCommands.put(CommandName.GO_TO_ADD_ARTICLE_PAGE, new GoToAddArticlePageCommand());
+		allCommands.put(CommandName.ADD_ARTICLE, new AddArticleCommand());
+
 
 	}
 

@@ -40,7 +40,7 @@
 				<fmt:message key="admin.show-edit-plan" />
 			</a>
 			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				href="${pageContext.request.contextPath}/controller?command=go_to_add_service_page">
 				<fmt:message key="admin.add-service" />
 			</a>
 						<a class="btn btn-outline-dark"
@@ -48,7 +48,7 @@
 				<fmt:message key="admin.show-edit-service" />
 			</a>
 			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
+				href="${pageContext.request.contextPath}/controller?command=go_to_add_article_page">
 				<fmt:message key="admin.add-article" />
 			</a>
 			<a class="btn btn-outline-dark"

@@ -119,16 +119,14 @@
 				</span>
 			</c:if>
 		</div>
-		
-		
 		</div>
 		<div>
-			<h4 class="mb-2">
+			<h4 class="mb-1">
 				<fmt:message key="subscriberbase.add-subscriber" />
 			</h4>
 		</div>
 		<div>
-		<form class="row mb-2" method="POST"
+		<form class="row" method="POST"
 			action="controller?command=add_subscriber_preparation">
 			<label for="passport" class="form-label"><fmt:message
 					key="subscriberbase.passport" /></label>
@@ -153,7 +151,16 @@
 			</div>
 		</c:if>
 		</div>
+		<c:if test="${sessionScope.role eq 'ADMIN'}">
+	<div class="d-grid col-1 py-2 mx-start ">
+		<a class="btn btn-outline-dark"
+			href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
+				key="add-subscriber.back" /></a>
 	</div>
+	</c:if>
+	</div>
+
+
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>
