@@ -6,6 +6,7 @@ public class AttributeValue {
 	public static final String WRONG_PHONE = "wrong_phone";
 	public static final String WRONG_PASSPORT = "wrong_passport";
 	public static final String BOOKED_EMAIL = "booked_email";
+	public static final String BOOKED_PASSPORT = "booked_passport";
 	public static final String SESSION_TIME_OUT = "session_time_out";
 	public static final String TRUE = "true";
 	public static final String FALSE = "false";

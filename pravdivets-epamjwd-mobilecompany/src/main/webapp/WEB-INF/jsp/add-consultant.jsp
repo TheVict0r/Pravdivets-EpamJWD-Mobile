@@ -22,11 +22,17 @@
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
 		<p>
 			<c:choose>
+				<c:when test="${sessionScope.error == 'booked_passport'}">
+					<fmt:message key="add-consultant.booked-passport" />
+				</c:when>
+				<c:when test="${sessionScope.error == 'booked_email'}">
+					<fmt:message key="add-consultant.booked-email" />
+				</c:when>
 				<c:when test="${sessionScope.error == 'missmatched_passwords'}">
-					<fmt:message key="new-password.missmatched-passwords" />
+					<fmt:message key="add-consultant.missmatched-passwords" />
 				</c:when>
 				<c:when test="${sessionScope.error == 'incorrect_password'}">
-					<fmt:message key="new-password.incorrect-password" />
+					<fmt:message key="add-consultant.incorrect-password" />
 				</c:when>
 			</c:choose>
 		</p>
@@ -84,14 +90,14 @@
 								key="add-consultant.password1" /> <span
 							class="text-primary fw-bold fs-5 ">*</span> </label></td>
 					<td><input type="password" class="form-control"
-						name="password1" id="password1" required minlength="8"></td>
+						name="password1" id="password1" value="${sessionScope.password1}" required minlength="8"></td>
 					<c:remove var="password1" />
 				</tr>
 				<tr>
 					<td><label for="password2" class="form-label "><fmt:message
 								key="add-consultant.password2" /></label></td>
 					<td><input type="password" class="form-control mb-1"
-						name="password2" id="password2" required minlength="8"></td>
+						name="password2" id="password2" value='${sessionScope.password2}' required minlength="8"></td>
 					<c:remove var="password2" />
 				</tr>
 				<tr>

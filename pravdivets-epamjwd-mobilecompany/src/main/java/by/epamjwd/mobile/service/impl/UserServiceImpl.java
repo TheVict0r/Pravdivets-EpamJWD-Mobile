@@ -76,40 +76,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean isPasswordCorrect(User user, String password) {
-		boolean result = false;
-		if(password.isBlank() || password == null || user == null) {
-			return false;
-		}
-		
-		if (InputDataValidator.isUserValid(user)) {
-			result = HashGenerator.generateHash(password).equals(user.getPassword());
-		}
-		return result;
-	}
-
-	@Override
-	public boolean doesPhoneExist(String phone) throws ServiceException {
-		return findUserByPhone(phone).isPresent();
-	}	
-	
-	@Override
-	public boolean isPasswordCorrect(String password) {
-		return InputDataValidator.isPassword(password);
-	}	
-	
-	@Override
-	public boolean isSignupRequired(String phone) throws ServiceException {
-		boolean result = false;
-		Optional<User> userOptional = findUserByPhone(phone);
-		if (userOptional.isPresent()) {
-			User user = userOptional.get();
-			result = user.getPassword() == null;
-		}
-		return result;
-	}	
-	
-	@Override
 	public long addNewUser(User user) throws ServiceException {
 		long userId = ERROR_ID;
 		if (InputDataValidator.isUserValid(user)) {
@@ -160,6 +126,51 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
-
 	
+	@Override
+	public boolean isPasswordCorrect(User user, String password) {
+		boolean result = false;
+		if(password.isBlank() || password == null || user == null) {
+			return false;
+		}
+		
+		if (InputDataValidator.isUserValid(user)) {
+			result = HashGenerator.generateHash(password).equals(user.getPassword());
+		}
+		return result;
+	}
+
+	@Override
+	public boolean doesPhoneExist(String phone) throws ServiceException {
+		return findUserByPhone(phone).isPresent();
+	}	
+	
+	@Override
+	public boolean isPasswordCorrect(String password) {
+		return InputDataValidator.isPassword(password);
+	}	
+	
+	@Override
+	public boolean isSignupRequired(String phone) throws ServiceException {
+		boolean result = false;
+		Optional<User> userOptional = findUserByPhone(phone);
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			result = user.getPassword() == null;
+		}
+		return result;
+	}	
+
+	@Override
+	public boolean isEmailBooked(String email) throws ServiceException {
+		Optional<User> user = findUserByEmail(email);
+		return user.isPresent();
+		
+	}
+	
+	@Override
+	public boolean isPassportBooked(String passport) throws ServiceException {
+		Optional<User> user = findUserByPassport(passport);
+		return user.isPresent();
+	}
 }

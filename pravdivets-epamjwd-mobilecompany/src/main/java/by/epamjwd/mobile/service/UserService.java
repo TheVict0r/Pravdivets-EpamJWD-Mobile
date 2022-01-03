@@ -21,4 +21,6 @@ public interface UserService {
 	void updatePassword(String phone, String password) throws ServiceException;
 	boolean isPasswordCorrect(String password);
 	int sendCodeByMail(String phone) throws ServiceException;
+	boolean isEmailBooked(String email) throws ServiceException;
+	boolean isPassportBooked(String passport) throws ServiceException;
 }

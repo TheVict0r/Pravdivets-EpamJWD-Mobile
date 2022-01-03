@@ -62,5 +62,6 @@ public class CommandName {
 	public static final String ADD_SERVICE = "add_service";
 	public static final String GO_TO_ADD_ARTICLE_PAGE = "go_to_add_article_page";
 	public static final String ADD_ARTICLE = "add_article";
+	public static final String SHOW_CONSULTANT_BY_ID = "show_consultant_by_id";
 
 }

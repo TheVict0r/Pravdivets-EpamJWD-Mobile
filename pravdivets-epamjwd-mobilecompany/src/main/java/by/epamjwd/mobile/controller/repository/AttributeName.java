@@ -28,6 +28,8 @@ public class AttributeName {
 	public static final String SUBSCRIBER_USER_FLAG = "subscriber_user_flag";
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
+	public static final String PASSWORD1 = "password1";
+	public static final String PASSWORD2 = "password2";
 	public static final String PASSPORT = "passport";
 	public static final String ERROR = "error";
 	public static final String DEBT = "debt";
@@ -46,5 +48,9 @@ public class AttributeName {
 	public static final String CODE = "code";
 	public static final String MODE = "mode";
 	public static final String CHANGE_PASSWORD = "change_password";
+	public static final String CONSULTATNT_FIRST_NAME = "consultant_first_name";
+	public static final String CONSULTATNT_MIDDLE_NAME = "consultant_middle_name";
+	public static final String CONSULTATNT_LAST_NAME = "consultant_last_name";
+	public static final String CONSULTANT_ID = "consultant_id";
 
 }

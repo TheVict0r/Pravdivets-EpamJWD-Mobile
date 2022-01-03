@@ -18,7 +18,7 @@ public class PagePath {
 	public static final String SUBSCRIBER_LIST_REDIRECT = "/controller?command=show_subscriber_list_by_user_id";
 	public static final String SUBSCRIBER_OPERATIONS = "WEB-INF/jsp/subscriber-operations.jsp";
 	public static final String SUBSCRIBER_OPERATIONS_REDIRECT = "/controller?command=go_to_subscriber_operations_page";
-	public static final String CONSULTANT_REDIRECT = "/controller?command=go_to_subscriber_operations_page";
+	public static final String CONSULTANT_REDIRECT = "/controller?command=show_consultant_by_id";
 	public static final String ADMIN = "WEB-INF/jsp/admin.jsp";
 	public static final String ADMIN_REDIRECT = "/controller?command=go_to_admin_page";
 	public static final String ALL_PLANS = "WEB-INF/jsp/allplans.jsp";
@@ -51,8 +51,13 @@ public class PagePath {
 	public static final String CODE_RETURN = "WEB-INF/jsp/code-return.jsp";
 	public static final String CODE_RETURN_REDIRECT = "/controller?command=go_to_code_return_page";
 	public static final String ADD_CONSULTANT = "WEB-INF/jsp/add-consultant.jsp";
+	public static final String ADD_CONSULTANT_REDIRECT = "/controller?command=go_to_add_consultant_page";
 	public static final String ADD_PLAN = "WEB-INF/jsp/add-plan.jsp";
+	public static final String ADD_PLAN_REDIRECT = "/controller?command=go_to_add_plan_page";
 	public static final String ADD_SERVICE = "WEB-INF/jsp/add-service.jsp";
+	public static final String ADD_SERVICE_REDIRECT = "/controller?command=go_to_add_service_page";
 	public static final String ADD_ARTICLE = "WEB-INF/jsp/add-article.jsp";
+	public static final String ADD_ARTICLE_REDIRECT = "/controller?command=go_to_add_article_page";
+	public static final String CONSULTANT = "WEB-INF/jsp/consultant.jsp";
 
 }

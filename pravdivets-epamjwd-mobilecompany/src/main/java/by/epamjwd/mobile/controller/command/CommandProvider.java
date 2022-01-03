@@ -63,6 +63,7 @@ import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowBestPlanCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowConsultantByIdCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllNewsCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
 
@@ -131,6 +132,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_ADD_SERVICE_PAGE, new GoToAddServicePageCommand());
 		allCommands.put(CommandName.GO_TO_ADD_ARTICLE_PAGE, new GoToAddArticlePageCommand());
 		allCommands.put(CommandName.ADD_ARTICLE, new AddArticleCommand());
+		allCommands.put(CommandName.SHOW_CONSULTANT_BY_ID, new ShowConsultantByIdCommand());
 
 
 	}
