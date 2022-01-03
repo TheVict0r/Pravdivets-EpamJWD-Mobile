@@ -17,10 +17,9 @@
 	<jsp:include page="components/header.jsp" />
 
 
-<h1>КУ-КУ</h1>
-
-	<h3>${requestScope.consultant.firstName}</h3>
-	<h3>${requestScope.consultant.email}</h3>
+	<h3>${sessionScope.consultant}</h3>
+	<h3>${sessionScope.consultant.firstName}</h3>
+	<h3>${sessionScope.consultant.email}</h3>
 
 
 
