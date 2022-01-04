@@ -27,7 +27,6 @@
 				<fmt:message key="subscriberbase.find-subscriber" />
 			</h4>
 		</div>
-
 		<form class="row mb-3" method="POST"
 			action="controller?command=show_subscriber_by_phone">
 			<label for="phone" class="form-label"><fmt:message
@@ -45,7 +44,6 @@
 				<input type="submit" class="btn btn-outline-dark" value="OK">
 			</div>
 		</form>
-
 				<div class="col-md-12 mb-2">
 			<c:if test="${requestScope.error eq 'wrong_phone'}">
 				<span class="fw-normal fs-6 text-danger"> <fmt:message
@@ -54,8 +52,6 @@
 				</span>
 			</c:if>
 		</div>
-
-
 		<form class="row mb-3" method="POST"
 			action="controller?command=show_subscriber_list_by_passport">
 			<label for="passport" class="form-label"><fmt:message
@@ -80,9 +76,6 @@
 				</span>
 			</c:if>
 		</div>
-
-
-
 		<div class="mb-4">
 		<form class="row mb-2" method="POST"
 			action="controller?command=show_subscriber_list_by_full_name">
@@ -110,7 +103,6 @@
 				<input type="submit" class="btn btn-outline-dark" value="OK">
 			</div>
 		</form>
-		
 				<div class="col-md-12">
 			<c:if test="${requestScope.error eq 'wrong_name'}">
 				<span class="fw-normal fs-6 text-danger"> <fmt:message
@@ -159,8 +151,6 @@
 	</div>
 	</c:if>
 	</div>
-
-
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

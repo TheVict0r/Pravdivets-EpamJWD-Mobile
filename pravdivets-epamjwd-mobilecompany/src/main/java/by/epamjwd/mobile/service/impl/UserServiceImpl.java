@@ -2,6 +2,7 @@ package by.epamjwd.mobile.service.impl;
 
 import java.util.Optional;
 
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.UserDAO;
@@ -43,10 +44,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findUserByEmail(String email) throws ServiceException {
 		Optional<User> user = Optional.empty();
+				
+		if(InputDataValidator.isEmail(email)) {
 		try {
 			user = userDao.findUserByEmail(email);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
+		}
 		}
 		return user;
 	}
@@ -54,10 +58,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws ServiceException {
 		Optional<User> user = Optional.empty();
+		if(InputDataValidator.isPassport(passport)){
 		try {
 			user = userDao.findUserByPassport(passport);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
+		}
 		}
 		return user;
 	}

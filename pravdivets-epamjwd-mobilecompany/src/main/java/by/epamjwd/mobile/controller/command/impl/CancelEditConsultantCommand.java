@@ -1,5 +1,4 @@
-package by.epamjwd.mobile.controller.command.impl.transit;
-
+package by.epamjwd.mobile.controller.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,14 +10,13 @@ import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToAdminPageCommand implements Command {
+public class CancelEditConsultantCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.removeAttribute(AttributeName.CONSULTANT);
-		session.removeAttribute(AttributeName.CONSULTANT_ID);
-		
-		return new RouteHelper(PagePath.ADMIN, RouteMethod.FORWARD);
+		session.removeAttribute(AttributeName.MODE);
+		return new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
 	}
+
 }

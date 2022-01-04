@@ -59,5 +59,7 @@ public class PagePath {
 	public static final String ADD_ARTICLE = "WEB-INF/jsp/add-article.jsp";
 	public static final String ADD_ARTICLE_REDIRECT = "/controller?command=go_to_add_article_page";
 	public static final String CONSULTANT = "WEB-INF/jsp/consultant.jsp";
+	public static final String CONSULTANT_OPERATIONS = "WEB-INF/jsp/consultant-operations.jsp";
+	public static final String CONSULTANT_OPERATIONS_REDIRECT = "/controller?command=go_to_consultant_operations_page";
 
 }

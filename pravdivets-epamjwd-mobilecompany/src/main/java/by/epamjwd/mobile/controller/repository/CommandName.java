@@ -64,5 +64,11 @@ public class CommandName {
 	public static final String ADD_ARTICLE = "add_article";
 	public static final String SHOW_CONSULTANT_BY_ID = "show_consultant_by_id";
 	public static final String EDIT_CONSULTANT_PREPARATION = "edit_consultant_preparation";
+	public static final String EDIT_CONSULTANT = "edit_consultant";
+	public static final String CANCEL_EDIT_CONSULTANT = "cancel_edit_consultant";
+	public static final String GO_TO_CONSULTANT_OPERATIONS_PAGE = "go_to_consultant_operations_page";
+	public static final String SHOW_CONSULTANT_BY_EMAIL = "show_consultant_by_email";
+	public static final String SHOW_CONSULTANT_BY_PASSPORT = "show_consultant_by_passport";
+	public static final String SHOW_CONSULTANT_BY_FULL_NAME = "show_consultant_by_full_name";
 
 }

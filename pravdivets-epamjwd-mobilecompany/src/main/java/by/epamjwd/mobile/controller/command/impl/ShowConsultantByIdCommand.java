@@ -27,7 +27,6 @@ public class ShowConsultantByIdCommand implements Command {
 		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		long  consultantId = (long)session.getAttribute(AttributeName.CONSULTANT_ID);
-		//session.removeAttribute(AttributeName.CONSULTANT_ID);
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		Optional<User> consultantOptional = Optional.empty();
 		User consultant = null;

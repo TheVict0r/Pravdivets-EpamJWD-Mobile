@@ -24,12 +24,8 @@
 				<fmt:message key="admin.subscriber-operations" />
 			</a>
 			  <a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_add_consultant_page">
-				<fmt:message key="admin.add-consultant" />
-			</a>
-			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
-				<fmt:message key="admin.show-edit-consultant" />
+				href="${pageContext.request.contextPath}/controller?command=go_to_consultant_operations_page">
+				<fmt:message key="admin.consultant-operations" />
 			</a>
 			<a class="btn btn-outline-dark"
 				href="${pageContext.request.contextPath}/controller?command=go_to_add_plan_page">

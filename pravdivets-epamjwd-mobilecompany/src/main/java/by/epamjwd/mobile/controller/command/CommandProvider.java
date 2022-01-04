@@ -24,6 +24,7 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToNewPasswordPageComm
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPasswordRepairPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPhoneRequestPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToProfilePageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToConsultantOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSignupPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberBillsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberOperationsPageCommand;
@@ -54,6 +55,7 @@ import by.epamjwd.mobile.controller.command.impl.AddPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.AddServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
+import by.epamjwd.mobile.controller.command.impl.CancelEditConsultantCommand;
 import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand;
 import by.epamjwd.mobile.controller.command.impl.NewPasswordCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
@@ -64,6 +66,7 @@ import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowBestPlanCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowConsultantByEmailCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowConsultantByIdCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllNewsCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
@@ -135,6 +138,9 @@ public class CommandProvider {
 		allCommands.put(CommandName.ADD_ARTICLE, new AddArticleCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_ID, new ShowConsultantByIdCommand());
 		allCommands.put(CommandName.EDIT_CONSULTANT_PREPARATION, new EditConsultantPreparationCommand());
+		allCommands.put(CommandName.CANCEL_EDIT_CONSULTANT, new CancelEditConsultantCommand());
+		allCommands.put(CommandName.GO_TO_CONSULTANT_OPERATIONS_PAGE, new GoToConsultantOperationsPageCommand());
+		allCommands.put(CommandName.SHOW_CONSULTANT_BY_EMAIL, new ShowConsultantByEmailCommand());
 
 
 	}

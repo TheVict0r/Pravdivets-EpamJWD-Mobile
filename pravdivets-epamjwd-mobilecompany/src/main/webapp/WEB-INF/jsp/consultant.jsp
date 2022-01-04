@@ -27,48 +27,46 @@
 			<form method="post" action="controller?command=edit_consultant">
 			<table class="table table-borderless">
 			<tr>
-						<td><label for="subscriber_user_last_name" class="form-label"><fmt:message
-									key="add-subscriber.last-name" />:</label></td>
-						<td><input type="text" class="form-control"
-							name="subscriber_user_last_name" id="subscriber_user_last_name"
+						<td><label for="consultant_last_name" class="form-label"><fmt:message
+									key="consultant.last-name" />:</label></td>
+						<td colspan="2"><input type="text" class="form-control"
+							name="consultant_last_name" id="consultant_last_name"
 							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.consultant.lastName}" required>
 						</td>
 						<td></td>
-					
 					<tr>
-						<td><label for="subscriber_user_first_name"
+						<td><label for="consultant_first_name"
 							class="form-label"><fmt:message
-									key="add-subscriber.first-name" />:</label></td>
-						<td><input type="text" class="form-control"
-							name="subscriber_user_first_name" id="subscriber_user_first_name"
+									key="consultant.first-name" />:</label></td>
+						<td colspan="2"><input type="text" class="form-control"
+							name="consultant_first_name" id="consultant_first_name"
 							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.consultant.firstName}" required>
 						</td>
 						<td></td>
 					</tr>
 					<tr>
-						<td><label for="subscriber_user_middle_name"
+						<td><label for="consultant_middle_name"
 							class="form-label"><fmt:message
-									key="add-subscriber.middle-name" />:</label></td>
-						<td><input type="text" class="form-control"
-							name="subscriber_user_middle_name"
-							id="subscriber_user_middle_name" 
+									key="consultant.middle-name" />:</label></td>
+						<td colspan="2"><input type="text" class="form-control"
+							name="consultant_middle_name" id="consultant_middle_name" 
 							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.consultant.middleName}"></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td><label for="passport" class="form-label"><fmt:message
-									key="add-subscriber.passport" />:</label></td>
-						<td><input type="text" class="form-control" name="passport"
+									key="consultant.passport" />:</label></td>
+						<td colspan="2"><input type="text" class="form-control" name="passport"
 							id="email" value="${sessionScope.consultant.passport}"
 							required></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td><label for="email" class="form-label">e-mail:</label></td>
-						<td><input type="email" class="form-control" name="email"
+						<td colspan="2"><input type="email" class="form-control"  name="email"
 							id="email" value="${sessionScope.consultant.email}" required>
 						</td>
 						<td></td>
@@ -80,7 +78,7 @@
 									key="subscriber.cancel" /></a></td>
 						<td>
 						<input type="submit" class="btn btn-primary btn-sm"
-							value="<fmt:message key="subscriber.edit"/>">
+							value="<fmt:message key="consultant.edit"/>">
 						</td>
 					</tr>
 			
@@ -119,10 +117,8 @@
 				
 			</c:otherwise>
 		</c:choose>
-
-
 		<div class="d-grid col-4 py-1 mb-3 mx-auto ">
-			<a class="btn btn-primary"
+			<a class="btn btn-outline-primary"
 				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
 					key="consultant.back" /></a>
 		</div>

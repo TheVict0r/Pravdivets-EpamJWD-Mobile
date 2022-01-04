@@ -33,8 +33,7 @@ public class ShowSubscriberByPhoneCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ServiceProvider provider = ServiceProvider.getInstance();
-		SubscriberService subscriberService = provider.getSubscriberService();
+		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		String phone = request.getParameter(ParameterName.PHONE);
 
 		Subscriber subscriber = null;
