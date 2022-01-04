@@ -40,6 +40,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.CodeSendCommand;
+import by.epamjwd.mobile.controller.command.impl.EditConsultantPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhonePreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangeStatusCommand;
@@ -133,6 +134,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_ADD_ARTICLE_PAGE, new GoToAddArticlePageCommand());
 		allCommands.put(CommandName.ADD_ARTICLE, new AddArticleCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_ID, new ShowConsultantByIdCommand());
+		allCommands.put(CommandName.EDIT_CONSULTANT_PREPARATION, new EditConsultantPreparationCommand());
 
 
 	}

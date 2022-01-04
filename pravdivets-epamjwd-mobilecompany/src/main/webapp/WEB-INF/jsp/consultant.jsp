@@ -16,17 +16,118 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 
+	<div class="container text-center py-5 mb-3 mx-auto ">
+		<span class="display-3 fw-light"><fmt:message
+				key="consultant.title" /></span>
+	</div>
+	<div
+		class="container col-sm-12 col-md-12 col-lg-8 col-xl-7 fs-6 fw-light flex-grow-1">
+		<c:choose>
+			<c:when test="${sessionScope.mode eq 'edit'}">
+			<form method="post" action="controller?command=edit_consultant">
+			<table class="table table-borderless">
+			<tr>
+						<td><label for="subscriber_user_last_name" class="form-label"><fmt:message
+									key="add-subscriber.last-name" />:</label></td>
+						<td><input type="text" class="form-control"
+							name="subscriber_user_last_name" id="subscriber_user_last_name"
+							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
+							value="${sessionScope.consultant.lastName}" required>
+						</td>
+						<td></td>
+					
+					<tr>
+						<td><label for="subscriber_user_first_name"
+							class="form-label"><fmt:message
+									key="add-subscriber.first-name" />:</label></td>
+						<td><input type="text" class="form-control"
+							name="subscriber_user_first_name" id="subscriber_user_first_name"
+							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
+							value="${sessionScope.consultant.firstName}" required>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label for="subscriber_user_middle_name"
+							class="form-label"><fmt:message
+									key="add-subscriber.middle-name" />:</label></td>
+						<td><input type="text" class="form-control"
+							name="subscriber_user_middle_name"
+							id="subscriber_user_middle_name" 
+							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
+							value="${sessionScope.consultant.middleName}"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label for="passport" class="form-label"><fmt:message
+									key="add-subscriber.passport" />:</label></td>
+						<td><input type="text" class="form-control" name="passport"
+							id="email" value="${sessionScope.consultant.passport}"
+							required></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><label for="email" class="form-label">e-mail:</label></td>
+						<td><input type="email" class="form-control" name="email"
+							id="email" value="${sessionScope.consultant.email}" required>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a class="btn btn-secondary btn-sm"
+							href="${pageContext.request.contextPath}/controller?command=cancel_edit_consultant"><fmt:message
+									key="subscriber.cancel" /></a></td>
+						<td>
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="<fmt:message key="subscriber.edit"/>">
+						</td>
+					</tr>
+			
+			</table>
+			
+			</form>		
+			</c:when>
+			<c:otherwise>
+				<table class="table">
+					<tr>
+						<td><fmt:message key="consultant.last-name" /></td>
+						<td>${sessionScope.consultant.lastName}</td>
+					</tr>
+					<tr>
+						<td><fmt:message key="consultant.first-name" /></td>
+						<td>${sessionScope.consultant.firstName}</td>
+					</tr>
+					<tr>
+						<td><fmt:message key="consultant.middle-name" /></td>
+						<td>${sessionScope.consultant.middleName}</td>
+					</tr>
+					<tr>
+						<td><fmt:message key="consultant.passport" /></td>
+						<td>${sessionScope.consultant.passport}</td>
+					</tr>
+					<tr>
+						<td>e-mail:</td>
+						<td>${sessionScope.consultant.email}</td>
+					</tr>
+				</table>
+		<div class="d-grid col-4 py-1 mb-3 mx-auto ">
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=edit_consultant_preparation"><fmt:message
+					key="consultant.edit" /></a>
+		</div>
+				
+			</c:otherwise>
+		</c:choose>
 
-	<h3>${sessionScope.consultant}</h3>
-	<h3>${sessionScope.consultant.firstName}</h3>
-	<h3>${sessionScope.consultant.email}</h3>
 
+		<div class="d-grid col-4 py-1 mb-3 mx-auto ">
+			<a class="btn btn-primary"
+				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
+					key="consultant.back" /></a>
+		</div>
 
-
-
-
-
-	
+	</div>
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>
