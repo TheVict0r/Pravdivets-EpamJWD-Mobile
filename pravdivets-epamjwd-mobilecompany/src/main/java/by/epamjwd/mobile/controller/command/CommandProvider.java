@@ -141,6 +141,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.CANCEL_EDIT_CONSULTANT, new CancelEditConsultantCommand());
 		allCommands.put(CommandName.GO_TO_CONSULTANT_OPERATIONS_PAGE, new GoToConsultantOperationsPageCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_EMAIL, new ShowConsultantByEmailCommand());
+		allCommands.put(CommandName.SHOW_CONSULTANT_BY_PASSPORT, new ShowConsultantByPassportCommand());
 
 
 	}

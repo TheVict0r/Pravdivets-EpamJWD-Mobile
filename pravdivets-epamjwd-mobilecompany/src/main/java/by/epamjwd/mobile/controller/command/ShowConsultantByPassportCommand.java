@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.command.impl;
+package by.epamjwd.mobile.controller.command;
 
 import java.util.Optional;
 
@@ -13,8 +13,7 @@ import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
-import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.command.ConsultantCommandHelper;
+import by.epamjwd.mobile.controller.command.impl.ShowConsultantByEmailCommand;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -23,35 +22,33 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowConsultantByEmailCommand implements Command {
-
-	private final static Logger LOGGER = LogManager.getLogger(ShowConsultantByEmailCommand.class);
+public class ShowConsultantByPassportCommand implements Command {
+	private final static Logger LOGGER = LogManager.getLogger(ShowConsultantByPassportCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String email = request.getParameter(ParameterName.EMAIL);
+		String passport = request.getParameter(ParameterName.PASSPORT);
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		HttpSession session = request.getSession();
 		
 		RouteHelper result = RouteHelper.ERROR;
 		
 		try {
-			Optional<User> consultantOptional = userService.findUserByEmail(email);
-
+			Optional<User> consultantOptional = userService.findUserByPassport(passport);
 //			if(consultantOptional.isPresent() && (consultantOptional.get().getRole() == Role.CONSULTANT)) {
 //				long consultantID = consultantOptional.get().getId();
 //				session.setAttribute(AttributeName.CONSULTANT_ID, consultantID);
 //				result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
 //			} else {
 //				session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR);
-//				session.setAttribute(AttributeName.EMAIL, email);
+//				session.setAttribute(AttributeName.PASSPORT, passport);
 //				result = new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 //			}
 			
-			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.EMAIL, email);
-
+			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.PASSPORT, passport);
+			
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain consultant data for e-mail " + email, e);
+			LOGGER.error("Unable to obtain consultant data for passport number " + passport, e);
 			result = RouteHelper.ERROR_500;
 		}
 		return result;

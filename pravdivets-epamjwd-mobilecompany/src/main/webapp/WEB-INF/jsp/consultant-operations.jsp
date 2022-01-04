@@ -60,7 +60,8 @@
 				<input type="text" class="form-control" name="passport"
 					id="passport"
 					placeholder="AB1234567"
-					pattern="^[A-Z]{2}[0-9]{7}$" value="${requestScope.passport}" required>
+					pattern="^[A-Z]{2}[0-9]{7}$" value="${sessionScope.passport}" required>
+					<c:remove var="passport"/>
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark"
@@ -75,21 +76,24 @@
 						key="consultant-operations.by-name" /></label>
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="lastName"
-						name="last_name" value="${requestScope.last_name}"
+						name="last_name" value="${sessionScope.last_name}"
 						placeholder="<fmt:message key="consultant-operations.last-name"/>"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" required>
+						<c:remove var="last_name"/>
 				</div>
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="firstName"
-						name="first_name" value="${requestScope.first_name}"
+						name="first_name" value="${sessionScope.first_name}"
 						placeholder="<fmt:message key="consultant-operations.first-name"/>"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" required>
+						<c:remove var="first_name"/>
 				</div>
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="middleName"
-						name="middle_name" value="${requestScope.middle_name}"
+						name="middle_name" value="${sessionScope.middle_name}"
 						placeholder="<fmt:message key="consultant-operations.middle-name"/>"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$">
+						<c:remove var="middle_name"/>
 				</div>
 				<div class="col-md-1">
 					<input type="submit" class="btn btn-outline-dark" value="OK">
