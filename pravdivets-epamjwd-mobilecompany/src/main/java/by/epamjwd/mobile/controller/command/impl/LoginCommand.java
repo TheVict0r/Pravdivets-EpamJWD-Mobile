@@ -102,7 +102,7 @@ public class LoginCommand implements Command {
 			path = PagePath.SUBSCRIBER_LIST_REDIRECT; //as subscriber may have few phone numbers
 			break;
 		case CONSULTANT:
-			path = PagePath.CONSULTANT_REDIRECT;
+			path = PagePath.SUBSCRIBER_OPERATIONS_REDIRECT;
 			break;
 		case ADMIN:
 			path = PagePath.ADMIN_REDIRECT;

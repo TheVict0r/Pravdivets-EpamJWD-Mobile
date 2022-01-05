@@ -96,7 +96,7 @@ public class SubscriberCommandHelper {
 		return result;
 	}
 
-	public void removeSubscriberAttributesFromSession(HttpSession session) {
+	public void clearSessionFromSubscriberAttributes(HttpSession session) {
 		session.removeAttribute(AttributeName.SUBSCRIBER);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER);

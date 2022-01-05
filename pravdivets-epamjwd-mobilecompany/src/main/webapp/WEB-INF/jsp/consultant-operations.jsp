@@ -30,9 +30,15 @@
 					<div class="col-md-12">
 				<c:if test="${sessionScope.error eq 'error'}">
 					<span class="fw-normal fs-6 text-danger"> <fmt:message
-							key="consultant-operations.null-subscriber" /> <c:remove var="error" />
+							key="consultant-operations.null-subscriber" /> 
 					</span>
 				</c:if>
+				<c:if test="${sessionScope.error eq 'wrong_data'}">
+					<span class="fw-normal fs-6 text-danger"> <fmt:message
+							key="global.wrong-data" /> 
+					</span>
+				</c:if>
+				<c:remove var="error" />
 			</div>
 		<form class="row mb-3" method="POST"
 			action="controller?command=show_consultant_by_email">

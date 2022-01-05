@@ -24,7 +24,6 @@ public class EditConsultantCommand implements Command {
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		User consultant = (User)session.getAttribute(AttributeName.CONSULTANT);
 		long consultantID = consultant.getId();

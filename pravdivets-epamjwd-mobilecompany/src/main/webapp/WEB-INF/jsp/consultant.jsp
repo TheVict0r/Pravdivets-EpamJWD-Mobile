@@ -48,11 +48,11 @@
 				</div>
 
 				<form method="post" action="controller?command=edit_consultant">
-					<table class="table table-borderless">
+					<table class="table table-borderless ">
 						<tr>
 							<td><label for="consultant_last_name" class="form-label"><fmt:message
 										key="consultant.last-name" />:</label></td>
-							<td colspan="2"><input type="text" class="form-control"
+							<td><input type="text" class="form-control"
 								name="consultant_last_name" id="consultant_last_name"
 								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 								value="${sessionScope.consultant.lastName}" required> <c:remove
@@ -61,7 +61,7 @@
 						<tr>
 							<td><label for="consultant_first_name" class="form-label"><fmt:message
 										key="consultant.first-name" />:</label></td>
-							<td colspan="2"><input type="text" class="form-control"
+							<td><input type="text" class="form-control"
 								name="consultant_first_name" id="consultant_first_name"
 								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 								value="${sessionScope.consultant.firstName}" required> <c:remove
@@ -71,7 +71,7 @@
 						<tr>
 							<td><label for="consultant_middle_name" class="form-label"><fmt:message
 										key="consultant.middle-name" />:</label></td>
-							<td colspan="2"><input type="text" class="form-control"
+							<td><input type="text" class="form-control"
 								name="consultant_middle_name" id="consultant_middle_name"
 								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 								value="${sessionScope.consultant.middleName}"> <c:remove
@@ -81,7 +81,7 @@
 						<tr>
 							<td><label for="passport" class="form-label"><fmt:message
 										key="consultant.passport" />:</label></td>
-							<td colspan="2"><input type="text" class="form-control"
+							<td><input type="text" class="form-control"
 								name="passport" id="email"
 								value="${sessionScope.consultant.passport}" required> <c:remove
 									var="passport" /></td>
@@ -89,18 +89,19 @@
 						</tr>
 						<tr>
 							<td><label for="email" class="form-label">e-mail:</label></td>
-							<td colspan="2"><input type="email" class="form-control"
+							<td><input type="email" class="form-control"
 								name="email" id="email" value="${sessionScope.consultant.email}"
 								required> <c:remove var="email" /></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><a class="btn btn-secondary btn-sm"
+							<td><a class="btn btn-secondary btn-sm me-md-5"
 								href="${pageContext.request.contextPath}/controller?command=cancel_edit_consultant"><fmt:message
-										key="subscriber.cancel" /></a></td>
-							<td><input type="submit" class="btn btn-primary btn-sm"
-								value="<fmt:message key="consultant.edit"/>"></td>
+										key="subscriber.cancel" /></a>
+							
+							<input type="submit" class="btn btn-primary btn-sm me-md-5"
+								value="<fmt:message key="consultant.save"/>"></td>
 						</tr>
 					</table>
 				</form>

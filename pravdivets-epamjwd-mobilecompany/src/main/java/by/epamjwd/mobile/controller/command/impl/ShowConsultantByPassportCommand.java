@@ -32,6 +32,11 @@ public class ShowConsultantByPassportCommand implements Command {
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		HttpSession session = request.getSession();
 		
+		if(passport == null) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+		}
+		
 		RouteHelper result = RouteHelper.ERROR;
 		
 		try {

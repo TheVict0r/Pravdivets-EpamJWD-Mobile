@@ -34,7 +34,6 @@ public class ChangePasswordCommand implements Command {
 		HttpSession session = request.getSession();
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		User user = (User)session.getAttribute(AttributeName.CONSULTANT);
-		long userID = user.getId();
 
 		if(request.getParameter(ParameterName.OLD_PASSWORD)  == null || 
 		   request.getParameter(ParameterName.NEW_PASSWORD1) == null ||
@@ -70,7 +69,4 @@ public class ChangePasswordCommand implements Command {
 		return new RouteHelper(PagePath.CHANGE_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 	}
 
-	
-	
-	
 }

@@ -30,8 +30,14 @@ public class ShowConsultantByEmailCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String email = request.getParameter(ParameterName.EMAIL);
-		UserService userService = ServiceProvider.getInstance().getUserService();
 		HttpSession session = request.getSession();
+		
+		if(email == null) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+		}
+		
+		UserService userService = ServiceProvider.getInstance().getUserService();
 		
 		RouteHelper result = RouteHelper.ERROR;
 		

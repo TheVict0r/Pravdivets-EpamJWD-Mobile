@@ -34,8 +34,18 @@ public class ConsultantCommandHelper {
 		}
 		return result;
 	}
-	
-	private static class Holder{
+
+	public void clearSessionFromConsultantAttributes(HttpSession session) {
+		session.removeAttribute(AttributeName.CONSULTANT);
+		session.removeAttribute(AttributeName.CONSULTANT_ID);
+		session.removeAttribute(AttributeName.ERROR);
+		session.removeAttribute(AttributeName.CHANGE_PASSWORD);
+		session.removeAttribute(AttributeName.MODE);
+		session.removeAttribute(AttributeName.EMAIL);
+		session.removeAttribute(AttributeName.PASSPORT);
+	}
+
+	private static class Holder {
 		static final ConsultantCommandHelper INSTANCE = new ConsultantCommandHelper();
 	}
 	

@@ -58,7 +58,7 @@ xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.co
 	</filter-mapping>
 
   	<session-config>
-   		<session-timeout>30</session-timeout>
+   		<session-timeout>300</session-timeout>
 	</session-config>
 
 	<jsp-config>

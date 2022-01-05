@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.ConsultantCommandHelper;
+import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
@@ -16,9 +18,8 @@ public class GoToAdminPageCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.removeAttribute(AttributeName.CONSULTANT);
-		session.removeAttribute(AttributeName.CONSULTANT_ID);
-		
+		SubscriberCommandHelper.getInstance().clearSessionFromSubscriberAttributes(session);
+		ConsultantCommandHelper.getInstance().clearSessionFromConsultantAttributes(session);
 		return new RouteHelper(PagePath.ADMIN, RouteMethod.FORWARD);
 	}
 }

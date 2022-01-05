@@ -19,7 +19,6 @@
 	<div class="row justify-content-center display-4  mx-auto mb-4 py-5">
 		<fmt:message key="change-password.title" />
 	</div>
-
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
 		<p>
@@ -48,7 +47,6 @@
 								key="change-password.old-password" /> </label></td>
 					<td><input type="password" class="form-control"
 						name="old_password" id="old_password" required minlength="8"></td>
-					
 				</tr>
 				<tr>
 					<td><label for="new_password1" class="form-label"><fmt:message
@@ -70,8 +68,9 @@
 				</tr>
 			</table>
 		</form>
-		</div>
-	<div class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-5">
+	</div>
+	<div
+		class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-5">
 		<span> <span class="text-primary fw-bold fs-5 ">*</span> <fmt:message
 				key="new-password.password-instruction" />
 		</span>

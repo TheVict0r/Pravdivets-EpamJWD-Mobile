@@ -17,7 +17,7 @@ public class GoToSubscriberOperationsPageCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		SubscriberCommandHelper.getInstance().removeSubscriberAttributesFromSession(session);
+		SubscriberCommandHelper.getInstance().clearSessionFromSubscriberAttributes(session);
 		return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 	}
 

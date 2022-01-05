@@ -38,7 +38,6 @@
 		</p>
 		<c:remove var="error" />
 	</div>
-	
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_consultant>
 			<table>
@@ -108,7 +107,6 @@
 			</table>
 		</form>
 	</div>
-
 	<div class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-1 ">
 		<span> <span class="text-primary fw-bold fs-5 ">*</span> <fmt:message
 				key="new-password.password-instruction" />
