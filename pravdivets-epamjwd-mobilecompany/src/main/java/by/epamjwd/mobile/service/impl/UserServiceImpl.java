@@ -106,6 +106,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void updatePassword(User user, String password) throws ServiceException {
+			String passwordHash = HashGenerator.generateHash(password);
+			user.setPassword(passwordHash);
+			updateUser(user);
+	}
+	
+	@Override
 	public void updatePassword(String phone, String password) throws ServiceException {
 		Optional<User> userOptional = findUserByPhone(phone);
 		if(userOptional.isPresent()) {

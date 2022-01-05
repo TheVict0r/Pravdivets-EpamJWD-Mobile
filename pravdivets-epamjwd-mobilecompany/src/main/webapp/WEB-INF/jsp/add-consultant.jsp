@@ -15,7 +15,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
-	<div class="row justify-content-center display-4 mx-auto py-3 mb-2 ">
+	<div class="row justify-content-center display-4 mx-auto py-2 mb-1 ">
 		<fmt:message key="add-consultant.new-consultant" />
 	</div>
 		<div
@@ -109,16 +109,21 @@
 		</form>
 	</div>
 
-	<div class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-3 ">
+	<div class="row fw-light text-center row justify-content-center mx-auto col-lg-8 mb-1 ">
 		<span> <span class="text-primary fw-bold fs-5 ">*</span> <fmt:message
 				key="new-password.password-instruction" />
 		</span>
 	</div>
-	<div class="d-grid col-3 py-1 mb-3 mx-auto ">
-		<a class="btn btn-outline-dark"
-			href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
-				key="add-subscriber.back" /></a>
-	</div>
+		<div class="d-grid col-3 py-1 mb-1 mx-auto ">
+			<a class="btn btn-outline-primary"
+				href="${pageContext.request.contextPath}/controller?command=go_to_consultant_operations_page"><fmt:message
+					key="consultant.to-consultant-operations" /></a>
+		</div>
+		<div class="d-grid col-3 py-1 mb-1 mx-auto ">
+			<a class="btn btn-primary"
+				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
+					key="admin.to-admin" /></a>
+		</div>
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

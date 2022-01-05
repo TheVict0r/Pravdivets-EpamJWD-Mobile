@@ -73,9 +73,6 @@
 						<c:remove var="error" />
 					</p>
 				</div>
-			
-			
-			
 			<c:choose>
 				<c:when test="${sessionScope.activate_edit eq 'personal_data'}">
 					<tr class="fw-normal table-secondary">

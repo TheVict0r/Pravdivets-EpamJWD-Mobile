@@ -110,10 +110,10 @@
 				<fmt:message key="consultant-operations.add" />
 			</a>
 		</div>
-		<div class="d-grid col-1 py-2 mx-start ">
+		<div class="d-grid col-5 py-2 mx-start ">
 			<a class="btn btn-primary"
 				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
-					key="add-subscriber.back" /></a>
+					key="admin.to-admin" /></a>
 		</div>
 	</div>
 	<jsp:include page="components/footer.jsp" />

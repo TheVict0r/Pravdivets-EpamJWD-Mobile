@@ -20,6 +20,14 @@
 		<span class="display-3 fw-light"><fmt:message
 				key="consultant.title" /></span>
 	</div>
+				<div class="row align-content-center mx-auto flex-grow-1">
+					<c:if test="${sessionScope.change_password == 'true'}">
+						<p class="text-success fs-5 ">
+							<fmt:message key="consultant.change-password-success" />
+						</p>
+					</c:if>
+						<c:remove var="change_password" />
+				</div>
 	<div
 		class="container col-sm-12 col-md-12 col-lg-8 col-xl-7 fs-6 fw-light flex-grow-1">
 		<c:choose>
@@ -38,6 +46,7 @@
 						<c:remove var="error" />
 					</p>
 				</div>
+
 				<form method="post" action="controller?command=edit_consultant">
 					<table class="table table-borderless">
 						<tr>
@@ -119,17 +128,27 @@
 						<td>${sessionScope.consultant.email}</td>
 					</tr>
 				</table>
-				<div class="d-grid col-4 py-1 mb-3 mx-auto ">
+				<div class="d-grid col-5 py-1 mb-3 mx-auto ">
 					<a class="btn btn-outline-dark"
 						href="${pageContext.request.contextPath}/controller?command=edit_consultant_preparation"><fmt:message
 							key="consultant.edit" /></a>
 				</div>
 			</c:otherwise>
 		</c:choose>
-		<div class="d-grid col-4 py-1 mb-3 mx-auto ">
+		<div class="d-grid col-5 py-1 mb-3 mx-auto ">
+			<a class="btn btn-outline-dark"
+				href="${pageContext.request.contextPath}/controller?command=go_to_change_password_page"><fmt:message
+					key="consultant.change-password" /></a>
+		</div>
+		<div class="d-grid col-5 py-1 mb-3 mx-auto ">
 			<a class="btn btn-outline-primary"
+				href="${pageContext.request.contextPath}/controller?command=go_to_consultant_operations_page"><fmt:message
+					key="consultant.to-consultant-operations" /></a>
+		</div>
+		<div class="d-grid col-5 py-1 mb-3 mx-auto ">
+			<a class="btn btn-primary"
 				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
-					key="consultant.back" /></a>
+					key="admin.to-admin" /></a>
 		</div>
 	</div>
 	<jsp:include page="components/footer.jsp" />

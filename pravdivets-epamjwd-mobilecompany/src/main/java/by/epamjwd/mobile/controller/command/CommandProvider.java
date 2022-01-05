@@ -13,6 +13,7 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToAddServicePageComma
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCalculatorPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToChangePasswordPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeReturnPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeSendPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToError404PageCommand;
@@ -59,6 +60,7 @@ import by.epamjwd.mobile.controller.command.impl.AddSubscriberCommand;
 import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
 import by.epamjwd.mobile.controller.command.impl.CancelEditConsultantCommand;
 import by.epamjwd.mobile.controller.command.impl.CancelEditSubscriberDataCommand;
+import by.epamjwd.mobile.controller.command.impl.ChangePasswordCommand;
 import by.epamjwd.mobile.controller.command.impl.NewPasswordCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanCommand;
@@ -147,7 +149,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_EMAIL, new ShowConsultantByEmailCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_PASSPORT, new ShowConsultantByPassportCommand());
 		allCommands.put(CommandName.GO_TO_EDIT_CONSULTANT_PAGE, new GoToEditConsultantPageCommand());
-
+		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
+		allCommands.put(CommandName.CHANGE_PASSWORD, new ChangePasswordCommand());
 
 	}
 

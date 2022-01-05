@@ -71,5 +71,7 @@ public class CommandName {
 	public static final String SHOW_CONSULTANT_BY_PASSPORT = "show_consultant_by_passport";
 	public static final String SHOW_CONSULTANT_BY_FULL_NAME = "show_consultant_by_full_name";
 	public static final String GO_TO_EDIT_CONSULTANT_PAGE = "go_to_edit_consultant_page";
+	public static final String GO_TO_CHANGE_PASSWORD_PAGE = "go_to_change_password_page";
+	public static final String CHANGE_PASSWORD = "change_password";
 
 }

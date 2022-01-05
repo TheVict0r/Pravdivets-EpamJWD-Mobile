@@ -3,8 +3,10 @@ package by.epamjwd.mobile.controller.repository;
 public class AttributeValue {
 	public static final String ERROR = "error";
 	public static final String ERROR_LOGIN = "error_login";
+	public static final String WRONG_DATA = "wrong_data";
 	public static final String WRONG_NAME = "wrong_name";
 	public static final String WRONG_PHONE = "wrong_phone";
+	public static final String WRONG_PASSWORD = "wrong_password";
 	public static final String WRONG_PASSPORT = "wrong_passport";
 	public static final String BOOKED_EMAIL = "booked_email";
 	public static final String BOOKED_PASSPORT = "booked_passport";
