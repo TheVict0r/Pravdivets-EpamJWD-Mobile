@@ -61,8 +61,6 @@ public class EditConsultantCommand implements Command {
 		consultant.setPassport(newPassport);
 		consultant.setEmail(newEmail);
 		
-		System.out.println(consultant);
-		
 		try {
 			userService.updateUser(consultant);
 		} catch (ServiceException e) {
