@@ -52,9 +52,9 @@ public class AddSubscriberCommand implements Command{
 		RouteHelper result = null;
 		
 		if (subscriberUserFlag.equals(AttributeValue.NEW)) {
-				String firstName = request.getParameter(ParameterName.SUBSCRIBER_USER_FIRST_NAME);
-				String middleName = request.getParameter(ParameterName.SUBSCRIBER_USER_MIDDLE_NAME);
-				String lastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
+				String firstName = request.getParameter(ParameterName.SUBSCRIBER_FIRST_NAME);
+				String middleName = request.getParameter(ParameterName.SUBSCRIBER_MIDDLE_NAME);
+				String lastName = request.getParameter(ParameterName.SUBSCRIBER_LAST_NAME);
 				String email = request.getParameter(ParameterName.EMAIL);
 
 			try {

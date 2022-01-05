@@ -42,7 +42,7 @@ public class EditConsultantCommand implements Command {
 				return provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error while verifying is email booked " + newEmail, e);
+			LOGGER.error("Error while verifying is consultant's new email booked " + newEmail, e);
 			return RouteHelper.ERROR_500;
 		}
 		
@@ -51,7 +51,7 @@ public class EditConsultantCommand implements Command {
 				return provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error while verifying is passport booked " + newPassport, e);
+			LOGGER.error("Error while verifying is consultant's new passport booked " + newPassport, e);
 			return RouteHelper.ERROR_500;
 		}
 

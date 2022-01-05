@@ -10,9 +10,9 @@ public class ParameterName {
 	public static final String FIRST_NAME = "first_name";
 	public static final String MIDDLE_NAME = "middle_name";
 	public static final String LAST_NAME = "last_name";
-	public static final String SUBSCRIBER_USER_FIRST_NAME = "subscriber_user_first_name";
-	public static final String SUBSCRIBER_USER_MIDDLE_NAME = "subscriber_user_middle_name";
-	public static final String SUBSCRIBER_USER_LAST_NAME = "subscriber_user_last_name";
+	public static final String SUBSCRIBER_FIRST_NAME = "subscriber_first_name";
+	public static final String SUBSCRIBER_MIDDLE_NAME = "subscriber_middle_name";
+	public static final String SUBSCRIBER_LAST_NAME = "subscriber_last_name";
 	public static final String EMAIL = "email";
 	public static final String CALCULATOR_WITHIN_NETWORK = "within_network";
 	public static final String CALCULATOR_OTHER_NETWORKS = "other_networks";

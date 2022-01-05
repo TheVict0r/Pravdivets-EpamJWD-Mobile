@@ -14,6 +14,7 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -29,17 +30,34 @@ public class EditPersonalDataCommand implements Command{
 		UserService userService = provider.getUserService();
 		
 		HttpSession session = request.getSession();
-		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		User user = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
 		long userID = user.getId();
 		
-		String newFirstName = request.getParameter(ParameterName.SUBSCRIBER_USER_FIRST_NAME);
-		String newMiddleName = request.getParameter(ParameterName.SUBSCRIBER_USER_MIDDLE_NAME);
-		String newLastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
+		String newFirstName = request.getParameter(ParameterName.SUBSCRIBER_FIRST_NAME);
+		String newMiddleName = request.getParameter(ParameterName.SUBSCRIBER_MIDDLE_NAME);
+		String newLastName = request.getParameter(ParameterName.SUBSCRIBER_LAST_NAME);
 		String newPassport = request.getParameter(ParameterName.PASSPORT);
 		String newEmail = request.getParameter(ParameterName.EMAIL);
 
+		try {
+			if((!newEmail.equals(user.getEmail())) && (userService.isEmailBooked(newEmail))) {
+				return provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);
+			}
+		} catch (ServiceException e) {
+			LOGGER.error("Error while verifying is subscriber's new email booked " + newEmail, e);
+			return RouteHelper.ERROR_500;
+		}
 		
+		try {
+			if((!newPassport.equals(user.getPassport())) && (userService.isPassportBooked(newPassport))) {
+				return provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT);
+			}
+		} catch (ServiceException e) {
+			LOGGER.error("Error while verifying is subscriber's new passport booked " + newPassport, e);
+			return RouteHelper.ERROR_500;
+		}
+	
+		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		
 		user.setFirstName(newFirstName);
 		user.setMiddleName(newMiddleName);
@@ -68,4 +86,10 @@ public class EditPersonalDataCommand implements Command{
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 	}
 
+	private RouteHelper provideErrorMessage(HttpSession session, String attributeValue) {
+		session.setAttribute(AttributeName.ERROR, attributeValue);
+		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+	}
+
+	
 }

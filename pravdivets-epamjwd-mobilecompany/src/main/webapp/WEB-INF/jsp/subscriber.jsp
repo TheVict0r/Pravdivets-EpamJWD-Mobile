@@ -59,36 +59,53 @@
 				</c:otherwise>
 			</c:choose>
 			<form method="post" action=controller?command=edit_personal_data>
+				<div
+					class="row justify-content-center col col-lg-8 fw-normal text-center mx-auto text-danger fw-normal">
+					<p>
+						<c:choose>
+							<c:when test="${sessionScope.error == 'booked_passport'}">
+								<fmt:message key="subscriber.booked-passport" />
+							</c:when>
+							<c:when test="${sessionScope.error == 'booked_email'}">
+								<fmt:message key="subscriber.booked-email" />
+							</c:when>
+						</c:choose>
+						<c:remove var="error" />
+					</p>
+				</div>
+			
+			
+			
 			<c:choose>
 				<c:when test="${sessionScope.activate_edit eq 'personal_data'}">
 					<tr class="fw-normal table-secondary">
-						<td><label for="subscriber_user_last_name" class="form-label"><fmt:message
+						<td><label for="subscriber_last_name" class="form-label"><fmt:message
 									key="add-subscriber.last-name" />:</label></td>
 						<td><input type="text" class="form-control"
-							name="subscriber_user_last_name" id="subscriber_user_last_name"
+							name="subscriber_last_name" id="subscriber_last_name"
 							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.subscriber_user.lastName}" required>
 						</td>
 						<td></td>
 					
 					<tr class="fw-normal table-secondary">
-						<td><label for="subscriber_user_first_name"
+						<td><label for="subscriber_first_name"
 							class="form-label"><fmt:message
 									key="add-subscriber.first-name" />:</label></td>
 						<td><input type="text" class="form-control"
-							name="subscriber_user_first_name" id="subscriber_user_first_name"
+							name="subscriber_first_name" id="subscriber_first_name"
 							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.subscriber_user.firstName}" required>
 						</td>
 						<td></td>
 					</tr>
 					<tr class="fw-normal table-secondary">
-						<td><label for="subscriber_user_middle_name"
+						<td><label for="subscriber_middle_name"
 							class="form-label"><fmt:message
 									key="add-subscriber.middle-name" />:</label></td>
 						<td><input type="text" class="form-control"
-							name="subscriber_user_middle_name"
-							id="subscriber_user_middle_name" 
+							name="subscriber_middle_name"
+							id="subscriber_middle_name" 
 							pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 							value="${sessionScope.subscriber_user.middleName}"></td>
 						<td></td>
