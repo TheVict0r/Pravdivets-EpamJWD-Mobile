@@ -45,4 +45,7 @@ public class ParameterName {
 	public static final String TITLE = "title";
 	public static final String LEAD = "lead";
 	public static final String TEXT = "text";
+	public static final String CONSULTANT_FIRST_NAME = "consultant_first_name";
+	public static final String CONSULTANT_MIDDLE_NAME = "consultant_middle_name";
+	public static final String CONSULTANT_LAST_NAME = "consultant_middle_name";
 }

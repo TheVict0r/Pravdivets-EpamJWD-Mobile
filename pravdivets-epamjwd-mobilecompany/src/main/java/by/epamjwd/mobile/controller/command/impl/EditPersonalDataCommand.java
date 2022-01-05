@@ -38,6 +38,8 @@ public class EditPersonalDataCommand implements Command{
 		String newLastName = request.getParameter(ParameterName.SUBSCRIBER_USER_LAST_NAME);
 		String newPassport = request.getParameter(ParameterName.PASSPORT);
 		String newEmail = request.getParameter(ParameterName.EMAIL);
+
+		
 		
 		user.setFirstName(newFirstName);
 		user.setMiddleName(newMiddleName);

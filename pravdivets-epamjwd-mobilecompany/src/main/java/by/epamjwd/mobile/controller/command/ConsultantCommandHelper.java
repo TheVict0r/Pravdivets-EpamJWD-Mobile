@@ -15,7 +15,6 @@ import by.epamjwd.mobile.controller.repository.PagePath;
 public class ConsultantCommandHelper {
 
 	private ConsultantCommandHelper() {
-		
 	}
 	
 	public static ConsultantCommandHelper getInstance() {
@@ -24,7 +23,6 @@ public class ConsultantCommandHelper {
 
 	public RouteHelper handleConsultantOptional(Optional<User> consultantOptional, HttpSession session, String attributeName, String attributeValue) {
 		RouteHelper result = RouteHelper.ERROR;
-		
 		if(consultantOptional.isPresent() && (consultantOptional.get().getRole() == Role.CONSULTANT)) {
 			long consultantID = consultantOptional.get().getId();
 			session.setAttribute(AttributeName.CONSULTANT_ID, consultantID);
@@ -34,12 +32,8 @@ public class ConsultantCommandHelper {
 			session.setAttribute(attributeName, attributeValue);
 			result = new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
-		
 		return result;
 	}
-	
-	
-	
 	
 	private static class Holder{
 		static final ConsultantCommandHelper INSTANCE = new ConsultantCommandHelper();

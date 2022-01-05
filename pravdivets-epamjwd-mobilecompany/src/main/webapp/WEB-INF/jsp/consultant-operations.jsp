@@ -34,8 +34,6 @@
 					</span>
 				</c:if>
 			</div>
-		
-		
 		<form class="row mb-3" method="POST"
 			action="controller?command=show_consultant_by_email">
 			<label for="email" class="form-label"><fmt:message
@@ -76,24 +74,24 @@
 						key="consultant-operations.by-name" /></label>
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="lastName"
-						name="last_name" value="${sessionScope.last_name}"
+						name="last_name" value="${sessionScope.consultant_last_name}"
 						placeholder="<fmt:message key="consultant-operations.last-name"/>"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" required>
-						<c:remove var="last_name"/>
+						<c:remove var="consultant_last_name"/>
 				</div>
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="firstName"
-						name="first_name" value="${sessionScope.first_name}"
+						name="first_name" value="${sessionScope.consultant_first_name}"
 						placeholder="<fmt:message key="consultant-operations.first-name"/>"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" required>
-						<c:remove var="first_name"/>
+						<c:remove var="consultant_first_name"/>
 				</div>
 				<div class="col-md-3">
 					<input type="text" class="form-control" id="middleName"
-						name="middle_name" value="${sessionScope.middle_name}"
+						name="middle_name" value="${sessionScope.consultant_middle_name}"
 						placeholder="<fmt:message key="consultant-operations.middle-name"/>"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$">
-						<c:remove var="middle_name"/>
+						<c:remove var="consultant_middle_name"/>
 				</div>
 				<div class="col-md-1">
 					<input type="submit" class="btn btn-outline-dark" value="OK">
@@ -101,31 +99,23 @@
 			</form>
 
 		</div>
-		
 				<div>
 			<h4 class="mb-2">
 				<fmt:message key="consultant-operations.add-consultant" />
 			</h4>
 		</div>
-		
-		
-		
 		<div class="d-grid col-5 py-2 mx-start ">
 			<a class="btn btn-outline-dark"
 				href="${pageContext.request.contextPath}/controller?command=go_to_add_consultant_page">
 				<fmt:message key="consultant-operations.add" />
 			</a>
 		</div>
-
 		<div class="d-grid col-1 py-2 mx-start ">
 			<a class="btn btn-primary"
 				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
 					key="add-subscriber.back" /></a>
 		</div>
-
 	</div>
-
-
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

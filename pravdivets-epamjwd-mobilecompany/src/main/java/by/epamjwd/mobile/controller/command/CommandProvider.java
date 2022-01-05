@@ -25,6 +25,7 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToPasswordRepairPageC
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPhoneRequestPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToConsultantOperationsPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToEditConsultantPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSignupPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberBillsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberOperationsPageCommand;
@@ -41,6 +42,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.CodeSendCommand;
+import by.epamjwd.mobile.controller.command.impl.EditConsultantCommand;
 import by.epamjwd.mobile.controller.command.impl.EditConsultantPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePhonePreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanPreparationCommand;
@@ -68,6 +70,7 @@ import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowBestPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowConsultantByEmailCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowConsultantByIdCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowConsultantByPassportCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllNewsCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
 
@@ -138,10 +141,12 @@ public class CommandProvider {
 		allCommands.put(CommandName.ADD_ARTICLE, new AddArticleCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_ID, new ShowConsultantByIdCommand());
 		allCommands.put(CommandName.EDIT_CONSULTANT_PREPARATION, new EditConsultantPreparationCommand());
+		allCommands.put(CommandName.EDIT_CONSULTANT, new EditConsultantCommand());
 		allCommands.put(CommandName.CANCEL_EDIT_CONSULTANT, new CancelEditConsultantCommand());
 		allCommands.put(CommandName.GO_TO_CONSULTANT_OPERATIONS_PAGE, new GoToConsultantOperationsPageCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_EMAIL, new ShowConsultantByEmailCommand());
 		allCommands.put(CommandName.SHOW_CONSULTANT_BY_PASSPORT, new ShowConsultantByPassportCommand());
+		allCommands.put(CommandName.GO_TO_EDIT_CONSULTANT_PAGE, new GoToEditConsultantPageCommand());
 
 
 	}

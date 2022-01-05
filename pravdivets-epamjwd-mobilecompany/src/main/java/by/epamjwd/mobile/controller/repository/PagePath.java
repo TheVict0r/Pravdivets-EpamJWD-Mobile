@@ -61,5 +61,6 @@ public class PagePath {
 	public static final String CONSULTANT = "WEB-INF/jsp/consultant.jsp";
 	public static final String CONSULTANT_OPERATIONS = "WEB-INF/jsp/consultant-operations.jsp";
 	public static final String CONSULTANT_OPERATIONS_REDIRECT = "/controller?command=go_to_consultant_operations_page";
+	public static final String EDIT_CONSULTANT_REDIRECT = "/controller?command=go_to_edit_consultant_page";
 
 }

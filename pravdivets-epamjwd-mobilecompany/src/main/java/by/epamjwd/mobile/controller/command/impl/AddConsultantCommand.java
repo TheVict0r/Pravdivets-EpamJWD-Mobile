@@ -48,7 +48,7 @@ public class AddConsultantCommand implements Command{
 						request.getParameter(ParameterName.PASSWORD2), email);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error when verifying is email booked " + email, e);
+			LOGGER.error("Error while verifying is email booked " + email, e);
 			return RouteHelper.ERROR_500;
 		}
 		
@@ -58,10 +58,9 @@ public class AddConsultantCommand implements Command{
 						firstName, middleName, lastName, passport, 
 						request.getParameter(ParameterName.PASSWORD1), 
 						request.getParameter(ParameterName.PASSWORD2), email);
-
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error when verifying is passport booked " + passport, e);
+			LOGGER.error("Error while verifying is passport booked " + passport, e);
 			return RouteHelper.ERROR_500;
 		}
 		
@@ -85,7 +84,7 @@ public class AddConsultantCommand implements Command{
 			session.setAttribute(AttributeName.CONSULTANT_ID, consultantId);
 			result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
 		} catch (ServiceException e) {
-			LOGGER.error("Error when adding a new consultant.", e);
+			LOGGER.error("Error while adding a new consultant.", e);
 			return RouteHelper.ERROR_500;
 		}
 
@@ -93,6 +92,7 @@ public class AddConsultantCommand implements Command{
 		return result;
 	}
 
+	
 	private RouteHelper provideErrorMessage(HttpSession session, String attributeValue, String firstName,
 			String middleName, String lastName, String passport, String password1, String password2, String email) {
 		session.setAttribute(AttributeName.ERROR, attributeValue);

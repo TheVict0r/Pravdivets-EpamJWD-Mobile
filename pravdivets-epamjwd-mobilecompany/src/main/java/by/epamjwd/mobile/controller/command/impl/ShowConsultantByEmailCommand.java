@@ -37,19 +37,7 @@ public class ShowConsultantByEmailCommand implements Command {
 		
 		try {
 			Optional<User> consultantOptional = userService.findUserByEmail(email);
-
-//			if(consultantOptional.isPresent() && (consultantOptional.get().getRole() == Role.CONSULTANT)) {
-//				long consultantID = consultantOptional.get().getId();
-//				session.setAttribute(AttributeName.CONSULTANT_ID, consultantID);
-//				result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
-//			} else {
-//				session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR);
-//				session.setAttribute(AttributeName.EMAIL, email);
-//				result = new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
-//			}
-			
 			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.EMAIL, email);
-
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain consultant data for e-mail " + email, e);
 			result = RouteHelper.ERROR_500;
