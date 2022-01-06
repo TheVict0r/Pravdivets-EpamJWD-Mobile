@@ -24,19 +24,17 @@ public class GoToSubscriberServicesPageCommand implements Command {
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 		try {
 			List<Service> serviceList = serviceService.findAllServices();
 			request.getSession().setAttribute(AttributeName.ALL_SERVICES, serviceList);
-			result = new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
+			result = new RouteHelper(PagePath.SUBSCRIBER_SERVICES, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain service list. ", e);
-			result = RouteHelper.ERROR_500;
+			result =  RouteHelper.ERROR_500;
 		}
 
-		result = new RouteHelper(PagePath.SUBSCRIBER_SERVICES, RouteMethod.FORWARD);
 		return result;
 	}
 

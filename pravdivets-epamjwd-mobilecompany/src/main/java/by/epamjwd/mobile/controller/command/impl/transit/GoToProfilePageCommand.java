@@ -27,6 +27,10 @@ public class GoToProfilePageCommand implements Command{
 		
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		
+		if(role == null) {
+			return RouteHelper.ERROR_500;
+		}
+		
 		RouteHelper result;
 		switch (role) {
 		case ADMIN:

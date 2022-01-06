@@ -17,6 +17,14 @@
 	<div class="row justify-content-center display-4 mx-auto py-4 mb-4">
 		<fmt:message key="add-service.new-service" />
 	</div>
+	<div class="row align-content-center mx-auto flex-grow-1">
+		<c:if test="${sessionScope.error eq 'wrong_data'}">
+			<span class="fw-normal fs-6 text-danger"> <fmt:message
+					key="global.wrong-data" />
+			</span>
+		</c:if>
+		<c:remove var="error" />
+	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_service>
 			<table>
@@ -32,25 +40,24 @@
 				<tr>
 					<td><label for="description" class="form-label"><fmt:message
 								key="add-service.description" />:</label></td>
-								</tr>
+				</tr>
 				<tr>
-					<td><textarea class="form-control" name="description" id="description"
-							rows="2" cols="50" required>
+					<td><textarea class="form-control" name="description"
+							id="description" rows="2" cols="50" required>
 						${sessionScope.description} 
 						</textarea> <c:remove var="description" /></td>
 				</tr>
 				<tr>
 					<td><label for="tariff" class="form-label"><fmt:message
 								key="add-service.tariff" />:</label></td>
-								</tr>
+				</tr>
 				<tr>
 					<td><input type="number" min="0" class="form-control"
-						name="tariff" id="tariff" 
-						value="${sessionScope.tariff}" required>
+						name="tariff" id="tariff" value="${sessionScope.tariff}" required>
 						<c:remove var="tariff" /></td>
 				</tr>
 				<tr>
-					
+
 					<td><input type="submit" class="btn btn-outline-dark"
 						value="OK"></td>
 				</tr>
@@ -58,11 +65,11 @@
 
 		</form>
 	</div>
-	
+
 	<div class="d-grid col-2 py-5 mx-auto ">
 		<a class="btn btn-outline-dark"
-							href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
-								key="add-subscriber.back" /></a>
+			href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
+				key="add-subscriber.back" /></a>
 	</div>
 
 	<jsp:include page="components/footer.jsp" />

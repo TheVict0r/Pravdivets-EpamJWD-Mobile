@@ -24,9 +24,8 @@ public class ShowAllPlansCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ServiceProvider provider = ServiceProvider.getInstance();
-		PlanService planService = provider.getPlanService();
-		RouteHelper result = null;
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
+		RouteHelper result = RouteHelper.ERROR;
 		try {
 			List<Plan> allPlans = planService.findAllPlans();
 			request.setAttribute(AttributeName.ALL_PLANS, allPlans);

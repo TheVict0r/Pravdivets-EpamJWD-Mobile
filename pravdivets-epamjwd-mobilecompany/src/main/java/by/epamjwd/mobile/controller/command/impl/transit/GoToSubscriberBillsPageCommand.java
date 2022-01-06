@@ -29,6 +29,12 @@ public class GoToSubscriberBillsPageCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		Subscriber currentSubscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
+		
+		if(currentSubscriber == null) {
+			LOGGER.error("Null subscriber while moving to subscriber bills page");
+			return RouteHelper.ERROR;
+		}
+		
 		long subscriberID = currentSubscriber.getId();
 		
 		BillService billService = ServiceProvider.getInstance().getBillService();

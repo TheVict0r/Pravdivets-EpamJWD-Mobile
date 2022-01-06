@@ -12,7 +12,6 @@ public class GoToError500PageCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		return new RouteHelper(PagePath.ERROR_500, RouteMethod.FORWARD);
 	}
 

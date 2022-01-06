@@ -45,8 +45,16 @@ public class AddSubscriberCommand implements Command{
 
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
 		String phone = (String)session.getAttribute(AttributeName.PHONE);
-		long planId = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
 		String subscriberUserFlag = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG));
+		long planId = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
+
+		if( passport == null || passport.isBlank()||
+			   phone == null || phone.isBlank()   ||
+			subscriberUserFlag == null || subscriberUserFlag.isBlank() ||
+			  planId == NumericParser.INVALID_VALUE) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+			}
 		
 		long subscriberId = ERROR_ID; 
 		RouteHelper result = null;
@@ -57,6 +65,13 @@ public class AddSubscriberCommand implements Command{
 				String lastName = request.getParameter(ParameterName.SUBSCRIBER_LAST_NAME);
 				String email = request.getParameter(ParameterName.EMAIL);
 
+				if( firstName == null || firstName.isBlank()  || 
+					 lastName == null || lastName.isBlank()   ||
+					    email == null || email.isBlank() ) {
+						session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+						return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+					}
+				
 			try {
 				if (userService.findUserByEmail(email).isPresent()) {
 						session.setAttribute(AttributeName.ERROR, AttributeValue.BOOKED_EMAIL);

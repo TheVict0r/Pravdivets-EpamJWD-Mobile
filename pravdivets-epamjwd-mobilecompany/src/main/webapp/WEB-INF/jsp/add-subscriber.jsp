@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:setLocale value="${sessionScope.session_locale != null ? sessionScope.session_locale : 'ru'}" />
+<fmt:setLocale
+	value="${sessionScope.session_locale != null ? sessionScope.session_locale : 'ru'}" />
 <fmt:setBundle basename="language" />
 <!DOCTYPE html>
 <html lang="${sessionScope.session_locale}">
@@ -18,10 +19,19 @@
 		class="row justify-content-center display-4 fw-light mx-auto  mb-1">
 		<fmt:message key="add-subscriber.new-subscriber" />
 	</div>
+	<div class="row align-content-center mx-auto flex-grow-1">
+		<c:if test="${sessionScope.error eq 'wrong_data'}">
+			<span class="fw-normal fs-6 text-danger"> <fmt:message
+					key="global.wrong-data" />
+			</span>
+		</c:if>
+		<c:remove var="error" />
+	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>
 			<div class="row justify-content-center fs-6 ">
-				<fmt:message key="add-subscriber.phone-number" />:
+				<fmt:message key="add-subscriber.phone-number" />
+				:
 			</div>
 			<div class="row justify-content-center text-primary fs-3 mb-1">
 				${sessionScope.phone_format}</div>
@@ -39,44 +49,47 @@
 
 					<table>
 						<tr>
-							<td><label for="subscriber_user_last_name" class="form-label"><fmt:message
+							<td><label for="subscriber_user_last_name"
+								class="form-label"><fmt:message
 										key="add-subscriber.last-name" />:</label></td>
-							<td><input type="text" class="form-control" name="subscriber_user_last_name"
-								id="subscriber_user_last_name" pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" 
+							<td><input type="text" class="form-control"
+								name="subscriber_user_last_name" id="subscriber_user_last_name"
+								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 								value="${sessionScope.subscriber_user_last_name}" required>
-								<c:remove var="subscriber_user_last_name" />
-								</td>
+								<c:remove var="subscriber_user_last_name" /></td>
 						</tr>
 						<tr>
-							<td><label for="subscriber_user_first_name" class="form-label"><fmt:message
+							<td><label for="subscriber_user_first_name"
+								class="form-label"><fmt:message
 										key="add-subscriber.first-name" />:</label></td>
 							<td><input type="text" class="form-control"
-								name="subscriber_user_first_name" id="subscriber_user_first_name"
-								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" 
+								name="subscriber_user_first_name"
+								id="subscriber_user_first_name"
+								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 								value="${sessionScope.subscriber_user_first_name}" required>
-								<c:remove var="subscriber_user_first_name" />
-								</td>
+								<c:remove var="subscriber_user_first_name" /></td>
 						</tr>
 						<tr>
-							<td><label for="subscriber_user_middle_name" class="form-label"><fmt:message
+							<td><label for="subscriber_user_middle_name"
+								class="form-label"><fmt:message
 										key="add-subscriber.middle-name" />:</label></td>
 							<td><input type="text" class="form-control"
-								name="subscriber_user_middle_name" id="subscriber_user_middle_name"
-								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$" 
-								value="${sessionScope.subscriber_user_middle_name}">
-								<c:remove var="subscriber_user_middle_name" />
-								</td>
+								name="subscriber_user_middle_name"
+								id="subscriber_user_middle_name"
+								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
+								value="${sessionScope.subscriber_user_middle_name}"> <c:remove
+									var="subscriber_user_middle_name" /></td>
 						</tr>
 						<tr>
 							<td><label for="email" class="form-label">e-mail:</label></td>
 							<td><input type="email" class="form-control" name="email"
-								id="email" value="${sessionScope.email}" required>
-								<c:remove var="email" />
-								</td>
+								id="email" value="${sessionScope.email}" required> <c:remove
+									var="email" /></td>
 						</tr>
 					</table>
 					<c:if test="${sessionScope.error eq 'booked_email'}">
-						<p class="row justify-content-center mx-auto text-success text-danger fw-normal">
+						<p
+							class="row justify-content-center mx-auto text-success text-danger fw-normal">
 							<fmt:message key="add-subscriber.booked-email" />
 						</p>
 						<c:remove var="error" />
@@ -107,13 +120,14 @@
 					</table>
 				</c:otherwise>
 			</c:choose>
-			
+
 			<div class="row justify-content-center mb-3">
-				<fmt:message key="add-subscriber.plan" />:
-				<select class="form-select form-select-sm" id="plan" name="plan_id">
-				<c:forEach var="plan" items="${sessionScope.all_plans}">
-					<option value="${plan.id}">${plan.name}</option>
-				</c:forEach>
+				<fmt:message key="add-subscriber.plan" />
+				: <select class="form-select form-select-sm" id="plan"
+					name="plan_id">
+					<c:forEach var="plan" items="${sessionScope.all_plans}">
+						<option value="${plan.id}">${plan.name}</option>
+					</c:forEach>
 				</select>
 			</div>
 			<div class="container py-3 mb-1">

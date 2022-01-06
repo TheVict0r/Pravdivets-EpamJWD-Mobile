@@ -12,7 +12,6 @@ public class GoToErrorPageCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		return new RouteHelper(PagePath.ERROR, RouteMethod.FORWARD);
 	}
 

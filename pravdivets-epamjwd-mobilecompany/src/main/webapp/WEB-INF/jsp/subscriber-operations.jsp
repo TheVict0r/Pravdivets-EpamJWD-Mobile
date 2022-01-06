@@ -133,15 +133,28 @@
 					value="<fmt:message key="subscriberbase.next"/>">
 			</div>
 		</form>
-		<c:if test="${sessionScope.subscriber_debtor eq 'debtor'}">
-			<div class="col-md-12 fw-normal fs-6 text-danger">
-				<fmt:message key="subscriberbase.debt-found"/><c:forEach var="subscriber"
-						items="${sessionScope.subscriber_list}">
-		 <b>${subscriber.account/100} <fmt:message key="subscriberbase.rub"/></b>
-		 (<fmt:message key="subscriberbase.phone"/> ${subscriber.phone})
-		</c:forEach> <br/><fmt:message key="subscriberbase.pay-debt"/>
+			<c:if test="${sessionScope.subscriber_debtor eq 'debtor'}">
+				<div class="col-md-12 fw-normal fs-6 text-danger">
+					<fmt:message key="subscriberbase.debt-found" />
+					<c:forEach var="subscriber" items="${sessionScope.subscriber_list}">
+						<b>${subscriber.account/100} <fmt:message
+								key="subscriberbase.rub" /></b>
+		 (<fmt:message key="subscriberbase.phone" /> ${subscriber.phone})
+		</c:forEach>
+					<br />
+					<fmt:message key="subscriberbase.pay-debt" />
+				</div>
+			</c:if>
+			<c:remove var="subscriber_debtor" />
+			<c:remove var="subscriber_list" />
+			<div class="row align-content-center mx-auto flex-grow-1">
+				<c:if test="${sessionScope.error eq 'wrong_data'}">
+					<span class="fw-normal fs-6 text-danger"> <fmt:message
+							key="global.wrong-data" />
+					</span>
+				</c:if>
+				<c:remove var="error" />
 			</div>
-		</c:if>
 		</div>
 		<c:if test="${sessionScope.role eq 'ADMIN'}">
 	<div class="d-grid col-1 py-2 mx-start ">

@@ -24,10 +24,8 @@ public class ShowAllNewsCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-
-		ServiceProvider provider = ServiceProvider.getInstance();
-		NewsService newsService = provider.getNewsService();
-		RouteHelper result = null;
+		NewsService newsService = ServiceProvider.getInstance().getNewsService();
+		RouteHelper result = RouteHelper.ERROR;
 		try {
 			List<NewsArticle> newsList = newsService.findAllNews();
 			request.setAttribute(AttributeName.NEWS, newsList);

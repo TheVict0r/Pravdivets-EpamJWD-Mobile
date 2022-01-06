@@ -38,7 +38,13 @@ public class AddSubscriberPreparationCommand implements Command {
 		session.removeAttribute(AttributeName.SUBSCRIBER_LIST);
 		
 		String passport = request.getParameter(ParameterName.PASSPORT);
-		RouteHelper result = null;
+		
+		if( passport == null || passport.isBlank()) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+			}
+		
+		RouteHelper result = RouteHelper.ERROR;
 
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
 		UserService userService = serviceProvider.getUserService();
@@ -69,8 +75,6 @@ public class AddSubscriberPreparationCommand implements Command {
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to check the passport for new subscriber - " + passport, e);
 			result = RouteHelper.ERROR_500;
-			// подумай - может ещё куда-то послать? Напр., на ту же страницу но с указанием
-			// ошибки
 		}
 		return result;
 	}

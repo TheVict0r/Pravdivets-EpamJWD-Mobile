@@ -30,6 +30,7 @@ public class AddConsultantCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
 		long consultantId = ERROR_ID;
+		HttpSession session = request.getSession();
 		
 		String firstName  = request.getParameter(ParameterName.FIRST_NAME);
 		String middleName = request.getParameter(ParameterName.MIDDLE_NAME);
@@ -37,8 +38,15 @@ public class AddConsultantCommand implements Command{
 		String passport   = request.getParameter(ParameterName.PASSPORT);
 		String email      = request.getParameter(ParameterName.EMAIL);
 		
+		if( firstName == null || firstName.isBlank()  || 
+			 lastName == null || lastName.isBlank()   ||
+			 passport == null || passport.isBlank()   ||
+			    email == null || email.isBlank() ) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.ADD_CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
+		}
+		
 		UserService userService = ServiceProvider.getInstance().getUserService();
-		HttpSession session = request.getSession();
 		
 		try {
 			if(userService.isEmailBooked(email)) {
