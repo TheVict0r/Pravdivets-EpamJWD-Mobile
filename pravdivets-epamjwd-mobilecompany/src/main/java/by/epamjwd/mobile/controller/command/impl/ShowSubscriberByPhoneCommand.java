@@ -35,10 +35,16 @@ public class ShowSubscriberByPhoneCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		String phone = request.getParameter(ParameterName.PHONE);
-
+		HttpSession session = request.getSession();
+		
+		if(phone == null || phone.isBlank()) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+		}
+		
 		Subscriber subscriber = null;
 		
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 		try {
 			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(phone);
 			

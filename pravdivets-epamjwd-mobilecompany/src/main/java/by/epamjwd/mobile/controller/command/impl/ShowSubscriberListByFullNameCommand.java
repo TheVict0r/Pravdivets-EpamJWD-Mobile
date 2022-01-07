@@ -33,9 +33,18 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 
+		HttpSession session = request.getSession();
+
 		String firstName = request.getParameter(ParameterName.FIRST_NAME);
 		String middleName = request.getParameter(ParameterName.MIDDLE_NAME);
 		String lastName = request.getParameter(ParameterName.LAST_NAME);
+		
+		if(firstName == null || firstName.isBlank() || 
+			lastName == null || lastName.isBlank()){
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+			}
+		
 		List<Subscriber> subscriberList = null;
 		RouteHelper result = null;
 		

@@ -10,7 +10,9 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
@@ -24,6 +26,11 @@ public class CodeSendCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String phone = (String)session.getAttribute(AttributeName.PHONE);
+		
+		if( phone == null || phone.isBlank() ){
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);
+		}
 		
 		UserService userService = ServiceProvider.getInstance().getUserService();
 

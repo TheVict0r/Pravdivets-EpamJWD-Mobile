@@ -27,10 +27,16 @@ public class ShowSubscriberListByPassportCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String passport = request.getParameter(ParameterName.PASSPORT);
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
+		HttpSession session = request.getSession();
+		String passport = request.getParameter(ParameterName.PASSPORT);
+		
+		if( passport == null || passport.isBlank()) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return new RouteHelper(PagePath.ADD_CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
+			}
 		
 		List<Subscriber> subscriberList = null;
 		try {

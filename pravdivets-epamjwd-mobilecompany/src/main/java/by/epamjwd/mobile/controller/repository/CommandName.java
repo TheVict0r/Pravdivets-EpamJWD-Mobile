@@ -7,7 +7,6 @@ public class CommandName {
 	public static final String GO_TO_LOGIN_PAGE = "go_to_login_page";
 	public static final String LOGIN = "login";
 	public static final String LOGOUT = "logout";
-	public static final String EDIT_PROFILE = "edit_profile";
 	public static final String SHOW_ALL_NEWS = "show_all_news";
 	public static final String SHOW_FULL_ARTICLE = "show_full_article";
 	public static final String SHOW_ALL_PLANS = "show_all_plans";

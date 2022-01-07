@@ -66,7 +66,6 @@ import by.epamjwd.mobile.controller.command.impl.ChangePhoneCommand;
 import by.epamjwd.mobile.controller.command.impl.ChangePlanCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberPreparationCommand;
-import by.epamjwd.mobile.controller.command.impl.EditProfileCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowBestPlanCommand;
@@ -85,7 +84,6 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_MAIN_PAGE, new GoToMainPageCommand());
 		allCommands.put(CommandName.GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
 		allCommands.put(CommandName.GO_TO_SIGNUP_PAGE, new GoToSignupPageCommand());
-		allCommands.put(CommandName.EDIT_PROFILE, new EditProfileCommand());
 		allCommands.put(CommandName.LOGIN, new LoginCommand());
 		allCommands.put(CommandName.LOGOUT, new LogoutCommand());
 		allCommands.put(CommandName.SHOW_ALL_NEWS, new ShowAllNewsCommand());

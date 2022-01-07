@@ -39,12 +39,13 @@ public class LoginCommand implements Command {
 		Subscriber subscriber = null;
 		HttpSession session = request.getSession();
 		String path = null;
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 
 		String login = request.getParameter(ParameterName.LOGIN);
 		
-		if (login == null || request.getParameter(ParameterName.PASSWORD) == null 
-				|| request.getParameter(ParameterName.PASSWORD).isEmpty()) {
+		if (login == null || login.isBlank()|| 
+			request.getParameter(ParameterName.PASSWORD) == null || 
+			request.getParameter(ParameterName.PASSWORD).isBlank()) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}

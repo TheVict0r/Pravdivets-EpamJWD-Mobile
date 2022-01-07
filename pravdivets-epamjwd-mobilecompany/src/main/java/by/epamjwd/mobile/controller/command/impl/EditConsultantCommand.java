@@ -26,13 +26,23 @@ public class EditConsultantCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		User consultant = (User)session.getAttribute(AttributeName.CONSULTANT);
-		long consultantID = consultant.getId();
 		
 		String newFirstName  = request.getParameter(ParameterName.CONSULTANT_FIRST_NAME);
 		String newMiddleName = request.getParameter(ParameterName.CONSULTANT_MIDDLE_NAME);
 		String newLastName   = request.getParameter(ParameterName.CONSULTANT_LAST_NAME);
 		String newPassport   = request.getParameter(ParameterName.PASSPORT);
 		String newEmail      = request.getParameter(ParameterName.EMAIL);
+		
+		if(    newFirstName == null || newFirstName.isBlank() || 
+				newLastName == null || newLastName.isBlank()  ||
+				newPassport == null || newPassport.isBlank()  ||
+				   newEmail == null || newEmail.isBlank()     ||
+				 consultant == null ){
+					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+					return new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
+				}
+
+		long consultantID = consultant.getId();
 		
 		UserService userService = ServiceProvider.getInstance().getUserService();
 

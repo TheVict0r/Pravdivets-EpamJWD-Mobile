@@ -15,6 +15,7 @@ import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -37,8 +38,13 @@ public class ShowSubscriberByIDCommand implements Command{
 			if (id == NumericParser.INVALID_VALUE) {
 				id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
 			}
+
+			if(id == NumericParser.INVALID_VALUE) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return RouteHelper.ERROR_404;
+			}
 			
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 		try {
 			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberById(id);
 			if (subscriberOptional.isPresent()) {

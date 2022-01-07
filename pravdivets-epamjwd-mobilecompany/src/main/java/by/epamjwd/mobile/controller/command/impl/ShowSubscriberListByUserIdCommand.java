@@ -16,6 +16,7 @@ import by.epamjwd.mobile.controller.command.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -31,8 +32,14 @@ public class ShowSubscriberListByUserIdCommand implements Command {
 		
 		long id;
 		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.SUBSCRIBER_USER_ID));
-		if (id == -1) {
+		
+		if(id == NumericParser.INVALID_VALUE) {
 			id = NumericParser.parseLongValue(session.getAttribute(AttributeName.USER_ID));
+		}
+
+		if(id == NumericParser.INVALID_VALUE) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return RouteHelper.ERROR_404;
 		}
 		
 		ServiceProvider provider = ServiceProvider.getInstance();

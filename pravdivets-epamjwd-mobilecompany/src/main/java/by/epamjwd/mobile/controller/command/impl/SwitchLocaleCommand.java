@@ -9,7 +9,9 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.ParameterName;
+import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class SwitchLocaleCommand implements Command{
 
@@ -26,6 +28,12 @@ public class SwitchLocaleCommand implements Command{
 		HttpSession session = request.getSession();
 		
 		sessionLocale = request.getParameter(ParameterName.SESSION_LOCALE);
+		
+		if(sessionLocale == null || sessionLocale.isBlank()) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return RouteHelper.ERROR;
+		}
+		
 		session.setAttribute(AttributeName.SESSION_LOCALE, sessionLocale);
 		
 		headerReferer = request.getHeader(ParameterName.HEADER_REFER);

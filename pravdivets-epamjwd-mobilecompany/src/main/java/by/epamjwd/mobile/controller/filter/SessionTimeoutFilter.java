@@ -32,7 +32,6 @@ public class SessionTimeoutFilter implements Filter {
 		String commandName = request.getParameter(ParameterName.COMMAND);
 
 		Set<String> authorisedCommands = new HashSet<>();
-					authorisedCommands.add(CommandName.EDIT_PROFILE);
 					authorisedCommands.add(CommandName.LOGOUT);
 					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID);
 					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME);

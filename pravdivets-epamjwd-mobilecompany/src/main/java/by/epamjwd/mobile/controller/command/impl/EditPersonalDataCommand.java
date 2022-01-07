@@ -31,7 +31,6 @@ public class EditPersonalDataCommand implements Command{
 		
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
-		long userID = user.getId();
 		
 		String newFirstName = request.getParameter(ParameterName.SUBSCRIBER_FIRST_NAME);
 		String newMiddleName = request.getParameter(ParameterName.SUBSCRIBER_MIDDLE_NAME);
@@ -39,6 +38,17 @@ public class EditPersonalDataCommand implements Command{
 		String newPassport = request.getParameter(ParameterName.PASSPORT);
 		String newEmail = request.getParameter(ParameterName.EMAIL);
 
+		if(    newFirstName == null || newFirstName.isBlank() || 
+				newLastName == null || newLastName.isBlank()  ||
+				newPassport == null || newPassport.isBlank()  ||
+				   newEmail == null || newEmail.isBlank()     ||
+					   user == null ){
+					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+				}
+
+		long userID = user.getId();
+		
 		try {
 			if((!newEmail.equals(user.getEmail())) && (userService.isEmailBooked(newEmail))) {
 				return provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);

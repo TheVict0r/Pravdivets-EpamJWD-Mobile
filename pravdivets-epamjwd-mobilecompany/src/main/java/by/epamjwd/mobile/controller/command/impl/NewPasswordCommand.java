@@ -25,9 +25,14 @@ public class NewPasswordCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		String phone = (String)session.getAttribute(AttributeName.PHONE);
 		UserService userService = ServiceProvider.getInstance().getUserService();
+		String phone = (String)session.getAttribute(AttributeName.PHONE);
 
+		if(phone == null || phone.isBlank()) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
+			}
+		
 		if( ! request.getParameter(ParameterName.PASSWORD1).equals(request.getParameter(ParameterName.PASSWORD2))) {
 			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);
 		}

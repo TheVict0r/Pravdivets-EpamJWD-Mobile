@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,7 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -29,9 +31,11 @@ public class ShowFullServiceCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		ServiceService serviceService = provider.getServiceService();
-
+		HttpSession session = request.getSession();
+		
 		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
 		if(id == NumericParser.INVALID_VALUE) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
 

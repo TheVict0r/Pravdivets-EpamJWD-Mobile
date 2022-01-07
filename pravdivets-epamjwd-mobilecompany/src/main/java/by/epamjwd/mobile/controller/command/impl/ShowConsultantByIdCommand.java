@@ -15,6 +15,7 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
@@ -29,10 +30,14 @@ public class ShowConsultantByIdCommand implements Command {
 		HttpSession session = request.getSession();
 		long consultantId = NumericParser.parseLongValue(session.getAttribute(AttributeName.CONSULTANT_ID));
 
+		if (consultantId == NumericParser.INVALID_VALUE) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+		}
+
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		Optional<User> consultantOptional = Optional.empty();
 		User consultant = null;
-		
 		
 		try {
 			consultantOptional = userService.findUserById(consultantId);

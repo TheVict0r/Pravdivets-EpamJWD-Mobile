@@ -16,9 +16,7 @@ public class LogoutCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		RouteHelper result = null;
-		result = new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
-		return result;
+		return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 	}
 
 }
