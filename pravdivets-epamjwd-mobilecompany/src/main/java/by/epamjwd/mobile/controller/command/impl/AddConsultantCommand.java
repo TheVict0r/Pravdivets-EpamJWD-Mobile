@@ -42,7 +42,7 @@ public class AddConsultantCommand implements Command{
 			 lastName == null || lastName.isBlank()   ||
 			 passport == null || passport.isBlank()   ||
 			    email == null || email.isBlank() ) {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.ADD_CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
 		}
 		

@@ -31,7 +31,7 @@ public class ShowConsultantByIdCommand implements Command {
 		long consultantId = NumericParser.parseLongValue(session.getAttribute(AttributeName.CONSULTANT_ID));
 
 		if (consultantId == NumericParser.INVALID_VALUE) {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
 

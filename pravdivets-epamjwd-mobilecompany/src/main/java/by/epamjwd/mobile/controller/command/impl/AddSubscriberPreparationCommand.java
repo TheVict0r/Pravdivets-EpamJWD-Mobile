@@ -40,7 +40,7 @@ public class AddSubscriberPreparationCommand implements Command {
 		String passport = request.getParameter(ParameterName.PASSPORT);
 		
 		if( passport == null || passport.isBlank()) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 			}
 		

@@ -52,7 +52,7 @@ public class AddSubscriberCommand implements Command{
 			   phone == null || phone.isBlank()   ||
 			subscriberUserFlag == null || subscriberUserFlag.isBlank() ||
 			  planId == NumericParser.INVALID_VALUE) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 			}
 		
@@ -68,7 +68,7 @@ public class AddSubscriberCommand implements Command{
 				if( firstName == null || firstName.isBlank()  || 
 					 lastName == null || lastName.isBlank()   ||
 					    email == null || email.isBlank() ) {
-						session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+					session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 						return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 					}
 				

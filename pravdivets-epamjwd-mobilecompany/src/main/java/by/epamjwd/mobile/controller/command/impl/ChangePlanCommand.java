@@ -39,7 +39,7 @@ public class ChangePlanCommand implements Command{
 		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
 		
 		if( subscriber == null ) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 			}
 		

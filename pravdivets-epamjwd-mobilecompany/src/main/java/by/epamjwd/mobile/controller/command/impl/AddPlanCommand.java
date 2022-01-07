@@ -42,7 +42,7 @@ public class AddPlanCommand implements Command{
 					   sms == NumericParser.INVALID_VALUE ||
 					   mms == NumericParser.INVALID_VALUE ||
 		    	  internet == NumericParser.INVALID_VALUE ){
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.ADD_PLAN_REDIRECT, RouteMethod.REDIRECT);
 			}
 

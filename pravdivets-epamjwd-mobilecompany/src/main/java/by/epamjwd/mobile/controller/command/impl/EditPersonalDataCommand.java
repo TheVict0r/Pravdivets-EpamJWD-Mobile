@@ -43,7 +43,7 @@ public class EditPersonalDataCommand implements Command{
 				newPassport == null || newPassport.isBlank()  ||
 				   newEmail == null || newEmail.isBlank()     ||
 					   user == null ){
-					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+					session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 				}
 

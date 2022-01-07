@@ -41,7 +41,7 @@ public class ShowSubscriberListByFullNameCommand implements Command{
 		
 		if(firstName == null || firstName.isBlank() || 
 			lastName == null || lastName.isBlank()){
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 			}
 		

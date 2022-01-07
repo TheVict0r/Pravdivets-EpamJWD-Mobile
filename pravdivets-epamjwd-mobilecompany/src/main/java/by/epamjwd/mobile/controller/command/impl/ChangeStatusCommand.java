@@ -35,7 +35,7 @@ public class ChangeStatusCommand implements Command {
 		int newStatusID = NumericParser.parseIntValue(request.getParameter(ParameterName.NEW_STATUS));
 
 		if (newStatusID == NumericParser.INVALID_VALUE) {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 		}
 

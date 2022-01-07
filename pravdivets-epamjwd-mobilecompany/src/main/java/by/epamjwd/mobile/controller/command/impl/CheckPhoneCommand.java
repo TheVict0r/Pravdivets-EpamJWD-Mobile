@@ -32,9 +32,9 @@ public class CheckPhoneCommand implements Command{
 		String mode = (String)session.getAttribute(AttributeName.MODE);
 		
 		if( phone == null || phone.isBlank()  || 
-				mode == null || mode.isBlank()) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
-				return RouteHelper.ERROR;
+			 mode == null || mode.isBlank()) {
+			 session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			 return RouteHelper.ERROR;
 		}
 		RouteHelper result;
 		

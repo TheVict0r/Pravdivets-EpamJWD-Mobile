@@ -103,9 +103,9 @@
 	</nav>
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
-		<c:if test="${sessionScope.error eq 'wrong_data'}">
+		<c:if test="${sessionScope.wrong_data eq 'wrong_data'}">
 			<fmt:message key="global.wrong-data" />
 		</c:if>
-		<c:remove var="error" />
+		<c:remove var="wrong_data" />
 	</div>
 </header>

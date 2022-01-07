@@ -35,7 +35,7 @@ public class ShowFullPlanCommand implements Command {
 		
 		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
 		if(id == NumericParser.INVALID_VALUE) {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
 		

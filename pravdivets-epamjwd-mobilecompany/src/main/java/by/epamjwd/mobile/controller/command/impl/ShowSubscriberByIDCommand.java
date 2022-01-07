@@ -40,7 +40,7 @@ public class ShowSubscriberByIDCommand implements Command{
 			}
 
 			if(id == NumericParser.INVALID_VALUE) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return RouteHelper.ERROR_404;
 			}
 			

@@ -38,7 +38,6 @@ public class ChangePhonePreparationCommand implements Command{
 			LOGGER.error("Error during new phone number generation pricess", e);
 			result = RouteHelper.ERROR_500;
 		}
-
 		
 		result = new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 		return result;

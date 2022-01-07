@@ -52,5 +52,6 @@ public class AttributeName {
 	public static final String CONSULTATNT_MIDDLE_NAME = "consultant_middle_name";
 	public static final String CONSULTATNT_LAST_NAME = "consultant_last_name";
 	public static final String CONSULTANT_ID = "consultant_id";
+	public static final String WRONG_DATA = "wrong_data";
 
 }

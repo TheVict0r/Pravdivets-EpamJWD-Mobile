@@ -38,7 +38,7 @@ public class ChangePasswordCommand implements Command {
 		if(request.getParameter(ParameterName.OLD_PASSWORD)  == null || 
 		   request.getParameter(ParameterName.NEW_PASSWORD1) == null ||
 		   request.getParameter(ParameterName.NEW_PASSWORD2) == null){
-			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CHANGE_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 		}
 		

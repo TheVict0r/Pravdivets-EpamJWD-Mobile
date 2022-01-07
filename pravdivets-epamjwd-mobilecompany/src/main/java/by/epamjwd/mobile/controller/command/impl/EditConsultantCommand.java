@@ -38,7 +38,7 @@ public class EditConsultantCommand implements Command {
 				newPassport == null || newPassport.isBlank()  ||
 				   newEmail == null || newEmail.isBlank()     ||
 				 consultant == null ){
-					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+					session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 					return new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
 				}
 

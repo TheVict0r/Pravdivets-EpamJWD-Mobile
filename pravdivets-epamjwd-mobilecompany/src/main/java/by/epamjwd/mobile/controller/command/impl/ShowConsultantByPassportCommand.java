@@ -33,7 +33,7 @@ public class ShowConsultantByPassportCommand implements Command {
 		HttpSession session = request.getSession();
 		
 		if(passport == null || passport.isBlank()) {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
 		

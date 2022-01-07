@@ -37,7 +37,7 @@ public class ChangePhoneCommand implements Command{
 		
 		if(   newPhone == null || newPhone.isBlank() || 
 			subscriber == null ) {
-					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 				}
 		

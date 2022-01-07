@@ -17,7 +17,6 @@ public class GoToSubscriberPageCommand implements Command {
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.ALL_SERVICES);
 		session.removeAttribute(AttributeName.BILL_LIST);
-		
 		return new RouteHelper(PagePath.SUBSCRIBER, RouteMethod.FORWARD);
 	}
 

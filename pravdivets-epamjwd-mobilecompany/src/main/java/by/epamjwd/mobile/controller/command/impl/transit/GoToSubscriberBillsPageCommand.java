@@ -15,6 +15,7 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.BillService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -31,7 +32,7 @@ public class GoToSubscriberBillsPageCommand implements Command {
 		Subscriber currentSubscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
 		
 		if(currentSubscriber == null) {
-			LOGGER.error("Null subscriber while moving to subscriber bills page");
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR;
 		}
 		

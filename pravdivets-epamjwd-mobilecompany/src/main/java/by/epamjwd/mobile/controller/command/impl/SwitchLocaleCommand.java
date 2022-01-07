@@ -30,7 +30,7 @@ public class SwitchLocaleCommand implements Command{
 		sessionLocale = request.getParameter(ParameterName.SESSION_LOCALE);
 		
 		if(sessionLocale == null || sessionLocale.isBlank()) {
-			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR;
 		}
 		

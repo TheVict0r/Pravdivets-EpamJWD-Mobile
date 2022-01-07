@@ -29,8 +29,8 @@ public class NewPasswordCommand implements Command{
 		String phone = (String)session.getAttribute(AttributeName.PHONE);
 
 		if(phone == null || phone.isBlank()) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
-				return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 			}
 		
 		if( ! request.getParameter(ParameterName.PASSWORD1).equals(request.getParameter(ParameterName.PASSWORD2))) {

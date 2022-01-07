@@ -23,10 +23,10 @@ public class CodeReturnCommand implements Command{
 		HttpSession session = request.getSession();
 		Integer sentCode = (Integer)session.getAttribute(AttributeName.CODE);
 		
-		if( sentCode == NumericParser.INVALID_VALUE ){
-					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
-					return new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);
-				}
+		if (sentCode == NumericParser.INVALID_VALUE) {
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);
+		}
 		
 		session.removeAttribute(AttributeName.CODE);
 		int enteredCode = NumericParser.parseIntValue(request.getParameter(ParameterName.ENTERED_CODE));
