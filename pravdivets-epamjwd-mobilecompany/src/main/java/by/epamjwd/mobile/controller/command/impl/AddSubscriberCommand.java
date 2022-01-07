@@ -50,7 +50,6 @@ public class AddSubscriberCommand implements Command{
 
 		if( passport == null || passport.isBlank()||
 			   phone == null || phone.isBlank()   ||
-			subscriberUserFlag == null || subscriberUserFlag.isBlank() ||
 			  planId == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);

@@ -127,7 +127,6 @@
 					id="passport"
 					placeholder="AB1234567"
 					pattern="^[A-Z]{2}[0-9]{7}$" value="${sessionScope.passport}" required>
-					<c:remove var="passport" />
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark"

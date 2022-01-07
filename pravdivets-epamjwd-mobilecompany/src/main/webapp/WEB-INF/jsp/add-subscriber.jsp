@@ -41,36 +41,36 @@
 
 					<table>
 						<tr>
-							<td><label for="subscriber_user_last_name"
+							<td><label for="subscriber_last_name"
 								class="form-label"><fmt:message
 										key="add-subscriber.last-name" />:</label></td>
 							<td><input type="text" class="form-control"
-								name="subscriber_user_last_name" id="subscriber_user_last_name"
+								name="subscriber_last_name" id="subscriber_last_name"
 								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
-								value="${sessionScope.subscriber_user_last_name}" required>
-								<c:remove var="subscriber_user_last_name" /></td>
+								value="${sessionScope.subscriber_last_name}" required>
+								<c:remove var="subscriber_last_name" /></td>
 						</tr>
 						<tr>
-							<td><label for="subscriber_user_first_name"
+							<td><label for="subscriber_first_name"
 								class="form-label"><fmt:message
 										key="add-subscriber.first-name" />:</label></td>
 							<td><input type="text" class="form-control"
-								name="subscriber_user_first_name"
-								id="subscriber_user_first_name"
+								name="subscriber_first_name"
+								id="subscriber_first_name"
 								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
-								value="${sessionScope.subscriber_user_first_name}" required>
-								<c:remove var="subscriber_user_first_name" /></td>
+								value="${sessionScope.subscriber_first_name}" required>
+								<c:remove var="subscriber_first_name" /></td>
 						</tr>
 						<tr>
-							<td><label for="subscriber_user_middle_name"
+							<td><label for="subscriber_middle_name"
 								class="form-label"><fmt:message
 										key="add-subscriber.middle-name" />:</label></td>
 							<td><input type="text" class="form-control"
-								name="subscriber_user_middle_name"
-								id="subscriber_user_middle_name"
+								name="subscriber_middle_name"
+								id="subscriber_middle_name"
 								pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
-								value="${sessionScope.subscriber_user_middle_name}"> <c:remove
-									var="subscriber_user_middle_name" /></td>
+								value="${sessionScope.subscriber_middle_name}"> <c:remove
+									var="subscriber_middle_name" /></td>
 						</tr>
 						<tr>
 							<td><label for="email" class="form-label">e-mail:</label></td>
