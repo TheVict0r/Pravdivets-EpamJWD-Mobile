@@ -32,9 +32,6 @@
 				<c:when test="${sessionScope.error == 'wrong_password'}">
 					<fmt:message key="change-password.wrong-old-password" />
 				</c:when>
-				<c:when test="${sessionScope.error == 'wrong_data'}">
-					<fmt:message key="global.wrong-data" />
-				</c:when>
 			</c:choose>
 		</p>
 		<c:remove var="error" />

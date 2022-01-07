@@ -13,6 +13,7 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.PlanService;
@@ -33,10 +34,22 @@ public class CalculatorCommand implements Command{
 		int mms           = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_MMS));
 		int internet      = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_INTERNET));		
 		
+		HttpSession session = request.getSession();
+		
+		if( 	 withinNetwork == NumericParser.INVALID_VALUE ||
+				 otherNetworks == NumericParser.INVALID_VALUE ||
+						abroad == NumericParser.INVALID_VALUE ||
+					 videocall == NumericParser.INVALID_VALUE ||
+						   sms == NumericParser.INVALID_VALUE ||
+						   mms == NumericParser.INVALID_VALUE ||
+			    	  internet == NumericParser.INVALID_VALUE ){
+					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+					return new RouteHelper(PagePath.CALCULATOR_REDIRECT, RouteMethod.REDIRECT);
+				}
+		
 		ServiceProvider provider = ServiceProvider.getInstance();
 		PlanService planService = provider.getPlanService();
 		Plan bestPlan = null;
-		HttpSession session = request.getSession();
 		RouteHelper result = null;
 
 		try {

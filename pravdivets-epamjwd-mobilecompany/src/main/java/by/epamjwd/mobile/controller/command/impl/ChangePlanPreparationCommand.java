@@ -33,6 +33,12 @@ public class ChangePlanPreparationCommand implements Command {
 		session.setAttribute(AttributeName.ACTIVATE_EDIT, AttributeValue.PLAN);
 
 		Subscriber subscriber = (Subscriber) session.getAttribute(AttributeName.SUBSCRIBER);
+		
+		if( subscriber == null ) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return RouteHelper.ERROR_500;
+		}
+		
 		long currentPlanId = subscriber.getPlanId();
 
 		PlanService planService = ServiceProvider.getInstance().getPlanService();

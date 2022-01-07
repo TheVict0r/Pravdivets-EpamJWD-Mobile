@@ -25,9 +25,8 @@ public class ChangePhonePreparationCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();		
 		session.setAttribute(AttributeName.ACTIVATE_EDIT, AttributeValue.PHONE);
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 
-		
 		String newPhone;
 		String newPhoneFormat;
 		try {

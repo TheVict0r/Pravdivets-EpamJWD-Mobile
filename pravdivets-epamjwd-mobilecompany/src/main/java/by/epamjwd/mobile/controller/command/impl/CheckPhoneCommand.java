@@ -22,7 +22,6 @@ public class CheckPhoneCommand implements Command{
 
 	private final static Logger LOGGER = LogManager.getLogger(CheckPhoneCommand.class);
 
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -32,6 +31,11 @@ public class CheckPhoneCommand implements Command{
 		session.setAttribute(AttributeName.PHONE, phone);
 		String mode = (String)session.getAttribute(AttributeName.MODE);
 		
+		if( phone == null || phone.isBlank()  || 
+				mode == null || mode.isBlank()) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return RouteHelper.ERROR;
+		}
 		RouteHelper result;
 		
 		try {

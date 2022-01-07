@@ -17,6 +17,7 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -29,9 +30,15 @@ public class ChangeStatusCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();	
+		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		int newStatusID = NumericParser.parseIntValue(request.getParameter(ParameterName.NEW_STATUS));
+
+		if (newStatusID == NumericParser.INVALID_VALUE) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+		}
+
 		SubscriberStatus newStatus = SubscriberStatus.values()[newStatusID];
 		
 		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);

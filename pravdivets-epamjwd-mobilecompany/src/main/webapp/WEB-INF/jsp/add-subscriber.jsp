@@ -19,14 +19,6 @@
 		class="row justify-content-center display-4 fw-light mx-auto  mb-1">
 		<fmt:message key="add-subscriber.new-subscriber" />
 	</div>
-	<div class="row align-content-center mx-auto flex-grow-1">
-		<c:if test="${sessionScope.error eq 'wrong_data'}">
-			<span class="fw-normal fs-6 text-danger"> <fmt:message
-					key="global.wrong-data" />
-			</span>
-		</c:if>
-		<c:remove var="error" />
-	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>
 			<div class="row justify-content-center fs-6 ">

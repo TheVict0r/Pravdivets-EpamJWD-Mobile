@@ -43,12 +43,13 @@
 						href="${pageContext.request.contextPath}/controller?command=show_all_news"
 						style="font-size: 15px;"><fmt:message key="header.news" /></a></li>
 				</ul>
-				
-				
+
+
 				<div class="navbar actions text-end">
 					<ul class="navbar-nav me-auto">
 						<c:choose>
-							<c:when test="${sessionScope.session_locale == 'ru' || sessionScope.session_locale == null}">
+							<c:when
+								test="${sessionScope.session_locale == 'ru' || sessionScope.session_locale == null}">
 								<li class="nav-item "><a
 									class="nav-link fw-bold text-dark text-decoration-underline"
 									href="${pageContext.request.contextPath}/controller?command=switch_locale&session_locale=ru">RU</a>
@@ -70,24 +71,24 @@
 							</c:otherwise>
 						</c:choose>
 					</ul>
-					</div>
-					
-					<div class="navbar actions text-end">
+				</div>
+
+				<div class="navbar actions text-end">
 					<c:choose>
 						<c:when test="${sessionScope.last_name == null}">
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-								<a
-									class="btn btn-outline-primary me-md-1" type="button"
+								<a class="btn btn-outline-primary me-md-1" type="button"
 									href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message
-											key="header.sign-in" /></a>
-								<a 
-									class="btn btn-primary" type="button" 
-									href="${pageContext.request.contextPath}/controller?command=go_to_signup_page"><fmt:message key="header.sign-up" /></a>
+										key="header.sign-in" /></a> <a class="btn btn-primary"
+									type="button"
+									href="${pageContext.request.contextPath}/controller?command=go_to_signup_page"><fmt:message
+										key="header.sign-up" /></a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<ul class="navbar-nav me-auto">
-								<li class="nav-item fw-bold"><a class="nav-link text-dark me-md-3"
+								<li class="nav-item fw-bold"><a
+									class="nav-link text-dark me-md-3"
 									href="${pageContext.request.contextPath}/controller?command=go_to_profile_page">${sessionScope.first_name}
 										${sessionScope.last_name}</a></li>
 								<li class="nav-item"><a class="btn btn-primary me-2"
@@ -100,4 +101,11 @@
 			</div>
 		</div>
 	</nav>
+	<div
+		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
+		<c:if test="${sessionScope.error eq 'wrong_data'}">
+			<fmt:message key="global.wrong-data" />
+		</c:if>
+		<c:remove var="error" />
+	</div>
 </header>

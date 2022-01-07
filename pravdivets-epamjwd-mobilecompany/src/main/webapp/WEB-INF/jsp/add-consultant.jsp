@@ -34,9 +34,6 @@
 				<c:when test="${sessionScope.error == 'incorrect_password'}">
 					<fmt:message key="add-consultant.incorrect-password" />
 				</c:when>
-				<c:when test="${sessionScope.error == 'wrong_data'}">
-					<fmt:message key="global.wrong-data" />
-				</c:when>
 			</c:choose>
 		</p>
 		<c:remove var="error" />

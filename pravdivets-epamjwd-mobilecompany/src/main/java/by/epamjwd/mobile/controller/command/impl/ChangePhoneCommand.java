@@ -15,6 +15,7 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
@@ -33,6 +34,13 @@ public class ChangePhoneCommand implements Command{
 		session.removeAttribute(AttributeName.NEW_PHONE);
 
 		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
+		
+		if(   newPhone == null || newPhone.isBlank() || 
+			subscriber == null ) {
+					session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+				}
+		
 		long subscriberID = subscriber.getId();
 		subscriber.setPhone(newPhone);
 		

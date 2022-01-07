@@ -16,6 +16,7 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.PlanService;
@@ -36,6 +37,12 @@ public class ChangePlanCommand implements Command{
 
 		long newPlanID = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
 		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
+		
+		if( subscriber == null ) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_DATA);
+				return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+			}
+		
 		long subscriberID = subscriber.getId();
 		subscriber.setPlanId(newPlanID);
 		
