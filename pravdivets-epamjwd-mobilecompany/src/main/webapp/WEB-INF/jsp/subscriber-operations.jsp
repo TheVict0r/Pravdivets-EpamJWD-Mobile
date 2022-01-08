@@ -17,9 +17,9 @@
 	<jsp:include page="components/header.jsp" />
 
 	<div
-		class="container col-sm-12 col-md-10 col-lg-8 col-xl-7 fw-light py-3 flex-grow-1">
+		class="container col-sm-12 col-md-10 col-lg-8 col-xl-7 fw-light py-1 flex-grow-1">
 
-		<div class="display-4 text-start mb-4 flex-grow-1">
+		<div class="display-4 text-start mb-3 flex-grow-1">
 			<fmt:message key="subscriberbase.title" />
 		</div>
 		<div>
@@ -128,7 +128,7 @@
 					placeholder="AB1234567"
 					pattern="^[A-Z]{2}[0-9]{7}$" value="${sessionScope.passport}" required>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-1">
 				<input type="submit" class="btn btn-outline-dark"
 					value="<fmt:message key="subscriberbase.next"/>">
 			</div>
@@ -149,10 +149,10 @@
 			<c:remove var="subscriber_list" />
 		</div>
 		<c:if test="${sessionScope.role eq 'ADMIN'}">
-	<div class="d-grid col-1 py-2 mx-start ">
+	<div class="d-grid col-6 py-4 mx-start ">
 		<a class="btn btn-primary"
 			href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
-				key="add-subscriber.back" /></a>
+				key="admin.to-admin" /></a>
 	</div>
 	</c:if>
 	</div>

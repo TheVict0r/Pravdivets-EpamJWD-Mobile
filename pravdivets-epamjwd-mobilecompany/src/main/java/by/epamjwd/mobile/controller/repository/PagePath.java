@@ -65,5 +65,11 @@ public class PagePath {
 	public static final String EDIT_CONSULTANT_REDIRECT = "/controller?command=go_to_edit_consultant_page";
 	public static final String CHANGE_PASSWORD = "WEB-INF/jsp/change-password.jsp";
 	public static final String CHANGE_PASSWORD_REDIRECT = "/controller?command=go_to_change_password_page";
+	public static final String PLAN_OPERATIONS = "WEB-INF/jsp/plan-operations.jsp";
+	public static final String PLAN_OPERATIONS_REDIRECT = "/controller?command=go_to_plan_operations_page";
+	public static final String SERVICE_OPERATIONS = "WEB-INF/jsp/service-operations.jsp";
+	public static final String SERVICE_OPERATIONS_REDIRECT = "/controller?command=go_to_service_operations_page";
+	public static final String ARTICLE_OPERATIONS = "WEB-INF/jsp/article-operations.jsp";
+	public static final String ARTICLE_OPERATIONS_REDIRECT = "/controller?command=go_to_article_operations_page";
 
 }

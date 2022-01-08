@@ -12,6 +12,7 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToAddPlanPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddServicePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAdminPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToArticleOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToChangePasswordPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeReturnPageCommand;
@@ -24,7 +25,9 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToNewPasswordPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPasswordRepairPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPhoneRequestPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToPlanOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToProfilePageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToServiceOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToConsultantOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToEditConsultantPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSignupPageCommand;
@@ -149,6 +152,9 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_EDIT_CONSULTANT_PAGE, new GoToEditConsultantPageCommand());
 		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
 		allCommands.put(CommandName.CHANGE_PASSWORD, new ChangePasswordCommand());
+		allCommands.put(CommandName.GO_TO_PLAN_OPERATIONS_PAGE, new GoToPlanOperationsPageCommand());
+		allCommands.put(CommandName.GO_TO_SERVICE_OPERATIONS_PAGE, new GoToServiceOperationsPageCommand());
+		allCommands.put(CommandName.GO_TO_ARTICLE_OPERATIONS_PAGE, new GoToArticleOperationsPageCommand());
 
 	}
 

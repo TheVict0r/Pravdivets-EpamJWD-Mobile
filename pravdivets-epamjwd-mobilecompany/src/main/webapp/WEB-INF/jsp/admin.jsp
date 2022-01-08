@@ -18,38 +18,31 @@
 
 	<div class="container col-sm-12 col-md-10 col-lg-9 col-xl-9  fs-5 fw-light flex-grow-1">
 
-			<div class="d-grid gap-3 col-6 py-5 mx-auto">
-			  <a class="btn btn-outline-dark"
+		<div class="display-3 text-center  py-5 flex-grow-1">
+			<fmt:message key="admin.title" />
+		</div>
+
+
+			<div class="d-grid gap-4  col-6 py-4 mx-auto">
+			  <a class="btn btn-outline-dark fs-5"
 				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
 				<fmt:message key="admin.subscriber-operations" />
 			</a>
-			  <a class="btn btn-outline-dark"
+			  <a class="btn btn-outline-dark fs-5"
 				href="${pageContext.request.contextPath}/controller?command=go_to_consultant_operations_page">
 				<fmt:message key="admin.consultant-operations" />
 			</a>
-			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_add_plan_page">
-				<fmt:message key="admin.add-plan" />
+			<a class="btn btn-outline-dark fs-5"
+				href="${pageContext.request.contextPath}/controller?command=go_to_plan_operations_page">
+				<fmt:message key="admin.plan-operations" />
 			</a>
-			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
-				<fmt:message key="admin.show-edit-plan" />
+			<a class="btn btn-outline-dark fs-5"
+				href="${pageContext.request.contextPath}/controller?command=go_to_service_operations_page">
+				<fmt:message key="admin.service-operations" />
 			</a>
-			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_add_service_page">
-				<fmt:message key="admin.add-service" />
-			</a>
-						<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
-				<fmt:message key="admin.show-edit-service" />
-			</a>
-			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_add_article_page">
-				<fmt:message key="admin.add-article" />
-			</a>
-			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_operations_page">
-				<fmt:message key="admin.show-edit-article" />
+			<a class="btn btn-outline-dark fs-5"
+				href="${pageContext.request.contextPath}/controller?command=go_to_article_operations_page">
+				<fmt:message key="admin.article-operations" />
 			</a>
 	</div>
 	</div>

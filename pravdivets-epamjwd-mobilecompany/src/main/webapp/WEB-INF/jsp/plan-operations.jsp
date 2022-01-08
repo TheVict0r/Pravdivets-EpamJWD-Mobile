@@ -21,7 +21,7 @@
 		class="container col-sm-12 col-md-10 col-lg-8 col-xl-8 fw-light py-2 flex-grow-1">
 
 		<div class="display-5 text-start py-4 flex-grow-1">
-			<fmt:message key="consultant-operations.title" />
+			<fmt:message key="plan-operations.title" />
 		</div>
 		<div>
 			<h4 class="mb-2">
@@ -78,7 +78,7 @@
 		</div>
 		<div class="d-grid col-1 py-1 mb-3 mx-start ">
 			<a class="btn btn-outline-dark"
-				href="${pageContext.request.contextPath}/controller?command=go_to_add_consultant_page">
+				href="${pageContext.request.contextPath}/controller?command=go_to_add_plan_page">
 				<fmt:message key="consultant-operations.add" />
 			</a>
 		</div>

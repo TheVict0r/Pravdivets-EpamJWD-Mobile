@@ -10,11 +10,10 @@ import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.ConsultantCommandHelper;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class GoToConsultantOperationsPageCommand implements Command {
+public class GoToPlanOperationsPageCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		ConsultantCommandHelper.getInstance().clearSessionFromConsultantAttributes(session);
-		return new RouteHelper(PagePath.CONSULTANT_OPERATIONS, RouteMethod.FORWARD);	}
+		return new RouteHelper(PagePath.PLAN_OPERATIONS, RouteMethod.FORWARD);	}
 }
+

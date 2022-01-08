@@ -72,5 +72,8 @@ public class CommandName {
 	public static final String GO_TO_EDIT_CONSULTANT_PAGE = "go_to_edit_consultant_page";
 	public static final String GO_TO_CHANGE_PASSWORD_PAGE = "go_to_change_password_page";
 	public static final String CHANGE_PASSWORD = "change_password";
+	public static final String GO_TO_PLAN_OPERATIONS_PAGE = "go_to_plan_operations_page";
+	public static final String GO_TO_SERVICE_OPERATIONS_PAGE = "go_to_service_operations_page";
+	public static final String GO_TO_ARTICLE_OPERATIONS_PAGE = "go_to_article_operations_page";
 
 }
