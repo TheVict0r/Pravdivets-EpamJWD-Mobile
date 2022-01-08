@@ -25,61 +25,25 @@
 		</div>
 		<div>
 			<h4 class="mb-2">
-				<fmt:message key="consultant-operations.find-consultant" />
+				<fmt:message key="plan-operations.edit-lead" />
 			</h4>
 		</div>
-		<div class="col-md-12">
-			<c:if test="${sessionScope.error eq 'error'}">
-				<span class="fw-normal fs-6 text-danger"> <fmt:message
-						key="consultant-operations.null-subscriber" />
-				</span>
-			</c:if>
-			<c:if test="${sessionScope.error eq 'wrong_data'}">
-				<span class="fw-normal fs-6 text-danger"> <fmt:message
-						key="global.wrong-data" />
-				</span>
-			</c:if>
-			<c:remove var="error" />
+			<c:forEach var="plan" items="${requestScope.all_plans}">
+		<div>
+		${plan.name}
+		${plan.regularPayment/100}
+		 - ЭДИТ
 		</div>
-		<form class="row mb-3" method="POST"
-			action="controller?command=show_consultant_by_email">
-			<label for="email" class="form-label"><fmt:message
-					key="consultant-operations.by-email" /></label>
-			<div class="col-md-3">
-				<input type="email" class="form-control" name="email" id="email"
-					placeholder="ivanov@mail.com" value="${sessionScope.email}"
-					required>
-				<c:remove var="email" />
-			</div>
-			<div class="col-md-2">
-				<input type="submit" class="btn btn-outline-dark" value="OK">
-			</div>
-		</form>
-
-		<form class="row mb-4" method="POST"
-			action="controller?command=show_consultant_by_passport">
-			<label for="passport" class="form-label"><fmt:message
-					key="consultant-operations.by-passport" /></label>
-			<div class="col-md-3">
-				<input type="text" class="form-control" name="passport"
-					id="passport" placeholder="AB1234567" pattern="^[A-Z]{2}[0-9]{7}$"
-					value="${sessionScope.passport}" required>
-				<c:remove var="passport" />
-			</div>
-			<div class="col-md-2">
-				<input type="submit" class="btn btn-outline-dark" value="OK">
-			</div>
-		</form>
-
+		</c:forEach>
 		<div>
 			<h4 class="py-2">
-				<fmt:message key="consultant-operations.add-consultant" />
+				<fmt:message key="plan-operations.add" />
 			</h4>
 		</div>
 		<div class="d-grid col-1 py-1 mb-3 mx-start ">
 			<a class="btn btn-outline-dark"
 				href="${pageContext.request.contextPath}/controller?command=go_to_add_plan_page">
-				<fmt:message key="consultant-operations.add" />
+				<fmt:message key="admin.add" />
 			</a>
 		</div>
 		<div class="d-grid col-5 py-5 mx-start ">

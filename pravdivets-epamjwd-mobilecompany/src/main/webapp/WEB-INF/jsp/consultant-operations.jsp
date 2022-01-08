@@ -79,7 +79,7 @@
 		<div class="d-grid col-1 py-1 mb-3 mx-start ">
 			<a class="btn btn-outline-dark"
 				href="${pageContext.request.contextPath}/controller?command=go_to_add_consultant_page">
-				<fmt:message key="consultant-operations.add" />
+				<fmt:message key="admin.add" />
 			</a>
 		</div>
 		<div class="d-grid col-5 py-5 mx-start ">

@@ -14,7 +14,6 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
-import by.epamjwd.mobile.dao.connectionpool.ConnectionPool;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -22,7 +21,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public class ShowAllServicesCommand implements Command{
 
 	private final static Logger LOGGER = LogManager.getLogger(ShowAllServicesCommand.class);
-	
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
