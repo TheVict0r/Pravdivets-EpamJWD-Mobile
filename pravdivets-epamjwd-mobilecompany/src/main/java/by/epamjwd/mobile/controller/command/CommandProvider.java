@@ -12,6 +12,7 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToAddPlanPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddServicePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAdminPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToAllnewsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToArticleOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToChangePasswordPageCommand;
@@ -44,6 +45,8 @@ import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByPassportCom
 import by.epamjwd.mobile.controller.command.impl.ShowFullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowNextNewsCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowPreviousNewsCommand;
 import by.epamjwd.mobile.controller.command.impl.NoSuchCommand;
 import by.epamjwd.mobile.controller.command.impl.CodeSendCommand;
 import by.epamjwd.mobile.controller.command.impl.EditConsultantCommand;
@@ -90,6 +93,9 @@ public class CommandProvider {
 		allCommands.put(CommandName.LOGIN, new LoginCommand());
 		allCommands.put(CommandName.LOGOUT, new LogoutCommand());
 		allCommands.put(CommandName.SHOW_ALL_NEWS, new ShowAllNewsCommand());
+		allCommands.put(CommandName.GO_TO_ALL_NEWS_PAGE, new GoToAllnewsPageCommand());
+		allCommands.put(CommandName.SHOW_PREVIOUS_NEWS, new ShowPreviousNewsCommand());
+		allCommands.put(CommandName.SHOW_NEXT_NEWS, new ShowNextNewsCommand());
 		allCommands.put(CommandName.SHOW_FULL_ARTICLE, new ShowFullArticleCommand());
 		allCommands.put(CommandName.SHOW_ALL_PLANS, new ShowAllPlansCommand());
 		allCommands.put(CommandName.SHOW_FULL_PLAN, new ShowFullPlanCommand());

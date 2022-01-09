@@ -1,13 +1,18 @@
 package by.epamjwd.mobile.controller.repository;
 
 public class CommandName {
-
+	
+	private CommandName() {
+	}
+	
 	public static final String NO_SUCH_COMMAND = "no_such_command";
 	public static final String GO_TO_MAIN_PAGE = "go_to_main_page";
 	public static final String GO_TO_LOGIN_PAGE = "go_to_login_page";
 	public static final String LOGIN = "login";
 	public static final String LOGOUT = "logout";
 	public static final String SHOW_ALL_NEWS = "show_all_news";
+	public static final String SHOW_PREVIOUS_NEWS = "show_previous_news";
+	public static final String SHOW_NEXT_NEWS = "show_next_news";
 	public static final String SHOW_FULL_ARTICLE = "show_full_article";
 	public static final String SHOW_ALL_PLANS = "show_all_plans";
 	public static final String SHOW_FULL_PLAN = "show_full_plan";
@@ -75,5 +80,6 @@ public class CommandName {
 	public static final String GO_TO_PLAN_OPERATIONS_PAGE = "go_to_plan_operations_page";
 	public static final String GO_TO_SERVICE_OPERATIONS_PAGE = "go_to_service_operations_page";
 	public static final String GO_TO_ARTICLE_OPERATIONS_PAGE = "go_to_article_operations_page";
+	public static final String GO_TO_ALL_NEWS_PAGE = "go_to_all_news_page";
 
 }

@@ -1,6 +1,9 @@
 package by.epamjwd.mobile.controller.repository;
 
 public class AttributeName {
+	private AttributeName() {
+	}
+	
 	public static final String ARTICLE = "article";
 	public static final String PLAN = "plan";
 	public static final String ALL_PLANS = "all_plans";
@@ -53,5 +56,8 @@ public class AttributeName {
 	public static final String CONSULTATNT_LAST_NAME = "consultant_last_name";
 	public static final String CONSULTANT_ID = "consultant_id";
 	public static final String WRONG_DATA = "wrong_data";
+	public static final String CURRENT_IDX = "current_idx";
+	public static final String NO_PREVIOUS_NEWS = "no_previous_news";
+	public static final String NO_NEXT_NEWS = "no_next_news";
 
 }

@@ -1,6 +1,9 @@
 package by.epamjwd.mobile.controller.repository;
 
 public class AttributeValue {
+	private AttributeValue() {
+	}
+	
 	public static final String ERROR = "error";
 	public static final String ERROR_LOGIN = "error_login";
 	public static final String WRONG_DATA = "wrong_data";
