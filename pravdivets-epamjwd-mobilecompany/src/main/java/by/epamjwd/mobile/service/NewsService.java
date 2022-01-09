@@ -19,6 +19,8 @@ public interface NewsService {
 	public int getNextIdxExcluded(int lastIdxOld, int step) throws ServiceException;
 
 	public int getFirstIdx(int lastIdx);
+
+	int getLastIdx(int currentIdx);
 	
 	
 }

@@ -58,6 +58,15 @@ public class NewsServiceImpl implements NewsService {
 		return result;
 	}
 
+	
+	@Override
+	public int getLastIdx(int currentIdx) {
+		int lastIdx = currentIdx - (currentIdx % NewsIdx.STEP);
+		return lastIdx;
+	}
+
+	
+	
 	@Override
 	public int getFirstIdx(int lastIdx) {
 		int firstIdx = lastIdx - NewsIdx.STEP;

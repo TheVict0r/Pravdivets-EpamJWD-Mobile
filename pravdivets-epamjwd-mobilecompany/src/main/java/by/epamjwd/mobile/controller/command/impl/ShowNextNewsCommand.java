@@ -32,22 +32,30 @@ public class ShowNextNewsCommand implements Command {
 		NewsService newsService = ServiceProvider.getInstance().getNewsService();
 		HttpSession session = request.getSession();
 		
-		int lastIdx = NumericParser.parseIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
+		int currentIdx = NumericParser.parseIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
+		
+		int lastIdx = newsService.getLastIdx(currentIdx);
+		
 		int firstIdx = newsService.getFirstIdx(lastIdx);
 		
-
+		System.out.println(firstIdx);
+		
+		if((lastIdx - NewsIdx.STEP) == NewsIdx.FIRST_IDX_GLOBAL) {
+			session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
+		}
+		
 		session.removeAttribute(AttributeName.NO_PREVIOUS_NEWS);
 		
-		if(lastIdx == NumericParser.INVALID_VALUE) {
-			firstIdx = NewsIdx.FIRST_IDX_GLOBAL;
-			lastIdx = firstIdx + NewsIdx.STEP;
-			session.setAttribute(AttributeName.NO_PREVIOUS_NEWS, AttributeValue.TRUE);
-		}
+//		if(lastIdx == NumericParser.INVALID_VALUE) {
+//			firstIdx = NewsIdx.FIRST_IDX_GLOBAL;
+//			lastIdx = firstIdx + NewsIdx.STEP;
+//			session.setAttribute(AttributeName.NO_PREVIOUS_NEWS, AttributeValue.TRUE);
+//		}
 
 		try {
 			List<NewsArticle> newsBatch = newsService.buildNewsBatch(firstIdx, lastIdx);
 			session.setAttribute(AttributeName.NEWS, newsBatch);
-			session.setAttribute(AttributeName.CURRENT_IDX, lastIdx);
+			session.setAttribute(AttributeName.CURRENT_IDX, firstIdx);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain news list. ", e);
 			result = RouteHelper.ERROR_500;
