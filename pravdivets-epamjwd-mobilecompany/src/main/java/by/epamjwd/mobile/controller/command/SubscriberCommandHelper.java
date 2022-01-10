@@ -41,9 +41,8 @@ public class SubscriberCommandHelper {
 	public RouteHelper handleSubscriber(HttpServletRequest request, Subscriber subscriber) throws ServiceException {
 		RouteHelper result = null;
 		HttpSession session = request.getSession();
-		ServiceProvider provider = ServiceProvider.getInstance();
-		PlanService planService = provider.getPlanService();
-		UserService userService = provider.getUserService();
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
+		UserService userService = ServiceProvider.getInstance().getUserService();
 
 		session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
 
@@ -58,7 +57,7 @@ public class SubscriberCommandHelper {
 			session.setAttribute(AttributeName.SUBSCRIBER_USER, subscriberUser);
 		} else {
 			LOGGER.error("Can't find user for phone number - " + phone);
-			return RouteHelper.ERROR;
+			return RouteHelper.ERROR_404;
 		}
 		Optional<Plan> planOptional = planService.findPlanByID(subscriber.getPlanId());
 		if (planOptional.isPresent()) {

@@ -18,6 +18,16 @@
 	<div class="row justify-content-center display-4 mx-auto mb-1">
 		<fmt:message key="add-plan.new-plan" />
 	</div>
+
+	<div
+		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
+		<c:if test="${sessionScope.error eq 'plan_exist'}">
+
+			<fmt:message key="add-plan.plan-exist" />
+		</c:if>
+		<c:remove var="error" />
+	</div>
+
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_plan>
 			<table>

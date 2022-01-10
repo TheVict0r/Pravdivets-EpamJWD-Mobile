@@ -36,7 +36,7 @@
 	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=login">
-				<div class="text-center">
+			<div class="text-center">
 				<c:choose>
 					<c:when test="${sessionScope.error eq 'error_login'}">
 
@@ -51,7 +51,7 @@
 					</c:when>
 				</c:choose>
 				<c:remove var="error" />
-</div>
+			</div>
 			<table>
 				<tr>
 					<td><label for="login" class="form-label"> <fmt:message

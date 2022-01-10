@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.SubscriberStatus;
@@ -75,6 +76,44 @@ public class InputDataValidator {
 		return result;
 	}
 
+	
+	public static boolean isPlanValid(Plan plan) {
+		if (plan == null) {
+            return false;
+        }
+		
+		long id = plan.getId();
+		String name = plan.getName();
+		String description = plan.getDescription();
+		int regularPayment = plan.getRegularPayment();
+		int upfrontPayment = plan.getUpfrontPayment();
+		int priceWithinNetwork = plan.getPriceWithinNetwork();
+		int priceOtherNetworks = plan.getPriceOtherNetworks();
+		int priceAbroad = plan.getPriceAbroad();
+		int priceVideocall = plan.getPriceVideocall();
+		int priceSMS = plan.getPriceSMS();
+		int priceMMS = plan.getPriceMMS();
+		int priceInternet = plan.getPriceInternet();
+		
+		boolean result = false;
+		result = id >= 0 &&
+				name != null && !name.isBlank() &&
+				description != null && !description.isBlank() &&
+				regularPayment >= 0	&&
+				upfrontPayment >= 0 &&
+				priceWithinNetwork >=0 &&
+				priceOtherNetworks >=0 &&
+				priceAbroad >=0 &&
+				priceVideocall >=0 &&
+				priceSMS >=0 &&
+				priceMMS >=0 &&
+				priceInternet >=0;
+				
+				return result;
+	}
+
+	
+	
 	public static boolean isEmail(String anyString) {
 		return doesMatchePattern(anyString, EMAIL_REGEX);
 	}

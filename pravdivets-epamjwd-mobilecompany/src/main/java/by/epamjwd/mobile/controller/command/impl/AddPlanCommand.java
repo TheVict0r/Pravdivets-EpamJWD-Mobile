@@ -4,6 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -12,9 +15,17 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
+import by.epamjwd.mobile.service.PlanService;
+import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.service.impl.PlanServiceImpl;
 
 public class AddPlanCommand implements Command{
+	private final static Logger LOGGER = LogManager.getLogger(AddPlanCommand.class);
 
+	private final static long EMPTY_ID = 0L;
+	private final static long ERROR_ID = -1L;
+	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String name        = request.getParameter(ParameterName.NAME);
@@ -28,6 +39,9 @@ public class AddPlanCommand implements Command{
 		int sms            = NumericParser.parseIntValue(request.getParameter(ParameterName.SMS));
 		int mms            = NumericParser.parseIntValue(request.getParameter(ParameterName.MMS));
 		int internet       = NumericParser.parseIntValue(request.getParameter(ParameterName.INTERNET));
+		long newPlanID = EMPTY_ID;
+		
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		
 		HttpSession session = request.getSession();
 		
@@ -46,9 +60,26 @@ public class AddPlanCommand implements Command{
 				return new RouteHelper(PagePath.ADD_PLAN_REDIRECT, RouteMethod.REDIRECT);
 			}
 
+		try {
+			if(planService.isPlanExist(name)) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.PLAN_EXIST);
+				return new RouteHelper(PagePath.ADD_PLAN_REDIRECT, RouteMethod.REDIRECT);
+			}
+		} catch (ServiceException e) {
+			LOGGER.error("Error while checking is tarif plan exist by name - " + name, e);
+			return RouteHelper.ERROR_500;
+		}
 		
+		try {
+			newPlanID = planService.addNewPlan(planService.buildPlan(name, description, 
+					regularPayment, upfrontPayment, withinNetwork, otherNetworks, 
+					abroad, videocall, sms, mms, internet));
+		} catch (ServiceException e) {
+			LOGGER.error("Error while adding new plan", e);
+			return RouteHelper.ERROR_500;
+		}
 		
-		
+		//получить новый ТП по ID и вывести его на экран
 		return null;
 	}
 

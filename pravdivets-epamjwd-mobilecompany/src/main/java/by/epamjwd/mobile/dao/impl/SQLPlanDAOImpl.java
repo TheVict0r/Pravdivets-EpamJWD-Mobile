@@ -9,6 +9,7 @@ import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.PlanDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
+import by.epamjwd.mobile.dao.repository.DBColumnName;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
@@ -28,12 +29,27 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 		return findById(id);
 
 	}
+	
+	@Override
+	public Optional<Plan> getPlanByName(String name) throws DaoException {
+		String query = "SELECT * FROM " + DBTableName.PLANS + " WHERE " 
+	+ DBColumnName.PLANS_NAME + "= ?";
+		return executeQueryForSingleResult(query, name);
+		
+	}
 
 
 	@Override
 	public long save(Plan item) throws DaoException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public long addPlan(Plan plan) throws DaoException {
+		// TODO Auto-generated method stub
+		return ;
 	}
 
 }

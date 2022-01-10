@@ -32,5 +32,6 @@ public class AttributeValue {
 	public static final String GUEST = "guest";
 	public static final String EDIT = "edit";
 	public static final String DEACTIVATED = "deactivated";
+	public static final String PLAN_EXIST = "plan_exist";
 
 }

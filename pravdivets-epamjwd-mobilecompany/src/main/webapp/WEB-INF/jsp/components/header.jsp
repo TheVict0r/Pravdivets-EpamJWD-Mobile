@@ -43,8 +43,6 @@
 						href="${pageContext.request.contextPath}/controller?command=show_all_news"
 						style="font-size: 15px;"><fmt:message key="header.news" /></a></li>
 				</ul>
-
-
 				<div class="navbar actions text-end">
 					<ul class="navbar-nav me-auto">
 						<c:choose>

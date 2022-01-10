@@ -20,7 +20,7 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 import by.epamjwd.mobile.util.HashGenerator;
 
 public class UserServiceImpl implements UserService {
-	private static final long ERROR_ID = -1;
+	private final static long ERROR_ID = -1L;
 	private final static long EMPTY_ID = 0L;
 
 	
