@@ -43,6 +43,9 @@ public class AddSubscriberCommand implements Command{
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
 		CustomerService customerService = serviceProvider.getCustomerService();
 
+		long subscriberId = ERROR_ID; 
+		RouteHelper result = RouteHelper.ERROR;
+		
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
 		String phone = (String)session.getAttribute(AttributeName.PHONE);
 		String subscriberUserFlag = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG));
@@ -55,8 +58,6 @@ public class AddSubscriberCommand implements Command{
 				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 			}
 		
-		long subscriberId = ERROR_ID; 
-		RouteHelper result = null;
 		
 		if (subscriberUserFlag.equals(AttributeValue.NEW)) {
 				String firstName = request.getParameter(ParameterName.SUBSCRIBER_FIRST_NAME);
@@ -74,9 +75,9 @@ public class AddSubscriberCommand implements Command{
 			try {
 				if (userService.findUserByEmail(email).isPresent()) {
 						session.setAttribute(AttributeName.ERROR, AttributeValue.BOOKED_EMAIL);
-						session.setAttribute(AttributeName.SUBSCRIBER_USER_FIRST_NAME, firstName);
-						session.setAttribute(AttributeName.SUBSCRIBER_USER_MIDDLE_NAME, middleName);
-						session.setAttribute(AttributeName.SUBSCRIBER_USER_LAST_NAME, lastName);
+						session.setAttribute(AttributeName.SUBSCRIBER_FIRST_NAME, firstName);
+						session.setAttribute(AttributeName.SUBSCRIBER_MIDDLE_NAME, middleName);
+						session.setAttribute(AttributeName.SUBSCRIBER_LAST_NAME, lastName);
 						session.setAttribute(AttributeName.EMAIL, email);
 					return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 				}
@@ -88,9 +89,9 @@ public class AddSubscriberCommand implements Command{
 			removeUnusedAttributes(session);
 
 			try {
-				User user = this.buildUser(firstName, middleName, lastName, passport, email);
-				Subscriber subscriber = this.buildSubscriber(phone, planId, EMPTY_ID);
-				if(subscriber != null) {
+				User user = userService.buildUser(firstName, middleName, lastName, passport, email);
+				Subscriber subscriber = userService.buildSubscriber(phone, planId, EMPTY_ID);
+				if(subscriber != null) { // it can be null in the case if there is no plan with planId
 				subscriberId = customerService.addNewCustomer(user, subscriber);
 				} else {
 					result = RouteHelper.ERROR_404;
@@ -100,16 +101,21 @@ public class AddSubscriberCommand implements Command{
 				result = RouteHelper.ERROR_500;
 			}
 
-		} else  {
+		} else  { //This user already has a phone number. We can add another one.
 			User currentUser = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
+			
+			if(currentUser == null) {
+				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+			}
 			
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
 			removeUnusedAttributes(session);
 			
 			long userId = currentUser.getId();
 			try {
-				Subscriber subscriber = this.buildSubscriber(phone, planId, userId);
-				if(subscriber != null) {
+				Subscriber subscriber = userService.buildSubscriber(phone, planId, userId);
+				if(subscriber != null) { // it can be null in the case if there is no plan with planId
 				subscriberId = subscriberService.addNewSubscriberToExistingUser(subscriber);
 				} else {
 					result = RouteHelper.ERROR_404;
@@ -126,30 +132,6 @@ public class AddSubscriberCommand implements Command{
 		return result;
 	}
 
-	private User buildUser(String firstName, String middleName, String lastName, 
-			String passport, String email) {
-		User user = null;
-		user = new User(EMPTY_ID, null, firstName, middleName, lastName, 
-						passport, email, Role.SUBSCRIBER);
-		return user;
-	}
-	
-	private Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException {
-		Subscriber subscriber = null;
-		ServiceProvider serviceProvider = ServiceProvider.getInstance();	
-		PlanService planService = serviceProvider.getPlanService();
-		Optional<Plan> planOptional = planService.findPlanByID(planId);
-		if (planOptional.isPresent()) {
-		Plan plan = planOptional.get();	
-		
-		int account = plan.getUpfrontPayment();
-		
-		subscriber = new Subscriber(EMPTY_ID, new Date(), account, phone, 
-				new Date(), SubscriberStatus.ACTIVE, planId, userId);
-		}
-		return subscriber;
-	}
-	
 	private void removeUnusedAttributes(HttpSession session) {
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_FLAG);
 		session.removeAttribute(AttributeName.PASSPORT);

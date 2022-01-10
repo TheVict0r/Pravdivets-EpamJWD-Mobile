@@ -18,13 +18,13 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
+import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.service.PlanService;
 
-public class ShowFullPlanCommand implements Command {
+public class ShowFullPlanAdminCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowFullPlanCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(ShowFullPlanAdminCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -42,8 +42,8 @@ public class ShowFullPlanCommand implements Command {
 			Optional<Plan> planOptional = tariffPlanService.findPlanByID(id);
 			if(planOptional.isPresent()) {
 				Plan plan = planOptional.get();
-				request.setAttribute(AttributeName.PLAN, plan);
-				result = new RouteHelper(PagePath.PLAN, RouteMethod.FORWARD);
+				session.setAttribute(AttributeName.PLAN, plan);
+				result = new RouteHelper(PagePath.PLAN_ADMIN_REDIRECT, RouteMethod.REDIRECT);
 			} else {
 				result = RouteHelper.ERROR_404;
 			}

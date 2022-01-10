@@ -31,5 +31,6 @@ public class AttributeValue {
 	public static final String SIGN_UP = "sign_up";
 	public static final String GUEST = "guest";
 	public static final String EDIT = "edit";
+	public static final String DEACTIVATED = "deactivated";
 
 }

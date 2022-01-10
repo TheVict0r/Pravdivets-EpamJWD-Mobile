@@ -27,14 +27,21 @@
 			<h4 class="mb-2">
 				<fmt:message key="service-operations.edit-lead" />
 			</h4>
-		</div>
-
+		
+				<div class="col-sm-7 fw-light" > 
+		<table class="table ">
 			<c:forEach var="service" items="${requestScope.all_services}">
+				<tr>
+					<td>${service.name}</td>
+					<td><a
+							href="${pageContext.request.contextPath}/controller?command=show_full_service_admin&id=${service.id}"
+							class="card-link"><fmt:message key="main.details"/></a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		</div>
+		
 
-		<div>${service.name} - ЭДИТ</div>
-		 
-
-		</c:forEach>
 
 		<div>
 			<h4 class="py-2">
@@ -47,11 +54,12 @@
 				<fmt:message key="admin.add" />
 			</a>
 		</div>
-		<div class="d-grid col-5 py-5 mx-start ">
+		<div class="d-grid col-5 py-3 mx-start ">
 			<a class="btn btn-primary"
 				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
 					key="admin.to-admin" /></a>
 		</div>
+	</div>
 	</div>
 	<jsp:include page="components/footer.jsp" />
 </body>

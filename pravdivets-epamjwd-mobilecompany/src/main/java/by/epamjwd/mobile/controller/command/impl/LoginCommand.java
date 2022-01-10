@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
@@ -32,10 +33,9 @@ public class LoginCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ServiceProvider provider = ServiceProvider.getInstance();
-		UserService userService = provider.getUserService();
+		UserService userService = ServiceProvider.getInstance().getUserService();
+		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		User user = null;
-		SubscriberService subscriberService = provider.getSubscriberService();
 		Subscriber subscriber = null;
 		HttpSession session = request.getSession();
 		String path = null;
@@ -69,8 +69,8 @@ public class LoginCommand implements Command {
 		
 		if(user != null && userService.isPasswordCorrect(user, request.getParameter(ParameterName.PASSWORD))) {
 			session.setAttribute(AttributeName.USER_ID, user.getId());
-			session.setAttribute(AttributeName.FIRST_NAME, user.getFirstName());
-			session.setAttribute(AttributeName.LAST_NAME, user.getLastName());
+			session.setAttribute(AttributeName.FIRST_NAME_HEADER, user.getFirstName());
+			session.setAttribute(AttributeName.LAST_NAME_HEADER, user.getLastName());
 			session.setAttribute(AttributeName.ROLE, user.getRole());
 			path = findPathByUserRole(user.getRole());
 		} else {
@@ -81,6 +81,10 @@ public class LoginCommand implements Command {
 		if (subscriber != null && user != null) {
 			try {
 				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+				if(subscriber.getStatus() == SubscriberStatus.DEACTIVATED) {
+					result = SubscriberCommandHelper.getInstance().handleDeactivatedSubscriber(session);
+				}
+				
 			} catch (ServiceException e) {
 				LOGGER.error("Error in handling subscriber with ID - " + subscriber.getId(), e);
 				result = RouteHelper.ERROR_500;

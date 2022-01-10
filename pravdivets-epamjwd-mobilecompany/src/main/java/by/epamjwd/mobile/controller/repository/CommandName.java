@@ -16,6 +16,7 @@ public class CommandName {
 	public static final String SHOW_FULL_ARTICLE = "show_full_article";
 	public static final String SHOW_ALL_PLANS = "show_all_plans";
 	public static final String SHOW_FULL_PLAN = "show_full_plan";
+	public static final String SHOW_FULL_PLAN_ADMIN = "show_full_plan_admin";
 	public static final String SHOW_ALL_SERVICES = "show_all_services";
 	public static final String SHOW_FULL_SERVICE = "show_full_service";
 	public static final String SHOW_SUBSCRIBER_LIST_BY_USER_ID = "show_subscriber_list_by_user_id";
@@ -81,5 +82,8 @@ public class CommandName {
 	public static final String GO_TO_SERVICE_OPERATIONS_PAGE = "go_to_service_operations_page";
 	public static final String GO_TO_ARTICLE_OPERATIONS_PAGE = "go_to_article_operations_page";
 	public static final String GO_TO_ALL_NEWS_PAGE = "go_to_all_news_page";
+	public static final String GO_TO_PLAN_ADMIN_PAGE = "go_to_plan_admin_page";
+	public static final String SHOW_FULL_SERVICE_ADMIN = "show_full_service_admin";
+	public static final String GO_TO_SERVICE_ADMIN_PAGE = "go_to_service_admin_page";
 
 }

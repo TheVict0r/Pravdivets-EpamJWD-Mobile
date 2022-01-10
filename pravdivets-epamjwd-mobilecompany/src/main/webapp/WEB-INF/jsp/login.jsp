@@ -36,13 +36,23 @@
 	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="POST" action="controller?command=login">
+				<div class="text-center">
+				<c:choose>
+					<c:when test="${sessionScope.error eq 'error_login'}">
+
+						<p class="text-danger">
+							<fmt:message key="login.check-data" />
+						</p>
+					</c:when>
+					<c:when test="${sessionScope.error eq 'deactivated'}">
+						<p class="text-danger">
+							<fmt:message key="login.deactivated" />
+						</p>
+					</c:when>
+				</c:choose>
+				<c:remove var="error" />
+</div>
 			<table>
-				<c:if test="${sessionScope.error eq 'error_login'}">
-					<p class="text-danger">
-						<fmt:message key="login.check-data" />
-					</p>
-					<c:remove var="error" />
-				</c:if>
 				<tr>
 					<td><label for="login" class="form-label"> <fmt:message
 								key="login.phone-number" /> <span

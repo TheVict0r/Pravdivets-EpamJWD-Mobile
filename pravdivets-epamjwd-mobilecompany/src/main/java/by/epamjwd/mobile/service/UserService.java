@@ -3,6 +3,7 @@ package by.epamjwd.mobile.service;
 
 import java.util.Optional;
 
+import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
@@ -24,4 +25,8 @@ public interface UserService {
 	int sendCodeByMail(String phone) throws ServiceException;
 	boolean isEmailBooked(String email) throws ServiceException;
 	boolean isPassportBooked(String passport) throws ServiceException;
+	User buildConsultant(String firstName, String middleName, String lastName, String password, String passport,
+			String email);
+	Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException;
+	User buildUser(String firstName, String middleName, String lastName, String passport, String email);
 }

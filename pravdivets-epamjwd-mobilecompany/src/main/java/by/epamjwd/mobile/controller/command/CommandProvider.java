@@ -26,8 +26,10 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToMainPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToNewPasswordPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPasswordRepairPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPhoneRequestPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToPlanAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPlanOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToProfilePageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToServiceAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToServiceOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToConsultantOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToEditConsultantPageCommand;
@@ -43,7 +45,9 @@ import by.epamjwd.mobile.controller.command.impl.CodeReturnCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByFullNameCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowSubscriberListByPassportCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullArticleCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowFullPlanAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullPlanCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowFullServiceAdminCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowFullServiceCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowNextNewsCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowPreviousNewsCommand;
@@ -99,8 +103,11 @@ public class CommandProvider {
 		allCommands.put(CommandName.SHOW_FULL_ARTICLE, new ShowFullArticleCommand());
 		allCommands.put(CommandName.SHOW_ALL_PLANS, new ShowAllPlansCommand());
 		allCommands.put(CommandName.SHOW_FULL_PLAN, new ShowFullPlanCommand());
+		allCommands.put(CommandName.SHOW_FULL_PLAN_ADMIN, new ShowFullPlanAdminCommand());
+		allCommands.put(CommandName.GO_TO_PLAN_ADMIN_PAGE, new GoToPlanAdminPageCommand());
 		allCommands.put(CommandName.SHOW_ALL_SERVICES, new ShowAllServicesCommand());
 		allCommands.put(CommandName.SHOW_FULL_SERVICE, new ShowFullServiceCommand());
+		allCommands.put(CommandName.SHOW_FULL_SERVICE_ADMIN, new ShowFullServiceAdminCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID, new ShowSubscriberListByUserIdCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME, new ShowSubscriberListByFullNameCommand());
 		allCommands.put(CommandName.SHOW_SUBSCRIBER_LIST_BY_PASSPORT, new ShowSubscriberListByPassportCommand());
@@ -161,6 +168,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_PLAN_OPERATIONS_PAGE, new GoToPlanOperationsPageCommand());
 		allCommands.put(CommandName.GO_TO_SERVICE_OPERATIONS_PAGE, new GoToServiceOperationsPageCommand());
 		allCommands.put(CommandName.GO_TO_ARTICLE_OPERATIONS_PAGE, new GoToArticleOperationsPageCommand());
+		allCommands.put(CommandName.GO_TO_SERVICE_ADMIN_PAGE, new GoToServiceAdminPageCommand());
 
 	}
 

@@ -1,6 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +28,7 @@ public class ShowFullServiceCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ServiceProvider provider = ServiceProvider.getInstance();
-		ServiceService serviceService = provider.getServiceService();
+		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
 		HttpSession session = request.getSession();
 		
 		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
@@ -39,7 +37,7 @@ public class ShowFullServiceCommand implements Command{
 			return RouteHelper.ERROR_404;
 		}
 
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 		try {
 			Optional<Service> serviceOptional = serviceService.findServiceByID(id);
 			if (serviceOptional.isPresent()) {

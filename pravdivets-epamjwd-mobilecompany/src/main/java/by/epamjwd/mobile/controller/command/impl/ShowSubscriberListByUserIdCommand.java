@@ -42,8 +42,7 @@ public class ShowSubscriberListByUserIdCommand implements Command {
 			return RouteHelper.ERROR_404;
 		}
 		
-		ServiceProvider provider = ServiceProvider.getInstance();
-		SubscriberService subscriberService = provider.getSubscriberService();
+		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 
 		RouteHelper result = null;
 		try {

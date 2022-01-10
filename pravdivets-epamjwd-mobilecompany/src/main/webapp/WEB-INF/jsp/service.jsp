@@ -21,7 +21,7 @@
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-4">
 		<span class="display-5 text-left ">${requestScope.service.name}</span>
 		<span class="display-7">${requestScope.service.description}</span>
-		<span class="fs-5"><b>Стоимость предоставления услуги — ${service.tarif/100} руб.</b></span> 
+		<span class="fs-5"><b><fmt:message key="service.price" />${service.tarif/100} <fmt:message key="service.rub" /></b></span> 
 	</div>
 	<br/>
 	<jsp:include page="components/footer.jsp" />

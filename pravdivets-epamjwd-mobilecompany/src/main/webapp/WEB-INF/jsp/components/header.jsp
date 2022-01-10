@@ -75,7 +75,7 @@
 
 				<div class="navbar actions text-end">
 					<c:choose>
-						<c:when test="${sessionScope.last_name == null}">
+						<c:when test="${sessionScope.last_name_header == null}">
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 								<a class="btn btn-outline-primary me-md-1" type="button"
 									href="${pageContext.request.contextPath}/controller?command=go_to_login_page"><fmt:message
@@ -89,8 +89,8 @@
 							<ul class="navbar-nav me-auto">
 								<li class="nav-item fw-bold"><a
 									class="nav-link text-dark me-md-3"
-									href="${pageContext.request.contextPath}/controller?command=go_to_profile_page">${sessionScope.first_name}
-										${sessionScope.last_name}</a></li>
+									href="${pageContext.request.contextPath}/controller?command=go_to_profile_page">${sessionScope.first_name_header}
+										${sessionScope.last_name_header}</a></li>
 								<li class="nav-item"><a class="btn btn-primary me-2"
 									href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message
 											key="header.sign-out" /></a></li>

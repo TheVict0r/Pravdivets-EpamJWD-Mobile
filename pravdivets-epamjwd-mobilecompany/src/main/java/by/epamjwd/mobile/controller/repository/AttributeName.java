@@ -14,9 +14,9 @@ public class AttributeName {
 	public static final String FIRST_NAME = "first_name";
 	public static final String MIDDLE_NAME = "middle_name";
 	public static final String LAST_NAME = "last_name";
-	public static final String SUBSCRIBER_USER_FIRST_NAME = "subscriber_user_first_name";
-	public static final String SUBSCRIBER_USER_MIDDLE_NAME = "subscriber_user_middle_name";
-	public static final String SUBSCRIBER_USER_LAST_NAME = "subscriber_user_last_name";
+	public static final String SUBSCRIBER_FIRST_NAME = "subscriber_first_name";
+	public static final String SUBSCRIBER_MIDDLE_NAME = "subscriber_middle_name";
+	public static final String SUBSCRIBER_LAST_NAME = "subscriber_last_name";
 
 	public static final String USER_ID = "user_id";
 	public static final String EMAIL = "email";
@@ -59,5 +59,7 @@ public class AttributeName {
 	public static final String CURRENT_IDX = "current_idx";
 	public static final String NO_PREVIOUS_NEWS = "no_previous_news";
 	public static final String NO_NEXT_NEWS = "no_next_news";
+	public static final String FIRST_NAME_HEADER = "first_name_header";
+	public static final String LAST_NAME_HEADER = "last_name_header";
 
 }

@@ -87,7 +87,7 @@ public class AddConsultantCommand implements Command{
 		clearAttributes(session);
 		
 		try {
-			consultantId = userService.addNewUser(buildConsultant(firstName, middleName, lastName, 
+			consultantId = userService.addNewUser(userService.buildConsultant(firstName, middleName, lastName, 
 					request.getParameter(ParameterName.PASSWORD1), passport, email));
 			session.setAttribute(AttributeName.CONSULTANT_ID, consultantId);
 			result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
@@ -125,13 +125,5 @@ public class AddConsultantCommand implements Command{
 		session.removeAttribute(AttributeName.EMAIL);
 	}
 	
-	private User buildConsultant(String firstName, String middleName, String lastName, 
-			String password, String passport, String email) {
-		User user = null;
-		user = new User(EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
-						passport, email, Role.CONSULTANT);
-		return user;
-	}
-
 	
 }

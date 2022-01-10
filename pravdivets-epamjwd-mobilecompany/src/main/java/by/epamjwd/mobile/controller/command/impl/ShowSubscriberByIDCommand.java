@@ -39,6 +39,7 @@ public class ShowSubscriberByIDCommand implements Command{
 				id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
 			}
 
+			
 			if(id == NumericParser.INVALID_VALUE) {
 				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return RouteHelper.ERROR_404;
@@ -57,6 +58,9 @@ public class ShowSubscriberByIDCommand implements Command{
 			LOGGER.error("Error while getting subscriber data for ID - " + id, e);
 			result = RouteHelper.ERROR_500;
 		}
+		
+
+		
 		return result;
 	}
 

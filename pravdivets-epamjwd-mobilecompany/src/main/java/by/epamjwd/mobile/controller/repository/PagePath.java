@@ -75,5 +75,9 @@ public class PagePath {
 	public static final String SERVICE_OPERATIONS_REDIRECT = "/controller?command=go_to_service_operations_page";
 	public static final String ARTICLE_OPERATIONS = "WEB-INF/jsp/article-operations.jsp";
 	public static final String ARTICLE_OPERATIONS_REDIRECT = "/controller?command=go_to_article_operations_page";
+	public static final String PLAN_ADMIN_REDIRECT = "/controller?command=go_to_plan_admin_page";
+	public static final String PLAN_ADMIN = "WEB-INF/jsp/plan-admin.jsp";
+	public static final String SERVICE_ADMIN_REDIRECT = "/controller?command=go_to_service_admin_page";
+	public static final String SERVICE_ADMIN = "WEB-INF/jsp/service-admin.jsp";
 
 }

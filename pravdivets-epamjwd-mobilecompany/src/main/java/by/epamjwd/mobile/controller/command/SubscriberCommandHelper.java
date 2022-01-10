@@ -10,11 +10,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Plan;
+import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -58,13 +61,19 @@ public class SubscriberCommandHelper {
 			return RouteHelper.ERROR;
 		}
 		Optional<Plan> planOptional = planService.findPlanByID(subscriber.getPlanId());
-		if(planOptional.isPresent()) {
-		Plan plan = planOptional.get();
-		session.setAttribute(AttributeName.PLAN, plan);
-		result = new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+		if (planOptional.isPresent()) {
+			Plan plan = planOptional.get();
+			session.setAttribute(AttributeName.PLAN, plan);
+			result = new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 		} else {
 			result = RouteHelper.ERROR_404;
 		}
+		
+		if(subscriber.getStatus() == SubscriberStatus.DEACTIVATED 
+				&& (Role)(session.getAttribute(AttributeName.ROLE)) == Role.SUBSCRIBER) {
+			result = handleDeactivatedSubscriber(session);
+		}
+		
 		return result;
 	}
 
@@ -96,6 +105,16 @@ public class SubscriberCommandHelper {
 		return result;
 	}
 
+	public RouteHelper handleDeactivatedSubscriber (HttpSession session) {
+			session.setAttribute(AttributeName.ERROR, AttributeValue.DEACTIVATED);
+			session.removeAttribute(AttributeName.USER_ID);
+			session.removeAttribute(AttributeName.FIRST_NAME_HEADER);
+			session.removeAttribute(AttributeName.LAST_NAME_HEADER);
+			session.removeAttribute(AttributeName.ROLE);
+			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
+		}
+
+	
 	public void clearSessionFromSubscriberAttributes(HttpSession session) {
 		session.removeAttribute(AttributeName.SUBSCRIBER);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);

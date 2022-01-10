@@ -28,9 +28,18 @@
 				<fmt:message key="plan-operations.edit-lead" />
 			</h4>
 		</div>
+		<div class="col-sm-7 fw-light" > 
+		<table class="table ">
 			<c:forEach var="plan" items="${requestScope.all_plans}">
-			<div>${plan.name} ${plan.regularPayment/100} - ЭДИТ</div>
-		</c:forEach>
+				<tr>
+					<td>${plan.name}</td>
+					<td><a
+							href="${pageContext.request.contextPath}/controller?command=show_full_plan_admin&id=${plan.id}"
+							class="card-link"><fmt:message key="main.details"/></a></td>
+				</tr>
+			</c:forEach>
+		</table>
+		</div>
 		<div>
 			<h4 class="py-2">
 				<fmt:message key="plan-operations.add" />
