@@ -29,11 +29,7 @@
 			</h4>
 		</div>
 			<c:forEach var="plan" items="${requestScope.all_plans}">
-		<div>
-		${plan.name}
-		${plan.regularPayment/100}
-		 - ЭДИТ
-		</div>
+			<div>${plan.name} ${plan.regularPayment/100} - ЭДИТ</div>
 		</c:forEach>
 		<div>
 			<h4 class="py-2">
