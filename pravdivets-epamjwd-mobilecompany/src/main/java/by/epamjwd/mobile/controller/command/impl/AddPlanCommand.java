@@ -80,7 +80,7 @@ public class AddPlanCommand implements Command{
 		}
 		
 		//получить новый ТП по ID и вывести его на экран
-		return null;
+		return new RouteHelper(PagePath.PLAN_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 	}
 
 }

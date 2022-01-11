@@ -13,7 +13,25 @@ import by.epamjwd.mobile.dao.repository.DBColumnName;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
 public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
-
+	public final static String COMMA = ", ";
+	public final static String QUESTION_MARK = "=?, ";
+	
+	public final static String ADD_NEW_PLAN = "INSERT INTO " +
+			DBTableName.PLANS + "(" + 
+			DBColumnName.PLANS_NAME + COMMA + 
+			DBColumnName.PLANS_REGULAR_PAYMENT + COMMA +
+			DBColumnName.PLANS_WITHIN_NETWORK + COMMA +
+			DBColumnName.PLANS_OTHER_NETWORKS + COMMA +
+			DBColumnName.PLANS_ABROAD + COMMA +
+			DBColumnName.PLANS_VIDEOCALL + COMMA +
+			DBColumnName.PLANS_SMS + COMMA +
+			DBColumnName.PLANS_MMS + COMMA +
+			DBColumnName.PLANS_INTERNET + COMMA +
+			DBColumnName.PLANS_DESCRIPTION + COMMA +
+			DBColumnName.PLANS_UPFRONT_PAYMENT + 
+			") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	
 	public SQLPlanDAOImpl() {
 		super(RowMapperFactory.getInstance().getPlanRowMapper(), DBTableName.PLANS);
 	}
@@ -48,8 +66,9 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 
 	@Override
 	public long addPlan(Plan plan) throws DaoException {
-		// TODO Auto-generated method stub
-		return ;
+		long planId;
+		Object[] params = SQLParametersHelper.provideNewPlanParameters(plan);
+		planId = executeInsertQuery(ADD_NEW_PLAN, params);
+		return planId;
 	}
-
 }

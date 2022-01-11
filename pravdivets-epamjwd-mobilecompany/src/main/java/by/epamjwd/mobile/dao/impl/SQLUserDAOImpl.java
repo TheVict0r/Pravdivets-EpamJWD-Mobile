@@ -133,11 +133,8 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	@Override
 	public long addUser(User user) throws DaoException {
 		long userId;
-		
 		Object[] params = SQLParametersHelper.provideNewUserParameters(user);
-			
 		userId = executeInsertQuery(ADD_NEW_USER, params);
-		
 		return userId;
 	}
 	

@@ -16,7 +16,7 @@
 	<jsp:include page="components/header.jsp" />
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 ">
 		<span class="display-6 text-center py-4"><fmt:message key="plan.plan"/></span> 
-		<span class="display-3 text-center">${requestScope.plan.name}</span> 
+		<span class="display-4 text-center">${sessionScope.plan.name}</span> 
 		<p class="lead text-center mb-1">${plan.description}</p>
 		<table class="table table-striped">
 			<thead class="thead-dark">

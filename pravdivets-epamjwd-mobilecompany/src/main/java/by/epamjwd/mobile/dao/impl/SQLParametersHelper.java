@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 
@@ -51,8 +52,24 @@ public class SQLParametersHelper {
 		return subscriberParameters;
 	}
 
+	public static Object[] provideNewPlanParameters(Plan plan) {
+		Object[] planParameters = {
+				plan.getName(),
+				plan.getRegularPayment(),
+				plan.getPriceWithinNetwork(),
+				plan.getPriceOtherNetworks(),
+				plan.getPriceAbroad(),
+				plan.getPriceVideocall(),
+				plan.getPriceSMS(),
+				plan.getPriceMMS(),
+				plan.getPriceInternet(),
+				plan.getDescription(),
+				plan.getUpfrontPayment()
+				};
+		
+		return planParameters;
+	}
 	
-//	"UPDATE subscribers SET phone=?, status_date=?, status_id=?, plan_id=? WHERE id=?";
 	
 	public static Object[] provideUpdateSubscriberParameters(Subscriber subscriber) {
 		Object[] subscriberParameters = {
