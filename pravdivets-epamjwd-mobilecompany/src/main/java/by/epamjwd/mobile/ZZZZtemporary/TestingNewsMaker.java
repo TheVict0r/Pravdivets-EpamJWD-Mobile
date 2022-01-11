@@ -2,7 +2,7 @@ package by.epamjwd.mobile.ZZZZtemporary;
 
 import java.util.Optional;
 
-import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 
@@ -25,7 +25,7 @@ public class TestingNewsMaker {
 //		System.out.println(newsArticles.get(newsArticles.size()-3));
 		
 		SQLNewsDAOImpl dao = new SQLNewsDAOImpl();
-		Optional<NewsArticle> article = dao.getArticleByID(10);
+		Optional<Article> article = dao.getArticleByID(10);
 		
 		System.out.println(article);
 		

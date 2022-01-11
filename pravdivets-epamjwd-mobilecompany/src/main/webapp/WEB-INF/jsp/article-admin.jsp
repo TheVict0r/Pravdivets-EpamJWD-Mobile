@@ -15,9 +15,6 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 
-		<div class="col-sm" id="promo">
-			<img src="pic/article.jpg" class="img-fluid" alt="mobile">
-		</div>
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-2">
 		<span class="display-6 text-left d-flex align-items-center">${sessionScope.article.title}</span>
 		 <span class="display-7 text-left d-flex"><em> ${sessionScope.article.date}</em></span>

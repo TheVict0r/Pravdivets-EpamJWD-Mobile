@@ -5,7 +5,7 @@ import by.epamjwd.mobile.service.impl.AdminServiceImpl;
 import by.epamjwd.mobile.service.impl.BillServiceImpl;
 import by.epamjwd.mobile.service.impl.ConsultantServiceImpl;
 import by.epamjwd.mobile.service.impl.CustomerServiceImpl;
-import by.epamjwd.mobile.service.impl.NewsServiceImpl;
+import by.epamjwd.mobile.service.impl.ArticleServiceImpl;
 import by.epamjwd.mobile.service.impl.ServiceServiceImpl;
 import by.epamjwd.mobile.service.impl.PlanServiceImpl;
 import by.epamjwd.mobile.service.impl.UserServiceImpl;
@@ -17,7 +17,7 @@ public class ServiceProvider {
 	private CustomerService customerService     = new CustomerServiceImpl();
 	private AdminService adminService           = new AdminServiceImpl();
 	private ConsultantService consultantService = new ConsultantServiceImpl();
-	private NewsService newsService             = new NewsServiceImpl();
+	private ArticleService articleService       = new ArticleServiceImpl();
 	private PlanService planService             = new PlanServiceImpl();
 	private ServiceService serviceService       = new ServiceServiceImpl();
 	private BillService billService             = new BillServiceImpl();
@@ -46,8 +46,8 @@ public class ServiceProvider {
 		return consultantService;
 	}
 
-	public NewsService getNewsService() {
-		return newsService;
+	public ArticleService getArticleService() {
+		return articleService;
 	}
 
 	public UserService getUserService() {

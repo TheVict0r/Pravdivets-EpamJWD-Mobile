@@ -9,12 +9,12 @@ import java.util.Locale;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class NewsArticle implements Identifiable, Serializable {
+public class Article implements Identifiable, Serializable {
 
 	private static final long serialVersionUID = 5492324511728285746L;
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-	private final static Logger LOGGER = LogManager.getLogger(NewsArticle.class);
+	private final static Logger LOGGER = LogManager.getLogger(Article.class);
 	
 	
 	private long id;
@@ -23,11 +23,11 @@ public class NewsArticle implements Identifiable, Serializable {
 	private String lead;
 	private String text;
 	
-	public NewsArticle() {
+	public Article() {
 		
 	}
 
-	public NewsArticle(long id, Date date, String title, String lead, String text) {
+	public Article(long id, Date date, String title, String lead, String text) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -113,7 +113,7 @@ public class NewsArticle implements Identifiable, Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		NewsArticle other = (NewsArticle) obj;
+		Article other = (Article) obj;
 		if (date == null) {
 			if (other.date != null)
 				return false;

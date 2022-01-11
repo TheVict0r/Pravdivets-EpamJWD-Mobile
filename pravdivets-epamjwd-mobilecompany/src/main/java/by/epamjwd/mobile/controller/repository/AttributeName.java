@@ -73,5 +73,6 @@ public class AttributeName {
 	public static final String MMS = "mms";
 	public static final String INTERNET = "internet";
 	public static final String TARIFF = "tariff";
+	public static final String ARTICLE_ID = "article_id";
 
 }

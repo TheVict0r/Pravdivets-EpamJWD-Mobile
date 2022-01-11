@@ -13,7 +13,9 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToAddServicePageComma
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAddSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToAllnewsPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToArticleAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToArticleOperationsPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToArticlePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCalculatorPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToChangePasswordPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeReturnPageCommand;
@@ -80,6 +82,7 @@ import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
 import by.epamjwd.mobile.controller.command.impl.AddSubscriberPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowAllServicesCommand;
+import by.epamjwd.mobile.controller.command.impl.ShowArticleByIdCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowBestPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowConsultantByEmailCommand;
 import by.epamjwd.mobile.controller.command.impl.ShowConsultantByIdCommand;
@@ -172,7 +175,10 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_SERVICE_PAGE, new GoToServicePageCommand());
 		allCommands.put(CommandName.GO_TO_SERVICE_OPERATIONS_PAGE, new GoToServiceOperationsPageCommand());
 		allCommands.put(CommandName.GO_TO_ARTICLE_OPERATIONS_PAGE, new GoToArticleOperationsPageCommand());
+		allCommands.put(CommandName.GO_TO_ARTICLE_PAGE, new GoToArticlePageCommand());
 		allCommands.put(CommandName.GO_TO_SERVICE_ADMIN_PAGE, new GoToServiceAdminPageCommand());
+		allCommands.put(CommandName.GO_TO_ARTICLE_ADMIN_PAGE, new GoToArticleAdminPageCommand());
+		allCommands.put(CommandName.SHOW_ARTICLE_BY_ID, new ShowArticleByIdCommand());
 
 	}
 

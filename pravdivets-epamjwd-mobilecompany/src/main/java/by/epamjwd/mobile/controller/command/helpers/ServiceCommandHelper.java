@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.controller.command;
+package by.epamjwd.mobile.controller.command.helpers;
 
 import java.util.Optional;
 
@@ -23,12 +23,12 @@ public class ServiceCommandHelper {
 		return Holder.INSTANCE;
 	}
 	
-	public RouteHelper handleServiceByID(HttpSession session, long newServiceID, String pagePath,
+	public RouteHelper handleServiceByID(HttpSession session, long serviceID, String pagePath,
 			Logger logger) {
 		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
 		RouteHelper result = RouteHelper.ERROR;
 		try {
-			Optional<Service> serviceOptional = serviceService.findServiceByID(newServiceID);
+			Optional<Service> serviceOptional = serviceService.findServiceByID(serviceID);
 			if (serviceOptional.isPresent()) {
 				Service service = serviceOptional.get();
 				session.setAttribute(AttributeName.SERVICE, service);
@@ -37,7 +37,7 @@ public class ServiceCommandHelper {
 				result = RouteHelper.ERROR_404;
 			}
 		} catch (ServiceException e) {
-			logger.error("Unable to obtain full service data for ID " + newServiceID, e);
+			logger.error("Unable to obtain full service data for ID " + serviceID, e);
 			result = RouteHelper.ERROR_500;
 		}
 		return result;

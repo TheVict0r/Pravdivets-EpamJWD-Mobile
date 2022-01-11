@@ -54,4 +54,6 @@ public class ParameterName {
 	public static final String OLD_PASSWORD = "old_password";
 	public static final String NEW_PASSWORD1 = "new_password1";
 	public static final String NEW_PASSWORD2 = "new_password2";
+	public static final String ARTICLE_ID = "article_id";
+
 }

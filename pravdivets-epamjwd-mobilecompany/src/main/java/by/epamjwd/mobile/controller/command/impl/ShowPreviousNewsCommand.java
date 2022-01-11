@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -18,7 +18,7 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.NewsIdx;
 import by.epamjwd.mobile.controller.repository.PagePath;
-import by.epamjwd.mobile.service.NewsService;
+import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
@@ -29,7 +29,7 @@ public class ShowPreviousNewsCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
-		NewsService newsService = ServiceProvider.getInstance().getNewsService();
+		ArticleService newsService = ServiceProvider.getInstance().getArticleService();
 		HttpSession session = request.getSession();
 
 		int firstIdx = NumericParser.parseIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
@@ -45,7 +45,7 @@ public class ShowPreviousNewsCommand implements Command {
 		try {
 			if (newsService.isNextIdxAvailable(firstIdx)) {
 				lastIdxExcluded = newsService.getNextIdxExcluded(firstIdx, NewsIdx.STEP);
-				List<NewsArticle> newsBatch = newsService.buildNewsBatch(firstIdx, lastIdxExcluded);
+				List<Article> newsBatch = newsService.buildArticlesBatch(firstIdx, lastIdxExcluded);
 				session.setAttribute(AttributeName.NEWS, newsBatch);
 				session.setAttribute(AttributeName.CURRENT_IDX, lastIdxExcluded);
 				if (!newsService.isNextIdxAvailable(lastIdxExcluded)) {

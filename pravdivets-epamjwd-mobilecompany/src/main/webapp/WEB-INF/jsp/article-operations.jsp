@@ -29,27 +29,22 @@
 			</h4>
 		</div>
 		<div class="col-md-12">
-			<c:if test="${sessionScope.error eq 'error'}">
+			<c:if test="${sessionScope.error eq 'no_article'}">
 				<span class="fw-normal fs-6 text-danger"> <fmt:message
-						key="consultant-operations.null-subscriber" />
-				</span>
-			</c:if>
-			<c:if test="${sessionScope.error eq 'wrong_data'}">
-				<span class="fw-normal fs-6 text-danger"> <fmt:message
-						key="global.wrong-data" />
+						key="article-operations.no-article" />
 				</span>
 			</c:if>
 			<c:remove var="error" />
 		</div>
 		<form class="row mb-3" method="POST"
-			action="controller?command=show_consultant_by_email">
-			<label for="email" class="form-label"><fmt:message
+			action="controller?command=show_article_by_id">
+			<label for="article_id" class="form-label"><fmt:message
 					key="article-operations.find-by-id" /></label>
 			<div class="col-md-3">
-				<input type="email" class="form-control" name="email" id="email"
-					placeholder="ivanov@mail.com" value="${sessionScope.email}"
+				<input type="number" class="form-control" name="article_id" id="article_id"
+					placeholder="123" value="${sessionScope.article_id}"
 					required>
-				<c:remove var="email" />
+				<c:remove var="article_id" />
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark" value="OK">

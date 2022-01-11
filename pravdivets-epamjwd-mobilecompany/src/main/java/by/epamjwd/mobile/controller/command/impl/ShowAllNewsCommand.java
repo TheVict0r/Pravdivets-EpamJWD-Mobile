@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -17,7 +17,7 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.NewsIdx;
 import by.epamjwd.mobile.controller.repository.PagePath;
-import by.epamjwd.mobile.service.NewsService;
+import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
@@ -29,7 +29,7 @@ public class ShowAllNewsCommand implements Command {
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		NewsService newsService = ServiceProvider.getInstance().getNewsService();
+		ArticleService newsService = ServiceProvider.getInstance().getArticleService();
 		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
@@ -38,7 +38,7 @@ public class ShowAllNewsCommand implements Command {
 		int lastIdx = NewsIdx.FIRST_IDX_GLOBAL + NewsIdx.STEP;
 		
 		try {
-		List<NewsArticle> newsBatch = newsService.buildNewsBatch(NewsIdx.FIRST_IDX_GLOBAL, lastIdx );
+		List<Article> newsBatch = newsService.buildArticlesBatch(NewsIdx.FIRST_IDX_GLOBAL, lastIdx );
 		session.setAttribute(AttributeName.NEWS, newsBatch);
 		session.setAttribute(AttributeName.CURRENT_IDX, lastIdx);
 		result = new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);

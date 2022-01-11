@@ -15,7 +15,7 @@ public class DAOProvider {
 	private SubscriberDAO subscriberDAO = new SQLSubscriberDAOImpl();
 	private AdminDAO adminDAO           = new SQLAdminDAOImpl();
 	private ConsultantDAO consultantDAO = new SQLConsultantDAOImpl();
-	private NewsDAO newsDao             = new SQLNewsDAOImpl();
+	private ArticleDAO newsDao             = new SQLNewsDAOImpl();
 	private UserDAO userDAO             = new SQLUserDAOImpl();
 	private BillDAO billDAO             = new SQLBillDAOImpl();
 	private CustomerDAO customerDAO     = new SQLCustomerDAOImpl();
@@ -48,7 +48,7 @@ public class DAOProvider {
 	}
 
 
-	public NewsDAO getNewsDao() {
+	public ArticleDAO getNewsDao() {
 		return newsDao;
 	}
 

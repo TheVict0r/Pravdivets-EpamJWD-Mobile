@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
 
@@ -17,7 +17,7 @@ public class NewsProviderTest {
 			throws ServletException, IOException, DaoException {
 
 		SQLNewsDAOImpl newsMaker = new SQLNewsDAOImpl();
-		List<NewsArticle> list = newsMaker.getAllNews();
+		List<Article> list = newsMaker.getAllArticles();
 
 		request.setAttribute("news", list);
 		request.getRequestDispatcher(page).forward(request, response);

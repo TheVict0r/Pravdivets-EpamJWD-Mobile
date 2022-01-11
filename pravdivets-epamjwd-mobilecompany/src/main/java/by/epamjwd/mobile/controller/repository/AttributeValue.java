@@ -34,5 +34,6 @@ public class AttributeValue {
 	public static final String DEACTIVATED = "deactivated";
 	public static final String PLAN_EXIST = "plan_exist";
 	public static final String SERVICE_EXIST = "service_exist";
+	public static final String NO_ARTICLE = "no_article";
 
 }

@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 
-import by.epamjwd.mobile.bean.NewsArticle;
+import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.dao.AbstractDao;
-import by.epamjwd.mobile.dao.NewsDAO;
+import by.epamjwd.mobile.dao.ArticleDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
-public class SQLNewsDAOImpl extends AbstractDao<NewsArticle> implements NewsDAO {
+public class SQLNewsDAOImpl extends AbstractDao<Article> implements ArticleDAO {
 
 	
 	public SQLNewsDAOImpl() {
@@ -20,18 +20,18 @@ public class SQLNewsDAOImpl extends AbstractDao<NewsArticle> implements NewsDAO 
 	}
 
 	@Override
-	public List<NewsArticle> getAllNews() throws DaoException {
+	public List<Article> getAllArticles() throws DaoException {
 		return findALLDescending();
 	}
 
 	@Override
-	public Optional<NewsArticle> getArticleByID(long id) throws DaoException {
+	public Optional<Article> getArticleByID(long id) throws DaoException {
 		return findById(id);
 	}
 
 
 	@Override
-	public long save(NewsArticle item) throws DaoException {
+	public long save(Article item) throws DaoException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
