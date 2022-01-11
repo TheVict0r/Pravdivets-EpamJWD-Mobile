@@ -20,7 +20,7 @@
 		class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-4">
 		<span class="display-5 text-left ">${sessionScope.service.name}</span>
 		<span class="display-7">${sessionScope.service.description}</span> <span
-			class="fs-5"><b><fmt:message key="service.price" />${sessionScope.service.tarif/100}
+			class="fs-5"><b><fmt:message key="service.price" />${sessionScope.service.tariff/100}
 				<fmt:message key="service.rub" /></b></span>
 		<div class="d-grid col-6 py-2 mx-start ">
 			<a class="btn btn-outline-primary"

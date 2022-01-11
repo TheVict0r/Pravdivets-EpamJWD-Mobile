@@ -28,7 +28,7 @@
 										<div class="card-body d-flex flex-column">
 											<div class="mb-4">
 												<h3>${service.name}</h3>
-												<span class="display-4">${service.tarif/100}</span> <span
+												<span class="display-4">${service.tariff/100}</span> <span
 													class="display-6"><fmt:message key="allservices.rub"/></span>
 											</div>
 											<div class="mt-auto">

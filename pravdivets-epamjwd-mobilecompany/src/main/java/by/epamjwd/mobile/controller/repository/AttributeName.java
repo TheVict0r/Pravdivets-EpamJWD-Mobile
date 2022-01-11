@@ -61,5 +61,17 @@ public class AttributeName {
 	public static final String NO_NEXT_NEWS = "no_next_news";
 	public static final String FIRST_NAME_HEADER = "first_name_header";
 	public static final String LAST_NAME_HEADER = "last_name_header";
+	public static final String NAME = "name";
+	public static final String DESCRIPTION = "description";
+	public static final String REGULAR_PAYMENT = "regular_payment";
+	public static final String UPFRONT_PAYMENT = "upfront_payment";
+	public static final String WITHIN_NETWORK = "within_network";
+	public static final String OTHER_NETWORKS = "other_networks";
+	public static final String ABROAD = "abroad";
+	public static final String VIDEOCALL = "videocall";
+	public static final String SMS = "sms";
+	public static final String MMS = "mms";
+	public static final String INTERNET = "internet";
+	public static final String TARIFF = "tariff";
 
 }

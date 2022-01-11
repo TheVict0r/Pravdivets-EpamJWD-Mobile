@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Role;
+import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.bean.User;
@@ -112,7 +113,25 @@ public class InputDataValidator {
 				return result;
 	}
 
-	
+	public static boolean isServiceValid(Service service) {
+		if (service == null) {
+            return false;
+        }
+		
+		long id = service.getId();
+		String name = service.getName();
+		String description = service.getDescription();
+		int tariff = service.getTariff();
+
+		boolean result = false;
+		
+		result = id >= 0 &&
+				name != null && !name.isBlank() &&
+				description != null && !description.isBlank() &&
+				tariff >= 0;
+		return result;
+	}
+
 	
 	public static boolean isEmail(String anyString) {
 		return doesMatchePattern(anyString, EMAIL_REGEX);
@@ -143,6 +162,8 @@ public class InputDataValidator {
 		Matcher matcher = pattern.matcher(anyString);
 		return matcher.find();
 	}
+
+
 	
 	
 }

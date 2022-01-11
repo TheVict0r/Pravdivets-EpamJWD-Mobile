@@ -27,12 +27,12 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><fmt:message key="plan.upfront-payment"/></td>
-					<td>${sessionScope.plan.upfrontPayment/100} <fmt:message key="plan.rub"/></td>
-				</tr>
-				<tr>
 					<td><fmt:message key="plan.regular-payment"/></td>
 					<td>${sessionScope.plan.regularPayment/100} <fmt:message key="plan.rub-month"/></td>
+				</tr>
+				<tr>
+					<td><fmt:message key="plan.upfront-payment"/></td>
+					<td>${sessionScope.plan.upfrontPayment/100} <fmt:message key="plan.rub"/></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="plan.price-within-network"/></td>

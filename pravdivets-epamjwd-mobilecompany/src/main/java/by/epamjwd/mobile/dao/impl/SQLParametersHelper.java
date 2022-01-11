@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import by.epamjwd.mobile.bean.Plan;
+import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 
@@ -79,6 +80,16 @@ public class SQLParametersHelper {
 				   subscriber.getPlanId(),
 				   subscriber.getId()}; 
 		return subscriberParameters;
+	}
+
+	public static Object[] provideNewServiceParameters(Service service) {
+		Object[] serviceParameters = {
+				service.getName(),
+				service.getTariff(),
+				service.getDescription()
+				};
+		
+		return serviceParameters;
 	}
 
 

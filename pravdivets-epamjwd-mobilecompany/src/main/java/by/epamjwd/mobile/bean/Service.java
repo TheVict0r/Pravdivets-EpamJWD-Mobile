@@ -8,16 +8,16 @@ public class Service implements Identifiable, Serializable{
 	
 	private long id;
 	private String name;
-	private int tarif;
+	private int tariff;
 	private String description;
 	
 	public Service() {
 	}
 
-	public Service(long id, String name, int tarif, String description) {
+	public Service(long id, String name, int tariff, String description) {
 		this.id = id;
 		this.name = name;
-		this.tarif = tarif;
+		this.tariff = tariff;
 		this.description = description;
 	}
 
@@ -37,12 +37,12 @@ public class Service implements Identifiable, Serializable{
 		this.name = name;
 	}
 
-	public int getTarif() {
-		return tarif;
+	public int getTariff() {
+		return tariff;
 	}
 
 	public void setTarif(int tarif) {
-		this.tarif = tarif;
+		this.tariff = tarif;
 	}
 
 	public String getDescription() {
@@ -62,7 +62,7 @@ public class Service implements Identifiable, Serializable{
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + tarif;
+		result = prime * result + tariff;
 		return result;
 	}
 
@@ -87,7 +87,7 @@ public class Service implements Identifiable, Serializable{
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (tarif != other.tarif)
+		if (tariff != other.tariff)
 			return false;
 		return true;
 	}
@@ -98,7 +98,7 @@ public class Service implements Identifiable, Serializable{
 				.append("[")
 				.append("ID=").append(id)
 				.append(", Name=").append(name)
-				.append(", Tarif=").append(tarif)
+				.append(", Tarif=").append(tariff)
 				.append(", Description=").append(description)
 				.append("]")
 				.toString();

@@ -4,24 +4,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
+import by.epamjwd.mobile.controller.command.PlanCommandHelper;
+import by.epamjwd.mobile.controller.command.ServiceCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.ParameterName;
+import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.ServiceService;
+import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class AddServiceCommand implements Command{
-
+	private final static Logger LOGGER = LogManager.getLogger(AddServiceCommand.class);
+	private final static long EMPTY_ID = 0L;
+	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
+		
 		String name        = request.getParameter(ParameterName.NAME);
 		String description = request.getParameter(ParameterName.DESCRIPTION);
 		int tariff         = NumericParser.parseIntValue(request.getParameter(ParameterName.TARIFF));
+		long newServiceID = EMPTY_ID;
 
-		HttpSession session = request.getSession();
+		
 		
 		if(       name == null || name.isBlank()        || 
 		   description == null || description.isBlank() ||
@@ -30,14 +44,27 @@ public class AddServiceCommand implements Command{
 					return new RouteHelper(PagePath.ADD_SERVICE_REDIRECT, RouteMethod.REDIRECT);
 				}
 
-		
-		
-		
-		System.out.println(name);
-		System.out.println(description);
-		System.out.println(tariff);
-		
-		return null;
+		try {
+			if (serviceService.isServiceExist(name)) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.SERVICE_EXIST);
+				session.setAttribute(AttributeName.NAME, name);
+				session.setAttribute(AttributeName.DESCRIPTION, description);
+				session.setAttribute(AttributeName.TARIFF, tariff);
+				return new RouteHelper(PagePath.ADD_SERVICE_REDIRECT, RouteMethod.REDIRECT);
+			}
+		} catch (ServiceException e) {
+			LOGGER.error("Error while checking is service exist by name - " + name, e);
+			return RouteHelper.ERROR_500;
+		}
+	
+		try {
+			newServiceID = serviceService.addNewService(serviceService.buildService(name, tariff, description));
+		} catch (ServiceException e) {
+			LOGGER.error("Error while adding new service", e);
+			return RouteHelper.ERROR_500;
+		}
+
+		return ServiceCommandHelper.getInstance().handleServiceByID(session, newServiceID, PagePath.SERVICE_ADMIN_REDIRECT, LOGGER);
 	}
 
 }

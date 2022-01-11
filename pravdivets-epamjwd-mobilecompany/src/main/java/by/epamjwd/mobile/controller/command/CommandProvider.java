@@ -28,9 +28,11 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToPasswordRepairPageC
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPhoneRequestPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPlanAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToPlanOperationsPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToPlanPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToProfilePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToServiceAdminPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToServiceOperationsPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToServicePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToConsultantOperationsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToEditConsultantPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSignupPageCommand;
@@ -166,6 +168,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
 		allCommands.put(CommandName.CHANGE_PASSWORD, new ChangePasswordCommand());
 		allCommands.put(CommandName.GO_TO_PLAN_OPERATIONS_PAGE, new GoToPlanOperationsPageCommand());
+		allCommands.put(CommandName.GO_TO_PLAN_PAGE, new GoToPlanPageCommand());
+		allCommands.put(CommandName.GO_TO_SERVICE_PAGE, new GoToServicePageCommand());
 		allCommands.put(CommandName.GO_TO_SERVICE_OPERATIONS_PAGE, new GoToServiceOperationsPageCommand());
 		allCommands.put(CommandName.GO_TO_ARTICLE_OPERATIONS_PAGE, new GoToArticleOperationsPageCommand());
 		allCommands.put(CommandName.GO_TO_SERVICE_ADMIN_PAGE, new GoToServiceAdminPageCommand());

@@ -30,6 +30,10 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 			DBColumnName.PLANS_DESCRIPTION + COMMA +
 			DBColumnName.PLANS_UPFRONT_PAYMENT + 
 			") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	public final static String GET_PLAN_BY_NAME = "SELECT * FROM " + 
+			DBTableName.PLANS + " WHERE " + 
+			DBColumnName.PLANS_NAME + "= ?";
 	
 	
 	public SQLPlanDAOImpl() {
@@ -50,10 +54,7 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 	
 	@Override
 	public Optional<Plan> getPlanByName(String name) throws DaoException {
-		String query = "SELECT * FROM " + DBTableName.PLANS + " WHERE " 
-	+ DBColumnName.PLANS_NAME + "= ?";
-		return executeQueryForSingleResult(query, name);
-		
+		return executeQueryForSingleResult(GET_PLAN_BY_NAME, name);
 	}
 
 

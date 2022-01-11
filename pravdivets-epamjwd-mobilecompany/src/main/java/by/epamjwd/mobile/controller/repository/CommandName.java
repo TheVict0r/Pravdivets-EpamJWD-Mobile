@@ -85,5 +85,7 @@ public class CommandName {
 	public static final String GO_TO_PLAN_ADMIN_PAGE = "go_to_plan_admin_page";
 	public static final String SHOW_FULL_SERVICE_ADMIN = "show_full_service_admin";
 	public static final String GO_TO_SERVICE_ADMIN_PAGE = "go_to_service_admin_page";
+	public static final String GO_TO_PLAN_PAGE = "go_to_plan_page";
+	public static final String GO_TO_SERVICE_PAGE = "go_to_service_page";
 
 }

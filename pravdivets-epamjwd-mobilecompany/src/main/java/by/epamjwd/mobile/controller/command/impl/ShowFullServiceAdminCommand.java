@@ -14,6 +14,7 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
+import by.epamjwd.mobile.controller.command.ServiceCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -37,21 +38,24 @@ public class ShowFullServiceAdminCommand implements Command {
 			return RouteHelper.ERROR_404;
 		}
 
-		RouteHelper result = RouteHelper.ERROR;
-		try {
-			Optional<Service> serviceOptional = serviceService.findServiceByID(id);
-			if (serviceOptional.isPresent()) {
-				Service service = serviceOptional.get();
-				session.setAttribute(AttributeName.SERVICE, service);
-				result = new RouteHelper(PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT);
-			} else {
-				result = RouteHelper.ERROR_404;
-			}
-		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain full service data for ID " + id, e);
-			result = RouteHelper.ERROR_500;
-		}
-		return result;
+//		RouteHelper result = RouteHelper.ERROR;
+//		try {
+//			Optional<Service> serviceOptional = serviceService.findServiceByID(id);
+//			if (serviceOptional.isPresent()) {
+//				Service service = serviceOptional.get();
+//				session.setAttribute(AttributeName.SERVICE, service);
+//				result = new RouteHelper(PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT);
+//			} else {
+//				result = RouteHelper.ERROR_404;
+//			}
+//		} catch (ServiceException e) {
+//			LOGGER.error("Unable to obtain full service data for ID " + id, e);
+//			result = RouteHelper.ERROR_500;
+//		}
+//		return result;
+		
+		return ServiceCommandHelper.getInstance().handleServiceByID(session, id, PagePath.SERVICE_ADMIN_REDIRECT, LOGGER);
+
 	}
 
 }

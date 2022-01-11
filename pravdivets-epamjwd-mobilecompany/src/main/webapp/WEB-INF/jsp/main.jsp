@@ -27,7 +27,7 @@
 		<div class="row">
 			<h1 class="h3 mb-2 py-2 text-center text-primary"><fmt:message key="main.motto"/></h1>
 			<div class="row mb-3 display-4 justify-content-center mx-auto "><fmt:message key="main.tariffs"/></div>
-			<c:forEach var="plan" items="${requestScope.all_plans}">
+			<c:forEach var="plan" items="${requestScope.all_plans}" begin="0" end="2">
 				<div class="col-sm-4 mb-3 mb-md-0">
 					<div class="card text-center h-100">
 						<div class="card-body d-flex flex-column">
