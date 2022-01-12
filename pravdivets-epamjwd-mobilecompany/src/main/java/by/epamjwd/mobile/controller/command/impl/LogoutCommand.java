@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class LogoutCommand implements Command {

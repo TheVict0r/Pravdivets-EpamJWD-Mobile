@@ -14,7 +14,6 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
-import by.epamjwd.mobile.controller.command.helpers.ArticleCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -26,7 +25,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public class ShowArticleByIdCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
 
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
@@ -38,9 +36,6 @@ public class ShowArticleByIdCommand implements Command {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
-
-
-		//return ArticleCommandHelper.getInstance().handleArticleByID(session, articleID, PagePath.ARTICLE_ADMIN_REDIRECT, LOGGER);
 
 		try {
 			Optional<Article> articleOptional = articleService.findArticleByID(articleID);
@@ -59,8 +54,5 @@ public class ShowArticleByIdCommand implements Command {
 		}
 		return result;
 
-		
-		
 	}
-
 }

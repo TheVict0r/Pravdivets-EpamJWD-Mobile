@@ -13,9 +13,6 @@ import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class GoToAddArticlePageCommand implements Command{
 
-	private final static Logger LOGGER = LogManager.getLogger(GoToAddArticlePageCommand.class);
-	
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		return new RouteHelper(PagePath.ADD_ARTICLE, RouteMethod.FORWARD);

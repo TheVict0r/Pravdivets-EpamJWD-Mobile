@@ -18,7 +18,6 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.HashGenerator;
 
 public class ChangePasswordCommand implements Command {
 

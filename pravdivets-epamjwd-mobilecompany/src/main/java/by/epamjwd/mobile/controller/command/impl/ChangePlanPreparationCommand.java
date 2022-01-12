@@ -19,8 +19,6 @@ import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
-import by.epamjwd.mobile.service.SubscriberService;
-import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class ChangePlanPreparationCommand implements Command {

@@ -23,7 +23,6 @@ import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.PhoneFormatter;
 
 public class ChangePlanCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(ChangePlanCommand.class);

@@ -11,7 +11,6 @@ import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class SwitchLocaleCommand implements Command{
 

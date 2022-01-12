@@ -19,7 +19,6 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.service.impl.PlanServiceImpl;
 
 public class AddPlanCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(AddPlanCommand.class);

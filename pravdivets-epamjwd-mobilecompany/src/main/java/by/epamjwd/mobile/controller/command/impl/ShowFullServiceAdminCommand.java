@@ -1,7 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,9 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.controller.RouteHelper;
-import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.command.helpers.ServiceCommandHelper;
@@ -21,7 +17,6 @@ import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.ServiceService;
-import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class ShowFullServiceAdminCommand implements Command {
 
@@ -38,22 +33,6 @@ public class ShowFullServiceAdminCommand implements Command {
 			return RouteHelper.ERROR_404;
 		}
 
-//		RouteHelper result = RouteHelper.ERROR;
-//		try {
-//			Optional<Service> serviceOptional = serviceService.findServiceByID(id);
-//			if (serviceOptional.isPresent()) {
-//				Service service = serviceOptional.get();
-//				session.setAttribute(AttributeName.SERVICE, service);
-//				result = new RouteHelper(PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT);
-//			} else {
-//				result = RouteHelper.ERROR_404;
-//			}
-//		} catch (ServiceException e) {
-//			LOGGER.error("Unable to obtain full service data for ID " + id, e);
-//			result = RouteHelper.ERROR_500;
-//		}
-//		return result;
-		
 		return ServiceCommandHelper.getInstance().handleServiceByID(session, id, PagePath.SERVICE_ADMIN_REDIRECT, LOGGER);
 
 	}

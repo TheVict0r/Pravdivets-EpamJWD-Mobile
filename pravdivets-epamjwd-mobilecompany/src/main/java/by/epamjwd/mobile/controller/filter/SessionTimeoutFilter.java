@@ -58,6 +58,7 @@ public class SessionTimeoutFilter implements Filter {
 					authorisedCommands.add(CommandName.CANCEL_EDIT_SUBSCRIBER_DATA);
 
 		if ((role == null) && (authorisedCommands.contains(commandName))) {
+			session.invalidate();
 			session.setAttribute(AttributeName.SESSION_TIME_OUT, AttributeValue.SESSION_TIME_OUT);
 			response.sendRedirect(request.getContextPath() + PagePath.LOGIN_REDIRECT);
 			return;

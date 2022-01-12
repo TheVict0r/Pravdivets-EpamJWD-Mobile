@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.SubscriberStatus;
-import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
@@ -21,11 +21,10 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.HashGenerator;
 
 public class LoginCommand implements Command {
 
