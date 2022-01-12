@@ -60,7 +60,7 @@
 					<span class="fs-5"><b>${article.title}</b></span>
 					<br/><em> ${article.date}</em><br/>
 					<p>
-						${article.lead} <br /> <a
+						${article.intro} <br /> <a
 							href="${pageContext.request.contextPath}/controller?command=show_full_article&id=${article.id}"
 							class="card-link"><fmt:message key="main.details"/></a>
 					</p>

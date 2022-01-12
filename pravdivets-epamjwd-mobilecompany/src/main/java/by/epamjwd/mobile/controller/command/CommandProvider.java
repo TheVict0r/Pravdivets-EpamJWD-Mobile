@@ -179,6 +179,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_SERVICE_ADMIN_PAGE, new GoToServiceAdminPageCommand());
 		allCommands.put(CommandName.GO_TO_ARTICLE_ADMIN_PAGE, new GoToArticleAdminPageCommand());
 		allCommands.put(CommandName.SHOW_ARTICLE_BY_ID, new ShowArticleByIdCommand());
+		allCommands.put(CommandName.FIND_ARTICLE_BY_TITLE, new FindArticleByTitleCommand());
 
 	}
 

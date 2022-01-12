@@ -5,7 +5,7 @@ import by.epamjwd.mobile.dao.impl.SQLAdminDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLBillDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLConsultantDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLCustomerDAOImpl;
-import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLArticleDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLPlanDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLServiceDAOImpl;
 import by.epamjwd.mobile.dao.impl.SQLUserDAOImpl;
@@ -15,7 +15,7 @@ public class DAOProvider {
 	private SubscriberDAO subscriberDAO = new SQLSubscriberDAOImpl();
 	private AdminDAO adminDAO           = new SQLAdminDAOImpl();
 	private ConsultantDAO consultantDAO = new SQLConsultantDAOImpl();
-	private ArticleDAO newsDao             = new SQLNewsDAOImpl();
+	private ArticleDAO newsDao             = new SQLArticleDAOImpl();
 	private UserDAO userDAO             = new SQLUserDAOImpl();
 	private BillDAO billDAO             = new SQLBillDAOImpl();
 	private CustomerDAO customerDAO     = new SQLCustomerDAOImpl();

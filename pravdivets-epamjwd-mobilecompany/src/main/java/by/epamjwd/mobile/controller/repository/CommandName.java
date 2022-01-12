@@ -90,5 +90,6 @@ public class CommandName {
 	public static final String GO_TO_ARTICLE_PAGE = "go_to_article_page";
 	public static final String SHOW_ARTICLE_BY_ID = "show_article_by_id";
 	public static final String GO_TO_ARTICLE_ADMIN_PAGE = "go_to_article_admin_page";
+	public static final String FIND_ARTICLE_BY_TITLE = "find_article_by_title";
 
 }

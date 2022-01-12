@@ -20,11 +20,11 @@
 	<div
 		class="container col-sm-12 col-md-10 col-lg-8 col-xl-8 fw-light flex-grow-1">
 
-		<div class="display-5 text-start py-3 flex-grow-1">
+		<div class="display-5 text-start py-4 flex-grow-1">
 			<fmt:message key="article-operations.title" />
 		</div>
 		<div>
-			<h4 class="mb-2">
+			<h4 class="mb-3">
 				<fmt:message key="article-operations.find" />
 			</h4>
 		</div>
@@ -42,7 +42,7 @@
 					key="article-operations.find-by-id" /></label>
 			<div class="col-md-3">
 				<input type="number" class="form-control" name="article_id" id="article_id"
-					placeholder="123" value="${sessionScope.article_id}"
+					placeholder="12" value="${sessionScope.article_id}"
 					required>
 				<c:remove var="article_id" />
 			</div>
@@ -50,31 +50,14 @@
 				<input type="submit" class="btn btn-outline-dark" value="OK">
 			</div>
 		</form>
-
 		<form class="row mb-4" method="POST"
-			action="controller?command=show_consultant_by_passport">
+			action="controller?command=find_article_by_title">
 			<label for="passport" class="form-label"><fmt:message
 					key="article-operations.find-by-title" /></label>
 			<div class="col-md-3">
-				<input type="text" class="form-control" name="passport"
-					id="passport" placeholder="AB1234567" pattern="^[A-Z]{2}[0-9]{7}$"
-					value="${sessionScope.passport}" required>
-				<c:remove var="passport" />
-			</div>
-			<div class="col-md-2">
-				<input type="submit" class="btn btn-outline-dark" value="OK">
-			</div>
-		</form>
-
-		<form class="row mb-4" method="POST"
-			action="controller?command=show_consultant_by_passport">
-			<label for="passport" class="form-label"><fmt:message
-					key="article-operations.find-by-date" /></label>
-			<div class="col-md-3">
-				<input type="text" class="form-control" name="passport"
-					id="passport" placeholder="AB1234567" pattern="^[A-Z]{2}[0-9]{7}$"
-					value="${sessionScope.passport}" required>
-				<c:remove var="passport" />
+				<input type="text" class="form-control" name="title"
+					id="title"  value="${sessionScope.title}" required>
+					<c:remove var="title"/>
 			</div>
 			<div class="col-md-2">
 				<input type="submit" class="btn btn-outline-dark" value="OK">
@@ -86,13 +69,13 @@
 				<fmt:message key="article-operations.add" />
 			</h4>
 		</div>
-		<div class="d-grid col-1 py-1 mb-3 mx-start ">
+		<div class="d-grid col-1 py-1 mb-4 mx-start ">
 			<a class="btn btn-outline-dark"
 				href="${pageContext.request.contextPath}/controller?command=go_to_add_article_page">
 				<fmt:message key="admin.add" />
 			</a>
 		</div>
-		<div class="d-grid col-5 py-3 mx-start ">
+		<div class="d-grid col-5 py-5 mx-start ">
 			<a class="btn btn-primary"
 				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
 					key="admin.to-admin" /></a>

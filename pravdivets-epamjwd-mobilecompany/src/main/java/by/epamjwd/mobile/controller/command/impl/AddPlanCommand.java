@@ -55,7 +55,7 @@ public class AddPlanCommand implements Command {
 
 		try {
 			if (planService.isPlanExist(name)) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.PLAN_EXIST);
+				session.setAttribute(AttributeName.ERROR, AttributeValue.PLAN_EXISTS);
 				session.setAttribute(AttributeName.NAME, name);
 				session.setAttribute(AttributeName.DESCRIPTION, description);
 				session.setAttribute(AttributeName.REGULAR_PAYMENT, regularPayment);

@@ -34,13 +34,6 @@ public interface Dao<T> {
      */
     Optional<T> findById(long id) throws DaoException;
 
-    /**
-     * Method to save entity into table
-     *
-     * @param item entity object to save
-     * @throws DaoException
-     */
-    long save(T item) throws DaoException;
 
     /**
      * Method to remove entity from table by ID

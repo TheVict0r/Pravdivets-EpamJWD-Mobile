@@ -1,7 +1,7 @@
 package by.epamjwd.mobile.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -20,7 +20,7 @@ public class Article implements Identifiable, Serializable {
 	private long id;
 	private Date date;
 	private String title; 
-	private String lead;
+	private String intro;
 	private String text;
 	
 	public Article() {
@@ -32,7 +32,7 @@ public class Article implements Identifiable, Serializable {
 		this.id = id;
 		this.date = date;
 		this.title = title;
-		this.lead = lead;
+		this.intro = lead;
 		this.text = text;
 	}
 
@@ -72,12 +72,12 @@ public class Article implements Identifiable, Serializable {
 		this.title = title;
 	}
 
-	public String getLead() {
-		return lead;
+	public String getIntro() {
+		return intro;
 	}
 
-	public void setLead(String lead) {
-		this.lead = lead;
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 
 	public String getText() {
@@ -99,7 +99,7 @@ public class Article implements Identifiable, Serializable {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((formatter == null) ? 0 : formatter.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lead == null) ? 0 : lead.hashCode());
+		result = prime * result + ((intro == null) ? 0 : intro.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
@@ -126,10 +126,10 @@ public class Article implements Identifiable, Serializable {
 			return false;
 		if (id != other.id)
 			return false;
-		if (lead == null) {
-			if (other.lead != null)
+		if (intro == null) {
+			if (other.intro != null)
 				return false;
-		} else if (!lead.equals(other.lead))
+		} else if (!intro.equals(other.intro))
 			return false;
 		if (text == null) {
 			if (other.text != null)
@@ -152,7 +152,7 @@ public class Article implements Identifiable, Serializable {
                 .append("ID=").append(id)
                 .append(", Date=").append(formatter.format(date))
                 .append(", Title=").append(title)
-                .append(", Lead=").append(lead)
+                .append(", Intro=").append(intro)
                 .append(", Text=").append(text)
                 .append("]")
                 .toString();

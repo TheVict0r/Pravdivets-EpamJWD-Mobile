@@ -26,7 +26,10 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 			DBColumnName.SERVICES_DESCRIPTION + 
 			") VALUES (?, ?, ?)";
 
-	
+	public static void main(String[] args) {
+		System.out.println(ADD_NEW_SERVICE);
+	}
+
 	
 	public SQLServiceDAOImpl() {
         super(RowMapperFactory.getInstance().getServiceRowMapper(), DBTableName.SERVICES);
@@ -40,12 +43,6 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 	@Override
 	public Optional<Service> getServiceByID(long id) throws DaoException {
 		return findById(id);
-	}
-
-	@Override
-	public long save(Service item) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

@@ -74,22 +74,6 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 	
 	
-	
-//	@Override
-//	public List<Subscriber> findSubscriberListByEmail(String email) throws ServiceException {
-//		List<Subscriber> subscriberList;
-//		try {
-//			subscriberList = subscriberDao.findSubscriberListByEmail(email);
-//		} catch (DaoException e) {
-//			throw new ServiceException(e);
-//		} if (subscriberList.isEmpty()) {
-//			throw new ServiceException("Empty subscriber list for e-mail " + email);
-//		}
-//		return subscriberList;
-//	}
-//
-//	
-//	
 	@Override
 	public List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException {
 		List<Subscriber> subscriberList = new ArrayList<>();

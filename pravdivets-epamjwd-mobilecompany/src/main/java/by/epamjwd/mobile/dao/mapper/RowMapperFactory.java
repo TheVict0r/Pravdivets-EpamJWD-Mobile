@@ -8,14 +8,14 @@ import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.mapper.impl.SubscriberRowMapper;
 import by.epamjwd.mobile.dao.mapper.impl.BillRowMapper;
-import by.epamjwd.mobile.dao.mapper.impl.NewsRowMapper;
+import by.epamjwd.mobile.dao.mapper.impl.ArticleRowMapper;
 import by.epamjwd.mobile.dao.mapper.impl.PlanRowMapper;
 import by.epamjwd.mobile.dao.mapper.impl.ServiceRowMapper;
 import by.epamjwd.mobile.dao.mapper.impl.UserRowMapper;
 
 public class RowMapperFactory {
 
-	private final RowMapper<Article> newsRowMapper = new NewsRowMapper();
+	private final RowMapper<Article> newsRowMapper = new ArticleRowMapper();
 	private final RowMapper<Plan> planRowMapper = new PlanRowMapper();
 	private final RowMapper<Service> serviceRowMapper = new ServiceRowMapper();
 	private final RowMapper<User> userRowMapper = new UserRowMapper();

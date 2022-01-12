@@ -21,7 +21,7 @@
 
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
-		<c:if test="${sessionScope.error eq 'plan_exist'}">
+		<c:if test="${sessionScope.error eq 'plan_exists'}">
 
 			<fmt:message key="add-plan.plan-exist" />
 		</c:if>

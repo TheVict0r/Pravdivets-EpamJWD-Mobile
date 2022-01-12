@@ -112,39 +112,6 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 		return result;
 	}		
 	
-//	@Override
-//	public void activateService(int serviceId) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void deActivateService(int serviceId) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void switchServiceParameters(String oldServiceId, String newServiceId) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//
-//	@Override
-//	public void pause() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-
-	@Override
-	public long save(Subscriber item) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
 	@Override
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws DaoException {
 		long subscriderId;
@@ -161,7 +128,4 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 		executeUpdateQuery(UPDATE_SUBSCRIBER, params);
 	}
 
-
-	
-	
 }

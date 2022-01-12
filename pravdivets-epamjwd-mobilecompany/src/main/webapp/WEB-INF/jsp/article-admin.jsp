@@ -14,14 +14,27 @@
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
-
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-2">
+		<span class="fw-bold">ID - ${sessionScope.article.id}</span>
 		<span class="display-6 text-left d-flex align-items-center">${sessionScope.article.title}</span>
-		 <span class="display-7 text-left d-flex"><em> ${sessionScope.article.date}</em></span>
-		<span>${sessionScope.article.lead}</span>
+		 <span class="text-left d-flex"><em> ${sessionScope.article.date}</em></span>
+		<span>${sessionScope.article.intro}</span>
 		<span>${sessionScope.article.text}</span>
+	
+			<div class="d-grid col-6 py-2 mx-start ">
+			<a class="btn btn-outline-primary"
+				href="${pageContext.request.contextPath}/controller?command=go_to_article_operations_page">
+				<fmt:message key="admin.article-operations" />
+			</a>
+		</div>
+		<div class="d-grid col-6 py-2 mb-2 mx-start ">
+			<a class="btn btn-primary"
+				href="${pageContext.request.contextPath}/controller?command=go_to_admin_page"><fmt:message
+					key="admin.to-admin" /></a>
+		</div>
+	
 	</div>
-	<br/>
+	
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

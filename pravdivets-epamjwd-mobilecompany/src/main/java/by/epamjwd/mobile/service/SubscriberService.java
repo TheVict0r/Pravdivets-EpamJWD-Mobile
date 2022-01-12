@@ -17,9 +17,6 @@ public interface SubscriberService {
 	List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName)
 			throws ServiceException;
 	
-	
-//	List<Subscriber> findSubscriberListByEmail(String email) throws ServiceException;
-	
 	boolean isDebtor(String passport) throws ServiceException;
 	boolean isPhoneAvailable(String phone) throws ServiceException;
 	boolean isNewSubscriberUser(String passport) throws ServiceException;

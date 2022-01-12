@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.bean.Subscriber;
@@ -90,6 +91,17 @@ public class SQLParametersHelper {
 				};
 		
 		return serviceParameters;
+	}
+
+	public static Object[] provideNewArticleParameters(Article article) {
+		Object[] articleParameters = {
+				article.getDateAsString(),
+				article.getTitle(),
+				article.getIntro(),
+				article.getText()
+				};
+		
+		return articleParameters;
 	}
 
 

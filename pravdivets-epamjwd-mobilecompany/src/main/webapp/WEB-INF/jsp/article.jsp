@@ -21,7 +21,7 @@
 	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-2">
 		<span class="display-6 text-left d-flex align-items-center">${sessionScope.article.title}</span>
 		 <span class="display-7 text-left d-flex"><em> ${sessionScope.article.date}</em></span>
-		<span>${sessionScope.article.lead}</span>
+		<span>${sessionScope.article.intro}</span>
 		<span>${sessionScope.article.text}</span>
 	</div>
 	<br/>

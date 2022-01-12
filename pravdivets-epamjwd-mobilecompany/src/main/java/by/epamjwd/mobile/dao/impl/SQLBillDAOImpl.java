@@ -25,10 +25,5 @@ public class SQLBillDAOImpl extends AbstractDao<Bill> implements BillDAO{
 		return executeQuery(GET_BILL_LIST_BY_SUBSCRIBER_ID, subscriberID);
 	}
 
-	@Override
-	public long save(Bill item) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

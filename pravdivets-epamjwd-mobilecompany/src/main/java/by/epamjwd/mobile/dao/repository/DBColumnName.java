@@ -53,7 +53,7 @@ public class DBColumnName {
     public static final String NEWS_ID = "id";
     public static final String NEWS_DATE = "date";
     public static final String NEWS_TITLE = "title";
-    public static final String NEWS_LEAD = "lead";
+    public static final String NEWS_INTRO = "intro";
     public static final String NEWS_TEXT = "text";
 	
 }

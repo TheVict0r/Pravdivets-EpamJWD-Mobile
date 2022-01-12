@@ -46,7 +46,7 @@ public class ParameterName {
 	public static final String INTERNET = "internet";
 	public static final String TARIFF = "tariff";
 	public static final String TITLE = "title";
-	public static final String LEAD = "lead";
+	public static final String INTRO = "intro";
 	public static final String TEXT = "text";
 	public static final String CONSULTANT_FIRST_NAME = "consultant_first_name";
 	public static final String CONSULTANT_MIDDLE_NAME = "consultant_middle_name";

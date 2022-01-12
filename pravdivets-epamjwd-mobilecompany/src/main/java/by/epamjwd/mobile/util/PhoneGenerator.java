@@ -6,6 +6,9 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
+/*
+ * Generates new phone numbers for subscribers
+ */
 public class PhoneGenerator {
 
 	private final static int OPERATOR_CODE = 550000000; // Let's assume that this mobile operator has the 
@@ -13,22 +16,42 @@ public class PhoneGenerator {
 	private final static int MAX_EXCLUSIVE = 10000000;
 	private final static int MIN_INCLUSIVE =  1000000;
 
-	public static String generatePhone() throws ServiceException {
-
-		String phone = "";
-
-		Random random = new Random();
-		String candidatePhone = String.valueOf(OPERATOR_CODE + (random.nextInt(MAX_EXCLUSIVE - MIN_INCLUSIVE) + MIN_INCLUSIVE));
+	/**
+	 * Provides a new phone number available in mobile operator's database. 
+	 * 
+	 * <p>Checks, if this phone number is already presented in mobile operator's database. 
+	 * If the number is occupied tries another number through recursion 
+	 * until the free number is generated.
+	 * 
+	 * @return phone number
+	 * @throws ServiceException  if a database access error occurs during checking 
+	 * is phone number is available in the database
+	 */
+	public static String provideFreePhone() throws ServiceException {
+		String phoneResult = "";
+		String candidatePhone = generateRandomPhoneNumber();
 
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 
 		if (subscriberService.isPhoneAvailable(candidatePhone)) {
-			phone = candidatePhone;
+			phoneResult = candidatePhone;
 		} else {
-			generatePhone();
+			provideFreePhone();
 		}
 
-		return phone;
+		return phoneResult;
 	}
 
+	
+	/**
+	 * Generates pseudorandom phone number with first two digits as {@code 55} as mobile operator prefix code.
+	 * 
+	 * @return random phone number 
+	 */
+	private static String generateRandomPhoneNumber() {
+		Random random = new Random();
+		return String.valueOf(OPERATOR_CODE + (random.nextInt(MAX_EXCLUSIVE - MIN_INCLUSIVE) + MIN_INCLUSIVE));
+	}
+	
+	
 }

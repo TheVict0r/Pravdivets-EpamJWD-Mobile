@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.dao.exception.DaoException;
-import by.epamjwd.mobile.dao.impl.SQLNewsDAOImpl;
+import by.epamjwd.mobile.dao.impl.SQLArticleDAOImpl;
 
 //import java.util.List;
 //
@@ -24,7 +24,7 @@ public class TestingNewsMaker {
 //		System.out.println();
 //		System.out.println(newsArticles.get(newsArticles.size()-3));
 		
-		SQLNewsDAOImpl dao = new SQLNewsDAOImpl();
+		SQLArticleDAOImpl dao = new SQLArticleDAOImpl();
 		Optional<Article> article = dao.getArticleByID(10);
 		
 		System.out.println(article);

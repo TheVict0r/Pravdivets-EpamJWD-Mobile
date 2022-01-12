@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.Service;
@@ -132,7 +133,28 @@ public class InputDataValidator {
 		return result;
 	}
 
-	
+	public static boolean isArticleValid(Article article) {
+		if (article == null) {
+            return false;
+        }
+		
+		long id = article.getId();
+		Date date = article.getDate();
+		String title = article.getTitle();
+		String lead = article.getIntro();
+		String text = article.getText();
+
+		boolean result = false;
+		
+		result =  id >= 0 &&
+				date != null &&
+			   title != null && !title.isBlank() &&
+				lead != null && !lead.isBlank() &&
+				text != null && !text.isBlank();
+		return result;
+	}
+
+
 	public static boolean isEmail(String anyString) {
 		return doesMatchePattern(anyString, EMAIL_REGEX);
 	}
@@ -162,6 +184,7 @@ public class InputDataValidator {
 		Matcher matcher = pattern.matcher(anyString);
 		return matcher.find();
 	}
+
 
 
 	

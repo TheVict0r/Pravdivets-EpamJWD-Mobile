@@ -18,6 +18,14 @@
 	<div class="row justify-content-center display-4 mx-auto py-1 mb-1">
 		<fmt:message key="add-article.new-article" />
 	</div>
+		<div
+		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
+		<c:if test="${sessionScope.error eq 'article_exists'}">
+			<fmt:message key="add-article.article-exists" />
+		</c:if>
+		<c:remove var="error" />
+	</div>
+	
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_article>
 			<table>
@@ -32,14 +40,14 @@
 						var="title" /></td>
 				</tr>
 				<tr>
-					<td><label for="lead" class="form-label"><fmt:message
-								key="add-article.lead" />:</label></td>
+					<td><label for="intro" class="form-label"><fmt:message
+								key="add-article.intro" />:</label></td>
 				</tr>
 				<tr>
-					<td><textarea class="form-control" name="lead" id="lead"
+					<td><textarea class="form-control" name="intro" id="intro"
 							rows="2" cols="80" required>
-						${sessionScope.lead} 
-						</textarea> <c:remove var="lead" /></td>
+						${sessionScope.intro} 
+						</textarea> <c:remove var="intro" /></td>
 				</tr>
 				<tr>
 					<td><label for="text" class="form-label"><fmt:message

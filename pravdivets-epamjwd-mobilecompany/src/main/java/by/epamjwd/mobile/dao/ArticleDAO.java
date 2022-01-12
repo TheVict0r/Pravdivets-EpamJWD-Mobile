@@ -12,5 +12,9 @@ public interface ArticleDAO {
 	
 	public Optional<Article> getArticleByID(long id) throws DaoException;
 
+	public long addArticle(Article article) throws DaoException;
+
+	public Optional<Article> getArticleByTitle(String title) throws DaoException;
+
 	
 }

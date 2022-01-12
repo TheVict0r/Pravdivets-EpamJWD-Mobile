@@ -35,8 +35,6 @@ public class AddServiceCommand implements Command{
 		int tariff         = NumericParser.parseIntValue(request.getParameter(ParameterName.TARIFF));
 		long newServiceID = EMPTY_ID;
 
-		
-		
 		if(       name == null || name.isBlank()        || 
 		   description == null || description.isBlank() ||
 				tariff == NumericParser.INVALID_VALUE  ){
@@ -45,8 +43,8 @@ public class AddServiceCommand implements Command{
 				}
 
 		try {
-			if (serviceService.isServiceExist(name)) {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.SERVICE_EXIST);
+			if (serviceService.isServiceExists(name)) {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.SERVICE_EXISTS);
 				session.setAttribute(AttributeName.NAME, name);
 				session.setAttribute(AttributeName.DESCRIPTION, description);
 				session.setAttribute(AttributeName.TARIFF, tariff);

@@ -116,20 +116,6 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		return user;
 	}
 
-	private String buildFindUserQuery(){
-		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.USERS).toString();
-		return query;
-	}
-	
-	private String buildFindUserQueryByParameter(String parameter) {
-		String query = new StringBuilder(buildFindUserQuery())
-				.append(" WHERE ")
-				.append(DBTableName.USERS).append(".").append(parameter)
-				.append(" = ?")
-				.toString();
-		return query;
-	}
-
 	@Override
 	public long addUser(User user) throws DaoException {
 		long userId;
@@ -145,67 +131,19 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		executeUpdateQuery(UPDATE_USER, params);
 	}
 
+	private String buildFindUserQuery(){
+		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.USERS).toString();
+		return query;
+	}
 	
-	
-	@Override
-	public boolean authorization(String login, String passwordHash) {
-		// TODO Auto-generated method stub
-		return false;
+	private String buildFindUserQueryByParameter(String parameter) {
+		String query = new StringBuilder(buildFindUserQuery())
+				.append(" WHERE ")
+				.append(DBTableName.USERS).append(".").append(parameter)
+				.append(" = ?")
+				.toString();
+		return query;
 	}
-
-	@Override
-	public void registration(Subscriber newAbonent) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Subscriber lookAbonent(int idAbonent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void activateService(int serviceId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deActivateService(int serviceId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void switchServiceParameters(String oldServiceId, String newServiceId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void changePhoneNumber(String oldPhoneNumber, String newPhoneNumber) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	
-
-	@Override
-	public long save(User item) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	
-	
 	
 }
+

@@ -37,7 +37,7 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	@Override
-	public boolean isServiceExist(String name) throws ServiceException {
+	public boolean isServiceExists(String name) throws ServiceException {
 		Optional<Service> serviceOptional = Optional.empty();
 		try {
 			serviceOptional = serviceDao.getServiceByName(name);

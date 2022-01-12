@@ -4,6 +4,22 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class PhoneFormatter {
 
+	/**
+	 * Method transforms input String value of a raw 9-digit phone number
+	 * into more visually readable phone number with parentheses and hyphens.
+	 * 
+	 * 
+	 * <p>For example input number <b>291234267</b> will be transformed into <b>(29) 123-42-67</b>. 
+	 * <p>
+	 * Before the transformation the {@code phone} parameter will be checked by 
+	 * {@link InputDataValidator#isPhone(String)}
+	 * is whether it meets the necessary criteria to be a phone number 
+	 * 
+	 * @param   phone   raw 9-digit phone number
+	 * @return        formatted hone number with parentheses and hyphens 
+	 * if input string meets the necessary criteria to be a phone number,
+	 * otherwise returns an empty string ("")
+	 */
 	public static String formatPhone(String phone) {
 		String result = "";
 		

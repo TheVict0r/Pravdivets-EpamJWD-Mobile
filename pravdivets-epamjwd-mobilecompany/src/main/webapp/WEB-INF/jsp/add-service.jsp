@@ -20,7 +20,7 @@
 	</div>
 	<div
 		class="row justify-content-center col col-lg-6 fw-normal text-center mx-auto text-danger fw-normal">
-		<c:if test="${sessionScope.error eq 'service_exist'}">
+		<c:if test="${sessionScope.error eq 'service_exists'}">
 			<fmt:message key="add-service.service-exist" />
 		</c:if>
 		<c:remove var="error" />

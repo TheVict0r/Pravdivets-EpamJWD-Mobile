@@ -19,38 +19,32 @@ public class ArticleCommandHelper {
 
 	private ArticleCommandHelper() {
 	}
-	
+
 	public static ArticleCommandHelper getInstance() {
 		return Holder.INSTANCE;
 	}
 
-	public RouteHelper handleArticleByID(HttpSession session, long articleID, String pagePath,
-			Logger logger) {
-	RouteHelper result = null;
-	ArticleService articleService = ServiceProvider.getInstance().getArticleService();
-	try {
-		Optional<Article> articleOptional = articleService.findArticleByID(articleID);
-		if(articleOptional.isPresent()) {
-			Article article = articleOptional.get();
-			session.setAttribute(AttributeName.ARTICLE, article);
-			result = new RouteHelper(pagePath, RouteMethod.FORWARD);
-		} else {
-			result = RouteHelper.ERROR_404;
+	public RouteHelper handleArticleByID(HttpSession session, long articleID, String pagePath, RouteMethod routeMethod, Logger logger) {
+		RouteHelper result = RouteHelper.ERROR;
+		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
+		try {
+			Optional<Article> articleOptional = articleService.findArticleByID(articleID);
+			if (articleOptional.isPresent()) {
+				Article article = articleOptional.get();
+				session.setAttribute(AttributeName.ARTICLE, article);
+				result = new RouteHelper(pagePath, routeMethod);
+			} else {
+				result = RouteHelper.ERROR_404;
+			}
+		} catch (ServiceException e) {
+			logger.error("Unable to obtain news article data for ID -  " + articleID, e);
+			result = RouteHelper.ERROR_500;
 		}
-	} catch (ServiceException e) {
-		logger.error("Unable to obtain news article data for ID -  " + articleID, e);
-		result = RouteHelper.ERROR_500;
+		return result;
 	}
-	return result;
-}
-	
-	
-	
-	
-	private static class Holder{
+
+	private static class Holder {
 		private final static ArticleCommandHelper INSTANCE = new ArticleCommandHelper();
 	}
-	
-	
-	
+
 }

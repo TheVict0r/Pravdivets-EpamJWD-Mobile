@@ -69,10 +69,4 @@ public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO
 		return subscriberID;
 	}
 
-	@Override
-	public long save(User item) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

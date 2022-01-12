@@ -30,7 +30,7 @@ public class ChangePhonePreparationCommand implements Command{
 		String newPhone;
 		String newPhoneFormat;
 		try {
-			newPhone = PhoneGenerator.generatePhone();
+			newPhone = PhoneGenerator.provideFreePhone();
 			newPhoneFormat = PhoneFormatter.formatPhone(newPhone);
 			session.setAttribute(AttributeName.NEW_PHONE, newPhone);
 			session.setAttribute(AttributeName.NEW_PHONE_FORMAT, newPhoneFormat);

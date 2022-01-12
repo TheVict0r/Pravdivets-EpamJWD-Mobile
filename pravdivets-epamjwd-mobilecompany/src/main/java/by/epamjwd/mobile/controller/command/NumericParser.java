@@ -13,6 +13,7 @@ public class NumericParser {
 		
 	}
 
+
 	public static int parseIntValue(Object objectValue) {
 		String stringValue = String.valueOf(objectValue);
 		int result;

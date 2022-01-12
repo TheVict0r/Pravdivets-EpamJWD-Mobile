@@ -21,6 +21,14 @@ public interface ArticleService {
 	public int getFirstIdx(int lastIdx);
 
 	int getLastIdx(int currentIdx);
+
+	public Article buildArticle(String title, String lead, String text);
+
+	public long addArticle(Article article) throws ServiceException;
+
+	public boolean isArticleExists(String title) throws ServiceException;
+
+	public Optional<Article> findArticleByTitle(String title) throws ServiceException;
 	
 	
 }

@@ -22,7 +22,6 @@ import by.epamjwd.mobile.util.HashGenerator;
 public class UserServiceImpl implements UserService {
 	private final static long ERROR_ID = -1L;
 	private final static long EMPTY_ID = 0L;
-
 	
 	DAOProvider provider = DAOProvider.getInstance();
 	UserDAO userDao = provider.getUserDAO();

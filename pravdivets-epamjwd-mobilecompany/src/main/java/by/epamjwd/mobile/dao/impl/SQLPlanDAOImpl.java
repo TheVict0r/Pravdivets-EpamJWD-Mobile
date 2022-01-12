@@ -59,13 +59,6 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 
 
 	@Override
-	public long save(Plan item) throws DaoException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
 	public long addPlan(Plan plan) throws DaoException {
 		long planId;
 		Object[] params = SQLParametersHelper.provideNewPlanParameters(plan);

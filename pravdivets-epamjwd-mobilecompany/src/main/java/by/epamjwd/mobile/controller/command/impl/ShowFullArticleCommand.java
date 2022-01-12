@@ -29,7 +29,6 @@ public class ShowFullArticleCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		HttpSession session = request.getSession();
 
 		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
@@ -37,26 +36,7 @@ public class ShowFullArticleCommand implements Command {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
-
-//		RouteHelper result = null;
-//
-//		try {
-//			Optional<Article> articleOptional = articleService.findArticleByID(id);
-//			if(articleOptional.isPresent()) {
-//				Article article = articleOptional.get();
-//				request.setAttribute(AttributeName.ARTICLE, article);
-//				result = new RouteHelper(PagePath.ARTICLE, RouteMethod.FORWARD);
-//			} else {
-//				result = RouteHelper.ERROR_404;
-//			}
-//		} catch (ServiceException e) {
-//			LOGGER.error("Unable to obtain news article data for ID -  " + id, e);
-//			result = RouteHelper.ERROR_500;
-//		}
-//		return result;
-		
-		return ArticleCommandHelper.getInstance().handleArticleByID(session, id, PagePath.ARTICLE_REDIRECT, LOGGER);
-		
+		return ArticleCommandHelper.getInstance().handleArticleByID(session, id, PagePath.ARTICLE, RouteMethod.FORWARD, LOGGER);
 	}
 
 }
