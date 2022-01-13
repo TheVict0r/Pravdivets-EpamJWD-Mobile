@@ -33,16 +33,16 @@ public class SessionTimeoutFilter implements Filter {
 
 		Set<String> authorisedCommands = new HashSet<>();
 					authorisedCommands.add(CommandName.LOGOUT);
-					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_USER_ID);
-					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_FULL_NAME);
-					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_LIST_BY_PASSPORT);
+					authorisedCommands.add(CommandName.FIND_SUBSCRIBER_LIST_BY_USER_ID);
+					authorisedCommands.add(CommandName.FIND_SUBSCRIBER_LIST_BY_FULL_NAME);
+					authorisedCommands.add(CommandName.FIND_SUBSCRIBER_LIST_BY_PASSPORT);
 					authorisedCommands.add(CommandName.GO_TO_ADMIN_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_OPERATIONS_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_SERVICES_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_SUBSCRIBER_BILLS_PAGE);
-					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_BY_PHONE);
-					authorisedCommands.add(CommandName.SHOW_SUBSCRIBER_BY_ID);
+					authorisedCommands.add(CommandName.FIND_SUBSCRIBER_BY_PHONE);
+					authorisedCommands.add(CommandName.FIND_SUBSCRIBER_BY_ID);
 					authorisedCommands.add(CommandName.GO_TO_ADD_SUBSCRIBER_PAGE);
 					authorisedCommands.add(CommandName.GO_TO_PROFILE_PAGE);
 					authorisedCommands.add(CommandName.ADD_SUBSCRIBER);

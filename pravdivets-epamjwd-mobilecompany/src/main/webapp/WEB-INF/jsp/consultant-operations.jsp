@@ -42,7 +42,7 @@
 			<c:remove var="error" />
 		</div>
 		<form class="row mb-3" method="POST"
-			action="controller?command=show_consultant_by_email">
+			action="controller?command=find_consultant_by_email">
 			<label for="email" class="form-label"><fmt:message
 					key="consultant-operations.by-email" /></label>
 			<div class="col-md-3">
@@ -57,7 +57,7 @@
 		</form>
 
 		<form class="row mb-4" method="POST"
-			action="controller?command=show_consultant_by_passport">
+			action="controller?command=find_consultant_by_passport">
 			<label for="passport" class="form-label"><fmt:message
 					key="consultant-operations.by-passport" /></label>
 			<div class="col-md-3">

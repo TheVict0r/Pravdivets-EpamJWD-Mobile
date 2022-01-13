@@ -23,7 +23,7 @@
 		<c:forEach var="subscriber" items="${requestScope.subscriber_list}">
 			<c:set value="${subscriber.phone}" var="phone" />
 			<a
-				href="${pageContext.request.contextPath}/controller?command=show_subscriber_by_id&id=${subscriber.id}">
+				href="${pageContext.request.contextPath}/controller?command=find_subscriber_by_id&id=${subscriber.id}">
 				${subscriber.phone} </a>
 			<br />
 		</c:forEach>

@@ -8,34 +8,33 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Service;
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
-import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.service.PlanService;
 
-public class ShowAllServicesCommand implements Command{
+public class FindAllPlansCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowAllServicesCommand.class);
-	
+	private final static Logger LOGGER = LogManager.getLogger(FindAllPlansCommand.class);
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		RouteHelper result = RouteHelper.ERROR;
 		try {
-			List<Service> serviceList = serviceService.findAllServices();
-			request.setAttribute(AttributeName.ALL_SERVICES, serviceList);
-			result = new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
+			List<Plan> allPlans = planService.findAllPlans();
+			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
+			result = new RouteHelper(PagePath.ALL_PLANS, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain service list. ", e);
+			LOGGER.error("Unable to obtain all tariff plans list. ", e);
 			result = RouteHelper.ERROR_500;
 		}
 		return result;
 	}
 
 }
-

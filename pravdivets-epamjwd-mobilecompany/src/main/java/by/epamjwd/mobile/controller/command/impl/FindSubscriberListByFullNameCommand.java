@@ -18,41 +18,52 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
+import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowSubscriberListByPassportCommand implements Command{
-	private final static Logger LOGGER = LogManager.getLogger(ShowSubscriberListByPassportCommand.class);
+public class FindSubscriberListByFullNameCommand implements Command{
+
+	private final static Logger LOGGER = LogManager.getLogger(FindSubscriberListByFullNameCommand.class);
+
+
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
-		RouteHelper result = RouteHelper.ERROR;
+
 		HttpSession session = request.getSession();
-		String passport = request.getParameter(ParameterName.PASSPORT);
+
+		String firstName = request.getParameter(ParameterName.FIRST_NAME);
+		String middleName = request.getParameter(ParameterName.MIDDLE_NAME);
+		String lastName = request.getParameter(ParameterName.LAST_NAME);
 		
-		if( passport == null || passport.isBlank()) {
+		if(firstName == null || firstName.isBlank() || 
+			lastName == null || lastName.isBlank()){
 				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-				return new RouteHelper(PagePath.ADD_CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
+				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 			}
 		
 		List<Subscriber> subscriberList = null;
+		RouteHelper result = null;
+		
 		try {
-			subscriberList = subscriberService.findSubscriberListByPassport(passport);
-			if(subscriberList.isEmpty()) {
-				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PASSPORT);
-				request.setAttribute(AttributeName.PASSPORT, passport);
-				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);	
-			} else {
+			subscriberList = subscriberService.findSubscriberListByFullName(firstName, middleName, lastName);
+			if (subscriberList.isEmpty()) {
+				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_NAME);
+				request.setAttribute(AttributeName.FIRST_NAME, firstName);
+				request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
+				request.setAttribute(AttributeName.LAST_NAME, lastName);
+				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
+			}else {
 				result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request, subscriberList);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error in getting subscriber data for passport - " + passport, e);
+			LOGGER.error("Error in getting subscriber data for  " + firstName + " " + middleName + " " + lastName, e);
 			result = RouteHelper.ERROR_500;
 		}
-		return result;	
+		return result;
 	}
 
 }

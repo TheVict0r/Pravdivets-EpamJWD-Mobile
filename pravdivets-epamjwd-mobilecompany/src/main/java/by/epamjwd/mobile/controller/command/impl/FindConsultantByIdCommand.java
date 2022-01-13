@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Article;
+import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
@@ -17,42 +17,46 @@ import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
-import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowArticleByIdCommand implements Command {
+public class FindConsultantByIdCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
-		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
-		long articleID = NumericParser.parseLongValue(request.getParameter(ParameterName.ARTICLE_ID));
+		long consultantId = NumericParser.parseLongValue(session.getAttribute(AttributeName.CONSULTANT_ID));
 
-		if (articleID == NumericParser.INVALID_VALUE) {
+		if (consultantId == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-			return new RouteHelper(PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
 
+		UserService userService = ServiceProvider.getInstance().getUserService();
+		Optional<User> consultantOptional = Optional.empty();
+		User consultant = null;
+		
 		try {
-			Optional<Article> articleOptional = articleService.findArticleByID(articleID);
-			if(articleOptional.isPresent()) {
-				Article article = articleOptional.get();
-				session.setAttribute(AttributeName.ARTICLE, article);
-				result = new RouteHelper(PagePath.ARTICLE_ADMIN_REDIRECT, RouteMethod.FORWARD);
-			} else {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.NO_ARTICLE);
-				session.setAttribute(AttributeName.ARTICLE_ID, articleID);
-				return new RouteHelper(PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
-			}
+			consultantOptional = userService.findUserById(consultantId);
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain news article data for ID -  " + articleID, e);
-			result = RouteHelper.ERROR_500;
+			LOGGER.error("Error when finding consultant by ID " + consultantId, e);
+			return RouteHelper.ERROR_500;
 		}
+		
+		if(consultantOptional.isPresent()) {
+			consultant = consultantOptional.get();
+			session.setAttribute(AttributeName.CONSULTANT, consultant);
+			result = new RouteHelper(PagePath.CONSULTANT, RouteMethod.FORWARD);
+		}else {
+			LOGGER.error("Error when finding consultant by ID " + consultantId);
+			return RouteHelper.ERROR_404;
+		}
+		
+		
 		return result;
-
 	}
+
 }

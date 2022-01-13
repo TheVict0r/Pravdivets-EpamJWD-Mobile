@@ -33,7 +33,7 @@
 			<br />
 			<p>
 				${article.intro} <br /> <a
-					href="${pageContext.request.contextPath}/controller?command=show_full_article&id=${article.id}"
+					href="${pageContext.request.contextPath}/controller?command=find_full_article&id=${article.id}"
 					class="card-link"><fmt:message key="allnews.detais" /></a>
 			</p>
 
@@ -57,7 +57,7 @@
 							<c:otherwise>
 								<div class="d-grid  mb-3 mx-auto me-md-5">
 									<a class="btn btn-outline-primary"
-										href="${pageContext.request.contextPath}/controller?command=show_next_news"><fmt:message
+										href="${pageContext.request.contextPath}/controller?command=find_next_news"><fmt:message
 											key="allnews.next" /></a>
 								</div>
 							</c:otherwise>
@@ -75,7 +75,7 @@
 							<c:otherwise>
 								<div class="d-grid mb-3 mx-auto me-md-5">
 									<a class="btn btn-outline-primary"
-										href="${pageContext.request.contextPath}/controller?command=show_previous_news"><fmt:message
+										href="${pageContext.request.contextPath}/controller?command=find_previous_news"><fmt:message
 											key="allnews.previous" /></a>
 								</div>
 							</c:otherwise>

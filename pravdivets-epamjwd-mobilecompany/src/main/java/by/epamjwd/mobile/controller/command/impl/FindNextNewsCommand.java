@@ -22,48 +22,47 @@ import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowPreviousNewsCommand implements Command {
+public class FindNextNewsCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowAllNewsCommand.class);
-
+	private final static Logger LOGGER = LogManager.getLogger(FindAllNewsCommand.class);
+	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
 		ArticleService newsService = ServiceProvider.getInstance().getArticleService();
 		HttpSession session = request.getSession();
-
-		int firstIdx = NumericParser.parseIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
-		int lastIdxExcluded;
-
-		session.removeAttribute(AttributeName.NO_NEXT_NEWS);
-
-		if (firstIdx == NumericParser.INVALID_VALUE) {
-			firstIdx = NewsIdx.FIRST_IDX_GLOBAL;
+		
+		int currentIdx = NumericParser.parseIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
+		
+		int lastIdx = newsService.getLastIdx(currentIdx);
+		
+		int firstIdx = newsService.getFirstIdx(lastIdx);
+		
+		System.out.println(firstIdx);
+		
+		if((lastIdx - NewsIdx.STEP) == NewsIdx.FIRST_IDX_GLOBAL) {
 			session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
 		}
+		
+		session.removeAttribute(AttributeName.NO_PREVIOUS_NEWS);
+		
+//		if(lastIdx == NumericParser.INVALID_VALUE) {
+//			firstIdx = NewsIdx.FIRST_IDX_GLOBAL;
+//			lastIdx = firstIdx + NewsIdx.STEP;
+//			session.setAttribute(AttributeName.NO_PREVIOUS_NEWS, AttributeValue.TRUE);
+//		}
 
 		try {
-			if (newsService.isNextIdxAvailable(firstIdx)) {
-				lastIdxExcluded = newsService.getNextIdxExcluded(firstIdx, NewsIdx.STEP);
-				List<Article> newsBatch = newsService.buildArticlesBatch(firstIdx, lastIdxExcluded);
-				session.setAttribute(AttributeName.NEWS, newsBatch);
-				session.setAttribute(AttributeName.CURRENT_IDX, lastIdxExcluded);
-				if (!newsService.isNextIdxAvailable(lastIdxExcluded)) {
-					session.setAttribute(AttributeName.NO_PREVIOUS_NEWS, AttributeValue.TRUE);
-				}
-			}
+			List<Article> newsBatch = newsService.buildArticlesBatch(firstIdx, lastIdx);
+			session.setAttribute(AttributeName.NEWS, newsBatch);
+			session.setAttribute(AttributeName.CURRENT_IDX, firstIdx);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain news list. ", e);
 			result = RouteHelper.ERROR_500;
 		}
 
-		
-		
-		
-		
 		result = new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);
-		return result;
-
+	return result;
 	}
 
 }

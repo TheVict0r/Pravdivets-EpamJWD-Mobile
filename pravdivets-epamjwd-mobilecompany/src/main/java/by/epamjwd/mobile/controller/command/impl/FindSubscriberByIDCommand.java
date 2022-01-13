@@ -21,9 +21,9 @@ import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowSubscriberByIDCommand implements Command{
+public class FindSubscriberByIDCommand implements Command{
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowSubscriberByIDCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(FindSubscriberByIDCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {

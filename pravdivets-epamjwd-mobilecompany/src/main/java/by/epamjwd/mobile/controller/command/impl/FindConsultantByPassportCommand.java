@@ -22,29 +22,27 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowConsultantByEmailCommand implements Command {
-
-	private final static Logger LOGGER = LogManager.getLogger(ShowConsultantByEmailCommand.class);
+public class FindConsultantByPassportCommand implements Command {
+	private final static Logger LOGGER = LogManager.getLogger(FindConsultantByPassportCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		String email = request.getParameter(ParameterName.EMAIL);
+		String passport = request.getParameter(ParameterName.PASSPORT);
+		UserService userService = ServiceProvider.getInstance().getUserService();
 		HttpSession session = request.getSession();
 		
-		if(email == null) {
+		if(passport == null || passport.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
 		
-		UserService userService = ServiceProvider.getInstance().getUserService();
-		
 		RouteHelper result = RouteHelper.ERROR;
 		
 		try {
-			Optional<User> consultantOptional = userService.findUserByEmail(email);
-			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.EMAIL, email);
+			Optional<User> consultantOptional = userService.findUserByPassport(passport);
+			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.PASSPORT, passport);
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain consultant data for e-mail " + email, e);
+			LOGGER.error("Unable to obtain consultant data for passport number " + passport, e);
 			result = RouteHelper.ERROR_500;
 		}
 		return result;

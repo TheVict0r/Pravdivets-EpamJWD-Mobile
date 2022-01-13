@@ -43,7 +43,7 @@
 						</div>
 					</td>
 					<td class="text-end"><a
-						href="${pageContext.request.contextPath}/controller?command=show_full_service&id=${service.id}"
+						href="${pageContext.request.contextPath}/controller?command=find_full_service&id=${service.id}"
 						class="card-link"> <fmt:message key="subscriber.about-service" /></a></td>
 				</tr>
 			</c:forEach>

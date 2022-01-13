@@ -34,7 +34,7 @@
 				<tr>
 					<td>${plan.name}</td>
 					<td><a
-							href="${pageContext.request.contextPath}/controller?command=show_full_plan_admin&id=${plan.id}"
+							href="${pageContext.request.contextPath}/controller?command=find_full_plan_admin&id=${plan.id}"
 							class="card-link"><fmt:message key="main.details"/></a></td>
 				</tr>
 			</c:forEach>

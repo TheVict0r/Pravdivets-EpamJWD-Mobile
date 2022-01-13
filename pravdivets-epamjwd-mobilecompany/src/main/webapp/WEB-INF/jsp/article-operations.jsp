@@ -14,9 +14,7 @@
 <title>mobile</title>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
-
 	<jsp:include page="components/header.jsp" />
-
 	<div
 		class="container col-sm-12 col-md-10 col-lg-8 col-xl-8 fw-light flex-grow-1">
 
@@ -37,7 +35,7 @@
 			<c:remove var="error" />
 		</div>
 		<form class="row mb-3" method="POST"
-			action="controller?command=show_article_by_id">
+			action="controller?command=find_article_by_id">
 			<label for="article_id" class="form-label"><fmt:message
 					key="article-operations.find-by-id" /></label>
 			<div class="col-md-3">
@@ -63,7 +61,6 @@
 				<input type="submit" class="btn btn-outline-dark" value="OK">
 			</div>
 		</form>
-
 		<div>
 			<h4 class="py-2">
 				<fmt:message key="article-operations.add" />

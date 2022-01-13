@@ -44,7 +44,7 @@
 											<p class="lead text-center mb-4">${plan.description}</p>
 											</div>
 											<div class="mt-auto">
-												<a href="${pageContext.request.contextPath}/controller?command=show_full_plan&id=${plan.id}" class="btn btn-lg btn-outline-primary"><fmt:message key="allplans.detais"/></a>
+												<a href="${pageContext.request.contextPath}/controller?command=find_full_plan&id=${plan.id}" class="btn btn-lg btn-outline-primary"><fmt:message key="allplans.detais"/></a>
 											</div>
 										</div>
 									</div>

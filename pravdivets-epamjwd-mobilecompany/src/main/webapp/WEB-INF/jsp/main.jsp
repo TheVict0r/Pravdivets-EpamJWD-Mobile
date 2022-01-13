@@ -14,8 +14,6 @@
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light text-dark">
 	<jsp:include page="components/header.jsp" />
-	
-
 	<div class="container d-grid gap-4">
 		<div class="col-sm" id="promo">
 			<img src="pic/main.jpg" class="img-fluid" alt="mobile">
@@ -44,7 +42,7 @@
 							</div>
 							<div class="mt-auto">
 								<a
-									href="${pageContext.request.contextPath}/controller?command=show_full_plan&id=${plan.id}"
+									href="${pageContext.request.contextPath}/controller?command=find_full_plan&id=${plan.id}"
 									class="btn btn-lg btn-outline-primary"><fmt:message key="main.details"/></a>
 							</div>
 						</div>
@@ -61,14 +59,14 @@
 					<br/><em> ${article.date}</em><br/>
 					<p>
 						${article.intro} <br /> <a
-							href="${pageContext.request.contextPath}/controller?command=show_full_article&id=${article.id}"
+							href="${pageContext.request.contextPath}/controller?command=find_full_article&id=${article.id}"
 							class="card-link"><fmt:message key="main.details"/></a>
 					</p>
 				</div>
 			</c:forEach>
 		</div>	
 		<form class="d-grid col-4" method="GET">
-		<input type="hidden" name="command" value ="show_all_news">
+		<input type="hidden" name="command" value ="find_all_news">
 			 <input type="submit"
 				value="<fmt:message key="main.all-news"/>" class="btn btn-outline-primary " />
 		</form>

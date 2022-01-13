@@ -34,7 +34,7 @@
 				<tr>
 					<td>${service.name}</td>
 					<td><a
-							href="${pageContext.request.contextPath}/controller?command=show_full_service_admin&id=${service.id}"
+							href="${pageContext.request.contextPath}/controller?command=find_full_service_admin&id=${service.id}"
 							class="card-link"><fmt:message key="main.details"/></a></td>
 				</tr>
 			</c:forEach>

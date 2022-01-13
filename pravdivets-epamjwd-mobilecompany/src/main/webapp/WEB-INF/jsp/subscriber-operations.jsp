@@ -28,7 +28,7 @@
 			</h4>
 		</div>
 		<form class="row mb-3" method="POST"
-			action="controller?command=show_subscriber_by_phone">
+			action="controller?command=find_subscriber_by_phone">
 			<label for="phone" class="form-label"><fmt:message
 					key="subscriberbase.by-phone" /> <span
 				class="fs-6 fst-italic">(<fmt:message
@@ -53,7 +53,7 @@
 			</c:if>
 		</div>
 		<form class="row mb-3" method="POST"
-			action="controller?command=show_subscriber_list_by_passport">
+			action="controller?command=find_subscriber_list_by_passport">
 			<label for="passport" class="form-label"><fmt:message
 					key="subscriberbase.by-passport" /></label>
 			<div class="col-md-3">
@@ -78,7 +78,7 @@
 		</div>
 		<div class="mb-4">
 		<form class="row mb-2" method="POST"
-			action="controller?command=show_subscriber_list_by_full_name">
+			action="controller?command=find_subscriber_list_by_full_name">
 			<label for="lastName" class="form-label"><fmt:message
 					key="subscriberbase.by-name" /></label>
 			<div class="col-md-3">

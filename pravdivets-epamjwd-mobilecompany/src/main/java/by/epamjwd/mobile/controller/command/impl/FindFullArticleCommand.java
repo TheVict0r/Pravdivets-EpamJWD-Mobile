@@ -23,9 +23,9 @@ import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ShowFullArticleCommand implements Command {
+public class FindFullArticleCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(ShowFullArticleCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(FindFullArticleCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {

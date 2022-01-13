@@ -45,7 +45,8 @@
 					<td><label for="last_name" class="form-label"><fmt:message
 								key="add-consultant.last-name" />:</label></td>
 					<td><input type="text" class="form-control"
-						name="last_name" id="last_name" placeholder="Иванов"
+						name="last_name" id="last_name" 
+						placeholder="<fmt:message key="add-consultant.last-name" />"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 						value="${sessionScope.consultant_last_name}" required> <c:remove
 							var="consultant_last_name" /></td>
@@ -54,7 +55,8 @@
 					<td><label for="first_name" class="form-label"><fmt:message
 								key="add-consultant.first-name" />:</label></td>
 					<td><input type="text" class="form-control"
-						name="first_name" id="first_name" placeholder="Иван"
+						name="first_name" id="first_name" 
+						placeholder="<fmt:message key="add-consultant.first-name" />"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 						value="${sessionScope.consultant_first_name}" required> <c:remove
 							var="consultant_first_name" /></td>
@@ -64,7 +66,7 @@
 								key="add-consultant.middle-name" />:</label></td>
 					<td><input type="text" class="form-control"
 						name="middle_name" id="middle_name"
-						placeholder="Иванович"
+						placeholder="<fmt:message key="add-consultant.middle-name" />"
 						pattern="^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$"
 						value="${sessionScope.consultant_middle_name}"> <c:remove
 							var="consultant_middle_name" /></td>

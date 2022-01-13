@@ -19,10 +19,10 @@ public class PagePath {
 	public static final String SUBSCRIBER = "WEB-INF/jsp/subscriber.jsp";
 	public static final String SUBSCRIBER_REDIRECT = "/controller?command=go_to_subscriber_page";
 	public static final String SUBSCRIBER_LIST = "WEB-INF/jsp/subscriber-list.jsp";
-	public static final String SUBSCRIBER_LIST_REDIRECT = "/controller?command=show_subscriber_list_by_user_id";
+	public static final String SUBSCRIBER_LIST_REDIRECT = "/controller?command=find_subscriber_list_by_user_id";
 	public static final String SUBSCRIBER_OPERATIONS = "WEB-INF/jsp/subscriber-operations.jsp";
 	public static final String SUBSCRIBER_OPERATIONS_REDIRECT = "/controller?command=go_to_subscriber_operations_page";
-	public static final String CONSULTANT_REDIRECT = "/controller?command=show_consultant_by_id";
+	public static final String CONSULTANT_REDIRECT = "/controller?command=find_consultant_by_id";
 	public static final String ADMIN = "WEB-INF/jsp/admin.jsp";
 	public static final String ADMIN_REDIRECT = "/controller?command=go_to_admin_page";
 	public static final String ALL_PLANS = "WEB-INF/jsp/allplans.jsp";
@@ -31,7 +31,7 @@ public class PagePath {
 	public static final String SERVICE = "WEB-INF/jsp/service.jsp";
 	public static final String CALCULATOR = "WEB-INF/jsp/calculator.jsp";
 	public static final String CALCULATOR_REDIRECT = "/controller?command=go_to_calculator_page";
-	public static final String CALCULATOR_RESULT_REDIRECT = "/controller?command=show_best_plan";
+	public static final String CALCULATOR_RESULT_REDIRECT = "/controller?command=find_best_plan";
 	public static final String ERROR = "WEB-INF/jsp/error.jsp";
 	public static final String ERROR_404 = "WEB-INF/jsp/error404.jsp";
 	public static final String ERROR_500 = "WEB-INF/jsp/error500.jsp";
@@ -40,7 +40,7 @@ public class PagePath {
 	public static final String ERROR_500_REDIRECT = "/controller?command=go_to_error_500_page";
 	public static final String ADD_SUBSCRIBER = "WEB-INF/jsp/add-subscriber.jsp";
 	public static final String ADD_SUBSCRIBER_REDIRECT = "/controller?command=go_to_add_subscriber_page";
-	public static final String NEW_SUBSCRIBER_REDIRECT = "/controller?command=show_subscriber_by_id";
+	public static final String NEW_SUBSCRIBER_REDIRECT = "/controller?command=find_subscriber_by_id";
 	public static final String SUBSCRIBER_SERVICES = "WEB-INF/jsp/subscriber-services.jsp";
 	public static final String SUBSCRIBER_BILLS = "WEB-INF/jsp/subscriber-bills.jsp";
 	public static final String SIGNUP = "WEB-INF/jsp/sign-up.jsp";
