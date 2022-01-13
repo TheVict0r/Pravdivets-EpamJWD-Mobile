@@ -11,14 +11,31 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class CustomerServiceImpl implements CustomerService  {
 	private static final long ERROR_ID = -1L;
-	
-	DAOProvider provider = DAOProvider.getInstance();
-	CustomerDAO customerDao = provider.getCustomerDAO();
+	CustomerDAO customerDao = DAOProvider.getInstance().getCustomerDAO();
 
+	/**
+	 * Saves a new customer to the data storage. 
+	 * 
+	 * <p>
+	 * Customer contains two connected entities: <p>
+	 * (1) User - contains the data common for all users (subscribers and consultant) 
+	 *            such as name, passport number, e-mail, password etc.<p>
+	 * (2) Subscriber - contains only subscribers the data - phone number, tariff plan ID,
+	 * 			  account number, contract date etc. <p>
+	 * Before the saving procedure starts the method checks are these two entities 
+	 * (user and subscriber) valid.
+	 * 
+	 * @param user - user 
+	 * @param subscriber - subscriber
+	 * @return the ID of subscriber added to the data storage
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while saving user and subscriber to the data storage
+	 */
 	@Override
 	public long addNewCustomer(User user, Subscriber subscriber) throws ServiceException {
 		long subscriberID = ERROR_ID;
-		if (InputDataValidator.isUserValid(user) && InputDataValidator.isSubscriberValid(subscriber)) {
+		if (InputDataValidator.isUserValid(user) 
+				&& InputDataValidator.isSubscriberValid(subscriber)) {
 			try {
 				subscriberID = customerDao.addNewCustomer(user, subscriber);
 			} catch (DaoException e) {
