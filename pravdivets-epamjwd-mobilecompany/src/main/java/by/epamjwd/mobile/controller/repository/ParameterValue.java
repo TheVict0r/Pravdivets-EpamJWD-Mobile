@@ -5,7 +5,7 @@ public class ParameterValue {
 	private ParameterValue(){
 	}
 	
-	public static final String NEW = "new";
 	public static final String CURRENT = "current";
+	public static final String NEW = "new";
 
 }
