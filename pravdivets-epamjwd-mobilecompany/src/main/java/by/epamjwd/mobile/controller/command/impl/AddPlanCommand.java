@@ -54,7 +54,7 @@ public class AddPlanCommand implements Command {
 		}
 
 		try {
-			if (planService.isPlanExist(name)) {
+			if (planService.doesPlanExist(name)) {
 				session.setAttribute(AttributeName.ERROR, AttributeValue.PLAN_EXISTS);
 				session.setAttribute(AttributeName.NAME, name);
 				session.setAttribute(AttributeName.DESCRIPTION, description);
@@ -75,7 +75,7 @@ public class AddPlanCommand implements Command {
 		}
 
 		try {
-			newPlanID = planService.addNewPlan(planService.buildPlan(name, description, regularPayment, upfrontPayment,
+			newPlanID = planService.addPlan(planService.buildPlan(name, description, regularPayment, upfrontPayment,
 					withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet));
 		} catch (ServiceException e) {
 			LOGGER.error("Error while adding new plan", e);

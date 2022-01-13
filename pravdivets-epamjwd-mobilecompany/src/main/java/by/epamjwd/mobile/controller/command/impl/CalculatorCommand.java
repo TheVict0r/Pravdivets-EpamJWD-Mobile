@@ -1,5 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,19 +49,22 @@ public class CalculatorCommand implements Command{
 					return new RouteHelper(PagePath.CALCULATOR_REDIRECT, RouteMethod.REDIRECT);
 				}
 		
-		ServiceProvider provider = ServiceProvider.getInstance();
-		PlanService planService = provider.getPlanService();
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		Plan bestPlan = null;
-		RouteHelper result = null;
+		Optional<Plan> planOptional = Optional.empty();
+		RouteHelper result = RouteHelper.ERROR;
 
 		try {
-			bestPlan = planService.suggestPlan(withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet);
+			planOptional = planService.suggestPlan(withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet);
+			if(planOptional.isPresent()) {
+				bestPlan = planOptional.get();
+				session.setAttribute(AttributeName.CALCULATOR_BEST_PLAN, bestPlan);
+				result = new RouteHelper(PagePath.CALCULATOR_RESULT_REDIRECT, RouteMethod.REDIRECT);
+			}
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain best tariff plan.", e);
 			result = RouteHelper.ERROR_500;
 		}
-		session.setAttribute(AttributeName.CALCULATOR_BEST_PLAN, bestPlan);
-		result = new RouteHelper(PagePath.CALCULATOR_RESULT_REDIRECT, RouteMethod.REDIRECT);
 		return result;
 	}
 
