@@ -16,6 +16,16 @@ public class PhoneGenerator {
 	private final static int MAX_EXCLUSIVE = 10000000;
 	private final static int MIN_INCLUSIVE =  1000000;
 
+	private PhoneGenerator() {
+	}
+	
+	public static PhoneGenerator getInstance() {
+		return Holder.INSTANCE;
+	}
+	
+	private static class Holder{
+		private final static PhoneGenerator INSTANCE = new PhoneGenerator();
+	}
 	/**
 	 * Provides a new phone number available in mobile operator's database. 
 	 * 
@@ -27,7 +37,7 @@ public class PhoneGenerator {
 	 * @throws ServiceException  if a database access error occurs during checking 
 	 * is phone number is available in the database
 	 */
-	public static String provideFreePhone() throws ServiceException {
+	public String provideFreePhone() throws ServiceException {
 		String phoneResult = "";
 		String candidatePhone = generateRandomPhoneNumber();
 
