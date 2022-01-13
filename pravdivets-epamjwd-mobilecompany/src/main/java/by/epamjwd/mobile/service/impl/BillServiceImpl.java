@@ -11,11 +11,8 @@ import by.epamjwd.mobile.service.BillService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class BillServiceImpl implements BillService{
-
-	
 	BillDAO billDao = DAOProvider.getInstance().getBillDAO();
 
-	
 	/**
 	 * Retrieves a list of subscribers bills from data storage. 
 	 * If there is no any bills yet (for example, in the case if this is 
@@ -29,17 +26,15 @@ public class BillServiceImpl implements BillService{
 	 */
 	@Override
 	public List<Bill> getBillListBySubscriberID(long subscriberID) throws ServiceException {
-		
-		List<Bill> billsList = new ArrayList<>();;
-		
+		List<Bill> billsList = new ArrayList<>();
 		try {
 			billsList = billDao.getBillListBySubscriberID(subscriberID);
-			if(billsList.isEmpty()) { 
-				billsList.add(new Bill()); 
+			if (billsList.isEmpty()) {
+				billsList.add(new Bill());
 			}
 		} catch (DaoException e) {
 			throw new ServiceException(e);
-		} 
+		}
 		return billsList;
 	}
 

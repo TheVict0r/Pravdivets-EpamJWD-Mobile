@@ -29,7 +29,7 @@ public class PlanServiceImpl implements PlanService{
 	 * 
 	 * @return Array List containing all current tariff plans
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting all tariff plans from database
+	 * occurs while getting all tariff plans from the data storage
 	 */
 	@Override
 	public List<Plan> findAllPlans() throws ServiceException {
@@ -46,7 +46,7 @@ public class PlanServiceImpl implements PlanService{
 	 * @param id - ID of tariff plan
 	 * @return tariff plan as an Optional value
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting tariff plan 
+	 * occurs while getting tariff plan from the data storage
 	 */
 	@Override
 	public Optional<Plan> findPlanByID(long id) throws ServiceException {
@@ -137,7 +137,8 @@ public class PlanServiceImpl implements PlanService{
 	 * Checks the existence of tariff plan by it's {@code name}.
 	 * 
 	 * @param name  the name of tariff plan
-	 * @throws ServiceException in the case when DaoException occurs while getting the tariff plan
+	 * @throws ServiceException in the case when DaoException occurs while 
+	 * getting the tariff plan from the data storage
 	 */
 	@Override
 	public boolean doesPlanExist(String name) throws ServiceException  {
@@ -182,7 +183,7 @@ public class PlanServiceImpl implements PlanService{
 	 * @param plan - tariff plan to add
 	 * @return the ID of tariff plan in data storage
 	 * @throws ServiceException in the case when DaoException occurs while saving plan 
-	 * to data storage
+	 * to the data storage
 	 */
 	@Override
 	public long addPlan(Plan plan) throws ServiceException {
