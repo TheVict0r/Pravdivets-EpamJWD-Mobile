@@ -43,12 +43,12 @@ public class FindPreviousNewsCommand implements Command {
 		}
 
 		try {
-			if (newsService.isNextIdxAvailable(firstIdx)) {
-				lastIdxExcluded = newsService.getNextIdxExcluded(firstIdx, NewsIdx.STEP);
+			if (newsService.isNextIndexAvailableMovingBack(firstIdx)) {
+				lastIdxExcluded = newsService.getNextIndexExcludedMovingBack(firstIdx, NewsIdx.STEP);
 				List<Article> newsBatch = newsService.buildArticlesBatch(firstIdx, lastIdxExcluded);
 				session.setAttribute(AttributeName.NEWS, newsBatch);
 				session.setAttribute(AttributeName.CURRENT_IDX, lastIdxExcluded);
-				if (!newsService.isNextIdxAvailable(lastIdxExcluded)) {
+				if (!newsService.isNextIndexAvailableMovingBack(lastIdxExcluded)) {
 					session.setAttribute(AttributeName.NO_PREVIOUS_NEWS, AttributeValue.TRUE);
 				}
 			}

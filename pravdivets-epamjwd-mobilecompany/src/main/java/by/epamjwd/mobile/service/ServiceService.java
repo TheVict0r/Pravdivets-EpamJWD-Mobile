@@ -10,8 +10,8 @@ public interface ServiceService {
 	
 	List<Service> findAllServices() throws ServiceException;
 	Optional<Service> findServiceByID(long id) throws ServiceException;
-	boolean isServiceExists(String name) throws ServiceException;
+	boolean doesServiceExists(String name) throws ServiceException;
 	Service buildService(String name, int tariff, String description);
-	long addNewService(Service service) throws ServiceException;
+	long addService(Service service) throws ServiceException;
 	
 }

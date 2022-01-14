@@ -41,7 +41,7 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	/**
-	 * Provides tariff plan retrieve by it's ID.
+	 * Provides tariff plan retrieved by it's ID.
 	 * 
 	 * @param id - ID of tariff plan
 	 * @return tariff plan as an Optional value

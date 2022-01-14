@@ -8,27 +8,27 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface ArticleService {
 
-	public List<Article> findAllArticles() throws ServiceException;
+	List<Article> findAllArticles() throws ServiceException;
 	
-	public Optional<Article> findArticleByID(long id) throws ServiceException;
+	Optional<Article> findArticleByID(long id) throws ServiceException;
 
 	List<Article> buildArticlesBatch(int firstIdx, int lastIdx) throws ServiceException;
 
-	public boolean isNextIdxAvailable(int lastIdxOld) throws ServiceException;
+	boolean isNextIndexAvailableMovingBack(int lastIdxOld) throws ServiceException;
 
-	public int getNextIdxExcluded(int lastIdxOld, int step) throws ServiceException;
+	int getNextIndexExcludedMovingBack(int lastIdxOld, int step) throws ServiceException;
 
-	public int getFirstIdx(int lastIdx);
+	Article buildArticle(String title, String lead, String text);
 
-	int getLastIdx(int currentIdx);
+	long addArticle(Article article) throws ServiceException;
 
-	public Article buildArticle(String title, String lead, String text);
+	boolean doesArticleExists(String title) throws ServiceException;
 
-	public long addArticle(Article article) throws ServiceException;
+	Optional<Article> findArticleByTitle(String title) throws ServiceException;
 
-	public boolean isArticleExists(String title) throws ServiceException;
+	int getLastIndexMovingForward(int currentIndex, int step);
 
-	public Optional<Article> findArticleByTitle(String title) throws ServiceException;
+	int getFirstIndexMovingForward(int lastIndex, int step);
 	
 	
 }

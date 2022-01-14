@@ -43,7 +43,7 @@ public class AddServiceCommand implements Command{
 				}
 
 		try {
-			if (serviceService.isServiceExists(name)) {
+			if (serviceService.doesServiceExists(name)) {
 				session.setAttribute(AttributeName.ERROR, AttributeValue.SERVICE_EXISTS);
 				session.setAttribute(AttributeName.NAME, name);
 				session.setAttribute(AttributeName.DESCRIPTION, description);
@@ -56,7 +56,7 @@ public class AddServiceCommand implements Command{
 		}
 	
 		try {
-			newServiceID = serviceService.addNewService(serviceService.buildService(name, tariff, description));
+			newServiceID = serviceService.addService(serviceService.buildService(name, tariff, description));
 		} catch (ServiceException e) {
 			LOGGER.error("Error while adding new service", e);
 			return RouteHelper.ERROR_500;

@@ -28,22 +28,33 @@
 			<thead>
 				<tr>
 					<td></td>
-					<td class="fw-normal"><fmt:message
-							key="subscriber.activate" /></td>
+					<td class="fw-normal"><fmt:message key="subscriber.activate" /></td>
 					<td></td>
 				</tr>
 			</thead>
 			<c:forEach var="service" items="${sessionScope.all_services}">
 				<tr>
-					<td>${service.name}</td>
-					<td class="">
-						<div class="form-check form-switch justify-content-end">
-							<input class="form-check-input" type="checkbox" role="switch"
-								id="switchCheck">
-						</div>
-					</td>
+					<td>${service.key.name}</td>
+					<c:choose>
+						<c:when test="${service.value eq 'true'}">
+							<td>
+								<div class="form-check form-switch justify-content-end">
+									<input class="form-check-input" type="checkbox" role="switch"
+										checked id="switchCheck">
+								</div>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td>
+								<div class="form-check form-switch justify-content-end">
+									<input class="form-check-input" type="checkbox" role="switch"
+										id="switchCheck">
+								</div>
+							</td>
+						</c:otherwise>
+					</c:choose>
 					<td class="text-end"><a
-						href="${pageContext.request.contextPath}/controller?command=find_full_service&id=${service.id}"
+						href="${pageContext.request.contextPath}/controller?command=find_full_service&id=${service.key.id}"
 						class="card-link"> <fmt:message key="subscriber.about-service" /></a></td>
 				</tr>
 			</c:forEach>

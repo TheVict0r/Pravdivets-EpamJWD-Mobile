@@ -34,11 +34,9 @@ public class FindNextNewsCommand implements Command {
 		
 		int currentIdx = NumericParser.parseIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
 		
-		int lastIdx = newsService.getLastIdx(currentIdx);
+		int lastIdx = newsService.getLastIndexMovingForward(currentIdx, NewsIdx.STEP);
 		
-		int firstIdx = newsService.getFirstIdx(lastIdx);
-		
-		System.out.println(firstIdx);
+		int firstIdx = newsService.getFirstIndexMovingForward(lastIdx, NewsIdx.STEP);
 		
 		if((lastIdx - NewsIdx.STEP) == NewsIdx.FIRST_IDX_GLOBAL) {
 			session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
@@ -46,12 +44,6 @@ public class FindNextNewsCommand implements Command {
 		
 		session.removeAttribute(AttributeName.NO_PREVIOUS_NEWS);
 		
-//		if(lastIdx == NumericParser.INVALID_VALUE) {
-//			firstIdx = NewsIdx.FIRST_IDX_GLOBAL;
-//			lastIdx = firstIdx + NewsIdx.STEP;
-//			session.setAttribute(AttributeName.NO_PREVIOUS_NEWS, AttributeValue.TRUE);
-//		}
-
 		try {
 			List<Article> newsBatch = newsService.buildArticlesBatch(firstIdx, lastIdx);
 			session.setAttribute(AttributeName.NEWS, newsBatch);

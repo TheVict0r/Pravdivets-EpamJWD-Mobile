@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Article;
-import by.epamjwd.mobile.bean.Service;
-import by.epamjwd.mobile.controller.repository.NewsIdx;
 import by.epamjwd.mobile.dao.ArticleDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
@@ -14,12 +12,24 @@ import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
+/**
+ * Class provides the operations with news articles
+ */
 public class ArticleServiceImpl implements ArticleService {
 	private final static long ERROR_ID = -1L;
 	private final static long EMPTY_ID = 0L;
+	private final static int FIRST_IDX_GLOBAL = 0;
+
 	DAOProvider provider = DAOProvider.getInstance();
 	ArticleDAO articleDao = provider.getNewsDao();
 
+	/**
+	 * Provides all actual news articles currently exists.
+	 * 
+	 * @return Array List containing all news articles from the data storage
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting all news articles from the data storage
+	 */
 	@Override
 	public List<Article> findAllArticles() throws ServiceException {
 		try {
@@ -29,12 +39,15 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 	}
 
-	@Override
-	public List<Article> buildArticlesBatch(int firstIdx, int lastIdxExcluded) throws ServiceException {
-		List<Article> articlesBatch = findAllArticles().subList(firstIdx, lastIdxExcluded);
-		return articlesBatch;
-	}
 	
+	/**
+	 * Provides news article retrieved by it's ID.
+	 * 
+	 * @param id - ID of news article
+	 * @return news article as an Optional value
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting news article from the data storage
+	 */
 	@Override
 	public Optional<Article> findArticleByID(long id) throws ServiceException {
 		try {
@@ -44,47 +57,47 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 	}
 
+	/**
+	 * Provides news article retrieved by it's title.
+	 * 
+	 * @param id - title of news article
+	 * @return news article as an Optional value
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting news article from the data storage
+	 */
 	@Override
-	public boolean isNextIdxAvailable(int previousIdx) throws ServiceException {
-		return findAllArticles().size() > previousIdx;
-	}
-
-	@Override
-	public int getNextIdxExcluded(int lastIdxOld, int step) throws ServiceException {
-		int result;
-		int maxIdxAvailable = findAllArticles().size();
-
-		if (maxIdxAvailable >= lastIdxOld + step) {
-				result = lastIdxOld + step;
-		} else {
-			result = maxIdxAvailable;
+	public Optional<Article> findArticleByTitle(String title) throws ServiceException{
+		Optional<Article> articleOptional = Optional.empty();
+		try {
+			articleOptional = articleDao.getArticleByTitle(title);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
 		}
-		return result;
+		return articleOptional;
 	}
-
 	
+	/**
+	 * Builds news article with empty ID.
+	 * 
+	 * @param title - the title of news article
+	 * @param intro - the short introduction to article
+	 * @param text - the main text of the article
+	 * @return news article
+	 */
 	@Override
-	public int getLastIdx(int currentIdx) {
-		int lastIdx = currentIdx - (currentIdx % NewsIdx.STEP);
-		return lastIdx;
-	}
-
-	
-	@Override
-	public int getFirstIdx(int lastIdx) {
-		int firstIdx = lastIdx - NewsIdx.STEP;
-		if(firstIdx < NewsIdx.FIRST_IDX_GLOBAL) {
-			firstIdx = NewsIdx.FIRST_IDX_GLOBAL;
-		}
-		return firstIdx;
-	}
-
-	@Override
-	public Article buildArticle(String title, String lead, String text) {
-		Article article = new Article(EMPTY_ID, new Date(), title, lead, text);
+	public Article buildArticle(String title, String intro, String text) {
+		Article article = new Article(EMPTY_ID, new Date(), title, intro, text);
 		return article;
 	}
 
+	/**
+	 * Adds news article to data storage.
+	 * 
+	 * @param article - news article to add
+	 * @return the ID of news article in data storage
+	 * @throws ServiceException in the case when DaoException occurs while saving  
+	 * news article to the data storage
+	 */
 	@Override
 	public long addArticle(Article article) throws ServiceException {
 		long articleId = ERROR_ID;
@@ -98,26 +111,108 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleId;
 	}
 
+	/**
+	 * Checks the existence of news article by it's {@code name}.
+	 * 
+	 * @param name  the name of tariff plan
+	 * @throws ServiceException in the case when DaoException occurs while 
+	 * getting the tariff plan from the data storage
+	 */
 	@Override
-	public boolean isArticleExists(String title) throws ServiceException {
-		Optional<Article> articleOptional = Optional.empty();
-		try {
-			articleOptional = articleDao.getArticleByTitle(title);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+	public boolean doesArticleExists(String title) throws ServiceException {
+		Optional<Article> articleOptional = findArticleByTitle(title);
 		return articleOptional.isPresent();
 	}
 
+
+
+	/**
+	 * Extracts sublist of news articles from all articles in the data storage.
+	 * Can be used for pagination.
+	 * 
+	 * @param firstIndex - index of first news article in whole articles list in data storage
+	 * @param lastIndexExcluded - index of the article following after the last news article 
+	 * 							in whole articles list in data storage
+	 * @return - sublist of news articles
+	 * @throws ServiceException in the case when DaoException occurs while getting 
+	 * all news articles from the data storage
+	 */
 	@Override
-	public Optional<Article> findArticleByTitle(String title) throws ServiceException{
-		Optional<Article> articleOptional = Optional.empty();
-		try {
-			articleOptional = articleDao.getArticleByTitle(title);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
+	public List<Article> buildArticlesBatch(int firstIndex, int lastIndexExcluded) throws ServiceException {
+		List<Article> articlesBatch = findAllArticles().subList(firstIndex, lastIndexExcluded);
+		return articlesBatch;
+	}
+
+	
+	/**
+	 * Checks if the next index available in all articles list.
+	 * Used when moving from current to older news articles .
+	 * 
+	 * @param previousIndex - previous index
+	 * @return - {@code true} if there is next index in the list with all news articles
+	 * 			 <@code false} if there is no next index in the list with all news articles
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting all news articles from the data storage 
+	 */
+	@Override
+	public boolean isNextIndexAvailableMovingBack(int previousIndex) throws ServiceException {
+		return findAllArticles().size() > previousIndex;
+	}
+
+	
+	/**
+	 * Provides the value used as excluded "to-index" for extracting sub-list 
+	 * when moving from current to older news articles.
+	 * 
+	 * @param currentIndex - starting index
+	 * @param step - step to define the size of sub-bunch of news articles
+	 * @return  "to-index" 
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting all news articles from the data storage  
+	 */
+	@Override
+	public int getNextIndexExcludedMovingBack(int currentIndex, int step) throws ServiceException {
+		int result;
+		int maxIdxAvailable = findAllArticles().size();
+
+		if (maxIdxAvailable >= currentIndex + step) {
+				result = currentIndex + step;
+		} else {
+			result = maxIdxAvailable;
 		}
-		return articleOptional;
+		return result;
+	}
+
+	/**
+	 * Provides the value used as excluded "to-index" for extracting sub-list 
+	 * when moving from older to current news articles.
+	 * 
+	 * @param fromIndex - starting index
+	 * @param step - step to define the size of sub-bunch of news articles
+	 * @return  "to-index" 
+	 */
+	@Override
+	public int getLastIndexMovingForward(int currentIndex, int step) {
+		int lastIdx = currentIndex - (currentIndex % step);
+		return lastIdx;
+	}
+
+	
+	/**
+	 * Provides the value used as excluded "from-index" for extracting sub-list 
+	 * when moving from older to current news articles.
+	 * 
+	 * @param lastIndex - ending index
+	 * @param step - step to define the size of sub-bunch of news articles
+	 * @return  "from-index" 
+	 */
+	@Override
+	public int getFirstIndexMovingForward(int lastIndex, int step) {
+		int firstIdx = lastIndex - step;
+		if(firstIdx < FIRST_IDX_GLOBAL) {
+			firstIdx = FIRST_IDX_GLOBAL;
+		}
+		return firstIdx;
 	}
 
 }

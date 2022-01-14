@@ -1,6 +1,8 @@
 package by.epamjwd.mobile.controller.command.impl.transit;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,17 @@ public class GoToSubscriberServicesPageCommand implements Command {
 		RouteHelper result = RouteHelper.ERROR;
 		try {
 			List<Service> serviceList = serviceService.findAllServices();
-			request.getSession().setAttribute(AttributeName.ALL_SERVICES, serviceList);
+			
+			
+			Map<Service, Boolean> serviceMap = new HashMap<>();
+			for(Service service : serviceList) {
+				serviceMap.put(service, true);
+			}
+			
+			
+			//request.getSession().setAttribute(AttributeName.ALL_SERVICES, serviceList);
+			request.getSession().setAttribute(AttributeName.ALL_SERVICES, serviceMap);
+			
 			result = new RouteHelper(PagePath.SUBSCRIBER_SERVICES, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain service list. ", e);
