@@ -83,7 +83,7 @@ public class AddConsultantCommand implements Command{
 		clearAttributes(session);
 		
 		try {
-			consultantId = userService.addNewUser(userService.buildConsultant(firstName, middleName, lastName, 
+			consultantId = userService.addNewUser(userService.buildConsultantUser(firstName, middleName, lastName, 
 					request.getParameter(ParameterName.PASSWORD1), passport, email));
 			session.setAttribute(AttributeName.CONSULTANT_ID, consultantId);
 			result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);

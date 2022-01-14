@@ -130,8 +130,10 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	
+	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА
 	@Override
-	public int sendCodeByMail(String phone) throws ServiceException {
+	public int sendCodeToSubscriberByMail(String phone) throws ServiceException {
 		int result = 0;
 		if(InputDataValidator.isPhone(phone)) {
 			try {
@@ -160,6 +162,7 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
+	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА и переделать в  findSubscriberByPhone (он там есть)
 	@Override
 	public boolean doesPhoneExist(String phone) throws ServiceException {
 		return findUserByPhone(phone).isPresent();
@@ -170,6 +173,7 @@ public class UserServiceImpl implements UserService {
 		return InputDataValidator.isPassword(password);
 	}	
 	
+	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА и переделать в  findSubscriberByPhone (он там есть)
 	@Override
 	public boolean isSignupRequired(String phone) throws ServiceException {
 		boolean result = false;
@@ -195,7 +199,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public User buildConsultant(String firstName, String middleName, String lastName, 
+	public User buildConsultantUser(String firstName, String middleName, String lastName, 
 			String password, String passport, String email) {
 		User user = null;
 		user = new User(EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
@@ -213,7 +217,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
-	
+	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА - как это вообще здесь очутилось?
 	@Override
 	public Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException {
 		Subscriber subscriber = null;
