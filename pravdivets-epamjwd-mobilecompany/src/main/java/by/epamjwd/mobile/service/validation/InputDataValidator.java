@@ -177,8 +177,6 @@ public class InputDataValidator {
 		
 	}
 	
-	
-	
 	private static boolean doesMatchePattern(String anyString, String regex) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(anyString);

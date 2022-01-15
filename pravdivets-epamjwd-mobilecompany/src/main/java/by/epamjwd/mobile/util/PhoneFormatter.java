@@ -5,7 +5,7 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 public class PhoneFormatter {
 
 	/**
-	 * Method transforms input String value of a raw 9-digit phone number
+	 * Transforms input String value of a raw 9-digit phone number
 	 * into more visually readable phone number with parentheses and hyphens.
 	 * 
 	 * 

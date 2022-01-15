@@ -26,6 +26,7 @@ public class PhoneGenerator {
 	private static class Holder{
 		private final static PhoneGenerator INSTANCE = new PhoneGenerator();
 	}
+	
 	/**
 	 * Provides a new phone number available in mobile operator's database. 
 	 * 
