@@ -15,7 +15,7 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
-import by.epamjwd.mobile.controller.repository.NewsIdx;
+import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -35,10 +35,10 @@ public class FindAllNewsCommand implements Command {
 		session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
 		session.removeAttribute(AttributeName.NO_PREVIOUS_NEWS);
 
-		int lastIdx = NewsIdx.FIRST_IDX_GLOBAL + NewsIdx.STEP;
+		int lastIdx = IndexRepository.NULL_INDEX + IndexRepository.STEP;
 		
 		try {
-		List<Article> newsBatch = newsService.buildArticlesBatch(NewsIdx.FIRST_IDX_GLOBAL, lastIdx );
+		List<Article> newsBatch = newsService.buildArticlesBatch(IndexRepository.NULL_INDEX, lastIdx );
 		session.setAttribute(AttributeName.NEWS, newsBatch);
 		session.setAttribute(AttributeName.CURRENT_IDX, lastIdx);
 		result = new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);

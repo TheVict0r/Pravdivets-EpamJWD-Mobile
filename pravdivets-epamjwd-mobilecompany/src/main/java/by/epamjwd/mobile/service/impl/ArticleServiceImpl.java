@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Article;
+import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.ArticleDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
@@ -16,9 +17,6 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
  * Class provides the operations with news articles
  */
 public class ArticleServiceImpl implements ArticleService {
-	private final static long ERROR_ID = -1L;
-	private final static long EMPTY_ID = 0L;
-	private final static int FIRST_IDX_GLOBAL = 0;
 
 	DAOProvider provider = DAOProvider.getInstance();
 	ArticleDAO articleDao = provider.getNewsDao();
@@ -86,7 +84,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public Article buildArticle(String title, String intro, String text) {
-		Article article = new Article(EMPTY_ID, new Date(), title, intro, text);
+		Article article = new Article(IndexRepository.EMPTY_ID, new Date(), title, intro, text);
 		return article;
 	}
 
@@ -100,7 +98,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public long addArticle(Article article) throws ServiceException {
-		long articleId = ERROR_ID;
+		long articleId = IndexRepository.ERROR_ID;
 		if (InputDataValidator.isArticleValid(article)) {
 			try {
 				articleId = articleDao.addArticle(article);
@@ -209,8 +207,8 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public int getFirstIndexMovingForward(int lastIndex, int step) {
 		int firstIdx = lastIndex - step;
-		if(firstIdx < FIRST_IDX_GLOBAL) {
-			firstIdx = FIRST_IDX_GLOBAL;
+		if(firstIdx < IndexRepository.NULL_INDEX) {
+			firstIdx = IndexRepository.NULL_INDEX;
 		}
 		return firstIdx;
 	}

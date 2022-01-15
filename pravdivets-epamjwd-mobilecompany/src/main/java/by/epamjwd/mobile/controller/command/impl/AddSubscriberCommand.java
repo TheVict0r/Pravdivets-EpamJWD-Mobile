@@ -83,7 +83,7 @@ public class AddSubscriberCommand implements Command{
 
 			try {
 				User user = userService.buildUser(firstName, middleName, lastName, passport, email);
-				Subscriber subscriber = userService.buildSubscriber(phone, planId, EMPTY_ID);
+				Subscriber subscriber = subscriberService.buildSubscriber(phone, planId, EMPTY_ID);
 				if(subscriber != null) { // it can be null in the case if there is no plan with planId
 				subscriberId = customerService.addNewCustomer(user, subscriber);
 				} else {
@@ -107,8 +107,8 @@ public class AddSubscriberCommand implements Command{
 			
 			long userId = currentUser.getId();
 			try {
-				Subscriber subscriber = userService.buildSubscriber(phone, planId, userId);
-				if(subscriber != null) { // it can be null in the case if there is no plan with planId
+				Subscriber subscriber = subscriberService.buildSubscriber(phone, planId, userId);
+				if(subscriber != null) { // it could be null in the case if there is no plan with planId
 				subscriberId = subscriberService.addNewSubscriberToExistingUser(subscriber);
 				} else {
 					result = RouteHelper.ERROR_404;

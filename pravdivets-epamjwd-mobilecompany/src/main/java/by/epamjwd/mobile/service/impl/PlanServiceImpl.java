@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Plan;
+import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.PlanDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
@@ -18,8 +19,6 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
  * Class provides the operations with tariff plans
  */
 public class PlanServiceImpl implements PlanService{
-	private final static long EMPTY_ID = 0L;
-	private final static long ERROR_ID = -1L;
 	private final static Logger LOGGER = LogManager.getLogger(PlanServiceImpl.class);
 
 	PlanDAO planDao = DAOProvider.getInstance().getPlanDAO();
@@ -78,7 +77,7 @@ public class PlanServiceImpl implements PlanService{
 	public Optional<Plan> suggestPlan(int withinNetwork, int otherNetworks, int abroad, int videocall, int sms, int mms,
 			int internet) throws ServiceException {
 		Optional<Plan> planOptional = Optional.empty();
-		long planId = EMPTY_ID;
+		long planId = IndexRepository.EMPTY_ID;
 		long minExpences = Long.MAX_VALUE;
 		try {
 			List<Plan> allPlans = planDao.getAllPlans();
@@ -173,7 +172,7 @@ public class PlanServiceImpl implements PlanService{
 	public Plan buildPlan(String name, String description, int regularPayment, 
 			int upfrontPayment, int withinNetwork, int otherNetworks, int abroad, 
 			int videocall, int sms, int mms, int internet) {
-		return new Plan(EMPTY_ID, name,  regularPayment, upfrontPayment, description, 
+		return new Plan(IndexRepository.EMPTY_ID, name,  regularPayment, upfrontPayment, description, 
 				withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet);
 	}
 
@@ -187,7 +186,7 @@ public class PlanServiceImpl implements PlanService{
 	 */
 	@Override
 	public long addPlan(Plan plan) throws ServiceException {
-		long planId = ERROR_ID;
+		long planId = IndexRepository.ERROR_ID;
 		if (InputDataValidator.isPlanValid(plan)) {
 			try {
 				planId = planDao.addPlan(plan);

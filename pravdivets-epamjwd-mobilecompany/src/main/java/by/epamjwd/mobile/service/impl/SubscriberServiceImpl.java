@@ -1,20 +1,27 @@
 package by.epamjwd.mobile.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Subscriber;
+import by.epamjwd.mobile.bean.SubscriberStatus;
+import by.epamjwd.mobile.bean.User;
+import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.service.PlanService;
+import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
+import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class SubscriberServiceImpl implements SubscriberService {
-	private static final long ERROR_ID = -1;
-	
+
 	SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
 
 	
@@ -126,35 +133,24 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	/**
-	 * Checks the data storage to see if the phone number is there. 
+	 * Checks if the phone number is already presented in the data storage. 
 	 * 
 	 * @param phone - phone number
-	 * @return {@code true} if there is no this {@code phone number} in the data storage
+	 * @return {@code true} if  the {@code phone number} is already presented in the data storage
 	 * @throws ServiceException in the case when DaoException occurs while getting a subscriber 
 	 * from the data storage
 	 */
 	@Override
-	public boolean isPhoneAvailable(String phone) throws ServiceException {
+	public boolean doesPhoneExist(String phone) throws ServiceException {
 		boolean result = false;
-
-		Optional<Subscriber> subscriber = Optional.empty();
 		if (InputDataValidator.isPhone(phone)) {
-			try {
-				subscriber = subscriberDao.findSubscriberByPhone(phone);
-			} catch (DaoException e) {
-				throw new ServiceException(e);
-			}
+			result = findSubscriberByPhone(phone).isPresent();
 		}
-
-		if (subscriber.isEmpty()) {
-			result = true;
-		}
-
 		return result;
 	}
 	
 	/**
-	 * Checks to see if the user with provided passport number is already presented in the data storage. 
+	 * Checks to see if the user with provided passport number is already presented in the data storage as a subscriber. 
 	 * 
 	 * @param passport - passport number
 	 * @return {@code true} if there is a user with {@code passport number } in the data storage
@@ -170,9 +166,8 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscribers.isEmpty();
 	}
 	
-	
 	/**
-	 * Checks, if the subscriber has debts - negative value on his account
+	 * Checks, if the subscriber has debts - negative values on his all accounts
 	 * 
 	 * @param passport - passport number
 	 * @return {@code true} if account value is less than zero
@@ -182,12 +177,37 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public boolean isDebtor(String passport) throws ServiceException {
 		List<Subscriber> subscribersWithDebts = new ArrayList<>();
-		
-		if (InputDataValidator.isPassport(passport)){
-		subscribersWithDebts = findSubscribersDebtors(passport);
+
+		if (InputDataValidator.isPassport(passport)) {
+			subscribersWithDebts = findSubscribersDebtors(passport);
 		}
 		return subscribersWithDebts.size() > 0;
 	}
+
+
+	/**
+	 * Checks if Subscriber need to be signed-up. (Have no password).
+	 * 
+	 * @param phone - phone number
+	 * @return {@code true} if  the Subscriber is already presented 
+	 * in the data storage and have no {@code password}
+	 * @throws ServiceException in the case when DaoException occurs 
+	 * while getting a User from the data storage
+	 */
+	@Override
+	public boolean isSignupRequired(String phone) throws ServiceException {
+		boolean result = false;
+		
+		if (InputDataValidator.isPhone(phone)) {
+			UserService userService = ServiceProvider.getInstance().getUserService();
+			Optional<User> userOptional = userService.findUserByPhone(phone);
+			if (userOptional.isPresent()) {
+				User user = userOptional.get();
+				result = user.getPassword() == null;
+			}
+		}
+		return result;
+	}	
 
 	
 	/**
@@ -201,33 +221,33 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public List<Subscriber> findSubscribersDebtors(String passport) throws ServiceException {
 		List<Subscriber> subscribersWithDebts = new ArrayList<>();
-		
-		if (InputDataValidator.isPassport(passport)){
-		List<Subscriber> subscribers = findSubscriberListByPassport(passport);
-		for(Subscriber subscriber : subscribers) {
-			if (subscriber.getAccount() < 0) {
-				subscribersWithDebts.add(subscriber);
+		List<Subscriber> subscribers = new ArrayList<>();
+
+		if (InputDataValidator.isPassport(passport)) {
+			subscribers = findSubscriberListByPassport(passport);
+			for (Subscriber subscriber : subscribers) {
+				if (subscriber.getAccount() < 0) {
+					subscribersWithDebts.add(subscriber);
+				}
 			}
-		}
 		}
 		return subscribersWithDebts;
 	}
 
 
 	/**
-	 * Adds to data storage one more subscriber to existing user.
+	 * Adds to the data storage one more subscriber to existing user.
 	 * 
-	 * @param subscriber - new subscriber
+	 * @param subscriber - new Subscriber
 	 * @return new subscriber's ID
-	 * @throws ServiceException in the case when DaoException occurs while adding a subscriber 
+	 * @throws ServiceException in the case when DaoException occurs while adding a Subscriber 
 	 * to the data storage
 	 */
 	@Override
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
-		long subscriberID = ERROR_ID;
+		long subscriberID = IndexRepository.ERROR_ID;
 		
 		if (InputDataValidator.isSubscriberValid(subscriber)) {
-
 			try {
 				subscriberID = subscriberDao.addNewSubscriberToExistingUser(subscriber);
 			} catch (DaoException e) {
@@ -240,9 +260,9 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	/**
-	 * Updates subscriber's data.
+	 * Updates Subscriber's data.
 	 * 
-	 * @param subscriber - subscriber
+	 * @param subscriber - Subscriber
 	 * @throws ServiceException in the case when DaoException occurs while updating a subscriber 
 	 */
 	@Override
@@ -256,4 +276,28 @@ public class SubscriberServiceImpl implements SubscriberService {
 		}
 	}
 
+	/**
+	 * Builds new Subscriber with empty ID.
+	 * 
+	 * @param phone - phone number
+	 * @param planID - tariff plan ID
+	 * @param userID - user's ID 
+	 * @return new Subscriber
+	 * @throws ServiceException in the case when DaoException occurs while searching tariff plan by ID 
+	 */
+	@Override
+	public Subscriber buildSubscriber(String phone, long planID, long userID) throws ServiceException {
+		Subscriber subscriber = null;
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
+		Optional<Plan> planOptional = planService.findPlanByID(planID);
+		if (planOptional.isPresent()) {
+			Plan plan = planOptional.get();
+			int account = plan.getUpfrontPayment();
+			subscriber = new Subscriber(IndexRepository.EMPTY_ID, new Date(), account, phone, new Date(),
+					SubscriberStatus.ACTIVE, planID, userID);
+		}
+		return subscriber;
+	}
+
+	
 }

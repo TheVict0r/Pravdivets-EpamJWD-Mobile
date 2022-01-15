@@ -2,6 +2,7 @@ package by.epamjwd.mobile.service.impl;
 
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
+import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.CustomerDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
@@ -10,7 +11,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class CustomerServiceImpl implements CustomerService  {
-	private static final long ERROR_ID = -1L;
 	CustomerDAO customerDao = DAOProvider.getInstance().getCustomerDAO();
 
 	/**
@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService  {
 	 */
 	@Override
 	public long addNewCustomer(User user, Subscriber subscriber) throws ServiceException {
-		long subscriberID = ERROR_ID;
+		long subscriberID = IndexRepository.ERROR_ID;
 		if (InputDataValidator.isUserValid(user) 
 				&& InputDataValidator.isSubscriberValid(subscriber)) {
 			try {

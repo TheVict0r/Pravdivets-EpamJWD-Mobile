@@ -35,7 +35,7 @@ public class CodeSendCommand implements Command{
 		UserService userService = ServiceProvider.getInstance().getUserService();
 
 		try {
-			int code = userService.sendCodeToSubscriberByMail(phone);
+			int code = userService.sendCodeToUserByMail(phone);
 			session.setAttribute(AttributeName.CODE, code);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while sending an authentication code to " + phone + e);

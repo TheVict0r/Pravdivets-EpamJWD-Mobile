@@ -16,7 +16,7 @@ import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
-import by.epamjwd.mobile.controller.repository.NewsIdx;
+import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -38,13 +38,13 @@ public class FindPreviousNewsCommand implements Command {
 		session.removeAttribute(AttributeName.NO_NEXT_NEWS);
 
 		if (firstIdx == NumericParser.INVALID_VALUE) {
-			firstIdx = NewsIdx.FIRST_IDX_GLOBAL;
+			firstIdx = IndexRepository.NULL_INDEX;
 			session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
 		}
 
 		try {
 			if (newsService.isNextIndexAvailableMovingBack(firstIdx)) {
-				lastIdxExcluded = newsService.getNextIndexExcludedMovingBack(firstIdx, NewsIdx.STEP);
+				lastIdxExcluded = newsService.getNextIndexExcludedMovingBack(firstIdx, IndexRepository.STEP);
 				List<Article> newsBatch = newsService.buildArticlesBatch(firstIdx, lastIdxExcluded);
 				session.setAttribute(AttributeName.NEWS, newsBatch);
 				session.setAttribute(AttributeName.CURRENT_IDX, lastIdxExcluded);

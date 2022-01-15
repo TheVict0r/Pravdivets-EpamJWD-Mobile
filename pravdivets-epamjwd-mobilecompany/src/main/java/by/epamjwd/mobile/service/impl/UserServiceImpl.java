@@ -1,18 +1,13 @@
 package by.epamjwd.mobile.service.impl;
 
-import java.util.Date;
 import java.util.Optional;
 
-import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Role;
-import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.bean.User;
+import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
-import by.epamjwd.mobile.service.PlanService;
-import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.mail.MailCodeManager;
@@ -20,11 +15,7 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 import by.epamjwd.mobile.util.HashGenerator;
 
 public class UserServiceImpl implements UserService {
-	private final static long ERROR_ID = -1L;
-	private final static long EMPTY_ID = 0L;
-	
-	DAOProvider provider = DAOProvider.getInstance();
-	UserDAO userDao = provider.getUserDAO();
+	UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 
 	@Override
 	public Optional<User> findUserByLogin(String login) throws ServiceException {
@@ -90,7 +81,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public long addNewUser(User user) throws ServiceException {
-		long userId = ERROR_ID;
+		long userId = IndexRepository.EMPTY_ID;
 		if (InputDataValidator.isUserValid(user)) {
 			try {
 				userId = userDao.addUser(user);
@@ -131,9 +122,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
-	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА
 	@Override
-	public int sendCodeToSubscriberByMail(String phone) throws ServiceException {
+	public int sendCodeToUserByMail(String phone) throws ServiceException {
 		int result = 0;
 		if(InputDataValidator.isPhone(phone)) {
 			try {
@@ -162,28 +152,12 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
-	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА и переделать в  findSubscriberByPhone (он там есть)
-	@Override
-	public boolean doesPhoneExist(String phone) throws ServiceException {
-		return findUserByPhone(phone).isPresent();
-	}	
 	
 	@Override
 	public boolean isPasswordCorrect(String password) {
 		return InputDataValidator.isPassword(password);
 	}	
 	
-	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА и переделать в  findSubscriberByPhone (он там есть)
-	@Override
-	public boolean isSignupRequired(String phone) throws ServiceException {
-		boolean result = false;
-		Optional<User> userOptional = findUserByPhone(phone);
-		if (userOptional.isPresent()) {
-			User user = userOptional.get();
-			result = user.getPassword() == null;
-		}
-		return result;
-	}	
 
 	@Override
 	public boolean isEmailBooked(String email) throws ServiceException {
@@ -202,7 +176,7 @@ public class UserServiceImpl implements UserService {
 	public User buildConsultantUser(String firstName, String middleName, String lastName, 
 			String password, String passport, String email) {
 		User user = null;
-		user = new User(EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
+		user = new User(IndexRepository.EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
 						passport, email, Role.CONSULTANT);
 		return user;
 	}
@@ -211,30 +185,9 @@ public class UserServiceImpl implements UserService {
 	public User buildUser(String firstName, String middleName, String lastName, 
 			String passport, String email) {
 		User user = null;
-		user = new User(EMPTY_ID, null, firstName, middleName, lastName, 
+		user = new User(IndexRepository.EMPTY_ID, null, firstName, middleName, lastName, 
 						passport, email, Role.SUBSCRIBER);
 		return user;
 	}
 
-	
-	//TODO ПЕРЕНЕСТИ В СУБСКРАЙБЕРА - как это вообще здесь очутилось?
-	@Override
-	public Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException {
-		Subscriber subscriber = null;
-		ServiceProvider serviceProvider = ServiceProvider.getInstance();	
-		PlanService planService = serviceProvider.getPlanService();
-		Optional<Plan> planOptional = planService.findPlanByID(planId);
-		if (planOptional.isPresent()) {
-		Plan plan = planOptional.get();	
-		
-		int account = plan.getUpfrontPayment();
-		
-		subscriber = new Subscriber(EMPTY_ID, new Date(), account, phone, 
-				new Date(), SubscriberStatus.ACTIVE, planId, userId);
-		}
-		return subscriber;
-	}
-
-	
-	
 }

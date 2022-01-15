@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public interface SubscriberService {
@@ -18,10 +17,12 @@ public interface SubscriberService {
 			throws ServiceException;
 	
 	boolean isDebtor(String passport) throws ServiceException;
-	boolean isPhoneAvailable(String phone) throws ServiceException;
 	boolean isNewSubscriberUser(String passport) throws ServiceException;
 	long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException;
 	void updateSubscriber(Subscriber subscriber) throws ServiceException;
+	Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException;
+	boolean doesPhoneExist(String phone) throws ServiceException;
+	boolean isSignupRequired(String phone) throws ServiceException;
 	
 	
 }

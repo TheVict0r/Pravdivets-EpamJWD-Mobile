@@ -43,10 +43,10 @@ public class PhoneGenerator {
 
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 
-		if (subscriberService.isPhoneAvailable(candidatePhone)) {
-			phoneResult = candidatePhone;
-		} else {
+		if (subscriberService.doesPhoneExist(candidatePhone)) {
 			provideFreePhone();
+		} else {
+			phoneResult = candidatePhone;
 		}
 
 		return phoneResult;

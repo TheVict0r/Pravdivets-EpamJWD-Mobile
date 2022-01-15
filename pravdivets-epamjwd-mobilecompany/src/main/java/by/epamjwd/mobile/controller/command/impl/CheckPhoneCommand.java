@@ -15,7 +15,7 @@ import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
-import by.epamjwd.mobile.service.UserService;
+import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class CheckPhoneCommand implements Command{
@@ -25,7 +25,7 @@ public class CheckPhoneCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		UserService userService = ServiceProvider.getInstance().getUserService();
+		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		
 		String phone = request.getParameter(ParameterName.PHONE);
 		session.setAttribute(AttributeName.PHONE, phone);
@@ -39,8 +39,8 @@ public class CheckPhoneCommand implements Command{
 		RouteHelper result;
 		
 		try {
-			if (userService.doesPhoneExist(phone)) {
-				if(AttributeValue.SIGN_UP.equals(mode) && !userService.isSignupRequired(phone)) {
+			if (subscriberService.doesPhoneExist(phone)) {
+				if(AttributeValue.SIGN_UP.equals(mode) && !subscriberService.isSignupRequired(phone)) {
 					return provideErrorMessage(session, AttributeValue.ALREADY_SIGNED_UP);
 				}
 				result = new RouteHelper(PagePath.CODE_SEND_REDIRECT, RouteMethod.REDIRECT);
