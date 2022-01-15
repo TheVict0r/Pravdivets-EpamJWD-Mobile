@@ -1,5 +1,7 @@
 package by.epamjwd.mobile.service.mail;
 
+import java.util.Properties;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -9,15 +11,12 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import by.epamjwd.mobile.service.exception.ServiceException;
-
-import java.util.Properties;
+import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class MailCodeManager {
 
+	final static int ERROR_CODE = -1;
 	final static int CODE_MIN_VALUE =  1000;
 	final static int FOUR_DECIMALS = 10_000;
 	
@@ -40,14 +39,31 @@ public class MailCodeManager {
 	}
 	
 	
-	public int sendGenereatedCodeByMail(String userMail) throws ServiceException {
-		int code = generateCode(); 
-		sendTextByMail(userMail, String.valueOf(code));
+	/**
+	 * Sends generated code to user's e-mail.
+	 * 
+	 * @param userEmail - user's e-mail
+	 * @return - sent code, returns ERROR_CODE (-1) if the code wasn't sent
+	 * @throws ServiceException if MessagingException occurs
+	 */
+	public int sendGenereatedCodeByMail(String userEmail) throws ServiceException {
+		int code = ERROR_CODE;
+
+		if (InputDataValidator.isEmail(userEmail)) {
+			code = generateCode();
+			sendTextByMail(userEmail, String.valueOf(code));
+		}
 		return code;
 	}
 	
-	
-	private void sendTextByMail(String usersMail, String text) throws ServiceException {
+	/**
+	 * Sends any text to user's e-mail.
+	 * 
+	 * @param userEmail - user's e-mail
+	 * @param text - any text need to be sent
+	 * @throws ServiceException if MessagingException occurs
+	 */
+	private void sendTextByMail(String userEmail, String text) throws ServiceException {
 
 		MailResourceManager mailResourceManager = MailResourceManager.getInstance();
 
@@ -71,21 +87,28 @@ public class MailCodeManager {
 			}
 		});
 		
-		try {
+		if (InputDataValidator.isEmail(userEmail)) {
+			try {
+				Message message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(mailFrom));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userEmail));
+				message.setSubject(MESSAGE_SUBJECT);
+				message.setText(text);
 
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(mailFrom));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usersMail));
-			message.setSubject(MESSAGE_SUBJECT);
-			message.setText(text);
+				Transport.send(message);
 
-			Transport.send(message);
-
-		} catch (MessagingException e) {
-			throw new ServiceException(e);
+			} catch (MessagingException e) {
+				throw new ServiceException(e);
+			}
 		}
+		
 	}
 
+	/**
+	 * Generates pseudirandom code number
+	 * 
+	 * @return code number
+	 */
 	private int generateCode() {
 		int code = (int) (Math.random() * FOUR_DECIMALS);
 		if (code < CODE_MIN_VALUE) {
