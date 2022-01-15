@@ -133,7 +133,7 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	/**
-	 * Checks the existence of tariff plan by it's {@code name}.
+	 * Checks for the presence of tariff plan by it's {@code name} in the data storage.
 	 * 
 	 * @param name  the name of tariff plan
 	 * @throws ServiceException in the case when DaoException occurs while 

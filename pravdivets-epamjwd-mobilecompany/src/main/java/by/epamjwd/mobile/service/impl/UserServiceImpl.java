@@ -17,6 +17,17 @@ import by.epamjwd.mobile.util.HashGenerator;
 public class UserServiceImpl implements UserService {
 	UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 
+	
+	
+	/**
+	 * Provides User retrieved by it's login. 
+	 * The login can be an e-mail address or a phone number ass well.
+	 * 
+	 * @param login - user's login
+	 * @return User as an Optional value
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting User from the data storage
+	 */
 	@Override
 	public Optional<User> findUserByLogin(String login) throws ServiceException {
 		Optional<User>  user = Optional.empty();
@@ -28,6 +39,15 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 	
+	
+	/**
+	 * Provides User retrieved by it's ID.
+	 * 
+	 * @param id - user's ID 
+	 * @return User as an Optional value
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting User from the data storage
+	 */
 	@Override
 	public Optional<User> findUserById(long id) throws ServiceException {
 		Optional<User> user = Optional.empty();
@@ -39,6 +59,14 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * Provides User retrieved by it's e-mail. 
+	 * 
+	 * @param e-mail - user's e-mail
+	 * @return User as an Optional value
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting User from the data storage
+	 */
 	@Override
 	public Optional<User> findUserByEmail(String email) throws ServiceException {
 		Optional<User> user = Optional.empty();
@@ -53,6 +81,14 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * Provides User retrieved by it's passport number. 
+	 * 
+	 * @param passport - user's passport number
+	 * @return User as an Optional value
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting User from the data storage
+	 */
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws ServiceException {
 		Optional<User> user = Optional.empty();
@@ -65,7 +101,15 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
-	
+
+	/**
+	 * Provides User retrieved by it's phone number. 
+	 * 
+	 * @param phone - user's phone number
+	 * @return User as an Optional value
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting User from the data storage
+	 */
 	@Override
 	public Optional<User> findUserByPhone(String phone) throws ServiceException {
 		Optional<User> user = Optional.empty();
@@ -79,8 +123,16 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * Adds the User to the data storage.
+	 * 
+	 * @param User - new User
+	 * @return new User's ID
+	 * @throws ServiceException in the case when DaoException occurs while adding a User 
+	 * to the data storage
+	 */
 	@Override
-	public long addNewUser(User user) throws ServiceException {
+	public long addUser(User user) throws ServiceException {
 		long userId = IndexRepository.EMPTY_ID;
 		if (InputDataValidator.isUserValid(user)) {
 			try {
@@ -92,6 +144,12 @@ public class UserServiceImpl implements UserService {
 		return userId;
 	}
 
+	/**
+	 * Updates User's data.
+	 * 
+	 * @param user - User
+	 * @throws ServiceException in the case when DaoException occurs while updating the User 
+	 */
 	@Override
 	public void updateUser(User user) throws ServiceException {
 		if (InputDataValidator.isUserValid(user)) {
@@ -103,6 +161,14 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	/**
+	 * Updates User's password. Because of the security reasons the hash-code 
+	 * of the new password will be added to the data storage, not the raw password.
+	 * 
+	 * @param user - User
+	 * @param passport - user's password
+	 * @throws ServiceException in the case when DaoException occurs while updating the User 
+	 */
 	@Override
 	public void updatePassword(User user, String password) throws ServiceException {
 			String passwordHash = HashGenerator.generateHash(password);
@@ -110,6 +176,15 @@ public class UserServiceImpl implements UserService {
 			updateUser(user);
 	}
 	
+	/**
+	 * Updates User's password. The user will be fount by it's phone number.
+	 * Because of the security reasons the hash-code of the new password will be 
+	 * added to the data storage, not the raw password.
+	 * 
+	 * @param phone - user's phone number
+	 * @param password - user's password
+	 * @throws ServiceException in the case when DaoException occurs while updating the User 
+	 */
 	@Override
 	public void updatePassword(String phone, String password) throws ServiceException {
 		Optional<User> userOptional = findUserByPhone(phone);
@@ -122,6 +197,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
+	/**
+	 * For Subscriber Users only. Send the authentication code to Subscriber user's e-mail. 
+	 * This e-mail will be found by subscriber's phone number.
+	 * 
+	 * @param phone - user's phone number
+	 * @return authentication code, that was sent to the user's e-mail
+	 * @throws ServiceException in the case when DaoException occurs 
+	 * while searching the User in the data storage
+	 */
 	@Override
 	public int sendCodeToUserByMail(String phone) throws ServiceException {
 		int result = 0;
@@ -139,54 +223,94 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	/**
+	 * Checks if the provided password is equal to user's password.
+	 * (Actually the method compares not the raw passwords, but their hash codes)
+	 * 
+	 * @param user - current User
+	 * @param password - user's password
+	 * @return true if passwords are equal
+	 */
 	@Override
 	public boolean isPasswordCorrect(User user, String password) {
 		boolean result = false;
-		if(password.isBlank() || password == null || user == null) {
+		if (password.isBlank() || password == null || user == null) {
 			return false;
 		}
-		
+
 		if (InputDataValidator.isUserValid(user)) {
 			result = HashGenerator.generateHash(password).equals(user.getPassword());
 		}
 		return result;
 	}
-
 	
-	@Override
-	public boolean isPasswordCorrect(String password) {
-		return InputDataValidator.isPassword(password);
-	}	
-	
-
+	/**
+	 * Checks for the presence of a e-mail in the data storage.
+	 * 
+	 * @param email - user's email
+	 * @throws ServiceException in the case when DaoException occurs 
+	 * while searching the User in the data storage
+	 */
 	@Override
 	public boolean isEmailBooked(String email) throws ServiceException {
-		Optional<User> user = findUserByEmail(email);
-		return user.isPresent();
-		
+		boolean result = false;
+		if (InputDataValidator.isEmail(email)) {
+			Optional<User> user = findUserByEmail(email);
+			result = user.isPresent();
+		}
+
+		return result;
 	}
 	
+	/**
+	 * Checks for the presence of a passport number in the data storage.
+	 * 
+	 * @param passport - user's passport number
+	 * @throws ServiceException in the case when DaoException occurs 
+	 * while searching the User in the data storage
+	 */
 	@Override
 	public boolean isPassportBooked(String passport) throws ServiceException {
 		Optional<User> user = findUserByPassport(passport);
 		return user.isPresent();
 	}
 	
+	/**
+	 * Builds new User, which is also a subscriber, with empty user ID.
+	 * 
+	 * @param firstName - user's first name
+	 * @param middleName - user's middle name
+	 * @param lastName - user's last name
+	 * @param passport - user's passport number
+	 * @param email - user's user's e-mail
+	 * @return new User
+	 */
+	@Override
+	public User buildSubscriberUser(String firstName, String middleName, String lastName, 
+			String passport, String email) {
+		User user = null;
+		user = new User(IndexRepository.EMPTY_ID, null, firstName, middleName, lastName, 
+						passport, email, Role.SUBSCRIBER);
+		return user;
+	}
+
+	/**
+	 * Builds new User, which is also a consultant, with empty user ID.
+	 * 
+	 * @param firstName - user's first name
+	 * @param middleName - user's middle name
+	 * @param lastName - user's last name
+	 * @param password - user's password
+	 * @param passport - user's passport number
+	 * @param email - user's e-mail
+	 * @return new User
+	 */
 	@Override
 	public User buildConsultantUser(String firstName, String middleName, String lastName, 
 			String password, String passport, String email) {
 		User user = null;
 		user = new User(IndexRepository.EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
 						passport, email, Role.CONSULTANT);
-		return user;
-	}
-
-	@Override
-	public User buildUser(String firstName, String middleName, String lastName, 
-			String passport, String email) {
-		User user = null;
-		user = new User(IndexRepository.EMPTY_ID, null, firstName, middleName, lastName, 
-						passport, email, Role.SUBSCRIBER);
 		return user;
 	}
 

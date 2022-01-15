@@ -17,6 +17,7 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class AddConsultantCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
@@ -68,13 +69,13 @@ public class AddConsultantCommand implements Command{
 			return RouteHelper.ERROR_500;
 		}
 		
-		if(!request.getParameter(ParameterName.PASSWORD1).equals(request.getParameter(ParameterName.PASSWORD2))) {
+		if(! request.getParameter(ParameterName.PASSWORD1).equals(request.getParameter(ParameterName.PASSWORD2))) {
 			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS, firstName, middleName, lastName, passport, 
 					request.getParameter(ParameterName.PASSWORD1), 
 					request.getParameter(ParameterName.PASSWORD2), email);
 		}
 		
-		if(!userService.isPasswordCorrect(request.getParameter(ParameterName.PASSWORD1))) {
+		if(!InputDataValidator.isPassword(request.getParameter(ParameterName.PASSWORD1))) {
 			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD, firstName, middleName, lastName, passport, 
 					request.getParameter(ParameterName.PASSWORD1), 
 					request.getParameter(ParameterName.PASSWORD2), email);
@@ -83,7 +84,7 @@ public class AddConsultantCommand implements Command{
 		clearAttributes(session);
 		
 		try {
-			consultantId = userService.addNewUser(userService.buildConsultantUser(firstName, middleName, lastName, 
+			consultantId = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
 					request.getParameter(ParameterName.PASSWORD1), passport, email));
 			session.setAttribute(AttributeName.CONSULTANT_ID, consultantId);
 			result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);

@@ -17,6 +17,7 @@ import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class NewPasswordCommand implements Command{
 
@@ -37,7 +38,7 @@ public class NewPasswordCommand implements Command{
 			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);
 		}
 		
-		if( ! userService.isPasswordCorrect(request.getParameter(ParameterName.PASSWORD1))) {
+		if( ! InputDataValidator.isPassword(request.getParameter(ParameterName.PASSWORD1))) {
 			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
 		}
 

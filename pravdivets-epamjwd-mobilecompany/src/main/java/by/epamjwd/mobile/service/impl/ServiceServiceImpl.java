@@ -50,7 +50,7 @@ public class ServiceServiceImpl implements ServiceService {
 	}
 
 	/**
-	 * Checks the existence of Service by it's {@code name}.
+	 * Checks for the presence of service by it's {@code name} in the data storage. .
 	 * 
 	 * @param name  the name of Service
 	 * @throws ServiceException in the case when DaoException occurs while 

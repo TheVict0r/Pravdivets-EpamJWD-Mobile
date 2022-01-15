@@ -82,7 +82,7 @@ public class AddSubscriberCommand implements Command{
 			removeUnusedAttributes(session);
 
 			try {
-				User user = userService.buildUser(firstName, middleName, lastName, passport, email);
+				User user = userService.buildSubscriberUser(firstName, middleName, lastName, passport, email);
 				Subscriber subscriber = subscriberService.buildSubscriber(phone, planId, EMPTY_ID);
 				if(subscriber != null) { // it can be null in the case if there is no plan with planId
 				subscriberId = customerService.addNewCustomer(user, subscriber);

@@ -110,7 +110,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Checks the existence of news article by it's {@code name}.
+	 * Checks for the presence of news article by it's {@code name} in the data storage.
 	 * 
 	 * @param name  the name of tariff plan
 	 * @throws ServiceException in the case when DaoException occurs while 

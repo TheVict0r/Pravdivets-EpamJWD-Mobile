@@ -26,12 +26,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	
 	/**
-	 * Provides subscriber retrieved by it's ID.
+	 * Provides Subscriber retrieved by it's ID.
 	 * 
 	 * @param id - subscriber's ID 
-	 * @return subscriber as an Optional value
+	 * @return Subscriber as an Optional value
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting subscriber from the data storage
+	 * occurs while getting a Subscriber from the data storage
 	 */
 	@Override
 	public Optional<Subscriber> findSubscriberById(long id) throws ServiceException {
@@ -45,12 +45,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	/**
-	 * Provides subscriber retrieved by it's phone number.
+	 * Provides Subscriber retrieved by it's phone number.
 	 * 
 	 * @param phone - subscriber's phone number 
-	 * @return subscriber as an Optional value
+	 * @return Subscriber as an Optional value
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting subscriber from the data storage
+	 * occurs while getting a Subscriber from the data storage
 	 */
 	@Override
 	public Optional<Subscriber> findSubscriberByPhone(String phone) throws ServiceException {
@@ -70,9 +70,9 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 * Provides the list of subscriber's (phone numbers) related to the same user.
 	 * 
 	 * @param userID - user's ID
-	 * @return list of subscribers
+	 * @return list of Subscribers
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting subscriber list from the data storage
+	 * occurs while getting a Subscriber list from the data storage
 	 */
 	@Override
 	public List<Subscriber> findSubscriberListByUserId(long userID) throws ServiceException {
@@ -87,12 +87,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 	
 	
 	/**
-	 * Provides the list of subscriber's related to the same user by passport number.
+	 * Provides the list of Subscriber's related to the same user by passport number.
 	 * 
 	 * @param passport - passport number
-	 * @return list of subscribers
+	 * @return list of Subscribers
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting subscriber list from the data storage
+	 * occurs while getting a Subscriber list from the data storage
 	 */
 	@Override
 	public List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException {
@@ -108,14 +108,14 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	/**
-	 * Provides the list of subscriber's related to the same user by full name.
+	 * Provides the list of Subscriber's related to the same user by full name.
 	 * 
 	 * @param firstName - subscriber's first name
 	 * @param middleName - subscriber's middle name
 	 * @param lastName - subscriber's last name
-	 * @return list of subscribers
+	 * @return list of Subscribers
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting subscriber list from the data storage
+	 * occurs while getting a Subscriber list from the data storage
 	 */
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws ServiceException {
@@ -133,11 +133,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 
 	/**
-	 * Checks if the phone number is already presented in the data storage. 
+	 * Checks for the presence of phone number in the data storage.
 	 * 
 	 * @param phone - phone number
 	 * @return {@code true} if  the {@code phone number} is already presented in the data storage
-	 * @throws ServiceException in the case when DaoException occurs while getting a subscriber 
+	 * @throws ServiceException in the case when DaoException occurs while getting a Subscriber 
 	 * from the data storage
 	 */
 	@Override
@@ -150,11 +150,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 	
 	/**
-	 * Checks to see if the user with provided passport number is already presented in the data storage as a subscriber. 
+	 * Checks to see if the User with provided passport number is already presented 
+	 * in the data storage as a Subscriber.
 	 * 
 	 * @param passport - passport number
-	 * @return {@code true} if there is a user with {@code passport number } in the data storage
-	 * @throws ServiceException in the case when DaoException occurs while getting a subscriber list
+	 * @return {@code true} if there is a User with {@code passport number } in the data storage
+	 * @throws ServiceException in the case when DaoException occurs while getting a Subscriber list
 	 * from the data storage
 	 */
 	@Override
@@ -167,11 +168,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	}
 	
 	/**
-	 * Checks, if the subscriber has debts - negative values on his all accounts
+	 * Checks, if a Subscriber has debts - negative values on his all accounts
 	 * 
 	 * @param passport - passport number
 	 * @return {@code true} if account value is less than zero
-	 * @throws ServiceException in the case when DaoException occurs while getting a subscriber list
+	 * @throws ServiceException in the case when DaoException occurs while getting a Subscriber list
 	 * from the data storage
 	 * */
 	@Override
@@ -211,11 +212,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	
 	/**
-	 * Retrieves all subscribers with accounts with negative values related to the same user.
+	 * Retrieves all Subscribers with accounts with negative values related to the same User.
 	 *  
 	 * @param passport - user's passport number
-	 * @return - list of subscribers with accounts with negative values related to the same user
-	 * @throws ServiceException in the case when DaoException occurs while getting a subscriber list
+	 * @return - list of Subscribers with accounts with negative values related to the same User
+	 * @throws ServiceException in the case when DaoException occurs while getting a Subscriber list
 	 * from the data storage
 	 */
 	@Override
@@ -236,7 +237,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 
 	/**
-	 * Adds to the data storage one more subscriber to existing user.
+	 * Adds to the data storage one more Subscriber to existing User.
 	 * 
 	 * @param subscriber - new Subscriber
 	 * @return new subscriber's ID
@@ -263,7 +264,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 * Updates Subscriber's data.
 	 * 
 	 * @param subscriber - Subscriber
-	 * @throws ServiceException in the case when DaoException occurs while updating a subscriber 
+	 * @throws ServiceException in the case when DaoException occurs while updating the Subscriber 
 	 */
 	@Override
 	public void updateSubscriber(Subscriber subscriber) throws ServiceException {
