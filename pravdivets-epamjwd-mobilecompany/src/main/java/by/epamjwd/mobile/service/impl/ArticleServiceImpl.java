@@ -5,10 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Article;
-import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.ArticleDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IndexRepository;
+import by.epamjwd.mobile.repository.ListDirection;
 import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
@@ -128,16 +129,16 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Extracts sublist of news articles from all articles in the data storage.
 	 * Can be used for pagination.
 	 * 
-	 * @param firstIndex - index of first news article in whole articles list in data storage
-	 * @param lastIndexExcluded - index of the article following after the last news article 
-	 * 							in whole articles list in data storage
+	 * @param fromIndex - index of first news article included to batch
+	 * @param toIndex - index of the article following after the last news article 
+	 * 							included to batch
 	 * @return - sublist of news articles
 	 * @throws ServiceException in the case when DaoException occurs while getting 
 	 * all news articles from the data storage
 	 */
 	@Override
-	public List<Article> buildArticlesBatch(int firstIndex, int lastIndexExcluded) throws ServiceException {
-		List<Article> articlesBatch = findAllArticles().subList(firstIndex, lastIndexExcluded);
+	public List<Article> buildArticlesBatch(int fromIndex, int toIndex) throws	ServiceException {
+		List<Article> articlesBatch = findAllArticles().subList(fromIndex, toIndex);
 		return articlesBatch;
 	}
 
@@ -153,10 +154,76 @@ public class ArticleServiceImpl implements ArticleService {
 	 * occurs while getting all news articles from the data storage 
 	 */
 	@Override
-	public boolean isNextIndexAvailableMovingBack(int previousIndex) throws ServiceException {
-		return findAllArticles().size() > previousIndex;
+	public boolean isLastIndexAvailable(int previousIndex) throws ServiceException {
+		int maxIndex = findAllArticles().size();
+		return maxIndex > previousIndex;
 	}
 
+	@Override
+	public int calculateNextIndex(int previousIndex, int step) throws ServiceException {
+		int nextIndex = previousIndex + step;
+		int maxIndex = findAllArticles().size();
+		if (nextIndex > maxIndex) {
+			nextIndex = maxIndex;
+		}
+		return nextIndex;
+	}
+
+	@Override
+	public int calculatePreviousIndex(int nextIndex, int step)  throws ServiceException {
+		int maxIndex = findAllArticles().size();
+		int previousIndex;
+		if(nextIndex == maxIndex) {
+			previousIndex = nextIndex - (maxIndex % step); //brackets just for clarity
+		} else {
+			previousIndex = nextIndex - step;
+		}
+		if (previousIndex < IndexRepository.ZERO_INDEX) {
+			previousIndex = IndexRepository.ZERO_INDEX;
+		}
+		return previousIndex;
+	}	
+	
+	@Override
+	public int calculateToIndex(int currentIndex, int step, ListDirection currentDirection , ListDirection previousDirection) throws ServiceException {
+		int toIndex = IndexRepository.ZERO_INDEX;
+		
+		if (currentDirection == ListDirection.TO_END && currentDirection == previousDirection) {
+				toIndex = calculateNextIndex(currentIndex, step);
+		} else if(currentDirection == ListDirection.TO_END && currentDirection != previousDirection) {
+			toIndex = calculateNextIndex(currentIndex, step);
+		}
+
+		if (currentDirection == ListDirection.TO_BEGINNING && currentDirection == previousDirection) {
+				toIndex = currentIndex;
+			} else if (currentDirection == ListDirection.TO_BEGINNING && currentDirection != previousDirection){
+				toIndex = calculatePreviousIndex(currentIndex, step );
+			}
+		
+		return toIndex;
+	}
+
+	@Override
+	public int calculateFromIndex(int currentIndex, int step, ListDirection currentDirection , ListDirection previousDirection) throws ServiceException {
+		int fromIndex = IndexRepository.ZERO_INDEX;
+		
+		if (currentDirection == ListDirection.TO_END && currentDirection == previousDirection) {
+				fromIndex = currentIndex;
+		} else if (currentDirection == ListDirection.TO_END && currentDirection != previousDirection) {
+			fromIndex = calculateNextIndex(currentIndex, step);
+		}
+
+		if (currentDirection == ListDirection.TO_BEGINNING && currentDirection == previousDirection) {
+				fromIndex = calculatePreviousIndex(currentIndex, step);
+			} else if(currentDirection == ListDirection.TO_BEGINNING && currentDirection != previousDirection) {
+				fromIndex = calculatePreviousIndex(currentIndex, step);
+			}
+		
+		return fromIndex;
+
+	}
+
+	
 	
 	/**
 	 * Provides the value used as excluded "to-index" for extracting sub-list 
@@ -169,7 +236,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * occurs while getting all news articles from the data storage  
 	 */
 	@Override
-	public int getNextIndexExcludedMovingBack(int currentIndex, int step) throws ServiceException {
+	public int getLastIndexMovingBackward(int currentIndex, int step) throws ServiceException {
 		int result;
 		int maxIdxAvailable = findAllArticles().size();
 
@@ -207,8 +274,8 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public int getFirstIndexMovingForward(int lastIndex, int step) {
 		int firstIdx = lastIndex - step;
-		if(firstIdx < IndexRepository.NULL_INDEX) {
-			firstIdx = IndexRepository.NULL_INDEX;
+		if(firstIdx < IndexRepository.ZERO_INDEX) {
+			firstIdx = IndexRepository.ZERO_INDEX;
 		}
 		return firstIdx;
 	}

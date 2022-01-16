@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.mail.MailCodeManager;

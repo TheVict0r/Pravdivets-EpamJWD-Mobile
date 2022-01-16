@@ -6,6 +6,7 @@ public class AttributeValue {
 	
 	public static final String ALREADY_SIGNED_UP = "already_signed_up";
 	public static final String ARTICLE_EXISTS = "article_exists";
+	public static final String BACKWARD = "backward";
 	public static final String BOOKED_EMAIL = "booked_email";
 	public static final String BOOKED_PASSPORT = "booked_passport";
 	public static final String DEACTIVATED = "deactivated";
@@ -14,6 +15,7 @@ public class AttributeValue {
 	public static final String ERROR = "error";
 	public static final String ERROR_LOGIN = "error_login";
 	public static final String FALSE = "false";
+	public static final String FORWARD = "forward";
 	public static final String GUEST = "guest";
 	public static final String INCORRECT_PASSWORD = "incorrect_password";
 	public static final String MISSMATCHED_CODES = "missmatched_codes";

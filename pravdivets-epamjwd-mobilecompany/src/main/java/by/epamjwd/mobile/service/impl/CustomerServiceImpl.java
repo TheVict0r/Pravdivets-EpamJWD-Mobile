@@ -2,10 +2,10 @@ package by.epamjwd.mobile.service.impl;
 
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.CustomerDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.CustomerService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;

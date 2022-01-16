@@ -7,10 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Plan;
-import by.epamjwd.mobile.controller.repository.IndexRepository;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.PlanDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;

@@ -23,6 +23,7 @@ public class AttributeName {
 	public static final String CURRENT_IDX = "current_idx";
 	public static final String DEBT = "debt";
 	public static final String DESCRIPTION = "description";
+	public static final String DIRECTION = "direction";
 	public static final String EMAIL = "email";
 	public static final String ERROR = "error";
 	public static final String FIRST_NAME = "first_name";
