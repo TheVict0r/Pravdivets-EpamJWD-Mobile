@@ -26,8 +26,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Provides all actual news articles currently exists.
 	 * 
 	 * @return Array List containing all news articles from the data storage
+	 * 
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting all news articles from the data storage
+	 * 			occurs while getting all news articles from the data storage
 	 */
 	@Override
 	public List<Article> findAllArticles() throws ServiceException {
@@ -43,9 +44,11 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Provides news article retrieved by it's ID.
 	 * 
 	 * @param id - ID of news article
+	 * 
 	 * @return news article as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting news article from the data storage
+	 * 			occurs while getting news article from the data storage
 	 */
 	@Override
 	public Optional<Article> findArticleByID(long id) throws ServiceException {
@@ -60,9 +63,11 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Provides news article retrieved by it's title.
 	 * 
 	 * @param id - title of news article
+	 * 
 	 * @return news article as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting news article from the data storage
+	 * 			occurs while getting news article from the data storage
 	 */
 	@Override
 	public Optional<Article> findArticleByTitle(String title) throws ServiceException{
@@ -79,8 +84,11 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Builds news article with empty ID.
 	 * 
 	 * @param title - the title of news article
+	 * 
 	 * @param intro - the short introduction to article
+	 * 
 	 * @param text - the main text of the article
+	 * 
 	 * @return news article
 	 */
 	@Override
@@ -93,9 +101,11 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Adds news article to data storage.
 	 * 
 	 * @param article - news article to add
+	 * 
 	 * @return the ID of news article in data storage
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while saving  
-	 * news article to the data storage
+	 * 			news article to the data storage
 	 */
 	@Override
 	public long addArticle(Article article) throws ServiceException {
@@ -114,8 +124,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Checks for the presence of news article by it's {@code name} in the data storage.
 	 * 
 	 * @param name  the name of tariff plan
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while 
-	 * getting the tariff plan from the data storage
+	 * 			getting the tariff plan from the data storage
 	 */
 	@Override
 	public boolean doesArticleExists(String title) throws ServiceException {
@@ -130,11 +141,14 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Can be used for pagination.
 	 * 
 	 * @param fromIndex - index of first news article included to batch
+	 * 
 	 * @param toIndex - index of the article following after the last news article 
 	 * 							included to batch
+	 * 
 	 * @return - sublist of news articles
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while getting 
-	 * all news articles from the data storage
+	 * 			all news articles from the data storage
 	 */
 	@Override
 	public List<Article> buildArticlesBatch(int fromIndex, int toIndex) throws	ServiceException {
@@ -144,21 +158,47 @@ public class ArticleServiceImpl implements ArticleService {
 
 	
 	/**
-	 * Checks if the next index available in all articles list.
-	 * Used when moving from current to older news articles .
+	 * Checks if the provided index is one step beyond the last index in all news articles list.
+	 * Used when moving from current to older news articles.
 	 * 
-	 * @param previousIndex - previous index
-	 * @return - {@code true} if there is next index in the list with all news articles
-	 * 			 <@code false} if there is no next index in the list with all news articles
+	 * @param index - index need to be checked
+	 * 
+	 * @return - {@code true} if {@code index} is is one step beyond the last index in all news articles list.
+	 * 
 	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting all news articles from the data storage 
+	 * 			occurs while getting all news articles from the data storage 
 	 */
 	@Override
-	public boolean isLastIndexAvailable(int previousIndex) throws ServiceException {
-		int maxIndex = findAllArticles().size();
-		return maxIndex > previousIndex;
+	public boolean isLastIndexExcluded(int index) throws ServiceException {
+		return index == findAllArticles().size();
 	}
 
+	/**
+	 * Checks if the previous index is equals to zero.
+	 * 
+	 * @param index - index which presumably have previous index equals to zero
+	 * 
+	 * @param step - step to move back
+	 * 
+	 * @return - {@code true} if {@code index} is is one step beyond the zero index in all news articles list.
+	 */
+	@Override
+	public boolean isPreviousIndexZero(int index, int step) {
+		return (index - step) == IndexRepository.ZERO_INDEX;
+	}
+	
+	/**
+	 * Calculates the next index by step. 
+	 * 
+	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
+	 * into account the last valid index excluded. 
+	 * 
+	 * @param previousIndex - previous index
+	 * 
+	 * @param step - step to define the size of sub-bunch of news articles
+	 * 
+	 * @return - next index
+	 */
 	@Override
 	public int calculateNextIndex(int previousIndex, int step) throws ServiceException {
 		int nextIndex = previousIndex + step;
@@ -169,6 +209,19 @@ public class ArticleServiceImpl implements ArticleService {
 		return nextIndex;
 	}
 
+	
+	/**
+	 * Calculates the previous index by step. 
+	 * 
+	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
+	 * into account the first valid index included (zero index). 
+	 * 
+	 * @param nextIndex - next index
+	 * 
+	 * @param step - step to define the size of sub-bunch of news articles
+	 * 
+	 * @return - previous index
+	 */
 	@Override
 	public int calculatePreviousIndex(int nextIndex, int step)  throws ServiceException {
 		int maxIndex = findAllArticles().size();
@@ -184,100 +237,72 @@ public class ArticleServiceImpl implements ArticleService {
 		return previousIndex;
 	}	
 	
+	/**
+	 * Calculates the last index excluded for bunch (sublist) of news articles.
+	 * 
+	 * @param fromIndex - the first index included for bunch (sublist) of news articles
+	 * 
+	 * @param currentDirection - direction need to move the bunch of news articles
+	 * 
+	 * @param previousDirection - direction from the previous step
+	 * 
+	 * @return last index excluded for bunch (sublist) of news articles.
+	 */
 	@Override
-	public int calculateToIndex(int currentIndex, int step, ListDirection currentDirection , ListDirection previousDirection) throws ServiceException {
-		int toIndex = IndexRepository.ZERO_INDEX;
-		
-		if (currentDirection == ListDirection.TO_END && currentDirection == previousDirection) {
-				toIndex = calculateNextIndex(currentIndex, step);
-		} else if(currentDirection == ListDirection.TO_END && currentDirection != previousDirection) {
-			toIndex = calculateNextIndex(currentIndex, step);
-		}
-
-		if (currentDirection == ListDirection.TO_BEGINNING && currentDirection == previousDirection) {
-				toIndex = currentIndex;
-			} else if (currentDirection == ListDirection.TO_BEGINNING && currentDirection != previousDirection){
-				toIndex = calculatePreviousIndex(currentIndex, step );
+	public int calculateToIndex(int fromIndex, int step, ListDirection currentDirection,
+			ListDirection previousDirection) throws ServiceException {
+		int toIndex;
+		switch (currentDirection) {
+		case TO_END:
+			toIndex = calculateNextIndex(fromIndex, step);
+			break;
+		case TO_BEGINNING:
+			if (currentDirection == previousDirection) {
+				toIndex = fromIndex;
+			} else {
+				toIndex = calculatePreviousIndex(fromIndex, step);
 			}
-		
+			break;
+		default:
+			toIndex = IndexRepository.INVALID_INDEX;
+		}
 		return toIndex;
 	}
 
+	
+	/**
+	 * Calculates the first index included for bunch (sublist) of news articles.
+	 * 
+	 * @param toIndex - the last index excluded for bunch (sublist) of news articles
+	 * 
+	 * @param currentDirection - direction need to move the bunch of news articles
+	 * 
+	 * @param previousDirection - direction from the previous step
+	 * 
+	 * @return first index included for bunch (sublist) of news articles.
+	 */
 	@Override
-	public int calculateFromIndex(int currentIndex, int step, ListDirection currentDirection , ListDirection previousDirection) throws ServiceException {
+	public int calculateFromIndex(int toIndex, int step, ListDirection currentDirection,
+			ListDirection previousDirection) throws ServiceException {
 		int fromIndex = IndexRepository.ZERO_INDEX;
-		
-		if (currentDirection == ListDirection.TO_END && currentDirection == previousDirection) {
-				fromIndex = currentIndex;
-		} else if (currentDirection == ListDirection.TO_END && currentDirection != previousDirection) {
-			fromIndex = calculateNextIndex(currentIndex, step);
-		}
 
-		if (currentDirection == ListDirection.TO_BEGINNING && currentDirection == previousDirection) {
-				fromIndex = calculatePreviousIndex(currentIndex, step);
-			} else if(currentDirection == ListDirection.TO_BEGINNING && currentDirection != previousDirection) {
-				fromIndex = calculatePreviousIndex(currentIndex, step);
+		switch (currentDirection) {
+		case TO_END:
+			if (currentDirection == previousDirection) {
+				fromIndex = toIndex;
+			} else {
+				fromIndex = calculateNextIndex(toIndex, step);
 			}
+			break;
+		case TO_BEGINNING:
+			fromIndex = calculatePreviousIndex(toIndex, step);
+			break;
+		default:
+			fromIndex = IndexRepository.INVALID_INDEX;
+		}
 		
 		return fromIndex;
 
-	}
-
-	
-	
-	/**
-	 * Provides the value used as excluded "to-index" for extracting sub-list 
-	 * when moving from current to older news articles.
-	 * 
-	 * @param currentIndex - starting index
-	 * @param step - step to define the size of sub-bunch of news articles
-	 * @return  "to-index" 
-	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting all news articles from the data storage  
-	 */
-	@Override
-	public int getLastIndexMovingBackward(int currentIndex, int step) throws ServiceException {
-		int result;
-		int maxIdxAvailable = findAllArticles().size();
-
-		if (maxIdxAvailable >= currentIndex + step) {
-				result = currentIndex + step;
-		} else {
-			result = maxIdxAvailable;
-		}
-		return result;
-	}
-
-	/**
-	 * Provides the value used as excluded "to-index" for extracting sub-list 
-	 * when moving from older to current news articles.
-	 * 
-	 * @param fromIndex - starting index
-	 * @param step - step to define the size of sub-bunch of news articles
-	 * @return  "to-index" 
-	 */
-	@Override
-	public int getLastIndexMovingForward(int currentIndex, int step) {
-		int lastIdx = currentIndex - (currentIndex % step);
-		return lastIdx;
-	}
-
-	
-	/**
-	 * Provides the value used as excluded "from-index" for extracting sub-list 
-	 * when moving from older to current news articles.
-	 * 
-	 * @param lastIndex - ending index
-	 * @param step - step to define the size of sub-bunch of news articles
-	 * @return  "from-index" 
-	 */
-	@Override
-	public int getFirstIndexMovingForward(int lastIndex, int step) {
-		int firstIdx = lastIndex - step;
-		if(firstIdx < IndexRepository.ZERO_INDEX) {
-			firstIdx = IndexRepository.ZERO_INDEX;
-		}
-		return firstIdx;
 	}
 
 }

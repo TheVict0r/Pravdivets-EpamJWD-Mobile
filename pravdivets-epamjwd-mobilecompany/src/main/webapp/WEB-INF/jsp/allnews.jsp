@@ -57,7 +57,7 @@
 							<c:otherwise>
 								<div class="d-grid  mb-3 mx-auto me-md-5">
 									<a class="btn btn-outline-primary"
-										href="${pageContext.request.contextPath}/controller?command=find_next_news"><fmt:message
+										href="${pageContext.request.contextPath}/controller?command=find_new_articles"><fmt:message
 											key="allnews.next" /></a>
 								</div>
 							</c:otherwise>
@@ -75,7 +75,7 @@
 							<c:otherwise>
 								<div class="d-grid mb-3 mx-auto me-md-5">
 									<a class="btn btn-outline-primary"
-										href="${pageContext.request.contextPath}/controller?command=find_previous_news"><fmt:message
+										href="${pageContext.request.contextPath}/controller?command=find_old_articles"><fmt:message
 											key="allnews.previous" /></a>
 								</div>
 							</c:otherwise>
