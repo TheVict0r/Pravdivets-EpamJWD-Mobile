@@ -10,6 +10,7 @@ import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.PlanDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -77,7 +78,7 @@ public class PlanServiceImpl implements PlanService{
 	public Optional<Plan> suggestPlan(int withinNetwork, int otherNetworks, int abroad, int videocall, int sms, int mms,
 			int internet) throws ServiceException {
 		Optional<Plan> planOptional = Optional.empty();
-		long planId = IndexRepository.EMPTY_ID;
+		long planId = IDRepository.EMPTY_ID;
 		long minExpences = Long.MAX_VALUE;
 		try {
 			List<Plan> allPlans = planDao.getAllPlans();
@@ -172,7 +173,7 @@ public class PlanServiceImpl implements PlanService{
 	public Plan buildPlan(String name, String description, int regularPayment, 
 			int upfrontPayment, int withinNetwork, int otherNetworks, int abroad, 
 			int videocall, int sms, int mms, int internet) {
-		return new Plan(IndexRepository.EMPTY_ID, name,  regularPayment, upfrontPayment, description, 
+		return new Plan(IDRepository.EMPTY_ID, name,  regularPayment, upfrontPayment, description, 
 				withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet);
 	}
 
@@ -186,7 +187,7 @@ public class PlanServiceImpl implements PlanService{
 	 */
 	@Override
 	public long addPlan(Plan plan) throws ServiceException {
-		long planId = IndexRepository.ERROR_ID;
+		long planId = IDRepository.ERROR_ID;
 		if (InputDataValidator.isPlanValid(plan)) {
 			try {
 				planId = planDao.addPlan(plan);

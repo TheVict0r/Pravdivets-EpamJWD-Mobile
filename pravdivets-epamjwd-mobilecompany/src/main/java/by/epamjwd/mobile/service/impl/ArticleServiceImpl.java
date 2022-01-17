@@ -8,6 +8,7 @@ import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.dao.ArticleDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.repository.ListDirection;
 import by.epamjwd.mobile.service.ArticleService;
@@ -93,7 +94,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public Article buildArticle(String title, String intro, String text) {
-		Article article = new Article(IndexRepository.EMPTY_ID, new Date(), title, intro, text);
+		Article article = new Article(IDRepository.EMPTY_ID, new Date(), title, intro, text);
 		return article;
 	}
 
@@ -109,7 +110,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public long addArticle(Article article) throws ServiceException {
-		long articleId = IndexRepository.ERROR_ID;
+		long articleId = IDRepository.ERROR_ID;
 		if (InputDataValidator.isArticleValid(article)) {
 			try {
 				articleId = articleDao.addArticle(article);

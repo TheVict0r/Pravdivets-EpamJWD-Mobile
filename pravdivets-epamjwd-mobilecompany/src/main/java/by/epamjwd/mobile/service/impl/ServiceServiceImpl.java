@@ -7,6 +7,7 @@ import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.ServiceDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -77,7 +78,7 @@ public class ServiceServiceImpl implements ServiceService {
 	 */
 	@Override
 	public Service buildService(String name, int tariff, String description) {
-		return new Service(IndexRepository.EMPTY_ID, name, tariff, description);
+		return new Service(IDRepository.EMPTY_ID, name, tariff, description);
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class ServiceServiceImpl implements ServiceService {
 	 */
 	@Override
 	public long addService(Service service) throws ServiceException {
-		long serviceId = IndexRepository.ERROR_ID;
+		long serviceId = IDRepository.ERROR_ID;
 		if (InputDataValidator.isServiceValid(service)) {
 			try {
 				serviceId = serviceDao.addService(service);

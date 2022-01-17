@@ -7,6 +7,7 @@ import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -133,7 +134,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public long addUser(User user) throws ServiceException {
-		long userId = IndexRepository.EMPTY_ID;
+		long userId = IDRepository.EMPTY_ID;
 		if (InputDataValidator.isUserValid(user)) {
 			try {
 				userId = userDao.addUser(user);
@@ -289,7 +290,7 @@ public class UserServiceImpl implements UserService {
 	public User buildSubscriberUser(String firstName, String middleName, String lastName, 
 			String passport, String email) {
 		User user = null;
-		user = new User(IndexRepository.EMPTY_ID, null, firstName, middleName, lastName, 
+		user = new User(IDRepository.EMPTY_ID, null, firstName, middleName, lastName, 
 						passport, email, Role.SUBSCRIBER);
 		return user;
 	}
@@ -309,7 +310,7 @@ public class UserServiceImpl implements UserService {
 	public User buildConsultantUser(String firstName, String middleName, String lastName, 
 			String password, String passport, String email) {
 		User user = null;
-		user = new User(IndexRepository.EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
+		user = new User(IDRepository.EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
 						passport, email, Role.CONSULTANT);
 		return user;
 	}

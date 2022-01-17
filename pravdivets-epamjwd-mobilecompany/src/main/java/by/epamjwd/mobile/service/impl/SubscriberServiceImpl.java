@@ -12,6 +12,7 @@ import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
+import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -246,7 +247,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
-		long subscriberID = IndexRepository.ERROR_ID;
+		long subscriberID = IDRepository.ERROR_ID;
 		
 		if (InputDataValidator.isSubscriberValid(subscriber)) {
 			try {
@@ -294,7 +295,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		if (planOptional.isPresent()) {
 			Plan plan = planOptional.get();
 			int account = plan.getUpfrontPayment();
-			subscriber = new Subscriber(IndexRepository.EMPTY_ID, new Date(), account, phone, new Date(),
+			subscriber = new Subscriber(IDRepository.EMPTY_ID, new Date(), account, phone, new Date(),
 					SubscriberStatus.ACTIVE, planID, userID);
 		}
 		return subscriber;
