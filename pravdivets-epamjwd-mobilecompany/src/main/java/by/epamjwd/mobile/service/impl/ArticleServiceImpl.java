@@ -199,6 +199,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param step - step to define the size of sub-bunch of news articles
 	 * 
 	 * @return - next index
+	 * 
+	 * @throws ServiceException in the case when DaoException 
+	 * 			occurs while getting all news articles from the data storage 
 	 */
 	@Override
 	public int calculateNextIndex(int previousIndex, int step) throws ServiceException {
@@ -222,6 +225,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param step - step to define the size of sub-bunch of news articles
 	 * 
 	 * @return - previous index
+	 * 
+	 * @throws ServiceException in the case when DaoException 
+	 * 			occurs while getting all news articles from the data storage 
 	 */
 	@Override
 	public int calculatePreviousIndex(int nextIndex, int step)  throws ServiceException {
@@ -248,6 +254,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param previousDirection - direction from the previous step
 	 * 
 	 * @return last index excluded for bunch (sublist) of news articles.
+	 * 
+	 * @throws ServiceException in the case when DaoException 
+	 * 			occurs while getting all news articles from the data storage 
 	 */
 	@Override
 	public int calculateToIndex(int fromIndex, int step, ListDirection currentDirection,
@@ -281,6 +290,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param previousDirection - direction from the previous step
 	 * 
 	 * @return first index included for bunch (sublist) of news articles.
+	 * 
+	 * @throws ServiceException in the case when DaoException 
+	 * 			occurs while getting all news articles from the data storage 
 	 */
 	@Override
 	public int calculateFromIndex(int toIndex, int step, ListDirection currentDirection,

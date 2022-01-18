@@ -28,7 +28,7 @@ public class FindAllNewsCommand implements Command {
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ArticleService newsService = ServiceProvider.getInstance().getArticleService();
+		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.DIRECTION);
@@ -37,9 +37,9 @@ public class FindAllNewsCommand implements Command {
 		session.setAttribute(AttributeName.DIRECTION, ListDirection.TO_END);
 
 		try {
-			int toIndex = newsService.calculateToIndex(IndexRepository.ZERO_INDEX, IndexRepository.STEP, ListDirection.TO_END, ListDirection.TO_END);
+			int toIndex = articleService.calculateToIndex(IndexRepository.ZERO_INDEX, IndexRepository.STEP, ListDirection.TO_END, ListDirection.TO_END);
 	
-		List<Article> newsBatch = newsService.buildArticlesBatch(IndexRepository.ZERO_INDEX, toIndex );
+		List<Article> newsBatch = articleService.buildArticlesBatch(IndexRepository.ZERO_INDEX, toIndex );
 		session.setAttribute(AttributeName.NEWS, newsBatch);
 		session.setAttribute(AttributeName.CURRENT_IDX, toIndex);
 		result = new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);

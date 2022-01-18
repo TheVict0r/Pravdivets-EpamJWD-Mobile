@@ -1,7 +1,7 @@
 package by.epamjwd.mobile.repository;
 
 /**
- * Directions of moving in the list. Used for pagination.
+ * Moving directions in the list. Used for pagination.
  *
  */
 public enum ListDirection {

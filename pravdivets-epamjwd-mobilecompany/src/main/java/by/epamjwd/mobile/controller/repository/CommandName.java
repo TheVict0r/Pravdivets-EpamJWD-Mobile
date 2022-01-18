@@ -1,5 +1,9 @@
 package by.epamjwd.mobile.controller.repository;
 
+/**
+ * Container for String representation of all commands
+ *
+ */
 public class CommandName {
 	
 	private CommandName() {

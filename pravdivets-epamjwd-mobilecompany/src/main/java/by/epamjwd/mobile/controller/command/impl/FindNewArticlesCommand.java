@@ -30,7 +30,7 @@ public class FindNewArticlesCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
-		ArticleService newsService = ServiceProvider.getInstance().getArticleService();
+		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		HttpSession session = request.getSession();
 		
 		ListDirection previousDirection = (ListDirection) session.getAttribute(AttributeName.DIRECTION);
@@ -40,18 +40,18 @@ public class FindNewArticlesCommand implements Command {
 
 		try {
 
-			int toIndex = newsService.calculateToIndex(currentIdx, IndexRepository.STEP, ListDirection.TO_BEGINNING,
+			int toIndex = articleService.calculateToIndex(currentIdx, IndexRepository.STEP, ListDirection.TO_BEGINNING,
 					previousDirection);
 
-			int fromIndex = newsService.calculateFromIndex(toIndex, IndexRepository.STEP, ListDirection.TO_BEGINNING,
+			int fromIndex = articleService.calculateFromIndex(toIndex, IndexRepository.STEP, ListDirection.TO_BEGINNING,
 					previousDirection);
 
-			List<Article> newsBatch = newsService.buildArticlesBatch(fromIndex, toIndex);
+			List<Article> newsBatch = articleService.buildArticlesBatch(fromIndex, toIndex);
 			session.setAttribute(AttributeName.NEWS, newsBatch);
 			session.setAttribute(AttributeName.CURRENT_IDX, fromIndex);
 			session.setAttribute(AttributeName.DIRECTION, ListDirection.TO_BEGINNING);
 
-			if (newsService.isPreviousIndexZero(toIndex, IndexRepository.STEP)) {
+			if (articleService.isPreviousIndexZero(toIndex, IndexRepository.STEP)) {
 				//if ((toIndex - IndexRepository.STEP) == IndexRepository.ZERO_INDEX) {
 				session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
 				session.setAttribute(AttributeName.CURRENT_IDX, fromIndex);

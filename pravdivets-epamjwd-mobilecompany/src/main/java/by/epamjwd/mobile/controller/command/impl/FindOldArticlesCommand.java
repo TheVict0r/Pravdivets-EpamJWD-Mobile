@@ -31,7 +31,7 @@ public class FindOldArticlesCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
-		ArticleService newsService = ServiceProvider.getInstance().getArticleService();
+		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		HttpSession session = request.getSession();
 		ListDirection previousDirection = (ListDirection) session.getAttribute(AttributeName.DIRECTION);
 		
@@ -40,14 +40,14 @@ public class FindOldArticlesCommand implements Command {
 		session.removeAttribute(AttributeName.NO_NEXT_NEWS);
 
 		try {	
-			int fromIndex = newsService.calculateFromIndex(currentIdx, IndexRepository.STEP, ListDirection.TO_END, previousDirection);
-			int toIndex = newsService.calculateToIndex(fromIndex, IndexRepository.STEP, ListDirection.TO_END, previousDirection);
+			int fromIndex = articleService.calculateFromIndex(currentIdx, IndexRepository.STEP, ListDirection.TO_END, previousDirection);
+			int toIndex = articleService.calculateToIndex(fromIndex, IndexRepository.STEP, ListDirection.TO_END, previousDirection);
 
-			List<Article> newsBatch = newsService.buildArticlesBatch(fromIndex, toIndex);
+			List<Article> newsBatch = articleService.buildArticlesBatch(fromIndex, toIndex);
 				session.setAttribute(AttributeName.NEWS, newsBatch);
 				session.setAttribute(AttributeName.CURRENT_IDX, toIndex);
 				session.setAttribute(AttributeName.DIRECTION, ListDirection.TO_END);
-				if (newsService.isLastIndexExcluded(toIndex)) {
+				if (articleService.isLastIndexExcluded(toIndex)) {
 					session.setAttribute(AttributeName.NO_PREVIOUS_NEWS, AttributeValue.TRUE);
 					session.setAttribute(AttributeName.CURRENT_IDX, fromIndex);
 					session.setAttribute(AttributeName.DIRECTION, ListDirection.TO_BEGINNING);
