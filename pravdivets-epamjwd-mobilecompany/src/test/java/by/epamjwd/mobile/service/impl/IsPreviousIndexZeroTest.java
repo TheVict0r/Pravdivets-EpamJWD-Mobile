@@ -1,4 +1,4 @@
-package by.epamjwd.mobile.service.impl.articleserviceimpl;
+package by.epamjwd.mobile.service.impl;
 
 import org.junit.Assert;
 import org.junit.Test;
