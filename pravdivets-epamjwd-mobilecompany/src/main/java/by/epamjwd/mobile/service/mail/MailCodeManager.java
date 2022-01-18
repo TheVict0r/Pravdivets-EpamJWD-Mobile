@@ -1,6 +1,7 @@
 package by.epamjwd.mobile.service.mail;
 
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -18,7 +19,7 @@ public class MailCodeManager {
 
 	final static int ERROR_CODE = -1;
 	final static int CODE_MIN_VALUE =  1000;
-	final static int FOUR_DECIMALS = 10_000;
+	final static int CODE_MAX_VALUE =  9999;
 	
 	final static String HOST_KEY = "mail.smtp.host";
 	final static String PORT_KEY = "mail.smtp.port";
@@ -110,10 +111,7 @@ public class MailCodeManager {
 	 * @return code number
 	 */
 	private int generateCode() {
-		int code = (int) (Math.random() * FOUR_DECIMALS);
-		if (code < CODE_MIN_VALUE) {
-			code += CODE_MIN_VALUE;
-		}
+		int code = new Random().nextInt(CODE_MAX_VALUE - CODE_MIN_VALUE) + CODE_MIN_VALUE;
 		return code;
 	}
 
