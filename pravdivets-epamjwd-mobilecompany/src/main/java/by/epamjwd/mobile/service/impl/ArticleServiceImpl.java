@@ -139,12 +139,11 @@ public class ArticleServiceImpl implements ArticleService {
 
 	/**
 	 * Extracts sublist of news articles from all articles in the data storage.
-	 * Can be used for pagination.
 	 * 
 	 * @param fromIndex - index of first news article included to batch
 	 * 
 	 * @param toIndex - index of the article following after the last news article 
-	 * 							included to batch
+	 * 					included to batch, so this index is excluded
 	 * 
 	 * @return - sublist of news articles
 	 * 
@@ -160,7 +159,6 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	/**
 	 * Checks if the provided index is one step beyond the last index in all news articles list.
-	 * Used when moving from current to older news articles.
 	 * 
 	 * @param index - index need to be checked
 	 * 
