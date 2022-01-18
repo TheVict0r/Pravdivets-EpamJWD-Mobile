@@ -188,61 +188,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return (index - step) == IndexRepository.ZERO_INDEX;
 	}
 	
-	/**
-	 * Calculates the next index by step. 
-	 * 
-	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
-	 * into account the last valid index excluded. 
-	 * 
-	 * @param previousIndex - previous index
-	 * 
-	 * @param step - step to define the size of sub-bunch of news articles
-	 * 
-	 * @return - next index
-	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage 
-	 */
-	@Override
-	public int calculateNextIndex(int previousIndex, int step) throws ServiceException {
-		int nextIndex = previousIndex + step;
-		int maxIndex = findAllArticles().size();
-		if (nextIndex > maxIndex) {
-			nextIndex = maxIndex;
-		}
-		return nextIndex;
-	}
 
-	
-	/**
-	 * Calculates the previous index by step. 
-	 * 
-	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
-	 * into account the first valid index included (zero index). 
-	 * 
-	 * @param nextIndex - next index
-	 * 
-	 * @param step - step to define the size of sub-bunch of news articles
-	 * 
-	 * @return - previous index
-	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage 
-	 */
-	@Override
-	public int calculatePreviousIndex(int nextIndex, int step)  throws ServiceException {
-		int maxIndex = findAllArticles().size();
-		int previousIndex;
-		if(nextIndex == maxIndex) {
-			previousIndex = nextIndex - (maxIndex % step); //brackets just for clarity
-		} else {
-			previousIndex = nextIndex - step;
-		}
-		if (previousIndex < IndexRepository.ZERO_INDEX) {
-			previousIndex = IndexRepository.ZERO_INDEX;
-		}
-		return previousIndex;
-	}	
 	
 	/**
 	 * Calculates the last index excluded for bunch (sublist) of news articles.
@@ -318,4 +264,59 @@ public class ArticleServiceImpl implements ArticleService {
 
 	}
 
+	
+	/**
+	 * Calculates the next index by step. 
+	 * 
+	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
+	 * into account the last valid index excluded. 
+	 * 
+	 * @param previousIndex - previous index
+	 * 
+	 * @param step - step to define the size of sub-bunch of news articles
+	 * 
+	 * @return - next index
+	 * 
+	 * @throws ServiceException in the case when DaoException 
+	 * 			occurs while getting all news articles from the data storage 
+	 */
+	private int calculateNextIndex(int previousIndex, int step) throws ServiceException {
+		int nextIndex = previousIndex + step;
+		int maxIndex = findAllArticles().size();
+		if (nextIndex > maxIndex) {
+			nextIndex = maxIndex;
+		}
+		return nextIndex;
+	}
+
+	
+	/**
+	 * Calculates the previous index by step. 
+	 * 
+	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
+	 * into account the first valid index included (zero index). 
+	 * 
+	 * @param nextIndex - next index
+	 * 
+	 * @param step - step to define the size of sub-bunch of news articles
+	 * 
+	 * @return - previous index
+	 * 
+	 * @throws ServiceException in the case when DaoException 
+	 * 			occurs while getting all news articles from the data storage 
+	 */
+	private int calculatePreviousIndex(int nextIndex, int step)  throws ServiceException {
+		int maxIndex = findAllArticles().size();
+		int previousIndex;
+		if(nextIndex == maxIndex) {
+			previousIndex = nextIndex - (maxIndex % step); //brackets just for clarity
+		} else {
+			previousIndex = nextIndex - step;
+		}
+		if (previousIndex < IndexRepository.ZERO_INDEX) {
+			previousIndex = IndexRepository.ZERO_INDEX;
+		}
+		return previousIndex;
+	}	
+	
 }

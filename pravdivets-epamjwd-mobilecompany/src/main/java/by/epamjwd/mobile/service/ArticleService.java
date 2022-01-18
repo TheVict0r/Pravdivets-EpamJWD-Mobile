@@ -25,10 +25,6 @@ public interface ArticleService {
 
 	Optional<Article> findArticleByTitle(String title) throws ServiceException;
 
-	int calculateNextIndex(int previousIndex, int step) throws ServiceException;
-
-	int calculatePreviousIndex(int nextIndex, int step) throws ServiceException;
-
 	int calculateToIndex(int currentIndex, int step, ListDirection current, ListDirection previous) throws ServiceException;
 
 	int calculateFromIndex(int currentIndex, int step, ListDirection current, ListDirection previous) throws ServiceException;
