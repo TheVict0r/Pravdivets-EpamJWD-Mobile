@@ -15,7 +15,7 @@ public class IsPreviousIndexZeroTest {
 	private final int step3 = 7;
 	
 	
-	ArticleService articleService = ServiceProvider.getInstance().getArticleService();
+	private final ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 	
 	@Test
 	public void index1Test() {
