@@ -40,15 +40,20 @@ public class InputDataValidator {
 		boolean result = false;
 		result = 
 				 id >= 0 &&
-				 isName(firstName) &&
-				(isName(middleName) || middleName.isBlank()) &&
-				 isName(lastName) &&
-				 isPassport(passport) &&
-				 isEmail(email) &&
+				 firstName != null && isName(firstName) && 
+				 middleName != null && (isName(middleName) || middleName.isBlank()) &&
+				 lastName != null && isName(lastName) &&
+				 passport != null && isPassport(passport) &&
+				 email != null && isEmail(email) &&
 				 role != null;
 		return result;
 	}
 
+	
+	public static void main(String[] args) {
+		User user = new User();
+		System.out.println(isUserValid(user));
+	}
 	
 	public static boolean isSubscriberValid(Subscriber subscriber) {
 		if (subscriber == null) {
@@ -67,11 +72,9 @@ public class InputDataValidator {
 		boolean result = false;
 		result = 
 				id >= 0 &&
-				contractDate != null &&
-			    contractDate.before(currentDelayed) && 
-				isPhone(phone) &&
-				statusDate != null &&
-			    statusDate.before(currentDelayed) && 
+				contractDate != null && contractDate.before(currentDelayed) && 
+			    phone != null && isPhone(phone) &&
+				statusDate != null && statusDate.before(currentDelayed) && 
 				status != null &&
 				planId > 0 &&
 				userId >= 0;
