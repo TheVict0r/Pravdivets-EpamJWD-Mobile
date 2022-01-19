@@ -10,8 +10,10 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.controller.command.impl.CalculatorCommand;
-
+/**
+ * Provides the current year 4-digit representation as a custom JSTL-tag
+ *
+ */
 @SuppressWarnings("serial")
 public class CurrentYearTag extends TagSupport {
 	private final static Logger LOGGER = LogManager.getLogger(CurrentYearTag.class);

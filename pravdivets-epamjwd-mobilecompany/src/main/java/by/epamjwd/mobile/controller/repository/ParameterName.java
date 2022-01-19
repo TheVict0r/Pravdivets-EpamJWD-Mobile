@@ -1,5 +1,9 @@
 package by.epamjwd.mobile.controller.repository;
 
+/**
+ * Parameter names for extracting from jsp-pages.
+ *
+ */
 public class ParameterName {
 
 	private ParameterName() {

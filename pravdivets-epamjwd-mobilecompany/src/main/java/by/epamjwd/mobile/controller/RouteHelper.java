@@ -2,6 +2,11 @@ package by.epamjwd.mobile.controller;
 
 import by.epamjwd.mobile.controller.repository.PagePath;
 
+/**
+ * Common container type for commands results used in {@code return} 
+ * and as a key part of {@code Command} design pattern
+ *
+ */
 public class RouteHelper {
 
 	public static final RouteHelper ERROR     = new RouteHelper(PagePath.ERROR,     RouteMethod.FORWARD);

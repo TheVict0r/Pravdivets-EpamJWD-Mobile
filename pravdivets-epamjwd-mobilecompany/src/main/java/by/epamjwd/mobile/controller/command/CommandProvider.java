@@ -91,6 +91,10 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberPageComma
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberServicesPageCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
 
+/**
+ * Provides any command by it's name
+ *
+ */
 public class CommandProvider {
 
 	private final Map<String, Command> allCommands = new HashMap<>();
@@ -188,10 +192,22 @@ public class CommandProvider {
     	return Holder.INSTANCE;
     }
     
+	/**
+	 * Provides the Command by the string representation of it's name
+	 * 
+	 * @param commandName - the name of the command
+	 * @return - Command object
+	 */
 	public Command getCommand(String commandName) {
         return Optional.ofNullable(allCommands.get(commandName)).orElse(allCommands.get(CommandName.NO_SUCH_COMMAND));
 	}
 
+	/**
+	 * Adds a new Command to map, that contains all commands
+	 * 
+	 * @param key - string representation of commands's name
+	 * @param value - Command object
+	 */
 	public void addCommand(String key, Command value) {
 		allCommands.put(key, value);
 	}

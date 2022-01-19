@@ -20,6 +20,10 @@ import by.epamjwd.mobile.controller.repository.CommandName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 
+/**
+ * Filter used to provide a session timeout function for operations that requires authorization
+ *
+ */
 public class SessionTimeoutFilter implements Filter {
 
 	@Override

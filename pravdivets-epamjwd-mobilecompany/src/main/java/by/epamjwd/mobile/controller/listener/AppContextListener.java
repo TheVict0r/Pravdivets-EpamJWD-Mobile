@@ -15,6 +15,9 @@ public class AppContextListener implements ServletContextListener {
 
 	public final static String BASE_NAME = "db";
 
+	/**
+	 * Starts the Connection pool as the Servlet object is instantiated.
+	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		ConnectionPool pool = null;
@@ -27,6 +30,9 @@ public class AppContextListener implements ServletContextListener {
 		}
 	}
 
+	/**
+	 * Disposes the Connection pool as the Servlet object is destroyed.
+	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		ConnectionPool pool = null;

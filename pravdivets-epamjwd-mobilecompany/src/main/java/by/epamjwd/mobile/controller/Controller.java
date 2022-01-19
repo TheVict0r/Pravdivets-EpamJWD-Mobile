@@ -12,6 +12,11 @@ import by.epamjwd.mobile.controller.command.CommandProvider;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 
+/**
+ * The Servlet that processes requests from the client and provides it with responses. 
+ * One of the key parts of the whole system.
+ *
+ */
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 7400324932762736995L;
 
@@ -28,6 +33,16 @@ public class Controller extends HttpServlet {
 		process(request, response);
 	}
 
+	/**
+	 * Universal method - a part of Command design pattern. 
+	 * Extracts {@code path} and {@code route method}
+	 * request and helps to provide the response to the client
+	 * 
+	 * @param request - http request from the client
+	 * @param response - http response sent to the client on his request
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

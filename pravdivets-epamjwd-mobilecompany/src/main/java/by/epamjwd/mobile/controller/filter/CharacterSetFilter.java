@@ -3,12 +3,18 @@ package by.epamjwd.mobile.controller.filter;
 import java.io.IOException;
 
 import javax.servlet.Filter;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 
+/**
+ * Filter that sets all the content to certain encoding. 
+ * 
+ * <p> Need to correctly use the cyrillic data
+ *
+ */
 public class CharacterSetFilter implements Filter {
 
 	public final static String ENCODING = "UTF-8";
