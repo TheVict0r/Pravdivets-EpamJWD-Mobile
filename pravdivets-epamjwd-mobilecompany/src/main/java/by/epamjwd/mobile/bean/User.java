@@ -2,6 +2,10 @@ package by.epamjwd.mobile.bean;
 
 import java.io.Serializable;
 
+/**
+ * Common entity for all users.
+ *
+ */
 public class User implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = -7824134086755989749L;

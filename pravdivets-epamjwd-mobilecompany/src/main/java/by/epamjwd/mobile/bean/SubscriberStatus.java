@@ -1,5 +1,9 @@
 package by.epamjwd.mobile.bean;
 
+/**
+ * Subscriber statuses. Used to define their rights and available services.
+ *
+ */
 public enum SubscriberStatus {
 
 	ACTIVE("Активный"),

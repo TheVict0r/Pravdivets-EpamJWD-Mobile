@@ -2,15 +2,20 @@ package by.epamjwd.mobile.bean;
 
 import java.io.Serializable;
 
+/**
+ * Tariff plan of mobile operator. Contains short name, 
+ * verbal description and and the cost of services etc.
+ * 
+ */
 public class Plan implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = 1240407715285924386L;
 	
 	private long id;
 	private String name;
+	private String description;
 	private int regularPayment;
 	private int upfrontPayment;
-	private String description;
 	private int priceWithinNetwork;
 	private int priceOtherNetworks;
 	private int priceAbroad;

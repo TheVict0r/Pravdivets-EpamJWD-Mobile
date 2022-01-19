@@ -5,6 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Client of mobile company. 
+ * 
+ * <p>This entity contains only data that distinguish the subscriber from other users. 
+ * For common data (such as name password etc) see {@link User} entity
+ *
+ */
 public class Subscriber implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = 5046781397740402140L;

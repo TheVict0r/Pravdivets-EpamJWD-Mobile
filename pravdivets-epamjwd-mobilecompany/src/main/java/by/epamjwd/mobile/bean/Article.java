@@ -1,14 +1,19 @@
 package by.epamjwd.mobile.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * News article. {@code Date} contains year, month and day of publishing. 
+ * {@code Intro} is a short lead to whole {@code Text}
+ *
+ */
 public class Article implements Identifiable, Serializable {
 
 	private static final long serialVersionUID = 5492324511728285746L;

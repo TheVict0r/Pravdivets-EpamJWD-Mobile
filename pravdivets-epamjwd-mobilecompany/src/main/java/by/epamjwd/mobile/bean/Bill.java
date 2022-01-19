@@ -5,6 +5,12 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+/**
+ * Simple payed bill. Contains the cost of services rendered and paid for a certain period. 
+ * 
+ * <p>As mobile operators use advance system of payment, 
+ * there is no need to use "paid / unpaid" variable.
+ */
 public class Bill implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = -2086131663670245454L;

@@ -2,6 +2,10 @@ package by.epamjwd.mobile.bean;
 
 import java.io.Serializable;
 
+/**
+ * Additional service. Not included in the tariff plans.
+ *
+ */
 public class Service implements Identifiable, Serializable{
 
 	private static final long serialVersionUID = -3179952249585984534L;
