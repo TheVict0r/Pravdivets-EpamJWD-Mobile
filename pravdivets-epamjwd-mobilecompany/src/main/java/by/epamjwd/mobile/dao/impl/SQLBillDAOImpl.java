@@ -1,7 +1,6 @@
 package by.epamjwd.mobile.dao.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Bill;
 import by.epamjwd.mobile.dao.AbstractDao;
@@ -20,6 +19,11 @@ public class SQLBillDAOImpl extends AbstractDao<Bill> implements BillDAO{
 		super(RowMapperFactory.getInstance().getBillRowMapper(), DBTableName.BILLS);
 	}
 	
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public List<Bill> getBillListBySubscriberID(long subscriberID) throws DaoException {
 		return executeQuery(GET_BILL_LIST_BY_SUBSCRIBER_ID, subscriberID);

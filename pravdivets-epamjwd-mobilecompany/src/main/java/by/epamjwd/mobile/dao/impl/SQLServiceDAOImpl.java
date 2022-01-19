@@ -35,21 +35,41 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
         super(RowMapperFactory.getInstance().getServiceRowMapper(), DBTableName.SERVICES);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public List<Service> getAllServices() throws DaoException {
 		return findAll();
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<Service> getServiceByID(long id) throws DaoException {
 		return findById(id);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<Service> getServiceByName(String name) throws DaoException {
 		return executeQueryForSingleResult(GET_SERVICE_BY_NAME, name);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public long addService(Service service) throws DaoException {
 		long serviceId;

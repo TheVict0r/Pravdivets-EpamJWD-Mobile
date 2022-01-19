@@ -3,7 +3,6 @@ package by.epamjwd.mobile.dao.impl;
 import java.util.List;
 import java.util.Optional;
 
-
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.PlanDAO;
@@ -40,24 +39,43 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 		super(RowMapperFactory.getInstance().getPlanRowMapper(), DBTableName.PLANS);
 	}
 
-
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public List<Plan> getAllPlans() throws DaoException {
 		return findAll();
 	}
-
+	
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<Plan> getPlanByID(long id) throws DaoException {
 		return findById(id);
 
 	}
 	
+	
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<Plan> getPlanByName(String name) throws DaoException {
 		return executeQueryForSingleResult(GET_PLAN_BY_NAME, name);
 	}
 
-
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public long addPlan(Plan plan) throws DaoException {
 		long planId;

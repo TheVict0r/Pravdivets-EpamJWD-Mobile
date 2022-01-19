@@ -26,6 +26,11 @@ public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO
         super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public long addNewCustomer(User user, Subscriber subscriber) throws DaoException {
 		long subscriberID = ERROR_ID;

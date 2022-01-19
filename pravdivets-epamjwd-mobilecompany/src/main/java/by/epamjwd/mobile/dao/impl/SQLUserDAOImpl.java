@@ -3,7 +3,6 @@ package by.epamjwd.mobile.dao.impl;
 import java.util.List;
 import java.util.Optional;
 
-import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.AbstractDao;
 import by.epamjwd.mobile.dao.UserDAO;
@@ -43,6 +42,11 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
         super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<User> findUserById(long id) throws DaoException {
 		Optional<User> user = Optional.empty();
@@ -50,7 +54,12 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		user = executeQueryForSingleResult(query, id);
 		return user;
 	}
-	
+
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<User> findUserByEmail(String email) throws DaoException {
 		Optional<User> user = Optional.empty();
@@ -58,7 +67,12 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		user = executeQueryForSingleResult(query, email);
 		return user;
 	}
-	
+
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws DaoException {
 		Optional<User> user = Optional.empty();
@@ -67,7 +81,11 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		return user;
 	}
 
-
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public List<User> findUsersListByFullName(String firstName, String middleName, String lastName) throws DaoException {
 		List<User> result = null;
@@ -96,6 +114,11 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		return result;
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<User> findUserByPhone(String phone) throws DaoException {
 		Optional<User> user = Optional.empty();
@@ -116,6 +139,11 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		return user;
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public long addUser(User user) throws DaoException {
 		long userId;
@@ -124,18 +152,30 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 		return userId;
 	}
 	
-
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public void updateUser(User user) throws DaoException {
 		Object[] params = SQLParametersHelper.provideUpdateUserParameters(user);
 		executeUpdateQuery(UPDATE_USER, params);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 */
 	private String buildFindUserQuery(){
 		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.USERS).toString();
 		return query;
 	}
 	
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 */
 	private String buildFindUserQueryByParameter(String parameter) {
 		String query = new StringBuilder(buildFindUserQuery())
 				.append(" WHERE ")

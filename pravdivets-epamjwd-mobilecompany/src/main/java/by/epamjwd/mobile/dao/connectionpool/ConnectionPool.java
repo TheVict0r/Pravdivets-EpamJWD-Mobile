@@ -2,9 +2,7 @@ package by.epamjwd.mobile.dao.connectionpool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Locale;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -35,6 +33,21 @@ public final class ConnectionPool {
 
 	}
 
+	private static class PoolHolder{
+		static final ConnectionPool INSTANCE = new ConnectionPool();
+	}
+	
+	public static ConnectionPool getInstance() {
+		return PoolHolder.INSTANCE;
+	}
+
+	
+	/**
+	 * Initializes the connection pool
+	 * 
+	 * @param baseName -  the name of the database
+	 * @throws ConnectionPoolException
+	 */
 	public void initPoolData(String baseName) throws ConnectionPoolException {
 		
 		DBResourceManager dbResourseManager = DBResourceManager.getInstance();
@@ -60,8 +73,6 @@ public final class ConnectionPool {
 			connectionQueue = new ArrayBlockingQueue<Connection>(poolSize);
 			for (int i = 0; i < poolSize; i++) {
 				Connection connection = DriverManager.getConnection(url, user, password);
-//				PooledConnection pooledConnection = new PooledConnection(connection);
-//				connectionQueue.add(pooledConnection);
 				connectionQueue.add(connection);
 			}
 		} catch (SQLException e) {
@@ -73,14 +84,14 @@ public final class ConnectionPool {
 			}
 	}
 		
-	private static class PoolHolder{
-		static final ConnectionPool INSTANCE = new ConnectionPool();
-	}
-	
-	public static ConnectionPool getInstance() {
-		return PoolHolder.INSTANCE;
-	}
 
+	/**
+	 * Provides the connection to use
+	 * 
+	 * @return Connection
+	 * 
+	 * @throws ConnectionPoolException
+	 */
 	public Connection takeConnection() throws ConnectionPoolException {
 		Connection connection = null;
 		try {
@@ -93,6 +104,13 @@ public final class ConnectionPool {
 		return connection;
 	}
 
+    /**
+     * Returns connections for later use
+     * 
+     * @param connection - Connection to database
+     * 
+     * @throws ConnectionPoolException
+     */
     public void releaseConnection(Connection connection) throws ConnectionPoolException  {
         if (connection != null) {
         	givenAwayConQueue.remove(connection);
@@ -106,6 +124,11 @@ public final class ConnectionPool {
         }
     }
 	
+	/**
+	 * Shuts down the connection pool
+	 * 
+	 * @throws ConnectionPoolException
+	 */
 	public void dispose() throws ConnectionPoolException {
 		try {
 			closeConnectionsQueue(givenAwayConQueue);
@@ -116,57 +139,23 @@ public final class ConnectionPool {
 		}
 	}
 
+	/**
+	 * Closes all connections in queue
+	 * 
+	 * @param queue - queue with the connections
+	 * 
+	 * @throws SQLException
+	 */
 	private void closeConnectionsQueue(BlockingQueue<Connection> queue) throws SQLException {
 		Connection connection;
 		while ((connection = queue.poll()) != null) {
 			if (!connection.getAutoCommit()) {
 				connection.commit();
 			}
-			//((PooledConnection) connection).reallyClose();
 			connection.close();
 		}
 	}
 
-	public void closeConnection(ResultSet rs, Statement st, Connection con) throws ConnectionPoolException {
-		try {
-			rs.close();
-		} catch (SQLException e) {
-			LOGGER.error("ResultSet isn't closed", e);
-			throw new ConnectionPoolException("ResultSet isn't closed", e);
-		}
-
-		try {
-			st.close();
-		} catch (SQLException e) {
-			LOGGER.error("Statement isn't closed", e);
-			throw new ConnectionPoolException("Statement isn't closed", e);
-		}
-
-		try {
-			con.close();
-		} catch (SQLException e) {
-			LOGGER.error("Connection isn't return to the pool", e);
-			throw new ConnectionPoolException("Connection isn't return to the pool", e);
-		}
-
-	}
-
-	public void closeConnection(Statement st, Connection con) throws ConnectionPoolException {
-		try {
-			st.close();
-		} catch (SQLException e) {
-			LOGGER.error("Statement isn't closed", e);
-			throw new ConnectionPoolException("Statement isn't closed", e);
-		}
-
-		try {
-			con.close();
-		} catch (SQLException e) {
-			LOGGER.error("Connection isn't return to the pool", e);
-			throw new ConnectionPoolException("Connection isn't return to the pool", e);
-		}
-
-	}
 }
 
 

@@ -2,6 +2,11 @@ package by.epamjwd.mobile.dao.connectionpool;
 
 import java.util.ResourceBundle;
 
+/**
+ * Database resource manager for {@link ConnectionPool}.
+ *
+ */
+
 public class DBResourceManager {
 	
 	private ResourceBundle bundle;	

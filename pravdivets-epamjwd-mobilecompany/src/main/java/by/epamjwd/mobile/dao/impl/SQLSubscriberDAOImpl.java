@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.AbstractDao;
+import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
@@ -32,38 +32,65 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
         super(RowMapperFactory.getInstance().getSubscriberRowMapper(), DBTableName.SUBSCRIBERS);
 	}
 
-
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<Subscriber> findSubscriberByPhone(String phone) throws DaoException {
 		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_PHONE);
 		return executeQueryForSingleResult(query, phone);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public Optional<Subscriber> findSubscriberById(long id) throws DaoException {
 		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_ID);
 		return executeQueryForSingleResult(query, id);
 	}
-	
+
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public List<Subscriber> findSubscriberListByUserId(long userId) throws DaoException {
 		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_USER_ID);
 		return executeQuery(query, userId);
 	}
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public List<Subscriber> findSubscriberListByPassport(String passport) throws DaoException {
 		String query = buildFindSubscriberQueryByUserParameter(DBColumnName.USERS_PASSPORT);
 		return executeQuery(query, passport);
 	}
-	
-	private String buildFindSubscriberQuery(){
-		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.SUBSCRIBERS)
-				.toString();
-	
-				return query;
+
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * 
+	 */
+	private String buildFindSubscriberQuery() {
+		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.SUBSCRIBERS).toString();
+		return query;
 	}
 	
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * 
+	 */
 	private String buildFindSubscriberQueryByParameter(String parameter){
 		String query = new StringBuilder(buildFindSubscriberQuery())
 				.append(" WHERE ")

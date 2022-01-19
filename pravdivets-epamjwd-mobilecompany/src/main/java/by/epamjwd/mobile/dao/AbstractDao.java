@@ -15,24 +15,46 @@ public abstract class AbstractDao<T extends Identifiable> extends AbstractQueryE
         this.tableName = tableName;
     }
 
+	/**
+	 * Finds all <T> entities 
+	 * 
+	 * @return list of entities
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
     @Override
     public List<T> findAll() throws DaoException {
         String query = "SELECT * FROM " + tableName;
         return executeQuery(query);
     }
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
     @Override
     public List<T> findALLDescending() throws DaoException {
     	String query = "SELECT * FROM " + tableName + " ORDER BY id DESC";
     	return executeQuery(query);
     }
-    
+
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
     @Override
     public Optional<T> findById(long id) throws DaoException {
         String query = "SELECT * FROM " + tableName + " WHERE id=?";
         return executeQueryForSingleResult(query, id);
     }
 
+	/**
+	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
     @Override
     public void removeById(long id) throws DaoException {
         String deleteQuery = "DELETE FROM " + tableName + " WHERE id=?";
