@@ -29,6 +29,7 @@ public class InputDataValidator {
 		if (user == null) {
             return false;
         }
+		
 		long id = user.getId();
 		String firstName = user.getFirstName();
 		String middleName = user.getMiddleName();
@@ -41,7 +42,7 @@ public class InputDataValidator {
 		result = 
 				 id >= 0 &&
 				 firstName != null && isName(firstName) && 
-				 middleName != null && (isName(middleName) || middleName.isBlank()) &&
+				 middleName != null && ((isName(middleName) || middleName.isBlank())) &&
 				 lastName != null && isName(lastName) &&
 				 passport != null && isPassport(passport) &&
 				 email != null && isEmail(email) &&
@@ -49,11 +50,6 @@ public class InputDataValidator {
 		return result;
 	}
 
-	
-	public static void main(String[] args) {
-		User user = new User();
-		System.out.println(isUserValid(user));
-	}
 	
 	public static boolean isSubscriberValid(Subscriber subscriber) {
 		if (subscriber == null) {
@@ -73,7 +69,7 @@ public class InputDataValidator {
 		result = 
 				id >= 0 &&
 				contractDate != null && contractDate.before(currentDelayed) && 
-			    phone != null && isPhone(phone) &&
+			    phone != null && !phone.isBlank() && isPhone(phone) &&
 				statusDate != null && statusDate.before(currentDelayed) && 
 				status != null &&
 				planId > 0 &&
@@ -144,7 +140,7 @@ public class InputDataValidator {
 		long id = article.getId();
 		Date date = article.getDate();
 		String title = article.getTitle();
-		String lead = article.getIntro();
+		String intro = article.getIntro();
 		String text = article.getText();
 
 		boolean result = false;
@@ -152,7 +148,7 @@ public class InputDataValidator {
 		result =  id >= 0 &&
 				date != null &&
 			   title != null && !title.isBlank() &&
-				lead != null && !lead.isBlank() &&
+				intro != null && !intro.isBlank() &&
 				text != null && !text.isBlank();
 		return result;
 	}

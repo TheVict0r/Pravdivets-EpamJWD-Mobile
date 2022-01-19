@@ -48,6 +48,13 @@ public class IsSubscriberValidTest {
 	
 	private final Subscriber badSubscriber10 = new Subscriber();
 	
+	private final Subscriber badSubscriber11 = new Subscriber(1235L, new Date(), 500, null, 
+			new Date(), SubscriberStatus.ACTIVE, 1, 5963247L);
+	
+	private final Subscriber badSubscriber12 = new Subscriber(1235L, new Date(), 500, " ", 
+			new Date(), SubscriberStatus.ACTIVE, 1, 5963247L);
+	
+
 	
 	@Test
 	public void goodSubscriber1Test() {
@@ -112,6 +119,16 @@ public class IsSubscriberValidTest {
 	@Test
 	public void badSubscriber10Test() {
 		Assert.assertFalse(InputDataValidator.isSubscriberValid(badSubscriber10));
+	}
+	
+	@Test
+	public void badSubscriber11Test() {
+		Assert.assertFalse(InputDataValidator.isSubscriberValid(badSubscriber11));
+	}
+	
+	@Test
+	public void badSubscriber12Test() {
+		Assert.assertFalse(InputDataValidator.isSubscriberValid(badSubscriber12));
 	}
 	
 }
