@@ -16,9 +16,9 @@ public abstract class AbstractDao<T extends Identifiable> extends AbstractQueryE
     }
 
 	/**
-	 * Finds all <T> entities 
+	 * Retrieves all <T> entities 
 	 * 
-	 * @return list of entities
+	 * @return list of all entities
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -28,8 +28,12 @@ public abstract class AbstractDao<T extends Identifiable> extends AbstractQueryE
         return executeQuery(query);
     }
 
+    
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Retrieves all entities from table  
+     * where entities IDs are in descending order
+	 * 
+     * @return List of all entities in the table in descending order by ID
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -39,20 +43,26 @@ public abstract class AbstractDao<T extends Identifiable> extends AbstractQueryE
     	return executeQuery(query);
     }
 
-	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
-	 * 
-	 * @throws DaoException if SQLException occurs
-	 */
+    /**
+     * Retrieves entity object from table by ID
+     *
+     * @param id ID of entity to find
+     * 
+     * @return optional Entity object from table
+     * 
+     * @throws DaoException if SQLException occurs
+     */
     @Override
     public Optional<T> findById(long id) throws DaoException {
         String query = "SELECT * FROM " + tableName + " WHERE id=?";
         return executeQueryForSingleResult(query, id);
     }
 
-	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
-	 * 
+    /**
+     * Removes entity from table by ID.
+     *
+     * @param id ID of entity to delete
+     * 
 	 * @throws DaoException if SQLException occurs
 	 */
     @Override

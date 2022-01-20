@@ -27,7 +27,20 @@ public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Saves a new customer to the data storage. 
+	 * 
+	 * <p>
+	 * Customer consists from two connected entities: 
+	 * <p>(1) User - contains the data common for all users (subscribers and consultant) 
+	 *            such as name, passport number, e-mail, password etc.
+	 * <p>(2) Subscriber - contains only subscribers the data - phone number, tariff plan ID,
+	 * 			  account number, contract date etc. 
+	 * 
+	 * @param user - user 
+	 * 
+	 * @param subscriber - subscriber
+	 * 
+	 * @return the ID of subscriber added to the database
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */

@@ -10,6 +10,10 @@ import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
 
+/**
+ * Provide parameters for prepared statements as an array of Objects
+ *
+ */
 public class SQLParametersHelper {
 
 	public final static int DATABASE_INDEX_SHIFT = 1; //as indexes in database begins from 1, not from 0
@@ -18,6 +22,13 @@ public class SQLParametersHelper {
 		
 	}
 	
+	/**
+	 * Provide core user's parameters for prepared statement
+	 * 
+	 * @param user - User entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
 	public static Object[] provideUserParameters(User user) {
 		Object[] userParameters = {
 				user.getPassword(),
@@ -29,18 +40,39 @@ public class SQLParametersHelper {
 		return userParameters;
 	}
 
+	/**
+	 * Provide parameters for prepared statement to add new User entity
+	 * 
+	 * @param user - User entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
 	public static Object[] provideNewUserParameters(User user) {
 		List<Object> paramList = new ArrayList<>(Arrays.asList(provideUserParameters(user)));
 		paramList.add(user.getRole().ordinal() + DATABASE_INDEX_SHIFT);
 		return paramList.toArray();
 	}
-	
+
+	/**
+	 * Provide parameters for prepared statement to update User entity
+	 * 
+	 * @param user - User entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
 	public static Object[] provideUpdateUserParameters(User user) {
 		List<Object> paramList = new ArrayList<>(Arrays.asList(provideUserParameters(user)));
 		paramList.add(user.getId());
 		return paramList.toArray();
 	}
 
+	/**
+	 * Provide parameters for prepared statement to add new Subscriber entity
+	 * 
+	 * @param subscriber - Subscriber entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
 	public static Object[] provideNewSubscriberParameters(Subscriber subscriber) {
 		Object[] subscriberParameters = {
 				   subscriber.getContractDate(), 
@@ -54,6 +86,32 @@ public class SQLParametersHelper {
 		return subscriberParameters;
 	}
 
+
+	/**
+	 * Provide parameters for prepared statement to update Subscriber entity
+	 * 
+	 * @param subscriber - Subscriber entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
+	public static Object[] provideUpdateSubscriberParameters(Subscriber subscriber) {
+		Object[] subscriberParameters = {
+				   subscriber.getPhone(), 
+				   subscriber.getStatusDate(), 
+				  (subscriber.getStatus().ordinal() + DATABASE_INDEX_SHIFT), 
+				   subscriber.getPlanId(),
+				   subscriber.getId()}; 
+		return subscriberParameters;
+	}
+
+	
+	/**
+	 * Provide parameters for prepared statement to add new Plan entity
+	 * 
+	 * @param plan - Plan entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
 	public static Object[] provideNewPlanParameters(Plan plan) {
 		Object[] planParameters = {
 				plan.getName(),
@@ -72,17 +130,13 @@ public class SQLParametersHelper {
 		return planParameters;
 	}
 	
-	
-	public static Object[] provideUpdateSubscriberParameters(Subscriber subscriber) {
-		Object[] subscriberParameters = {
-				   subscriber.getPhone(), 
-				   subscriber.getStatusDate(), 
-				  (subscriber.getStatus().ordinal() + DATABASE_INDEX_SHIFT), 
-				   subscriber.getPlanId(),
-				   subscriber.getId()}; 
-		return subscriberParameters;
-	}
-
+	/**
+	 * Provide parameters for prepared statement to add new Service entity
+	 * 
+	 * @param service - Service entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
 	public static Object[] provideNewServiceParameters(Service service) {
 		Object[] serviceParameters = {
 				service.getName(),
@@ -93,6 +147,13 @@ public class SQLParametersHelper {
 		return serviceParameters;
 	}
 
+	/**
+	 * Provide parameters for prepared statement to add new Article entity
+	 * 
+	 * @param article - Article entity 
+	 * 
+	 * @return array of Objects, each Object contains one parameter
+	 */
 	public static Object[] provideNewArticleParameters(Article article) {
 		Object[] articleParameters = {
 				article.getDateAsString(),

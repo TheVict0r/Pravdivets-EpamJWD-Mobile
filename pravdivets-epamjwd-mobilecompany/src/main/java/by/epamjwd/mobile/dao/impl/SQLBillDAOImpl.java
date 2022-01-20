@@ -20,7 +20,11 @@ public class SQLBillDAOImpl extends AbstractDao<Bill> implements BillDAO{
 	}
 	
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Retrieves a list of subscribers bills from the database. 
+	 * 
+	 * @param subscriberID - subscriber's ID
+	 * 
+	 * @return - a list with subscriber's bills
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */

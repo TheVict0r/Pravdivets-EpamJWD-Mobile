@@ -8,37 +8,41 @@ import by.epamjwd.mobile.dao.exception.DaoException;
 public interface Dao<T> {
 
     /**
-     * Method to get all entities from table
+     * Retrieves all entities from table.
      *
      * @return List of all entities in the table
+     * 
      * @throws DaoException
      */
     List<T> findAll() throws DaoException;
 
     /**
-     * Method to get entity object from table by ID 
-     * where ID is in descending order
+     * Retrieves all entities from table  
+     * where entities IDs are in descending order.
      *
-     * @param id ID of entity to find
-     * @return optional Entity object from table
+     * @return List of all entities in the table in descending order by ID
+     * 
      * @throws DaoException
      */
     List<T> findALLDescending() throws DaoException;
     
     /**
-     * Method to get entity object from table by ID
+     * Retrieves entity object from table by ID.
      *
      * @param id ID of entity to find
+     * 
      * @return optional Entity object from table
+     * 
      * @throws DaoException
      */
     Optional<T> findById(long id) throws DaoException;
 
 
     /**
-     * Method to remove entity from table by ID
+     * Removes entity from table by ID.
      *
      * @param id ID of entity to delete
+     * 
      * @throws DaoException
      */
     void removeById(long id) throws DaoException;

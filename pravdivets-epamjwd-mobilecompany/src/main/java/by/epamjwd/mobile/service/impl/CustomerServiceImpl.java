@@ -6,7 +6,6 @@ import by.epamjwd.mobile.dao.CustomerDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
-import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.CustomerService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
@@ -18,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService  {
 	 * Saves a new customer to the data storage. 
 	 * 
 	 * <p>
-	 * Customer contains two connected entities: <p>
+	 * Customer consists from two connected entities: <p>
 	 * (1) User - contains the data common for all users (subscribers and consultant) 
 	 *            such as name, passport number, e-mail, password etc.<p>
 	 * (2) Subscriber - contains only subscribers the data - phone number, tariff plan ID,
@@ -27,8 +26,11 @@ public class CustomerServiceImpl implements CustomerService  {
 	 * (user and subscriber) valid.
 	 * 
 	 * @param user - user 
+	 * 
 	 * @param subscriber - subscriber
+	 * 
 	 * @return the ID of subscriber added to the data storage
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while saving user and subscriber to the data storage
 	 */
