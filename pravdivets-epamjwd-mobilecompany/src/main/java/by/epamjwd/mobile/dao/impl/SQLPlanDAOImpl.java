@@ -40,39 +40,53 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides all actual tariff plans currently exists.
+	 * 
+	 * @return Array List containing all current tariff plans
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
 	@Override
-	public List<Plan> getAllPlans() throws DaoException {
+	public List<Plan> findAllPlans() throws DaoException {
 		return findAll();
 	}
 	
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides tariff plan retrieved by it's ID.
+	 * 
+	 * @param id - ID of tariff plan
+	 * 
+	 * @return tariff plan as an Optional value
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
 	@Override
-	public Optional<Plan> getPlanByID(long id) throws DaoException {
+	public Optional<Plan> findPlanByID(long id) throws DaoException {
 		return findById(id);
 
 	}
 	
 	
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides tariff plan retrieved by it's name.
+	 * 
+	 * @param name - the name of tariff plan
+	 * 
+	 * @return tariff plan as an Optional value
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
 	@Override
-	public Optional<Plan> getPlanByName(String name) throws DaoException {
+	public Optional<Plan> findPlanByName(String name) throws DaoException {
 		return executeQueryForSingleResult(GET_PLAN_BY_NAME, name);
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Adds plan to database.
+	 * 
+	 * @param plan - tariff plan to add
+	 * 
+	 * @return the ID of tariff plan in data storage
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */

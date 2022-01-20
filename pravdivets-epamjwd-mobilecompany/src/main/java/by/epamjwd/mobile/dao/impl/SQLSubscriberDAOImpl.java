@@ -33,18 +33,11 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides Subscriber retrieved by it's ID.
 	 * 
-	 * @throws DaoException if SQLException occurs
-	 */
-	@Override
-	public Optional<Subscriber> findSubscriberByPhone(String phone) throws DaoException {
-		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_PHONE);
-		return executeQueryForSingleResult(query, phone);
-	}
-
-	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * @param id - subscriber's ID 
+	 * 
+	 * @return Subscriber as an Optional value
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -55,7 +48,11 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides the list of subscriber's (phone numbers) related to the same user.
+	 * 
+	 * @param userID - user's ID
+	 * 
+	 * @return list of Subscribers
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -66,7 +63,27 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides Subscriber retrieved by it's phone number.
+	 * 
+	 * @param phone - subscriber's phone number 
+	 * 
+	 * @return Subscriber as an Optional value
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
+	@Override
+	public Optional<Subscriber> findSubscriberByPhone(String phone) throws DaoException {
+		String query = buildFindSubscriberQueryByParameter(DBColumnName.SUBSCRIBERS_PHONE);
+		return executeQueryForSingleResult(query, phone);
+	}
+
+	
+	/**
+	 * Provides the list of Subscriber's related to the same user by passport number.
+	 * 
+	 * @param passport - passport number
+	 * 
+	 * @return list of Subscribers
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -77,44 +94,21 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides the list of Subscriber's related to the same user by full name.
 	 * 
+	 * @param firstName - subscriber's first name
 	 * 
+	 * @param middleName - subscriber's middle name
+	 * 
+	 * @param lastName - subscriber's last name
+	 * 
+	 * @return list of Subscribers
+	 * 
+	 * @throws DaoException if SQLException occurs
 	 */
-	private String buildFindSubscriberQuery() {
-		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.SUBSCRIBERS).toString();
-		return query;
-	}
-	
-	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
-	 * 
-	 * 
-	 */
-	private String buildFindSubscriberQueryByParameter(String parameter){
-		String query = new StringBuilder(buildFindSubscriberQuery())
-				.append(" WHERE ")
-				.append(DBTableName.SUBSCRIBERS).append(".").append(parameter).append(" = ?")
-				.toString();
-		return query;
-	}
-
-	private String buildFindSubscriberQueryByUserParameter(String userParameter){
-		String query = new StringBuilder(buildFindSubscriberQuery())
-				.append(" INNER JOIN ").append(DBTableName.USERS)
-				.append(" ON ")
-				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_USER_ID)
-				.append(" = ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_ID)
-				.append(" WHERE ")
-				.append(DBTableName.USERS).append(".").append(userParameter)
-				.append(" = ?")
-				.toString();
-		return query;
-	}
-	
 	@Override
-	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName) throws DaoException {
+	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, 
+			String lastName) throws DaoException {
 		List<Subscriber> result = null;
 		String query = null;
 		
@@ -138,7 +132,16 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 				
 		return result;
 	}		
-	
+
+	/**
+	 * Adds to database one more Subscriber to existing User.
+	 * 
+	 * @param subscriber - new Subscriber
+	 * 
+	 * @return new subscriber's ID
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws DaoException {
 		long subscriderId;
@@ -149,10 +152,58 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 		return subscriderId;
 	}
 
+	/**
+	 * Updates Subscriber's data.
+	 * 
+	 * @param subscriber - Subscriber
+	 * 
+	 * @throws DaoException if SQLException occurs
+	 */
 	@Override
 	public void updateSubscriber(Subscriber subscriber) throws DaoException {
 		Object[] params = SQLParametersHelper.provideUpdateSubscriberParameters(subscriber);
 		executeUpdateQuery(UPDATE_SUBSCRIBER, params);
 	}
 
+	
+	/**
+	 * Builds query string, that can be used for "find" type requests.  
+	 * 
+	 */
+	private String buildFindSubscriberQuery() {
+		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.SUBSCRIBERS).toString();
+		return query;
+	}
+	
+	/**
+	 * Builds query string, that can be used for "find Subscriber by subscriber's parameter" type requests.  
+	 * 
+	 */
+	private String buildFindSubscriberQueryByParameter(String parameter){
+		String query = new StringBuilder(buildFindSubscriberQuery())
+				.append(" WHERE ")
+				.append(DBTableName.SUBSCRIBERS).append(".").append(parameter).append(" = ?")
+				.toString();
+		return query;
+	}
+
+	/**
+	 * Builds query string, that can be used for "find Subscriber by user's parameter" type requests.  
+	 * 
+	 * <p> Note, that Subscriber entity contains User fields as well.
+	 */
+	private String buildFindSubscriberQueryByUserParameter(String userParameter){
+		String query = new StringBuilder(buildFindSubscriberQuery())
+				.append(" INNER JOIN ").append(DBTableName.USERS)
+				.append(" ON ")
+				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_USER_ID)
+				.append(" = ")
+				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_ID)
+				.append(" WHERE ")
+				.append(DBTableName.USERS).append(".").append(userParameter)
+				.append(" = ?")
+				.toString();
+		return query;
+	}
+	
 }

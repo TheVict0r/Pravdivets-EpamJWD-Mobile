@@ -36,7 +36,9 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides all actual Services currently exists.
+	 * 
+	 * @return Array List containing all current services
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -46,7 +48,11 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides Service retrieved by it's ID.
+	 * 
+	 * @param id - ID of service
+	 * 
+	 * @return service as an Optional value
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -56,7 +62,11 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Provides Service retrieved by it's name.
+	 * 
+	 * @param name - name of service
+	 * 
+	 * @return service as an Optional value
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */
@@ -66,7 +76,11 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 	}
 
 	/**
-	 * ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ
+	 * Adds Service to data storage.
+	 * 
+	 * @param service - Service to add
+	 * 
+	 * @return the ID of Service in data storage
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */

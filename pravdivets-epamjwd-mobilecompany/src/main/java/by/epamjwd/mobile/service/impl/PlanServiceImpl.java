@@ -11,7 +11,6 @@ import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.PlanDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
-import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
@@ -28,13 +27,14 @@ public class PlanServiceImpl implements PlanService{
 	 * Provides all actual tariff plans currently exists.
 	 * 
 	 * @return Array List containing all current tariff plans
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting all tariff plans from the data storage
 	 */
 	@Override
 	public List<Plan> findAllPlans() throws ServiceException {
 		try {
-			return planDao.getAllPlans();
+			return planDao.findAllPlans();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -44,14 +44,16 @@ public class PlanServiceImpl implements PlanService{
 	 * Provides tariff plan retrieved by it's ID.
 	 * 
 	 * @param id - ID of tariff plan
+	 * 
 	 * @return tariff plan as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting tariff plan from the data storage
 	 */
 	@Override
 	public Optional<Plan> findPlanByID(long id) throws ServiceException {
 		try {
-			return planDao.getPlanByID(id);
+			return planDao.findPlanByID(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -62,11 +64,17 @@ public class PlanServiceImpl implements PlanService{
 	 * based on the traffic on different directions as well as other components of the tariff.
 	 * 
 	 * @param withinNetwork - monthly traffic in minutes for calls within the network
+	 * 
 	 * @param otherNetworks - monthly traffic in minutes for calls to other phone networks
+	 * 
 	 * @param abroad - monthly traffic in minutes for calls abroad 
+	 * 
 	 * @param videocall - monthly traffic in minutes for videocalls
+	 * 
 	 * @param sms - monthly number of SMS
+	 * 
 	 * @param mms - monthly number of MMS
+	 * 
 	 * @param internet - monthly traffic in GB
 	 * 
 	 * @throws ServiceException in the case when DaoException occurs while getting 
@@ -81,7 +89,7 @@ public class PlanServiceImpl implements PlanService{
 		long planId = IDRepository.EMPTY_ID;
 		long minExpences = Long.MAX_VALUE;
 		try {
-			List<Plan> allPlans = planDao.getAllPlans();
+			List<Plan> allPlans = planDao.findAllPlans();
 			for (Plan planTmp : allPlans) {
 				long planExpences = calculateMonthlyExpences(planTmp, withinNetwork, otherNetworks, abroad, videocall,
 						sms, mms, internet);
@@ -96,7 +104,7 @@ public class PlanServiceImpl implements PlanService{
 		}
 
 		try {
-			planOptional = planDao.getPlanByID(planId);
+			planOptional = planDao.findPlanByID(planId);
 		} catch (DaoException e) {
 			LOGGER.error("Error while getting plan by ID  - " + planId, e);
 			throw new ServiceException(e);
@@ -109,13 +117,21 @@ public class PlanServiceImpl implements PlanService{
 	 * Calculates monthly expenses in the case of using the {@code plan}.
 	 * 
 	 * @param plan - tariff plan (bunch of tariffs for different services of mobile operator)
+	 * 
 	 * @param withinNetwork - monthly traffic in minutes for calls within the network
+	 * 
 	 * @param otherNetworks - monthly traffic in minutes for calls to other phone networks
+	 * 
 	 * @param abroad - monthly traffic in minutes for calls abroad 
+	 * 
 	 * @param videocall - monthly traffic in minutes for videocalls
+	 * 
 	 * @param sms - monthly number of SMS
+	 * 
 	 * @param mms - monthly number of MMS
+	 * 
 	 * @param internet - monthly traffic in GB
+	 * 
 	 * @return ARPU (Average Revenue Per User) - monthly expenses in the case of using the {@code plan}
 	 */
 	private long calculateMonthlyExpences(Plan plan, int withinNetwork, int otherNetworks, 
@@ -137,6 +153,7 @@ public class PlanServiceImpl implements PlanService{
 	 * Checks for the presence of tariff plan by it's {@code name} in the data storage.
 	 * 
 	 * @param name  the name of tariff plan
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while 
 	 * getting the tariff plan from the data storage
 	 */
@@ -144,7 +161,7 @@ public class PlanServiceImpl implements PlanService{
 	public boolean doesPlanExist(String name) throws ServiceException  {
 		Optional<Plan> planOptional = Optional.empty();
 		try {
-			planOptional = planDao.getPlanByName(name);
+			planOptional = planDao.findPlanByName(name);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -157,16 +174,27 @@ public class PlanServiceImpl implements PlanService{
 	 * Builds new tariff plan with empty ID.
 	 * 
 	 * @param name - the name of tariff plan
+	 * 
 	 * @param description - a short text description of tariff plan
+	 * 
 	 * @param regularPayment - monthly regular payment
+	 * 
 	 * @param upfrontPayment - amount of money payed by subscriber at the signing of a contract
+	 * 
 	 * @param withinNetwork - monthly traffic in minutes for calls within the network
+	 * 
 	 * @param otherNetworks - monthly traffic in minutes for calls to other phone networks
+	 * 
 	 * @param abroad - monthly traffic in minutes for calls abroad 
+	 * 
 	 * @param videocall - monthly traffic in minutes for videocalls
+	 * 
 	 * @param sms - monthly number of SMS
+	 * 
 	 * @param mms - monthly number of MMS
+	 * 
 	 * @param internet - monthly traffic in GB
+	 * 
 	 * @return new tariff plan
 	 */
 	@Override
@@ -181,7 +209,9 @@ public class PlanServiceImpl implements PlanService{
 	 * Adds plan to data storage.
 	 * 
 	 * @param plan - tariff plan to add
+	 * 
 	 * @return the ID of tariff plan in data storage
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while saving plan 
 	 * to the data storage
 	 */

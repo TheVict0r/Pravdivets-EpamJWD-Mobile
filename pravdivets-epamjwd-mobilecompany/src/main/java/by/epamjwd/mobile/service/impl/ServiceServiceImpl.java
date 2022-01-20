@@ -8,7 +8,6 @@ import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.ServiceDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
-import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
@@ -20,6 +19,7 @@ public class ServiceServiceImpl implements ServiceService {
 	 * Provides all actual Services currently exists.
 	 * 
 	 * @return Array List containing all current services
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting all services from the data storage
 	 */
@@ -37,7 +37,9 @@ public class ServiceServiceImpl implements ServiceService {
 	 * Provides Service retrieved by it's ID.
 	 * 
 	 * @param id - ID of service
+	 * 
 	 * @return service as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting service from the data storage
 	 */
@@ -54,6 +56,7 @@ public class ServiceServiceImpl implements ServiceService {
 	 * Checks for the presence of service by it's {@code name} in the data storage. .
 	 * 
 	 * @param name  the name of Service
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while 
 	 * getting Service from the data storage
 	 */
@@ -72,7 +75,9 @@ public class ServiceServiceImpl implements ServiceService {
 	 * Builds new Service with empty ID.
 	 * 
 	 * @param name - the name of Service
+	 * 
 	 * @param tariff - the price of Service
+	 * 
 	 * @param description - a short text description of Service
 	 * @return new Service
 	 */
@@ -84,8 +89,10 @@ public class ServiceServiceImpl implements ServiceService {
 	/**
 	 * Adds Service to data storage.
 	 * 
-	 * @param plan - Service to add
+	 * @param service - Service to add
+	 * 
 	 * @return the ID of Service in data storage
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while saving Service 
 	 * to the data storage
 	 */
