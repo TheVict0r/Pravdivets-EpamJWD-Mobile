@@ -110,23 +110,23 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
      * 
      * @throws DaoException
      */
-    protected long executeInsertQuery(String query, Object... params) throws DaoException {
-        long result = 0;
+	protected long executeInsertQuery(String query, Object... params) throws DaoException {
+		long result = 0;
 		Connection connection = null;
-        try {
+		try {
 			connection = ConnectionPool.getInstance().takeConnection();
-    		PreparedStatement statement = createStatement(connection, query, params); 
-            statement.executeUpdate();
-            ResultSet generatedKey = statement.getGeneratedKeys();
-            if (generatedKey.next()) {
-                result = generatedKey.getLong(1);
-            }
-    	} catch (ConnectionPoolException e) {
+			PreparedStatement statement = createStatement(connection, query, params);
+			statement.executeUpdate();
+			ResultSet generatedKey = statement.getGeneratedKeys();
+			if (generatedKey.next()) {
+				result = generatedKey.getLong(1);
+			}
+		} catch (ConnectionPoolException e) {
 			LOGGER.error("Unable to take connection.", e);
 			throw new RuntimeException("Unable to to take connection", e);
-        } catch (SQLException e) {
-            LOGGER.error("Unable to execute insert query", e);
-            throw new DaoException("Unable to execute insert query", e);
+		} catch (SQLException e) {
+			LOGGER.error("Unable to execute insert query", e);
+			throw new DaoException("Unable to execute insert query", e);
 		} finally {
 			try {
 				ConnectionPool.getInstance().releaseConnection(connection);
@@ -135,9 +135,8 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 				throw new RuntimeException("Unable to release connection to pool", e);
 			}
 		}
-        return result;
-    }
-
+		return result;
+	}
     
     /**
      * Query executor for updating existing entity in database.
