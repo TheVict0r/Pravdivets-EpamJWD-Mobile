@@ -9,6 +9,11 @@ import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class BillRowMapper implements RowMapper<Bill>{
 
+	/**
+	 * Makes Bill object from result set
+	 * 
+	 * @param resultSet - result set containing the data for Bill object 
+	 */
 	@Override
 	public Bill map(ResultSet resultSet) throws SQLException {
 		Bill bill = new Bill(

@@ -9,6 +9,11 @@ import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class ArticleRowMapper implements RowMapper<Article>{
 
+	/**
+	 * Makes Article object from result set
+	 * 
+	 * @param resultSet - result set containing the data for Article object 
+	 */
 	@Override
 	public Article map(ResultSet resultSet) throws SQLException {
 		Article article = new Article(

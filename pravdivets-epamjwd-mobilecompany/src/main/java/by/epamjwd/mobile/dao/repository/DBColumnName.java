@@ -1,5 +1,9 @@
 package by.epamjwd.mobile.dao.repository;
 
+/**
+ * Database columns names
+ *
+ */
 public class DBColumnName {
 	
 	private DBColumnName(){

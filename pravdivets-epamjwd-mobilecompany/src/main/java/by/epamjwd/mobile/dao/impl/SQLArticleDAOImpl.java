@@ -38,9 +38,9 @@ public class SQLArticleDAOImpl extends AbstractDao<Article> implements ArticleDA
 	}
 
 	/**
-	 * Provides all news articles as a list from the latter to the earlier from the database.
+	 * Provides all news articles as a list in descending order (from the most recent to the earliest).
 	 * 
-	 * @return list of all news articles from from the latter to the earlier
+	 * @return list of all news articles from from the most recent to the earliest.
 	 * 
 	 * @throws DaoException if SQLException occurs
 	 */

@@ -9,6 +9,11 @@ import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class PlanRowMapper implements RowMapper<Plan>{
 
+	/**
+	 * Makes Plan object from result set
+	 * 
+	 * @param resultSet - result set containing the data for Plan object 
+	 */
 	@Override
 	public Plan map(ResultSet resultSet) throws SQLException {
 		Plan plan = new Plan(

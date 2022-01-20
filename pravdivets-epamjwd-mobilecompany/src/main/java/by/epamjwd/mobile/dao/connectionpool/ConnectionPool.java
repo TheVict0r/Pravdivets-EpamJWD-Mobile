@@ -14,6 +14,10 @@ import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 
 
+/**
+ * Simple connection pool to provide a bunch of connections to database.
+ *
+ */
 public final class ConnectionPool {
 
 	private static final int DEFAULT_POOL_SIZE = 5;
@@ -46,6 +50,7 @@ public final class ConnectionPool {
 	 * Initializes the connection pool
 	 * 
 	 * @param baseName -  the name of the database
+	 * 
 	 * @throws ConnectionPoolException
 	 */
 	public void initPoolData(String baseName) throws ConnectionPoolException {
@@ -86,7 +91,7 @@ public final class ConnectionPool {
 		
 
 	/**
-	 * Provides the connection to use
+	 * Provides a connection for further use
 	 * 
 	 * @return Connection
 	 * 
@@ -105,7 +110,7 @@ public final class ConnectionPool {
 	}
 
     /**
-     * Returns connections for later use
+     * Returns connections to the pool's repository for later use
      * 
      * @param connection - Connection to database
      * 
@@ -140,7 +145,7 @@ public final class ConnectionPool {
 	}
 
 	/**
-	 * Closes all connections in queue
+	 * Closes all connections in queue (connections repository)
 	 * 
 	 * @param queue - queue with the connections
 	 * 

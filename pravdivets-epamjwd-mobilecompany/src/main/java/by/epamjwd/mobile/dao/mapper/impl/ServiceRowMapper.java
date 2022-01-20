@@ -9,6 +9,11 @@ import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class ServiceRowMapper implements RowMapper<Service>{
 
+	/**
+	 * Makes Service object from result set
+	 * 
+	 * @param resultSet - result set containing the data for Service object 
+	 */
 	@Override
 	public Service map(ResultSet resultSet) throws SQLException {
 		Service service = new Service(

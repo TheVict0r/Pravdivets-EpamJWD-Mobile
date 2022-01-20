@@ -7,6 +7,7 @@ import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.dao.exception.DaoException;
 
 public interface PlanDAO {
+	
 	List<Plan> findAllPlans() throws DaoException;
 	
 	Optional<Plan> findPlanByID(long id) throws DaoException;

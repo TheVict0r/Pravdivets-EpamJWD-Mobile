@@ -10,6 +10,11 @@ import by.epamjwd.mobile.dao.repository.DBColumnName;
 
 public class UserRowMapper implements RowMapper<User>{
 
+	/**
+	 * Makes User object from result set
+	 * 
+	 * @param resultSet - result set containing the data for User object 
+	 */
 	@Override
 	public User map(ResultSet resultSet) throws SQLException {
 		
