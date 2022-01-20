@@ -18,6 +18,12 @@ import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapper;
 
+/**
+ * Class containing methods to execute different types of queries.
+ *
+ * @param <T> - any class that implements {@link Identifiable} interface. 
+ * In the most cases it'a an entity class.
+ */
 public abstract class AbstractQueryExecutor<T extends Identifiable> {
 	private final static Logger LOGGER = LogManager.getLogger(AbstractQueryExecutor.class);
 
@@ -30,6 +36,17 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
         this.rowMapper = rowMapper;
     }
 
+	/**
+	 * Basic query executor.
+	 * 
+	 * @param query - query string
+	 * 
+	 * @param params - parameters for prepared statement
+	 * 
+	 * @return list of entities
+	 * 
+	 * @throws DaoException
+	 */
 	protected List<T> executeQuery(String query, Object... params) throws DaoException {
 		List<T> entities = new ArrayList<>();
 
@@ -53,11 +70,21 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 				throw new RuntimeException("Unable to release connection to pool", e);
 			}
 		}
-
 		return entities;
     }
 
 	
+    /**
+	 * Deliveries single entity as an Optional value
+	 * 
+	 * @param query - query string
+	 * 
+	 * @param params - parameters for prepared statement
+	 * 
+	 * @return single entity as an Optional value
+	 * 
+	 * @throws DaoException
+     */
     protected Optional<T> executeQueryForSingleResult(String query, Object... params) throws DaoException {
         List<T> items = executeQuery(query, params);
         if (items.isEmpty()) {
@@ -72,6 +99,17 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
     }
 
     
+    /**
+     * Query executor for adding new entity to database.
+     * 
+	 * @param query - query string
+	 * 
+	 * @param params - parameters for prepared statement
+     * 
+     * @return ID of a new entity added to database
+     * 
+     * @throws DaoException
+     */
     protected long executeInsertQuery(String query, Object... params) throws DaoException {
         long result = 0;
 		Connection connection = null;
@@ -101,6 +139,15 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
     }
 
     
+    /**
+     * Query executor for updating existing entity in database.
+     * 
+	 * @param query - query string
+	 * 
+	 * @param params - parameters for prepared statement
+     * 
+     * @throws DaoException
+     */
     protected void executeUpdateQuery(String query, Object... params) throws DaoException {
 		Connection connection = null;
     	try {
@@ -124,6 +171,20 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
     }
 
     
+	/**
+	 * Sets parameters to prepared statement for further execution of query.
+	 * 
+	 * @param connection - Connection to call prepareStatement() method
+	 * 
+	 * @param query - query string for prepared statement 
+	 * 
+	 * @param params array with prepared statement presented as an Objects 
+	 * 		(one Object contains one parameter) 
+	 * 
+	 * @return prepared statement ready to execute
+	 * 
+	 * @throws DaoException
+	 */
 	private PreparedStatement createStatement(Connection connection, String query, Object... params) throws DaoException {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -138,6 +199,15 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 	}
 
 	
+    /**
+     * Extracts entities from the result set and add them to the List of entities.
+     * 
+     * @param resultSet - result set with entities
+     * 
+     * @return List of entities
+     * 
+     * @throws DaoException
+     */
     private List<T> createEntitiesList(ResultSet resultSet) throws DaoException {
         List<T> entities = new ArrayList<>();
         try {
