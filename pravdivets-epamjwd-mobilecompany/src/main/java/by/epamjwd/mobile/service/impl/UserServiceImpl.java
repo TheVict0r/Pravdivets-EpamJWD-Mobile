@@ -8,7 +8,6 @@ import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
-import by.epamjwd.mobile.repository.IndexRepository;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.mail.MailCodeManager;
@@ -18,14 +17,36 @@ import by.epamjwd.mobile.util.HashGenerator;
 public class UserServiceImpl implements UserService {
 	UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 
-	
+	/**
+	 * Provides User retrieved by it's ID.
+	 * 
+	 * @param id - user's ID 
+	 * 
+	 * @return User as an Optional value
+	 * 
+	 * @throws ServiceException in the case when DaoException 
+	 * occurs while getting User from the data storage
+	 */
+	@Override
+	public Optional<User> findUserById(long id) throws ServiceException {
+		Optional<User> user = Optional.empty();
+		try {
+			user = userDao.findUserById(id);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+		return user;
+	}
+
 	
 	/**
 	 * Provides User retrieved by it's login. 
 	 * The login can be an e-mail address or a phone number ass well.
 	 * 
 	 * @param login - user's login
+	 * 
 	 * @return User as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting User from the data storage
 	 */
@@ -41,30 +62,14 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
-	/**
-	 * Provides User retrieved by it's ID.
-	 * 
-	 * @param id - user's ID 
-	 * @return User as an Optional value
-	 * @throws ServiceException in the case when DaoException 
-	 * occurs while getting User from the data storage
-	 */
-	@Override
-	public Optional<User> findUserById(long id) throws ServiceException {
-		Optional<User> user = Optional.empty();
-		try {
-			user = userDao.findUserById(id);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
-		return user;
-	}
 
 	/**
 	 * Provides User retrieved by it's e-mail. 
 	 * 
-	 * @param e-mail - user's e-mail
+	 * @param email - user's e-mail
+	 * 
 	 * @return User as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting User from the data storage
 	 */
@@ -86,7 +91,9 @@ public class UserServiceImpl implements UserService {
 	 * Provides User retrieved by it's passport number. 
 	 * 
 	 * @param passport - user's passport number
+	 * 
 	 * @return User as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting User from the data storage
 	 */
@@ -107,7 +114,9 @@ public class UserServiceImpl implements UserService {
 	 * Provides User retrieved by it's phone number. 
 	 * 
 	 * @param phone - user's phone number
+	 * 
 	 * @return User as an Optional value
+	 * 
 	 * @throws ServiceException in the case when DaoException 
 	 * occurs while getting User from the data storage
 	 */
@@ -128,7 +137,9 @@ public class UserServiceImpl implements UserService {
 	 * Adds the User to the data storage.
 	 * 
 	 * @param User - new User
+	 * 
 	 * @return new User's ID
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while adding a User 
 	 * to the data storage
 	 */
@@ -149,6 +160,7 @@ public class UserServiceImpl implements UserService {
 	 * Updates User's data.
 	 * 
 	 * @param user - User
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while updating the User 
 	 */
 	@Override
@@ -167,7 +179,9 @@ public class UserServiceImpl implements UserService {
 	 * of the new password will be added to the data storage, not the raw password.
 	 * 
 	 * @param user - User
+	 * 
 	 * @param passport - user's password
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while updating the User 
 	 */
 	@Override
@@ -183,7 +197,9 @@ public class UserServiceImpl implements UserService {
 	 * added to the data storage, not the raw password.
 	 * 
 	 * @param phone - user's phone number
+	 * 
 	 * @param password - user's password
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs while updating the User 
 	 */
 	@Override
@@ -203,7 +219,9 @@ public class UserServiceImpl implements UserService {
 	 * This e-mail will be found by subscriber's phone number.
 	 * 
 	 * @param phone - user's phone number
+	 * 
 	 * @return authentication code, that was sent to the user's e-mail
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs 
 	 * while searching the User in the data storage
 	 */
@@ -229,7 +247,9 @@ public class UserServiceImpl implements UserService {
 	 * (Actually the method compares not the raw passwords, but their hash codes)
 	 * 
 	 * @param user - current User
+	 * 
 	 * @param password - user's password
+	 * 
 	 * @return true if passwords are equal
 	 */
 	@Override
@@ -249,6 +269,7 @@ public class UserServiceImpl implements UserService {
 	 * Checks for the presence of a e-mail in the data storage.
 	 * 
 	 * @param email - user's email
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs 
 	 * while searching the User in the data storage
 	 */
@@ -267,6 +288,7 @@ public class UserServiceImpl implements UserService {
 	 * Checks for the presence of a passport number in the data storage.
 	 * 
 	 * @param passport - user's passport number
+	 * 
 	 * @throws ServiceException in the case when DaoException occurs 
 	 * while searching the User in the data storage
 	 */
@@ -280,10 +302,15 @@ public class UserServiceImpl implements UserService {
 	 * Builds new User, which is also a subscriber, with empty user ID.
 	 * 
 	 * @param firstName - user's first name
+	 * 
 	 * @param middleName - user's middle name
+	 * 
 	 * @param lastName - user's last name
+	 * 
 	 * @param passport - user's passport number
+	 * 
 	 * @param email - user's user's e-mail
+	 * 
 	 * @return new User
 	 */
 	@Override
@@ -299,11 +326,17 @@ public class UserServiceImpl implements UserService {
 	 * Builds new User, which is also a consultant, with empty user ID.
 	 * 
 	 * @param firstName - user's first name
+	 * 
 	 * @param middleName - user's middle name
+	 * 
 	 * @param lastName - user's last name
+	 * 
 	 * @param password - user's password
+	 * 
 	 * @param passport - user's passport number
+	 * 
 	 * @param email - user's e-mail
+	 * 
 	 * @return new User
 	 */
 	@Override
