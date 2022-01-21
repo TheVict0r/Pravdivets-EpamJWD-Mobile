@@ -29,6 +29,8 @@
 						<td>${sessionScope.phone_format}</td>
 						<td></td>
 					</tr>
+					
+					
 					<tr class="fw-normal table-secondary">
 						<td><fmt:message key="subscriber.phone-new" /></td>
 						<td>${sessionScope.new_phone_format}</td>
@@ -36,6 +38,15 @@
 							href="${pageContext.request.contextPath}/controller?command=change_phone_preparation"><fmt:message
 									key="subscriber.reload" /></a></td>
 					</tr>
+					
+					
+					
+					<tr class="fw-normal table-secondary ">
+						<td></td>
+						<td colspan="2" ><fmt:message key="subscriber.change-phone-confirm" /></td>
+						
+					</tr>
+					
 					<tr class="fw-normal table-secondary">
 						<td></td>
 						<td><a class="btn btn-secondary btn-sm"
@@ -43,7 +54,7 @@
 									key="subscriber.cancel" /></a></td>
 						<td><a class="btn btn-primary btn-sm"
 							href="${pageContext.request.contextPath}/controller?command=change_phone"><fmt:message
-									key="subscriber.edit" /></a></td>
+									key="subscriber.change" /></a></td>
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -53,7 +64,7 @@
 				<td><c:if test="${sessionScope.role != 'SUBSCRIBER'}">		
 						<a class="btn btn-outline-primary btn-sm"
 							href="${pageContext.request.contextPath}/controller?command=change_phone_preparation"><fmt:message
-									key="subscriber.edit" /></a>
+									key="subscriber.change" /></a>
 					</c:if></td>
 					</tr>
 				</c:otherwise>
@@ -129,7 +140,7 @@
 									key="subscriber.cancel" /></a></td>
 						<td>
 						<input type="submit" class="btn btn-primary btn-sm"
-							value="<fmt:message key="subscriber.edit"/>">
+							value="<fmt:message key="subscriber.change"/>">
 						</td>
 					</tr>
 				</c:when>
@@ -182,7 +193,7 @@
 							href="${pageContext.request.contextPath}/controller?command=cancel_edit_subscriber_data"><fmt:message
 									key="subscriber.cancel" /></a></td>
 						<td><input type="submit" class="btn btn-primary btn-sm"
-							value="<fmt:message key="subscriber.edit"/>"></td>
+							value="<fmt:message key="subscriber.change"/>"></td>
 					</tr>
 				</c:when>
 				<c:otherwise>
@@ -191,7 +202,7 @@
 						<td>${sessionScope.plan.name}</td>
 						<td><a class="login btn btn-outline-primary btn-sm"
 							href="${pageContext.request.contextPath}/controller?command=change_plan_preparation"><fmt:message
-									key="subscriber.edit" /></a></td>
+									key="subscriber.change" /></a></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -234,7 +245,7 @@
 							href="${pageContext.request.contextPath}/controller?command=cancel_edit_subscriber_data"><fmt:message
 									key="subscriber.cancel" /></a></td>
 						<td><input type="submit" class="btn btn-primary btn-sm"
-							value="<fmt:message key="subscriber.edit"/>"></td>
+							value="<fmt:message key="subscriber.change"/>"></td>
 					</tr>
 					</c:when>
 					<c:otherwise>
@@ -244,7 +255,7 @@
 					<td><c:if test="${sessionScope.role != 'SUBSCRIBER'}">
 						<a class="login btn btn-outline-primary btn-sm"
 							href="${pageContext.request.contextPath}/controller?command=change_status_preparation"><fmt:message
-									key="subscriber.edit" /></a>
+									key="subscriber.change" /></a>
 					</c:if></td>
 				</tr>
 					</c:otherwise>

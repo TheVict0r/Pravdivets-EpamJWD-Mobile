@@ -20,6 +20,7 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.util.PhoneFormatter;
+import by.epamjwd.mobile.util.PhoneGenerator;
 
 public class ChangePhoneCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(EditPersonalDataCommand.class);
@@ -29,17 +30,23 @@ public class ChangePhoneCommand implements Command{
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		session.removeAttribute(AttributeName.NEW_PHONE_FORMAT);
-		String newPhone = (String)session.getAttribute(AttributeName.NEW_PHONE);
-		session.removeAttribute(AttributeName.NEW_PHONE);
 
 		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
 		
-		if(   newPhone == null || newPhone.isBlank() || 
-			subscriber == null ) {
+		if( subscriber == null ) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 				}
 		
+		String newPhone;
+		try {
+			newPhone = PhoneGenerator.getInstance().provideFreePhone();
+			session.setAttribute(AttributeName.NEW_PHONE, newPhone);
+		} catch (ServiceException e) {
+			LOGGER.error("Error during new phone number generation pricess", e);
+			return  RouteHelper.ERROR_500;
+		}
+
 		long subscriberID = subscriber.getId();
 		subscriber.setPhone(newPhone);
 		

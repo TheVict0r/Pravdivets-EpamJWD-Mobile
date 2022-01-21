@@ -24,8 +24,6 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.util.PhoneFormatter;
-import by.epamjwd.mobile.util.PhoneGenerator;
 
 public class AddSubscriberPreparationCommand implements Command {
 
@@ -36,14 +34,14 @@ public class AddSubscriberPreparationCommand implements Command {
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.SUBSCRIBER_DEBTOR);
 		session.removeAttribute(AttributeName.SUBSCRIBER_LIST);
-		
+
 		String passport = request.getParameter(ParameterName.PASSPORT);
-		
-		if( passport == null || passport.isBlank()) {
+
+		if (passport == null || passport.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
-			}
-		
+			return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+		}
+
 		RouteHelper result = RouteHelper.ERROR;
 
 		ServiceProvider serviceProvider = ServiceProvider.getInstance();
@@ -51,14 +49,10 @@ public class AddSubscriberPreparationCommand implements Command {
 		SubscriberService subscriberService = serviceProvider.getSubscriberService();
 		PlanService planService = serviceProvider.getPlanService();
 		try {
-			String phone = PhoneGenerator.getInstance().provideFreePhone();
-			String phoneFormat = PhoneFormatter.formatPhone(phone);
 			List<Plan> allPlans = planService.findAllPlans();
 			session.setAttribute(AttributeName.PASSPORT, passport);
-			session.setAttribute(AttributeName.PHONE, phone);
-			session.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
 			session.setAttribute(AttributeName.ALL_PLANS, allPlans);
-			
+
 			if (subscriberService.isDebtor(passport)) {
 				List<Subscriber> subscribersDebtors = subscriberService.findSubscribersDebtors(passport);
 				session.setAttribute(AttributeName.SUBSCRIBER_DEBTOR, AttributeValue.DEBTOR);
@@ -67,7 +61,8 @@ public class AddSubscriberPreparationCommand implements Command {
 			} else if (subscriberService.isNewSubscriberUser(passport)) {
 				session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
-			} else { //so this subscriber already has another phone number as well as User data and is not debtor
+			} else { // so this subscriber already has another phone number as well as User data and
+						// is not debtor
 				User currentUser = userService.findUserByPassport(passport).get();
 				session.setAttribute(AttributeName.SUBSCRIBER_USER, currentUser);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);

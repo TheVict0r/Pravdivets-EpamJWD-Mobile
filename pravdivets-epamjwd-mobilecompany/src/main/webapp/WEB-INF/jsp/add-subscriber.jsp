@@ -16,23 +16,12 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 	<jsp:include page="components/header.jsp" />
 	<div
-		class="row justify-content-center display-4 fw-light mx-auto  mb-1">
+		class="row justify-content-center display-4 fw-light mx-auto py-5 mb-1">
 		<fmt:message key="add-subscriber.new-subscriber" />
 	</div>
 	<div class="row justify-content-center mx-auto fw-light flex-grow-1">
 		<form method="post" action=controller?command=add_subscriber>
-			<div class="row justify-content-center fs-6 ">
-				<fmt:message key="add-subscriber.phone-number" />
-				:
-			</div>
-			<div class="row justify-content-center text-primary fs-3 mb-1">
-				${sessionScope.phone_format}</div>
-			<div class="row justify-content-center mb-1">
-				<a class="btn btn-outline-dark"
-					href="${pageContext.request.contextPath}/controller?command=add_subscriber_preparation&passport=${sessionScope.passport}"><fmt:message
-						key="add-subscriber.reload" /></a>
-			</div>
-			<div class="row justify-content-center fs-2">
+			<div class="row justify-content-center fs-4">
 				<fmt:message key="add-subscriber.passport" />
 				: ${sessionScope.passport}
 			</div>
