@@ -29,22 +29,9 @@
 						<td>${sessionScope.phone_format}</td>
 						<td></td>
 					</tr>
-					
-					
-					<tr class="fw-normal table-secondary">
-						<td><fmt:message key="subscriber.phone-new" /></td>
-						<td>${sessionScope.new_phone_format}</td>
-						<td><a class="btn btn-outline-primary btn-sm"
-							href="${pageContext.request.contextPath}/controller?command=change_phone_preparation"><fmt:message
-									key="subscriber.reload" /></a></td>
-					</tr>
-					
-					
-					
 					<tr class="fw-normal table-secondary ">
 						<td></td>
 						<td colspan="2" ><fmt:message key="subscriber.change-phone-confirm" /></td>
-						
 					</tr>
 					
 					<tr class="fw-normal table-secondary">
