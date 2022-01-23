@@ -34,7 +34,6 @@ import by.epamjwd.mobile.controller.command.impl.FindArticleByIdCommand;
 import by.epamjwd.mobile.controller.command.impl.FindArticleByTitleCommand;
 import by.epamjwd.mobile.controller.command.impl.FindBestPlanCommand;
 import by.epamjwd.mobile.controller.command.impl.FindConsultantByEmailCommand;
-import by.epamjwd.mobile.controller.command.impl.FindConsultantByIdCommand;
 import by.epamjwd.mobile.controller.command.impl.FindConsultantByPassportCommand;
 import by.epamjwd.mobile.controller.command.impl.FindFullArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.FindFullPlanAdminCommand;
@@ -131,7 +130,6 @@ public class CommandProvider {
 		allCommands.put(CommandName.FIND_ARTICLE_BY_TITLE, new FindArticleByTitleCommand());
 		allCommands.put(CommandName.FIND_BEST_PLAN, new FindBestPlanCommand());
 		allCommands.put(CommandName.FIND_CONSULTANT_BY_EMAIL, new FindConsultantByEmailCommand());
-		allCommands.put(CommandName.FIND_CONSULTANT_BY_ID, new FindConsultantByIdCommand());
 		allCommands.put(CommandName.FIND_CONSULTANT_BY_PASSPORT, new FindConsultantByPassportCommand());
 		allCommands.put(CommandName.FIND_FULL_ARTICLE, new FindFullArticleCommand());
 		allCommands.put(CommandName.FIND_FULL_PLAN, new FindFullPlanCommand());
