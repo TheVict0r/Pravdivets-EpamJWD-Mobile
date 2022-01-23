@@ -40,7 +40,8 @@ public class FindConsultantByPassportCommand implements Command {
 		
 		try {
 			Optional<User> consultantOptional = userService.findUserByPassport(passport);
-			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.PASSPORT, passport);
+			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, 
+					session, AttributeName.PASSPORT, passport);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain consultant data for passport number " + passport, e);
 			result = RouteHelper.ERROR_500;

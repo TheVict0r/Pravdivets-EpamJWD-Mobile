@@ -53,7 +53,7 @@ public class ConsultantCommandHelper {
 	}
 
 	/**
-	 * Cleans session from consultant's attributes no longer needed. 
+	 * Cleans session from Consultant's attributes no longer needed. 
 	 * 
 	 * @param session - http-session
 	 */

@@ -10,7 +10,6 @@ import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
-import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -22,9 +21,23 @@ public class ServiceCommandHelper {
 	public static ServiceCommandHelper getInstance() {
 		return Holder.INSTANCE;
 	}
-	
-	public RouteHelper handleServiceByID(HttpSession session, long serviceID, String pagePath,
-			Logger logger) {
+
+	/**
+	 * Method for handling the service by it's ID.
+	 * 
+	 * Retrieves by ID service from the data storage and sets it to the session 
+	 * 
+	 * @param session - http-session
+	 * 
+	 * @param serviceID - the ID of service
+	 * 
+	 * @param pagePath - path to page for presenting the result to the client
+	 * 
+	 * @param logger - logger to log an errors in the case they occur 
+	 * 
+	 * @return - RouteHelper containing path to page and route method
+	 */
+	public RouteHelper handleServiceByID(HttpSession session, long serviceID, String pagePath, Logger logger) {
 		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
 		RouteHelper result = RouteHelper.ERROR;
 		try {
@@ -44,12 +57,8 @@ public class ServiceCommandHelper {
 
 	}
 
-
-	
-	
-	
-	private static class Holder{
+	private static class Holder {
 		private final static ServiceCommandHelper INSTANCE = new ServiceCommandHelper();
 	}
-	
+
 }

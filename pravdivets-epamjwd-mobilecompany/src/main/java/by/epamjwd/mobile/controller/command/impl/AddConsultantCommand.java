@@ -91,7 +91,8 @@ public class AddConsultantCommand implements Command{
 			consultantId = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
 					request.getParameter(ParameterName.PASSWORD1), passport, email));
 			Optional<User> consultantOptional = userService.findUserById(consultantId);
-			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, 
+					AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while adding a new consultant.", e);
 			return RouteHelper.ERROR_500;

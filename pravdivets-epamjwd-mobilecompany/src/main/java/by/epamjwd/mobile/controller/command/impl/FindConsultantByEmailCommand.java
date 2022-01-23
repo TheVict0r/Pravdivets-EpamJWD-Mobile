@@ -42,7 +42,8 @@ public class FindConsultantByEmailCommand implements Command {
 		
 		try {
 			Optional<User> consultantOptional = userService.findUserByEmail(email);
-			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.EMAIL, email);
+			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, 
+					session, AttributeName.EMAIL, email);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain consultant data for e-mail " + email, e);
 			result = RouteHelper.ERROR_500;

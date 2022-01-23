@@ -38,8 +38,23 @@ public class SubscriberCommandHelper {
 		return Holder.INSTANCE;
 	}
 
+	/**
+	 * Makes preparation work to present all subscriber's data 
+	 * and sets these data to the session. 
+	 * 
+	 * Retrieves from data storage all entities that are relevant 
+	 * to the particular {@code subscriber} - User and tariff Plan.
+	 * 
+	 * @param request - http request from servlet
+	 * 
+	 * @param subscriber - Subscriber instance
+	 * 
+	 * @return - RouteHelper containing path to page and route method
+	 * 
+	 * @throws ServiceException
+	 */
 	public RouteHelper handleSubscriber(HttpServletRequest request, Subscriber subscriber) throws ServiceException {
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		UserService userService = ServiceProvider.getInstance().getUserService();
@@ -76,6 +91,17 @@ public class SubscriberCommandHelper {
 		return result;
 	}
 
+	/**
+	 * Handles multiple subscribers stored in the List and route it as an Forward method.
+	 * 
+	 * @param request - http request from servlet
+	 * 
+	 * @param subscriberList - List with Subscribers
+	 * 
+	 * @return - RouteHelper containing path to page and route method
+	 * 
+	 * @throws ServiceException
+	 */
 	public RouteHelper handleSubscriberListForward(HttpServletRequest request, List<Subscriber> subscriberList)
 			throws ServiceException {
 		RouteHelper result = null;
@@ -89,6 +115,18 @@ public class SubscriberCommandHelper {
 		return result;
 	}
 
+	
+	/**
+	 * Handles multiple subscribers stored in the List and route it as an Redirect method.
+	 * 
+	 * @param request - http request from servlet
+	 * 
+	 * @param subscriberList - List with Subscribers
+	 * 
+	 * @return - RouteHelper containing path to page and route method
+	 * 
+	 * @throws ServiceException
+	 */
 	public RouteHelper handleSubscriberListRedirect(HttpServletRequest request, List<Subscriber> subscriberList)
 			throws ServiceException {
 		HttpSession session = request.getSession();
@@ -104,6 +142,13 @@ public class SubscriberCommandHelper {
 		return result;
 	}
 
+	/**
+	 * Blocks the logination access for the deactivated Subscriber 
+	 * 
+	 * @param session - http-session
+	 * 
+	 * @return - RouteHelper containing path to page and route method
+	 */
 	public RouteHelper handleDeactivatedSubscriber (HttpSession session) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.DEACTIVATED);
 			session.removeAttribute(AttributeName.USER_ID);
@@ -114,6 +159,11 @@ public class SubscriberCommandHelper {
 		}
 
 	
+	/**
+	 * Cleans session from Subscriber's attributes no longer needed. 
+	 * 
+	 * @param session - http-session
+	 */
 	public void clearSessionFromSubscriberAttributes(HttpSession session) {
 		session.removeAttribute(AttributeName.SUBSCRIBER);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
