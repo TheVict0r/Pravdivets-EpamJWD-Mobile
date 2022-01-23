@@ -68,6 +68,7 @@ public class CommandName {
 	public static final String GO_TO_CODE_RETURN_PAGE = "go_to_code_return_page";
 	public static final String GO_TO_CODE_SEND_PAGE = "go_to_code_send_page";
 	public static final String GO_TO_CONSULTANT_OPERATIONS_PAGE = "go_to_consultant_operations_page";
+	public static final String GO_TO_CONSULTANT_PAGE = "go_to_consultant_page";
 	public static final String GO_TO_EDIT_CONSULTANT_PAGE = "go_to_edit_consultant_page";
 	public static final String GO_TO_ERROR_404_PAGE = "go_to_error_404_page";
 	public static final String GO_TO_ERROR_500_PAGE = "go_to_error_500_page";

@@ -21,11 +21,28 @@ public class ConsultantCommandHelper {
 		return Holder.INSTANCE;
 	}
 
+	/**
+	 * Retrieves consultant user from Optional variable and sets it to session for further use.
+	 * 
+	 * @param consultantOptional - optional variable with presumably consultant user in it 
+	 * 
+	 * @param session - http-session
+	 * 
+	 * @param attributeName - the name of attribute that was used for retrieving 
+	 * 		{@code consultantOptional} parameter. Used for repeated request for 
+	 * 		data correction in the case if Optional variable is empty
+	 * 
+	 * @param attributeValue - the value of attribute that was used for retrieving 
+	 * 		{@code consultantOptional} parameter. Used for repeated request for 
+	 * 		data correction in the case if Optional variable is empty
+	 * 
+	 * @return - RouteHelper containing path to page and route method
+	 */
 	public RouteHelper handleConsultantOptional(Optional<User> consultantOptional, HttpSession session, String attributeName, String attributeValue) {
 		RouteHelper result = RouteHelper.ERROR;
 		if(consultantOptional.isPresent() && (consultantOptional.get().getRole() == Role.CONSULTANT)) {
-			long consultantID = consultantOptional.get().getId();
-			session.setAttribute(AttributeName.CONSULTANT_ID, consultantID);
+			User consultant = consultantOptional.get();
+			session.setAttribute(AttributeName.CONSULTANT, consultant);
 			result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
 		} else {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR);
@@ -35,6 +52,11 @@ public class ConsultantCommandHelper {
 		return result;
 	}
 
+	/**
+	 * Cleans session from consultant's attributes no longer needed. 
+	 * 
+	 * @param session - http-session
+	 */
 	public void clearSessionFromConsultantAttributes(HttpSession session) {
 		session.removeAttribute(AttributeName.CONSULTANT);
 		session.removeAttribute(AttributeName.CONSULTANT_ID);

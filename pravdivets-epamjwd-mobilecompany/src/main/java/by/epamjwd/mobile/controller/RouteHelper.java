@@ -3,8 +3,8 @@ package by.epamjwd.mobile.controller;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
 /**
- * Common container type for commands results used in {@code return} 
- * and as a key part of {@code Command} design pattern
+ * Container for {@code return} in commands  
+ * used as a part of {@code Command} design pattern
  *
  */
 public class RouteHelper {
@@ -14,7 +14,7 @@ public class RouteHelper {
 	public static final RouteHelper ERROR_500 = new RouteHelper(PagePath.ERROR_500, RouteMethod.FORWARD);
 	
 	/**
-     * Path to resulting resource.
+     * Path to result resources (jsp-pages).
      */
     private final String path;
 	

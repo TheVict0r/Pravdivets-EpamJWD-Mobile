@@ -10,7 +10,6 @@ import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
-import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -24,6 +23,23 @@ public class ArticleCommandHelper {
 		return Holder.INSTANCE;
 	}
 
+	/**
+	 * Method for handling the news article by it's ID.
+	 * 
+	 * Retrieves by ID news article from the data storage and sets it to the session 
+	 * 
+	 * @param session - http-session
+	 * 
+	 * @param articleID - the ID of the article
+	 * 
+	 * @param pagePath - path to page for presenting the result to the client
+	 * 
+	 * @param routeMethod - method for further processing (forward() or sendRedirect())
+	 * 
+	 * @param logger - logger to log an errors in the case they occur 
+	 * 
+	 * @return - RouteHelper containing path to page and route method
+	 */
 	public RouteHelper handleArticleByID(HttpSession session, long articleID, String pagePath, RouteMethod routeMethod, Logger logger) {
 		RouteHelper result = RouteHelper.ERROR;
 		ArticleService articleService = ServiceProvider.getInstance().getArticleService();

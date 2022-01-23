@@ -68,6 +68,7 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToChangePasswordPageC
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeReturnPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToCodeSendPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToConsultantOperationsPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToConsultantPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToEditConsultantPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToError404PageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToError500PageCommand;
@@ -155,6 +156,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_ARTICLE_OPERATIONS_PAGE, new GoToArticleOperationsPageCommand());
 		allCommands.put(CommandName.GO_TO_ARTICLE_PAGE, new GoToArticlePageCommand());
 		allCommands.put(CommandName.GO_TO_CALCULATOR_PAGE, new GoToCalculatorPageCommand());
+		allCommands.put(CommandName.GO_TO_CONSULTANT_PAGE, new GoToConsultantPageCommand());
 		allCommands.put(CommandName.GO_TO_CHANGE_PASSWORD_PAGE, new GoToChangePasswordPageCommand());
 		allCommands.put(CommandName.GO_TO_CODE_RETURN_PAGE, new GoToCodeReturnPageCommand());
 		allCommands.put(CommandName.GO_TO_CODE_SEND_PAGE, new GoToCodeSendPageCommand());

@@ -34,13 +34,15 @@ public class Controller extends HttpServlet {
 	}
 
 	/**
-	 * Universal method - a part of Command design pattern. 
-	 * Extracts {@code path} and {@code route method}
-	 * request and helps to provide the response to the client
+	 * Common method - a part of Command design pattern. 
+	 * Handles requests and provides responses to the client.
 	 * 
 	 * @param request - http request from the client
+	 * 
 	 * @param response - http response sent to the client on his request
+	 * 
 	 * @throws ServletException
+	 * 
 	 * @throws IOException
 	 */
 	private void process(HttpServletRequest request, HttpServletResponse response)
