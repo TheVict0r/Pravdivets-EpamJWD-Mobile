@@ -1,5 +1,7 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,9 +9,11 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.helpers.ConsultantCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
@@ -86,8 +90,8 @@ public class AddConsultantCommand implements Command{
 		try {
 			consultantId = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
 					request.getParameter(ParameterName.PASSWORD1), passport, email));
-			session.setAttribute(AttributeName.CONSULTANT_ID, consultantId);
-			result = new RouteHelper(PagePath.CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
+			Optional<User> consultantOptional = userService.findUserById(consultantId);
+			result = ConsultantCommandHelper.getInstance().handleConsultantOptional(consultantOptional, session, AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while adding a new consultant.", e);
 			return RouteHelper.ERROR_500;
