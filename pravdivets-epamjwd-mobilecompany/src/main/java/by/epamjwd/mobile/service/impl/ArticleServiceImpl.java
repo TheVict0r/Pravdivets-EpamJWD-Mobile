@@ -130,7 +130,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * 			getting the tariff plan from the data storage
 	 */
 	@Override
-	public boolean doesArticleExists(String title) throws ServiceException {
+	public boolean isArticleExists(String title) throws ServiceException {
 		Optional<Article> articleOptional = findArticleByTitle(title);
 		return articleOptional.isPresent();
 	}

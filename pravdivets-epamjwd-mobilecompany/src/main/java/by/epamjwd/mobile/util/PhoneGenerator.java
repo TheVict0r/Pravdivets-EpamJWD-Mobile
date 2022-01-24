@@ -44,7 +44,7 @@ public class PhoneGenerator {
 
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 
-		if (subscriberService.doesPhoneExist(candidatePhone)) {
+		if (subscriberService.isPhoneExist(candidatePhone)) {
 			provideFreePhone();
 		} else {
 			phoneResult = candidatePhone;

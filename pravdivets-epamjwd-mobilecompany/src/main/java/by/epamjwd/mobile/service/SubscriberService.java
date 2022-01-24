@@ -21,7 +21,7 @@ public interface SubscriberService {
 	long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException;
 	void updateSubscriber(Subscriber subscriber) throws ServiceException;
 	Subscriber buildSubscriber(String phone, long planId, long userId) throws ServiceException;
-	boolean doesPhoneExist(String phone) throws ServiceException;
+	boolean isPhoneExist(String phone) throws ServiceException;
 	boolean isSignupRequired(String phone) throws ServiceException;
 	
 	

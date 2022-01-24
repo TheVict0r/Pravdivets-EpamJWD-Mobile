@@ -39,7 +39,7 @@ public class CheckPhoneCommand implements Command{
 		RouteHelper result;
 		
 		try {
-			if (subscriberService.doesPhoneExist(phone)) {
+			if (subscriberService.isPhoneExist(phone)) {
 				if(AttributeValue.SIGN_UP.equals(mode) && !subscriberService.isSignupRequired(phone)) {
 					return provideErrorMessage(session, AttributeValue.ALREADY_SIGNED_UP);
 				}

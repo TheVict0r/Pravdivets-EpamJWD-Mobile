@@ -158,7 +158,7 @@ public class PlanServiceImpl implements PlanService{
 	 * getting the tariff plan from the data storage
 	 */
 	@Override
-	public boolean doesPlanExist(String name) throws ServiceException  {
+	public boolean isPlanExist(String name) throws ServiceException  {
 		Optional<Plan> planOptional = Optional.empty();
 		try {
 			planOptional = planDao.findPlanByName(name);

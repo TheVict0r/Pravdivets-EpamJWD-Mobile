@@ -21,7 +21,7 @@ public interface ArticleService {
 
 	long addArticle(Article article) throws ServiceException;
 
-	boolean doesArticleExists(String title) throws ServiceException;
+	boolean isArticleExists(String title) throws ServiceException;
 
 	Optional<Article> findArticleByTitle(String title) throws ServiceException;
 

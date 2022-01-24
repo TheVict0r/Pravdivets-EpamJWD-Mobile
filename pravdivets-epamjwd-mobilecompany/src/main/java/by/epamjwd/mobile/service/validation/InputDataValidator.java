@@ -155,28 +155,28 @@ public class InputDataValidator {
 
 
 	public static boolean isEmail(String anyString) {
-		return doesMatchePattern(anyString, EMAIL_REGEX);
+		return isMatchePattern(anyString, EMAIL_REGEX);
 	}
 
 	public static boolean isPhone(String anyString) {
-		return doesMatchePattern(anyString, PHONE_NUMBER_REGEX);
+		return isMatchePattern(anyString, PHONE_NUMBER_REGEX);
 	}
 
 	public static boolean isName(String anyString) {
-		return doesMatchePattern(anyString, NAME_REGEX);
+		return isMatchePattern(anyString, NAME_REGEX);
 	}
 	
 	public static boolean isPassport(String passport) {
-		return doesMatchePattern(passport, PASSPORT_REGEX);
+		return isMatchePattern(passport, PASSPORT_REGEX);
 		
 	}
 
 	public static boolean isPassword(String password) {
-		return doesMatchePattern(password, PASSWORD_REGEX);
+		return isMatchePattern(password, PASSWORD_REGEX);
 		
 	}
 	
-	private static boolean doesMatchePattern(String anyString, String regex) {
+	private static boolean isMatchePattern(String anyString, String regex) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(anyString);
 		return matcher.find();

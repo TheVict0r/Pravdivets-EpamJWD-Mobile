@@ -155,7 +155,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 * from the data storage
 	 */
 	@Override
-	public boolean doesPhoneExist(String phone) throws ServiceException {
+	public boolean isPhoneExist(String phone) throws ServiceException {
 		boolean result = false;
 		if (InputDataValidator.isPhone(phone)) {
 			result = findSubscriberByPhone(phone).isPresent();

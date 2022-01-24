@@ -40,7 +40,7 @@ public class AddArticleCommand implements Command {
 		}
 		
 		try {
-			if (articleService.doesArticleExists(title)) {
+			if (articleService.isArticleExists(title)) {
 				session.setAttribute(AttributeName.ERROR, AttributeValue.ARTICLE_EXISTS);
 				session.setAttribute(AttributeName.TITLE, title);
 				session.setAttribute(AttributeName.INTRO, intro);

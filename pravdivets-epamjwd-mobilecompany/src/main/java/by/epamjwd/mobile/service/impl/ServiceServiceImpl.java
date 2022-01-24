@@ -61,7 +61,7 @@ public class ServiceServiceImpl implements ServiceService {
 	 * getting Service from the data storage
 	 */
 	@Override
-	public boolean doesServiceExists(String name) throws ServiceException {
+	public boolean isServiceExists(String name) throws ServiceException {
 		Optional<Service> serviceOptional = Optional.empty();
 		try {
 			serviceOptional = serviceDao.getServiceByName(name);

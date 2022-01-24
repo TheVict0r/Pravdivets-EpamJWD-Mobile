@@ -43,7 +43,7 @@ public class AddServiceCommand implements Command{
 				}
 
 		try {
-			if (serviceService.doesServiceExists(name)) {
+			if (serviceService.isServiceExists(name)) {
 				session.setAttribute(AttributeName.ERROR, AttributeValue.SERVICE_EXISTS);
 				session.setAttribute(AttributeName.NAME, name);
 				session.setAttribute(AttributeName.DESCRIPTION, description);
