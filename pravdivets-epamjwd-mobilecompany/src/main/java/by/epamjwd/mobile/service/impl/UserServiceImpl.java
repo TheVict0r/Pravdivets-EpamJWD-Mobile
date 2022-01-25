@@ -15,7 +15,8 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 import by.epamjwd.mobile.util.HashGenerator;
 
 public class UserServiceImpl implements UserService {
-	UserDAO userDao = DAOProvider.getInstance().getUserDAO();
+
+	private static final int EMPTY_CODE = 0;
 
 	/**
 	 * Provides User retrieved by it's ID.
@@ -29,7 +30,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserById(long id) throws ServiceException {
+		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
+		
 		try {
 			user = userDao.findUserById(id);
 		} catch (DaoException e) {
@@ -62,7 +65,6 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
-
 	/**
 	 * Provides User retrieved by it's e-mail. 
 	 * 
@@ -75,6 +77,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserByEmail(String email) throws ServiceException {
+		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
 				
 		if(InputDataValidator.isEmail(email)) {
@@ -87,6 +90,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	
 	/**
 	 * Provides User retrieved by it's passport number. 
 	 * 
@@ -99,7 +103,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws ServiceException {
+		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
+		
 		if(InputDataValidator.isPassport(passport)){
 		try {
 			user = userDao.findUserByPassport(passport);
@@ -110,6 +116,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	
 	/**
 	 * Provides User retrieved by it's phone number. 
 	 * 
@@ -122,7 +129,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserByPhone(String phone) throws ServiceException {
+		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
+		
 		if (InputDataValidator.isPhone(phone)) {
 			try {
 				user = userDao.findUserByPhone(phone);
@@ -133,6 +142,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	
 	/**
 	 * Adds the User to the data storage.
 	 * 
@@ -145,7 +155,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public long addUser(User user) throws ServiceException {
+		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		long userId = IDRepository.EMPTY_ID;
+		
 		if (InputDataValidator.isUserValid(user)) {
 			try {
 				userId = userDao.addUser(user);
@@ -156,6 +168,7 @@ public class UserServiceImpl implements UserService {
 		return userId;
 	}
 
+	
 	/**
 	 * Updates User's data.
 	 * 
@@ -165,6 +178,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void updateUser(User user) throws ServiceException {
+		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
+
 		if (InputDataValidator.isUserValid(user)) {
 			try {
 				userDao.updateUser(user);
@@ -174,6 +189,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	
 	/**
 	 * Updates User's password. Because of the security reasons the hash-code 
 	 * of the new password will be added to the data storage, not the raw password.
@@ -190,6 +206,7 @@ public class UserServiceImpl implements UserService {
 			user.setPassword(passwordHash);
 			updateUser(user);
 	}
+
 	
 	/**
 	 * Updates User's password. The user will be fount by it's phone number.
@@ -227,7 +244,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public int sendCodeToUserByMail(String phone) throws ServiceException {
-		int result = 0;
+		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
+		int result = EMPTY_CODE;
 		if(InputDataValidator.isPhone(phone)) {
 			try {
 				Optional<User> userOptional = userDao.findUserByPhone(phone);
@@ -241,6 +259,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
+
 	
 	/**
 	 * Checks if the provided password is equal to user's password.
@@ -264,6 +283,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
+
 	
 	/**
 	 * Checks for the presence of a e-mail in the data storage.
@@ -283,6 +303,7 @@ public class UserServiceImpl implements UserService {
 
 		return result;
 	}
+
 	
 	/**
 	 * Checks for the presence of a passport number in the data storage.
@@ -297,6 +318,7 @@ public class UserServiceImpl implements UserService {
 		Optional<User> user = findUserByPassport(passport);
 		return user.isPresent();
 	}
+
 	
 	/**
 	 * Builds new User, which is also a subscriber, with empty user ID.
@@ -322,6 +344,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	
 	/**
 	 * Builds new User, which is also a consultant, with empty user ID.
 	 * 

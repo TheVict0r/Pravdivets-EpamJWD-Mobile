@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.dao.AbstractDao;
+import by.epamjwd.mobile.dao.SQLParametersHelper;
 import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;

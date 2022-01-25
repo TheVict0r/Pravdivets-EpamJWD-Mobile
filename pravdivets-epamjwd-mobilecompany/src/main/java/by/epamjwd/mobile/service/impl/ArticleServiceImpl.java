@@ -15,24 +15,20 @@ import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
-/**
- * Class provides the operations with news articles
- */
 public class ArticleServiceImpl implements ArticleService {
-
-	DAOProvider provider = DAOProvider.getInstance();
-	ArticleDAO articleDao = provider.getNewsDao();
 
 	/**
 	 * Provides all actual news articles currently exists.
 	 * 
 	 * @return Array List containing all news articles from the data storage
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          all news articles from the data storage
 	 */
 	@Override
 	public List<Article> findAllArticles() throws ServiceException {
+		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
+
 		try {
 			return articleDao.getAllArticles();
 		} catch (DaoException e) {
@@ -40,19 +36,20 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 	}
 
-	
 	/**
 	 * Provides news article retrieved by it's ID.
 	 * 
-	 * @param id - ID of news article
+	 * @param id - ID of Article
 	 * 
-	 * @return news article as an Optional value
+	 * @return Article as an Optional value
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting news article from the data storage
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          Article from the data storage
 	 */
 	@Override
 	public Optional<Article> findArticleByID(long id) throws ServiceException {
+		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
+
 		try {
 			return articleDao.getArticleByID(id);
 		} catch (DaoException e) {
@@ -67,12 +64,14 @@ public class ArticleServiceImpl implements ArticleService {
 	 * 
 	 * @return news article as an Optional value
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting news article from the data storage
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          news article from the data storage
 	 */
 	@Override
-	public Optional<Article> findArticleByTitle(String title) throws ServiceException{
+	public Optional<Article> findArticleByTitle(String title) throws ServiceException {
+		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
 		Optional<Article> articleOptional = Optional.empty();
+
 		try {
 			articleOptional = articleDao.getArticleByTitle(title);
 		} catch (DaoException e) {
@@ -80,7 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return articleOptional;
 	}
-	
+
 	/**
 	 * Builds news article with empty ID.
 	 * 
@@ -88,7 +87,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * 
 	 * @param intro - the short introduction to article
 	 * 
-	 * @param text - the main text of the article
+	 * @param text  - the main text of the article
 	 * 
 	 * @return news article
 	 */
@@ -105,12 +104,14 @@ public class ArticleServiceImpl implements ArticleService {
 	 * 
 	 * @return the ID of news article in data storage
 	 * 
-	 * @throws ServiceException in the case when DaoException occurs while saving  
-	 * 			news article to the data storage
+	 * @throws ServiceException in the case when DaoException occurs while saving
+	 *                          news article to the data storage
 	 */
 	@Override
 	public long addArticle(Article article) throws ServiceException {
+		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
 		long articleId = IDRepository.ERROR_ID;
+
 		if (InputDataValidator.isArticleValid(article)) {
 			try {
 				articleId = articleDao.addArticle(article);
@@ -122,12 +123,16 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Checks for the presence of news article by it's {@code name} in the data storage.
+	 * Checks for the presence of news article by it's {@code name} in the data
+	 * storage.
 	 * 
-	 * @param name  the name of tariff plan
+	 * @param name the name of tariff plan
 	 * 
-	 * @throws ServiceException in the case when DaoException occurs while 
-	 * 			getting the tariff plan from the data storage
+	 * @return {@code true} if the article with {@code title} already exists in data
+	 *         storage
+	 * 
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          the tariff plan from the data storage
 	 */
 	@Override
 	public boolean isArticleExists(String title) throws ServiceException {
@@ -135,37 +140,36 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleOptional.isPresent();
 	}
 
-
-
 	/**
 	 * Extracts sublist of news articles from all articles in the data storage.
 	 * 
 	 * @param fromIndex - index of first news article included to batch
 	 * 
-	 * @param toIndex - index of the article following after the last news article 
-	 * 					included to batch, so this index is excluded
+	 * @param toIndex   - index of the article following after the last news article
+	 *                  included to batch, so this index is excluded
 	 * 
 	 * @return - sublist of news articles
 	 * 
-	 * @throws ServiceException in the case when DaoException occurs while getting 
-	 * 			all news articles from the data storage
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          all news articles from the data storage
 	 */
 	@Override
-	public List<Article> buildArticlesBatch(int fromIndex, int toIndex) throws	ServiceException {
+	public List<Article> buildArticlesBatch(int fromIndex, int toIndex) throws ServiceException {
 		List<Article> articlesBatch = findAllArticles().subList(fromIndex, toIndex);
 		return articlesBatch;
 	}
 
-	
 	/**
-	 * Checks if the provided index is one step beyond the last index in all news articles list.
+	 * Checks if the provided index is one step beyond the last index in all news
+	 * articles list.
 	 * 
 	 * @param index - index need to be checked
 	 * 
-	 * @return - {@code true} if {@code index} is is one step beyond the last index in all news articles list.
+	 * @return - {@code true} if {@code index} is is one step beyond the last index
+	 *         in all news articles list.
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage 
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          all news articles from the data storage
 	 */
 	@Override
 	public boolean isLastIndexExcluded(int index) throws ServiceException {
@@ -177,30 +181,30 @@ public class ArticleServiceImpl implements ArticleService {
 	 * 
 	 * @param index - index which presumably have previous index equals to zero
 	 * 
-	 * @param step - step to move back
+	 * @param step  - step to move back
 	 * 
-	 * @return - {@code true} if {@code index} is is one step beyond the zero index in all news articles list.
+	 * @return - {@code true} if {@code index} is is one step beyond the zero index
+	 *         in all news articles list.
 	 */
 	@Override
 	public boolean isPreviousIndexZero(int index, int step) {
 		return (index - step) == IndexRepository.ZERO_INDEX;
 	}
-	
 
-	
 	/**
 	 * Calculates the last index excluded for bunch (sublist) of news articles.
 	 * 
-	 * @param fromIndex - the first index included for bunch (sublist) of news articles
+	 * @param fromIndex         - the first index included for bunch (sublist) of
+	 *                          news articles
 	 * 
-	 * @param currentDirection - direction need to move the bunch of news articles
+	 * @param currentDirection  - direction need to move the bunch of news articles
 	 * 
 	 * @param previousDirection - direction from the previous step
 	 * 
 	 * @return last index excluded for bunch (sublist) of news articles.
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage 
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          all news articles from the data storage
 	 */
 	@Override
 	public int calculateToIndex(int fromIndex, int step, ListDirection currentDirection,
@@ -223,20 +227,20 @@ public class ArticleServiceImpl implements ArticleService {
 		return toIndex;
 	}
 
-	
 	/**
 	 * Calculates the first index included for bunch (sublist) of news articles.
 	 * 
-	 * @param toIndex - the last index excluded for bunch (sublist) of news articles
+	 * @param toIndex           - the last index excluded for bunch (sublist) of
+	 *                          news articles
 	 * 
-	 * @param currentDirection - direction need to move the bunch of news articles
+	 * @param currentDirection  - direction need to move the bunch of news articles
 	 * 
 	 * @param previousDirection - direction from the previous step
 	 * 
 	 * @return first index included for bunch (sublist) of news articles.
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage 
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          all news articles from the data storage
 	 */
 	@Override
 	public int calculateFromIndex(int toIndex, int step, ListDirection currentDirection,
@@ -257,26 +261,26 @@ public class ArticleServiceImpl implements ArticleService {
 		default:
 			fromIndex = IndexRepository.INVALID_INDEX;
 		}
-		
+
 		return fromIndex;
 
 	}
 
-	
 	/**
-	 * Calculates the next index by step. 
+	 * Calculates the next index by step.
 	 * 
-	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
-	 * into account the last valid index excluded. 
+	 * <p>
+	 * The method is safe from IndexOutOfBoundsException because it takes into
+	 * account the last valid index excluded.
 	 * 
 	 * @param previousIndex - previous index
 	 * 
-	 * @param step - step to define the size of sub-bunch of news articles
+	 * @param step          - step to define the size of sub-bunch of news articles
 	 * 
 	 * @return - next index
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage 
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          all news articles from the data storage
 	 */
 	private int calculateNextIndex(int previousIndex, int step) throws ServiceException {
 		int nextIndex = previousIndex + step;
@@ -287,27 +291,27 @@ public class ArticleServiceImpl implements ArticleService {
 		return nextIndex;
 	}
 
-	
 	/**
-	 * Calculates the previous index by step. 
+	 * Calculates the previous index by step.
 	 * 
-	 * <p>The method is safe from IndexOutOfBoundsException because it takes 
-	 * into account the first valid index included (zero index). 
+	 * <p>
+	 * The method is safe from IndexOutOfBoundsException because it takes into
+	 * account the first valid index included (zero index).
 	 * 
 	 * @param nextIndex - next index
 	 * 
-	 * @param step - step to define the size of sub-bunch of news articles
+	 * @param step      - step to define the size of sub-bunch of news articles
 	 * 
 	 * @return - previous index
 	 * 
-	 * @throws ServiceException in the case when DaoException 
-	 * 			occurs while getting all news articles from the data storage 
+	 * @throws ServiceException in the case when DaoException occurs while getting
+	 *                          all news articles from the data storage
 	 */
-	private int calculatePreviousIndex(int nextIndex, int step)  throws ServiceException {
+	private int calculatePreviousIndex(int nextIndex, int step) throws ServiceException {
 		int maxIndex = findAllArticles().size();
 		int previousIndex;
-		if(nextIndex == maxIndex) {
-			previousIndex = nextIndex - (maxIndex % step); //brackets just for clarity
+		if (nextIndex == maxIndex) {
+			previousIndex = nextIndex - (maxIndex % step); // brackets just for clarity
 		} else {
 			previousIndex = nextIndex - step;
 		}
@@ -315,6 +319,6 @@ public class ArticleServiceImpl implements ArticleService {
 			previousIndex = IndexRepository.ZERO_INDEX;
 		}
 		return previousIndex;
-	}	
-	
+	}
+
 }
