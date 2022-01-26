@@ -58,7 +58,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Provides news article retrieved by it's title.
+	 * Provides news article retrieved from data storage by it's title.
 	 * 
 	 * @param id - title of news article
 	 * 
@@ -160,8 +160,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Checks if the provided index is one step beyond the last index in all news
-	 * articles list.
+	 * Checks if the provided index is one step beyond the last index 
+	 * in the list containing all news articles.
 	 * 
 	 * @param index - index need to be checked
 	 * 
@@ -177,7 +177,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Checks if the previous index is equals to zero.
+	 * Checks if the previous index is equals to zero in the list containing all news articles.
 	 * 
 	 * @param index - index which presumably have previous index equals to zero
 	 * 
@@ -192,7 +192,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Calculates the last index excluded for bunch (sublist) of news articles.
+	 * Calculates the last index excluded for bunch (sublist) of news articles 
+	 * from the list containing all news articles.
 	 * 
 	 * @param fromIndex         - the first index included for bunch (sublist) of
 	 *                          news articles
@@ -228,7 +229,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Calculates the first index included for bunch (sublist) of news articles.
+	 * Calculates the first index included for bunch (sublist) of news articles 
+	 * from the list containing all news articles.
 	 * 
 	 * @param toIndex           - the last index excluded for bunch (sublist) of
 	 *                          news articles
@@ -267,7 +269,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Calculates the next index by step.
+	 * Calculates the next index by step in the list containing all news articles.
 	 * 
 	 * <p>
 	 * The method is safe from IndexOutOfBoundsException because it takes into
@@ -292,7 +294,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Calculates the previous index by step.
+	 * Calculates the previous index by step in the list containing all news articles.
 	 * 
 	 * <p>
 	 * The method is safe from IndexOutOfBoundsException because it takes into

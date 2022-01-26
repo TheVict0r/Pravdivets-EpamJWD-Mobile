@@ -1,9 +1,5 @@
 package by.epamjwd.mobile.dao.connectionpool;
 
-/**
- * Database parameters for {@link ConnectionPool}.
- *
- */
 public final class DBParameter {
 	private DBParameter() {
 	}

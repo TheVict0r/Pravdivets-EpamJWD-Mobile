@@ -1,9 +1,5 @@
 package by.epamjwd.mobile.dao.repository;
 
-/**
- * Database tables names
- *
- */
 public class DBTableName {
 	
 	private DBTableName() {

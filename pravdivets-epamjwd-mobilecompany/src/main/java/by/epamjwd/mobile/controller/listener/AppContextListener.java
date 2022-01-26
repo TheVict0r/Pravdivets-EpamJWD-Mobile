@@ -13,15 +13,11 @@ public class AppContextListener implements ServletContextListener {
 
 	private final static Logger LOGGER = LogManager.getLogger(AppContextListener.class);
 
-	public final static String BASE_NAME = "db";
+	private final static String BASE_NAME = "db";
 
-	/**
-	 * Starts the Connection pool as the Servlet object is instantiated.
-	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		ConnectionPool pool = null;
-		pool = ConnectionPool.getInstance();
+		ConnectionPool pool = ConnectionPool.getInstance();
 		try {
 			pool.initPoolData(BASE_NAME);
 		} catch (ConnectionPoolException e) {
@@ -30,9 +26,6 @@ public class AppContextListener implements ServletContextListener {
 		}
 	}
 
-	/**
-	 * Disposes the Connection pool as the Servlet object is destroyed.
-	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		ConnectionPool pool = null;

@@ -1,11 +1,6 @@
 package by.epamjwd.mobile.controller.repository;
 
-/**
- * Paths to jsp-pages
- */
-
 public class PagePath {
-
 	private PagePath() {
 	}
 	

@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 /**
  * Tariff plan of mobile operator. Contains short name, 
- * verbal description and and the cost of services etc.
- * 
+ * verbal description and the cost of services etc.
  */
 public class Plan implements Identifiable, Serializable{
 

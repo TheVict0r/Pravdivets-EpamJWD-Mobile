@@ -8,13 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-
-/**
- * Filter that sets all the content to certain encoding. 
- * 
- * <p> Need to correctly use the cyrillic data
- *
- */
 public class CharacterSetFilter implements Filter {
 
 	public final static String ENCODING = "UTF-8";

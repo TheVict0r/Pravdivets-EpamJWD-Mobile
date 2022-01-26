@@ -9,7 +9,7 @@ import java.util.Locale;
  * Simple payed bill. Contains the cost of services rendered and paid for a certain period. 
  * 
  * <p>As mobile operators use advance system of payment, 
- * there is no need to use "paid / unpaid" variable.
+ * there is no need to use "paid / unpaid" option.
  */
 public class Bill implements Identifiable, Serializable{
 

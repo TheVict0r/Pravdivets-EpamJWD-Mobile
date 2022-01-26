@@ -8,7 +8,7 @@ import by.epamjwd.mobile.bean.Identifiable;
 public interface RowMapper<T extends Identifiable> {
 
     /**
-     * Method to create entity object from ResultSet
+     * Method to create entity object from ResultSet.
      *
      * @param resultSet {@link ResultSet} pointer that are set to row data to be mapped on entity object
      * 

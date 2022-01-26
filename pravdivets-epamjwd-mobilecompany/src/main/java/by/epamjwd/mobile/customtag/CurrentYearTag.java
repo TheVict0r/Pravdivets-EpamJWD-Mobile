@@ -10,12 +10,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- * Provides the current year 4-digit representation as a custom JSTL-tag
- *
- */
-@SuppressWarnings("serial")
+
 public class CurrentYearTag extends TagSupport {
+	private static final long serialVersionUID = -4777067879247009641L;
 	private final static Logger LOGGER = LogManager.getLogger(CurrentYearTag.class);
 
 	

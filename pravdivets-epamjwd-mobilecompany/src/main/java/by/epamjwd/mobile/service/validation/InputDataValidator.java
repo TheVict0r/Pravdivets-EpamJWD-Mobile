@@ -21,6 +21,12 @@ public class InputDataValidator {
 	public static final String PHONE_NUMBER_REGEX = "^(25|29|33|44|55)[0-9]{7}$";
 	public static final String NAME_REGEX = "^([А-Я]{1}[а-яё-]+|[A-Z]{1}[a-z-]+)$";
 	public static final String PASSPORT_REGEX = "^[A-Z]{2}[0-9]{7}$";
+	
+	/*
+	 * The password must be at least 8 characters long, 
+	 * contain uppercase and lowercase letters, and at least 1 number. 
+	 * Any other characters are not allowed.
+	 */
 	public static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$";
 	public static final    int DELAY_TIME = 1;
 
@@ -29,7 +35,6 @@ public class InputDataValidator {
 		if (user == null) {
             return false;
         }
-		
 		long id = user.getId();
 		String firstName = user.getFirstName();
 		String middleName = user.getMiddleName();
@@ -82,7 +87,6 @@ public class InputDataValidator {
 		if (plan == null) {
             return false;
         }
-		
 		long id = plan.getId();
 		String name = plan.getName();
 		String description = plan.getDescription();
@@ -113,11 +117,11 @@ public class InputDataValidator {
 				return result;
 	}
 
+	
 	public static boolean isServiceValid(Service service) {
 		if (service == null) {
             return false;
         }
-		
 		long id = service.getId();
 		String name = service.getName();
 		String description = service.getDescription();
@@ -132,11 +136,11 @@ public class InputDataValidator {
 		return result;
 	}
 
+	
 	public static boolean isArticleValid(Article article) {
 		if (article == null) {
             return false;
         }
-		
 		long id = article.getId();
 		Date date = article.getDate();
 		String title = article.getTitle();

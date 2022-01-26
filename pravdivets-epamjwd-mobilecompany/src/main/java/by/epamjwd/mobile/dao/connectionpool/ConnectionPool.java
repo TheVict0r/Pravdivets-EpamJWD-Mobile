@@ -14,10 +14,6 @@ import by.epamjwd.mobile.dao.connectionpool.exception.ConnectionPoolException;
 
 
 
-/**
- * Simple connection pool to provide a bunch of connections to database.
- *
- */
 public final class ConnectionPool {
 
 	private static final int DEFAULT_POOL_SIZE = 5;
@@ -46,18 +42,11 @@ public final class ConnectionPool {
 	}
 
 	
-	/**
-	 * Initializes the connection pool
-	 * 
-	 * @param baseName -  the name of the database
-	 * 
-	 * @throws ConnectionPoolException
-	 */
-	public void initPoolData(String baseName) throws ConnectionPoolException {
+	public void initPoolData(String databaseName) throws ConnectionPoolException {
 		
 		DBResourceManager dbResourseManager = DBResourceManager.getInstance();
 		
-		dbResourseManager.initBundle(baseName);
+		dbResourseManager.initBundle(databaseName);
 		
 		driverName = dbResourseManager.getValue(DBParameter.DB_DRIVER);
 		url = dbResourseManager.getValue(DBParameter.DB_URL);
@@ -90,13 +79,6 @@ public final class ConnectionPool {
 	}
 		
 
-	/**
-	 * Provides a connection for further use
-	 * 
-	 * @return Connection
-	 * 
-	 * @throws ConnectionPoolException
-	 */
 	public Connection takeConnection() throws ConnectionPoolException {
 		Connection connection = null;
 		try {
@@ -109,13 +91,6 @@ public final class ConnectionPool {
 		return connection;
 	}
 
-    /**
-     * Returns connections to the pool's repository for later use
-     * 
-     * @param connection - Connection to database
-     * 
-     * @throws ConnectionPoolException
-     */
     public void releaseConnection(Connection connection) throws ConnectionPoolException  {
         if (connection != null) {
         	givenAwayConQueue.remove(connection);
@@ -129,11 +104,6 @@ public final class ConnectionPool {
         }
     }
 	
-	/**
-	 * Shuts down the connection pool
-	 * 
-	 * @throws ConnectionPoolException
-	 */
 	public void dispose() throws ConnectionPoolException {
 		try {
 			closeConnectionsQueue(givenAwayConQueue);
@@ -144,13 +114,6 @@ public final class ConnectionPool {
 		}
 	}
 
-	/**
-	 * Closes all connections in queue (connections repository)
-	 * 
-	 * @param queue - queue with the connections
-	 * 
-	 * @throws SQLException
-	 */
 	private void closeConnectionsQueue(BlockingQueue<Connection> queue) throws SQLException {
 		Connection connection;
 		while ((connection = queue.poll()) != null) {

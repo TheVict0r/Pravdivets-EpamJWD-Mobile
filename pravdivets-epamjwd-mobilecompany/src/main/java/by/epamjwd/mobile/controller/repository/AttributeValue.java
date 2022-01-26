@@ -1,9 +1,5 @@
 package by.epamjwd.mobile.controller.repository;
 
-/**
- * Attribute values for HttpSession and HttpServletRequest
- *
- */
 public class AttributeValue {
 	private AttributeValue() {
 	}
