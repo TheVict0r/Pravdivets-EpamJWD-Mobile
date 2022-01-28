@@ -26,6 +26,8 @@ public class CommandName {
 	public static final String CODE_SEND = "code_send";
 	public static final String EDIT_CONSULTANT = "edit_consultant";
 	public static final String EDIT_CONSULTANT_PREPARATION = "edit_consultant_preparation";
+	public static final String EDIT_EMAIL = "edit_email";
+	public static final String EDIT_EMAIL_PREPARATION = "edit_email_preparation";
 	public static final String EDIT_PERSONAL_DATA = "edit_personal_data";
 	public static final String EDIT_PERSONAL_DATA_PREPARATION = "edit_personal_data_preparation";
 	public static final String FIND_ALL_NEWS = "find_all_news";

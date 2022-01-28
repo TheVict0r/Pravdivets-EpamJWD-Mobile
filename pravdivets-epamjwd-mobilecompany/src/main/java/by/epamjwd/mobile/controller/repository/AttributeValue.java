@@ -12,6 +12,7 @@ public class AttributeValue {
 	public static final String DEACTIVATED = "deactivated";
 	public static final String DEBTOR = "debtor";
 	public static final String EDIT = "edit";
+	public static final String EMAIL = "email";
 	public static final String ERROR = "error";
 	public static final String ERROR_LOGIN = "error_login";
 	public static final String FALSE = "false";

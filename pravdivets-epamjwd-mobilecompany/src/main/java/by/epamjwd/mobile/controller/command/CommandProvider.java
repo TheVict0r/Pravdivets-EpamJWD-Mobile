@@ -25,6 +25,8 @@ import by.epamjwd.mobile.controller.command.impl.CodeReturnCommand;
 import by.epamjwd.mobile.controller.command.impl.CodeSendCommand;
 import by.epamjwd.mobile.controller.command.impl.EditConsultantCommand;
 import by.epamjwd.mobile.controller.command.impl.EditConsultantPreparationCommand;
+import by.epamjwd.mobile.controller.command.impl.EditEmailCommand;
+import by.epamjwd.mobile.controller.command.impl.EditEmailPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.FindAllNewsCommand;
@@ -121,6 +123,8 @@ public class CommandProvider {
 		allCommands.put(CommandName.CODE_SEND, new CodeSendCommand());
 		allCommands.put(CommandName.EDIT_CONSULTANT, new EditConsultantCommand());
 		allCommands.put(CommandName.EDIT_CONSULTANT_PREPARATION, new EditConsultantPreparationCommand());
+		allCommands.put(CommandName.EDIT_EMAIL, new EditEmailCommand());
+		allCommands.put(CommandName.EDIT_EMAIL_PREPARATION, new EditEmailPreparationCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA, new EditPersonalDataCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA_PREPARATION, new EditPersonalDataPreparationCommand());
 		allCommands.put(CommandName.FIND_ALL_NEWS, new FindAllNewsCommand());

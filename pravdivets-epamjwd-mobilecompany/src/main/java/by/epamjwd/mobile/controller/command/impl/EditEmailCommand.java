@@ -20,48 +20,35 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class EditPersonalDataCommand implements Command{
-	private final static Logger LOGGER = LogManager.getLogger(EditPersonalDataCommand.class);
+public class EditEmailCommand implements Command {
+	private final static Logger LOGGER = LogManager.getLogger(EditEmailCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		UserService userService = ServiceProvider.getInstance().getUserService();
-		
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute(AttributeName.SUBSCRIBER_USER);
-		
-		String newFirstName = request.getParameter(ParameterName.SUBSCRIBER_FIRST_NAME);
-		String newMiddleName = request.getParameter(ParameterName.SUBSCRIBER_MIDDLE_NAME);
-		String newLastName = request.getParameter(ParameterName.SUBSCRIBER_LAST_NAME);
-		String newPassport = request.getParameter(ParameterName.PASSPORT);
+		User user = (User) session.getAttribute(AttributeName.SUBSCRIBER_USER);
+		String newEmail = request.getParameter(ParameterName.EMAIL);
 
-		if(    newFirstName == null || newFirstName.isBlank() || 
-				newLastName == null || newLastName.isBlank()  ||
-				newPassport == null || newPassport.isBlank()  ||
-					   user == null ){
-					session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
-				}
+		if (newEmail == null || newEmail.isBlank() || user == null) {
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+		}
 
 		try {
-			if((!newPassport.equals(user.getPassport())) && (userService.isPassportBooked(newPassport))) {
-				return UserCommandHelper.getInstance().provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT);
+			if ((!newEmail.equals(user.getEmail())) && (userService.isEmailBooked(newEmail))) {
+				return UserCommandHelper.getInstance().provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error while verifying is subscriber's new passport booked " + newPassport, e);
+			LOGGER.error("Error while verifying is subscriber's new email booked " + newEmail, e);
 			return RouteHelper.ERROR_500;
 		}
-	
+
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
-		
-		user.setFirstName(newFirstName);
-		user.setMiddleName(newMiddleName);
-		user.setLastName(newLastName);
-		user.setPassport(newPassport);
-		
+		user.setEmail(newEmail);
+
 		return UserCommandHelper.getInstance().handleUserUpdate(user, request);
 
 	}
 
-	
 }
