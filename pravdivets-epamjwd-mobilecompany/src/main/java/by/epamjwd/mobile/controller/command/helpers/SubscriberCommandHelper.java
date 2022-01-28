@@ -149,7 +149,7 @@ public class SubscriberCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handleDeactivatedSubscriber (HttpSession session) {
+	private RouteHelper handleDeactivatedSubscriber (HttpSession session) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.DEACTIVATED);
 			session.removeAttribute(AttributeName.USER_ID);
 			session.removeAttribute(AttributeName.FIRST_NAME_HEADER);

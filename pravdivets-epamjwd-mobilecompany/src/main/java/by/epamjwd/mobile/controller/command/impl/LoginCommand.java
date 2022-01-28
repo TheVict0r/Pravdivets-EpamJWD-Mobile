@@ -1,5 +1,6 @@
 package by.epamjwd.mobile.controller.command.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.Subscriber;
-import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
@@ -25,6 +24,7 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
+import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class LoginCommand implements Command {
 
@@ -34,96 +34,69 @@ public class LoginCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
-		User user = null;
-		Subscriber subscriber = null;
 		HttpSession session = request.getSession();
-		String path = null;
 		RouteHelper result = RouteHelper.ERROR;
+		User user = null;
 
 		String login = request.getParameter(ParameterName.LOGIN);
-		
-		if (login == null || login.isBlank()|| 
-			request.getParameter(ParameterName.PASSWORD) == null || 
-			request.getParameter(ParameterName.PASSWORD).isBlank()) {
+
+		if (    login == null || login.isBlank() 
+				|| request.getParameter(ParameterName.PASSWORD) == null
+				|| request.getParameter(ParameterName.PASSWORD).isBlank()) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
 
 		try {
 			Optional<User> userOptional = userService.findUserByLogin(login);
-			if (userOptional.isPresent()) { 
+
+			if (userOptional.isPresent() 
+					&& userService.isPasswordCorrect(userOptional.get(),
+					request.getParameter(ParameterName.PASSWORD))) {
 				user = userOptional.get();
+				session.setAttribute(AttributeName.USER_ID, user.getId());
+				session.setAttribute(AttributeName.FIRST_NAME_HEADER, user.getFirstName());
+				session.setAttribute(AttributeName.LAST_NAME_HEADER, user.getLastName());
+				session.setAttribute(AttributeName.ROLE, user.getRole());
 			} else {
-				path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
-			}
-			
-			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(login);
-			if (subscriberOptional.isPresent()) { //false means login is an e-mail, not a phone number
-				subscriber = subscriberOptional.get();
+				session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
+				session.setAttribute(AttributeName.LOGIN, login);
+				session.setAttribute(AttributeName.PASSWORD, 
+						request.getParameter(ParameterName.PASSWORD));
+				return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain user data for login - " + login, e);
-			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
+			LOGGER.error("Unable to retrieve user data for login - " + login, e);
+			return RouteHelper.ERROR_500;
 		}
 		
-		if(user != null && userService.isPasswordCorrect(user, request.getParameter(ParameterName.PASSWORD))) {
-			session.setAttribute(AttributeName.USER_ID, user.getId());
-			session.setAttribute(AttributeName.FIRST_NAME_HEADER, user.getFirstName());
-			session.setAttribute(AttributeName.LAST_NAME_HEADER, user.getLastName());
-			session.setAttribute(AttributeName.ROLE, user.getRole());
-			path = findPathByUserRole(user.getRole());
-		} else {
-			user = null;
-			path = prepareErrorPath(session, login, request.getParameter(ParameterName.PASSWORD));
-		}
-
-		if (subscriber != null && user != null) {
+		switch (user.getRole()) {
+		case ADMIN:
+			result = new RouteHelper(PagePath.ADMIN_REDIRECT, RouteMethod.REDIRECT);
+			break;
+		case CONSULTANT:
+			result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+			break;
+		case SUBSCRIBER:
 			try {
-				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
-				if(subscriber.getStatus() == SubscriberStatus.DEACTIVATED) {
-					result = SubscriberCommandHelper.getInstance().handleDeactivatedSubscriber(session);
+				if (InputDataValidator.isPhone(login) && subscriberService.isPhoneExist(login)) {
+					Subscriber subscriber = subscriberService.findSubscriberByPhone(login).get();
+					result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+				} else {// this means login is an e-mail and one User could have multiple phone numbers (and multiple Subscriber entities as well)
+					List<Subscriber> subscriberList = subscriberService.findSubscriberListByUserId(user.getId());
+					result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request,
+							subscriberList);
 				}
-				
 			} catch (ServiceException e) {
-				LOGGER.error("Error in handling subscriber with ID - " + subscriber.getId(), e);
+				LOGGER.error("Unable to retrieve Subscriber data for user ID - " + user.getId(), e);
 				result = RouteHelper.ERROR_500;
 			}
-		} else {
-			result = new RouteHelper(path, RouteMethod.REDIRECT);
+			break;
+		default:
+			result = new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
 		
 		return result;
 	}
 
-	
-	private String findPathByUserRole(Role role) {
-		if (role == null) {
-			return PagePath.LOGIN_REDIRECT;
-		}
-		String path = null;
-		switch (role) {
-		case SUBSCRIBER:
-			path = PagePath.SUBSCRIBER_LIST_REDIRECT; //as subscriber may have few phone numbers
-			break;
-		case CONSULTANT:
-			path = PagePath.SUBSCRIBER_OPERATIONS_REDIRECT;
-			break;
-		case ADMIN:
-			path = PagePath.ADMIN_REDIRECT;
-			break;
-		default:
-			path = PagePath.LOGIN_REDIRECT;
-		}
-		return path;
-	}
-	
-	private String prepareErrorPath(HttpSession session, String login, String password) {
-		session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
-		session.setAttribute(AttributeName.LOGIN, login);
-		session.setAttribute(AttributeName.PASSWORD, password);
-		String path = PagePath.LOGIN_REDIRECT;
-		
-		return path;
-	}
-	
 }
