@@ -54,7 +54,7 @@
 						</c:otherwise>
 					</c:choose>
 					<td class="text-end"><a
-						href="${pageContext.request.contextPath}/controller?command=find_full_service&id=${service.key.id}"
+						href="${pageContext.request.contextPath}/controller?command=find_service_by_id_guest&id=${service.key.id}"
 						class="card-link"> <fmt:message key="subscriber.about-service" /></a></td>
 				</tr>
 			</c:forEach>

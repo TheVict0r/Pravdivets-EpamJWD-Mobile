@@ -32,7 +32,7 @@
 													class="display-6"><fmt:message key="allservices.rub"/></span>
 											</div>
 											<div class="mt-auto">
-												<a href="${pageContext.request.contextPath}/controller?command=find_full_service&id=${service.id}" 
+												<a href="${pageContext.request.contextPath}/controller?command=find_service_by_id_guest&id=${service.id}" 
 												class="btn btn-lg btn-outline-primary"><fmt:message key="allservices.detais"/></a>
 											</div>
 										</div>

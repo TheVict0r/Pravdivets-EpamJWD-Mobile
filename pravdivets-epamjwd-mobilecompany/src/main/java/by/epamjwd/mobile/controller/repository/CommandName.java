@@ -41,10 +41,10 @@ public class CommandName {
 	public static final String FIND_ARTICLE_BY_ID_GUEST = "find_article_by_id_guest";
 	public static final String FIND_PLAN_BY_ID_GUEST = "find_plan_by_id_guest";
 	public static final String FIND_PLAN_BY_ID_ADMIN = "find_plan_by_id_admin";
-	public static final String FIND_FULL_SERVICE = "find_full_service";
-	public static final String FIND_FULL_SERVICE_ADMIN = "find_full_service_admin";
-	public static final String FIND_NEW_ARTICLES = "find_new_articles";
-	public static final String FIND_OLD_ARTICLES = "find_old_articles";
+	public static final String FIND_SERVICE_BY_ID_GUEST = "find_service_by_id_guest";
+	public static final String FIND_SERVICE_BY_ID_ADMIN = "find_service_by_id_admin";
+	public static final String FIND_NEXT_ARTICLES = "find_next_articles";
+	public static final String FIND_PREVIOUS_ARTICLES = "find_previous_articles";
 	public static final String FIND_SUBSCRIBER_BY_ID = "find_subscriber_by_id";
 	public static final String FIND_SUBSCRIBER_BY_PHONE = "find_subscriber_by_phone";
 	public static final String FIND_SUBSCRIBER_LIST_BY_FULL_NAME = "find_subscriber_list_by_full_name";

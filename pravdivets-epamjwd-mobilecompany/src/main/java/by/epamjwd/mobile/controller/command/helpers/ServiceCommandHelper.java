@@ -10,6 +10,7 @@ import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -37,7 +38,7 @@ public class ServiceCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handleServiceByID(HttpSession session, long serviceID, String pagePath, Logger logger) {
+	public RouteHelper handleServiceByID(HttpSession session, long serviceID, String pagePath, RouteMethod routeMethod, Logger logger) {
 		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
 		RouteHelper result = RouteHelper.ERROR;
 		try {
@@ -45,8 +46,10 @@ public class ServiceCommandHelper {
 			if (serviceOptional.isPresent()) {
 				Service service = serviceOptional.get();
 				session.setAttribute(AttributeName.SERVICE, service);
-				result = new RouteHelper(pagePath, RouteMethod.REDIRECT);
+				result = new RouteHelper(pagePath, routeMethod);
 			} else {
+				session.setAttribute(AttributeName.ERROR, AttributeValue.NO_SERVICE);
+				session.setAttribute(AttributeName.SERVICE_ID, serviceID);
 				result = RouteHelper.ERROR_404;
 			}
 		} catch (ServiceException e) {

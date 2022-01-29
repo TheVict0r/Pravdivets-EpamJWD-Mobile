@@ -42,6 +42,13 @@
 		<c:remove var="plan_id" />
 		</c:when>
 		
+		<c:when test="${sessionScope.error eq 'no_service'}">
+			<span class="fw-normal fs-2 text-danger"> <fmt:message
+					key="error.no-service" /> <b>(ID - ${sessionScope.service_id})</b>
+			</span>
+		<c:remove var="service_id" />
+		</c:when>
+		
 		
 </c:choose>
 		<c:remove var="error" />

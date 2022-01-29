@@ -23,7 +23,7 @@ import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class FindNewArticlesCommand implements Command {
+public class FindNextArticlesCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FindAllNewsCommand.class);
 	

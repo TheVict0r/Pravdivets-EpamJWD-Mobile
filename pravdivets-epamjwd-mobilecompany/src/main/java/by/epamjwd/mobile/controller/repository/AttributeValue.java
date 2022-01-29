@@ -24,6 +24,7 @@ public class AttributeValue {
 	public static final String NEW = "new";
 	public static final String NO_ARTICLE = "no_article";
 	public static final String NO_PLAN = "no_plan";
+	public static final String NO_SERVICE = "no_service";
 	public static final String NO_USER = "no_user";
 	public static final String PASSWORD_REPAIR = "password_repair";
 	public static final String PERSONAL_DATA = "personal_data";

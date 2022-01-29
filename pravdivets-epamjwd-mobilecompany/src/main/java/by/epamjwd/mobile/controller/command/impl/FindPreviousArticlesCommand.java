@@ -24,7 +24,7 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 
-public class FindOldArticlesCommand implements Command {
+public class FindPreviousArticlesCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FindAllNewsCommand.class);
 

@@ -11,15 +11,14 @@ import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
-import by.epamjwd.mobile.controller.command.helpers.PlanCommandHelper;
 import by.epamjwd.mobile.controller.command.helpers.ServiceCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
+import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.controller.repository.PagePath;
 
 public class AddServiceCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(AddServiceCommand.class);
@@ -62,7 +61,7 @@ public class AddServiceCommand implements Command{
 			return RouteHelper.ERROR_500;
 		}
 
-		return ServiceCommandHelper.getInstance().handleServiceByID(session, newServiceID, PagePath.SERVICE_ADMIN_REDIRECT, LOGGER);
+		return ServiceCommandHelper.getInstance().handleServiceByID(session, newServiceID, PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 	}
 
 }

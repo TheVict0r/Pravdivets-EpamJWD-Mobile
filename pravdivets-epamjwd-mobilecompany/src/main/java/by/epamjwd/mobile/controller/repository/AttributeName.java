@@ -55,6 +55,7 @@ public class AttributeName {
 	public static final String REGULAR_PAYMENT = "regular_payment";
 	public static final String ROLE = "role";
 	public static final String SERVICE = "service";
+	public static final String SERVICE_ID = "service_id";
 	public static final String SESSION_LOCALE = "session_locale";
 	public static final String SESSION_TIME_OUT = "session_time_out";
 	public static final String SIGN_UP = "sign_up";

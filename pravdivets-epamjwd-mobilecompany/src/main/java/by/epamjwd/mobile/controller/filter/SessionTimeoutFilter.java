@@ -64,7 +64,7 @@ public class SessionTimeoutFilter implements Filter {
 		authorisationRequired.add(CommandName.FIND_CONSULTANT_BY_EMAIL);
 		authorisationRequired.add(CommandName.FIND_CONSULTANT_BY_PASSPORT);
 		authorisationRequired.add(CommandName.FIND_PLAN_BY_ID_ADMIN);
-		authorisationRequired.add(CommandName.FIND_FULL_SERVICE_ADMIN);
+		authorisationRequired.add(CommandName.FIND_SERVICE_BY_ID_ADMIN);
 		authorisationRequired.add(CommandName.FIND_SUBSCRIBER_BY_ID);
 		authorisationRequired.add(CommandName.FIND_SUBSCRIBER_BY_PHONE);
 		authorisationRequired.add(CommandName.FIND_SUBSCRIBER_LIST_BY_FULL_NAME);
