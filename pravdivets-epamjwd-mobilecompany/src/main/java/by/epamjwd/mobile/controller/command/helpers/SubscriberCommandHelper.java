@@ -73,7 +73,7 @@ public class SubscriberCommandHelper {
 			return RouteHelper.ERROR_404;
 		}
 		
-		result = PlanCommandHelper.getInstance().handlePlanByID(session, planID, PagePath.SUBSCRIBER_REDIRECT, LOGGER);
+		result = PlanCommandHelper.getInstance().handlePlanByID(session, planID, PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 		
 		if(subscriber.getStatus() == SubscriberStatus.DEACTIVATED 
 				&& (Role)(session.getAttribute(AttributeName.ROLE)) == Role.SUBSCRIBER) {

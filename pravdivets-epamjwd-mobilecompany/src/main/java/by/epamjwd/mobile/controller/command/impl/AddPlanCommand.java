@@ -82,7 +82,7 @@ public class AddPlanCommand implements Command {
 			return RouteHelper.ERROR_500;
 		}
 
-		return PlanCommandHelper.getInstance().handlePlanByID(session, newPlanID, PagePath.PLAN_ADMIN_REDIRECT, LOGGER);
+		return PlanCommandHelper.getInstance().handlePlanByID(session, newPlanID, PagePath.PLAN_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 	}
 
 }

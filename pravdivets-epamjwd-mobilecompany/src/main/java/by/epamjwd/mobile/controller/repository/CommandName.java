@@ -38,9 +38,9 @@ public class CommandName {
 	public static final String FIND_BEST_PLAN = "find_best_plan";
 	public static final String FIND_CONSULTANT_BY_EMAIL = "find_consultant_by_email";
 	public static final String FIND_CONSULTANT_BY_PASSPORT = "find_consultant_by_passport";
-	public static final String FIND_ARTICLE_BY_ID = "find_article_by_id";
-	public static final String FIND_FULL_PLAN = "find_full_plan";
-	public static final String FIND_FULL_PLAN_ADMIN = "find_full_plan_admin";
+	public static final String FIND_ARTICLE_BY_ID_GUEST = "find_article_by_id_guest";
+	public static final String FIND_PLAN_BY_ID_GUEST = "find_plan_by_id_guest";
+	public static final String FIND_PLAN_BY_ID_ADMIN = "find_plan_by_id_admin";
 	public static final String FIND_FULL_SERVICE = "find_full_service";
 	public static final String FIND_FULL_SERVICE_ADMIN = "find_full_service_admin";
 	public static final String FIND_NEW_ARTICLES = "find_new_articles";

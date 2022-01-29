@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.controller.RouteHelper;
+import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.command.helpers.PlanCommandHelper;
@@ -16,9 +17,9 @@ import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
 
-public class FindFullPlanCommand implements Command {
+public class FindPlanByIdGuestCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(FindFullPlanCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(FindPlanByIdGuestCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -30,7 +31,7 @@ public class FindFullPlanCommand implements Command {
 			return RouteHelper.ERROR_404;
 		}
 		
-		return PlanCommandHelper.getInstance().handlePlanByID(session, id, PagePath.PLAN_REDIRECT, LOGGER);
+		return PlanCommandHelper.getInstance().handlePlanByID(session, id, PagePath.PLAN_REDIRECT, RouteMethod.FORWARD, LOGGER);
 
 	}
 

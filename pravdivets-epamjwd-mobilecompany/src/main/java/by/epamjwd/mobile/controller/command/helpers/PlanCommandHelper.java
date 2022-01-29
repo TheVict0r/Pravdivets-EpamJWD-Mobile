@@ -10,6 +10,7 @@ import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -38,7 +39,7 @@ public class PlanCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handlePlanByID(HttpSession session, long planID, String pagePath, Logger logger) {
+	public RouteHelper handlePlanByID(HttpSession session, long planID, String pagePath, RouteMethod routeMethod, Logger logger) {
 		RouteHelper result = RouteHelper.ERROR;
 		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		try {
@@ -46,9 +47,10 @@ public class PlanCommandHelper {
 			if (planOptional.isPresent()) {
 				Plan plan = planOptional.get();
 				session.setAttribute(AttributeName.PLAN, plan);
-				result = new RouteHelper(pagePath, RouteMethod.REDIRECT);
+				result = new RouteHelper(pagePath, routeMethod);
 			} else {
-				logger.error("Can't find tariff plan by ID - " + planID);
+				session.setAttribute(AttributeName.ERROR, AttributeValue.NO_PLAN);
+				session.setAttribute(AttributeName.PLAN_ID, planID);
 				result = RouteHelper.ERROR_404;
 			}
 		} catch (ServiceException e) {

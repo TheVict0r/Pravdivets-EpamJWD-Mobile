@@ -181,7 +181,7 @@
 						</div>
 						<div class="mt-auto">
 							<a
-								href="${pageContext.request.contextPath}/controller?command=find_full_plan&id=${requestScope.best_plan.id}"
+								href="${pageContext.request.contextPath}/controller?command=find_plan_by_id_guest&id=${requestScope.best_plan.id}"
 								class="btn btn-outline-primary"><fmt:message
 									key="calculator.result.learn-more" /></a>
 						</div>

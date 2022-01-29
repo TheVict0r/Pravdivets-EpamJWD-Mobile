@@ -51,6 +51,7 @@ public class AttributeName {
 	public static final String PHONE_FORMAT = "phone_format";
 	public static final String PHONE_MAP = "phone_map";
 	public static final String PLAN = "plan";
+	public static final String PLAN_ID = "plan_id";
 	public static final String REGULAR_PAYMENT = "regular_payment";
 	public static final String ROLE = "role";
 	public static final String SERVICE = "service";

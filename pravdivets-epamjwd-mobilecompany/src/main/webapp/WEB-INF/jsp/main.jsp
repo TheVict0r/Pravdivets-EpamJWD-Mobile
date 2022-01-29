@@ -42,7 +42,7 @@
 							</div>
 							<div class="mt-auto">
 								<a
-									href="${pageContext.request.contextPath}/controller?command=find_full_plan&id=${plan.id}"
+									href="${pageContext.request.contextPath}/controller?command=find_plan_by_id_guest&id=${plan.id}"
 									class="btn btn-lg btn-outline-primary"><fmt:message key="main.details"/></a>
 							</div>
 						</div>
@@ -59,7 +59,7 @@
 					<br/><em> ${article.date}</em><br/>
 					<p>
 						${article.intro} <br /> <a
-							href="${pageContext.request.contextPath}/controller?command=find_article_by_id&id=${article.id}"
+							href="${pageContext.request.contextPath}/controller?command=find_article_by_id_guest&id=${article.id}"
 							class="card-link"><fmt:message key="main.details"/></a>
 					</p>
 				</div>

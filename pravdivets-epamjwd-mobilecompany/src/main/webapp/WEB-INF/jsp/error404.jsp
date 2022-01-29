@@ -27,16 +27,24 @@
 		<span
 			class="display-2 text-left text-danger d-flex align-items-center">
 			404 Not Found </span>
-
-		<c:if test="${sessionScope.error eq 'no_article'}">
+<c:choose>
+		<c:when test="${sessionScope.error eq 'no_article'}">
 			<span class="fw-normal fs-2 text-danger"> <fmt:message
 					key="article-operations.no-article" /> <b>(ID -
 					${sessionScope.article_id})</b>
 			</span>
-		</c:if>
 		<c:remove var="article_id" />
+		</c:when>
+				<c:when test="${sessionScope.error eq 'no_plan'}">
+			<span class="fw-normal fs-2 text-danger"> <fmt:message
+					key="error.no-plan" /> <b>(ID -	${sessionScope.plan_id})</b>
+			</span>
+		<c:remove var="plan_id" />
+		</c:when>
+		
+		
+</c:choose>
 		<c:remove var="error" />
-
 		<span class="fs-5 text-left d-flex align-items-center">Something
 			went wrong, sorry :(</span> <span
 			class="fs-5 text-left d-flex align-items-center">Никогда
