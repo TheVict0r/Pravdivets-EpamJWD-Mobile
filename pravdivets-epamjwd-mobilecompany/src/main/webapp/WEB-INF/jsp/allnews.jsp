@@ -33,7 +33,7 @@
 			<br />
 			<p>
 				${article.intro} <br /> <a
-					href="${pageContext.request.contextPath}/controller?command=find_full_article&id=${article.id}"
+					href="${pageContext.request.contextPath}/controller?command=find_article_by_id&id=${article.id}"
 					class="card-link"><fmt:message key="allnews.detais" /></a>
 			</p>
 

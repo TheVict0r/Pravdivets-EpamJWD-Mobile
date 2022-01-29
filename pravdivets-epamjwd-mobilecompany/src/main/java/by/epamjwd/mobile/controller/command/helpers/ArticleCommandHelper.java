@@ -10,6 +10,7 @@ import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
+import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -40,7 +41,7 @@ public class ArticleCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handleArticleByID(HttpSession session, long articleID, String pagePath, RouteMethod routeMethod, Logger logger) {
+	public RouteHelper handleArticleByID(HttpSession session, long articleID, String pagePath, String errorPage, RouteMethod routeMethod, Logger logger) {
 		RouteHelper result = RouteHelper.ERROR;
 		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		try {
@@ -50,7 +51,9 @@ public class ArticleCommandHelper {
 				session.setAttribute(AttributeName.ARTICLE, article);
 				result = new RouteHelper(pagePath, routeMethod);
 			} else {
-				result = RouteHelper.ERROR_404;
+				session.setAttribute(AttributeName.ERROR, AttributeValue.NO_ARTICLE);
+				session.setAttribute(AttributeName.ARTICLE_ID, articleID);
+				result = new RouteHelper(errorPage, RouteMethod.FORWARD);
 			}
 		} catch (ServiceException e) {
 			logger.error("Unable to obtain news article data for ID -  " + articleID, e);

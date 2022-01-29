@@ -40,14 +40,15 @@ public class PlanCommandHelper {
 	 */
 	public RouteHelper handlePlanByID(HttpSession session, long planID, String pagePath, Logger logger) {
 		RouteHelper result = RouteHelper.ERROR;
-		PlanService tariffPlanService = ServiceProvider.getInstance().getPlanService();
+		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		try {
-			Optional<Plan> planOptional = tariffPlanService.findPlanByID(planID);
+			Optional<Plan> planOptional = planService.findPlanByID(planID);
 			if (planOptional.isPresent()) {
 				Plan plan = planOptional.get();
 				session.setAttribute(AttributeName.PLAN, plan);
 				result = new RouteHelper(pagePath, RouteMethod.REDIRECT);
 			} else {
+				logger.error("Can't find tariff plan by ID - " + planID);
 				result = RouteHelper.ERROR_404;
 			}
 		} catch (ServiceException e) {

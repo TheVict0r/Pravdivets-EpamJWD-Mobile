@@ -1,7 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,50 +7,30 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Article;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.command.NumericParser;
+import by.epamjwd.mobile.controller.command.helpers.ArticleCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.ArticleService;
-import by.epamjwd.mobile.service.ServiceProvider;
-import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class FindArticleByIdCommand implements Command {
-	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
+
+	private final static Logger LOGGER = LogManager.getLogger(FindArticleByIdCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
-		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
-		long articleID = NumericParser.parseLongValue(request.getParameter(ParameterName.ARTICLE_ID));
 
-		if (articleID == NumericParser.INVALID_VALUE) {
+		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
+		if(id == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-			return new RouteHelper(PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+			return RouteHelper.ERROR_404;
 		}
-
-		try {
-			Optional<Article> articleOptional = articleService.findArticleByID(articleID);
-			if(articleOptional.isPresent()) {
-				Article article = articleOptional.get();
-				session.setAttribute(AttributeName.ARTICLE, article);
-				result = new RouteHelper(PagePath.ARTICLE_ADMIN_REDIRECT, RouteMethod.FORWARD);
-			} else {
-				session.setAttribute(AttributeName.ERROR, AttributeValue.NO_ARTICLE);
-				session.setAttribute(AttributeName.ARTICLE_ID, articleID);
-				return new RouteHelper(PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
-			}
-		} catch (ServiceException e) {
-			LOGGER.error("Unable to obtain news article data for ID -  " + articleID, e);
-			result = RouteHelper.ERROR_500;
-		}
-		return result;
-
+		return ArticleCommandHelper.getInstance().handleArticleByID(session, id, PagePath.ARTICLE,  PagePath.ERROR_404, RouteMethod.FORWARD, LOGGER);
 	}
+
 }

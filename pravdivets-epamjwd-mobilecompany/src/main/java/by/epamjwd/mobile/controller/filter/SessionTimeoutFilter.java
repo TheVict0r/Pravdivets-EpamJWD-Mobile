@@ -59,7 +59,7 @@ public class SessionTimeoutFilter implements Filter {
 		authorisationRequired.add(CommandName.EDIT_EMAIL_PREPARATION);
 		authorisationRequired.add(CommandName.EDIT_PERSONAL_DATA);
 		authorisationRequired.add(CommandName.EDIT_PERSONAL_DATA_PREPARATION);
-		authorisationRequired.add(CommandName.FIND_ARTICLE_BY_ID);
+		authorisationRequired.add(CommandName.FIND_ARTICLE_BY_ID_ADMIN);
 		authorisationRequired.add(CommandName.FIND_ARTICLE_BY_TITLE);
 		authorisationRequired.add(CommandName.FIND_CONSULTANT_BY_EMAIL);
 		authorisationRequired.add(CommandName.FIND_CONSULTANT_BY_PASSPORT);

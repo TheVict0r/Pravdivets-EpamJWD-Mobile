@@ -82,7 +82,8 @@ public class LoginCommand implements Command {
 				if (InputDataValidator.isPhone(login) && subscriberService.isPhoneExist(login)) {
 					Subscriber subscriber = subscriberService.findSubscriberByPhone(login).get();
 					result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
-				} else {// this means login is an e-mail and one User could have multiple phone numbers (and multiple Subscriber entities as well)
+				} else {// this means login is an e-mail and one User could have multiple phone numbers 
+						//(and multiple Subscriber entities as well)
 					List<Subscriber> subscriberList = subscriberService.findSubscriberListByUserId(user.getId());
 					result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request,
 							subscriberList);

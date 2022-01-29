@@ -24,9 +24,23 @@
 	<div
 		class="container row align-content-center col-sm-11 mx-auto flex-grow-1 gap-2">
 
-		<span class="display-2 text-left text-danger d-flex align-items-center">- 404 Not Found -</span>
-		<span class="display-6 text-left d-flex align-items-center">Something went wrong, sorry :(</span>
-		<span class="display-6 text-left d-flex align-items-center">Никогда такого не было, и вот опять!</span>
+		<span
+			class="display-2 text-left text-danger d-flex align-items-center">
+			404 Not Found </span>
+
+		<c:if test="${sessionScope.error eq 'no_article'}">
+			<span class="fw-normal fs-2 text-danger"> <fmt:message
+					key="article-operations.no-article" /> <b>(ID -
+					${sessionScope.article_id})</b>
+			</span>
+		</c:if>
+		<c:remove var="article_id" />
+		<c:remove var="error" />
+
+		<span class="fs-5 text-left d-flex align-items-center">Something
+			went wrong, sorry :(</span> <span
+			class="fs-5 text-left d-flex align-items-center">Никогда
+			такого не было, и вот опять!</span>
 
 
 	</div>

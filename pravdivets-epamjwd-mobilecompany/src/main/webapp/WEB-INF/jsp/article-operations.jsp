@@ -35,7 +35,7 @@
 			<c:remove var="error" />
 		</div>
 		<form class="row mb-3" method="POST"
-			action="controller?command=find_article_by_id">
+			action="controller?command=find_article_by_id_admin">
 			<label for="article_id" class="form-label"><fmt:message
 					key="article-operations.find-by-id" /></label>
 			<div class="col-md-3">

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.SubscriberStatus;
@@ -19,7 +18,6 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
-import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
@@ -43,7 +41,7 @@ public class SubscriberCommandHelper {
 	 * and sets these data to the session. 
 	 * 
 	 * Retrieves from data storage all entities that are relevant 
-	 * to the particular {@code subscriber} - User and tariff Plan.
+	 * to the particular {@code Subscriber} - User and tariff Plan.
 	 * 
 	 * @param request - http request from servlet
 	 * 
@@ -56,17 +54,17 @@ public class SubscriberCommandHelper {
 	public RouteHelper handleSubscriber(HttpServletRequest request, Subscriber subscriber) throws ServiceException {
 		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
-		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		UserService userService = ServiceProvider.getInstance().getUserService();
 
-		session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
-
+		User subscriberUser = null;
+		long planID = subscriber.getPlanId();
 		String phone = subscriber.getPhone();
 		String phoneFormat = PhoneFormatter.formatPhone(phone);
+		
 		session.setAttribute(AttributeName.PHONE_FORMAT, phoneFormat);
-
-		Optional<User> userOptional = userService.findUserByPhone(String.valueOf(phone));
-		User subscriberUser = null;
+		session.setAttribute(AttributeName.SUBSCRIBER, subscriber);
+		
+		Optional<User> userOptional = userService.findUserByPhone(phone);
 		if (userOptional.isPresent()) {
 			subscriberUser = userOptional.get();
 			session.setAttribute(AttributeName.SUBSCRIBER_USER, subscriberUser);
@@ -74,14 +72,8 @@ public class SubscriberCommandHelper {
 			LOGGER.error("Can't find user for phone number - " + phone);
 			return RouteHelper.ERROR_404;
 		}
-		Optional<Plan> planOptional = planService.findPlanByID(subscriber.getPlanId());
-		if (planOptional.isPresent()) {
-			Plan plan = planOptional.get();
-			session.setAttribute(AttributeName.PLAN, plan);
-			result = new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
-		} else {
-			result = RouteHelper.ERROR_404;
-		}
+		
+		result = PlanCommandHelper.getInstance().handlePlanByID(session, planID, PagePath.SUBSCRIBER_REDIRECT, LOGGER);
 		
 		if(subscriber.getStatus() == SubscriberStatus.DEACTIVATED 
 				&& (Role)(session.getAttribute(AttributeName.ROLE)) == Role.SUBSCRIBER) {

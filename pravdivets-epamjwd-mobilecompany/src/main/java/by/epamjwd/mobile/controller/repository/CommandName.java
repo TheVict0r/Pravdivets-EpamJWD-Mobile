@@ -33,12 +33,12 @@ public class CommandName {
 	public static final String FIND_ALL_NEWS = "find_all_news";
 	public static final String FIND_ALL_PLANS = "find_all_plans";
 	public static final String FIND_ALL_SERVICES = "find_all_services";
-	public static final String FIND_ARTICLE_BY_ID = "find_article_by_id";
+	public static final String FIND_ARTICLE_BY_ID_ADMIN = "find_article_by_id_admin";
 	public static final String FIND_ARTICLE_BY_TITLE = "find_article_by_title";
 	public static final String FIND_BEST_PLAN = "find_best_plan";
 	public static final String FIND_CONSULTANT_BY_EMAIL = "find_consultant_by_email";
 	public static final String FIND_CONSULTANT_BY_PASSPORT = "find_consultant_by_passport";
-	public static final String FIND_FULL_ARTICLE = "find_full_article";
+	public static final String FIND_ARTICLE_BY_ID = "find_article_by_id";
 	public static final String FIND_FULL_PLAN = "find_full_plan";
 	public static final String FIND_FULL_PLAN_ADMIN = "find_full_plan_admin";
 	public static final String FIND_FULL_SERVICE = "find_full_service";
