@@ -32,15 +32,15 @@ public class LoginCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(LoginCommand.class);
 
 	/**
-	 * The login could be a phone number for Subscribers and an e-mail for all kind of Users
-	 * (including Subscribers). 
+	 * The login could be a phone number for Subscribers and an e-mail for all kind
+	 * of Users (including Subscribers).
 	 * 
-	 * If Subscriber has multiple phone numbers and use an e-mail as a login, 
-	 * the menu with all his/her numbers will appear. 
+	 * If Subscriber has multiple phone numbers and use an e-mail as a login, the
+	 * menu with all his/her numbers will appear.
 	 * 
-	 * If Subscriber use phone number as a login 
-	 * the detailed information about this particular phone number only will appear
-	 * (despite the amount of phone numbers this Subscriber has).
+	 * If Subscriber use phone number as a login the detailed information about this
+	 * particular phone number only will appear (despite the amount of phone numbers
+	 * this Subscriber has).
 	 */
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -80,20 +80,20 @@ public class LoginCommand implements Command {
 			return RouteHelper.ERROR_500;
 		}
 
-		role = user.getRole();
-		result = UserRolePathProvider.getInstance().providePath(role);
-
 		try {
 			if (InputDataValidator.isPhone(login) && subscriberService.isPhoneExist(login)) {
 				Subscriber subscriber = subscriberService.findSubscriberByPhone(login).get();
-				/* we can safely use .get() method as just checked that this 
-				 * Optional<Subscriber> is not empty in the previous line - 
-				 * see subscriberService.isPhoneExist(login)
+				/* we can safely use .get() method as just checked that this
+				 * Optional<Subscriber> is not empty in the previous line 
+				 * - see subscriberService.isPhoneExist(login)
 				 */
 				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+			} else { // this means login is an e-mail
+				role = user.getRole();
+				result = UserRolePathProvider.getInstance().providePath(role);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Unable to retrieve Subscriber data for phone - " + login, e);
+			LOGGER.error("Unable to retrieve Subscriber data for login - " + login, e);
 			result = RouteHelper.ERROR_500;
 		}
 
