@@ -26,7 +26,6 @@
 	</div>
 	<div
 		class="tab-pane tab-content col-xs-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 mx-auto">
-
 		<c:forEach var="article" items="${sessionScope.news}">
 			<h5>${article.title}</h5>
 			<em> ${article.date}</em>
@@ -36,12 +35,9 @@
 					href="${pageContext.request.contextPath}/controller?command=find_article_by_id_guest&id=${article.id}"
 					class="card-link"><fmt:message key="allnews.detais" /></a>
 			</p>
-
 			<br />
 		</c:forEach>
-
 		<div class="justify-content-center">
-
 			<table>
 				<tr>
 					<td><c:choose>
@@ -52,7 +48,6 @@
 										<fmt:message key="allnews.next" />
 									</button>
 								</div>
-
 							</c:when>
 							<c:otherwise>
 								<div class="d-grid  mb-3 mx-auto me-md-5">
