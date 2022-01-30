@@ -32,14 +32,14 @@ public class LoginCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(LoginCommand.class);
 
 	/**
-	 * The login could be a phone number for Subscribers and an e-mail for all kind
-	 * of Users (including Subscribers).
+	 * A Subscriber can use his phone number or e-mail as the login, 
+	 * other Users can use e-mail only as their login.
 	 * 
-	 * If Subscriber has multiple phone numbers and use an e-mail as a login, the
-	 * menu with all his/her numbers will appear.
+	 * If a Subscriber has several phone numbers and uses an e-mail as a login, 
+	 * the menu with all his/her phone numbers will appear.
 	 * 
-	 * If Subscriber use phone number as a login the detailed information about this
-	 * particular phone number only will appear (despite the amount of phone numbers
+	 * If a Subscriber uses the phone number as a login, the detailed information about this
+	 * particular phone number will appear only (despite the amount of phone numbers
 	 * this Subscriber has).
 	 */
 	@Override
