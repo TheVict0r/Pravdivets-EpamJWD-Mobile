@@ -168,14 +168,16 @@
 				<div class="card align-content-center text-center mb-5 h-100 ">
 					<div class="card-body d-flex flex-column">
 						<div class="mb-2">
-							<h3>${requestScope.best_plan.name}</h3>
-							<span class="display-4">${requestScope.best_plan.regularPayment/100}</span>
-							<br/> <span class="display-6"><fmt:message
-									key="calculator.result.rub-per-month" /></span>
-							<p class="lead text-center">
-								<fmt:message key="calculator.result.regular-payment" />
-							</p>
-						</div>
+								<h3>${requestScope.best_plan.name}</h3>
+								<span class="display-4"> <fmt:formatNumber type="number"
+										minFractionDigits="2"
+										value="${requestScope.best_plan.regularPayment/100}" />
+								</span> <br /> <span class="display-6"><fmt:message
+										key="calculator.result.rub-per-month" /></span>
+								<p class="lead text-center">
+									<fmt:message key="calculator.result.regular-payment" />
+								</p>
+							</div>
 						<div class="mb-2">
 							<p class="lead text-center">${requestScope.best_plan.description}</p>
 						</div>
