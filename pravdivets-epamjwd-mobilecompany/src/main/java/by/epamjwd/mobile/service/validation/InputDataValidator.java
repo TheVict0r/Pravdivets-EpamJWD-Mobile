@@ -1,7 +1,6 @@
 package by.epamjwd.mobile.service.validation;
 
 import java.util.Date;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import by.epamjwd.mobile.bean.Article;
@@ -159,31 +158,28 @@ public class InputDataValidator {
 
 
 	public static boolean isEmail(String anyString) {
-		return isMatchePattern(anyString, EMAIL_REGEX);
+		return isMatchesPattern(anyString, EMAIL_REGEX);
 	}
 
 	public static boolean isPhone(String anyString) {
-		return isMatchePattern(anyString, PHONE_NUMBER_REGEX);
+		return isMatchesPattern(anyString, PHONE_NUMBER_REGEX);
 	}
 
 	public static boolean isName(String anyString) {
-		return isMatchePattern(anyString, NAME_REGEX);
+		return isMatchesPattern(anyString, NAME_REGEX);
 	}
 	
 	public static boolean isPassport(String passport) {
-		return isMatchePattern(passport, PASSPORT_REGEX);
+		return isMatchesPattern(passport, PASSPORT_REGEX);
 		
 	}
 
 	public static boolean isPassword(String password) {
-		return isMatchePattern(password, PASSWORD_REGEX);
-		
+		return isMatchesPattern(password, PASSWORD_REGEX);
 	}
 	
-	private static boolean isMatchePattern(String anyString, String regex) {
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(anyString);
-		return matcher.find();
+	private static boolean isMatchesPattern(String anyString, String regex) {
+		return Pattern.matches(regex, anyString);
 	}
 
 
