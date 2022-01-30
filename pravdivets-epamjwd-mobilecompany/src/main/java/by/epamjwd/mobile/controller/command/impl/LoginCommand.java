@@ -61,7 +61,6 @@ public class LoginCommand implements Command {
 
 		try {
 			Optional<User> userOptional = userService.findUserByLogin(login);
-
 			if (userOptional.isPresent() && userService.isPasswordCorrect(userOptional.get(),
 					request.getParameter(ParameterName.PASSWORD))) {
 				user = userOptional.get();
