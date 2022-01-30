@@ -18,12 +18,16 @@
 	<div>
 		<img src="pic/article.jpg" class="img-fluid" alt="mobile">
 	</div>
-	<div class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-4">
+	<div
+		class="container row align-content-center col-sm-7 mx-auto flex-grow-1 gap-4">
 		<span class="display-5 text-left ">${sessionScope.service.name}</span>
-		<span class="display-7">${sessionScope.service.description}</span>
-		<span class="fs-5"><b><fmt:message key="service.price" />${sessionScope.service.tariff/100} <fmt:message key="service.rub" /></b></span> 
+		<span class="display-7">${sessionScope.service.description}</span> <span
+			class="fs-5"><b><fmt:message key="service.price" /> <fmt:formatNumber
+					type="number" minFractionDigits="2"
+					value="${sessionScope.service.tariff/100}" /> <fmt:message
+					key="service.rub" /></b></span>
 	</div>
-	<br/>
+	<br />
 	<jsp:include page="components/footer.jsp" />
 </body>
 </html>

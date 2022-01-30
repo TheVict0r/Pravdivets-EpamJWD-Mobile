@@ -24,20 +24,24 @@
 						<div class="row py-4">
 							<c:forEach var="service" items="${requestScope.all_services}">
 								<div class="col-sm-4 mb-3 mb-md-4">
-									<div class="card text-center h-100">
-										<div class="card-body d-flex flex-column">
-											<div class="mb-4">
-												<h3>${service.name}</h3>
-												<span class="display-4">${service.tariff/100}</span> <span
-													class="display-6"><fmt:message key="allservices.rub"/></span>
-											</div>
-											<div class="mt-auto">
-												<a href="${pageContext.request.contextPath}/controller?command=find_service_by_id_guest&id=${service.id}" 
-												class="btn btn-lg btn-outline-primary"><fmt:message key="allservices.detais"/></a>
-											</div>
-										</div>
-									</div>
-								</div>
+					<div class="card text-center h-100">
+						<div class="card-body d-flex flex-column">
+							<div class="mb-4">
+								<h3>${service.name}</h3>
+								<span class="display-4"> <fmt:formatNumber type="number"
+										minFractionDigits="2" value="${service.tariff/100}" />
+								</span> <span class="display-6"><fmt:message
+										key="allservices.rub" /></span>
+							</div>
+							<div class="mt-auto">
+								<a
+									href="${pageContext.request.contextPath}/controller?command=find_service_by_id_guest&id=${service.id}"
+									class="btn btn-lg btn-outline-primary"><fmt:message
+										key="allservices.detais" /></a>
+							</div>
+						</div>
+					</div>
+				</div>
 							</c:forEach>
 						</div>
 					</div>

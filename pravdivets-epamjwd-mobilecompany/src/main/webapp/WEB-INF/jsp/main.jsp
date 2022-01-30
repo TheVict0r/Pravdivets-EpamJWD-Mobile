@@ -31,10 +31,13 @@
 						<div class="card-body d-flex flex-column">
 							<div class="mb-4">
 								<h3>${plan.name}</h3>
-								<span class="display-4">${plan.regularPayment/100}</span> <br />
-								<span class="display-6"><fmt:message key="plan.rub-month"/></span>
-								<p class="lead text-center mb-4"><fmt:message key="plan.regular-payment"/>
-</p>
+								<span class="display-4"> <fmt:formatNumber type="number"
+										minFractionDigits="2" value="${plan.regularPayment/100}" />
+								</span> <br /> <span class="display-6"><fmt:message
+										key="plan.rub-month" /></span>
+								<p class="lead text-center mb-4">
+									<fmt:message key="plan.regular-payment" />
+								</p>
 							</div>
 
 							<div class="mb-4">
@@ -43,7 +46,8 @@
 							<div class="mt-auto">
 								<a
 									href="${pageContext.request.contextPath}/controller?command=find_plan_by_id_guest&id=${plan.id}"
-									class="btn btn-lg btn-outline-primary"><fmt:message key="main.details"/></a>
+									class="btn btn-lg btn-outline-primary"><fmt:message
+										key="main.details" /></a>
 							</div>
 						</div>
 					</div>
