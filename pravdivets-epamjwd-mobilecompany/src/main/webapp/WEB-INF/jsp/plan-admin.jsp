@@ -28,39 +28,57 @@
 			<tbody>
 				<tr>
 					<td><fmt:message key="plan.regular-payment"/></td>
-					<td>${sessionScope.plan.regularPayment/100} <fmt:message key="plan.rub-month"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.regularPayment/100}" /> 
+							<fmt:message key="plan.rub-month"/></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="plan.upfront-payment"/></td>
-					<td>${sessionScope.plan.upfrontPayment/100} <fmt:message key="plan.rub"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.upfrontPayment/100}" /> 
+							<fmt:message key="plan.rub"/></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="plan.price-within-network"/></td>
-					<td>${sessionScope.plan.priceWithinNetwork/100} <fmt:message key="plan.rub-min"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.priceWithinNetwork/100}" /> 
+							<fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="plan.price-other-networks"/></td>
-					<td>${sessionScope.plan.priceOtherNetworks/100} <fmt:message key="plan.rub-min"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.priceOtherNetworks/100}" /> 
+							<fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="plan.price-abroad"/></td>
-					<td>${sessionScope.plan.priceAbroad/100} <fmt:message key="plan.rub-min"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.priceAbroad/100}" /> 
+							<fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="plan.price-videocalls"/></td>
-					<td>${sessionScope.plan.priceVideocall/100} <fmt:message key="plan.rub-min"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.priceVideocall/100}" /> 
+							<fmt:message key="plan.rub-min"/></td>
 				</tr>
 				<tr>
 					<td>SMS</td>
-					<td>${sessionScope.plan.priceSMS/100} <fmt:message key="plan.rub-unit"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.priceSMS/100}" /> 
+							<fmt:message key="plan.rub-unit"/></td>
 				</tr>
 				<tr>
 					<td>MMS</td>
-					<td>${sessionScope.plan.priceMMS/100} <fmt:message key="plan.rub-unit"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.priceMMS/100}" /> 
+							<fmt:message key="plan.rub-unit"/></td>
 				</tr>
 				<tr>
 					<td><fmt:message key="plan.price-internet"/></td>
-					<td>${sessionScope.plan.priceInternet/100} <fmt:message key="plan.rub-mb"/></td>
+					<td><fmt:formatNumber type="number" minFractionDigits="2"
+							value="${sessionScope.plan.priceInternet/100}" /> 
+							<fmt:message key="plan.rub-mb"/></td>
 				</tr>
 			</tbody>
 		</table>

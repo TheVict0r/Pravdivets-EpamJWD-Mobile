@@ -216,7 +216,8 @@
 			</tr>
 			<tr>
 				<td><fmt:message key="subscriber.account-amount" /></td>
-				<td>${sessionScope.subscriber.account/100}<fmt:message
+				<td><fmt:formatNumber type="number" minFractionDigits="2"
+						value="${sessionScope.subscriber.account/100} " /> <fmt:message
 						key="subscriber.rub" /></td>
 				<td><a class="btn btn-outline-primary btn-sm"
 					href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_bills_page">

@@ -20,7 +20,6 @@
 		<span class="display-5 fw-light"><fmt:message
 				key="subscriber.bills" /></span>
 	</div>
-
 	<div
 		class="text-center fs-3 fw-normal align-items-start">
 		${sessionScope.phone_format}</div>
@@ -31,7 +30,8 @@
 		${sessionScope.subscriber.id}
 	</div>
 
-	<div class="text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 mx-auto flex-grow-1">
+	<div
+		class="text-start col-sm-12 col-md-10 col-lg-7 col-xl-6 py-2 fs-6 mx-auto flex-grow-1">
 		<table class="table table-striped">
 			<thead class="fw-bold">
 				<tr>
@@ -40,25 +40,24 @@
 					<td class="text-end"><fmt:message key="subscriber.bill-sum" /></td>
 				</tr>
 			</thead>
-
 			<c:forEach var="bill" items="${sessionScope.bill_list}">
 				<tr>
 					<td>${bill.id}</td>
 					<td>${bill.date}</td>
-					<td class="text-end">${bill.amount/100} <fmt:message key="subscriber.rub" /></td>
+					<td class="text-end"><fmt:formatNumber type="number"
+							minFractionDigits="2" value="${bill.amount/100}" /> <fmt:message
+							key="subscriber.rub" /></td>
 				</tr>
 			</c:forEach>
 		</table>
-
-		
 		<a class="btn btn-primary btn-sm align-items-end flex-grow-1"
 			href="${pageContext.request.contextPath}/controller?command=go_to_subscriber_page">
 			<fmt:message key="subscriber.back" />
 		</a>
 
 	</div>
-	
-		<jsp:include page="components/footer.jsp" />
+
+	<jsp:include page="components/footer.jsp" />
 
 </body>
 </html>
