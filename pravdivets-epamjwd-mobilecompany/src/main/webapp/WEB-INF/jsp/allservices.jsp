@@ -30,7 +30,7 @@
 								<h3>${service.name}</h3>
 								<span class="display-4"> <fmt:formatNumber type="number"
 										minFractionDigits="2" value="${service.tariff/100}" />
-								</span> <span class="display-6"><fmt:message
+								</span> <br/><span class="display-6"><fmt:message
 										key="allservices.rub" /></span>
 							</div>
 							<div class="mt-auto">
