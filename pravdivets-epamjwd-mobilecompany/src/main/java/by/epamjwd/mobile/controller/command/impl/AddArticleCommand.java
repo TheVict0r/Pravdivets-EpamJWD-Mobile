@@ -54,7 +54,7 @@ public class AddArticleCommand implements Command {
 
 		try {
 			articleID = articleService.addArticle(articleService.buildArticle(title, intro, text));
-			result = ArticleCommandHelper.getInstance().handleArticleByID(session, articleID, PagePath.ARTICLE_ADMIN_REDIRECT, PagePath.ARTICLE_ADMIN, RouteMethod.REDIRECT, LOGGER);
+			result = ArticleCommandHelper.handleArticleByID(session, articleID, PagePath.ARTICLE_ADMIN_REDIRECT, PagePath.ARTICLE_ADMIN, RouteMethod.REDIRECT, LOGGER);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while adding a new news article, title - " + title, e);
 			result = RouteHelper.ERROR_500;

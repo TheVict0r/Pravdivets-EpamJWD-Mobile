@@ -37,7 +37,7 @@ public class EditEmailCommand implements Command {
 
 		try {
 			if ((!newEmail.equals(user.getEmail())) && (userService.isEmailBooked(newEmail))) {
-				return UserCommandHelper.getInstance().provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);
+				return UserCommandHelper.provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error while verifying is subscriber's new email booked " + newEmail, e);
@@ -47,7 +47,7 @@ public class EditEmailCommand implements Command {
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		user.setEmail(newEmail);
 
-		return UserCommandHelper.getInstance().handleUserUpdate(user, request);
+		return UserCommandHelper.handleUserUpdate(user, request);
 
 	}
 

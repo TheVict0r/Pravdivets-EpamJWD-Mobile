@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
@@ -16,7 +18,7 @@ xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.co
 	<context-param>
 		<param-name>companyEmail</param-name>
 		<param-value>mobile@mobile.by</param-value>
-	</context-param>	
+	</context-param>
 
 	<error-page>
 		<exception-type>java.lang.RuntimeException</exception-type>
@@ -36,29 +38,29 @@ xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.co
 	<listener>
 		<listener-class>by.epamjwd.mobile.controller.listener.AppContextListener</listener-class>
 	</listener>
-  
-    <filter>
-	    <filter-name>CharacterFilter</filter-name>
-	    <filter-class>by.epamjwd.mobile.controller.filter.CharacterSetFilter</filter-class>
+
+	<filter>
+		<filter-name>CharacterFilter</filter-name>
+		<filter-class>by.epamjwd.mobile.controller.filter.CharacterSetFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
-	    <filter-name>CharacterFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
+		<filter-name>CharacterFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-    <filter>
-	    <filter-name>SessionTimeoutFilter</filter-name>
-	    <filter-class>by.epamjwd.mobile.controller.filter.SessionTimeoutFilter</filter-class>
+	<filter>
+		<filter-name>SessionTimeoutFilter</filter-name>
+		<filter-class>by.epamjwd.mobile.controller.filter.SessionTimeoutFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
-	    <filter-name>SessionTimeoutFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
+		<filter-name>SessionTimeoutFilter</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-  	<session-config>
-   		<session-timeout>30</session-timeout>
+	<session-config>
+		<session-timeout>30</session-timeout>
 	</session-config>
 
 	<jsp-config>
@@ -67,5 +69,5 @@ xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.co
 			<taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
 		</taglib>
 	</jsp-config>
-  
+
 </web-app>

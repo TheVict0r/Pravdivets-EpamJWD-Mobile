@@ -46,7 +46,7 @@ public class FindSubscriberListByPassportCommand implements Command{
 				request.setAttribute(AttributeName.PASSPORT, passport);
 				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);	
 			} else {
-				result = SubscriberCommandHelper.getInstance().handleSubscriberListRedirect(request, subscriberList);
+				result = SubscriberCommandHelper.handleSubscriberList(request, subscriberList);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error in getting subscriber data for passport - " + passport, e);

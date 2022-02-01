@@ -30,7 +30,7 @@ public class FindServiceByIdGuestCommand implements Command{
 			return RouteHelper.ERROR_404;
 		}
 
-		return ServiceCommandHelper.getInstance().handleServiceByID(session, id, PagePath.SERVICE, RouteMethod.FORWARD, LOGGER);
+		return ServiceCommandHelper.handleServiceByID(session, id, PagePath.SERVICE, RouteMethod.FORWARD, LOGGER);
 		
 	}
 

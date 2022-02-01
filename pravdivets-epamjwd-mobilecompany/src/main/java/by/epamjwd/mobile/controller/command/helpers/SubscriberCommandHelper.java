@@ -26,14 +26,8 @@ import by.epamjwd.mobile.util.PhoneFormatter;
 public class SubscriberCommandHelper {
 
 	private final static Logger LOGGER = LogManager.getLogger(SubscriberCommandHelper.class);
-	private static final int SINGLE_ITEM = 1;
-	private static final int FIRST_ITEM_INDEX = 0;
 	
 	private SubscriberCommandHelper() {
-	}
-
-	public static SubscriberCommandHelper getInstance() {
-		return Holder.INSTANCE;
 	}
 
 	/**
@@ -51,7 +45,7 @@ public class SubscriberCommandHelper {
 	 * 
 	 * @throws ServiceException
 	 */
-	public RouteHelper handleSubscriber(HttpServletRequest request, Subscriber subscriber) throws ServiceException {
+	public static RouteHelper handleSubscriber(HttpServletRequest request, Subscriber subscriber) throws ServiceException {
 		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		UserService userService = ServiceProvider.getInstance().getUserService();
@@ -73,7 +67,7 @@ public class SubscriberCommandHelper {
 			return RouteHelper.ERROR_404;
 		}
 		
-		result = PlanCommandHelper.getInstance().handlePlanByID(session, planID, PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT, LOGGER);
+		result = PlanCommandHelper.handlePlanByID(session, planID, PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 		
 		if(subscriber.getStatus() == SubscriberStatus.DEACTIVATED 
 				&& (Role)(session.getAttribute(AttributeName.ROLE)) == Role.SUBSCRIBER) {
@@ -83,33 +77,9 @@ public class SubscriberCommandHelper {
 		return result;
 	}
 
-	/**
-	 * Handles multiple subscribers stored in the List and route it as an Forward method.
-	 * 
-	 * @param request - http request from servlet
-	 * 
-	 * @param subscriberList - List with Subscribers
-	 * 
-	 * @return - RouteHelper containing path to page and route method
-	 * 
-	 * @throws ServiceException
-	 */
-	public RouteHelper handleSubscriberListForward(HttpServletRequest request, List<Subscriber> subscriberList)
-			throws ServiceException {
-		RouteHelper result = null;
-		if (subscriberList.size() == SINGLE_ITEM) {
-			Subscriber subscriber = subscriberList.get(FIRST_ITEM_INDEX);
-			result = handleSubscriber(request, subscriber);
-		} else {
-			request.setAttribute(AttributeName.SUBSCRIBER_LIST, subscriberList);
-			result = new RouteHelper(PagePath.SUBSCRIBER_LIST, RouteMethod.FORWARD);
-		}
-		return result;
-	}
 
-	
 	/**
-	 * Handles multiple subscribers stored in the List and route it as an Redirect method.
+	 * Handles multiple subscribers stored in the List.
 	 * 
 	 * @param request - http request from servlet
 	 * 
@@ -119,15 +89,15 @@ public class SubscriberCommandHelper {
 	 * 
 	 * @throws ServiceException
 	 */
-	public RouteHelper handleSubscriberListRedirect(HttpServletRequest request, List<Subscriber> subscriberList)
+	public static RouteHelper handleSubscriberList(HttpServletRequest request, List<Subscriber> subscriberList)
 			throws ServiceException {
 		HttpSession session = request.getSession();
-		RouteHelper result = null;
-		if (subscriberList.size() == SINGLE_ITEM) {
-			Subscriber subscriber = subscriberList.get(FIRST_ITEM_INDEX);
+		RouteHelper result = RouteHelper.ERROR;
+		if (subscriberList.size() == 1) {
+			Subscriber subscriber = subscriberList.get(0);
 			result = handleSubscriber(request, subscriber);
-		} else {
-			long userId = subscriberList.get(FIRST_ITEM_INDEX).getUserId();
+		} else if(subscriberList.size() > 1){
+			long userId = subscriberList.get(0).getUserId();
 			session.setAttribute(AttributeName.SUBSCRIBER_USER_ID, userId);
 			result = new RouteHelper(PagePath.SUBSCRIBER_LIST_REDIRECT, RouteMethod.REDIRECT);
 		}
@@ -141,7 +111,7 @@ public class SubscriberCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	private RouteHelper handleDeactivatedSubscriber (HttpSession session) {
+	private static RouteHelper handleDeactivatedSubscriber (HttpSession session) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.DEACTIVATED);
 			session.removeAttribute(AttributeName.USER_ID);
 			session.removeAttribute(AttributeName.FIRST_NAME_HEADER);
@@ -156,7 +126,7 @@ public class SubscriberCommandHelper {
 	 * 
 	 * @param session - http-session
 	 */
-	public void clearSessionFromSubscriberAttributes(HttpSession session) {
+	public static void clearSessionFromSubscriberAttributes(HttpSession session) {
 		session.removeAttribute(AttributeName.SUBSCRIBER);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
 		session.removeAttribute(AttributeName.SUBSCRIBER_USER);
@@ -171,8 +141,4 @@ public class SubscriberCommandHelper {
 		session.removeAttribute(AttributeName.BILL_LIST);
 	}
 	
-	private static class Holder {
-		static final SubscriberCommandHelper INSTANCE = new SubscriberCommandHelper();
-	}
-
 }

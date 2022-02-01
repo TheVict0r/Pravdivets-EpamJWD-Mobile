@@ -17,8 +17,8 @@ public class GoToAdminPageCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		SubscriberCommandHelper.getInstance().clearSessionFromSubscriberAttributes(session);
-		ConsultantCommandHelper.getInstance().clearSessionFromConsultantAttributes(session);
+		SubscriberCommandHelper.clearSessionFromSubscriberAttributes(session);
+		ConsultantCommandHelper.clearSessionFromConsultantAttributes(session);
 		return new RouteHelper(PagePath.ADMIN, RouteMethod.FORWARD);
 	}
 }

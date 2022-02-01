@@ -31,7 +31,7 @@ public class FindPlanByIdAdminCommand implements Command {
 			return RouteHelper.ERROR_404;
 		}
 		
-		return PlanCommandHelper.getInstance().handlePlanByID(session, id, PagePath.PLAN_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
+		return PlanCommandHelper.handlePlanByID(session, id, PagePath.PLAN_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 	}
 
 }

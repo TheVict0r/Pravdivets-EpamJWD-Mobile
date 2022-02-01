@@ -20,10 +20,6 @@ public class PlanCommandHelper {
 	private PlanCommandHelper() {
 	}
 
-	public static PlanCommandHelper getInstance() {
-		return Holder.INSTANCE;
-	}
-
 	/**
 	 * Method for handling the tariff plan by it's ID.
 	 * 
@@ -39,7 +35,7 @@ public class PlanCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handlePlanByID(HttpSession session, long planID, String pagePath, RouteMethod routeMethod, Logger logger) {
+	public static RouteHelper handlePlanByID(HttpSession session, long planID, String pagePath, RouteMethod routeMethod, Logger logger) {
 		RouteHelper result = RouteHelper.ERROR;
 		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		try {
@@ -58,10 +54,6 @@ public class PlanCommandHelper {
 			result = RouteHelper.ERROR_500;
 		}
 		return result;
-	}
-
-	private static class Holder {
-		static final PlanCommandHelper INSTANCE = new PlanCommandHelper();
 	}
 
 }

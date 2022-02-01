@@ -35,7 +35,7 @@ public class LoginCommand implements Command {
 	 * other Users can use e-mail only as their login.
 	 * 
 	 * If a Subscriber has several phone numbers and uses an e-mail as a login, 
-	 * the menu with all his/her phone numbers will appear.
+	 * the menu with all his phone numbers will appear.
 	 * 
 	 * If a Subscriber uses the phone number as a login, the detailed information about this
 	 * particular phone number will appear only (despite the amount of phone numbers
@@ -82,7 +82,7 @@ public class LoginCommand implements Command {
 			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(login);
 			if (subscriberOptional.isPresent()) {
 				Subscriber subscriber = subscriberOptional.get();
-				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+				result = SubscriberCommandHelper.handleSubscriber(request, subscriber);
 			} else { // this means login is an e-mail
 				role = user.getRole();
 				result = UserRolePathProvider.getInstance().providePath(role);

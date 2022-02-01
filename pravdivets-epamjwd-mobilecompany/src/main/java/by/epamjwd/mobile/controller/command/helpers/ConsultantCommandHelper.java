@@ -17,10 +17,6 @@ public class ConsultantCommandHelper {
 	private ConsultantCommandHelper() {
 	}
 	
-	public static ConsultantCommandHelper getInstance() {
-		return Holder.INSTANCE;
-	}
-
 	/**
 	 * Retrieves consultant user from Optional variable and sets it to session for further use.
 	 * 
@@ -38,7 +34,7 @@ public class ConsultantCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handleConsultantOptional(Optional<User> consultantOptional, HttpSession session, String attributeName, String attributeValue) {
+	public static RouteHelper handleConsultantOptional(Optional<User> consultantOptional, HttpSession session, String attributeName, String attributeValue) {
 		RouteHelper result = RouteHelper.ERROR;
 		if(consultantOptional.isPresent() && (consultantOptional.get().getRole() == Role.CONSULTANT)) {
 			User consultant = consultantOptional.get();
@@ -57,7 +53,7 @@ public class ConsultantCommandHelper {
 	 * 
 	 * @param session - http-session
 	 */
-	public void clearSessionFromConsultantAttributes(HttpSession session) {
+	public static void clearSessionFromConsultantAttributes(HttpSession session) {
 		session.removeAttribute(AttributeName.CONSULTANT);
 		session.removeAttribute(AttributeName.CONSULTANT_ID);
 		session.removeAttribute(AttributeName.ERROR);
@@ -67,8 +63,4 @@ public class ConsultantCommandHelper {
 		session.removeAttribute(AttributeName.PASSPORT);
 	}
 
-	private static class Holder {
-		static final ConsultantCommandHelper INSTANCE = new ConsultantCommandHelper();
-	}
-	
 }

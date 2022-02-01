@@ -45,7 +45,7 @@ public class EditPersonalDataCommand implements Command{
 
 		try {
 			if((!newPassport.equals(user.getPassport())) && (userService.isPassportBooked(newPassport))) {
-				return UserCommandHelper.getInstance().provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT);
+				return UserCommandHelper.provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error while verifying is subscriber's new passport booked " + newPassport, e);
@@ -59,7 +59,7 @@ public class EditPersonalDataCommand implements Command{
 		user.setLastName(newLastName);
 		user.setPassport(newPassport);
 		
-		return UserCommandHelper.getInstance().handleUserUpdate(user, request);
+		return UserCommandHelper.handleUserUpdate(user, request);
 
 	}
 

@@ -17,8 +17,8 @@ import by.epamjwd.mobile.controller.command.helpers.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class FindSubscriberByIDCommand implements Command{
@@ -48,7 +48,7 @@ public class FindSubscriberByIDCommand implements Command{
 			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberById(id);
 			if (subscriberOptional.isPresent()) {
 				Subscriber subscriber = subscriberOptional.get();
-				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+				result = SubscriberCommandHelper.handleSubscriber(request, subscriber);
 			} else {
 				result = RouteHelper.ERROR_404;
 			}

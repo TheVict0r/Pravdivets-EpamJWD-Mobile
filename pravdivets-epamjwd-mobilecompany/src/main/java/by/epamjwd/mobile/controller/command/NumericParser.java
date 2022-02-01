@@ -1,6 +1,5 @@
 package by.epamjwd.mobile.controller.command;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -11,7 +10,6 @@ public class NumericParser {
 
 	public static final String NUMERIC_REGEX = "\\d+";
 	public static final int INVALID_VALUE = -1;
-	
 	
 	private NumericParser() {
 		
@@ -24,7 +22,7 @@ public class NumericParser {
 	 * @param objectValue - provided object
 	 * 
 	 * @return positive integer value, contained in the provided {@code Object}. 
-	 * If the Object does not contain real value provides numeric error code (INVALID_VALUE)
+	 * If the Object does not contain real positive value provides numeric error code (INVALID_VALUE)
 	 */
 	public static int parseIntValue(Object objectValue) {
 		String stringValue = String.valueOf(objectValue);
@@ -43,7 +41,7 @@ public class NumericParser {
 	 * @param objectValue - provided object
 	 * 
 	 * @return positive long value, contained in the provided {@code Object}. 
-	 * If the Object does not contain real value provides numeric error code (INVALID_VALUE)
+	 * If the Object does not contain real positive value provides numeric error code (INVALID_VALUE)
 	 */
 	public static long parseLongValue(Object objectValue) {
 		String stringValue = String.valueOf(objectValue);
@@ -65,9 +63,7 @@ public class NumericParser {
 	 * @return true if the {@code parameter} can be used for parsing the numeric data
 	 */
 	private static boolean isNumericParameter(String parameter) {
-		Pattern pattern = Pattern.compile(NUMERIC_REGEX);
-		Matcher matcher = pattern.matcher(parameter);
-		return matcher.matches();
+		return Pattern.matches(NUMERIC_REGEX, parameter);
 		}
 	
 }

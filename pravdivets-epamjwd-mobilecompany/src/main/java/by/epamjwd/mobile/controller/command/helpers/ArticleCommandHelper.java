@@ -20,9 +20,6 @@ public class ArticleCommandHelper {
 	private ArticleCommandHelper() {
 	}
 
-	public static ArticleCommandHelper getInstance() {
-		return Holder.INSTANCE;
-	}
 
 	/**
 	 * Method for handling the news article by it's ID.
@@ -41,7 +38,7 @@ public class ArticleCommandHelper {
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handleArticleByID(HttpSession session, long articleID, String pagePath, String errorPage, RouteMethod routeMethod, Logger logger) {
+	public static RouteHelper handleArticleByID(HttpSession session, long articleID, String pagePath, String errorPage, RouteMethod routeMethod, Logger logger) {
 		RouteHelper result = RouteHelper.ERROR;
 		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		try {
@@ -60,10 +57,6 @@ public class ArticleCommandHelper {
 			result = RouteHelper.ERROR_500;
 		}
 		return result;
-	}
-
-	private static class Holder {
-		private final static ArticleCommandHelper INSTANCE = new ArticleCommandHelper();
 	}
 
 }

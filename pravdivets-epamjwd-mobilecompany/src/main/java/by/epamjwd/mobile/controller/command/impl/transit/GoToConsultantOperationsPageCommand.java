@@ -15,6 +15,6 @@ public class GoToConsultantOperationsPageCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		ConsultantCommandHelper.getInstance().clearSessionFromConsultantAttributes(session);
+		ConsultantCommandHelper.clearSessionFromConsultantAttributes(session);
 		return new RouteHelper(PagePath.CONSULTANT_OPERATIONS, RouteMethod.FORWARD);	}
 }

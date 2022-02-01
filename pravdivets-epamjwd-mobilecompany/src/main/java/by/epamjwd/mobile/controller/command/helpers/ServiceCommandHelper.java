@@ -19,26 +19,23 @@ public class ServiceCommandHelper {
 	private ServiceCommandHelper() {
 	}
 
-	public static ServiceCommandHelper getInstance() {
-		return Holder.INSTANCE;
-	}
-
 	/**
 	 * Method for handling the service by it's ID.
 	 * 
-	 * Retrieves by ID service from the data storage and sets it to the session 
+	 * Retrieves by ID service from the data storage and sets it to the session
 	 * 
-	 * @param session - http-session
+	 * @param session   - http-session
 	 * 
 	 * @param serviceID - the ID of service
 	 * 
-	 * @param pagePath - path to page for presenting the result to the client
+	 * @param pagePath  - path to page for presenting the result to the client
 	 * 
-	 * @param logger - logger to log an errors in the case they occur 
+	 * @param logger    - logger to log an errors in the case they occur
 	 * 
 	 * @return - RouteHelper containing path to page and route method
 	 */
-	public RouteHelper handleServiceByID(HttpSession session, long serviceID, String pagePath, RouteMethod routeMethod, Logger logger) {
+	public static RouteHelper handleServiceByID(HttpSession session, long serviceID, String pagePath,
+			RouteMethod routeMethod, Logger logger) {
 		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
 		RouteHelper result = RouteHelper.ERROR;
 		try {
@@ -58,10 +55,6 @@ public class ServiceCommandHelper {
 		}
 		return result;
 
-	}
-
-	private static class Holder {
-		private final static ServiceCommandHelper INSTANCE = new ServiceCommandHelper();
 	}
 
 }

@@ -30,7 +30,7 @@ public class FindArticleByIdGuestCommand implements Command {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
-		return ArticleCommandHelper.getInstance().handleArticleByID(session, id, PagePath.ARTICLE,  PagePath.ERROR_404, RouteMethod.FORWARD, LOGGER);
+		return ArticleCommandHelper.handleArticleByID(session, id, PagePath.ARTICLE,  PagePath.ERROR_404, RouteMethod.FORWARD, LOGGER);
 	}
 
 }

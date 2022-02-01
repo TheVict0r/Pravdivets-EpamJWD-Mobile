@@ -61,7 +61,7 @@ public class AddServiceCommand implements Command{
 			return RouteHelper.ERROR_500;
 		}
 
-		return ServiceCommandHelper.getInstance().handleServiceByID(session, newServiceID, PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
+		return ServiceCommandHelper.handleServiceByID(session, newServiceID, PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 	}
 
 }

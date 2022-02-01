@@ -31,7 +31,7 @@ public class FindServiceByIdAdminCommand implements Command {
 			return RouteHelper.ERROR_404;
 		}
 
-		return ServiceCommandHelper.getInstance().handleServiceByID(session, id, PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
+		return ServiceCommandHelper.handleServiceByID(session, id, PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 
 	}
 

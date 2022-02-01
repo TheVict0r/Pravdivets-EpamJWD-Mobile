@@ -46,7 +46,7 @@ public class FindSubscriberByPhoneCommand implements Command {
 			
 			if (subscriberOptional.isPresent()) {
 				subscriber = subscriberOptional.get();
-				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
+				result = SubscriberCommandHelper.handleSubscriber(request, subscriber);
 			} else {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
 				request.setAttribute(AttributeName.PHONE, phone);

@@ -20,7 +20,7 @@ public class GoToProfilePageCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		SubscriberCommandHelper.getInstance().clearSessionFromSubscriberAttributes(session);
+		SubscriberCommandHelper.clearSessionFromSubscriberAttributes(session);
 		
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		
