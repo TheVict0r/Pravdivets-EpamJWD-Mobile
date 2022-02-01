@@ -28,15 +28,15 @@ public class AddPlanCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String name = request.getParameter(ParameterName.NAME);
 		String description = request.getParameter(ParameterName.DESCRIPTION);
-		int regularPayment = NumericParser.parseIntValue(request.getParameter(ParameterName.REGULAR_PAYMENT));
-		int upfrontPayment = NumericParser.parseIntValue(request.getParameter(ParameterName.UPFRONT_PAYMENT));
-		int withinNetwork = NumericParser.parseIntValue(request.getParameter(ParameterName.WITHIN_NETWORK));
-		int otherNetworks = NumericParser.parseIntValue(request.getParameter(ParameterName.OTHER_NETWORKS));
-		int abroad = NumericParser.parseIntValue(request.getParameter(ParameterName.ABROAD));
-		int videocall = NumericParser.parseIntValue(request.getParameter(ParameterName.VIDEOCALL));
-		int sms = NumericParser.parseIntValue(request.getParameter(ParameterName.SMS));
-		int mms = NumericParser.parseIntValue(request.getParameter(ParameterName.MMS));
-		int internet = NumericParser.parseIntValue(request.getParameter(ParameterName.INTERNET));
+		int regularPayment = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.REGULAR_PAYMENT));
+		int upfrontPayment = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.UPFRONT_PAYMENT));
+		int withinNetwork = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.WITHIN_NETWORK));
+		int otherNetworks = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.OTHER_NETWORKS));
+		int abroad = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.ABROAD));
+		int videocall = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.VIDEOCALL));
+		int sms = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.SMS));
+		int mms = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.MMS));
+		int internet = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.INTERNET));
 		long newPlanID = EMPTY_ID;
 
 		PlanService planService = ServiceProvider.getInstance().getPlanService();

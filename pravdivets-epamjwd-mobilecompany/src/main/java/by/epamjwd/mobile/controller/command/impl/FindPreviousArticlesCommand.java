@@ -35,7 +35,7 @@ public class FindPreviousArticlesCommand implements Command {
 		HttpSession session = request.getSession();
 		ListDirection previousDirection = (ListDirection) session.getAttribute(AttributeName.DIRECTION);
 		
-		int currentIdx = NumericParser.parseIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
+		int currentIdx = NumericParser.parseUnsignedIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
 
 		session.removeAttribute(AttributeName.NO_NEXT_NEWS);
 

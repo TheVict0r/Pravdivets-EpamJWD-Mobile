@@ -31,7 +31,7 @@ public class AddServiceCommand implements Command{
 		
 		String name        = request.getParameter(ParameterName.NAME);
 		String description = request.getParameter(ParameterName.DESCRIPTION);
-		int tariff         = NumericParser.parseIntValue(request.getParameter(ParameterName.TARIFF));
+		int tariff         = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.TARIFF));
 		long newServiceID = EMPTY_ID;
 
 		if(       name == null || name.isBlank()        || 

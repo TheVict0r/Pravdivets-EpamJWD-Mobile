@@ -23,7 +23,7 @@ public class FindArticleByIdAdminCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		long articleID = NumericParser.parseLongValue(request.getParameter(ParameterName.ARTICLE_ID));
+		long articleID = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ARTICLE_ID));
 
 		if (articleID == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);

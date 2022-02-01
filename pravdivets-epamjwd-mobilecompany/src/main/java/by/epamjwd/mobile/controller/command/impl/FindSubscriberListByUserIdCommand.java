@@ -31,10 +31,10 @@ public class FindSubscriberListByUserIdCommand implements Command {
 		HttpSession session = request.getSession();
 		
 		long id;
-		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.SUBSCRIBER_USER_ID));
+		id = NumericParser.parseUnsignedLongValue(session.getAttribute(AttributeName.SUBSCRIBER_USER_ID));
 		
 		if(id == NumericParser.INVALID_VALUE) {
-			id = NumericParser.parseLongValue(session.getAttribute(AttributeName.USER_ID));
+			id = NumericParser.parseUnsignedLongValue(session.getAttribute(AttributeName.USER_ID));
 		}
 
 		if(id == NumericParser.INVALID_VALUE) {

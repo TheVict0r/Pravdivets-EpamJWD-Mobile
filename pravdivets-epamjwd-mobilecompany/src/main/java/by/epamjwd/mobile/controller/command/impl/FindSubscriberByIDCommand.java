@@ -32,10 +32,10 @@ public class FindSubscriberByIDCommand implements Command{
 		HttpSession session = request.getSession();
 		 
 		long id;
-		id = NumericParser.parseLongValue(session.getAttribute(AttributeName.SUBSCRIBER_ID));
+		id = NumericParser.parseUnsignedLongValue(session.getAttribute(AttributeName.SUBSCRIBER_ID));
 			
 			if (id == NumericParser.INVALID_VALUE) {
-				id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
+				id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
 			}
 
 			if(id == NumericParser.INVALID_VALUE) {

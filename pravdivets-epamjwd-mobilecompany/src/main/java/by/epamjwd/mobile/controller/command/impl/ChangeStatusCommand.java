@@ -32,7 +32,7 @@ public class ChangeStatusCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
-		int newStatusID = NumericParser.parseIntValue(request.getParameter(ParameterName.NEW_STATUS));
+		int newStatusID = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.NEW_STATUS));
 
 		if (newStatusID == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);

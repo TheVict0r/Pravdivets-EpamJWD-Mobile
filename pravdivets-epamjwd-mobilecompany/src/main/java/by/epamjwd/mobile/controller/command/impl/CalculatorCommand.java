@@ -28,13 +28,13 @@ public class CalculatorCommand implements Command{
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		int withinNetwork = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_WITHIN_NETWORK));
-		int otherNetworks = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_OTHER_NETWORKS));
-		int abroad        = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_ABROAD));
-		int videocall     = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_VIDEOCALL));
-		int sms           = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_SMS));
-		int mms           = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_MMS));
-		int internet      = NumericParser.parseIntValue(request.getParameter(ParameterName.CALCULATOR_INTERNET));		
+		int withinNetwork = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.CALCULATOR_WITHIN_NETWORK));
+		int otherNetworks = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.CALCULATOR_OTHER_NETWORKS));
+		int abroad        = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.CALCULATOR_ABROAD));
+		int videocall     = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.CALCULATOR_VIDEOCALL));
+		int sms           = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.CALCULATOR_SMS));
+		int mms           = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.CALCULATOR_MMS));
+		int internet      = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.CALCULATOR_INTERNET));		
 		
 		HttpSession session = request.getSession();
 		

@@ -26,7 +26,7 @@ public class CodeReturnCommand implements Command{
 		}
 		
 		session.removeAttribute(AttributeName.CODE);
-		int enteredCode = NumericParser.parseIntValue(request.getParameter(ParameterName.ENTERED_CODE));
+		int enteredCode = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.ENTERED_CODE));
 		
 		RouteHelper result;
 		

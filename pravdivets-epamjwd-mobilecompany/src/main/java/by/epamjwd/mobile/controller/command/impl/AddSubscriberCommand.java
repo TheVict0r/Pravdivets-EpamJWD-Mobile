@@ -42,7 +42,7 @@ public class AddSubscriberCommand implements Command {
 
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
 		String subscriberUserFlag = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG));
-		long planId = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
+		long planId = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.PLAN_ID));
 		String phone;
 
 		try {

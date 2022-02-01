@@ -24,7 +24,7 @@ public class FindServiceByIdGuestCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
-		long id = NumericParser.parseLongValue(request.getParameter(ParameterName.ID));
+		long id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
 		if(id == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;

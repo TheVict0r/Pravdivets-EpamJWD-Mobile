@@ -34,7 +34,7 @@ public class ChangePlanCommand implements Command{
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		session.removeAttribute(AttributeName.ALL_PLANS);
 
-		long newPlanID = NumericParser.parseLongValue(request.getParameter(ParameterName.PLAN_ID));
+		long newPlanID = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.PLAN_ID));
 		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
 		
 		if( subscriber == null ) {
