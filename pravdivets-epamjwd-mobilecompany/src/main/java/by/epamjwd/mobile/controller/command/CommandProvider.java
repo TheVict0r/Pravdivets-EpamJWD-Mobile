@@ -2,7 +2,6 @@ package by.epamjwd.mobile.controller.command;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import by.epamjwd.mobile.controller.command.impl.AddArticleCommand;
 import by.epamjwd.mobile.controller.command.impl.AddConsultantCommand;
@@ -193,7 +192,7 @@ public class CommandProvider {
     }
     
 	public Command getCommand(String commandName) {
-        return Optional.ofNullable(allCommands.get(commandName)).orElse(allCommands.get(CommandName.NO_SUCH_COMMAND));
+        return allCommands.getOrDefault(commandName, allCommands.get(CommandName.NO_SUCH_COMMAND));
 	}
 
 	public void addCommand(String key, Command value) {
