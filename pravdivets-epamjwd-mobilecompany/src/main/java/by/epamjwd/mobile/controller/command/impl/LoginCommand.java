@@ -25,7 +25,6 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
-import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class LoginCommand implements Command {
 
@@ -80,12 +79,9 @@ public class LoginCommand implements Command {
 		}
 
 		try {
-			if (InputDataValidator.isPhone(login) && subscriberService.isPhoneExist(login)) {
-				Subscriber subscriber = subscriberService.findSubscriberByPhone(login).get();
-				/* we can safely use .get() method as just checked that this
-				 * Optional<Subscriber> is not empty in the previous line 
-				 * - see subscriberService.isPhoneExist(login)
-				 */
+			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(login);
+			if (subscriberOptional.isPresent()) {
+				Subscriber subscriber = subscriberOptional.get();
 				result = SubscriberCommandHelper.getInstance().handleSubscriber(request, subscriber);
 			} else { // this means login is an e-mail
 				role = user.getRole();

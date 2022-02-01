@@ -18,8 +18,8 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.ServiceProvider;
+import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class FindSubscriberListByFullNameCommand implements Command{
