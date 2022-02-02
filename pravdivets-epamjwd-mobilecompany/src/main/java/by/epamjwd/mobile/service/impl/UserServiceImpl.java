@@ -29,15 +29,12 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserById(long id) throws ServiceException {
-		Optional<User> user = Optional.empty();
 		try {
-			user = DAOProvider.getInstance().getUserDAO().findUserById(id);
+			return DAOProvider.getInstance().getUserDAO().findUserById(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return user;
 	}
-
 	
 	/**
 	 * Provides User retrieved by it's login. 
@@ -75,17 +72,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findUserByEmail(String email) throws ServiceException {
 		Optional<User> user = Optional.empty();
-				
-		if(InputDataValidator.isEmail(email)) {
-		try {
-			user = DAOProvider.getInstance().getUserDAO().findUserByEmail(email);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+
+		if (InputDataValidator.isEmail(email)) {
+			try {
+				user = DAOProvider.getInstance().getUserDAO().findUserByEmail(email);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
 		}
 		return user;
 	}
-
 	
 	/**
 	 * Provides User retrieved by it's passport number. 
@@ -100,17 +96,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws ServiceException {
 		Optional<User> user = Optional.empty();
-		
-		if(InputDataValidator.isPassport(passport)){
-		try {
-			user = DAOProvider.getInstance().getUserDAO().findUserByPassport(passport);
-		} catch (DaoException e) {
-			throw new ServiceException(e);
-		}
+
+		if (InputDataValidator.isPassport(passport)) {
+			try {
+				user = DAOProvider.getInstance().getUserDAO().findUserByPassport(passport);
+			} catch (DaoException e) {
+				throw new ServiceException(e);
+			}
 		}
 		return user;
 	}
-
 	
 	/**
 	 * Provides User retrieved by it's phone number. 
@@ -125,7 +120,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> findUserByPhone(String phone) throws ServiceException {
 		Optional<User> user = Optional.empty();
-		
+
 		if (InputDataValidator.isPhone(phone)) {
 			try {
 				user = DAOProvider.getInstance().getUserDAO().findUserByPhone(phone);
@@ -135,7 +130,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
-
 	
 	/**
 	 * Adds the User to the data storage.
@@ -150,7 +144,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public long addUser(User user) throws ServiceException {
 		long userId = IDRepository.EMPTY_ID;
-		
+
 		if (InputDataValidator.isUserValid(user)) {
 			try {
 				userId = DAOProvider.getInstance().getUserDAO().addUser(user);
@@ -160,7 +154,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return userId;
 	}
-
 	
 	/**
 	 * Updates User's data.
@@ -179,7 +172,6 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 	}
-
 	
 	/**
 	 * Updates User's password. Because of the security reasons the hash-code 
@@ -193,11 +185,10 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void updatePassword(User user, String password) throws ServiceException {
-			String passwordHash = HashGenerator.generateHash(password);
-			user.setPassword(passwordHash);
-			updateUser(user);
+		String passwordHash = HashGenerator.generateHash(password);
+		user.setPassword(passwordHash);
+		updateUser(user);
 	}
-
 	
 	/**
 	 * Updates User's password. The user will be fount by it's phone number.
@@ -213,14 +204,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updatePassword(String phone, String password) throws ServiceException {
 		Optional<User> userOptional = findUserByPhone(phone);
-		if(userOptional.isPresent()) {
+		if (userOptional.isPresent()) {
 			User user = userOptional.get();
 			String passwordHash = HashGenerator.generateHash(password);
 			user.setPassword(passwordHash);
 			updateUser(user);
 		}
 	}
-
 	
 	/**
 	 * For Subscriber Users only. Send the authentication code to Subscriber user's e-mail. 
@@ -329,10 +319,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User buildSubscriberUser(String firstName, String middleName, String lastName, 
 			String passport, String email) {
-		User user = null;
-		user = new User(IDRepository.EMPTY_ID, null, firstName, middleName, lastName, 
+
+		return new User(IDRepository.EMPTY_ID, null, firstName, middleName, lastName, 
 						passport, email, Role.SUBSCRIBER);
-		return user;
 	}
 
 	
@@ -356,10 +345,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User buildConsultantUser(String firstName, String middleName, String lastName, 
 			String password, String passport, String email) {
-		User user = null;
-		user = new User(IDRepository.EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
+
+		return new User(IDRepository.EMPTY_ID, HashGenerator.generateHash(password), firstName, middleName, lastName, 
 						passport, email, Role.CONSULTANT);
-		return user;
 	}
 
 }

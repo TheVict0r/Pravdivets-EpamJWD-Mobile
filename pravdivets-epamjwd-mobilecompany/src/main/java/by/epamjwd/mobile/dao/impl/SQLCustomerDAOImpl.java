@@ -17,28 +17,30 @@ import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
-public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO{
+public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO {
 	private static final long ERROR_ID = -1;
 
 	private final static Logger LOGGER = LogManager.getLogger(SQLCustomerDAOImpl.class);
 
-	
 	public SQLCustomerDAOImpl() {
-        super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
+		super(RowMapperFactory.getInstance().getUserRowMapper(), DBTableName.USERS);
 	}
 
 	/**
-	 * Saves a new customer to the database. 
+	 * Saves a new customer to the database.
 	 * 
-	 * <p>Customer consists from two connected entities: 
-	 * <p>(1) User - contains the data common for all users (subscribers, consultants, admins etc.) 
-	 *            such as name, passport number, e-mail, password etc.
-	 * <p>(2) Subscriber - contains only subscriber's data - phone number, tariff plan ID,
-	 * 			  account number, contract date etc. 
+	 * <p>
+	 * Customer consists from two connected entities:
+	 * <p>
+	 * (1) User - contains the data common for all users (subscribers, consultants,
+	 * admins etc.) such as name, passport number, e-mail, password etc.
+	 * <p>
+	 * (2) Subscriber - contains only subscriber's data - phone number, tariff plan
+	 * ID, account number, contract date etc.
 	 * 
-	 * @param user  
+	 * @param user
 	 * 
-	 * @param subscriber 
+	 * @param subscriber
 	 * 
 	 * @return the ID of subscriber added to the database
 	 * 
@@ -47,14 +49,13 @@ public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO
 	@Override
 	public long addNewCustomer(User user, Subscriber subscriber) throws DaoException {
 		long subscriberID = ERROR_ID;
-		long userID;
-		
+
 		Connection connection = null;
 		try {
 			connection = ConnectionPool.getInstance().takeConnection();
 			connection.setAutoCommit(false);
 			Object[] userParameters = SQLParametersHelper.provideNewUserParameters(user);
-			userID = executeInsertQuery(SQLUserDAOImpl.ADD_NEW_USER, userParameters);
+			long userID = executeInsertQuery(SQLUserDAOImpl.ADD_NEW_USER, userParameters);
 			subscriber.setUserId(userID);
 			Object[] subscriberParameters = SQLParametersHelper.provideNewSubscriberParameters(subscriber);
 			subscriberID = executeInsertQuery(SQLSubscriberDAOImpl.ADD_SUBSCRIBER_TO_EXISTING_USER,
@@ -76,7 +77,7 @@ public class SQLCustomerDAOImpl extends AbstractDao<User> implements CustomerDAO
 			} catch (SQLException e4) {
 				LOGGER.error("Unable to setAutoCommit(true) in transaction", e4);
 				throw new DaoException("Unable to setAutoCommit(true) in transaction", e4);
-			} 
+			}
 			try {
 				ConnectionPool.getInstance().releaseConnection(connection);
 			} catch (ConnectionPoolException e5) {

@@ -1,5 +1,6 @@
 package by.epamjwd.mobile.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,12 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 			DBColumnName.SUBSCRIBERS_PLAN_ID + COMMA + 
 			DBColumnName.SUBSCRIBERS_USER_ID + ") VALUES (?, ?, ?, ?, ?, ?, ?)";
 	
-	public static final String UPDATE_SUBSCRIBER = "UPDATE subscribers SET phone=?, status_date=?, status_id=?, plan_id=? WHERE id=?";
+	public static final String UPDATE_SUBSCRIBER = "UPDATE " + 
+			 DBTableName.SUBSCRIBERS +" SET " +
+			DBColumnName.SUBSCRIBERS_PHONE + QUESTION_MARK + 
+			DBColumnName.SUBSCRIBERS_STATUS_DATE + QUESTION_MARK + 
+			DBColumnName.SUBSCRIBERS_STATUS_ID + QUESTION_MARK + 
+			DBColumnName.SUBSCRIBERS_PLAN_ID + "=? WHERE id=?";
 
 	public SQLSubscriberDAOImpl() {
         super(RowMapperFactory.getInstance().getSubscriberRowMapper(), DBTableName.SUBSCRIBERS);
@@ -110,30 +116,23 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, 
 			String lastName) throws DaoException {
-		List<Subscriber> result = null;
-		String query = null;
+		List<Subscriber> result = new ArrayList<>();
 		
-		StringBuilder builder = new StringBuilder(buildFindSubscriberQueryByUserParameter(DBColumnName.USERS_FIRST_NAME))
-				.append(" AND ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME);
+		String query = buildFindSubscriberQueryByUserParameter(DBColumnName.USERS_FIRST_NAME) +
+				" AND " + DBTableName.USERS + "." + DBColumnName.USERS_LAST_NAME;
 		
-		if("".equals(middleName)) {
-			query = builder
-					.append(" = ?")
-					.toString();
+		if(middleName.isBlank()) {
+			query += " = ?";
 			result = executeQuery(query, firstName,  lastName);
 		} else {
-			query = builder
-					.append(" = ? AND ")
-					.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME)
-					.append(" = ?")
-					.toString();
+			query += " = ? AND " + DBTableName.USERS + "." + DBColumnName.USERS_MIDDLE_NAME + " = ?";
 			result = executeQuery(query, firstName,  lastName, middleName);
 		}
 				
 		return result;
 	}		
 
+	
 	/**
 	 * Adds to database one more Subscriber to existing User.
 	 * 
@@ -145,12 +144,9 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	 */
 	@Override
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws DaoException {
-		long subscriderId;
-		
 		Object[] params = SQLParametersHelper.provideNewSubscriberParameters(subscriber);
-				
-		subscriderId = executeInsertQuery(ADD_SUBSCRIBER_TO_EXISTING_USER, params);
-		return subscriderId;
+		long subscriderID = executeInsertQuery(ADD_SUBSCRIBER_TO_EXISTING_USER, params);
+		return subscriderID;
 	}
 
 	/**
@@ -166,26 +162,12 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 		executeUpdateQuery(UPDATE_SUBSCRIBER, params);
 	}
 
-	
-	/**
-	 * Builds query string, that can be used for "find" type requests.  
-	 * 
-	 */
-	private String buildFindSubscriberQuery() {
-		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.SUBSCRIBERS).toString();
-		return query;
-	}
-	
 	/**
 	 * Builds query string, that can be used for "find Subscriber by subscriber's parameter" type requests.  
 	 * 
 	 */
 	private String buildFindSubscriberQueryByParameter(String parameter){
-		String query = new StringBuilder(buildFindSubscriberQuery())
-				.append(" WHERE ")
-				.append(DBTableName.SUBSCRIBERS).append(".").append(parameter).append(" = ?")
-				.toString();
-		return query;
+		return  "SELECT * FROM " + DBTableName.SUBSCRIBERS + " WHERE " + parameter + " = ?";
 	}
 
 	/**
@@ -194,17 +176,11 @@ public class SQLSubscriberDAOImpl extends AbstractDao<Subscriber> implements Sub
 	 * <p> Note, that Subscriber entity contains User fields as well.
 	 */
 	private String buildFindSubscriberQueryByUserParameter(String userParameter){
-		String query = new StringBuilder(buildFindSubscriberQuery())
-				.append(" INNER JOIN ").append(DBTableName.USERS)
-				.append(" ON ")
-				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_USER_ID)
-				.append(" = ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_ID)
-				.append(" WHERE ")
-				.append(DBTableName.USERS).append(".").append(userParameter)
-				.append(" = ?")
-				.toString();
-		return query;
+		return "SELECT * FROM " + 
+		DBTableName.SUBSCRIBERS + " INNER JOIN " + DBTableName.USERS + " ON " + 
+		DBTableName.SUBSCRIBERS + "." + DBColumnName.SUBSCRIBERS_USER_ID + " = " + 
+		DBTableName.USERS + "." + DBColumnName.USERS_ID + " WHERE " + 
+		DBTableName.USERS + "." + userParameter + " = ?";
 	}
 	
 }

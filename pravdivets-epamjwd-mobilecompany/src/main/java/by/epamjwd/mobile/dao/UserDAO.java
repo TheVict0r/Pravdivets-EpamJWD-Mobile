@@ -1,6 +1,5 @@
 package by.epamjwd.mobile.dao;
 
-import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.User;
@@ -15,8 +14,6 @@ public interface UserDAO {
 	Optional<User> findUserById(long id) throws DaoException;
 	
 	Optional<User> findUserByPassport(String passport) throws DaoException;
-	
-	List<User> findUsersListByFullName(String firstName, String middleName, String lastName) throws DaoException;
 	
 	long addUser(User user) throws DaoException;
 	

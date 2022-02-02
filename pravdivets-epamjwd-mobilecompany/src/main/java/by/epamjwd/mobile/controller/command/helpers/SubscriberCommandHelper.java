@@ -69,7 +69,7 @@ public class SubscriberCommandHelper {
 		
 		result = PlanCommandHelper.handlePlanByID(session, planID, PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 		
-		if(subscriber.getStatus() == SubscriberStatus.DEACTIVATED 
+		if (subscriber.getStatus() == SubscriberStatus.DEACTIVATED 
 				&& (Role)(session.getAttribute(AttributeName.ROLE)) == Role.SUBSCRIBER) {
 			result = handleDeactivatedSubscriber(session);
 		}
@@ -96,7 +96,7 @@ public class SubscriberCommandHelper {
 		if (subscriberList.size() == 1) {
 			Subscriber subscriber = subscriberList.get(0);
 			result = handleSubscriber(request, subscriber);
-		} else if(subscriberList.size() > 1){
+		} else if (subscriberList.size() > 1){
 			long userId = subscriberList.get(0).getUserId();
 			session.setAttribute(AttributeName.SUBSCRIBER_USER_ID, userId);
 			result = new RouteHelper(PagePath.SUBSCRIBER_LIST_REDIRECT, RouteMethod.REDIRECT);

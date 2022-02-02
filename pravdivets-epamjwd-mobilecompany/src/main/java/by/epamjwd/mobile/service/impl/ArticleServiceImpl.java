@@ -84,8 +84,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public Article buildArticle(String title, String intro, String text) {
-		Article article = new Article(IDRepository.EMPTY_ID, new Date(), title, intro, text);
-		return article;
+		return new Article(IDRepository.EMPTY_ID, new Date(), title, intro, text);
 	}
 
 	/**
@@ -144,8 +143,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public List<Article> buildArticlesBatch(int fromIndex, int toIndex) throws ServiceException {
-		List<Article> articlesBatch = findAllArticles().subList(fromIndex, toIndex);
-		return articlesBatch;
+		return findAllArticles().subList(fromIndex, toIndex);
 	}
 
 	/**
@@ -201,6 +199,7 @@ public class ArticleServiceImpl implements ArticleService {
 	public int calculateToIndex(int fromIndex, int step, ListDirection currentDirection,
 			ListDirection previousDirection) throws ServiceException {
 		int toIndex;
+		
 		switch (currentDirection) {
 		case TO_END:
 			toIndex = calculateNextIndex(fromIndex, step);

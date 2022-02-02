@@ -27,11 +27,6 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 			DBColumnName.SERVICES_DESCRIPTION + 
 			") VALUES (?, ?, ?)";
 
-	public static void main(String[] args) {
-		System.out.println(ADD_NEW_SERVICE);
-	}
-
-	
 	public SQLServiceDAOImpl() {
         super(RowMapperFactory.getInstance().getServiceRowMapper(), DBTableName.SERVICES);
 	}
@@ -87,9 +82,8 @@ public class SQLServiceDAOImpl extends AbstractDao<Service> implements ServiceDA
 	 */
 	@Override
 	public long addService(Service service) throws DaoException {
-		long serviceId;
 		Object[] params = SQLParametersHelper.provideNewServiceParameters(service);
-		serviceId = executeInsertQuery(ADD_NEW_SERVICE, params);
+		long serviceId = executeInsertQuery(ADD_NEW_SERVICE, params);
 		return serviceId;
 	}
 

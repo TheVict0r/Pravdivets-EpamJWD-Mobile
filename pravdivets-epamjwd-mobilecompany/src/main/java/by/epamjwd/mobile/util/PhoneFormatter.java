@@ -25,16 +25,12 @@ public class PhoneFormatter {
 		
 		if(InputDataValidator.isPhone(phone)) {
 			char [] phoneChar = phone.toCharArray();
-			result = new StringBuilder()
-				.append("(")
-				.append(phoneChar[0]).append(phoneChar[1])
-				.append(") ")
-				.append(phoneChar[2]).append(phoneChar[3]).append(phoneChar[4])
-				.append("-")
-				.append(phoneChar[5]).append(phoneChar[6])
-				.append("-")
-				.append(phoneChar[7]).append(phoneChar[8])
-				.toString();
+			
+			result =  "(" + phoneChar[0] + phoneChar[1] + ") " + 
+							phoneChar[2] + phoneChar[3] + phoneChar[4] + "-" + 
+							phoneChar[5] + phoneChar[6] + "-" + 
+							phoneChar[7] + phoneChar[8];
+			
 		}
 		return result; 
 	}

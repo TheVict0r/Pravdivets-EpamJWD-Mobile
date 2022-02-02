@@ -16,12 +16,11 @@ public class BillRowMapper implements RowMapper<Bill>{
 	 */
 	@Override
 	public Bill map(ResultSet resultSet) throws SQLException {
-		Bill bill = new Bill(
+		 return new Bill(
 				resultSet.getLong(DBColumnName.BILLS_ID),
 				resultSet.getLong(DBColumnName.BILLS_SUBSCRIBER_ID),
 				resultSet.getDate(DBColumnName.BILLS_DATE),
 				resultSet.getInt (DBColumnName.BILLS_AMOUNT));
-		return bill;
 	}
 
 }

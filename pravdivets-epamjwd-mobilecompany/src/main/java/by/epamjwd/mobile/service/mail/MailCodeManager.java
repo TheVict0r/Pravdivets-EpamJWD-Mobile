@@ -43,16 +43,18 @@ public class MailCodeManager {
 	/**
 	 * Sends generated code to user's e-mail.
 	 * 
-	 * @param userEmail - user's e-mail
+	 * @param email - e-mail address
+	 * 
 	 * @return - sent code, returns ERROR_CODE (-1) if the code wasn't sent
+	 * 
 	 * @throws ServiceException if MessagingException occurs
 	 */
-	public int sendGenereatedCodeByMail(String userEmail) throws ServiceException {
+	public int sendGenereatedCodeByMail(String email) throws ServiceException {
 		int code = ERROR_CODE;
 
-		if (InputDataValidator.isEmail(userEmail)) {
+		if (InputDataValidator.isEmail(email)) {
 			code = generateCode();
-			sendTextByMail(userEmail, String.valueOf(code));
+			sendTextByMail(email, String.valueOf(code));
 		}
 		return code;
 	}
@@ -60,11 +62,13 @@ public class MailCodeManager {
 	/**
 	 * Sends any text to user's e-mail.
 	 * 
-	 * @param userEmail - user's e-mail
+	 * @param email - e-mail address
+	 * 
 	 * @param text - any text need to be sent
+	 * 
 	 * @throws ServiceException if MessagingException occurs
 	 */
-	private void sendTextByMail(String userEmail, String text) throws ServiceException {
+	private void sendTextByMail(String email, String text) throws ServiceException {
 
 		MailResourceManager mailResourceManager = MailResourceManager.getInstance();
 
@@ -88,11 +92,11 @@ public class MailCodeManager {
 			}
 		});
 		
-		if (InputDataValidator.isEmail(userEmail)) {
+		if (InputDataValidator.isEmail(email)) {
 			try {
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(mailFrom));
-				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(userEmail));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 				message.setSubject(MESSAGE_SUBJECT);
 				message.setText(text);
 
@@ -111,8 +115,7 @@ public class MailCodeManager {
 	 * @return code number
 	 */
 	private int generateCode() {
-		int code = new Random().nextInt(CODE_MAX_VALUE - CODE_MIN_VALUE) + CODE_MIN_VALUE;
-		return code;
+		return new Random().nextInt(CODE_MAX_VALUE - CODE_MIN_VALUE) + CODE_MIN_VALUE;
 	}
 
 }

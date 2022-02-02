@@ -51,7 +51,7 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 	public List<Plan> findAllPlans() throws DaoException {
 		return findAll();
 	}
-	
+
 	/**
 	 * Provides tariff plan retrieved by it's ID.
 	 * 
@@ -66,8 +66,7 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 		return findById(id);
 
 	}
-	
-	
+
 	/**
 	 * Provides tariff plan retrieved by it's name.
 	 * 
@@ -93,9 +92,8 @@ public class SQLPlanDAOImpl extends AbstractDao<Plan> implements PlanDAO{
 	 */
 	@Override
 	public long addPlan(Plan plan) throws DaoException {
-		long planId;
 		Object[] params = SQLParametersHelper.provideNewPlanParameters(plan);
-		planId = executeInsertQuery(ADD_NEW_PLAN, params);
+		long planId = executeInsertQuery(ADD_NEW_PLAN, params);
 		return planId;
 	}
 }

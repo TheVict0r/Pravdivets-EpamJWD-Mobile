@@ -38,7 +38,7 @@ public class FindSubscriberByIDCommand implements Command{
 				id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
 			}
 
-			if(id == NumericParser.INVALID_VALUE) {
+			if (id == NumericParser.INVALID_VALUE) {
 				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return RouteHelper.ERROR_404;
 			}

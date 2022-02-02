@@ -10,17 +10,17 @@ import by.epamjwd.mobile.dao.mapper.RowMapperFactory;
 import by.epamjwd.mobile.dao.repository.DBColumnName;
 import by.epamjwd.mobile.dao.repository.DBTableName;
 
-public class SQLBillDAOImpl extends AbstractDao<Bill> implements BillDAO{
+public class SQLBillDAOImpl extends AbstractDao<Bill> implements BillDAO {
 
-	public final static String GET_BILL_LIST_BY_SUBSCRIBER_ID = "SELECT * FROM " + DBTableName.BILLS 
-			+ " WHERE " + DBColumnName.BILLS_SUBSCRIBER_ID + " = ?";
-	
+	public final static String GET_BILL_LIST_BY_SUBSCRIBER_ID = "SELECT * FROM " + DBTableName.BILLS + " WHERE "
+			+ DBColumnName.BILLS_SUBSCRIBER_ID + " = ?";
+
 	public SQLBillDAOImpl() {
 		super(RowMapperFactory.getInstance().getBillRowMapper(), DBTableName.BILLS);
 	}
-	
+
 	/**
-	 * Retrieves a list of subscribers bills from the database. 
+	 * Retrieves a list of subscribers bills from the database.
 	 * 
 	 * @param subscriberID - subscriber's ID
 	 * 
@@ -32,6 +32,5 @@ public class SQLBillDAOImpl extends AbstractDao<Bill> implements BillDAO{
 	public List<Bill> getBillListBySubscriberID(long subscriberID) throws DaoException {
 		return executeQuery(GET_BILL_LIST_BY_SUBSCRIBER_ID, subscriberID);
 	}
-
 
 }

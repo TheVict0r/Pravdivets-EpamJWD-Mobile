@@ -61,11 +61,9 @@ public class PlanServiceImpl implements PlanService {
 	 * on the traffic on different directions as well as other components of the
 	 * tariff.
 	 * 
-	 * @param withinNetwork - monthly traffic in minutes for calls within the
-	 *                      network
+	 * @param withinNetwork - monthly traffic in minutes for calls within the network
 	 * 
-	 * @param otherNetworks - monthly traffic in minutes for calls to other phone
-	 *                      networks
+	 * @param otherNetworks - monthly traffic in minutes for calls to other phone networks
 	 * 
 	 * @param abroad        - monthly traffic in minutes for calls abroad
 	 * 
@@ -118,14 +116,11 @@ public class PlanServiceImpl implements PlanService {
 	/**
 	 * Calculates monthly expenses in the case of using the {@code plan}.
 	 * 
-	 * @param plan          - tariff plan (bunch of tariffs for different services
-	 *                      of mobile operator)
+	 * @param plan          - tariff plan (bunch of tariffs for different services of mobile operator)
 	 * 
-	 * @param withinNetwork - monthly traffic in minutes for calls within the
-	 *                      network
+	 * @param withinNetwork - monthly traffic in minutes for calls within the network
 	 * 
-	 * @param otherNetworks - monthly traffic in minutes for calls to other phone
-	 *                      networks
+	 * @param otherNetworks - monthly traffic in minutes for calls to other phone networks
 	 * 
 	 * @param abroad        - monthly traffic in minutes for calls abroad
 	 * 
@@ -143,12 +138,10 @@ public class PlanServiceImpl implements PlanService {
 	private long calculateMonthlyExpences(Plan plan, int withinNetwork, int otherNetworks, int abroad, int videocall,
 			int sms, int mms, int internet) {
 
-		long arpu = plan.getRegularPayment() + plan.getPriceWithinNetwork() * withinNetwork
+		   return plan.getRegularPayment() + plan.getPriceWithinNetwork() * withinNetwork
 				+ plan.getPriceOtherNetworks() * otherNetworks + plan.getPriceAbroad() * abroad
 				+ plan.getPriceVideocall() * videocall + plan.getPriceSMS() * sms + plan.getPriceMMS() * mms
 				+ plan.getPriceInternet() * internet;
-
-		return arpu;
 	}
 
 	/**
@@ -181,8 +174,7 @@ public class PlanServiceImpl implements PlanService {
 	 * 
 	 * @param regularPayment - monthly regular payment
 	 * 
-	 * @param upfrontPayment - amount of money payed by subscriber when the signing of
-	 *                       a contract
+	 * @param upfrontPayment - amount of money payed by subscriber when the signing of a contract
 	 * 
 	 * @param withinNetwork  - monthly traffic in minutes for calls within the network
 	 * 
@@ -203,6 +195,7 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public Plan buildPlan(String name, String description, int regularPayment, int upfrontPayment, int withinNetwork,
 			int otherNetworks, int abroad, int videocall, int sms, int mms, int internet) {
+
 		return new Plan(IDRepository.EMPTY_ID, name, regularPayment, upfrontPayment, description, withinNetwork,
 				otherNetworks, abroad, videocall, sms, mms, internet);
 	}

@@ -74,9 +74,8 @@ public class SQLArticleDAOImpl extends AbstractDao<Article> implements ArticleDA
 	 */
 	@Override
 	public long addArticle(Article article) throws DaoException {
-		long articleID;
 		Object[] params = SQLParametersHelper.provideNewArticleParameters(article);
-		articleID = executeInsertQuery(ADD_NEW_ARTICLE, params);
+		long articleID = executeInsertQuery(ADD_NEW_ARTICLE, params);
 		return articleID;
 	}
 

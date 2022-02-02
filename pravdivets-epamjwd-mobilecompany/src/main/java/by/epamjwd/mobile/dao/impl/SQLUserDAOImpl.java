@@ -1,6 +1,5 @@
 package by.epamjwd.mobile.dao.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.User;
@@ -54,10 +53,8 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	 */
 	@Override
 	public Optional<User> findUserById(long id) throws DaoException {
-		Optional<User> user = Optional.empty();
 		String query = buildFindUserQueryByParameter(DBColumnName.USERS_ID);
-		user = executeQueryForSingleResult(query, id);
-		return user;
+		return executeQueryForSingleResult(query, id);
 	}
 
 	/**
@@ -71,10 +68,8 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	 */
 	@Override
 	public Optional<User> findUserByEmail(String email) throws DaoException {
-		Optional<User> user = Optional.empty();
 		String query = buildFindUserQueryByParameter(DBColumnName.USERS_EMAIL);
-		user = executeQueryForSingleResult(query, email);
-		return user;
+		return executeQueryForSingleResult(query, email);
 	}
 
 	/**
@@ -88,56 +83,11 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	 */
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws DaoException {
-		Optional<User> user = Optional.empty();
 		String query = buildFindUserQueryByParameter(DBColumnName.USERS_PASSPORT);
-		user = executeQueryForSingleResult(query, passport);
-		return user;
+		return executeQueryForSingleResult(query, passport);
 	}
 
 	
-	/**
-	 * Provides the list of Users retrieved by their full name (first name, middle name and last name).
-	 * 
-	 * <p> Middle name can be missing or blank
-	 * 
-	 * @param firstName - user's first name 
-	 * 
-	 * @param middleName - user's middle name 
-	 * 
-	 * @param lastName - user's last name 
-	 * 
-	 * @return list of Users
-	 * 
-	 * @throws DaoException if SQLException occurs
-	 */
-	@Override
-	public List<User> findUsersListByFullName(String firstName, String middleName, String lastName) throws DaoException {
-		List<User> result = null;
-		String query = null;
-		StringBuilder builder = new StringBuilder(buildFindUserQuery())
-				.append(" WHERE ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_FIRST_NAME)
-				.append(" = ? AND ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_LAST_NAME);
-		
-		if("".equals(middleName) || middleName.isBlank()) {
-			query = builder
-					.append(" = ?")
-					.toString();
-			result = executeQuery(query, firstName,  lastName);
-		} else {
-			query = builder
-					.append(" = ? AND ")
-					.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_MIDDLE_NAME)
-					.append(" = ?")
-					.toString();
-			result = executeQuery(query, firstName,  lastName, middleName);
-		}
-		
-		
-		return result;
-	}
-
 	/**
 	 * Provides User retrieved by it's phone number. 
 	 * 
@@ -149,22 +99,16 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	 */
 	@Override
 	public Optional<User> findUserByPhone(String phone) throws DaoException {
-		Optional<User> user = Optional.empty();
+		String query = "SELECT * FROM " + DBTableName.USERS + 
+				" INNER JOIN " + DBTableName.SUBSCRIBERS + 
+				" ON " + 
+				DBTableName.USERS + "." + DBColumnName.USERS_ID + 
+				" = " + 
+				DBTableName.SUBSCRIBERS + "." + DBColumnName.SUBSCRIBERS_USER_ID + 
+				" WHERE " +
+				DBTableName.SUBSCRIBERS + "." + DBColumnName.SUBSCRIBERS_PHONE + " = ?";
 		
-		String query = new StringBuilder(buildFindUserQuery())
-				.append(" INNER JOIN ")
-				.append(DBTableName.SUBSCRIBERS)
-				.append(" ON ")
-				.append(DBTableName.USERS).append(".").append(DBColumnName.USERS_ID)
-				.append(" = ")
-				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_USER_ID)
-				.append(" WHERE ")
-				.append(DBTableName.SUBSCRIBERS).append(".").append(DBColumnName.SUBSCRIBERS_PHONE)
-				.append(" = ?")				
-				.toString();
-
-		user = executeQueryForSingleResult(query, phone);
-		return user;
+		return executeQueryForSingleResult(query, phone);
 	}
 
 	/**
@@ -178,9 +122,8 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	 */
 	@Override
 	public long addUser(User user) throws DaoException {
-		long userId;
 		Object[] params = SQLParametersHelper.provideNewUserParameters(user);
-		userId = executeInsertQuery(ADD_NEW_USER, params);
+		long userId = executeInsertQuery(ADD_NEW_USER, params);
 		return userId;
 	}
 	
@@ -198,16 +141,6 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	}
 
 	/**
-	 * Builds basic string query for searching the users. 
-	 * 
-	 * @return string query
-	 */
-	private String buildFindUserQuery(){
-		String query = new StringBuilder("SELECT * FROM ").append(DBTableName.USERS).toString();
-		return query;
-	}
-	
-	/**
 	 * Builds string query for searching the users by parameter.
 	 * 
 	 * @param parameter - parameter for searching by
@@ -215,12 +148,8 @@ public class SQLUserDAOImpl extends AbstractDao<User> implements UserDAO{
 	 * @return string query
 	 */
 	private String buildFindUserQueryByParameter(String parameter) {
-		String query = new StringBuilder(buildFindUserQuery())
-				.append(" WHERE ")
-				.append(DBTableName.USERS).append(".").append(parameter)
-				.append(" = ?")
-				.toString();
-		return query;
+		return "SELECT * FROM " + DBTableName.USERS + " WHERE " + parameter + " = ?";
+		
 	}
 	
 }

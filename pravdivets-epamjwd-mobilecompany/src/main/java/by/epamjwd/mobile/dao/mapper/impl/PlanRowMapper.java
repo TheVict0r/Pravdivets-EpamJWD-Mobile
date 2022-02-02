@@ -16,7 +16,7 @@ public class PlanRowMapper implements RowMapper<Plan>{
 	 */
 	@Override
 	public Plan map(ResultSet resultSet) throws SQLException {
-		Plan plan = new Plan(
+		return new Plan(
 			resultSet.getLong(DBColumnName.PLANS_ID),
 			resultSet.getString(DBColumnName.PLANS_NAME),
 			resultSet.getInt(DBColumnName.PLANS_REGULAR_PAYMENT),
@@ -29,7 +29,6 @@ public class PlanRowMapper implements RowMapper<Plan>{
 			resultSet.getInt(DBColumnName.PLANS_SMS),
 			resultSet.getInt(DBColumnName.PLANS_MMS),
 			resultSet.getInt(DBColumnName.PLANS_INTERNET));
-		return plan;
 	}
 
 }

@@ -16,24 +16,12 @@ import by.epamjwd.mobile.bean.User;
  */
 public class SQLParametersHelper {
 
-	public final static int DATABASE_INDEX_SHIFT = 1; // as indexes in database begins from 1, not from 0
+	public final static int DATABASE_INDEX_SHIFT = 1; // as indexes in database starts from 1, not from 0
 
 	private SQLParametersHelper() {
 
 	}
 
-	/**
-	 * Provide core user's parameters for prepared statement
-	 * 
-	 * @param user - User entity
-	 * 
-	 * @return array of Objects, each Object contains one parameter
-	 */
-	public static Object[] provideUserParameters(User user) {
-		Object[] userParameters = { user.getPassword(), user.getFirstName(), user.getMiddleName(), user.getLastName(),
-				user.getPassport(), user.getEmail() };
-		return userParameters;
-	}
 
 	/**
 	 * Provide parameters for prepared statement to add new User entity
@@ -43,8 +31,9 @@ public class SQLParametersHelper {
 	 * @return array of Objects, each Object contains one parameter
 	 */
 	public static Object[] provideNewUserParameters(User user) {
-		List<Object> paramList = new ArrayList<>(Arrays.asList(provideUserParameters(user)));
+		List<Object> paramList = new ArrayList<>(Arrays.asList(provideCoreUserParameters(user)));
 		paramList.add(user.getRole().ordinal() + DATABASE_INDEX_SHIFT);
+		
 		return paramList.toArray();
 	}
 
@@ -56,11 +45,20 @@ public class SQLParametersHelper {
 	 * @return array of Objects, each Object contains one parameter
 	 */
 	public static Object[] provideUpdateUserParameters(User user) {
-		List<Object> paramList = new ArrayList<>(Arrays.asList(provideUserParameters(user)));
+		List<Object> paramList = new ArrayList<>(Arrays.asList(provideCoreUserParameters(user)));
 		paramList.add(user.getId());
+		
 		return paramList.toArray();
 	}
 
+	private static Object[] provideCoreUserParameters(User user) {
+		Object[] userParameters = { user.getPassword(), user.getFirstName(), user.getMiddleName(), user.getLastName(),
+				user.getPassport(), user.getEmail() };
+		
+		return userParameters;
+	}
+
+	
 	/**
 	 * Provide parameters for prepared statement to add new Subscriber entity
 	 * 
@@ -86,6 +84,7 @@ public class SQLParametersHelper {
 	public static Object[] provideUpdateSubscriberParameters(Subscriber subscriber) {
 		Object[] subscriberParameters = { subscriber.getPhone(), subscriber.getStatusDate(),
 				(subscriber.getStatus().ordinal() + DATABASE_INDEX_SHIFT), subscriber.getPlanId(), subscriber.getId() };
+		
 		return subscriberParameters;
 	}
 
