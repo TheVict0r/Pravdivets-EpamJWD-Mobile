@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.dao.DAOProvider;
-import by.epamjwd.mobile.dao.ServiceDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.service.ServiceService;
@@ -24,10 +23,8 @@ public class ServiceServiceImpl implements ServiceService {
 	 */
 	@Override
 	public List<Service> findAllServices() throws ServiceException {
-		ServiceDAO serviceDao = DAOProvider.getInstance().getServiceDAO();
-
 		try {
-			return serviceDao.getAllServices();
+			return DAOProvider.getInstance().getServiceDAO().getAllServices();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -45,10 +42,8 @@ public class ServiceServiceImpl implements ServiceService {
 	 */
 	@Override
 	public Optional<Service> findServiceByID(long id) throws ServiceException {
-		ServiceDAO serviceDao = DAOProvider.getInstance().getServiceDAO();
-
 		try {
-			return serviceDao.getServiceByID(id);
+			return DAOProvider.getInstance().getServiceDAO().getServiceByID(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -65,11 +60,9 @@ public class ServiceServiceImpl implements ServiceService {
 	 */
 	@Override
 	public boolean isServiceExists(String name) throws ServiceException {
-		ServiceDAO serviceDao = DAOProvider.getInstance().getServiceDAO();
 		Optional<Service> serviceOptional = Optional.empty();
-
 		try {
-			serviceOptional = serviceDao.getServiceByName(name);
+			serviceOptional = DAOProvider.getInstance().getServiceDAO().getServiceByName(name);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -88,12 +81,11 @@ public class ServiceServiceImpl implements ServiceService {
 	 */
 	@Override
 	public long addService(Service service) throws ServiceException {
-		ServiceDAO serviceDao = DAOProvider.getInstance().getServiceDAO();
 		long serviceId = IDRepository.ERROR_ID;
 
 		if (InputDataValidator.isServiceValid(service)) {
 			try {
-				serviceId = serviceDao.addService(service);
+				serviceId = DAOProvider.getInstance().getServiceDAO().addService(service);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}

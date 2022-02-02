@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import by.epamjwd.mobile.bean.Article;
-import by.epamjwd.mobile.dao.ArticleDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
@@ -27,10 +26,8 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public List<Article> findAllArticles() throws ServiceException {
-		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
-
 		try {
-			return articleDao.getAllArticles();
+			return DAOProvider.getInstance().getNewsDao().getAllArticles();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -48,10 +45,8 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public Optional<Article> findArticleByID(long id) throws ServiceException {
-		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
-
 		try {
-			return articleDao.getArticleByID(id);
+			return DAOProvider.getInstance().getNewsDao().getArticleByID(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -69,15 +64,11 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public Optional<Article> findArticleByTitle(String title) throws ServiceException {
-		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
-		Optional<Article> articleOptional = Optional.empty();
-
 		try {
-			articleOptional = articleDao.getArticleByTitle(title);
+			return DAOProvider.getInstance().getNewsDao().getArticleByTitle(title);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return articleOptional;
 	}
 
 	/**
@@ -109,12 +100,10 @@ public class ArticleServiceImpl implements ArticleService {
 	 */
 	@Override
 	public long addArticle(Article article) throws ServiceException {
-		ArticleDAO articleDao = DAOProvider.getInstance().getNewsDao();
 		long articleId = IDRepository.ERROR_ID;
-
 		if (InputDataValidator.isArticleValid(article)) {
 			try {
-				articleId = articleDao.addArticle(article);
+				articleId = DAOProvider.getInstance().getNewsDao().addArticle(article);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -160,8 +149,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Checks if the provided index is one step beyond the last index 
-	 * in the list containing all news articles.
+	 * Checks if the provided index is one step beyond the last index in the list
+	 * containing all news articles.
 	 * 
 	 * @param index - index need to be checked
 	 * 
@@ -177,7 +166,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Checks if the previous index is equals to zero in the list containing all news articles.
+	 * Checks if the previous index is equals to zero in the list containing all
+	 * news articles.
 	 * 
 	 * @param index - index which presumably have previous index equals to zero
 	 * 
@@ -192,8 +182,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Calculates the last index excluded for bunch (sublist) of news articles 
-	 * from the list containing all news articles.
+	 * Calculates the last index excluded for bunch (sublist) of news articles from
+	 * the list containing all news articles.
 	 * 
 	 * @param fromIndex         - the first index included for bunch (sublist) of
 	 *                          news articles
@@ -229,8 +219,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Calculates the first index included for bunch (sublist) of news articles 
-	 * from the list containing all news articles.
+	 * Calculates the first index included for bunch (sublist) of news articles from
+	 * the list containing all news articles.
 	 * 
 	 * @param toIndex           - the last index excluded for bunch (sublist) of
 	 *                          news articles
@@ -294,7 +284,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Calculates the previous index by step in the list containing all news articles.
+	 * Calculates the previous index by step in the list containing all news
+	 * articles.
 	 * 
 	 * <p>
 	 * The method is safe from IndexOutOfBoundsException because it takes into

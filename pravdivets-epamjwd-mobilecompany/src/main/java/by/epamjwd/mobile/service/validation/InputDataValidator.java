@@ -42,8 +42,7 @@ public class InputDataValidator {
 		String email = user.getEmail();
 		Role role = user.getRole();
 		
-		boolean result = false;
-		result = 
+		return 
 				 id >= 0 &&
 				 firstName != null && isName(firstName) && 
 				 middleName != null && ((isName(middleName) || middleName.isBlank())) &&
@@ -51,7 +50,6 @@ public class InputDataValidator {
 				 passport != null && isPassport(passport) &&
 				 email != null && isEmail(email) &&
 				 role != null;
-		return result;
 	}
 
 	
@@ -69,8 +67,7 @@ public class InputDataValidator {
 
 		Date currentDelayed = new Date((new Date()).getTime() + DELAY_TIME);
 		
-		boolean result = false;
-		result = 
+		return 
 				id >= 0 &&
 				contractDate != null && contractDate.before(currentDelayed) && 
 			    phone != null && !phone.isBlank() && isPhone(phone) &&
@@ -78,7 +75,6 @@ public class InputDataValidator {
 				status != null &&
 				planId > 0 &&
 				userId >= 0;
-		return result;
 	}
 
 	
@@ -99,8 +95,8 @@ public class InputDataValidator {
 		int priceMMS = plan.getPriceMMS();
 		int priceInternet = plan.getPriceInternet();
 		
-		boolean result = false;
-		result = id >= 0 &&
+		return 
+				id >= 0 &&
 				name != null && !name.isBlank() &&
 				description != null && !description.isBlank() &&
 				regularPayment >= 0	&&
@@ -112,8 +108,6 @@ public class InputDataValidator {
 				priceSMS >=0 &&
 				priceMMS >=0 &&
 				priceInternet >=0;
-				
-				return result;
 	}
 
 	
@@ -126,13 +120,11 @@ public class InputDataValidator {
 		String description = service.getDescription();
 		int tariff = service.getTariff();
 
-		boolean result = false;
-		
-		result = id >= 0 &&
+		return 
+				id >= 0 &&
 				name != null && !name.isBlank() &&
 				description != null && !description.isBlank() &&
 				tariff >= 0;
-		return result;
 	}
 
 	
@@ -146,14 +138,12 @@ public class InputDataValidator {
 		String intro = article.getIntro();
 		String text = article.getText();
 
-		boolean result = false;
-		
-		result =  id >= 0 &&
+		return 
+				id >= 0 &&
 				date != null &&
 			   title != null && !title.isBlank() &&
 				intro != null && !intro.isBlank() &&
 				text != null && !text.isBlank();
-		return result;
 	}
 
 

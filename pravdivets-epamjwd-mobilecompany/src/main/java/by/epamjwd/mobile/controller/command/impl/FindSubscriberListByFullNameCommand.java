@@ -40,7 +40,8 @@ public class FindSubscriberListByFullNameCommand implements Command{
 		String lastName = request.getParameter(ParameterName.LAST_NAME);
 		
 		if(firstName == null || firstName.isBlank() || 
-			lastName == null || lastName.isBlank()){
+			lastName == null || lastName.isBlank()  || 
+			middleName==null){
 				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 			}

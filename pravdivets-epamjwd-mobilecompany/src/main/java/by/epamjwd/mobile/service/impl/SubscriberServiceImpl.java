@@ -10,13 +10,10 @@ import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.SubscriberStatus;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.DAOProvider;
-import by.epamjwd.mobile.dao.SubscriberDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
-import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
-import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
@@ -34,15 +31,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public Optional<Subscriber> findSubscriberById(long id) throws ServiceException {
-		SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
-		Optional<Subscriber> subscriber;
-
 		try {
-			subscriber = subscriberDao.findSubscriberById(id);
+			return DAOProvider.getInstance().getSubscriberDAO().findSubscriberById(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return subscriber;
 	}
 
 	/**
@@ -57,12 +50,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public Optional<Subscriber> findSubscriberByPhone(String phone) throws ServiceException {
-		SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
 		Optional<Subscriber> subscriber = Optional.empty();
 
 		if (InputDataValidator.isPhone(phone)) {
 			try {
-				subscriber = subscriberDao.findSubscriberByPhone(phone);
+				subscriber = DAOProvider.getInstance().getSubscriberDAO().
+						findSubscriberByPhone(phone);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -86,15 +79,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public List<Subscriber> findSubscriberListByUserId(long userID) throws ServiceException {
-		SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
-		List<Subscriber> subscriberList;
-
 		try {
-			subscriberList = subscriberDao.findSubscriberListByUserId(userID);
+			return DAOProvider.getInstance().getSubscriberDAO().findSubscriberListByUserId(userID);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
-		return subscriberList;
 	}
 
 	/**
@@ -110,12 +99,11 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public List<Subscriber> findSubscriberListByPassport(String passport) throws ServiceException {
-		SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
 		List<Subscriber> subscriberList = new ArrayList<>();
-
 		if (InputDataValidator.isPassport(passport)) {
 			try {
-				subscriberList = subscriberDao.findSubscriberListByPassport(passport);
+				subscriberList = DAOProvider.getInstance().getSubscriberDAO().
+						findSubscriberListByPassport(passport);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -140,17 +128,18 @@ public class SubscriberServiceImpl implements SubscriberService {
 	@Override
 	public List<Subscriber> findSubscriberListByFullName(String firstName, String middleName, String lastName)
 			throws ServiceException {
-		SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
 		List<Subscriber> subscriberList = new ArrayList<>();
 
-		if (InputDataValidator.isName(lastName) && InputDataValidator.isName(lastName)
+		if (InputDataValidator.isName(firstName) && InputDataValidator.isName(lastName)
 				&& (InputDataValidator.isName(middleName) || middleName.isBlank())) {
 			try {
-				subscriberList = subscriberDao.findSubscriberListByFullName(firstName, middleName, lastName);
+				subscriberList = DAOProvider.getInstance().getSubscriberDAO().
+						findSubscriberListByFullName(firstName, middleName, lastName);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
 		}
+		
 		return subscriberList;
 	}
 
@@ -194,12 +183,12 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public long addNewSubscriberToExistingUser(Subscriber subscriber) throws ServiceException {
-		SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
 		long subscriberID = IDRepository.ERROR_ID;
 
 		if (InputDataValidator.isSubscriberValid(subscriber)) {
 			try {
-				subscriberID = subscriberDao.addNewSubscriberToExistingUser(subscriber);
+				subscriberID = DAOProvider.getInstance().getSubscriberDAO().
+						addNewSubscriberToExistingUser(subscriber);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -219,11 +208,10 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public void updateSubscriber(Subscriber subscriber) throws ServiceException {
-		SubscriberDAO subscriberDao = DAOProvider.getInstance().getSubscriberDAO();
 
 		if (InputDataValidator.isSubscriberValid(subscriber)) {
 			try {
-				subscriberDao.updateSubscriber(subscriber);
+				DAOProvider.getInstance().getSubscriberDAO().updateSubscriber(subscriber);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -246,9 +234,8 @@ public class SubscriberServiceImpl implements SubscriberService {
 	 */
 	@Override
 	public Subscriber buildSubscriber(String phone, long planID, long userID) throws ServiceException {
-		Subscriber subscriber = null;
-		PlanService planService = ServiceProvider.getInstance().getPlanService();
-		Optional<Plan> planOptional = planService.findPlanByID(planID);
+		Subscriber subscriber = new Subscriber();
+		Optional<Plan> planOptional = ServiceProvider.getInstance().getPlanService().findPlanByID(planID);
 		if (planOptional.isPresent()) {
 			Plan plan = planOptional.get();
 			int account = plan.getUpfrontPayment();
@@ -335,8 +322,8 @@ public class SubscriberServiceImpl implements SubscriberService {
 		boolean result = false;
 
 		if (InputDataValidator.isPhone(phone)) {
-			UserService userService = ServiceProvider.getInstance().getUserService();
-			Optional<User> userOptional = userService.findUserByPhone(phone);
+			Optional<User> userOptional = ServiceProvider.getInstance().getUserService().
+					findUserByPhone(phone);
 			if (userOptional.isPresent()) {
 				User user = userOptional.get();
 				result = user.getPassword() == null;

@@ -64,8 +64,8 @@ public class AddSubscriberCommand implements Command {
 			String lastName = request.getParameter(ParameterName.SUBSCRIBER_LAST_NAME);
 			String email = request.getParameter(ParameterName.EMAIL);
 
-			if (firstName == null || firstName.isBlank() || lastName == null || lastName.isBlank() || email == null
-					|| email.isBlank()) {
+			if (firstName == null || firstName.isBlank() || lastName == null || lastName.isBlank() || 
+					middleName == null || email == null || email.isBlank()) {
 				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 				return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 			}

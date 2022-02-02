@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.epamjwd.mobile.bean.Bill;
-import by.epamjwd.mobile.dao.BillDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.service.BillService;
@@ -29,11 +28,10 @@ public class BillServiceImpl implements BillService {
 	 */
 	@Override
 	public List<Bill> getBillListBySubscriberID(long subscriberID) throws ServiceException {
-		BillDAO billDao = DAOProvider.getInstance().getBillDAO();
 		List<Bill> billsList = new ArrayList<>();
-
 		try {
-			billsList = billDao.getBillListBySubscriberID(subscriberID);
+			billsList = DAOProvider.getInstance().getBillDAO().
+					getBillListBySubscriberID(subscriberID);
 			if (billsList.isEmpty()) {
 				billsList.add(new Bill());
 			}

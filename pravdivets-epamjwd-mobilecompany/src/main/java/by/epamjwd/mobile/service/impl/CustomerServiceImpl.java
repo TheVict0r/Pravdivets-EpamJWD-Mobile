@@ -2,7 +2,6 @@ package by.epamjwd.mobile.service.impl;
 
 import by.epamjwd.mobile.bean.Subscriber;
 import by.epamjwd.mobile.bean.User;
-import by.epamjwd.mobile.dao.CustomerDAO;
 import by.epamjwd.mobile.dao.DAOProvider;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
@@ -38,12 +37,12 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	@Override
 	public long addNewCustomer(User user, Subscriber subscriber) throws ServiceException {
-		CustomerDAO customerDao = DAOProvider.getInstance().getCustomerDAO();
 		long subscriberID = IDRepository.ERROR_ID;
 
 		if (InputDataValidator.isUserValid(user) && InputDataValidator.isSubscriberValid(subscriber)) {
 			try {
-				subscriberID = customerDao.addNewCustomer(user, subscriber);
+				subscriberID = DAOProvider.getInstance().getCustomerDAO().
+						addNewCustomer(user, subscriber);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}

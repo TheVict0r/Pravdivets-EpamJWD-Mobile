@@ -25,12 +25,10 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class AddConsultantCommand implements Command{
 	private final static Logger LOGGER = LogManager.getLogger(AddSubscriberCommand.class);
-	private final static long ERROR_ID = -1L;
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		RouteHelper result = RouteHelper.ERROR;
-		long consultantId = ERROR_ID;
 		HttpSession session = request.getSession();
 		
 		String firstName  = request.getParameter(ParameterName.FIRST_NAME);
@@ -88,7 +86,7 @@ public class AddConsultantCommand implements Command{
 		clearAttributes(session);
 		
 		try {
-			consultantId = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
+			long consultantId = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
 					request.getParameter(ParameterName.PASSWORD1), passport, email));
 			Optional<User> consultantOptional = userService.findUserById(consultantId);
 			result = ConsultantCommandHelper.handleConsultantOptional(consultantOptional, session, 
@@ -98,7 +96,6 @@ public class AddConsultantCommand implements Command{
 			return RouteHelper.ERROR_500;
 		}
 
-		
 		return result;
 	}
 

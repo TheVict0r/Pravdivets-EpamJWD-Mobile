@@ -5,7 +5,6 @@ import java.util.Optional;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.bean.User;
 import by.epamjwd.mobile.dao.DAOProvider;
-import by.epamjwd.mobile.dao.UserDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.service.UserService;
@@ -30,11 +29,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserById(long id) throws ServiceException {
-		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
-		
 		try {
-			user = userDao.findUserById(id);
+			user = DAOProvider.getInstance().getUserDAO().findUserById(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -77,12 +74,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserByEmail(String email) throws ServiceException {
-		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
 				
 		if(InputDataValidator.isEmail(email)) {
 		try {
-			user = userDao.findUserByEmail(email);
+			user = DAOProvider.getInstance().getUserDAO().findUserByEmail(email);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -103,12 +99,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserByPassport(String passport) throws ServiceException {
-		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
 		
 		if(InputDataValidator.isPassport(passport)){
 		try {
-			user = userDao.findUserByPassport(passport);
+			user = DAOProvider.getInstance().getUserDAO().findUserByPassport(passport);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -129,12 +124,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public Optional<User> findUserByPhone(String phone) throws ServiceException {
-		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		Optional<User> user = Optional.empty();
 		
 		if (InputDataValidator.isPhone(phone)) {
 			try {
-				user = userDao.findUserByPhone(phone);
+				user = DAOProvider.getInstance().getUserDAO().findUserByPhone(phone);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -155,12 +149,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public long addUser(User user) throws ServiceException {
-		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		long userId = IDRepository.EMPTY_ID;
 		
 		if (InputDataValidator.isUserValid(user)) {
 			try {
-				userId = userDao.addUser(user);
+				userId = DAOProvider.getInstance().getUserDAO().addUser(user);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -178,11 +171,9 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void updateUser(User user) throws ServiceException {
-		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
-
 		if (InputDataValidator.isUserValid(user)) {
 			try {
-				userDao.updateUser(user);
+				DAOProvider.getInstance().getUserDAO().updateUser(user);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
@@ -244,11 +235,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public int sendCodeToUserByMail(String phone) throws ServiceException {
-		UserDAO userDao = DAOProvider.getInstance().getUserDAO();
 		int result = EMPTY_CODE;
 		if(InputDataValidator.isPhone(phone)) {
 			try {
-				Optional<User> userOptional = userDao.findUserByPhone(phone);
+				Optional<User> userOptional = DAOProvider.getInstance().getUserDAO().
+						findUserByPhone(phone);
 				if(userOptional.isPresent()) {
 					User user = userOptional.get();
 					result = MailCodeManager.getInstance().sendGenereatedCodeByMail(user.getEmail());
@@ -274,7 +265,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean isPasswordCorrect(User user, String password) {
 		boolean result = false;
-		if (password.isBlank() || password == null || user == null) {
+		if (password == null || password.isBlank() ||  user == null) {
 			return false;
 		}
 

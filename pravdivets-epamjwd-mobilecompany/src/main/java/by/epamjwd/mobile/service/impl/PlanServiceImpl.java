@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 
 import by.epamjwd.mobile.bean.Plan;
 import by.epamjwd.mobile.dao.DAOProvider;
-import by.epamjwd.mobile.dao.PlanDAO;
 import by.epamjwd.mobile.dao.exception.DaoException;
 import by.epamjwd.mobile.repository.IDRepository;
 import by.epamjwd.mobile.service.PlanService;
@@ -31,10 +30,8 @@ public class PlanServiceImpl implements PlanService {
 	 */
 	@Override
 	public List<Plan> findAllPlans() throws ServiceException {
-		PlanDAO planDao = DAOProvider.getInstance().getPlanDAO();
-
 		try {
-			return planDao.findAllPlans();
+			return DAOProvider.getInstance().getPlanDAO().findAllPlans();
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -52,10 +49,8 @@ public class PlanServiceImpl implements PlanService {
 	 */
 	@Override
 	public Optional<Plan> findPlanByID(long id) throws ServiceException {
-		PlanDAO planDao = DAOProvider.getInstance().getPlanDAO();
-
 		try {
-			return planDao.findPlanByID(id);
+			return DAOProvider.getInstance().getPlanDAO().findPlanByID(id);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -91,13 +86,12 @@ public class PlanServiceImpl implements PlanService {
 	@Override
 	public Optional<Plan> suggestPlan(int withinNetwork, int otherNetworks, int abroad, int videocall, int sms, int mms,
 			int internet) throws ServiceException {
-		PlanDAO planDao = DAOProvider.getInstance().getPlanDAO();
 		Optional<Plan> planOptional = Optional.empty();
 		long planId = IDRepository.EMPTY_ID;
 		long minExpences = Long.MAX_VALUE;
 
 		try {
-			List<Plan> allPlans = planDao.findAllPlans();
+			List<Plan> allPlans = DAOProvider.getInstance().getPlanDAO().findAllPlans();
 			for (Plan planTmp : allPlans) {
 				long planExpences = calculateMonthlyExpences(planTmp, withinNetwork, otherNetworks, abroad, videocall,
 						sms, mms, internet);
@@ -112,7 +106,7 @@ public class PlanServiceImpl implements PlanService {
 		}
 
 		try {
-			planOptional = planDao.findPlanByID(planId);
+			planOptional = DAOProvider.getInstance().getPlanDAO().findPlanByID(planId);
 		} catch (DaoException e) {
 			LOGGER.error("Error while getting plan by ID  - " + planId, e);
 			throw new ServiceException(e);
@@ -168,11 +162,10 @@ public class PlanServiceImpl implements PlanService {
 	 */
 	@Override
 	public boolean isPlanExist(String name) throws ServiceException {
-		PlanDAO planDao = DAOProvider.getInstance().getPlanDAO();
 		Optional<Plan> planOptional = Optional.empty();
 
 		try {
-			planOptional = planDao.findPlanByName(name);
+			planOptional = DAOProvider.getInstance().getPlanDAO().findPlanByName(name);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}
@@ -226,12 +219,11 @@ public class PlanServiceImpl implements PlanService {
 	 */
 	@Override
 	public long addPlan(Plan plan) throws ServiceException {
-		PlanDAO planDao = DAOProvider.getInstance().getPlanDAO();
 		long planId = IDRepository.ERROR_ID;
 
 		if (InputDataValidator.isPlanValid(plan)) {
 			try {
-				planId = planDao.addPlan(plan);
+				planId = DAOProvider.getInstance().getPlanDAO().addPlan(plan);
 			} catch (DaoException e) {
 				throw new ServiceException(e);
 			}
