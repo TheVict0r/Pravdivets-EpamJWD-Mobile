@@ -34,12 +34,11 @@ public class AddServiceCommand implements Command{
 		int tariff         = NumericParser.parseUnsignedIntValue(request.getParameter(ParameterName.TARIFF));
 		long newServiceID = EMPTY_ID;
 
-		if(       name == null || name.isBlank()        || 
-		   description == null || description.isBlank() ||
-				tariff == NumericParser.INVALID_VALUE  ){
+		if (name == null || name.isBlank() || description == null || description.isBlank()
+				|| tariff == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-					return new RouteHelper(PagePath.ADD_SERVICE_REDIRECT, RouteMethod.REDIRECT);
-				}
+			return new RouteHelper(PagePath.ADD_SERVICE_REDIRECT, RouteMethod.REDIRECT);
+		}
 
 		try {
 			if (serviceService.isServiceExists(name)) {

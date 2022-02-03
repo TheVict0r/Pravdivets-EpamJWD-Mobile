@@ -21,7 +21,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class AddArticleCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(AddArticleCommand.class);
-	private final static long ERROR_ID = -1L;
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -31,9 +30,8 @@ public class AddArticleCommand implements Command {
 		String text  = request.getParameter(ParameterName.TEXT);
 		HttpSession session = request.getSession();
 		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
-		long articleID = ERROR_ID;
 		
-		if(title == null || title.isBlank() || intro == null 
+		if (title == null || title.isBlank() || intro == null 
 				|| intro.isBlank() || text == null || text.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.ADD_ARTICLE_REDIRECT, RouteMethod.REDIRECT);
@@ -53,7 +51,7 @@ public class AddArticleCommand implements Command {
 		}
 
 		try {
-			articleID = articleService.addArticle(articleService.buildArticle(title, intro, text));
+			long articleID = articleService.addArticle(articleService.buildArticle(title, intro, text));
 			result = ArticleCommandHelper.handleArticleByID(session, articleID, PagePath.ARTICLE_ADMIN_REDIRECT, PagePath.ARTICLE_ADMIN, RouteMethod.REDIRECT, LOGGER);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while adding a new news article, title - " + title, e);

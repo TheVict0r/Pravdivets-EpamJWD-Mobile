@@ -32,17 +32,16 @@ public class AddSubscriberCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		ServiceProvider serviceProvider = ServiceProvider.getInstance();
-		UserService userService = serviceProvider.getUserService();
-		SubscriberService subscriberService = serviceProvider.getSubscriberService();
-		CustomerService customerService = serviceProvider.getCustomerService();
+		UserService userService = ServiceProvider.getInstance().getUserService();
+		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
+		CustomerService customerService = ServiceProvider.getInstance().getCustomerService();
 
-		long subscriberId = ERROR_ID;
 		RouteHelper result = RouteHelper.ERROR;
-
+		
+		long subscriberID = ERROR_ID;
 		String passport = (String.valueOf(session.getAttribute(AttributeName.PASSPORT)));
 		String subscriberUserFlag = String.valueOf(session.getAttribute(AttributeName.SUBSCRIBER_USER_FLAG));
-		long planId = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.PLAN_ID));
+		long planID = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.PLAN_ID));
 		String phone;
 
 		try {
@@ -52,7 +51,7 @@ public class AddSubscriberCommand implements Command {
 			return RouteHelper.ERROR_500;
 		}
 		
-		if (passport == null || passport.isBlank() || planId == NumericParser.INVALID_VALUE) {
+		if (passport == null || passport.isBlank() || planID == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 		}
@@ -90,9 +89,9 @@ public class AddSubscriberCommand implements Command {
 
 			try {
 				User user = userService.buildSubscriberUser(firstName, middleName, lastName, passport, email);
-				Subscriber subscriber = subscriberService.buildSubscriber(phone, planId, EMPTY_ID);
-				if (subscriber != null) { // it can be null in the case if there is no plan with planId
-					subscriberId = customerService.addNewCustomer(user, subscriber);
+				Subscriber subscriber = subscriberService.buildSubscriber(phone, planID, EMPTY_ID);
+				if (subscriber != null) { // it can be == null if there is no plan with planID
+					subscriberID = customerService.addNewCustomer(user, subscriber);
 				} else {
 					result = RouteHelper.ERROR_404;
 				}
@@ -112,22 +111,21 @@ public class AddSubscriberCommand implements Command {
 			session.removeAttribute(AttributeName.SUBSCRIBER_USER);
 			removeUnusedAttributes(session);
 
-			long userId = currentUser.getId();
+			long userID = currentUser.getId();
 			try {
-				Subscriber subscriber = subscriberService.buildSubscriber(phone, planId, userId);
+				Subscriber subscriber = subscriberService.buildSubscriber(phone, planID, userID);
 				if (subscriber != null) { // it could be null in the case if there is no plan with planId
-					subscriberId = subscriberService.addNewSubscriberToExistingUser(subscriber);
+					subscriberID = subscriberService.addNewSubscriberToExistingUser(subscriber);
 				} else {
 					result = RouteHelper.ERROR_404;
 				}
 			} catch (ServiceException e) {
-				LOGGER.error("Error when adding a new subscriber to existing user with passport number - " + passport,
-						e);
+				LOGGER.error("Error when adding a new subscriber to existing user with passport number - " + passport, e);
 				result = RouteHelper.ERROR_500;
 			}
 		}
 
-		session.setAttribute(AttributeName.SUBSCRIBER_ID, subscriberId);
+		session.setAttribute(AttributeName.SUBSCRIBER_ID, subscriberID);
 		result = new RouteHelper(PagePath.NEW_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 
 		return result;

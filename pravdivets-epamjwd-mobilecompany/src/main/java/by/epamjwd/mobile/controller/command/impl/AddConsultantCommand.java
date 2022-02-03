@@ -84,9 +84,9 @@ public class AddConsultantCommand implements Command{
 		clearAttributes(session);
 		
 		try {
-			long consultantId = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
+			long consultantID = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
 					password1, passport, email));
-			Optional<User> consultantOptional = userService.findUserById(consultantId);
+			Optional<User> consultantOptional = userService.findUserById(consultantID);
 			result = ConsultantCommandHelper.handleConsultantOptional(consultantOptional, session, 
 					AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 		} catch (ServiceException e) {
