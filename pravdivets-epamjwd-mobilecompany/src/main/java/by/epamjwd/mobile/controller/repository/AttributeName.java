@@ -37,7 +37,7 @@ public class AttributeName {
 	public static final String MMS = "mms";
 	public static final String MODE = "mode";
 	public static final String NAME = "name";
-	public static final String NEWS = "news";
+	public static final String ALL_ARTICLES = "all_articles";
 	public static final String NEW_PHONE = "new_phone";
 	public static final String NEW_PHONE_FORMAT = "new_phone_format";
 	public static final String NO_NEXT_NEWS = "no_next_news";

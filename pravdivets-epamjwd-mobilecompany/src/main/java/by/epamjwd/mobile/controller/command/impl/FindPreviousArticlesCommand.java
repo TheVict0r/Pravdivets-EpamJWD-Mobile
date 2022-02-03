@@ -26,7 +26,7 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class FindPreviousArticlesCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(FindAllNewsCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(FindAllArticlesCommand.class);
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -44,7 +44,7 @@ public class FindPreviousArticlesCommand implements Command {
 			int toIndex = articleService.calculateToIndex(fromIndex, IndexRepository.STEP, ListDirection.TO_END, previousDirection);
 
 			List<Article> newsBatch = articleService.buildArticlesBatch(fromIndex, toIndex);
-				session.setAttribute(AttributeName.NEWS, newsBatch);
+				session.setAttribute(AttributeName.ALL_ARTICLES, newsBatch);
 				session.setAttribute(AttributeName.CURRENT_IDX, toIndex);
 				session.setAttribute(AttributeName.DIRECTION, ListDirection.TO_END);
 				if (articleService.isLastIndexExcluded(toIndex)) {

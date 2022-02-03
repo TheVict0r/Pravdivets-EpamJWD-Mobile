@@ -40,8 +40,8 @@
 						style="font-size: 15px;"><fmt:message key="header.services" /></a></li>
 					<li class="nav-link text-primary fw-bold">|</li>
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/controller?command=find_all_news"
-						style="font-size: 15px;"><fmt:message key="header.news" /></a></li>
+						href="${pageContext.request.contextPath}/controller?command=find_all_articles"
+						style="font-size: 15px;"><fmt:message key="header.articles" /></a></li>
 				</ul>
 				<div class="navbar actions text-end">
 					<ul class="navbar-nav me-auto">

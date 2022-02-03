@@ -30,7 +30,7 @@ public class CommandName {
 	public static final String EDIT_EMAIL_PREPARATION = "edit_email_preparation";
 	public static final String EDIT_PERSONAL_DATA = "edit_personal_data";
 	public static final String EDIT_PERSONAL_DATA_PREPARATION = "edit_personal_data_preparation";
-	public static final String FIND_ALL_NEWS = "find_all_news";
+	public static final String FIND_ALL_ARTICLES = "find_all_articles";
 	public static final String FIND_ALL_PLANS = "find_all_plans";
 	public static final String FIND_ALL_SERVICES = "find_all_services";
 	public static final String FIND_ARTICLE_BY_ID_ADMIN = "find_article_by_id_admin";

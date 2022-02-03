@@ -27,23 +27,27 @@ public class NewPasswordCommand implements Command{
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		UserService userService = ServiceProvider.getInstance().getUserService();
-		String phone = (String)session.getAttribute(AttributeName.PHONE);
 
+		String phone = (String)session.getAttribute(AttributeName.PHONE);
+		String password1 = request.getParameter(ParameterName.PASSWORD1);
+		String password2 = request.getParameter(ParameterName.PASSWORD2);
+		
+		
 		if(phone == null || phone.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 			}
 		
-		if( ! request.getParameter(ParameterName.PASSWORD1).equals(request.getParameter(ParameterName.PASSWORD2))) {
+		if( ! password1.equals(password2)) {
 			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);
 		}
 		
-		if( ! InputDataValidator.isPassword(request.getParameter(ParameterName.PASSWORD1))) {
+		if( ! InputDataValidator.isPassword(password1)) {
 			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
 		}
 
 		try {
-			userService.updatePassword(phone, request.getParameter(ParameterName.PASSWORD1));
+			userService.updatePassword(phone, password1);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while updating user's password. Users phone - " + phone + e);
 			return RouteHelper.ERROR_500;

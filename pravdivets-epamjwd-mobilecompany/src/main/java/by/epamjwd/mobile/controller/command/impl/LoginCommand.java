@@ -51,17 +51,16 @@ public class LoginCommand implements Command {
 		Role role = null;
 
 		String login = request.getParameter(ParameterName.LOGIN);
+		String password = request.getParameter(ParameterName.PASSWORD);
 
-		if (login == null || login.isBlank() || request.getParameter(ParameterName.PASSWORD) == null
-				|| request.getParameter(ParameterName.PASSWORD).isBlank()) {
+		if (login == null || login.isBlank() || password == null || password.isBlank()) {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
 
 		try {
 			Optional<User> userOptional = userService.findUserByLogin(login);
-			if (userOptional.isPresent() && userService.isPasswordCorrect(userOptional.get(),
-					request.getParameter(ParameterName.PASSWORD))) {
+			if (userOptional.isPresent() && userService.isPasswordCorrect(userOptional.get(), password)) {
 				user = userOptional.get();
 				session.setAttribute(AttributeName.USER_ID, user.getId());
 				session.setAttribute(AttributeName.FIRST_NAME_HEADER, user.getFirstName());
@@ -70,7 +69,7 @@ public class LoginCommand implements Command {
 			} else {
 				session.setAttribute(AttributeName.ERROR, AttributeValue.ERROR_LOGIN);
 				session.setAttribute(AttributeName.LOGIN, login);
-				session.setAttribute(AttributeName.PASSWORD, request.getParameter(ParameterName.PASSWORD));
+				session.setAttribute(AttributeName.PASSWORD, password);
 				return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 			}
 		} catch (ServiceException e) {

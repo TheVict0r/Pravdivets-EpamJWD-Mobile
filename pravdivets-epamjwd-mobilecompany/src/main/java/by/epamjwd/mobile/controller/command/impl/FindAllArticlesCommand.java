@@ -22,9 +22,9 @@ import by.epamjwd.mobile.service.ArticleService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class FindAllNewsCommand implements Command {
+public class FindAllArticlesCommand implements Command {
 
-	private final static Logger LOGGER = LogManager.getLogger(FindAllNewsCommand.class);
+	private final static Logger LOGGER = LogManager.getLogger(FindAllArticlesCommand.class);
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
@@ -39,8 +39,8 @@ public class FindAllNewsCommand implements Command {
 		try {
 			int toIndex = articleService.calculateToIndex(IndexRepository.ZERO_INDEX, IndexRepository.STEP, ListDirection.TO_END, ListDirection.TO_END);
 	
-		List<Article> newsBatch = articleService.buildArticlesBatch(IndexRepository.ZERO_INDEX, toIndex );
-		session.setAttribute(AttributeName.NEWS, newsBatch);
+		List<Article> articlesBatch = articleService.buildArticlesBatch(IndexRepository.ZERO_INDEX, toIndex );
+		session.setAttribute(AttributeName.ALL_ARTICLES, articlesBatch);
 		session.setAttribute(AttributeName.CURRENT_IDX, toIndex);
 		result = new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);
 	} catch (ServiceException e) {

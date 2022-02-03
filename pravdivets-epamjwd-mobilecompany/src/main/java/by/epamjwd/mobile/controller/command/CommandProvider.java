@@ -28,7 +28,7 @@ import by.epamjwd.mobile.controller.command.impl.EditEmailCommand;
 import by.epamjwd.mobile.controller.command.impl.EditEmailPreparationCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataCommand;
 import by.epamjwd.mobile.controller.command.impl.EditPersonalDataPreparationCommand;
-import by.epamjwd.mobile.controller.command.impl.FindAllNewsCommand;
+import by.epamjwd.mobile.controller.command.impl.FindAllArticlesCommand;
 import by.epamjwd.mobile.controller.command.impl.FindAllPlansCommand;
 import by.epamjwd.mobile.controller.command.impl.FindAllServicesCommand;
 import by.epamjwd.mobile.controller.command.impl.FindArticleByIdAdminCommand;
@@ -122,7 +122,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.EDIT_EMAIL_PREPARATION, new EditEmailPreparationCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA, new EditPersonalDataCommand());
 		allCommands.put(CommandName.EDIT_PERSONAL_DATA_PREPARATION, new EditPersonalDataPreparationCommand());
-		allCommands.put(CommandName.FIND_ALL_NEWS, new FindAllNewsCommand());
+		allCommands.put(CommandName.FIND_ALL_ARTICLES, new FindAllArticlesCommand());
 		allCommands.put(CommandName.FIND_ALL_PLANS, new FindAllPlansCommand());
 		allCommands.put(CommandName.FIND_ALL_SERVICES, new FindAllServicesCommand());
 		allCommands.put(CommandName.FIND_ARTICLE_BY_ID_ADMIN, new FindArticleByIdAdminCommand());

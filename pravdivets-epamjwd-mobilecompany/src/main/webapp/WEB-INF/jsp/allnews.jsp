@@ -26,7 +26,7 @@
 	</div>
 	<div
 		class="tab-pane tab-content col-xs-11 col-sm-10 col-md-9 col-lg-8 col-xl-7 col-xxl-6 mx-auto">
-		<c:forEach var="article" items="${sessionScope.news}">
+		<c:forEach var="article" items="${sessionScope.all_articles}">
 			<h5>${article.title}</h5>
 			<em> ${article.date}</em>
 			<br />

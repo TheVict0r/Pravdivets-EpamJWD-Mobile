@@ -34,27 +34,31 @@ public class ChangePasswordCommand implements Command {
 		HttpSession session = request.getSession();
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		User user = (User)session.getAttribute(AttributeName.CONSULTANT);
+		
+		String oldPassword = request.getParameter(ParameterName.OLD_PASSWORD);
+		String newPassword1 = request.getParameter(ParameterName.NEW_PASSWORD1);
+		String newPassword2 = request.getParameter(ParameterName.NEW_PASSWORD2);
+		
 
-		if(request.getParameter(ParameterName.OLD_PASSWORD)  == null || 
-		   request.getParameter(ParameterName.NEW_PASSWORD1) == null ||
-		   request.getParameter(ParameterName.NEW_PASSWORD2) == null){
+		if(oldPassword  == null || newPassword1 == null ||	newPassword2 == null){
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CHANGE_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 		}
 		
-		if( ! userService.isPasswordCorrect(user, request.getParameter(ParameterName.OLD_PASSWORD))) {
+		if( ! userService.isPasswordCorrect(user, oldPassword)) {
 			return provideErrorMessage(session, AttributeValue.WRONG_PASSWORD);
 		}
 		
-		if( ! (request.getParameter(ParameterName.NEW_PASSWORD1)).equals(request.getParameter(ParameterName.NEW_PASSWORD2))){
-			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);		}
+		if( ! newPassword1.equals(newPassword2)){
+			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);		
+			}
 
-		if(!InputDataValidator.isPassword(request.getParameter(ParameterName.NEW_PASSWORD1))) {
+		if( ! InputDataValidator.isPassword(newPassword1)) {
 			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
 		}
 
 		try {
-			userService.updatePassword(user, request.getParameter(ParameterName.NEW_PASSWORD1));
+			userService.updatePassword(user, newPassword1);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while updating password for user - " + user.getId() + e);
 			return RouteHelper.ERROR_500;

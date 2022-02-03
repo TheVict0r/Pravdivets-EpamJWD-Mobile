@@ -40,7 +40,7 @@ public class GoToMainPageCommand implements Command{
 		
 		try {
 			List<Article> newsList = newsService.findAllArticles();
-			request.setAttribute(AttributeName.NEWS, newsList);
+			request.setAttribute(AttributeName.ALL_ARTICLES, newsList);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain news list. ", e);
 			return RouteHelper.ERROR_500;

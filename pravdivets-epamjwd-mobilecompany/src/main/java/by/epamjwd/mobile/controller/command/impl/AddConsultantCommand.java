@@ -36,58 +36,56 @@ public class AddConsultantCommand implements Command{
 		String lastName   = request.getParameter(ParameterName.LAST_NAME);
 		String passport   = request.getParameter(ParameterName.PASSPORT);
 		String email      = request.getParameter(ParameterName.EMAIL);
+		String password1  = request.getParameter(ParameterName.PASSWORD1);
+		String password2  = request.getParameter(ParameterName.PASSWORD2);
 		
 		if( firstName == null || firstName.isBlank()  || 
 			 lastName == null || lastName.isBlank()   ||
 			 passport == null || passport.isBlank()   ||
-			    email == null || email.isBlank() ) {
+			    email == null || email.isBlank()      ||
+			password1 == null || password1.isBlank()  ||
+			password2 == null || password2.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.ADD_CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
 		}
 		
 		UserService userService = ServiceProvider.getInstance().getUserService();
-		
+
 		try {
-			if(userService.isEmailBooked(email)) {
-				return provideErrorMessage(session, AttributeValue.BOOKED_EMAIL, 
-						firstName, middleName, lastName, passport, 
-						request.getParameter(ParameterName.PASSWORD1), 
-						request.getParameter(ParameterName.PASSWORD2), email);
+			if (userService.isEmailBooked(email)) {
+				return provideErrorMessage(session, AttributeValue.BOOKED_EMAIL, firstName, middleName, lastName,
+						passport, password1, password2, email);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error while verifying is email booked " + email, e);
 			return RouteHelper.ERROR_500;
 		}
-		
+
 		try {
-			if(userService.isPassportBooked(passport)) {
-				return provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT, 
-						firstName, middleName, lastName, passport, 
-						request.getParameter(ParameterName.PASSWORD1), 
-						request.getParameter(ParameterName.PASSWORD2), email);
+			if (userService.isPassportBooked(passport)) {
+				return provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT, firstName, middleName, lastName,
+						passport, password1, password2, email);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error while verifying is passport booked " + passport, e);
 			return RouteHelper.ERROR_500;
 		}
-		
-		if(! request.getParameter(ParameterName.PASSWORD1).equals(request.getParameter(ParameterName.PASSWORD2))) {
-			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS, firstName, middleName, lastName, passport, 
-					request.getParameter(ParameterName.PASSWORD1), 
-					request.getParameter(ParameterName.PASSWORD2), email);
+
+		if (!password1.equals(password2)) {
+			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS, firstName, middleName, lastName,
+					passport, password1, password2, email);
 		}
-		
-		if(!InputDataValidator.isPassword(request.getParameter(ParameterName.PASSWORD1))) {
-			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD, firstName, middleName, lastName, passport, 
-					request.getParameter(ParameterName.PASSWORD1), 
-					request.getParameter(ParameterName.PASSWORD2), email);
+
+		if (!InputDataValidator.isPassword(password1)) {
+			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD, firstName, middleName, lastName,
+					passport, password1, password2, email);
 		}
 
 		clearAttributes(session);
 		
 		try {
 			long consultantId = userService.addUser(userService.buildConsultantUser(firstName, middleName, lastName, 
-					request.getParameter(ParameterName.PASSWORD1), passport, email));
+					password1, passport, email));
 			Optional<User> consultantOptional = userService.findUserById(consultantId);
 			result = ConsultantCommandHelper.handleConsultantOptional(consultantOptional, session, 
 					AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);

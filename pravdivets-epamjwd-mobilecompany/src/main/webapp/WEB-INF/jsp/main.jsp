@@ -55,8 +55,8 @@
 			</c:forEach>
 		</div>
 		<div class="row">
-		<div class="row mb-2 display-4 justify-content-center mx-auto "><fmt:message key="main.news"/></div>
-			<c:forEach var="article" items="${requestScope.news}" begin="0"
+		<div class="row mb-2 display-4 justify-content-center mx-auto "><fmt:message key="main.articles"/></div>
+			<c:forEach var="article" items="${requestScope.all_articles}" begin="0"
 				end="2">
 				<div class="col-sm-4 fw-light" >
 					<span class="fs-5"><b>${article.title}</b></span>
@@ -70,7 +70,7 @@
 			</c:forEach>
 		</div>	
 		<form class="d-grid col-4" method="GET">
-		<input type="hidden" name="command" value ="find_all_news">
+		<input type="hidden" name="command" value ="find_all_articles">
 			 <input type="submit"
 				value="<fmt:message key="main.all-news"/>" class="btn btn-outline-primary " />
 		</form>
