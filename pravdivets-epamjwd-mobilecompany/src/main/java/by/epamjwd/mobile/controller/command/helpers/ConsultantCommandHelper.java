@@ -48,19 +48,5 @@ public class ConsultantCommandHelper {
 		return result;
 	}
 
-	/**
-	 * Cleans session from Consultant's attributes no longer needed. 
-	 * 
-	 * @param session - http-session
-	 */
-	public static void clearSessionFromConsultantAttributes(HttpSession session) {
-		session.removeAttribute(AttributeName.CONSULTANT);
-		session.removeAttribute(AttributeName.CONSULTANT_ID);
-		session.removeAttribute(AttributeName.ERROR);
-		session.removeAttribute(AttributeName.CHANGE_PASSWORD);
-		session.removeAttribute(AttributeName.MODE);
-		session.removeAttribute(AttributeName.EMAIL);
-		session.removeAttribute(AttributeName.PASSPORT);
-	}
 
 }

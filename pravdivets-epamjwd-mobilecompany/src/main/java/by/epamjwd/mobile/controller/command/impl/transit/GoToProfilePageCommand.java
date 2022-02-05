@@ -10,8 +10,8 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.bean.Role;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.SessionCleaner;
 import by.epamjwd.mobile.controller.command.UserRolePathProvider;
-import by.epamjwd.mobile.controller.command.helpers.SubscriberCommandHelper;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 
 public class GoToProfilePageCommand implements Command{
@@ -20,12 +20,11 @@ public class GoToProfilePageCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		SubscriberCommandHelper.clearSessionFromSubscriberAttributes(session);
-		
+		SessionCleaner.getInstance().removeUnusedAttributes(request);
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		
 		if(role == null) {
-			LOGGER.error("Error while getting  Role data ");
+			LOGGER.error("Error while getting Role data ");
 			return RouteHelper.ERROR_500;
 		}
 		

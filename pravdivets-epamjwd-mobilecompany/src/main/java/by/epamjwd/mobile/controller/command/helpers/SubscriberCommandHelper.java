@@ -120,25 +120,4 @@ public class SubscriberCommandHelper {
 			return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 		}
 
-	
-	/**
-	 * Cleans session from Subscriber's attributes no longer needed. 
-	 * 
-	 * @param session - http-session
-	 */
-	public static void clearSessionFromSubscriberAttributes(HttpSession session) {
-		session.removeAttribute(AttributeName.SUBSCRIBER);
-		session.removeAttribute(AttributeName.SUBSCRIBER_USER_ID);
-		session.removeAttribute(AttributeName.SUBSCRIBER_USER);
-		session.removeAttribute(AttributeName.PHONE);
-		session.removeAttribute(AttributeName.PHONE_FORMAT);
-		session.removeAttribute(AttributeName.PLAN);
-		session.removeAttribute(AttributeName.ALL_PLANS);
-		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
-		session.removeAttribute(AttributeName.NEW_PHONE_FORMAT);
-		session.removeAttribute(AttributeName.NEW_PHONE);
-		session.removeAttribute(AttributeName.ALL_SERVICES);
-		session.removeAttribute(AttributeName.BILL_LIST);
-	}
-	
 }
