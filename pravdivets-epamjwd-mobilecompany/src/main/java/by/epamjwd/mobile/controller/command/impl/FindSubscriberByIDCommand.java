@@ -21,7 +21,7 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class FindSubscriberByIDCommand implements Command{
+public class FindSubscriberByIDCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FindSubscriberByIDCommand.class);
 
@@ -30,19 +30,19 @@ public class FindSubscriberByIDCommand implements Command{
 		ServiceProvider provider = ServiceProvider.getInstance();
 		SubscriberService subscriberService = provider.getSubscriberService();
 		HttpSession session = request.getSession();
-		 
+
 		long id;
 		id = NumericParser.parseUnsignedLongValue(session.getAttribute(AttributeName.SUBSCRIBER_ID));
-			
-			if (id == NumericParser.INVALID_VALUE) {
-				id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
-			}
 
-			if (id == NumericParser.INVALID_VALUE) {
-				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-				return RouteHelper.ERROR_404;
-			}
-			
+		if (id == NumericParser.INVALID_VALUE) {
+			id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
+		}
+
+		if (id == NumericParser.INVALID_VALUE) {
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			return RouteHelper.ERROR_404;
+		}
+
 		RouteHelper result = RouteHelper.ERROR;
 		try {
 			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberById(id);
@@ -56,7 +56,7 @@ public class FindSubscriberByIDCommand implements Command{
 			LOGGER.error("Error while getting subscriber data for ID - " + id, e);
 			result = RouteHelper.ERROR_500;
 		}
-		
+
 		return result;
 	}
 

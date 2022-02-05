@@ -26,11 +26,12 @@ public class FindArticleByIdGuestCommand implements Command {
 		HttpSession session = request.getSession();
 
 		long id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
-		if(id == NumericParser.INVALID_VALUE) {
+		if (id == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
-		return ArticleCommandHelper.handleArticleByID(session, id, PagePath.ARTICLE,  PagePath.ERROR_404, RouteMethod.FORWARD, LOGGER);
+		return ArticleCommandHelper.handleArticleByID(session, id, PagePath.ARTICLE, PagePath.ERROR_404,
+				RouteMethod.FORWARD, LOGGER);
 	}
 
 }

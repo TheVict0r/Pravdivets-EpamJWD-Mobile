@@ -36,7 +36,7 @@ public class EditEmailCommand implements Command {
 		}
 
 		try {
-			if ((!newEmail.equals(user.getEmail())) && (userService.isEmailBooked(newEmail))) {
+			if (( ! newEmail.equals(user.getEmail())) && (userService.isEmailBooked(newEmail))) {
 				return UserCommandHelper.provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);
 			}
 		} catch (ServiceException e) {

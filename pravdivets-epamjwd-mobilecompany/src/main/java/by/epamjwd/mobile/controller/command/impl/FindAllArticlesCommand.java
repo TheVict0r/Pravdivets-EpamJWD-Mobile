@@ -25,11 +25,10 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public class FindAllArticlesCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FindAllArticlesCommand.class);
-	
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
-		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		session.removeAttribute(AttributeName.DIRECTION);
 		session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
@@ -37,17 +36,17 @@ public class FindAllArticlesCommand implements Command {
 		session.setAttribute(AttributeName.DIRECTION, ListDirection.TO_END);
 
 		try {
-			int toIndex = articleService.calculateToIndex(IndexRepository.ZERO_INDEX, IndexRepository.STEP, ListDirection.TO_END, ListDirection.TO_END);
-	
-		List<Article> articlesBatch = articleService.buildArticlesBatch(IndexRepository.ZERO_INDEX, toIndex );
-		session.setAttribute(AttributeName.ALL_ARTICLES, articlesBatch);
-		session.setAttribute(AttributeName.CURRENT_IDX, toIndex);
-		result = new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);
-	} catch (ServiceException e) {
-		LOGGER.error("Unable to obtain news list. ", e);
-		result = RouteHelper.ERROR_500;
-	}
-	return result;
+			int toIndex = articleService.calculateToIndex(IndexRepository.ZERO_INDEX, IndexRepository.STEP,
+					ListDirection.TO_END, ListDirection.TO_END);
+
+			List<Article> articlesBatch = articleService.buildArticlesBatch(IndexRepository.ZERO_INDEX, toIndex);
+			session.setAttribute(AttributeName.ALL_ARTICLES, articlesBatch);
+			session.setAttribute(AttributeName.CURRENT_IDX, toIndex);
+			return new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);
+		} catch (ServiceException e) {
+			LOGGER.error("Unable to obtain news list.", e);
+			return RouteHelper.ERROR_500;
+		}
 
 	}
 }

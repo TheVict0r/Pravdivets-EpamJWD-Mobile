@@ -30,25 +30,21 @@ public class FindConsultantByEmailCommand implements Command {
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		String email = request.getParameter(ParameterName.EMAIL);
 		HttpSession session = request.getSession();
-		
-		if(email == null) {
+
+		if (email == null) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CONSULTANT_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
-		
+
 		UserService userService = ServiceProvider.getInstance().getUserService();
-		
-		RouteHelper result = RouteHelper.ERROR;
-		
+
 		try {
 			Optional<User> consultantOptional = userService.findUserByEmail(email);
-			result = ConsultantCommandHelper.handleConsultantOptional(consultantOptional, 
-					session, AttributeName.EMAIL, email);
+			return ConsultantCommandHelper.handleConsultantOptional(consultantOptional, session, AttributeName.EMAIL, email);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain consultant data for e-mail " + email, e);
-			result = RouteHelper.ERROR_500;
+			return RouteHelper.ERROR_500;
 		}
-		return result;
 	}
 
 }

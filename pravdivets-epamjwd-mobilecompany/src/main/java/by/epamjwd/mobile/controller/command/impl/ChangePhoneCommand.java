@@ -31,25 +31,25 @@ public class ChangePhoneCommand implements Command{
 		session.removeAttribute(AttributeName.ACTIVATE_EDIT);
 		session.removeAttribute(AttributeName.NEW_PHONE_FORMAT);
 
-		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
-		
-		if( subscriber == null ) {
+		Subscriber subscriber = (Subscriber) session.getAttribute(AttributeName.SUBSCRIBER);
+
+		if (subscriber == null) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
-				}
-		
+			return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+		}
+
 		String newPhone;
 		try {
 			newPhone = PhoneGenerator.getInstance().provideFreePhone();
 			session.setAttribute(AttributeName.NEW_PHONE, newPhone);
 		} catch (ServiceException e) {
 			LOGGER.error("Error during new phone number generation pricess", e);
-			return  RouteHelper.ERROR_500;
+			return RouteHelper.ERROR_500;
 		}
 
 		long subscriberID = subscriber.getId();
 		subscriber.setPhone(newPhone);
-		
+
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		try {
 			subscriberService.updateSubscriber(subscriber);
@@ -57,21 +57,21 @@ public class ChangePhoneCommand implements Command{
 			LOGGER.error("Error during updating subscriber data", e);
 			return RouteHelper.ERROR_500;
 		}
-		
+
 		try {
-			Optional <Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
-			if(updatedSubscriberOptional.isPresent()) {
+			Optional<Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
+			if (updatedSubscriberOptional.isPresent()) {
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
 				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
 				String newPhoneFromDatabase = updatedSubscriber.getPhone();
-				String newPhoneFormat =  PhoneFormatter.formatPhone(newPhoneFromDatabase);
+				String newPhoneFormat = PhoneFormatter.formatPhone(newPhoneFromDatabase);
 				session.setAttribute(AttributeName.PHONE_FORMAT, newPhoneFormat);
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error retrieving updated subscriber", e);
-			return  RouteHelper.ERROR_500;
+			return RouteHelper.ERROR_500;
 		}
-		
+
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 	}
 

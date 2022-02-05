@@ -35,25 +35,25 @@ public class ChangePasswordCommand implements Command {
 		UserService userService = ServiceProvider.getInstance().getUserService();
 		User user = (User)session.getAttribute(AttributeName.CONSULTANT);
 		
-		String oldPassword = request.getParameter(ParameterName.OLD_PASSWORD);
+		String oldPassword  = request.getParameter(ParameterName.OLD_PASSWORD);
 		String newPassword1 = request.getParameter(ParameterName.NEW_PASSWORD1);
 		String newPassword2 = request.getParameter(ParameterName.NEW_PASSWORD2);
 		
 
-		if(oldPassword  == null || newPassword1 == null ||	newPassword2 == null){
+		if (oldPassword  == null || newPassword1 == null ||	newPassword2 == null){
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CHANGE_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
 		}
 		
-		if( ! userService.isPasswordCorrect(user, oldPassword)) {
+		if ( ! userService.isPasswordCorrect(user, oldPassword)) {
 			return provideErrorMessage(session, AttributeValue.WRONG_PASSWORD);
 		}
 		
-		if( ! newPassword1.equals(newPassword2)){
+		if ( ! newPassword1.equals(newPassword2)){
 			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);		
 			}
 
-		if( ! InputDataValidator.isPassword(newPassword1)) {
+		if ( ! InputDataValidator.isPassword(newPassword1)) {
 			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
 		}
 

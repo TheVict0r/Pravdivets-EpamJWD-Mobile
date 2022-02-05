@@ -18,7 +18,7 @@ public class CodeReturnCommand implements Command{
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		Integer sentCode = (Integer)session.getAttribute(AttributeName.CODE);
+		int sentCode = NumericParser.parseUnsignedIntValue(session.getAttribute(AttributeName.CODE));
 		
 		if (sentCode == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
@@ -32,7 +32,7 @@ public class CodeReturnCommand implements Command{
 		
 		if (sentCode == enteredCode) {
 			result = new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
-		}else {
+		} else {
 			session.setAttribute(AttributeName.ERROR, AttributeValue.MISSMATCHED_CODES);
 			result = new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);
 		}

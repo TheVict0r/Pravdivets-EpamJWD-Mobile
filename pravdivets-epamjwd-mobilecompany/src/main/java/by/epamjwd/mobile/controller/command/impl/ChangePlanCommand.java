@@ -24,10 +24,9 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class ChangePlanCommand implements Command{
+public class ChangePlanCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(ChangePlanCommand.class);
 
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
@@ -35,16 +34,16 @@ public class ChangePlanCommand implements Command{
 		session.removeAttribute(AttributeName.ALL_PLANS);
 
 		long newPlanID = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.PLAN_ID));
-		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
-		
-		if( subscriber == null ) {
+		Subscriber subscriber = (Subscriber) session.getAttribute(AttributeName.SUBSCRIBER);
+
+		if (subscriber == null) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-				return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
-			}
-		
+			return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
+		}
+
 		long subscriberID = subscriber.getId();
 		subscriber.setPlanId(newPlanID);
-		
+
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		try {
 			subscriberService.updateSubscriber(subscriber);
@@ -52,10 +51,10 @@ public class ChangePlanCommand implements Command{
 			LOGGER.error("Error during updating subscriber data", e);
 			return RouteHelper.ERROR_500;
 		}
-		
+
 		try {
-			Optional <Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
-			if(updatedSubscriberOptional.isPresent()) {
+			Optional<Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
+			if (updatedSubscriberOptional.isPresent()) {
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
 				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
 				PlanService planService = ServiceProvider.getInstance().getPlanService();
@@ -64,8 +63,9 @@ public class ChangePlanCommand implements Command{
 			}
 		} catch (ServiceException e) {
 			LOGGER.error("Error retrieving updated subscriber", e);
-			return  RouteHelper.ERROR_500;
-		}		
+			return RouteHelper.ERROR_500;
+		}
+
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 	}
 

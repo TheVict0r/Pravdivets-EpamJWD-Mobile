@@ -15,27 +15,22 @@ import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
-import by.epamjwd.mobile.service.ServiceService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class FindAllServicesCommand implements Command{
+public class FindAllServicesCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FindAllServicesCommand.class);
-	
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
-		RouteHelper result = RouteHelper.ERROR;
 		try {
-			List<Service> serviceList = serviceService.findAllServices();
+			List<Service> serviceList = ServiceProvider.getInstance().getServiceService().findAllServices();
 			request.setAttribute(AttributeName.ALL_SERVICES, serviceList);
-			result = new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
+			return new RouteHelper(PagePath.ALL_SERVICES, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain service list. ", e);
-			result = RouteHelper.ERROR_500;
+			return RouteHelper.ERROR_500;
 		}
-		return result;
 	}
 
 }
-

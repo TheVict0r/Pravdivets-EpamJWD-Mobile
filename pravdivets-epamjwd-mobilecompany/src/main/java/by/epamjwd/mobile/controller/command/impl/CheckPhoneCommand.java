@@ -31,16 +31,16 @@ public class CheckPhoneCommand implements Command{
 		session.setAttribute(AttributeName.PHONE, phone);
 		String mode = (String)session.getAttribute(AttributeName.MODE);
 		
-		if( phone == null || phone.isBlank()  || 
-			 mode == null || mode.isBlank()) {
+		if (phone == null || phone.isBlank() || mode == null || mode.isBlank()) {
 			 session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			 return RouteHelper.ERROR;
 		}
+		
 		RouteHelper result;
 		
 		try {
 			if (subscriberService.isPhoneExist(phone)) {
-				if(AttributeValue.SIGN_UP.equals(mode) && !subscriberService.isSignupRequired(phone)) {
+				if (AttributeValue.SIGN_UP.equals(mode) && !subscriberService.isSignupRequired(phone)) {
 					return provideErrorMessage(session, AttributeValue.ALREADY_SIGNED_UP);
 				}
 				result = new RouteHelper(PagePath.CODE_SEND_REDIRECT, RouteMethod.REDIRECT);

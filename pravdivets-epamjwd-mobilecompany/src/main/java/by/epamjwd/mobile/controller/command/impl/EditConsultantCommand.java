@@ -47,7 +47,7 @@ public class EditConsultantCommand implements Command {
 		UserService userService = ServiceProvider.getInstance().getUserService();
 
 		try {
-			if((!newEmail.equals(consultant.getEmail())) && (userService.isEmailBooked(newEmail))) {
+			if (( ! newEmail.equals(consultant.getEmail())) && (userService.isEmailBooked(newEmail))) {
 				return provideErrorMessage(session, AttributeValue.BOOKED_EMAIL);
 			}
 		} catch (ServiceException e) {
@@ -56,7 +56,7 @@ public class EditConsultantCommand implements Command {
 		}
 		
 		try {
-			if((!newPassport.equals(consultant.getPassport())) && (userService.isPassportBooked(newPassport))) {
+			if (( ! newPassport.equals(consultant.getPassport())) && (userService.isPassportBooked(newPassport))) {
 				return provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT);
 			}
 		} catch (ServiceException e) {

@@ -24,14 +24,15 @@ public class FindServiceByIdAdminCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		
+
 		long id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
-		if(id == NumericParser.INVALID_VALUE) {
+		if (id == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
 
-		return ServiceCommandHelper.handleServiceByID(session, id, PagePath.SERVICE_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
+		return ServiceCommandHelper.handleServiceByID(session, id, PagePath.SERVICE_ADMIN_REDIRECT,
+				RouteMethod.REDIRECT, LOGGER);
 
 	}
 

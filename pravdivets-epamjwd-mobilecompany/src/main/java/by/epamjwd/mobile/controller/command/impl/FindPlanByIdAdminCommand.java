@@ -24,13 +24,14 @@ public class FindPlanByIdAdminCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		
+
 		long id = NumericParser.parseUnsignedLongValue(request.getParameter(ParameterName.ID));
-		if(id == NumericParser.INVALID_VALUE) {
+
+		if (id == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
-		
+
 		return PlanCommandHelper.handlePlanByID(session, id, PagePath.PLAN_ADMIN_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 	}
 

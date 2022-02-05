@@ -10,38 +10,34 @@ import org.apache.logging.log4j.Logger;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
-import by.epamjwd.mobile.controller.command.NumericParser;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
-import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class CodeSendCommand implements Command{
+public class CodeSendCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(CodeSendCommand.class);
-	
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		String phone = (String)session.getAttribute(AttributeName.PHONE);
-		
-		if( phone == null || phone.isBlank() ){
+		String phone = (String) session.getAttribute(AttributeName.PHONE);
+
+		if (phone == null || phone.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);
 		}
-		
-		UserService userService = ServiceProvider.getInstance().getUserService();
 
 		try {
-			int code = userService.sendCodeToUserByMail(phone);
+			int code = ServiceProvider.getInstance().getUserService().sendCodeToUserByMail(phone);
 			session.setAttribute(AttributeName.CODE, code);
 		} catch (ServiceException e) {
 			LOGGER.error("Error while sending an authentication code to " + phone + e);
 			return RouteHelper.ERROR_500;
 		}
-		
+
 		return new RouteHelper(PagePath.CODE_RETURN_REDIRECT, RouteMethod.REDIRECT);
 	}
 

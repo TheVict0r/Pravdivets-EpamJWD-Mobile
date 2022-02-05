@@ -22,12 +22,10 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class FindSubscriberListByFullNameCommand implements Command{
+public class FindSubscriberListByFullNameCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FindSubscriberListByFullNameCommand.class);
 
-
-	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
@@ -38,17 +36,15 @@ public class FindSubscriberListByFullNameCommand implements Command{
 		String firstName = request.getParameter(ParameterName.FIRST_NAME);
 		String middleName = request.getParameter(ParameterName.MIDDLE_NAME);
 		String lastName = request.getParameter(ParameterName.LAST_NAME);
-		
-		if(firstName == null || firstName.isBlank() || 
-			lastName == null || lastName.isBlank()  || 
-			middleName==null){
-				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-				return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
-			}
-		
+
+		if (firstName == null || firstName.isBlank() || lastName == null || lastName.isBlank() || middleName == null) {
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+		}
+
 		List<Subscriber> subscriberList = null;
-		RouteHelper result = null;
-		
+		RouteHelper result = RouteHelper.ERROR;
+
 		try {
 			subscriberList = subscriberService.findSubscriberListByFullName(firstName, middleName, lastName);
 			if (subscriberList.isEmpty()) {
@@ -57,7 +53,7 @@ public class FindSubscriberListByFullNameCommand implements Command{
 				request.setAttribute(AttributeName.MIDDLE_NAME, middleName);
 				request.setAttribute(AttributeName.LAST_NAME, lastName);
 				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
-			}else {
+			} else {
 				result = SubscriberCommandHelper.handleSubscriberList(request, subscriberList);
 			}
 		} catch (ServiceException e) {

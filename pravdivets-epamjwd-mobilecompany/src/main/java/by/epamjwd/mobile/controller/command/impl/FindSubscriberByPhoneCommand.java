@@ -1,6 +1,5 @@
 package by.epamjwd.mobile.controller.command.impl;
 
-
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +23,7 @@ import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class FindSubscriberByPhoneCommand implements Command {
-	
+
 	private final static Logger LOGGER = LogManager.getLogger(FindSubscriberByPhoneCommand.class);
 
 	@Override
@@ -32,20 +31,18 @@ public class FindSubscriberByPhoneCommand implements Command {
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		String phone = request.getParameter(ParameterName.PHONE);
 		HttpSession session = request.getSession();
-		
-		if(phone == null || phone.isBlank()) {
+
+		if (phone == null || phone.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
-		
-		Subscriber subscriber = null;
-		
+
 		RouteHelper result = RouteHelper.ERROR;
 		try {
 			Optional<Subscriber> subscriberOptional = subscriberService.findSubscriberByPhone(phone);
-			
+
 			if (subscriberOptional.isPresent()) {
-				subscriber = subscriberOptional.get();
+				Subscriber subscriber = subscriberOptional.get();
 				result = SubscriberCommandHelper.handleSubscriber(request, subscriber);
 			} else {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PHONE);
@@ -58,5 +55,5 @@ public class FindSubscriberByPhoneCommand implements Command {
 		}
 		return result;
 	}
-	
+
 }

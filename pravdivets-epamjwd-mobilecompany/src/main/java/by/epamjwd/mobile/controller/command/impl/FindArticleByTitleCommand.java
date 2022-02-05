@@ -31,14 +31,14 @@ public class FindArticleByTitleCommand implements Command {
 		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		String title = request.getParameter(ParameterName.TITLE);
 
-		if(title == null || title.isBlank()) {
+		if (title == null || title.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
-		
+
 		try {
 			Optional<Article> articleOptional = articleService.findArticleByTitle(title);
-			if(articleOptional.isPresent()) {
+			if (articleOptional.isPresent()) {
 				Article article = articleOptional.get();
 				session.setAttribute(AttributeName.ARTICLE, article);
 				result = new RouteHelper(PagePath.ARTICLE_ADMIN_REDIRECT, RouteMethod.REDIRECT);
@@ -51,8 +51,7 @@ public class FindArticleByTitleCommand implements Command {
 			LOGGER.error("Error while trying to find article by title - " + title, e);
 			result = RouteHelper.ERROR_500;
 		}
-		
-		
+
 		return result;
 	}
 

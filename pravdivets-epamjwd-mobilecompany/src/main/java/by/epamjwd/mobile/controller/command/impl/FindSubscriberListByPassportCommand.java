@@ -22,9 +22,9 @@ import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.SubscriberService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
-public class FindSubscriberListByPassportCommand implements Command{
+public class FindSubscriberListByPassportCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(FindSubscriberListByPassportCommand.class);
-	
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceProvider provider = ServiceProvider.getInstance();
@@ -32,19 +32,18 @@ public class FindSubscriberListByPassportCommand implements Command{
 		RouteHelper result = RouteHelper.ERROR;
 		HttpSession session = request.getSession();
 		String passport = request.getParameter(ParameterName.PASSPORT);
-		
-		if( passport == null || passport.isBlank()) {
-				session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
-				return new RouteHelper(PagePath.ADD_CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
-			}
-		
-		List<Subscriber> subscriberList = null;
+
+		if (passport == null || passport.isBlank()) {
+			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
+			return new RouteHelper(PagePath.ADD_CONSULTANT_REDIRECT, RouteMethod.REDIRECT);
+		}
+
 		try {
-			subscriberList = subscriberService.findSubscriberListByPassport(passport);
-			if(subscriberList.isEmpty()) {
+			List<Subscriber> subscriberList = subscriberService.findSubscriberListByPassport(passport);
+			if (subscriberList.isEmpty()) {
 				request.setAttribute(AttributeName.ERROR, AttributeValue.WRONG_PASSPORT);
 				request.setAttribute(AttributeName.PASSPORT, passport);
-				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);	
+				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS, RouteMethod.FORWARD);
 			} else {
 				result = SubscriberCommandHelper.handleSubscriberList(request, subscriberList);
 			}
@@ -52,7 +51,8 @@ public class FindSubscriberListByPassportCommand implements Command{
 			LOGGER.error("Error in getting subscriber data for passport - " + passport, e);
 			result = RouteHelper.ERROR_500;
 		}
-		return result;	
+
+		return result;
 	}
 
 }

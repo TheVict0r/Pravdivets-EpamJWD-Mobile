@@ -19,7 +19,7 @@ import by.epamjwd.mobile.service.UserService;
 import by.epamjwd.mobile.service.exception.ServiceException;
 import by.epamjwd.mobile.service.validation.InputDataValidator;
 
-public class NewPasswordCommand implements Command{
+public class NewPasswordCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(NewPasswordCommand.class);
 
@@ -28,21 +28,20 @@ public class NewPasswordCommand implements Command{
 		HttpSession session = request.getSession();
 		UserService userService = ServiceProvider.getInstance().getUserService();
 
-		String phone = (String)session.getAttribute(AttributeName.PHONE);
+		String phone = (String) session.getAttribute(AttributeName.PHONE);
 		String password1 = request.getParameter(ParameterName.PASSWORD1);
 		String password2 = request.getParameter(ParameterName.PASSWORD2);
-		
-		
-		if(phone == null || phone.isBlank()) {
+
+		if (phone == null || phone.isBlank()) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);
-			}
-		
-		if( ! password1.equals(password2)) {
+		}
+
+		if ( ! password1.equals(password2)) {
 			return provideErrorMessage(session, AttributeValue.MISSMATCHED_PASSWORDS);
 		}
-		
-		if( ! InputDataValidator.isPassword(password1)) {
+
+		if ( ! InputDataValidator.isPassword(password1)) {
 			return provideErrorMessage(session, AttributeValue.INCORRECT_PASSWORD);
 		}
 
@@ -52,14 +51,13 @@ public class NewPasswordCommand implements Command{
 			LOGGER.error("Error while updating user's password. Users phone - " + phone + e);
 			return RouteHelper.ERROR_500;
 		}
-		
+
 		session.setAttribute(AttributeName.CHANGE_PASSWORD, AttributeValue.TRUE);
 		session.removeAttribute(AttributeName.PHONE);
 		session.removeAttribute(AttributeName.MODE);
 		return new RouteHelper(PagePath.LOGIN_REDIRECT, RouteMethod.REDIRECT);
 	}
 
-	
 	private RouteHelper provideErrorMessage(HttpSession session, String attributeValue) {
 		session.setAttribute(AttributeName.ERROR, attributeValue);
 		return new RouteHelper(PagePath.NEW_PASSWORD_REDIRECT, RouteMethod.REDIRECT);

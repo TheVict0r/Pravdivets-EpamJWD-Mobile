@@ -30,7 +30,8 @@ public class FindArticleByIdAdminCommand implements Command {
 			return new RouteHelper(PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
 		}
 
-		return ArticleCommandHelper.handleArticleByID(session, articleID, PagePath.ARTICLE_ADMIN_REDIRECT, PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT, LOGGER);
+		return ArticleCommandHelper.handleArticleByID(session, articleID, PagePath.ARTICLE_ADMIN_REDIRECT,
+				PagePath.ARTICLE_OPERATIONS_REDIRECT, RouteMethod.REDIRECT, LOGGER);
 
 	}
 }

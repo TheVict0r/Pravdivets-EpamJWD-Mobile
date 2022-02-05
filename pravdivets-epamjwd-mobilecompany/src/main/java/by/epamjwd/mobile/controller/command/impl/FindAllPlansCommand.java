@@ -14,7 +14,6 @@ import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
-import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
@@ -24,17 +23,14 @@ public class FindAllPlansCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		PlanService planService = ServiceProvider.getInstance().getPlanService();
-		RouteHelper result = RouteHelper.ERROR;
 		try {
-			List<Plan> allPlans = planService.findAllPlans();
+			List<Plan> allPlans = ServiceProvider.getInstance().getPlanService().findAllPlans();
 			request.setAttribute(AttributeName.ALL_PLANS, allPlans);
-			result = new RouteHelper(PagePath.ALL_PLANS, RouteMethod.FORWARD);
+			return new RouteHelper(PagePath.ALL_PLANS, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain all tariff plans list. ", e);
-			result = RouteHelper.ERROR_500;
+			return RouteHelper.ERROR_500;
 		}
-		return result;
 	}
 
 }

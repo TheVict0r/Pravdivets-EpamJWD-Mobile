@@ -35,16 +35,15 @@ public class EditPersonalDataCommand implements Command{
 		String newLastName = request.getParameter(ParameterName.SUBSCRIBER_LAST_NAME);
 		String newPassport = request.getParameter(ParameterName.PASSPORT);
 
-		if(    newFirstName == null || newFirstName.isBlank() || 
-				newLastName == null || newLastName.isBlank()  ||
-				newPassport == null || newPassport.isBlank()  ||
-					   user == null ){
+		if (newFirstName == null || newFirstName.isBlank() || 
+		     newLastName == null || newLastName.isBlank()  ||
+			 newPassport == null || newPassport.isBlank()  || user == null ){
 					session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 					return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 				}
 
 		try {
-			if((!newPassport.equals(user.getPassport())) && (userService.isPassportBooked(newPassport))) {
+			if (( ! newPassport.equals(user.getPassport())) && (userService.isPassportBooked(newPassport))) {
 				return UserCommandHelper.provideErrorMessage(session, AttributeValue.BOOKED_PASSPORT);
 			}
 		} catch (ServiceException e) {
@@ -60,8 +59,6 @@ public class EditPersonalDataCommand implements Command{
 		user.setPassport(newPassport);
 		
 		return UserCommandHelper.handleUserUpdate(user, request);
-
 	}
-
 	
 }

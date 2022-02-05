@@ -40,12 +40,12 @@ public class ChangeStatusCommand implements Command {
 		}
 
 		SubscriberStatus newStatus = SubscriberStatus.values()[newStatusID];
-		
-		Subscriber subscriber = (Subscriber)session.getAttribute(AttributeName.SUBSCRIBER);
+
+		Subscriber subscriber = (Subscriber) session.getAttribute(AttributeName.SUBSCRIBER);
 		subscriber.setStatus(newStatus);
 		subscriber.setStatusDate(new Date());
 		long subscriberID = subscriber.getId();
-		
+
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 		try {
 			subscriberService.updateSubscriber(subscriber);
@@ -53,17 +53,18 @@ public class ChangeStatusCommand implements Command {
 			LOGGER.error("Error during updating subscriber data", e);
 			return RouteHelper.ERROR_500;
 		}
-		
+
 		try {
-			Optional <Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
-			if(updatedSubscriberOptional.isPresent()) {
+			Optional<Subscriber> updatedSubscriberOptional = subscriberService.findSubscriberById(subscriberID);
+			if (updatedSubscriberOptional.isPresent()) {
 				Subscriber updatedSubscriber = updatedSubscriberOptional.get();
 				session.setAttribute(AttributeName.SUBSCRIBER, updatedSubscriber);
 			}
 		} catch (ServiceException e) {
-			LOGGER.error("Error retrieving updated subscriber", e);
-			return  RouteHelper.ERROR_500;
-		}		
+			LOGGER.error("Error retrieving updated subscriber by ID - " + subscriberID, e);
+			return RouteHelper.ERROR_500;
+		}
+
 		return new RouteHelper(PagePath.SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
 	}
 

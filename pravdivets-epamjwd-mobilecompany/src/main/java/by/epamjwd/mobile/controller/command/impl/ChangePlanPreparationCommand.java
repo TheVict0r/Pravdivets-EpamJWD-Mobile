@@ -32,7 +32,7 @@ public class ChangePlanPreparationCommand implements Command {
 
 		Subscriber subscriber = (Subscriber) session.getAttribute(AttributeName.SUBSCRIBER);
 		
-		if( subscriber == null ) {
+		if (subscriber == null) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_500;
 		}

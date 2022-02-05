@@ -18,7 +18,6 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.controller.repository.ParameterName;
-import by.epamjwd.mobile.service.PlanService;
 import by.epamjwd.mobile.service.ServiceProvider;
 import by.epamjwd.mobile.service.exception.ServiceException;
 
@@ -38,7 +37,7 @@ public class CalculatorCommand implements Command{
 		
 		HttpSession session = request.getSession();
 		
-		if( 	 withinNetwork == NumericParser.INVALID_VALUE ||
+		if ( 	 withinNetwork == NumericParser.INVALID_VALUE ||
 				 otherNetworks == NumericParser.INVALID_VALUE ||
 						abroad == NumericParser.INVALID_VALUE ||
 					 videocall == NumericParser.INVALID_VALUE ||
@@ -49,15 +48,13 @@ public class CalculatorCommand implements Command{
 					return new RouteHelper(PagePath.CALCULATOR_REDIRECT, RouteMethod.REDIRECT);
 				}
 		
-		PlanService planService = ServiceProvider.getInstance().getPlanService();
-		Plan bestPlan = null;
-		Optional<Plan> planOptional = Optional.empty();
 		RouteHelper result = RouteHelper.ERROR;
 
 		try {
-			planOptional = planService.suggestPlan(withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet);
-			if(planOptional.isPresent()) {
-				bestPlan = planOptional.get();
+			Optional<Plan> planOptional = ServiceProvider.getInstance().getPlanService()
+					.suggestPlan(withinNetwork, otherNetworks, abroad, videocall, sms, mms, internet);
+			if (planOptional.isPresent()) {
+				Plan bestPlan = planOptional.get();
 				session.setAttribute(AttributeName.CALCULATOR_BEST_PLAN, bestPlan);
 				result = new RouteHelper(PagePath.CALCULATOR_RESULT_REDIRECT, RouteMethod.REDIRECT);
 			}

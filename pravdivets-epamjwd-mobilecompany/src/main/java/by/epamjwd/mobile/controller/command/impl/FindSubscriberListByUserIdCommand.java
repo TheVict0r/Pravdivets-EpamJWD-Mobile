@@ -29,22 +29,21 @@ public class FindSubscriberListByUserIdCommand implements Command {
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		
-		long id;
-		id = NumericParser.parseUnsignedLongValue(session.getAttribute(AttributeName.SUBSCRIBER_USER_ID));
-		
-		if(id == NumericParser.INVALID_VALUE) {
+
+		long id = NumericParser.parseUnsignedLongValue(session.getAttribute(AttributeName.SUBSCRIBER_USER_ID));
+
+		if (id == NumericParser.INVALID_VALUE) {
 			id = NumericParser.parseUnsignedLongValue(session.getAttribute(AttributeName.USER_ID));
 		}
 
-		if(id == NumericParser.INVALID_VALUE) {
+		if (id == NumericParser.INVALID_VALUE) {
 			session.setAttribute(AttributeName.WRONG_DATA, AttributeValue.WRONG_DATA);
 			return RouteHelper.ERROR_404;
 		}
 
 		SubscriberService subscriberService = ServiceProvider.getInstance().getSubscriberService();
 
-		RouteHelper result = null;
+		RouteHelper result = RouteHelper.ERROR;
 		try {
 			List<Subscriber> subscriberList = subscriberService.findSubscriberListByUserId(id);
 			if (subscriberList.isEmpty()) {
@@ -60,6 +59,7 @@ public class FindSubscriberListByUserIdCommand implements Command {
 			LOGGER.error("Error in getting subscriber list for ID - " + id, e);
 			result = RouteHelper.ERROR_500;
 		}
+
 		return result;
 	}
 

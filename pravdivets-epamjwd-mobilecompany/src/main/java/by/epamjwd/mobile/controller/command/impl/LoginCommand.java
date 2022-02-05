@@ -31,15 +31,15 @@ public class LoginCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(LoginCommand.class);
 
 	/**
-	 * A Subscriber can use his phone number or e-mail as the login, 
-	 * other Users can use e-mail only as their login.
+	 * A Subscriber can use his phone number or e-mail as the login, other Users can
+	 * use e-mail only as their login.
 	 * 
-	 * If a Subscriber has several phone numbers and uses an e-mail as a login, 
-	 * the menu with all his phone numbers will appear.
+	 * If a Subscriber has several phone numbers and uses an e-mail as a login, the
+	 * menu with all his phone numbers will appear.
 	 * 
-	 * If a Subscriber uses the phone number as a login, the detailed information about this
-	 * particular phone number will appear only (despite the amount of phone numbers
-	 * this Subscriber has).
+	 * If a Subscriber uses the phone number as a login, the detailed information
+	 * about this particular phone number will appear only (despite the amount of
+	 * phone numbers this Subscriber has).
 	 */
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {

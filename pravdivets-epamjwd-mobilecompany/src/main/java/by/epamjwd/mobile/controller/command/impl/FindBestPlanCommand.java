@@ -12,7 +12,7 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.AttributeValue;
 import by.epamjwd.mobile.controller.repository.PagePath;
 
-public class FindBestPlanCommand implements Command{
+public class FindBestPlanCommand implements Command {
 
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {

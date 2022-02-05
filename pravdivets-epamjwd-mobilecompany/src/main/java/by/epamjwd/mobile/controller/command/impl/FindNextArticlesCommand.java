@@ -26,16 +26,15 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public class FindNextArticlesCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(FindAllArticlesCommand.class);
-	
+
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		RouteHelper result = RouteHelper.ERROR;
 		ArticleService articleService = ServiceProvider.getInstance().getArticleService();
 		HttpSession session = request.getSession();
-		
+
 		ListDirection previousDirection = (ListDirection) session.getAttribute(AttributeName.DIRECTION);
 		int currentIdx = NumericParser.parseUnsignedIntValue(session.getAttribute(AttributeName.CURRENT_IDX));
-		
+
 		session.removeAttribute(AttributeName.NO_PREVIOUS_NEWS);
 
 		try {
@@ -52,20 +51,18 @@ public class FindNextArticlesCommand implements Command {
 			session.setAttribute(AttributeName.DIRECTION, ListDirection.TO_BEGINNING);
 
 			if (articleService.isPreviousIndexZero(toIndex, IndexRepository.STEP)) {
-				//if ((toIndex - IndexRepository.STEP) == IndexRepository.ZERO_INDEX) {
+				// if ((toIndex - IndexRepository.STEP) == IndexRepository.ZERO_INDEX) {
 				session.setAttribute(AttributeName.NO_NEXT_NEWS, AttributeValue.TRUE);
 				session.setAttribute(AttributeName.CURRENT_IDX, fromIndex);
 			}
 
-			result = new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);
-			
+			return new RouteHelper(PagePath.ALL_NEWS_REDIRECT, RouteMethod.REDIRECT);
+
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain news list. ", e);
-			result = RouteHelper.ERROR_500;
+			return RouteHelper.ERROR_500;
 		}
 
-		
-	return result;
 	}
 
 }
