@@ -19,8 +19,8 @@ public class GoToProfilePageCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
 		SessionCleaner.getInstance().removeUnusedAttributes(request);
+		HttpSession session = request.getSession();
 		Role role = (Role) session.getAttribute(AttributeName.ROLE);
 		
 		if(role == null) {

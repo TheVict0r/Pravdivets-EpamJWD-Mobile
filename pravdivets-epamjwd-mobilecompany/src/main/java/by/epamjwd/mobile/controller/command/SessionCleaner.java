@@ -12,14 +12,14 @@ import by.epamjwd.mobile.controller.repository.AttributeName;
 
 public class SessionCleaner {
 
-	private final Set<String> eternalAttributes = new HashSet<>();
+	private final Set<String> globalAttributes = new HashSet<>();
 	
 	private SessionCleaner() {
-		eternalAttributes.add(AttributeName.USER_ID);
-		eternalAttributes.add(AttributeName.FIRST_NAME_HEADER);
-		eternalAttributes.add(AttributeName.LAST_NAME_HEADER);
-		eternalAttributes.add(AttributeName.ROLE);
-		eternalAttributes.add(AttributeName.SESSION_LOCALE);
+		globalAttributes.add(AttributeName.USER_ID);
+		globalAttributes.add(AttributeName.FIRST_NAME_HEADER);
+		globalAttributes.add(AttributeName.LAST_NAME_HEADER);
+		globalAttributes.add(AttributeName.ROLE);
+		globalAttributes.add(AttributeName.SESSION_LOCALE);
 	}
 	
 	public static SessionCleaner getInstance() {
@@ -32,19 +32,19 @@ public class SessionCleaner {
 		
 		while (allAttributes.hasMoreElements()) {
 			String attribute = allAttributes.nextElement().toString();
-			if ( ! eternalAttributes.contains(attribute)) {
+			if ( ! globalAttributes.contains(attribute)) {
 				session.removeAttribute(attribute);
 			}
 		}
 	}
 
 
-	public void addEthernalAttribute(String attribute) {
-		eternalAttributes.add(attribute);
+	public void addGlobalAttribute(String attribute) {
+		globalAttributes.add(attribute);
 	}
 	
-	public void removeEthernalAttribute(String attribute) {
-		eternalAttributes.remove(attribute);
+	public void removeGlobalAttribute(String attribute) {
+		globalAttributes.remove(attribute);
 	}
 	
 	private static final class Holder {

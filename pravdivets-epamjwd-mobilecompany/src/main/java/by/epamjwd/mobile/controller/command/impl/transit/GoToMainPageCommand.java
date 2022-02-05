@@ -26,7 +26,6 @@ public class GoToMainPageCommand implements Command{
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		PlanService planService = ServiceProvider.getInstance().getPlanService();
 		ArticleService newsService = ServiceProvider.getInstance().getArticleService();		
 		

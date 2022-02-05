@@ -12,6 +12,7 @@ import by.epamjwd.mobile.bean.Service;
 import by.epamjwd.mobile.controller.RouteHelper;
 import by.epamjwd.mobile.controller.RouteMethod;
 import by.epamjwd.mobile.controller.command.Command;
+import by.epamjwd.mobile.controller.command.SessionCleaner;
 import by.epamjwd.mobile.controller.repository.AttributeName;
 import by.epamjwd.mobile.controller.repository.PagePath;
 import by.epamjwd.mobile.service.ServiceProvider;
@@ -24,6 +25,7 @@ public class GoToServiceOperationsPageCommand implements Command {
 	
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
+		SessionCleaner.getInstance().removeUnusedAttributes(request);
 		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
 		RouteHelper result = RouteHelper.ERROR;
 		try {
