@@ -43,10 +43,6 @@ public class SessionCleaner {
 		globalAttributes.add(attribute);
 	}
 	
-	public void removeGlobalAttribute(String attribute) {
-		globalAttributes.remove(attribute);
-	}
-	
 	private static final class Holder {
 		final static SessionCleaner INSTANCE = new SessionCleaner();
 	}
