@@ -23,31 +23,28 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public class GoToSubscriberServicesPageCommand implements Command {
 	private final static Logger LOGGER = LogManager.getLogger(GoToSubscriberServicesPageCommand.class);
 
-	
+	/*
+	 * Sorry, this method is not ready yet :(
+	 */
 	@Override
 	public RouteHelper execute(HttpServletRequest request, HttpServletResponse response) {
 		ServiceService serviceService = ServiceProvider.getInstance().getServiceService();
-		RouteHelper result = RouteHelper.ERROR;
 		try {
 			List<Service> serviceList = serviceService.findAllServices();
 			
-			
 			Map<Service, Boolean> serviceMap = new HashMap<>();
 			for(Service service : serviceList) {
-				serviceMap.put(service, true);
+				serviceMap.put(service, true); //"true" is just temporary
 			}
 			
-			
-			//request.getSession().setAttribute(AttributeName.ALL_SERVICES, serviceList);
 			request.getSession().setAttribute(AttributeName.ALL_SERVICES, serviceMap);
 			
-			result = new RouteHelper(PagePath.SUBSCRIBER_SERVICES, RouteMethod.FORWARD);
+			return new RouteHelper(PagePath.SUBSCRIBER_SERVICES, RouteMethod.FORWARD);
 		} catch (ServiceException e) {
 			LOGGER.error("Unable to obtain service list. ", e);
-			result =  RouteHelper.ERROR_500;
+			return RouteHelper.ERROR_500;
 		}
 
-		return result;
 	}
 
 }
