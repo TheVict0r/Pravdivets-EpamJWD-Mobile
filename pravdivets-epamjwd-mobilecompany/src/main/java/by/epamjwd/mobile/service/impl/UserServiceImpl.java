@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
 
 	private static final int EMPTY_CODE = 0;
 
+	
 	/**
 	 * Provides User retrieved by it's ID.
 	 * 
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException(e);
 		}
 	}
+
 	
 	/**
 	 * Provides User retrieved by it's login. 
@@ -82,6 +84,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
+
 	
 	/**
 	 * Provides User retrieved by it's passport number. 
@@ -106,6 +109,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
+
 	
 	/**
 	 * Provides User retrieved by it's phone number. 
@@ -130,6 +134,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return user;
 	}
+
 	
 	/**
 	 * Adds the User to the data storage.
@@ -154,6 +159,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return userId;
 	}
+
 	
 	/**
 	 * Updates User's data.
@@ -172,6 +178,7 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 	}
+
 	
 	/**
 	 * Updates User's password. Because of the security reasons the hash-code 
@@ -189,6 +196,7 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(passwordHash);
 		updateUser(user);
 	}
+
 	
 	/**
 	 * Updates User's password. The user will be fount by it's phone number.
@@ -211,6 +219,7 @@ public class UserServiceImpl implements UserService {
 			updateUser(user);
 		}
 	}
+
 	
 	/**
 	 * For Subscriber Users only. Send the authentication code to Subscriber user's e-mail. 

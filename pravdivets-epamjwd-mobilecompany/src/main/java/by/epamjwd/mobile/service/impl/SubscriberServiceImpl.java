@@ -19,6 +19,7 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class SubscriberServiceImpl implements SubscriberService {
 
+	
 	/**
 	 * Provides Subscriber retrieved by it's ID.
 	 * 
@@ -38,6 +39,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		}
 	}
 
+	
 	/**
 	 * Provides Subscriber retrieved by it's phone number.
 	 * 
@@ -63,6 +65,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscriber;
 	}
 
+	
 	/**
 	 * Provides the list of subscriber's (phone numbers) related to the same User.
 	 * 
@@ -86,6 +89,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		}
 	}
 
+	
 	/**
 	 * Provides the list of Subscriber's related to the same user by passport
 	 * number.
@@ -111,6 +115,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscriberList;
 	}
 
+	
 	/**
 	 * Provides the list of Subscriber's related to the same user by full name.
 	 * 
@@ -143,6 +148,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscriberList;
 	}
 
+	
 	/**
 	 * Retrieves all Subscribers with accounts with negative values related to the
 	 * same User.
@@ -171,6 +177,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscribersWithDebts;
 	}
 
+	
 	/**
 	 * Adds to the data storage one more Subscriber to existing User.
 	 * 
@@ -198,6 +205,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	}
 
+	
 	/**
 	 * Updates Subscriber's data.
 	 * 
@@ -218,6 +226,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		}
 	}
 
+	
 	/**
 	 * Builds new Subscriber with empty ID.
 	 * 
@@ -245,6 +254,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscriber;
 	}
 
+	
 	/**
 	 * Checks for the presence of phone number in the data storage.
 	 * 
@@ -265,6 +275,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return result;
 	}
 
+	
 	/**
 	 * Checks to see if the User with provided passport number is already presented
 	 * in the data storage as a Subscriber.
@@ -286,6 +297,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscribers.isEmpty();
 	}
 
+	
 	/**
 	 * Checks, if a Subscriber has debts - negative values on his all accounts
 	 * 
@@ -306,6 +318,7 @@ public class SubscriberServiceImpl implements SubscriberService {
 		return subscribersWithDebts.size() > 0;
 	}
 
+	
 	/**
 	 * Checks if Subscriber need to be signed-up. (Have no password).
 	 * 

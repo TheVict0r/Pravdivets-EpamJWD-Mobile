@@ -20,6 +20,7 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 public class PlanServiceImpl implements PlanService {
 	private final static Logger LOGGER = LogManager.getLogger(PlanServiceImpl.class);
 
+	
 	/**
 	 * Provides all actual tariff plans currently exists.
 	 * 
@@ -37,6 +38,7 @@ public class PlanServiceImpl implements PlanService {
 		}
 	}
 
+	
 	/**
 	 * Provides tariff plan retrieved by it's ID.
 	 * 
@@ -56,6 +58,7 @@ public class PlanServiceImpl implements PlanService {
 		}
 	}
 
+	
 	/**
 	 * Finds the most profitable tariff plan (with the lowest monthly costs) based
 	 * on the traffic on different directions as well as other components of the
@@ -113,6 +116,7 @@ public class PlanServiceImpl implements PlanService {
 		return planOptional;
 	}
 
+	
 	/**
 	 * Calculates monthly expenses in the case of using the {@code plan}.
 	 * 
@@ -144,6 +148,7 @@ public class PlanServiceImpl implements PlanService {
 				+ plan.getPriceInternet() * internet;
 	}
 
+	
 	/**
 	 * Checks for the presence of tariff plan by it's {@code name} in the data
 	 * storage.
@@ -165,6 +170,7 @@ public class PlanServiceImpl implements PlanService {
 		return planOptional.isPresent();
 	}
 
+	
 	/**
 	 * Builds new tariff plan with empty ID.
 	 * 
@@ -200,6 +206,7 @@ public class PlanServiceImpl implements PlanService {
 				otherNetworks, abroad, videocall, sms, mms, internet);
 	}
 
+	
 	/**
 	 * Adds plan to data storage.
 	 * 

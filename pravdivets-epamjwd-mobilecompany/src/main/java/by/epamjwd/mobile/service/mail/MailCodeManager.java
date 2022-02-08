@@ -58,6 +58,7 @@ public class MailCodeManager {
 		}
 		return code;
 	}
+
 	
 	/**
 	 * Sends any text to user's e-mail.
@@ -109,6 +110,7 @@ public class MailCodeManager {
 		
 	}
 
+	
 	/**
 	 * Generates pseudirandom code number
 	 * 

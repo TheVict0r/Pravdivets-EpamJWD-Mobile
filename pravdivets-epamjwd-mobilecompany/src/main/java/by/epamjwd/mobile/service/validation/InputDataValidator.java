@@ -172,5 +172,4 @@ public class InputDataValidator {
 		return Pattern.matches(regex, anyString);
 	}
 
-
 }

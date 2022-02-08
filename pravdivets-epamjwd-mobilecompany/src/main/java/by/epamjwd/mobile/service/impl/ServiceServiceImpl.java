@@ -13,6 +13,7 @@ import by.epamjwd.mobile.service.validation.InputDataValidator;
 
 public class ServiceServiceImpl implements ServiceService {
 
+	
 	/**
 	 * Provides all actual Services currently exists.
 	 * 
@@ -30,6 +31,7 @@ public class ServiceServiceImpl implements ServiceService {
 		}
 	}
 
+	
 	/**
 	 * Provides Service retrieved by it's ID.
 	 * 
@@ -49,6 +51,7 @@ public class ServiceServiceImpl implements ServiceService {
 		}
 	}
 
+	
 	/**
 	 * Checks for the presence of service by it's {@code name} in the data storage.
 	 * .
@@ -69,6 +72,7 @@ public class ServiceServiceImpl implements ServiceService {
 		return serviceOptional.isPresent();
 	}
 
+	
 	/**
 	 * Adds Service to data storage.
 	 * 
@@ -93,6 +97,7 @@ public class ServiceServiceImpl implements ServiceService {
 		return serviceId;
 	}
 
+	
 	/**
 	 * Builds new Service with empty ID.
 	 * 

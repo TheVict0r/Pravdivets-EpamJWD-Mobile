@@ -33,6 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 	}
 
+	
 	/**
 	 * Provides news article retrieved by it's ID.
 	 * 
@@ -52,6 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 	}
 
+	
 	/**
 	 * Provides news article retrieved from data storage by it's title.
 	 * 
@@ -71,6 +73,7 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 	}
 
+	
 	/**
 	 * Builds news article with empty ID.
 	 * 
@@ -87,6 +90,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return new Article(IDRepository.EMPTY_ID, new Date(), title, intro, text);
 	}
 
+	
 	/**
 	 * Adds news article to data storage.
 	 * 
@@ -110,6 +114,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleId;
 	}
 
+	
 	/**
 	 * Checks for the presence of news article by it's {@code name} in the data
 	 * storage.
@@ -128,6 +133,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleOptional.isPresent();
 	}
 
+	
 	/**
 	 * Extracts sublist of news articles from all articles in the data storage.
 	 * 
@@ -146,6 +152,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return findAllArticles().subList(fromIndex, toIndex);
 	}
 
+	
 	/**
 	 * Checks if the provided index is one step beyond the last index in the list
 	 * containing all news articles.
@@ -163,6 +170,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return index == findAllArticles().size();
 	}
 
+	
 	/**
 	 * Checks if the previous index is equals to zero in the list containing all
 	 * news articles.
@@ -179,6 +187,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return (index - step) == IndexRepository.ZERO_INDEX;
 	}
 
+	
 	/**
 	 * Calculates the last index excluded for bunch (sublist) of news articles from
 	 * the list containing all news articles.
@@ -217,6 +226,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return toIndex;
 	}
 
+	
 	/**
 	 * Calculates the first index included for bunch (sublist) of news articles from
 	 * the list containing all news articles.
@@ -257,6 +267,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	}
 
+	
 	/**
 	 * Calculates the next index by step in the list containing all news articles.
 	 * 
@@ -282,6 +293,7 @@ public class ArticleServiceImpl implements ArticleService {
 		return nextIndex;
 	}
 
+	
 	/**
 	 * Calculates the previous index by step in the list containing all news
 	 * articles.

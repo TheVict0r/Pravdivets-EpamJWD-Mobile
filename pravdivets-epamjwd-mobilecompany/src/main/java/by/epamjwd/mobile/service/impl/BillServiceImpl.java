@@ -11,6 +11,7 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 
 public class BillServiceImpl implements BillService {
 
+	
 	/**
 	 * Retrieves a list of subscribers bills from data storage.
 	 * 

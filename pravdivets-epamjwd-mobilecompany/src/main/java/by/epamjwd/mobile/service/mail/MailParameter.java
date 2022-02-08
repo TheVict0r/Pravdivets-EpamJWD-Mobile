@@ -4,6 +4,7 @@ package by.epamjwd.mobile.service.mail;
  * Settings container for MailCodeManager
  */
 public class MailParameter {
+
 	private MailParameter() {
 	}
 
