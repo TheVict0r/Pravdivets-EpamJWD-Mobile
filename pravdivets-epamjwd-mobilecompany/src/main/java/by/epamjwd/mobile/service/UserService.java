@@ -38,4 +38,5 @@ public interface UserService {
 			String email);
 	
 	User buildSubscriberUser(String firstName, String middleName, String lastName, String passport, String email);
+
 }

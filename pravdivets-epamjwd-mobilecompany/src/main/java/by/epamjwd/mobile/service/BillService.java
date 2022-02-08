@@ -8,5 +8,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public interface BillService {
 
 	public List<Bill> getBillListBySubscriberID(long subscriberID) throws ServiceException;
+
 	
 }

@@ -15,6 +15,7 @@ public abstract class AbstractDao<T extends Identifiable> extends AbstractQueryE
         this.tableName = tableName;
     }
 
+    
 	/**
 	 * Retrieves all <T> entities 
 	 * 

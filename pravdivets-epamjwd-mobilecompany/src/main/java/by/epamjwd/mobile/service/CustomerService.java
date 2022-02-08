@@ -7,5 +7,6 @@ import by.epamjwd.mobile.service.exception.ServiceException;
 public interface CustomerService {
 
 	long addNewCustomer(User user, Subscriber subscriber) throws ServiceException;
+
 	
 }

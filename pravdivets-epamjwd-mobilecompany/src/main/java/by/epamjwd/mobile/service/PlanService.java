@@ -22,5 +22,6 @@ public interface PlanService {
 			int internet);
 	
 	long addPlan(Plan plan) throws ServiceException;
+
 	
 }

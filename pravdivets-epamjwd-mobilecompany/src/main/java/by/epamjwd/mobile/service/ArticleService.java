@@ -31,5 +31,4 @@ public interface ArticleService {
 
 	boolean isPreviousIndexZero(int index, int step);
 	
-	
 }

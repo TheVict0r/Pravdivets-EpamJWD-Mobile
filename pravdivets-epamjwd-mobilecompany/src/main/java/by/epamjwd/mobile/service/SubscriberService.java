@@ -35,5 +35,4 @@ public interface SubscriberService {
 	
 	boolean isSignupRequired(String phone) throws ServiceException;
 	
-	
 }
