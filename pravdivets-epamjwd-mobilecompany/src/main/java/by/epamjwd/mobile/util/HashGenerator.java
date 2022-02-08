@@ -14,5 +14,6 @@ public class HashGenerator {
 	public static String generateHash(String rawString) {
 		return DigestUtils.md5Hex(rawString);
 	}	
+
 	
 }
