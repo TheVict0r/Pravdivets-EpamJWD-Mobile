@@ -85,6 +85,7 @@ public class CommandName {
 	public static final String GO_TO_SIGNUP_PAGE = "go_to_signup_page";
 	public static final String GO_TO_SUBSCRIBER_BILLS_PAGE = "go_to_subscriber_bills_page";
 	public static final String GO_TO_SUBSCRIBER_OPERATIONS_PAGE = "go_to_subscriber_operations_page";
+	public static final String GO_TO_SUBSCRIBER_OPERATIONS_PAGE_WITH_ATTRIBUTES = "go_to_subscriber_operations_page_with_attributes";
 	public static final String GO_TO_SUBSCRIBER_PAGE = "go_to_subscriber_page";
 	public static final String GO_TO_SUBSCRIBER_SERVICES_PAGE = "go_to_subscriber_services_page";
 	public static final String LOGIN = "login";

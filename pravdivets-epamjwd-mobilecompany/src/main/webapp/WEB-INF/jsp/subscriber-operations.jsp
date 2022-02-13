@@ -118,26 +118,26 @@
 			</h4>
 		</div>
 		<div>
-		<form class="row" method="POST"
-			action="controller?command=add_subscriber_preparation">
-			<label for="passport" class="form-label"><fmt:message
-					key="subscriberbase.passport" /></label>
-			<div class="col-md-3">
-				<input type="text" class="form-control" name="passport"
-					id="passport"
-					placeholder="AB1234567"
-					pattern="^[A-Z]{2}[0-9]{7}$" value="${sessionScope.passport}" required>
-			</div>
-			<div class="col-md-1">
-				<input type="submit" class="btn btn-outline-dark"
-					value="<fmt:message key="subscriberbase.next"/>">
-			</div>
-		</form>
+			<form class="row" method="POST"
+				action="controller?command=add_subscriber_preparation">
+				<label for="passport" class="form-label"><fmt:message
+						key="subscriberbase.passport" /></label>
+				<div class="col-md-3">
+					<input type="text" class="form-control" name="passport"
+						id="passport" placeholder="AB1234567" pattern="^[A-Z]{2}[0-9]{7}$"
+						value="${sessionScope.passport}" required>
+				</div>
+				<div class="col-md-1">
+					<input type="submit" class="btn btn-outline-dark"
+						value="<fmt:message key="subscriberbase.next"/>">
+				</div>
+			</form>
 			<c:if test="${sessionScope.subscriber_debtor eq 'debtor'}">
 				<div class="col-md-12 fw-normal fs-6 text-danger">
 					<fmt:message key="subscriberbase.debt-found" />
 					<c:forEach var="subscriber" items="${sessionScope.subscriber_list}">
-						<b>${subscriber.account/100} <fmt:message
+						<b> <fmt:formatNumber type="number" minFractionDigits="2"
+								value="${subscriber.account/100}" /> <fmt:message
 								key="subscriberbase.rub" /></b>
 		 (<fmt:message key="subscriberbase.phone" /> ${subscriber.phone})
 		</c:forEach>

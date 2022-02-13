@@ -77,6 +77,7 @@ public class PagePath {
 	public static final String SUBSCRIBER_LIST_REDIRECT = "/controller?command=find_subscriber_list_by_user_id";
 	public static final String SUBSCRIBER_OPERATIONS = "WEB-INF/jsp/subscriber-operations.jsp";
 	public static final String SUBSCRIBER_OPERATIONS_REDIRECT = "/controller?command=go_to_subscriber_operations_page";
+	public static final String SUBSCRIBER_OPERATIONS_WITH_ATTRIBUTES_REDIRECT = "/controller?command=go_to_subscriber_operations_page_with_attributes";
 	public static final String SUBSCRIBER_REDIRECT = "/controller?command=go_to_subscriber_page";
 	public static final String SUBSCRIBER_SERVICES = "WEB-INF/jsp/subscriber-services.jsp";
 	

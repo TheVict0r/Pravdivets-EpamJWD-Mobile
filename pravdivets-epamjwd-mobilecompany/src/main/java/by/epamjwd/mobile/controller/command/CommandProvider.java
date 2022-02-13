@@ -88,6 +88,7 @@ import by.epamjwd.mobile.controller.command.impl.transit.GoToServicePageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSignupPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberBillsPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberOperationsPageCommand;
+import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberOperationsPageWithAttributesCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberPageCommand;
 import by.epamjwd.mobile.controller.command.impl.transit.GoToSubscriberServicesPageCommand;
 import by.epamjwd.mobile.controller.repository.CommandName;
@@ -177,6 +178,7 @@ public class CommandProvider {
 		allCommands.put(CommandName.GO_TO_SIGNUP_PAGE, new GoToSignupPageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_BILLS_PAGE, new GoToSubscriberBillsPageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_OPERATIONS_PAGE, new GoToSubscriberOperationsPageCommand());
+		allCommands.put(CommandName.GO_TO_SUBSCRIBER_OPERATIONS_PAGE_WITH_ATTRIBUTES, new GoToSubscriberOperationsPageWithAttributesCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_PAGE, new GoToSubscriberPageCommand());
 		allCommands.put(CommandName.GO_TO_SUBSCRIBER_SERVICES_PAGE, new GoToSubscriberServicesPageCommand());
 		allCommands.put(CommandName.LOGIN, new LoginCommand());

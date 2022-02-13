@@ -57,7 +57,7 @@ public class AddSubscriberPreparationCommand implements Command {
 				List<Subscriber> subscribersDebtors = subscriberService.findSubscribersDebtors(passport);
 				session.setAttribute(AttributeName.SUBSCRIBER_DEBTOR, AttributeValue.DEBTOR);
 				session.setAttribute(AttributeName.SUBSCRIBER_LIST, subscribersDebtors);
-				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_REDIRECT, RouteMethod.REDIRECT);
+				result = new RouteHelper(PagePath.SUBSCRIBER_OPERATIONS_WITH_ATTRIBUTES_REDIRECT, RouteMethod.REDIRECT);
 			} else if (subscriberService.isNewSubscriberUser(passport)) {
 				session.setAttribute(AttributeName.SUBSCRIBER_USER_FLAG, AttributeValue.NEW);
 				result = new RouteHelper(PagePath.ADD_SUBSCRIBER_REDIRECT, RouteMethod.REDIRECT);
