@@ -5,7 +5,6 @@
     <footer id="footer">
         <div style="background: Black;text-align: center;margin: 0px;padding: 10px;">
             <p style="color: grey;"> copyright ©  <ctg:current-year/> mobile | e-mail: ${initParam.companyEmail} | not a real company - demonstration use only</p>
-            ${initParam.mainEmail}
         </div>
     </footer>
 
