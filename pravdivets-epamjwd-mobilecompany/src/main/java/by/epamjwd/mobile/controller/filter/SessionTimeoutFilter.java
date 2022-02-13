@@ -91,7 +91,7 @@ public class SessionTimeoutFilter implements Filter {
 		authorisationRequired.add(CommandName.GO_TO_SUBSCRIBER_PAGE);
 		authorisationRequired.add(CommandName.GO_TO_SUBSCRIBER_SERVICES_PAGE);
 
-		if ((role == null) && (authorisationRequired.contains(commandName))) {
+		if (role == null && authorisationRequired.contains(commandName)) {
 			session.setAttribute(AttributeName.SESSION_TIME_OUT, AttributeValue.SESSION_TIME_OUT);
 			response.sendRedirect(request.getContextPath() + PagePath.LOGIN_REDIRECT);
 			return;
