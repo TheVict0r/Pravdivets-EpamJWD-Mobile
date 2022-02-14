@@ -56,9 +56,10 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 		List<T> entities = new ArrayList<>();
 
 		Connection connection = null;
+		PreparedStatement statement = null;
 		try {
 			connection = ConnectionPool.getInstance().takeConnection();
-			PreparedStatement statement = createStatement(connection, query, params);
+			statement = createStatement(connection, query, params);
 			ResultSet resultSet = statement.executeQuery();
 			entities = createEntitiesList(resultSet);
 		} catch (ConnectionPoolException e) {
@@ -69,7 +70,11 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 			throw new DaoException("Unable to execute query", e);
 		} finally {
 			try {
+				statement.close();
 				ConnectionPool.getInstance().releaseConnection(connection);
+			} catch (SQLException e) {
+				LOGGER.error("Unable to close prepared statement", e);
+				throw new RuntimeException("Unable to close prepared statement", e);
 			} catch (ConnectionPoolException e) {
 				LOGGER.error("Unable to release connection to pool", e);
 				throw new RuntimeException("Unable to release connection to pool", e);
@@ -116,9 +121,10 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 	protected long executeInsertQuery(String query, Object... params) throws DaoException {
 		long result = 0;
 		Connection connection = null;
+		PreparedStatement statement = null;
 		try {
 			connection = ConnectionPool.getInstance().takeConnection();
-			PreparedStatement statement = createStatement(connection, query, params);
+			statement = createStatement(connection, query, params);
 			statement.executeUpdate();
 			ResultSet generatedKey = statement.getGeneratedKeys();
 			if (generatedKey.next()) {
@@ -132,7 +138,11 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 			throw new DaoException("Unable to execute insert query", e);
 		} finally {
 			try {
+				statement.close();
 				ConnectionPool.getInstance().releaseConnection(connection);
+			} catch (SQLException e) {
+				LOGGER.error("Unable to close prepared statement", e);
+				throw new RuntimeException("Unable to close prepared statement", e);
 			} catch (ConnectionPoolException e) {
 				LOGGER.error("Unable to release connection to pool", e);
 				throw new RuntimeException("Unable to release connection to pool", e);
@@ -152,9 +162,10 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 	 */
 	protected void executeUpdateQuery(String query, Object... params) throws DaoException {
 		Connection connection = null;
+		PreparedStatement statement = null;
 		try {
 			connection = ConnectionPool.getInstance().takeConnection();
-			PreparedStatement statement = createStatement(connection, query, params);
+			statement = createStatement(connection, query, params);
 			statement.executeUpdate();
 		} catch (ConnectionPoolException e) {
 			LOGGER.error("Unable to take connection.", e);
@@ -164,7 +175,11 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 			throw new DaoException("Unable to execute update query", e);
 		} finally {
 			try {
+				statement.close();
 				ConnectionPool.getInstance().releaseConnection(connection);
+			} catch (SQLException e) {
+				LOGGER.error("Unable to close prepared statement", e);
+				throw new RuntimeException("Unable to close prepared statement", e);
 			} catch (ConnectionPoolException e) {
 				LOGGER.error("Unable to release connection to pool", e);
 				throw new RuntimeException("Unable to release connection to pool", e);
