@@ -74,7 +74,7 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 				ConnectionPool.getInstance().releaseConnection(connection);
 			} catch (SQLException e) {
 				LOGGER.error("Unable to close prepared statement", e);
-				throw new RuntimeException("Unable to close prepared statement", e);
+				throw new DaoException("Unable to close prepared statement", e);
 			} catch (ConnectionPoolException e) {
 				LOGGER.error("Unable to release connection to pool", e);
 				throw new RuntimeException("Unable to release connection to pool", e);
@@ -142,7 +142,7 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 				ConnectionPool.getInstance().releaseConnection(connection);
 			} catch (SQLException e) {
 				LOGGER.error("Unable to close prepared statement", e);
-				throw new RuntimeException("Unable to close prepared statement", e);
+				throw new DaoException("Unable to close prepared statement", e);
 			} catch (ConnectionPoolException e) {
 				LOGGER.error("Unable to release connection to pool", e);
 				throw new RuntimeException("Unable to release connection to pool", e);
@@ -179,7 +179,7 @@ public abstract class AbstractQueryExecutor<T extends Identifiable> {
 				ConnectionPool.getInstance().releaseConnection(connection);
 			} catch (SQLException e) {
 				LOGGER.error("Unable to close prepared statement", e);
-				throw new RuntimeException("Unable to close prepared statement", e);
+				throw new DaoException("Unable to close prepared statement", e);
 			} catch (ConnectionPoolException e) {
 				LOGGER.error("Unable to release connection to pool", e);
 				throw new RuntimeException("Unable to release connection to pool", e);
